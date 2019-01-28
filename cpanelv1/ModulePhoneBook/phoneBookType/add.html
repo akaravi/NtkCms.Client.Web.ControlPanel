@@ -1,0 +1,47 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="phoneBookType.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ phoneBookType.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmphoneBookTypeAdd"
+                  novalidate ng-submit="phoneBookType.addNewRow(frmphoneBookTypeAdd)">
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmphoneBookTypeAdd.LinkSourceId.$invalid && !frmphoneBookTypeAdd.LinkSourceId.$pristine,'has-success' : frmphoneBookTypeAdd.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="phoneBookType"></div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmphoneBookTypeAdd.Title.$invalid && !frmphoneBookTypeAdd.Title.$pristine,'has-success' : frmphoneBookTypeAdd.Title.$valid}">
+                    <label class="col-sm-2 control-label"> {{'NAME'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="phoneBookType.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmphoneBookTypeAdd.Title.$invalid">
+                            <small class="text-danger" ng-show="frmphoneBookTypeAdd.Title.$error.required">
+                                <i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}
+                            </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmphoneBookTypeAdd.Title.$valid && frmphoneBookTypeAdd.Title.$dirty"
+                              class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;"
+                              ng-show="(frmphoneBookTypeAdd.Title.$invalid && !frmphoneBookTypeAdd.Title.$pristine) || frmphoneBookTypeAdd.submitted"
+                              class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="phoneBookType.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="phoneBookType.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

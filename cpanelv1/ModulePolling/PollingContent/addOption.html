@@ -1,0 +1,35 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="pollingContent.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'OPTOINS'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmpollingOptionAdd" novalidate ng-submit="pollingContent.saveOptions(frmpollingOptionAdd)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-class="{'has-error' : frmpollingOptionAdd.Option.$invalid && !frmpollingOptionAdd.Option.$pristine,'has-success' : frmpollingOptionAdd.Option.$valid}">
+                    <label class="col-sm-2 control-label"> {{'OPTOIN'|lowercase|translate}} </label>
+                    <div class="input-group col-sm-9">
+                        <input type="text"
+                               class="form-control"
+                               name="Option"
+                               placeholder="{{'ADD_AN_ANSWER'|lowercase|translate}}"
+                               ng-model="pollingContent.selectedItem.Option" />
+                        <span class="input-group-addon btn-primary" style="background-color:#1ab394; cursor:pointer" title="{{'add'|lowercase|translate}}" ng-click="pollingContent.addNewOption(frmpollingOptionAdd)"><i class="fa fa-plus"></i></span>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12" ng-repeat="x in pollingContent.OptionList">
+                    <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                    <div class="input-group">
+                        <input type="text" id="option{{$index}}" class="form-control" ng-required="true" name="validate-text" required readonly="readonly" placeholder="{{'ADD_AN_ANSWER'|lowercase|translate}}" ng-model="x.Option">
+                        <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="pollingContent.deleteContentOption($index)"><i class="fa fa-remove"></i></span>
+                        <span id="editSaveBtn{{$index}}" class="input-group-addon warning" style="background-color:#f8ac59; cursor:pointer" title="{{'edit'|lowercase|translate}}" ng-click="pollingContent.updateContentOption($index)"><i id="editSaveIcon{{$index}}" class="fa fa-pencil-square-o"></i></span>
+                    </div>
+                    <label class="col-sm-4 col-md-offset-2 control-label rtl">{{'NUMBER_VOTES'|lowercase|translate}}&nbsp;{{x.NumberOfVotes}}&nbsp;{{x.Percentage}}</label>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="button" ng-click="pollingContent.closeModal()">{{'BACK'|lowercase|translate}} </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

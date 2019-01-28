@@ -1,0 +1,69 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="objectUserController as objectUser" ng-init="objectUser.init()">
+    <!--<div class="container">-->
+    <div class="row" rasha-loading="objectUser.categoryBusyIndicator">
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;{{'GROUPS'|lowercase|translate}}</h5></div>
+                <div class="panel-body">
+                    <div style="position: relative">
+                        <ul class="tree" tree-options="objectUser.treeConfig"></ul>
+                    </div>
+                    <!-- Category Section -->
+                    <div style="margin-top: 20px;">
+                        <a ng-click="objectUser.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-primary">
+                            <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
+                        </a>
+                        <div id="categoryButtons" style="display: none;">
+                            <button class="btn btn-primary" style="width:100%; margin-top:5px;" rasha-userrole="objectUser.Add" ng-click="objectUser.addNewCategoryModel()" ng-show="objectUser.gridOptions.resultAccess.AccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp;{{'add'|lowercase|translate}}</button>
+                            <button class="btn btn-warning" style="width:100%;margin-top:5px;" rasha-userrole="objectUser.Edit" ng-click="objectUser.openEditCategoryModel()" ng-show="objectUser.gridOptions.resultAccess.AccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}}</button>
+                            <button class="btn btn-danger" style="width:100%;margin-top:5px;" rasha-userrole="objectUser.Delete" ng-click="objectUser.deleteCategory()" ng-show="objectUser.gridOptions.resultAccess.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h5><i class="fa fa-Servicepaper-o " style="font-size: 18px;"></i>&nbsp;{{'LIST'|lowercase|translate}}&nbsp;{{'objectS'|lowercase|translate}}<nospecialtag ng-if="objectUser.treeConfig.currentNode.Id!=null">:&nbsp;{{objectUser.treeConfig.currentNode.Title}}&nbsp; - {{'ID'|lowercase|translate}}:&nbsp;{{objectUser.treeConfig.currentNode.Id}}</nospecialtag></h5></div>
+            </div>
+            <div class="col-md-12" style="text-align: center;">
+                <button class="btn btn-primary" ng-click="objectUser.openAddobjectinSiteModal()" ng-show="objectUser.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp;اتصال عضو</button>
+                <button class="btn btn-primary" ng-click="objectUser.openAddModal()" ng-show="objectUser.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp;{{'add'|lowercase|translate}}</button>
+                <button class="btn btn-warning" ng-click="objectUser.openEditModel()" ng-show="objectUser.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                <button class="btn btn-danger" ng-click="objectUser.deleteContent()" ng-show="objectUser.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}}</button>
+                <button class="btn btn-success" ng-click="objectUser.showAdvancedSearchPanel(objectUser.gridOptions.resultAccess.AccessSearchField)"><i class="fa fa-search fontaesome-small"></i>&nbsp;{{'advanced_search'|lowercase|translate}}&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                <button class="btn btn-warning" type="button" ng-click="objectUser.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+                <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="objectUser.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+                <button class="btn btn-success" ng-click="objectUser.getCount()">{{'number'|lowercase|translate}}&nbsp;{{objectUser.ListItemsTotalRowCount}}</button>
+            </div>
+     
+            <hr />
+            <div id="builderPanel" class="col-sm-12 col-lg-12 col-md-12" style="display: none; margin-bottom: 10px;">
+                <div id="builder" query-builder="objectUser"></div>
+                <div class="btn-group" style="float: left;">
+                    <button class="btn btn-success reset" data-target="basic" type="button" id="btn-get" ng-click="objectUser.getRules()">{{'look'|lowercase|translate}}</button>
+                    <button class="btn btn-primary set-json" data-target="basic" type="button" id="btn-save" ng-click="objectUser.saveRules()">{{'save_condition'|lowercase|translate}} </button>
+                    <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-set" ng-click="objectUser.setRules()">{{'restore_condition'|lowercase|translate}} </button>
+                </div>
+            </div>
+            
+            <div class="col-md-12" style="margin-top:20px;">
+                <h4 ng-show="objectUser.ListItems.length < 1">{{'There_Is_No_Content_In_This_Category'|lowercase|translate}}</h4>
+                <div rasha-grid="objectUser.gridOptions"></div>
+            </div>
+            <div class="col-md-12" id="showlistfile" ng-show="objectUser.showlistFile">
+                <div rasha-grid="objectUser.gridOptionsfile"></div>
+            </div>
+            <!--<div class="col-md-12" id="showlistProperty" ng-show="objectUser.showlistPeoperty">
+                <div rasha-grid="objectUser.gridOptionsProperty"></div>
+            </div>
+            <div class="col-md-12" id="showlistHistory" ng-show="objectUser.showlistHistory">
+                <button class="btn btn-primary" ng-click="objectUser.openAddModalHistory()" ng-show="objectUser.gridOptionsHistory.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp;{{'add'|lowercase|translate}}</button>
+                <button class="btn btn-warning" ng-click="objectUser.openEditModelHistory()" ng-show="objectUser.gridOptionsHistory.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                <button class="btn btn-danger" ng-click="objectUser.deleteContentHistory()" ng-show="objectUser.gridOptionsHistory.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}}</button>
+                <div rasha-grid="objectUser.gridOptionsHistory"></div>
+            </div>-->
+        </div>
+    </div>
+</div>
+

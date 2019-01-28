@@ -1,0 +1,18 @@
+﻿
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="cmsWidgetGridCtrl as cmsWidgetgrd" ng-init="cmsWidgetgrd.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="cmsWidgetController.Add" ng-click="cmsWidgetgrd.openAddModal()" ng-show="cmsWidgetgrd.gridOptions.resultAccess.AccessAddRow" type="button">{{'ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="cmsWidgetController.Edit" ng-click="cmsWidgetgrd.openEditModal()" ng-show="cmsWidgetgrd.gridOptions.resultAccess.AccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>
+            <button class="btn btn-danger" rasha-userrole="cmsWidgetController.Delete" ng-click="cmsWidgetgrd.deleteRow()" ng-show="cmsWidgetgrd.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'DELETE'|lowercase|translate}}</button>
+            <button class="btn btn-success" type="button" ng-click="cmsWidgetgrd.searchData(cmsWidgetgrd.gridOptions.resultAccess.AccessSearchField)">{{'advanced_search'|lowercase|translate}}</button>
+            <button class="btn btn-primary" type="button" ng-click="cmsWidgetgrd.reportData()">{{'report'|lowercase|translate}}</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="cmsWidgetgrd.gridOptions"></div>
+        </div>
+    </div>
+</div>

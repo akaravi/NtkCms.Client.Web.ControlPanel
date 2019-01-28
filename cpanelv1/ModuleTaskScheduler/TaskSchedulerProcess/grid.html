@@ -1,0 +1,90 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="taskSchedulerProcessController as taskSchedulerProcess" ng-init="taskSchedulerProcess.init()">
+    <div class="row" rasha-loading="taskSchedulerProcess.busyIndicator">
+        <div class="col-sm-12">
+            <!--<button class="btn btn-primary" rasha-userrole="taskSchedulerProcess.Add" ng-click="taskSchedulerProcess.openAddModal()" ng-show="taskSchedulerProcess.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>-->
+            <button class="btn btn-primary" rasha-userrole="taskSchedulerProcess.Add" ng-click="taskSchedulerProcess.autoAdd()" ng-show="taskSchedulerProcess.gridOptions.resultAccess.AccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="taskSchedulerProcess.Edit" ng-click="taskSchedulerProcess.openEditModal()" type="button" ng-show="taskSchedulerProcess.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="taskSchedulerProcess.Delete" ng-click="taskSchedulerProcess.deleteRow()" ng-show="taskSchedulerProcess.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="taskSchedulerProcess.showAdvancedSearchPanel(taskSchedulerProcess.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-default" type="button" ng-click="taskSchedulerProcess.changeState('taskschedulerprocesscategory')">{{'BACK'|lowercase|translate}}&nbsp;&nbsp;<i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="taskSchedulerProcess"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="taskSchedulerProcess.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="taskSchedulerProcess.getJson()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="taskSchedulerProcess.getJson()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="taskSchedulerProcess.gridOptions"></div>
+        </div>
+    </div>
+    <div id="inputValue_formBuilderMainAdmin" class="row well" style="display: none;">
+        <h4>{{'Determine_Input_Values'|lowercase|translate}}</h4>
+        <div class="col-md-6">
+            <div fb-components></div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{'FORM_INPUT_VALUES'|lowercase|translate}}</h3>
+                </div>
+                <div fb-builder="default" style="min-height: 500px; padding: 20px"></div>
+                <div class="panel-footer">
+                    <div class="checkbox">
+                        <button class="btn btn-primary" type="button" ng-click="taskSchedulerProcess.saveJsonFormMainAdmin()">{{'save'|lowercase|translate}}</button>
+                        <button class="btn btn-success" ng-click="taskSchedulerProcess.showFormMainAdmin('true')">{{'PREVIEW'|lowercase|translate}}</button>
+                        <button class="btn btn-warning" ng-click="taskSchedulerProcess.getFromSystemMainAdmin()">{{'AUTOMATIC_LOAD_FROM_SYSTEM'|lowercase|translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="inputValue_formBuilderSiteAdmin" class="row well" style="display: none;">
+        <h4>{{'Determine_Input_Values'|lowercase|translate}}</h4>
+        <div class="col-md-6">
+            <div fb-components></div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{'FORM_INPUT_VALUES'|lowercase|translate}}</h3>
+                </div>
+                <div fb-builder="default" style="min-height: 500px; padding: 20px"></div>
+                <div class="panel-footer">
+                    <div class="checkbox">
+                        <button class="btn btn-primary" type="button" ng-click="taskSchedulerProcess.saveJsonFormSiteAdmin()">{{'save'|lowercase|translate}}</button>
+                        <button class="btn btn-success" ng-click="taskSchedulerProcess.showFormSiteAdmin('true')">{{'PREVIEW'|lowercase|translate}}</button>
+                        <button class="btn btn-warning" ng-click="taskSchedulerProcess.getFromSystemSiteAdmin()">{{'AUTOMATIC_LOAD_FROM_SYSTEM'|lowercase|translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div id="inputValue_formBuilder" class="row well" style="display: none;">
+        <h4>{{'DESIGN_FORM'|lowercase|translate}}</h4>
+        <div class="col-md-6">
+            <div fb-components></div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> {{'FORM_INPUT_VALUES'|lowercase|translate}} </h3>
+                </div>
+                <div fb-builder="default" style="min-height: 500px; padding: 20px"></div>
+                <div class="panel-footer">
+                    <div class="checkbox">
+                        <button class="btn btn-primary" type="button" ng-click="taskSchedulerProcess.saveProcessInputCustomizeValue()">{{'save'|lowercase|translate}}</button>
+                        <button class="btn btn-success" ng-click="taskSchedulerProcess.showFormPreview()">{{'PREVIEW'|lowercase|translate}}</button>
+                        <button class="btn btn-warning" ng-click="taskSchedulerProcess.getFromSystem()">{{'AUTOMATIC_LOAD_FROM_SYSTEM'|lowercase|translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+</div>

@@ -1,0 +1,39 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="phoneBookStateCtrl as phoneBookState" ng-init="phoneBookState.init()">
+    <!--    <div class="container">-->
+<div class="row">
+    <div class="col-md-12">
+        <h5>{{'List_Of_Cities'|lowercase|translate}}</h5>
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-primary" ng-click="phoneBookState.openAddModal()" ng-show="phoneBookState.gridOptions.resultAccess.AccessAddRow">{{'add'|lowercase|translate}}</button>
+                <button class="btn btn-warning" ng-click="phoneBookState.openEditModal()" ng-show="phoneBookState.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
+                <button class="btn btn-danger" ng-click="phoneBookState.deleteRow()" ng-show="phoneBookState.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
+                <button class="btn btn-success" ng-click="phoneBookState.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                <button class="btn btn-primary" ng-click="phoneBookState.openNewFolder()"> {{'report'|lowercase|translate}} </button>
+            </div>
+            <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+                <div id="builder" query-builder="phoneBookState"></div>
+                <div class="btn-group" style="float: left;">
+                    <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="phoneBookState.getRules()"> {{'look'|lowercase|translate}} </button>
+                    <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="phoneBookState.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                    <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="phoneBookState.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div rasha-grid="phoneBookState.gridOptions"></div>
+            </div>
+            <div class="col-md-12" ng-show="phoneBookState.showGridComment">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <h3>{{phoneBookState.Title}}</h3>
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-primary" ng-click="phoneBookState.hideGridComment()"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+

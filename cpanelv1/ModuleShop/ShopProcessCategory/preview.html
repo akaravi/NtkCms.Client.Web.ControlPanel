@@ -1,0 +1,24 @@
+﻿<div class="modal-body">
+    <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="$dismiss()"></i>
+    <h5>{{'PREVIEW'|lowercase|translate}}</h5>
+    <hr />
+    <!-- Tile Section -->
+    <div class="row">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-4">
+                    <h3>{{shopProcessCategory.appTitle}}</h3>
+                </div>
+            </div>
+        </form>
+        <form class="form-horizontal">
+            <div ng-model="shopProcessCategory.submitValue" fb-form="default" fb-default="shopProcessCategory.defaultValue"></div>
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-4">
+                    <button class="btn btn-primary" type="button" ng-disabled="shopProcessCategory.addRequested" ng-click="shopProcessCategory.saveSubmitValues()">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="$dismiss()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

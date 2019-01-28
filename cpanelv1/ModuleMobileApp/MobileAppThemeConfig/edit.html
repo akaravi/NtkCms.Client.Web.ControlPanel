@@ -1,0 +1,93 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor: pointer" ng-click="themeConfig.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Theme'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmthemeConfigEdit" novalidate ng-submit="themeConfig.editRow(frmthemeConfigEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="themeConfig.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                                 ng-class="{'has-error' : frmthemeConfigEdit.RecordStatus.$invalid && !frmthemeConfigEdit.RecordStatus.$pristine,'has-success' : frmthemeConfigEdit.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="themeConfig"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="themeConfig.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                                 ng-class="{'has-error' : frmthemeConfigEdit.Title.$invalid && !frmthemeConfigEdit.Title.$pristine,'has-success' : frmthemeConfigEdit.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="true" name="Title" ng-model="themeConfig.selectedItem.Title" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="themeConfig.gridOptions.resultAccess.AccessEditField.indexOf('LinkSourceId')>-1" ng-class="{'has-error' : frmthemeConfigEdit.LinkSourceId.$invalid && !frmthemeConfigEdit.LinkSourceId.$pristine,'has-success' : frmthemeConfigEdit.LinkSourceId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'SOURCE_NAME'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <select class='form-control' name="LinkSourceId" ng-model="themeConfig.selectedItem.LinkSourceId" ng-options="x.Id as x.Title for x in themeConfig.sourceListItems" ng-change="themeConfig.onSourceChange(themeConfig.selectedItem.LinkSourceId)" ng-disabled="themeConfig.addRequested" required></select>
+                                    <div class="m-t-xs" ng-show="frmthemeConfigEdit.LinkSourceId.$invalid">
+                                        <small class="text-danger" ng-show="frmthemeConfigEdit.LinkSourceId.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmthemeConfigEdit.LinkSourceId.$valid && frmthemeConfigEdit.LinkSourceId.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmthemeConfigEdit.LinkSourceId.$invalid && !frmthemeConfigEdit.LinkSourceId.$pristine) || frmthemeConfigEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="themeConfig.gridOptions.resultAccess.AccessEditField.indexOf('ThemeConfigBuilderJsonValues')>-1">
+                                <div class="col-sm-12">
+                                    <div ng-model="themeConfig.submitBuilderValue" fb-form="defaultBuilder" fb-default="themeConfig.defaultBuilderValue"></div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="themeConfig.gridOptions.resultAccess.AccessEditField.indexOf('ThemeConfigRuntimeJsonValues')>-1">
+                                <div class="col-sm-12">
+                                    <div ng-model="themeConfig.submitRuntimeValue" fb-form="defaultRuntime" fb-default="themeConfig.defaultRuntimeValue"></div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Attachments_Files' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'MAIN_IMAGE'|lowercase|translate}} </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="themeConfig.openUploadModal()" aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="themeConfig.filePickerMainImage" ng-model="themeConfig.selectedItem.LinkMainImageId">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="themeConfig.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="themeConfig.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,50 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="cmsModuleSaleSerial.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ cmsModuleSaleSerial.modalTitle}}</h3>
+            <form method="get" class="form-horizontal" name="frmcmsModuleSaleSerialUse" novalidate ng-submit="cmsModuleSaleSerial.addmodalUse(frmcmsModuleSaleSerialUse)">
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmcmsModuleSaleSerialUse.LinkSourceId.$invalid && !frmcmsModuleSaleSerialUse.LinkSourceId.$pristine,'has-success' : frmcmsModuleSaleSerialUse.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="cmsModuleSaleSerial"></div>
+                </div>
+
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'> {{'Serial_Number'|lowercase|translate}} </label>
+                    <div class='col-sm-10'>
+                        <input type='text' ng-required="true" ng-model='cmsModuleSaleSerial.checkItem.SerialNumber' class='form-control' />
+                    </div>
+                </div>
+
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'> {{'Pwd_For_Use'|lowercase|translate}} </label>
+                    <div class='col-sm-10'>
+                        <input type='text' ng-required="true" ng-model='cmsModuleSaleSerial.checkItem.PwdForUse' class='form-control' />
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed'></div><!--ng-show="cmsModuleSaleSerial.gridOptions.resultAccess.AccessAddField.indexOf('LinkSiteIdBuyer')>-1"-->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'LinkSiteIdBuyer'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkSiteIdBuyer" rasha-autocomplete="cmsModuleSaleSerial.LinkSiteIdBuyerSelector" ng-model="cmsModuleSaleSerial.checkItem.LinkSiteIdBuyer" />
+                    </div>
+                </div>
+                <div class="form-group">
+                        <button class="col-md-offset-2 col-lg-8 btn btn-primary"  type="submit"> چک کردن سریال </button>
+                </div>
+
+                <div class="col-md-12">
+                    <div ng-show="cmsModuleSaleSerial.ListItems.length>0" rasha-grid="cmsModuleSaleSerial.gridOptionsdetail"></div>
+                </div>
+
+                <div class="form-group">
+                    <button class="col-md-offset-2 col-lg-8 btn btn-danger" ng-disabled="cmsModuleSaleSerial.addRequested" ng-click="cmsModuleSaleSerial.registerSerial()"> ثبت سریال </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

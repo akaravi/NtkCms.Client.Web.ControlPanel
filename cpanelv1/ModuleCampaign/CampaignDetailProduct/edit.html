@@ -1,0 +1,64 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="campaignDetailProduct.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Product'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmcampaignDetailProductEdit" novalidate ng-submit="campaignDetailProduct.editRow(frmcampaignDetailProductEdit)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmcampaignDetailProductEdit.LinkSourceId.$invalid && !frmcampaignDetailProductEdit.LinkSourceId.$pristine,'has-success' : frmcampaignDetailProductEdit.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="campaignDetailProduct"></div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="campaignDetailProduct.gridOptions.resultAccess.AccessAddField.indexOf('LinkCampaignDetailId')>-1">
+                    <label class="col-sm-2 control-label">{{'Link_Campaign_Detail_Id'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkCampaignDetailId" rasha-autocomplete="campaignDetailProduct.LinkCampaignDetailIdSelector" ng-model="frmcampaignDetailProductEdit.selectedItem.LinkCampaignDetailId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ><!--ng-show="campaignDetailProduct.gridOptions.resultAccess.AccessAddField.indexOf('LinkModuleProductId')>-1"-->
+                    <label class="col-sm-2 control-label">{{'SELECT_CATEGORIES'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkProductId" rasha-autocomplete="campaignDetailProduct.LinkModuleProductIdSelector" ng-model="frmcampaignDetailProductEdit.selectedItem.LinkModuleProductId" />
+                    </div>
+                </div>
+               
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Commodity_Price'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               name="ProductPrice"
+                               ng-model="campaignDetailProduct.selectedItem.ProductPrice" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Sale_Price'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               name="SalePrice"
+                               ng-model="campaignDetailProduct.selectedItem.SalePrice" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="IsEnabled" ng-model="campaignDetailProduct.selectedItem.IsNecessary">{{'It_Is_Essential'|lowercase|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="campaignDetailProduct.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="campaignDetailProduct.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

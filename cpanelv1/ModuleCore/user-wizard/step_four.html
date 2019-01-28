@@ -1,0 +1,29 @@
+<fieldset rasha-loading="register.updateProfileBusyIndicator">
+    <h3><i class="fa fa-mobile"></i> {{'COMPILE_INFORMATION'|lowercase|translate}}</h3>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="form-group">
+                <label> {{'NAME'|lowercase|translate}} </label>
+                <input id="text" ng-model="register.selectedItem.Name" name="password" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label> {{'LASTNAME'|lowercase|translate}} </label>
+                <input id="confirm" name="confirm" type="text" ng-model="register.selectedItem.LastName" class="form-control">
+            </div>
+            <div class="form-group">
+                <label> {{'STATIC_NUMBER'|lowercase|translate}} </label>
+                <input id="confirm" name="confirm" type="text" ng-model="register.selectedItem.Tell" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>{{'MAILING_ADDRESS'|lowercase|translate}}</label>
+                <textarea id="confirm" name="confirm" ng-model="register.selectedItem.Address" type="text" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="text-center">
+            </div>
+        </div>
+    </div>
+    <a ng-click="register.updateProfile(signupForm)" class="btn btn-primary pull-right" ng-class="{ 'disabled' : signupForm.$invalid }">{{'EDIT_PROFILE'|lowercase|translate}}</a>
+</fieldset>

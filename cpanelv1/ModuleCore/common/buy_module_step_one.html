@@ -1,0 +1,63 @@
+﻿<fieldset>
+    <h3><i class="fa fa-mobile"></i> {{'SELECT_MODULE'|lowercase|translate}}</h3>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{'SELECT_MODULE'|lowercase|translate}}</h1>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="contact-box">
+                <div class="col-sm-4">
+                    <div class="text-center">
+                        <span><i class="fa fa-5x fa-newspaper-o"></i></span>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <h3><strong>{{'MANAGMENT_NEWS'|lowercase|translate}}</strong></h3>
+                    <h4><strong>{{'PRICE_25000'|lowercase|translate}}</strong></h4>
+                    <p><i class="fa fa-calendar"></i> {{'EXPIRATION_1_YEAR'|lowercase|translate}}</p>
+                    <button class="btn btn-info btn-xs"><i class="fa fa-plus"></i></button> {{'ADD_TO_CART'|lowercase|translate}}
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="contact-box">
+                <div class="col-sm-4">
+                    <div class="text-center">
+                        <span><i class="fa fa-5x fa-image"></i></span>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <h3><strong>{{'MANAGMENT_PICS'|lowercase|translate}}</strong></h3>
+                    <h4><strong>{{'PRICE_25000'|lowercase|translate}} </strong></h4>
+                    <p><i class="fa fa-calendar"></i> {{'EXPIRATION_1_YEAR'|lowercase|translate}}</p>
+                    <button class="btn btn-info btn-xs"><i class="fa fa-plus"></i></button> {{'ADD_TO_CART'|lowercase|translate}}
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="contact-box">
+                <div class="col-sm-4">
+                    <div class="text-center">
+                        <span><i class="fa fa-5x fa-smile-o"></i></span>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <h3><strong>{{'MANAGMENT_SMS'|lowercase|translate}}</strong></h3>
+                    <h4><strong>{{'PRICE_25000'|lowercase|translate}}</strong></h4>
+                    <p><i class="fa fa-calendar"></i> {{'EXPIRATION_1_YEAR'|lowercase|translate}}</p>
+                    <button class="btn btn-info btn-xs"><i class="fa fa-plus"></i></button> {{'ADD_TO_CART'|lowercase|translate}}
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <a ng-click="buyModule.gotoStepTwo(signupForm)" class="btn btn-primary pull-right" ng-class="{ 'disabled' : signupForm.$invalid }">{{'NEXT_LEVEL'|lowercase|translate}}</a>
+</fieldset>

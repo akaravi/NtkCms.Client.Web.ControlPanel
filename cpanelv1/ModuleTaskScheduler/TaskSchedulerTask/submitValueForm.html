@@ -1,0 +1,20 @@
+﻿<div class="modal-body">
+    <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="task.closeModal()"></i>
+    <h5> {{'PREVIEW'|lowercase|translate}} </h5>
+    <hr />
+    <!-- Tile Section -->
+    <div class="row">
+        <form class="form-horizontal">
+            <div ng-model="task.valueSubmit" fb-form="default" fb-default="task.defaultValue"></div>
+            <div class="col-md-12">
+                <pre>{{task.valueSubmit}}</pre>
+            </div>
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-4">
+                    <button class="btn btn-primary" type="button" ng-click="task.submitValues()"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="task.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

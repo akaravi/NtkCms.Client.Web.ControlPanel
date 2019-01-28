@@ -1,0 +1,55 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="cmsUserRolegrd.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ cmsUserRolegrd.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmCmsUserRoleEdit" novalidate ng-submit="cmsUserRolegrd.editRow(frmCmsUserRoleEdit)">
+
+<div class="form-group"
+                                             ng-class="{'has-error' : frmCmsUserRoleEdit.Title.$invalid && !frmCmsUserRoleEdit.Title.$pristine,'has-success' : frmCmsUserRoleEdit.Title.$valid}">
+                                            <label class="col-sm-2 control-label">{{'title'|lowercase|translate}}</label>
+                                            <div class="col-sm-10">
+                                                <input  class="form-control"
+                                                       ng-required="true"
+                                                       name="Title"
+                                                       ng-model="cmsUserRolegrd.selectedItem.Title" />
+                                                <div class="m-t-xs" ng-show="frmCmsUserRoleEdit.Title.$invalid">
+                                                    <small class="text-danger" ng-show="frmCmsUserRoleEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                                                </div>
+                                                <span style="left: 10px !important;" ng-show="frmCmsUserRoleEdit.Title.$valid && frmCmsUserRoleEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                                <span style="left: 10px !important;" ng-show="(frmCmsUserRoleEdit.Title.$invalid && !frmCmsUserRoleEdit.Title.$pristine) || frmCmsUserRoleEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+<div class='hr-line-dashed'></div>
+<div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'TITLE_EN'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='text'  ng-model='cmsUserRolegrd.selectedItem.TitleEn' class='form-control'>
+                    </div>
+                </div>
+<div class='hr-line-dashed'></div>
+<div class="form-group"
+                                             ng-class="{'has-error' : frmCmsUserRoleEdit.LinkCategoryId.$invalid && !frmCmsUserRoleEdit.LinkCategoryId.$pristine,'has-success' : frmCmsUserRoleEdit.LinkCategoryId.$valid}">
+                                            <label class="col-sm-2 control-label">{{'SELECT_CATEGORIES'|lowercase|translate}}</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" ng-required="true" name="LinkCategoryId"  rasha-autocomplete="cmsUserRolegrd.linkCategoryIdSelector" ng-model="cmsUserRolegrd.selectedItem.LinkLinkCategoryIdId" />
+                                                <div class="m-t-xs" ng-show="frmCmsUserRoleEdit.LinkCategoryId.$invalid">
+                                                    <small class="text-danger" ng-show="frmCmsUserRoleEdit.LinkCategoryId.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                                                </div>
+                                                <span style="left: 10px !important;" ng-show="frmCmsUserRoleEdit.LinkCategoryId.$valid && frmCmsUserRoleEdit.LinkCategoryId.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                                <span style="left: 10px !important;" ng-show="(frmCmsUserRoleEdit.LinkCategoryId.$invalid && !frmCmsUserRoleEdit.LinkCategoryId.$pristine) || frmCmsUserRoleEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+<div class='hr-line-dashed'></div>
+
+
+
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="cmsUserRolegrd.addRequested" type="submit">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="cmsUserRolegrd.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

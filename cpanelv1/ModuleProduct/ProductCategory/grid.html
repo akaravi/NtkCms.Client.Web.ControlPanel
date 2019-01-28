@@ -1,0 +1,24 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="ProductcategoryCtrl as Productcategory" ng-init="Productcategory.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="Productcategory.categoryBusyIndicator"></div>
+            <button class="btn btn-primary" rasha-userrole="Productcategory.Add" ng-click="Productcategory.openAddModal()" ng-show="Productcategory.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="Productcategory.Edit" ng-click="Productcategory.openEditModal()"ng-show="Productcategory.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="Productcategory.Delete" ng-click="Productcategory.deleteRow()" ng-show="Productcategory.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="Productcategory.showAdvancedSearchPanel(Productcategory.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-primary" type="button" ng-click="Productcategory.reportData()"> {{'report'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="Productcategory" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="Productcategory.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

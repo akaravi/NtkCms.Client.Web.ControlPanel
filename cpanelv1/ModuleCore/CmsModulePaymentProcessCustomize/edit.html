@@ -1,0 +1,86 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="cmsMdlPayPrcCust.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ cmsMdlPayPrcCust.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmCmsMdlPayPrcCustEdit" novalidate ng-submit="cmsMdlPayPrcCust.editRow(frmCmsMdlPayPrcCustEdit)">
+                <div class="form-group" ng-show="cmsMdlPayPrcCust.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmCmsMdlPayPrcCustEdit.RecordStatus.$invalid && !frmCmsMdlPayPrcCustEdit.RecordStatus.$pristine,'has-success' : frmCmsMdlPayPrcCustEdit.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label">{{'CONDITION'|lowercase|translate}}</label>
+                    <div class="col-sm-10" rasha-record-status="cmsMdlPayPrcCust"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsMdlPayPrcCust.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                     ng-class="{'has-error' : frmCmsMdlPayPrcCustEdit.Title.$invalid && !frmCmsMdlPayPrcCustEdit.Title.$pristine,'has-success' : frmCmsMdlPayPrcCustEdit.Title.$valid}">
+                    <label class="col-sm-2 control-label">{{'TITLE'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="cmsMdlPayPrcCust.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmCmsMdlPayPrcCustEdit.Title.$invalid">
+                            <small class="text-danger" ng-show="frmCmsMdlPayPrcCustEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmCmsMdlPayPrcCustEdit.Title.$valid && frmCmsMdlPayPrcCustEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmCmsMdlPayPrcCustEdit.Title.$invalid && !frmCmsMdlPayPrcCustEdit.Title.$pristine) || frmCmsMdlPayPrcCustEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group' ng-show="cmsMdlPayPrcCust.gridOptions.resultAccess.AccessEditField.indexOf('TitleEn')>-1">
+                    <label class='col-sm-2 control-label'>{{'TITLE_EN'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='text' ng-model='cmsMdlPayPrcCust.selectedItem.TitleEn' class='form-control'>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group' ng-show="cmsMdlPayPrcCust.gridOptions.resultAccess.AccessEditField.indexOf('Description')>-1">
+                    <label class='col-sm-2 control-label'>{{'DESCRIPTION'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <textarea type='text' ng-required="true" ng-model='cmsMdlPayPrcCust.selectedItem.Description' class='form-control' style="resize: vertical;height: 100px;"></textarea>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'CHOOSE_MODULE'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-model="cmsMdlPayPrcCust.selectedItem.LinkModuleId" ng-disabled="cmsMdlPayPrcCust.isLoading"  ng-change="cmsMdlPayPrcCust.onModuleChange(cmsMdlPayPrcCust.selectedItem.LinkModuleId)">
+                            <option ng-repeat="x in cmsMdlPayPrcCust.cmsModulesListItems" ng-selected="cmsMdlPayPrcCust.selectedItem.CmsModuleProcess.LinkModuleId == x.Id" value="{{x.Id}}">{{x.Title}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'CHOOSE_ACTIVITY_MODULE'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-model="cmsMdlPayPrcCust.selectedItem.LinkModulePaymentProcessId" ng-disabled="cmsMdlPayPrcCust.isLoading" ng-change="cmsMdlPayPrcCust.LoadProcessInputCustomizeValue(x.Id)">
+                            <option ng-repeat="x in cmsMdlPayPrcCust.cmsModulesPaymentProcessListItems" value="{{x.Id}}">{{x.Title}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group' ng-show="cmsMdlPayPrcCust.gridOptions.resultAccess.AccessEditField.indexOf('ProcessInputCustomizeValue')>-1">
+                    <label class='col-sm-2 control-label'>{{'INPUT_SETTING'|lowercase|translate}}</label>
+                    <span style="color: red">{{'REQUIRED_VALUES'|lowercase|translate}}</span>
+                    <textarea type='text' readonly="readonly" ng-model='cmsMdlPayPrcCust.selectedItem.virtual_CmsModuleProcess.ProcessInputValue' class='form-control'></textarea>
+                    <div class='col-sm-10'>
+                        <div style="color: blue">
+                            {{'LOGIN_USING_CONFIGURATION_FORM'|lowercase|translate}}
+                            {"InputForm": "NameOfInput"}
+                            <br />
+                            {{'ENTRY_SYSTEM_INPUT_IN_TIME_TO_EXECUTE'|lowercase|translate}}
+                            {"InputRequest": "NameOfRequest"}
+                        </div>
+                        <span style="color: green">{{'YOUR_SETTINGS'|lowercase|translate}}</span>
+                        <textarea type='text' ng-model='cmsMdlPayPrcCust.selectedItem.ProcessInputCustomizeValue' class='form-control'></textarea>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="cmsMdlPayPrcCust.addRequested" type="submit">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="cmsMdlPayPrcCust.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

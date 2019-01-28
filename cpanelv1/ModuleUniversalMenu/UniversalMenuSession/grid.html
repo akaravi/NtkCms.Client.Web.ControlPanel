@@ -1,0 +1,23 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="sessionGridController as sessionCtrl" ng-init="sessionCtrl.init()">
+    <!--    <div class="container">-->
+    <div class="row" rasha-loading="sessionCtrl.busyIndicator">
+        <div class="col-sm-12">
+            <!--<button class="btn btn-primary" rasha-userrole="sessionctrl.add" ng-click="sessionctrl.openaddmodal()" ng-show="sessionCtrl.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="sessionctrl.edit" ng-click="sessionctrl.openeditmodal()" ng-show="sessionCtrl.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>-->
+            <button class="btn btn-danger" rasha-userrole="sessionCtrl.Delete" ng-click="sessionCtrl.deleteRow()" ng-show="sessionCtrl.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="sessionCtrl.showAdvancedSearchPanel(sessionCtrl.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-primary" type="button" ng-click="sessionCtrl.reportData()"> {{'report'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="sessionCtrl" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="sessionCtrl.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

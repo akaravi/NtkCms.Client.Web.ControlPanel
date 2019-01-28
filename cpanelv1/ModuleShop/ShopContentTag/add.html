@@ -1,0 +1,41 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="shopContentTag.busyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="shopContentTag.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ shopContentTag.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmshopContentTagAdd" novalidate ng-submit="shopContentTag.addNewRow(frmshopContentTagAdd)">
+
+                
+                <div class='hr-line-dashed'></div>
+             
+                <div class="form-group" ng-show="shopContentTag.gridOptions.resultAccess.AccessAddField.indexOf('LinkContentId')>-1"
+                     ng-class="{'has-error' : frmshopContentTagAdd.LinkContentId.$invalid && !frmshopContentTagAdd.LinkContentId.$pristine,'has-success' : frmshopContentTagAdd.LinkContentId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'SELECT_CONTENT'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-model="shopContentOther.selectedItem.LinkContentId">
+                            <option ng-repeat="x in shopContentSim.DestinationList" ng-value="x.Id">{{x.Title}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="shopContentTag.gridOptions.resultAccess.AccessAddField.indexOf('LinkTagId')>-1"
+                     ng-class="{'has-error' : frmshopContentTagAdd.LinkTagId.$invalid && !frmshopContentTagAdd.LinkTagId.$pristine,'has-success' : frmshopContentTagAdd.LinkTagId.$valid}">
+                    <label class="col-sm-2 control-label">  {{'SELECT_TAG'|lowercase|translate}}  </label>
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-model="shopContentOther.selectedItem.LinkTagId">
+                            <option ng-repeat="x in shopContentSim.DestinationList" ng-value="x.Id">{{x.Title}}</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="shopContentTag.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="shopContentTag.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+

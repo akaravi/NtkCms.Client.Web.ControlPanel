@@ -1,0 +1,73 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="productShareServerCategoryController as productShareServerCategory" ng-init="productShareServerCategory.init()">
+    <!--<div class="container">-->
+    <div class="row">
+        <div class="col-md-2">
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;{{'Sharing_Settings'|lowercase|translate}}</h5></div>
+                    <div class="panel-body">
+                        <div style="position: relative">
+                            <ul class="tree" tree-options="productShareServerCategory.treeConfig"></ul>
+                        </div>
+                        <!-- Category Section -->
+                        <div style="margin-top: 20px;" ng-show="productShareServerCategory.gridOptions.resultAccess.AccessAddRow || productShareServerCategory.gridOptions.resultAccess.AccessEditRow ||productShareServerCategory.gridOptions.resultAccess.AccessDeleteRow">
+                            <a ng-click="productShareServerCategory.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-success">
+                                <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
+                            </a>
+                            <div id="categoryButtons" style="display: none;">
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="productShareServerCategory.Add" ng-click="productShareServerCategory.addNewCategoryModel()" type="button" ng-show="productShareServerCategory.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="productShareServerCategory.Edit" ng-click="productShareServerCategory.EditCategoryModel()" type="button" ng-show="productShareServerCategory.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="productShareServerCategory.Delete" ng-click="productShareServerCategory.deleteCategory()" type="button" ng-show="productShareServerCategory.gridOptions.resultAccess.AccessDeleteRow"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5><i class="fa fa-newspaper-o " style="font-size: 18px;"></i>&nbsp;{{'LIST'|lowercase|translate}}&nbsp;{{'Subscriptions'|lowercase|translate}}<nospecialtag ng-if="productShareServerCategory.treeConfig.currentNode.Id!=null">:&nbsp;{{productShareServerCategory.treeConfig.currentNode.Title}}&nbsp; - {{'ID'|lowercase|translate}}:&nbsp;{{productShareServerCategory.treeConfig.currentNode.Id}}</nospecialtag></h5>
+                </div>
+                <div class="panel-body" >
+                    <h6>{{'description'|lowercase|translate}}&nbsp;{{productShareServerCategory.treeConfig.currentNode.Description}}</h6>
+                </div>
+            </div>
+            <div class="row" id="topMenu">
+                <div class="col-md-12" style="text-align: center;">
+                    <button class="btn btn-primary" ng-click="productShareServerCategory.addNewContentModel()" ng-show="productShareServerCategory.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="productShareServerCategory.openEditModel()" ng-show="productShareServerCategory.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="productShareServerCategory.deleteContent()" ng-show="productShareServerCategory.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-success" ng-click="productShareServerCategory.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <button class="btn btn-warning" type="button" ng-click="productShareServerCategory.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+                    <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="productShareServerCategory.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+                    <button class="btn btn-success" ng-click="productShareServerCategory.getCount()">{{'number'|lowercase|translate}}&nbsp;{{productShareServerCategory.ListItemsTotalRowCount}}</button>
+                    <!--<button class="btn btn-default" ng-click="productShareServerCategory.enableArchive()"><i class="fa fa-archive fontavesome-small"></i>&nbsp; آرشیو</button>--><i ng-if="item.IsArchive == true" class="fa fa-check" style="color: #ff0000"></i>
+                </div>
+                <hr />
+                <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+                    <div id="builder" query-builder="productShareServerCategory"></div>
+                    <div class="btn-group" style="float: left;">
+                        <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="productShareServerCategory.getRules()"> {{'look'|lowercase|translate}} </button>
+                        <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="productShareServerCategory.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                        <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="productShareServerCategory.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+                    </div>
+                </div>
+                <div class="col-md-12" rasha-loading="productShareServerCategory.contentBusyIndicator">
+                    <div ng-show="productShareServerCategory.ListItems==undefined" style="height:150px;"></div>
+                    <h4 ng-show="productShareServerCategory.ListItems.length < 1">{{'There_Is_No_Content_In_This_Category'|lowercase|translate}}</h4>
+                    <div ng-show="productShareServerCategory.ListItems.length>0" rasha-grid="productShareServerCategory.gridOptions"></div>
+                </div>
+                <div class="col-md-12" ng-show="productShareServerCategory.showGridComment">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3>{{productShareServerCategory.Title}}</h3>
+                        </div>
+                    </div>
+                    <div rasha-grid="productShareServerCategory.gridOptions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

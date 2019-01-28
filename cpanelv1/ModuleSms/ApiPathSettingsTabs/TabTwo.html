@@ -1,0 +1,146 @@
+﻿    <div class="row">
+    <!-- ApiAbilitySendUnicodeMessage -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="input-group field-margin">
+                <span class="input-group-addon">{{'SEND_UNICODE'|lowercase|translate}}</span>
+                <span class="input-group-addon">
+                    <input type="checkbox" ng-model="apiSetting.selectedItem.ApiAbilitySendUnicodeMessage">
+                </span>
+            </div>
+        </div>
+
+
+        <!-- ApiAbilitySendNormalMessage -->
+
+        <div class="col-md-4">
+            <div class="input-group field-margin">
+                <span class="input-group-addon"> {{'SEND_NO_UNICODE'|lowercase|translate}} </span>
+                <span class="input-group-addon">
+                    <input type="checkbox" ng-model="apiSetting.selectedItem.ApiAbilitySendNormalMessage">
+                </span>
+            </div>
+        </div>
+
+
+        <!-- ApiAllowSuperSeder -->
+        <div class="col-md-4">
+            <div class="input-group field-margin">
+                <span class="input-group-addon"> {{'SUCCESOR_WAY_USE'|lowercase|translate}} </span>
+                <span class="input-group-addon">
+                    <input type="checkbox" ng-model="apiSetting.selectedItem.ApiAllowSuperSeder">
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- ApiMinPathNeedToCheckIsOn -->
+        <div class="col-md-6">
+            <div class="input-group field-margin">
+                <span class="input-group-addon"> {{'NEED_TO_ACCEPT_WHIT_ADMIN_TO_SENT'|lowercase|translate}} </span>
+                <span class="input-group-addon">
+                    <input type="checkbox" ng-model="apiSetting.selectedItem.ApiMinPathNeedToCheckIsOn">
+                </span>
+            </div>
+        </div>
+            <!-- ServerAbilityApiVoice -->
+            <div class="col-md-6">
+                <div class="input-group field-margin">
+                    <span class="input-group-addon"> {{'CONECT_TO_VOICE_WAY'|lowercase|translate}} </span>
+                    <span class="input-group-addon">
+                        <input type="checkbox" ng-model="apiSetting.selectedItem.ServerAbilityApiVoice">
+                    </span>
+                </div>
+            </div>
+       
+    </div>
+
+    <!-- ApiMinPathNeedToCheck -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'MINIMUM_ORDER_NEED_ACCEPT'|lowercase|translate}} </span>
+        <input type="number" class="form-control" aria-describedby="basic-addon1" ng-model="apiSetting.selectedItem.ApiMinPathNeedToCheck">
+    </div>
+
+
+
+    <!-- ServerAbilityMinPack -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'MINIMUM_FOR_BOX_SEND'|lowercase|translate}} </span>
+        <input type="number" class="form-control" aria-describedby="basic-addon1" ng-model="apiSetting.selectedItem.ServerAbilityMinPack">
+    </div>
+
+
+    <!-- ServerAbilityMaxPack -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'MAXIMUM_FOR_BOX_SEND'|lowercase|translate}} </span>
+        <input type="number" class="form-control" aria-describedby="basic-addon1" ng-model="apiSetting.selectedItem.ServerAbilityMaxPack">
+    </div>
+
+    <!-- ApiAbilityUseWebservice -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="input-group field-margin">
+                <span class="input-group-addon"> {{'SYNC_AS_WEB_SERVICE'|lowercase|translate}} </span>
+                <span class="input-group-addon">
+                    <input type="checkbox" ng-model="apiSetting.selectedItem.ApiAbilityUseWebservice">
+                </span>
+            </div>
+        </div>
+
+
+
+
+        <!-- ApiAbilityUseInside -->
+        <div class="col-md-4">
+            <div class="input-group field-margin">
+                <span class="input-group-addon"> {{'USE_FOR_SITE_USER'|lowercase|translate}} </span>
+                <span class="input-group-addon">
+                    <input type="checkbox" ng-model="apiSetting.selectedItem.ApiAbilityUseInside">
+                </span>
+            </div>
+        </div>
+
+
+
+
+        <!-- ServerAbilityApiPhoneBook -->
+
+        <div class="col-md-4">
+            <div class="input-group field-margin">
+                <span class="input-group-addon"> {{'CONNECT_TO_TELECOMMUNICATIONS'|lowercase|translate}} </span>
+                <span class="input-group-addon">
+                <input type="checkbox" ng-model="apiSetting.selectedItem.ServerAbilityApiPhoneBook">
+            </span>
+            </div>
+        </div>
+        </div>
+
+
+   
+
+
+    <!-- ServerConnectionPerMinute -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'SEND_NUMBER_IN_MINUTE'|lowercase|translate}} </span>
+        <input type="number" class="form-control" aria-describedby="basic-addon1" ng-model="apiSetting.selectedItem.ServerConnectionPerMinute">
+    </div>
+
+
+
+
+
+    <!-- ApiPathCompany -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'COMPANY'|lowercase|translate}} </span>
+        <select name="com" id="1" ng-model="apiSetting.selectedItem.ApiPathCompany">
+            <option ng-repeat="items in apiSetting.CompanyListItems" value="{{items.Id}}">{{items.Title}}</option>
+        </select>
+    </div>
+
+  
+
+
+
+
+</div>

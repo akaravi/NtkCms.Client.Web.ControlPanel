@@ -1,0 +1,34 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="jobContractController as jobContract" ng-init="jobContract.init()">
+    <!-- <div class="container">-->
+    <div class="row" rasha-loading="jobContract.busyIndicator">
+        <div class="col-sm-12">
+            <!--<div rasha-loading="jobContract.busyIndicator"></div>-->
+            <button class="btn btn-primary" rasha-userrole="jobContract.Add" ng-click="jobContract.openAddModal()" ng-show="jobContract.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="jobContract.Edit" ng-click="jobContract.openEditModal()" type="button" ng-show="jobContract.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="jobContract.Delete" ng-click="jobContract.deleteRow()" type="button" ng-show="jobContract.gridOptions.resultAccess.AccessDeleteRow" > {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="jobContract.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="jobContract.openGridConfigModal(jobContract.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
+            <!--<button class="btn btn-default" type="button" ng-click="jobContract.reportData()"> {{'report'|lowercase|translate}} </button>-->
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="jobContract.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="jobContract.getCount()">{{'number'|lowercase|translate}}&nbsp;{{jobContract.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="jobContract" ></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="jobContract.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="jobContract.getJson()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="jobContract.getJson()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <form method="get" class="form-horizontal" name="frmjobContractAdd" novalidate ng-submit="jobContract.addNewRow(frmjobContractAdd)">
+                <div class='hr-line-dashed'></div>
+            </form>
+            <div rasha-grid="jobContract.gridOptions"></div>           
+        </div>
+    </div>
+</div>

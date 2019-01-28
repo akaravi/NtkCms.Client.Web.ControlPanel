@@ -1,0 +1,26 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="appApplication.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'DOWNLOAD_APP'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmappApplicationAdd" novalidate>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <div class="col-sm-8 col-md-8 col-lg-8 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+                        <qrcode data="{{appApplication.FilePathOnBrowserWithDomain}}" href="{{appApplication.FilePathOnBrowserWithDomain}}" size="200"></qrcode>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 col-lg-2 control-label">{{'DOWNLOAD_LINK'|lowercase|translate}}</label>
+                    <div class="col-sm-10 col-md-10 col-lg-10">
+                        <input class="form-control" type="text" ng-readonly="true" style="direction: ltr;" ng-model="appApplication.FilePathOnBrowserWithDomain" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-default" type="button" ng-click="appApplication.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

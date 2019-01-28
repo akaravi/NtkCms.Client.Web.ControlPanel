@@ -1,0 +1,70 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="cmsModuleSaleItemController as cmsModuleSaleItem" ng-init="cmsModuleSaleItem.init()">
+    <!--<div class="container">-->
+    <div class="row">
+        <div class="col-md-2">
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;{{'category'|lowercase|translate}}&nbsp;{{'Sale_Module'|lowercase|translate}}</h5></div>
+                    <div class="panel-body">
+                        <div style="position: relative">
+                            <ul class="tree" tree-options="cmsModuleSaleItem.treeConfig">
+                            </ul>
+                        </div>
+                        <!-- Category Section -->
+                        <div style="margin-top: 20px;">
+                            <a ng-click="cmsModuleSaleItem.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-success">
+                                <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
+                            </a>
+                            <div id="categoryButtons" style="display: none;">
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="cmsModuleSaleItem.Add" ng-click="cmsModuleSaleItem.addNewCategoryModel()" ng-show="cmsModuleSaleItem.gridOptions.resultAccess.AccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="cmsModuleSaleItem.Edit" ng-click="cmsModuleSaleItem.editCategoryModel()" ng-show="cmsModuleSaleItem.gridOptions.resultAccess.AccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="cmsModuleSaleItem.Delete" ng-click="cmsModuleSaleItem.deleteCategory()" ng-show="cmsModuleSaleItem.gridOptions.resultAccess.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5><i class="fa fa-articlepaper-o " style="font-size: 18px;"></i>&nbsp;{{'LIST'|lowercase|translate}}&nbsp;{{'Sale_Module'|lowercase|translate}}<nospecialtag ng-if="cmsModuleSaleItem.treeConfig.currentNode.Id!=null">:&nbsp;{{cmsModuleSaleItem.treeConfig.currentNode.Title}}&nbsp; - {{'ID'|lowercase|translate}}:&nbsp;{{cmsModuleSaleItem.treeConfig.currentNode.Id}}</nospecialtag></h5>
+                </div>
+            </div>
+            <div class="row" id="topMenu">
+                <div class="col-md-12" style="text-align: center;">
+                    <button class="btn btn-primary" ng-click="cmsModuleSaleItem.addNewContentModel()" ng-show="cmsModuleSaleItem.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="cmsModuleSaleItem.openEditModel()" ng-show="cmsModuleSaleItem.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="cmsModuleSaleItem.deleteContent()" ng-show="cmsModuleSaleItem.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-success" ng-click="cmsModuleSaleItem.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <button class="btn btn-warning" type="button" ng-click="cmsModuleSaleItem.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+                    <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="cmsModuleSaleItem.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+                    <button class="btn btn-success" ng-click="cmsModuleSaleItem.getCount()">{{'number'|lowercase|translate}}&nbsp;{{cmsModuleSaleItem.ListItemsTotalRowCount}}</button>
+                    <!--<button class="btn btn-default" ng-click="cmsModuleSaleItem.enableArchive()"><i class="fa fa-archive fontavesome-small"></i>&nbsp; آرشیو</button>--><i ng-if="item.IsArchive == true" class="fa fa-check" style="color: #ff0000"></i>
+                </div>
+                <hr />
+                <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+                    <div id="builder" query-builder="cmsModuleSaleItem"></div>
+                    <div class="btn-group" style="float: left;">
+                        <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="cmsModuleSaleItem.getRules()"> {{'look'|lowercase|translate}} </button>
+                        <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="cmsModuleSaleItem.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                        <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="cmsModuleSaleItem.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+                    </div>
+                </div>
+                <div class="col-md-12" rasha-loading="cmsModuleSaleItem.categoryBusyIndicator">
+                    <h4 ng-show="cmsModuleSaleItem.ListItems.length < 1">{{'There_Is_No_Content_In_This_Category'|lowercase|translate}}</h4>
+                    <div ng-show="cmsModuleSaleItem.ListItems.length>0" rasha-grid="cmsModuleSaleItem.gridOptions"></div>
+                </div>
+                <!--<div class="col-md-12" ng-show="cmsModuleSaleItem.showGridComment">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3>{{cmsModuleSaleItem.Title}}</h3>
+                        </div>
+                    </div>
+                    <div rasha-grid="cmsModuleSaleItem.gridContentOptions"></div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+

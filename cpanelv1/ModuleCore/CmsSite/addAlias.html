@@ -1,0 +1,59 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="cmsSitegrd.busyIndicator">
+        <div class="col-sm-12">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="$dismiss()"></i>
+            <h3 class="m-t-none m-b"> {{ cmsSitegrd.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmCmsSiteAdd" novalidate ng-submit="">
+                <!-- Redirect -->
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsSitegrd.gridOptions.resultAccess.AccessAddField.indexOf('Redirect')>-1">
+                    <label class="col-sm-2 control-label">Redirect به:</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" style="direction: ltr" name="Redirect" ng-model="cmsSitegrd.selectedItem.Redirect" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsSitegrd.gridOptions.resultAccess.AccessAddField.indexOf('SubDomain')>-1">
+                    <label class="col-sm-2 control-label">{{'SUBDOMAIN'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="SubDomain" style="direction: ltr" ng-model="cmsSitegrd.selectedItem.SubDomain" />
+                    </div>
+                </div>
+                <div class="form-group" ng-show="cmsSitegrd.gridOptions.resultAccess.AccessAddField.indexOf('Domain')>-1"
+                     ng-class="{'has-error' : frmCmsSiteAdd.Domain.$invalid && !frmCmsSiteAdd.Domain.$pristine,'has-success' : frmCmsSiteAdd.Domain.$valid}">
+                    <label class="col-sm-2 control-label">{{'DOMAIN'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" style="direction: ltr"
+                               ng-required="true"
+                               name="Domain"
+                               ng-model="cmsSitegrd.selectedItem.Domain" />
+                        <div class="m-t-xs" ng-show="frmCmsSiteAdd.Domain.$invalid">
+                            <small class="text-danger" ng-show="frmCmsSiteAdd.Domain.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmCmsSiteAdd.Domain.$valid && frmCmsSiteAdd.Domain.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmCmsSiteAdd.Domain.$invalid && !frmCmsSiteAdd.Domain.$pristine) || frmCmsSiteAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button class="btn btn-primary col-md-offset-2 col-md-10" type="button" ng-disabled="cmsSitegrd.addRequested" ng-click="cmsSitegrd.addNewAlias(frmCmsSiteAdd)">{{'RECORD'|lowercase|translate}}</button>
+                    </div>
+                </div>
+                <div ng-repeat="x in cmsSitegrd.aliasesList" style="margin-bottom:10px;">
+                    <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                    <div class="input-group col-md-10">
+                        <span class="input-group-addon" style="background-color: #ed5565; cursor: pointer" id="basic-addon1" title="{{'DELETE'|lowercase|translate}}" ng-click="cmsSitegrd.deleteAttachedfieldName($index)"><i class="fa fa-remove"></i></span>
+                        <input ng-if="x.SubDomain" type="text" class="form-control" style="direction: ltr;" readonly="readonly" placeholder="DomainSubDomain" value="{{x.SubDomain}}.{{x.Domain}}" aria-describedby="basic-addon1">
+                        <input ng-if="!x.SubDomain" type="text" class="form-control" style="direction: ltr;" readonly="readonly" placeholder="Domain" value="{{x.Domain}}" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-default" type="button" ng-click="$dismiss()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,37 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-xs-12">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="cmsLocation.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'REPORT' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmCmsSiteAdd" novalidate ng-submit="cmsLocation.exportFile(frmCmsSiteAdd)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'File_Type' |lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-options="x.value as x.key for x in cmsLocation.EnumExportFileType" name="FileType" ng-model="cmsLocation.ExportFileClass.FileType"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'How_To_Receive' |lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-options="x.value as x.key for x in cmsLocation.EnumExportReceiveMethod" name="RecieveMethod" ng-model="cmsLocation.ExportFileClass.RecieveMethod"></select>
+                    </div>
+                </div>
+                <!-- RowCount -->
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Number_Of_Row' |lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" style="direction: ltr" type="number" min="1" max="2000" name="RowCount" ng-model="cmsLocation.ExportFileClass.RowCount" ng-change="cmsLocation.rowCountChanged()" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="cmsLocation.addRequested" type="submit">{{'Receive_Report' |lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="cmsLocation.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

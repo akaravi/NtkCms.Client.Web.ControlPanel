@@ -1,0 +1,25 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="biographyContentTagCtrl as biographyContentTag" ng-init="biographyContentTag.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="biographyContentTag.busyIndicator"></div>
+
+            <button class="btn btn-primary" rasha-userrole="biographyContentTag.Add" ng-click="biographyContentTag.openAddModal()" ng-show="biographyContentTag.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="biographyContentTag.Edit" ng-click="biographyContentTag.openEditModal()" ng-show="biographyContentTag.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="biographyContentTag.Delete" ng-click="biographyContentTag.deleteRow()" ng-show="biographyContentTag.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="biographyContentTag.showAdvancedSearchPanel(biographyContentTag.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-primary" type="button" ng-click="biographyContentTag.reportData()"> {{'report'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="biographyContentTag" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="biographyContentTag.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

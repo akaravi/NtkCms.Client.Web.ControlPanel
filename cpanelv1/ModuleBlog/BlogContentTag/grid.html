@@ -1,0 +1,23 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="blogContentTagController as blogContentTag" ng-init="blogContentTag.init()">
+    <!--    <div class="container">-->
+    <div class="row" rasha-loading="blogContentTag.busyIndicator">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="blogContentTag.Add" ng-click="blogContentTag.openAddModal()" ng-show="blogContentTag.gridOptions.resultAccess.AccessAddRow" type="button"> {{'add'|lowercase|translate}} </button>
+            <button class="btn btn-warning" rasha-userrole="blogContentTag.Edit" ng-click="blogContentTag.openEditModal()" ng-show="blogContentTag.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="blogContentTag.Delete" ng-click="blogContentTag.deleteRow()" ng-show="blogContentTag.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="blogContentTag.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-primary" type="button" ng-click="blogContentTag.reportData()"> {{'report'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="blogContentTag" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="blogContentTag.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

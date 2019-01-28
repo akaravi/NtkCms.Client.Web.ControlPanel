@@ -1,0 +1,30 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="cmsUserTicketLogController as cmsUserTicketLog" ng-init="cmsUserTicketLog.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <!--<button class="btn btn-primary" rasha-userrole="cmsUserTicketController.Add" ng-click="cmsUserTicketLog.openAddModal()" ng-show="cmsUserTicketLog.gridOptions.resultAccess.AccessAddRow" type="button">{{'ADD'|lowercase|translate}}</button>-->
+            <!--<button class="btn btn-warning" rasha-userrole="cmsUserTicketController.Edit" ng-click="cmsUserTicketLog.openEditModal()" ng-show="cmsUserTicketLog.gridOptions.resultAccess.AccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>-->
+            <button class="btn btn-danger" rasha-userrole="cmsUserTicketController.Delete" ng-click="cmsUserTicketLog.deleteRow()" ng-show="cmsUserTicketLog.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'DELETE'|lowercase|translate}}</button>
+            <button class="btn btn-success" type="button" ng-click="cmsUserTicketLog.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="cmsUserTicketLog.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="cmsUserTicketLog.getCount()">{{'number'|lowercase|translate}}&nbsp;{{cmsUserTicketLog.ListItemsTotalRowCount}}</button>
+        </div>
+        <hr />
+        <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+            <div id="builder" query-builder="cmsUserTicketLog"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="cmsUserTicketLog.getRules()">{{'look'|lowercase|translate}}</button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="cmsUserTicketLog.saveRules()">{{'save_condition'|lowercase|translate}}</button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="cmsUserTicketLog.setRules()">{{'restore_condition'|lowercase|translate}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="cmsUserTicketLog.gridOptions"></div>
+        </div>
+
+
+    </div>
+</div>
+

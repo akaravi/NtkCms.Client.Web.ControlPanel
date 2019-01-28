@@ -1,0 +1,64 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="fileShareReciverCategoryController as fileShareReciverCategory" ng-init="fileShareReciverCategory.init()">
+    <!--<div class="container">-->
+    <div class="row">
+        <div class="col-md-2">
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;{{'Sharing_Settings'|lowercase|translate}}</h5></div>
+                    <div class="panel-body">
+                        <div style="position: relative">
+                            <ul class="tree" tree-options="fileShareReciverCategory.treeConfig"></ul>
+                        </div>
+                        
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5><i class="fa fa-filepaper-o " style="font-size: 18px;"></i>&nbsp;{{'LIST'|lowercase|translate}}&nbsp;{{'Subscriptions'|lowercase|translate}}<nospecialtag ng-if="fileShareReciverCategory.treeConfig.currentNode.Id!=null">:&nbsp;{{fileShareReciverCategory.treeConfig.currentNode.Title}}&nbsp; - {{'ID'|lowercase|translate}}:&nbsp;{{fileShareReciverCategory.treeConfig.currentNode.Id}}</nospecialtag></h5>
+                </div>
+                <div class="panel-body">
+                    <h6>{{'description'|lowercase|translate}}&nbsp;{{fileShareReciverCategory.treeConfig.currentNode.Description}}</h6>
+                </div>
+            </div>
+            <div class="row" id="topMenu">
+                <div class="col-md-12" style="text-align: center;">
+                    <button class="btn btn-primary" ng-click="fileShareReciverCategory.addNewContentModel()" ng-show="fileShareReciverCategory.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="fileShareReciverCategory.openEditModel()" ng-show="fileShareReciverCategory.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="fileShareReciverCategory.deleteContent()" ng-show="fileShareReciverCategory.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-success" ng-click="fileShareReciverCategory.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <button class="btn btn-warning" type="button" ng-click="fileShareReciverCategory.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+                    <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="fileShareReciverCategory.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+                    <button class="btn btn-success" ng-click="fileShareReciverCategory.getCount()">{{'number'|lowercase|translate}}&nbsp;{{fileShareReciverCategory.ListItemsTotalRowCount}}</button>
+                    <!--<button class="btn btn-default" ng-click="fileShareReciverCategory.enableArchive()"><i class="fa fa-archive fontavesome-small"></i>&nbsp; آرشیو</button>--><i ng-if="item.IsArchive == true" class="fa fa-check" style="color: #ff0000"></i>
+                </div>
+                <hr />
+                <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+                    <div id="builder" query-builder="fileShareReciverCategory"></div>
+                    <div class="btn-group" style="float: left;">
+                        <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="fileShareReciverCategory.getRules()"> {{'look'|lowercase|translate}} </button>
+                        <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="fileShareReciverCategory.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                        <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="fileShareReciverCategory.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+                    </div>
+                </div>
+                <div class="col-md-12" rasha-loading="fileShareReciverCategory.contentBusyIndicator">
+                    <div ng-show="fileShareReciverCategory.ListItems==undefined" style="height:150px;"></div>
+                    <h4 ng-show="fileShareReciverCategory.ListItems.length < 1">{{'There_Is_No_Content_In_This_Category'|lowercase|translate}}</h4>
+                    <div ng-show="fileShareReciverCategory.ListItems.length>0" rasha-grid="fileShareReciverCategory.gridOptions"></div>
+                </div>
+                <div class="col-md-12" ng-show="fileShareReciverCategory.showGridComment">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3>{{fileShareReciverCategory.Title}}</h3>
+                        </div>
+                    </div>
+                    <div rasha-grid="fileShareReciverCategory.gridOptions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

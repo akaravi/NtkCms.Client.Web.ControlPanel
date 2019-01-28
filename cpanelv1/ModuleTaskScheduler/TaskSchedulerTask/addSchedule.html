@@ -1,0 +1,181 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="$dismiss()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Operation'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmtaskAddProcess" novalidate>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Title</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               type="text"
+                               name="Title"
+                               ng-model="task.SelectedschedueDetail.Title" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Description</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               type="text"
+                               name="Description"
+                               ng-model="task.SelectedschedueDetail.Description" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">LiveTime</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               type="number"
+                               name="LiveTime"
+                               ng-model="task.SelectedschedueDetail.LiveTime" min="0" max="59" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Interruption_Time'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               type="number"
+                               name="Title"
+                               ng-model="task.SelectedschedueDetail.IntervalSeconds" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Repeat'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               type="number"
+                               name="Title"
+                               ng-model="task.SelectedschedueDetail.Frequency" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'FrequencyCounter'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               type="number"
+                               name="Title"
+                               ng-model="task.SelectedschedueDetail.FrequencyCounter" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label ">{{'Timing_Type'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <div ng-repeat="x in task.ScheduleCronType">
+                                <label><input type="radio" name="{{x.Description}}" value="{{x.Value}}" ng-model="task.SelectedschedueDetail.ScheduleCronType" ng-change="task.onScheduleTypeChange(task.SelectedschedueDetail.ScheduleCronType)">{{x.Description}}</label>
+
+                                <!--<input type="radio" name="{{x.value}}" value="{{x.value}}" class="Weekday" ng-checked="x.checked" />{{x.Key}}-->
+                            </div>
+                        </div>
+                    </div>
+                    <!--<label class="col-sm-2 control-label">{{'Timing_Type'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <div class="col-sm-10">
+                            <select class='form-control' name="ScheduleCronType" ng-model="task.SelectedschedueDetail.ScheduleCronType" ng-change="task.onScheduleTypeChange(task.SelectedschedueDetail.ScheduleCronType)" ng-options="x.Value as x.Description for x in task.ScheduleCronType"></select>
+                        </div>
+                    </div>-->
+                </div>
+                <div class="col-sm-12" style="border:1px solid blue; border-radius:5px;">
+                    <div class="form-group" ng-show="task.showonce">
+                        <label class="col-sm-2  control-label">تاریخ</label>
+                        <div class="col-sm-6  col-md-4">
+                            <div rasha-date-picker="task.CronOnceDate" ng-model="task.SelectedschedueDetail.CronOnceDate"></div><input type="hidden" />
+                        </div>
+                    </div>
+                    <div ng-show="task.showHourly" class="form-group">
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronHourlyMinute" ng-model="task.SelectedschedueDetail.CronHourlyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                    <div ng-show="task.showDaily" class="form-group">
+                        <label class="col-sm-2 control-label ">ساعت</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronDailyHour" ng-model="task.SelectedschedueDetail.CronDailyHour" min="0" max="23" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronDailyMinute" ng-model="task.SelectedschedueDetail.CronDailyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                    <div class="form-group scedule" ng-show="task.showWeekly">
+                        <div ng-class="{'has-error' : frmtaskEdit.Title.$invalid && !frmtaskEdit.Title.$pristine,'has-success' : frmtaskEdit.Title.$valid}">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label ">{{'Label_Days'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div ng-repeat="x in task.weekdays">
+                                        <label><input type="radio" name="{{x.Key}}" value="{{x.Value}}" ng-model="task.SelectedschedueDetail.CronWeeklyDayOfWeek">{{x.Key}}</label>
+
+                                        <!--<input type="radio" name="{{x.value}}" value="{{x.value}}" class="Weekday" ng-checked="x.checked" />{{x.Key}}-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">ساعت</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronWeeklyHour" ng-model="task.SelectedschedueDetail.CronWeeklyHour" min="0" max="23" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronWeeklyMinute" ng-model="task.SelectedschedueDetail.CronWeeklyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                    <div ng-show="task.showmonthly" class="form-group">
+                        <label class="col-sm-2 control-label ">{{'Label_Days'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control monthDay" type="number" name="CronMonthlyDay" ng-model="task.SelectedschedueDetail.CronMonthlyDay" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">ساعت</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronMonthlyHour" ng-model="task.SelectedschedueDetail.CronMonthlyHour" min="0" max="23" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronMonthlyMinute" ng-model="task.SelectedschedueDetail.CronMonthlyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                    <div ng-show="task.showmonthlyYear" class="form-group">
+                        <label class="col-sm-2 control-label ">ماه های سال</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronYearlyMonth" ng-model="task.SelectedschedueDetail.CronYearlyMonth" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">{{'Label_Days'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control monthDay" type="number" name="CronYearlyDay" ng-model="task.SelectedschedueDetail.CronYearlyDay" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">ساعت</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronMonthlyHour" ng-model="task.SelectedschedueDetail.CronYearlyHour" min="0" max="23" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronMonthlyMinute" ng-model="task.SelectedschedueDetail.CronYearlyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary" type="button" ng-click="task.AddSchedule(task.SelectedschedueDetail)"> {{'add'|lowercase|translate}} </button>
+        </div>
+
+        </form>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,136 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="memberInfo.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{'BULK_SEND'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmmemberInfoEdit" novalidate ng-submit="memberInfo.sendMessageToAll()">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" >
+                    <label class="col-sm-2 control-label"> {{'CERTAIN_ID'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="chatId" ng-model="memberInfo.selectedItem.memberIds" readonly="readonly" />
+                        <br />
+                        شناسه عضویت در بخش کاربران اپلیکیشن
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'title'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="memberInfo.selectedItem.TitleMessage" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'TEXT'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" ng-model="memberInfo.selectedItem.BodyMessage" style="height: 85px;"></textarea>
+                    </div>
+                </div>
+
+                <!-- فیلدهای زمانبندی -->
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Timing_Type'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <div class="col-sm-10">
+                            <select class='form-control' name="ScheduleCronType" ng-model="memberInfo.selectedItem.ScheduleCronType" ng-change="memberInfo.onScheduleTypeChange(memberInfo.selectedItem.ScheduleCronType)" ng-options="x.Value as x.Description for x in memberInfo.ScheduleCronType"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="border:1px solid blue; border-radius:5px;">
+                    <div class="form-group" ng-show="memberInfo.showonce">
+                        <label class="col-sm-2  control-label">تاریخ</label>
+                        <div class="col-sm-6  col-md-4">
+                            <div rasha-date-picker="memberInfo.CronOnceDate" ng-model="memberInfo.selectedItem.CronOnceDate"></div><input type="hidden" />
+                        </div>
+                    </div>
+                    <div ng-show="memberInfo.showHourly" class="form-group">
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronHourlyMinute" ng-model="memberInfo.selectedItem.CronHourlyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                    <div ng-show="memberInfo.showDaily" class="form-group">
+                        <label class="col-sm-2 control-label ">ساعت</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronDailyHour" ng-model="memberInfo.selectedItem.CronDailyHour" min="0" max="23" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronDailyMinute" ng-model="memberInfo.selectedItem.CronDailyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                    <div class="form-group scedule" ng-show="memberInfo.showWeekly">
+                        <div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label ">{{'Label_Days'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div ng-repeat="x in memberInfo.weekdays">
+                                        <label><input type="radio" name="{{x.Key}}" value="{{x.Value}}" ng-model="memberInfo.selectedItem.CronWeeklyDayOfWeek">{{x.Key}}</label>
+
+                                        <!--<input type="radio" name="{{x.value}}" value="{{x.value}}" class="Weekday" ng-checked="x.checked" />{{x.Key}}-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">ساعت</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronWeeklyHour" ng-model="memberInfo.selectedItem.CronWeeklyHour" min="0" max="23" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronWeeklyMinute" ng-model="memberInfo.selectedItem.CronWeeklyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                    <div ng-show="memberInfo.showmonthly" class="form-group">
+                        <label class="col-sm-2 control-label ">{{'Label_Days'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control monthDay" type="number" name="CronMonthlyDay" ng-model="memberInfo.selectedItem.CronMonthlyDay" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">ساعت</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronMonthlyHour" ng-model="memberInfo.selectedItem.CronMonthlyHour" min="0" max="23" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronMonthlyMinute" ng-model="memberInfo.selectedItem.CronMonthlyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                    <div ng-show="memberInfo.showmonthlyYear" class="form-group">
+                        <label class="col-sm-2 control-label ">ماه های سال</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronYearlyMonth" ng-model="memberInfo.selectedItem.CronYearlyMonth" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">{{'Label_Days'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control monthDay" type="number" name="CronYearlyDay" ng-model="memberInfo.selectedItem.CronYearlyDay" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">ساعت</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronMonthlyHour" ng-model="memberInfo.selectedItem.CronYearlyHour" min="0" max="23" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronMonthlyMinute" ng-model="memberInfo.selectedItem.CronYearlyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                </div>
+                <!-- فیلدهای زمانبندی -->
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="memberInfo.addRequested" type="submit">{{memberInfo.sendButtonText}}</button>
+                    <button class="btn btn-default" type="button" ng-click="memberInfo.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

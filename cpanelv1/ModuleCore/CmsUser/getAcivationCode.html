@@ -1,0 +1,36 @@
+﻿<div class="container" style="padding-top:20px;">
+    <div class="row">
+        <div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{'ACOUNT_ACTIVATION'|lowercase|translate}}</h3>
+                </div>
+                <div class="panel-body animated fadeInLeft" ng-controller="resetUserPasswordController as resetPassCtrl">
+                    <!-- Begin New Account-->
+                    <div class="col-md-12">
+                        <fieldset>
+                            <legend> {{'ENTER_CODE'|lowercase|translate}}</legend>
+                            <form class="m-t" role="form" novalidate="" ng-submit="resetPassCtrl.verifyCode()">
+                                <div class="form-group">
+                                    <input type="text" ng-disabled="resetPassCtrl.isBusy" class="form-control rtl-support" placeholder="{{'MOBILE_NUMBER'|lowercase|translate}}" required="" ng-model="resetPassCtrl.phone">
+                                </div>
+                                <button type="submit" class="btn btn-primary block  m-b" ng-disabled="resetPassCtrl.isBusy">{{'REQUEST_ACTIVATION_CODE'|lowercase|translate}}</button>
+                            </form>
+
+                        </fieldset>
+                    </div>
+                    <!-- End New Account-->
+                    <div class="text-center">
+                        <button class="btn btn-danger" ng-click="resetPassCtrl.goToNewSite()">{{'PRIMARY_FORMS'|lowercase|translate}}</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+

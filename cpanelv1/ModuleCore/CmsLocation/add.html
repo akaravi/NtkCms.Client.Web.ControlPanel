@@ -1,0 +1,67 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="cmsLocation.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Location' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmcmsLocationAdd" novalidate ng-submit="cmsLocation.addNewRow(frmcmsLocationAdd)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsLocation.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmcmsLocationAdd.RecordStatus.$invalid && !frmcmsLocationAdd.RecordStatus.$pristine,'has-success' : frmcmsLocationAdd.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
+                    <div class="col-sm-10" rasha-record-status="cmsLocation"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsLocation.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1">
+                    <label class="col-sm-2 control-label">{{ 'title' |lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="cmsLocation.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmcmsLocationAdd.Title.$invalid">
+                            <small class="text-danger" ng-show="frmcmsLocationAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmcmsLocationAdd.Title.$valid && frmcmsLocationAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmcmsLocationAdd.Title.$invalid && !frmcmsLocationAdd.Title.$pristine) || frmcmsLocationAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsLocation.gridOptions.resultAccess.AccessAddField.indexOf('LinkParentId')>-1">
+                    <label class="col-sm-2 control-label">{{'LINK_PARENT_ID'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkParentId" ng-model="cmsLocation.selectedItem.LinkParentId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsLocation.gridOptions.resultAccess.AccessAddField.indexOf('GeoLocationLatitude')>-1">
+                    <label class='col-sm-2 control-label'>{{'LATITUDE'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               name="GeoLocationLatitude"
+                               ng-model="cmsLocation.selectedItem.GeoLocationLatitude" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsLocation.gridOptions.resultAccess.AccessAddField.indexOf('GeoLocationLongitude')>-1">
+                    <label class="col-sm-2 control-label">{{'LATITUDE'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="GeoLocationLongitude" ng-model="cmsLocation.selectedItem.GeoLocationLongitude" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsLocation.gridOptions.resultAccess.AccessAddField.indexOf('LocationType')>-1">
+                    <label class="col-sm-2 control-label">{{'TYPE'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <select ng-options="x.Value as x.Description for x in cmsLocation.locationTypeListItems" class="form-control" ng-required="true" name="LocationType" ng-model="cmsLocation.selectedItem.LocationType"></select>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="cmsLocation.addRequested" type="submit">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="cmsLocation.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,20 @@
+<fieldset rasha-loading="register.verifyActivationCodeBusyIndicator">
+    <h3><i class="fa fa-mobile"></i> {{'ACTIVATION_CODE'|lowercase|translate}}</h3>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="form-group">
+                <input id="userName" ng-model="register.selectedItem.ActiveCode" name="activecode" type="text" class="form-control text-left" ng-required="true">
+                <p ng-show="signupForm.activecode.$error.required" class="help-block">{{'ENTER_ACTIVATION_CODE'|lowercase|translate}}</p>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="text-center">
+                <p class="text-justify">
+                    {{'ACTIOVATION_CODE_SENDED'|lowercase|translate}}
+                </p>
+            </div>
+        </div>
+    </div>
+    <a ng-click="register.gotoStepThree(signupForm)" class="btn btn-primary pull-right" ng-class="{ 'disabled' : signupForm.$invalid }">{{'NEXT_LEVEL'|lowercase|translate}}</a>
+</fieldset>

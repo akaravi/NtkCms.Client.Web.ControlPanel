@@ -1,0 +1,27 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="themeConfigController as themeConfig" ng-init="themeConfig.init()">
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="themeConfig.Add" ng-click="themeConfig.openAddModal()" ng-show="themeConfig.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="themeConfig.Edit" ng-click="themeConfig.openEditModal()" ng-show="themeConfig.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="themeConfig.Delete" ng-click="themeConfig.deleteRow()" type="button" ng-show="themeConfig.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" ng-click="themeConfig.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="themeConfig.openGridConfigModal(themeConfig.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn">{{'display_setting'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="themeConfig.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="themeConfig.getCount()">{{'number'|lowercase|translate}}&nbsp;{{themeConfig.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div id="builder" query-builder="themeConfig"></div>
+        <div class="btn-group" style="float: left;">
+            <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="themeConfig.getRules()"> {{'look'|lowercase|translate}} </button>
+            <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="themeConfig.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+            <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="themeConfig.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div rasha-grid="themeConfig.gridOptions" rasha-loading="themeConfig.busyIndicator"></div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,55 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="linkManagementTarget.busyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="linkManagementTarget.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ linkManagementTarget.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmlinkManagementTargetAdd" novalidate ng-submit="linkManagementTarget.addNewRow(frmlinkManagementTargetAdd)">
+
+                <div class='hr-line-dashed'></div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'title'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='text' readonly ng-model='linkManagementTarget.selectedItem.CurrentClickCount' class='form-control' />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'Click_Price'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='number' readonly ng-model='linkManagementTarget.selectedItem.CurrentViewCount' class='form-control' />
+                    </div>
+                </div>
+
+                <div id="piechart"></div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Task', 'Hours per Day'],
+  ['Work', 8],
+  ['Eat', 2],
+  ['TV', 4],
+  ['Gym', 2],
+  ['Sleep', 8]
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'My Average Day', 'width':550, 'height':400};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+</script>-->

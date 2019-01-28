@@ -1,0 +1,85 @@
+﻿
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="articleContentParameter.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Parameter' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmarticleContentParameterEdit" novalidate ng-submit="articleContentParameter.editRow(frmarticleContentParameterEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmarticleContentParameterAdd.RecordStatus.$invalid && !frmarticleContentParameterAdd.RecordStatus.$pristine,'has-success' : frmarticleContentParameterAdd.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="articleContentParameter"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="articleContentParameter.gridOptions.resultAccess.AccessEditField.indexOf('LinkContentParameterTypeId')>-1">
+                                <label class="col-sm-2 control-label">{{'ParameterType'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkContentParameterTypeId" rasha-autocomplete="articleContentParameter.LinkContentParameterTypeIdSelector" ng-model="frmarticleContentParameterAdd.selectedItem.LinkContentParameterTypeId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="articleContentParameter.gridOptions.resultAccess.AccessEditField.indexOf('LinkExternalCoreCmsSiteCategoryId')>-1">
+                                <label class="col-sm-2 control-label">{{'Site_Categories'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkExternalCoreCmsSiteCategoryId" rasha-autocomplete="articleContentParameter.LinkExternalCoreCmsSiteCategoryIdSelector" ng-model="frmarticleContentParameterAdd.selectedItem.LinkExternalCoreCmsSiteCategoryId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="articleContentParameter.gridOptions.resultAccess.AccessEditField.indexOf('LinkModuleCategoryId')>-1">
+                                <label class="col-sm-2 control-label">{{'Module_Categorization'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkModuleCategoryId" rasha-autocomplete="articleContentParameter.LinkModuleCategoryIdSelector" ng-model="frmarticleContentParameterAdd.selectedItem.LinkModuleCategoryId" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'Parameter_Name'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="ParameterName" ng-model="articleContentParameter.selectedItem.ParameterName" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'Admin_Default_Value'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="AdminDefaultValue" ng-model="articleContentParameter.selectedItem.AdminDefaultValue" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'Default_Site_Value'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="SiteDefaultValue" ng-model="articleContentParameter.selectedItem.SiteDefaultValue" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'User_Default_Value'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="UserDefaultValue" ng-model="articleContentParameter.selectedItem.UserDefaultValue" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="articleContentParameter.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="articleContentParameter.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

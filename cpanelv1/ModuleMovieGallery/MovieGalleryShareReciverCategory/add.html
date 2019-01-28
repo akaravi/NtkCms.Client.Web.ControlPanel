@@ -1,0 +1,75 @@
+﻿<style>
+    [treecontrol].tree-boot i.tree-branch-head,
+    [treecontrol].tree-boot i.tree-leaf-head {
+        float: right;
+        height: 16px;
+        margin: 5px;
+    }
+</style>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="movieGalleryShareReciverCategory.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Content'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmmovieGalleryShareReciverCategoryAdd" novalidate ng-submit="movieGalleryShareReciverCategory.addNewContent(frmmovieGalleryShareReciverCategoryAdd)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmmovieGalleryShareReciverCategoryAdd.RecordStatus.$invalid && !frmmovieGalleryShareReciverCategoryAdd.RecordStatus.$pristine,'has-success' : frmmovieGalleryShareReciverCategoryAdd.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="movieGalleryShareReciverCategory"></div>
+                </div>
+
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="movieGalleryShareReciverCategory.gridOptions.resultAccess.AccessAddField.indexOf('LinkShareServerCategoryId')>-1">
+                    <label class="col-sm-2 control-label">{{'The_Subscriber'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkShareServerCategoryId" rasha-autocomplete="movieGalleryShareReciverCategory.LinkShareServerCategoryIdSelector" ng-model="frmmovieGalleryShareReciverCategoryAdd.selectedItem.LinkShareServerCategoryId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="movieGalleryShareReciverCategory.gridOptions.resultAccess.AccessAddField.indexOf('LinkShareReciverCategoryId')>-1">
+                    <label class="col-sm-2 control-label">{{'Connect_To_Category'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkShareReciverCategoryId" rasha-autocomplete="movieGalleryShareReciverCategory.LinkShareReciverCategoryIdSelector" ng-model="frmmovieGalleryShareReciverCategoryAdd.selectedItem.LinkShareReciverCategoryId" />
+                    </div>
+                </div>
+
+
+
+            
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmmovieGalleryShareReciverCategoryAdd.FromDate.$invalid && !frmmovieGalleryShareReciverCategoryAdd.FromDate.$pristine,'has-success' : frmmovieGalleryShareReciverCategoryAdd.FromDate.$valid}">
+                    <label class="col-sm-2 control-label">{{'From_Date'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <div rasha-date-picker="movieGalleryShareReciverCategory.FromDate" ng-model="movieGalleryShareReciverCategory.selectedItem.FromDate"></div><input type="hidden" ng-model="movieGalleryShareReciverCategory.selectedItem.FromDate" />
+                        <div class="m-t-xs" ng-show="frmmovieGalleryShareReciverCategoryAdd.FromDate.$invalid">
+                            <small class="text-danger" ng-show="frmmovieGalleryShareReciverCategoryAdd.FromDate.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmmovieGalleryShareReciverCategoryAdd.FromDate.$valid && frmmovieGalleryShareReciverCategoryAdd.FromDate.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmmovieGalleryShareReciverCategoryAdd.FromDate.$invalid && !frmmovieGalleryShareReciverCategoryAdd.FromDate.$pristine) || frmmovieGalleryShareReciverCategoryAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmmovieGalleryShareReciverCategoryAdd.ToDate.$invalid && !frmmovieGalleryShareReciverCategoryAdd.ToDate.$pristine,'has-success' : frmmovieGalleryShareReciverCategoryAdd.ToDate.$valid}">
+                    <label class="col-sm-2 control-label">{{'To_Date'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <div rasha-date-picker="movieGalleryShareReciverCategory.ToDate" ng-model="movieGalleryShareReciverCategory.selectedItem.ToDate"></div><input type="hidden" ng-model="movieGalleryShareReciverCategory.selectedItem.ToDate" />
+                        <div class="m-t-xs" ng-show="frmmovieGalleryShareReciverCategoryAdd.ToDate.$invalid">
+                            <small class="text-danger" ng-show="frmmovieGalleryShareReciverCategoryAdd.ToDate.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmmovieGalleryShareReciverCategoryAdd.ToDate.$valid && frmmovieGalleryShareReciverCategoryAdd.ToDate.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmmovieGalleryShareReciverCategoryAdd.ToDate.$invalid && !frmmovieGalleryShareReciverCategoryAdd.ToDate.$pristine) || frmmovieGalleryShareReciverCategoryAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="movieGalleryShareReciverCategory.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="movieGalleryShareReciverCategory.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

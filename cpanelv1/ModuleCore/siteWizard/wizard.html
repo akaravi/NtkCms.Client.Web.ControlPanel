@@ -1,0 +1,71 @@
+﻿<div class="container" style="padding-top:20px;">
+    <div class="row">
+        <div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
+        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">ایجاد وب سایت</h3>
+                </div>
+                <div class="panel-body animated fadeInLeft" ng-controller="wizardCtrl as wizCtrl" >
+                    <!-- *******************************************************
+
+        Wizard Markup Starts Here
+
+        -->
+                   
+
+                   
+                            <div class=" animated fadeInLeft">
+                                <!-- Begin Step Account -->
+                                <h4>مرحله اول : حساب کاربری &nbsp; <span class="glyphicon glyphicon-user"></span></h4>
+                                <div class="">
+                                    <div class="row" style=" margin-left: 1px" >
+                                        <!-- Begin Existing Account and Create New Account-->
+                                        <div class="col-md-12" >
+
+                                            <fieldset >
+                                                <legend> کاربر موجود </legend>
+                                                <form class="m-t" role="form" novalidate="" ng-submit="wizCtrl.login()">
+                                                    <div class="form-group">
+                                                        <input type="text"  class="form-control ltr-support" placeholder="نام کاربری"  ng-model="wizCtrl.usernameData">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="password" class="form-control ltr-support" placeholder="رمز عبور"  ng-model="wizCtrl.passwordData">
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <!-- Begin LoginTo Account-->
+                                                            <button type="submit" class="btn btn-primary block full-width m-b" ng-disabled="wizCtrl.isBusy">ورود به سامانه &nbsp; <span class="glyphicon glyphicon-log-in"></span>        </button>
+                                                            <!-- End LoginTo Account-->
+                                                            <!-- Begin Renew Password-->
+                                                            <button type="button"  class="btn btn-primary block full-width m-b" ng-click="wizCtrl.goToResetUserPassword()" ng-disabled="wizCtrl.isBusy">بازیابی رمز عبور &nbsp; <span class="glyphicon glyphicon-refresh spinning"></span> </button>
+                                                            <!-- End Renew Password-->
+                                                            <!-- Begin Create New Account-->
+                                                            <button type="button"  class="btn btn-warning  block full-width m-b" ng-click="wizCtrl.goToNewAccount()" ng-disabled="wizCtrl.isBusy">ایجاد حساب کاربری جدید &nbsp; <span class="glyphicon glyphicon-plus"></span> </button>
+                                                            <!-- End Create New Account-->
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </fieldset>
+                                        </div>
+                                        <!-- End Existing Account and Create New Account-->
+
+
+                                    </div>
+                                </div>
+                                <!-- Begin Step Account -->
+                            </div>
+                       
+                    <!--
+
+        Wizard Markup Ends Here
+
+        ******************************************************* -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

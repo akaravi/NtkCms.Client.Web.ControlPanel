@@ -1,0 +1,30 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="cmsUserTicketGridCtrl as cmsUserTicketgrd" ng-init="cmsUserTicketgrd.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <!--<button class="btn btn-primary" rasha-userrole="cmsUserTicketController.Add" ng-click="cmsUserTicketgrd.openAddModal()" ng-show="cmsUserTicketgrd.gridOptions.resultAccess.AccessAddRow" type="button">{{'ADD'|lowercase|translate}}</button>-->
+            <!--<button class="btn btn-warning" rasha-userrole="cmsUserTicketController.Edit" ng-click="cmsUserTicketgrd.openEditModal()" ng-show="cmsUserTicketgrd.gridOptions.resultAccess.AccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>-->
+            <button class="btn btn-danger" rasha-userrole="cmsUserTicketController.Delete" ng-click="cmsUserTicketgrd.deleteRow()" ng-show="cmsUserTicketgrd.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'DELETE'|lowercase|translate}}</button>
+            <button class="btn btn-success" type="button" ng-click="cmsUserTicketgrd.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="cmsUserTicketgrd.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="cmsUserTicketgrd.getCount()">{{'number'|lowercase|translate}}&nbsp;{{cmsUserTicketgrd.ListItemsTotalRowCount}}</button>
+        </div>
+        <hr />
+        <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+            <div id="builder" query-builder="cmsUserTicketgrd"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="cmsUserTicketgrd.getRules()">{{'look'|lowercase|translate}}</button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="cmsUserTicketgrd.saveRules()">{{'save_condition'|lowercase|translate}}</button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="cmsUserTicketgrd.setRules()">{{'restore_condition'|lowercase|translate}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="cmsUserTicketgrd.gridOptions"></div>
+        </div>
+
+
+    </div>
+</div>
+

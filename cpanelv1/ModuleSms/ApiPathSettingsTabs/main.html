@@ -1,0 +1,64 @@
+﻿<style>
+    .nav-tabs>li {
+  float: right;
+}
+</style>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="apiPathSettingsCtrl as apiSetting" ng-init="apiSetting.init()">
+    <!-- <div class="container">-->
+    <div class="col-md-12">
+
+
+        <div class="form-group field-margin" style="text-align: center">
+            <button class="btn btn-primary" type="submit" ng-click="apiSetting.save()"> {{'save'|lowercase|translate}} </button>
+            <button class="btn btn-default" type="button" ng-click="apiSetting.goBack()">{{'cancel'|lowercase|translate}}</button>
+        </div>
+
+        <div class="tabs-container">
+
+            <form method="get" class="form-horizontal" name="formName" novalidate>
+
+
+                <tabset>
+                    <tab heading="{{'condition'|lowercase|translate}}">
+                        <div class="panel-body" ng-include="'cpanelv1/ModuleSms/ApiPathSettingsTabs/TabOne.html'">
+
+                        </div>
+                    </tab>
+                    <tab heading="{{'CAPABILITIES'|lowercase|translate}}">
+                        <div class="panel-body" ng-include="'cpanelv1/ModuleSms/ApiPathSettingsTabs/TabTwo.html'">
+                        </div>
+                    </tab>
+                    <tab heading="{{'LIMITATIONS'|lowercase|translate}}">
+                        <div class="panel-body" ng-include="'cpanelv1/ModuleSms/ApiPathSettingsTabs/TabThree.html'">
+                        </div>
+                    </tab>
+                    <tab heading="{{'SEND_AND_RECEIVE'|lowercase|translate}}">
+                        <div class="panel-body" ng-include="'cpanelv1/ModuleSms/ApiPathSettingsTabs/TabFour.html'">
+                        </div>
+                    </tab>
+                    <tab heading="{{'NUMBER_BANK'|lowercase|translate}}">
+                        <div class="panel-body" ng-include="'cpanelv1/ModuleSms/ApiPathSettingsTabs/TabFive.html'">
+                        </div>
+                    </tab>
+                    <tab heading="{{'MANAGEMENT_ERROR'|lowercase|translate}}">
+                        <div class="panel-body" ng-include="'cpanelv1/ModuleSms/ApiPathSettingsTabs/TabSix.html'">
+                        </div>
+                    </tab>
+                    <tab heading="{{'SUBSTITUTES'|lowercase|translate}}">
+                        <div class="panel-body" ng-include="'cpanelv1/ModuleSms/ApiPathSettingsTabs/TabSeven.html'">
+                        </div>
+                    </tab>
+                </tabset>
+            </form>
+        </div>
+        <button class="btn btn-primary" type="submit" ng-click="apiSetting.save()"> {{'save'|lowercase|translate}} </button>
+        <button class="btn btn-default" type="button" ng-click="apiSetting.goBack()">{{'cancel'|lowercase|translate}}</button>
+    </div>
+
+
+
+
+
+
+        </div>
+

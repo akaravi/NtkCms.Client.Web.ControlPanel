@@ -1,0 +1,68 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="botConfigCtrl.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Specifications'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmbotConfigCtrlAdd" novalidate ng-submit="botConfigCtrl.addNewRow(frmbotConfigCtrlAdd)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="botConfigCtrl.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmbotConfigCtrlAdd.LinkSourceId.$invalid && !frmbotConfigCtrlAdd.LinkSourceId.$pristine,'has-success' : frmbotConfigCtrlAdd.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="botConfigCtrl"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="botConfigCtrl.gridOptions.resultAccess.AccessAddField.indexOf('BotToken')>-1"
+                     ng-class="{'has-error' : frmbotConfigCtrlAdd.BotToken.$invalid && !frmbotConfigCtrlAdd.BotToken.$pristine,'has-success' : frmbotConfigCtrlAdd.BotToken.$valid}">
+                    <label class="col-sm-2 control-label"> {{'TOKEN'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control ltr-support" style="direction: ltr;"
+                               ng-required="true"
+                               name="BotToken"
+                               ng-model="botConfigCtrl.selectedItem.BotToken" />
+                        <div class="m-t-xs" ng-show="frmbotConfigCtrlAdd.BotToken.$invalid">
+                            <small class="text-danger" ng-show="frmbotConfigCtrlAdd.BotToken.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmbotConfigCtrlAdd.BotToken.$valid && frmbotConfigCtrlAdd.BotToken.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmbotConfigCtrlAdd.BotToken.$invalid && !frmbotConfigCtrlAdd.BotToken.$pristine) || frmbotConfigCtrlAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="botConfigCtrl.gridOptions.resultAccess.AccessAddField.indexOf('LinkUniversalMenuId')>-1">
+                    <label class="col-sm-2 control-label"> {{'SELECT_MENUE'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="LinkUniversalMenuId" ng-model="botConfigCtrl.selectedItem.LinkUniversalMenuId">
+                            <option ng-selected="botConfigCtrl.selectedItem.LinkUniversalMenuId == null" value="">-</option>
+                            <option ng-repeat="x in botConfigCtrl.UninversalMenus" ng-selected="botConfigCtrl.selectedItem.LinkUniversalMenuId == x.Id" value="{{x.Id}}">{{x.Title}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="botConfigCtrl.gridOptions.resultAccess.AccessEditField.indexOf('LinkUniversalMenuIdOnUndetectableKey')>-1">
+                    <div class="col-md-11">
+                        <input type="checkbox" style="width: 15px; height: 15px;" ng-model="botConfigCtrl.selectUniversalMenuOnUndetectableKey" />
+                        <label> {{'CREATE_DEFAULT_MENUE_ELSE_ERROR'|lowercase|translate}} </label>
+                    </div>
+                </div>
+
+                <div ng-show="botConfigCtrl.selectUniversalMenuOnUndetectableKey">
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group" ng-show="botConfigCtrl.gridOptions.resultAccess.AccessEditField.indexOf('LinkUniversalMenuIdOnUndetectableKey')>-1 ">
+                        <label class="col-sm-3 control-label"> {{'SELECT_DEFAULT'|lowercase|translate}} </label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="LinkUniversalMenuIdOnUndetectableKey" ng-model="botConfigCtrl.selectedItem.LinkUniversalMenuIdOnUndetectableKey">
+                                <option ng-repeat="x in botConfigCtrl.UninversalMenus" ng-selected="botConfigCtrl.selectedItem.LinkUniversalMenuIdOnUndetectableKey == x.Id" value="{{x.Id}}" ng-if="x.LinkParentId == null">{{x.Title}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="botConfigCtrl.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="botConfigCtrl.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

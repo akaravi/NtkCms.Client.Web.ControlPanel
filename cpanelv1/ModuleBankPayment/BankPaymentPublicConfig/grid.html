@@ -1,0 +1,25 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="bankPaymentPublicConfigController as publicConfig" ng-init="publicConfig.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="publicConfig.Add" ng-click="publicConfig.autoAdd()" ng-show="publicConfig.gridOptions.resultAccess.AccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="publicConfig.Edit" ng-click="publicConfig.openEditModal()" ng-show="publicConfig.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="publicConfig.Delete" ng-click="publicConfig.deleteRow()" ng-show="publicConfig.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="publicConfig.showAdvancedSearchPanel(publicConfig.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-warning" type="button" ng-click="publicConfig.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="publicConfig.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="publicConfig.getCount()">{{'number'|lowercase|translate}}&nbsp;{{publicConfig.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row" rasha-loading="publicConfig.busyIndicator">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="publicConfig" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div rasha-grid="publicConfig.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

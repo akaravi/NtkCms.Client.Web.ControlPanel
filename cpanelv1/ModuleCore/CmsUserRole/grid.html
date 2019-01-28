@@ -1,0 +1,18 @@
+﻿
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="cmsUserRoleGridCtrl as cmsUserRolegrd" ng-init="cmsUserRolegrd.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="cmsUserRoleController.Add" ng-click="cmsUserRolegrd.openAddModal()" ng-show="cmsUserRolegrd.gridOptions.resultAccess.AccessAddRow" type="button">{{'ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="cmsUserRoleController.Edit" ng-click="cmsUserRolegrd.openEditModal()" ng-show="cmsUserRolegrd.gridOptions.resultAccess.AccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>
+            <button class="btn btn-danger" rasha-userrole="cmsUserRoleController.Delete" ng-click="cmsUserRolegrd.deleteRow()" ng-show="cmsUserRolegrd.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'DELETE'|lowercase|translate}}</button>
+            <button class="btn btn-success" type="button" ng-click="cmsUserRolegrd.searchData(cmsUserRolegrd.gridOptions.resultAccess.AccessSearchField)">{{'advanced_search'|lowercase|translate}}</button>
+            <button class="btn btn-primary" type="button" ng-click="cmsUserRolegrd.reportData()">{{'report'|lowercase|translate}}</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="cmsUserRolegrd.gridOptions"></div>
+        </div>
+    </div>
+</div>

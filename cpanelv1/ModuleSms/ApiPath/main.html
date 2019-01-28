@@ -1,0 +1,16 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="apiPathCtrl as api" ng-init="api.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" type="button" ng-click="api.addNew()">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" ng-click="api.editRow()" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="api.Delete" ng-click="api.deleteRow()" type="button"> {{'delete'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="api.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

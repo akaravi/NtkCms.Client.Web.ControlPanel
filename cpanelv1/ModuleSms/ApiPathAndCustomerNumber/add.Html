@@ -1,0 +1,65 @@
+﻿
+
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="apiCompany.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ apiCompany.modalTitle}}</h3>
+            <form method="get" class="form-horizontal" name="frmnewsContentAdd" novalidate ng-submit="apiCompany.addNewRow()">
+
+                <!-- Title -->
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmnewsContentAdd.Title.$invalid && !apiCompany.Title.$pristine,'has-success' : frmnewsContentAdd.Title.$valid}">
+                    <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input type="text"  class="form-control" ng-required="true" name="Title" ng-model="apiCompany.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmnewsContentAdd.Title.$invalid">
+                            <small class="text-danger" ng-show="frmnewsContentAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmnewsContentAdd.Title.$valid && frmnewsContentAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmnewsContentAdd.Title.$invalid && !frmnewsContentAdd.Title.$pristine) || frmnewsContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+
+                <!-- ServiceAvailableCredit -->
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmnewsContentAdd.ServiceAvailableCredit.$invalid && !frmnewsContentAdd.ServiceAvailableCredit.$pristine,'has-success' : frmnewsContentAdd.ServiceAvailableCredit.$valid}">
+                    <label class="col-sm-2 control-label"> {{'REMAINING_CREDIT'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" ng-required="true" name="ServiceAvailableCredit" ng-model="apiCompany.selectedItem.ServiceAvailableCredit" />
+                        <div class="m-t-xs" ng-show="frmnewsContentAdd.ServiceAvailableCredit.$invalid">
+                            <small class="text-danger" ng-show="frmnewsContentAdd.ServiceAvailableCredit.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmnewsContentAdd.ServiceAvailableCredit.$valid && frmnewsContentAdd.ServiceAvailableCredit.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmnewsContentAdd.ServiceAvailableCredit.$invalid && !frmnewsContentAdd.ServiceAvailableCredit.$pristine) || frmnewsContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+
+                <!-- ServiceSumCredit -->
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmnewsContentAdd.ServiceSumCredit.$invalid && !frmnewsContentAdd.ServiceSumCredit.$pristine,'has-success' : frmnewsContentAdd.ServiceSumCredit.$valid}">
+                    <label class="col-sm-2 control-label"> {{'ALL_SENDED_CREDIT'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-required="true" name="ServiceSumCredit" ng-model="apiCompany.selectedItem.ServiceSumCredit" />
+                        <div class="m-t-xs" type="number"  ng-show="frmnewsContentAdd.ServiceSumCredit.$invalid">
+                            <small class="text-danger" ng-show="frmnewsContentAdd.ServiceSumCredit.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmnewsContentAdd.ServiceSumCredit.$valid && frmnewsContentAdd.ServiceSumCredit.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmnewsContentAdd.ServiceSumCredit.$invalid && !frmnewsContentAdd.ServiceSumCredit.$pristine) || frmnewsContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="apiCompany.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="apiCompany.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

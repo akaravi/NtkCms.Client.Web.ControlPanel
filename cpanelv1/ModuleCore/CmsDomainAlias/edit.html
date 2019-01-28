@@ -1,0 +1,59 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="domainAlias.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Domain_Alias'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmCmsSiteEdit" novalidate ng-submit="domainAlias.editRow(frmCmsSiteEdit)">
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="domainAlias.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmdomainAliasEdit.RecordStatus.$invalid && !frmdomainAliasEdit.RecordStatus.$pristine,'has-success' : frmdomainAliasEdit.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
+                    <div class="col-sm-10" rasha-record-status="domainAlias"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="domainAlias.gridOptions.resultAccess.AccessEditField.indexOf('Domain')>-1"
+                     ng-class="{'has-error' : frmCmsSiteEdit.Domain.$invalid && !frmCmsSiteEdit.Domain.$pristine,'has-success' : frmCmsSiteEdit.Domain.$valid}">
+                    <label class="col-sm-2 control-label">{{'DOMAIN'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" style="direction: ltr" name="SubDomain" ng-model="domainAlias.selectedItem.Domain" />
+                        <div class="m-t-xs" ng-show="frmCmsSiteEdit.Domain.$invalid">
+                            <small class="text-danger" ng-show="frmCmsSiteEdit.Domain.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmCmsSiteEdit.Domain.$valid && frmCmsSiteEdit.Domain.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmCmsSiteEdit.Domain.$invalid && !frmCmsSiteEdit.Domain.$pristine) || frmCmsSiteEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <!-- SubDomain -->
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="domainAlias.gridOptions.resultAccess.AccessEditField.indexOf('SubDomain')>-1">
+                    <label class="col-sm-2 control-label">{{'SUBDOMAIN'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" style="direction: ltr" name="SubDomain" ng-model="domainAlias.selectedItem.SubDomain" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group' ng-show="domainAlias.gridOptions.resultAccess.AccessEditField.indexOf('LinkCmsSiteId')>-1">
+                    <label class='col-sm-2 control-label'>{{'SITE_ID'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='number' ng-model='domainAlias.selectedItem.LinkCmsSiteId' class="form-control" />
+                    </div>
+                </div>
+                <!-- Redirect -->
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="domainAlias.gridOptions.resultAccess.AccessAddField.indexOf('Redirect')>-1">
+                    <label class="col-sm-2 control-label">Redirect به:</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" style="direction: ltr" name="Redirect" ng-model="domainAlias.selectedItem.Redirect" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="domainAlias.addRequested" type="submit">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="domainAlias.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,74 @@
+﻿<div class="modal-body">
+    <div class="row" >
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="objectPropertyType.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_object_Type'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmobjectPropertyTypeEdit" novalidate ng-submit="objectPropertyType.editRow(frmobjectPropertyTypeEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="objectPropertyType.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                                 ng-class="{'has-error' : frmobjectPropertyTypeEdit.LinkSourceId.$invalid && !frmobjectPropertyTypeEdit.LinkSourceId.$pristine,'has-success' : frmobjectPropertyTypeEdit.LinkSourceId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="objectPropertyType"></div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="objectPropertyType.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                                 ng-class="{'has-error' : frmobjectPropertyTypeEdit.Title.$invalid && !frmobjectPropertyTypeEdit.Title.$pristine,'has-success' : frmobjectPropertyTypeEdit.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           ng-model="objectPropertyType.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmobjectPropertyTypeEdit.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmobjectPropertyTypeEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmobjectPropertyTypeEdit.Title.$valid && frmobjectPropertyTypeEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmobjectPropertyTypeEdit.Title.$invalid && !frmobjectPropertyTypeEdit.Title.$pristine) || frmobjectPropertyTypeEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="objectPropertyType.gridOptions.resultAccess.AccessAddField.indexOf('Description')>-1" ng-class="{'has-error' : frmobjectPropertyTypeEdit.Description.$invalid && !frmobjectPropertyTypeEdit.Description.$pristine,'has-success' : frmobjectPropertyTypeEdit.Description.$valid}">
+                                <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" name="Description" ng-required="true" ng-model="objectPropertyType.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmobjectPropertyTypeEdit.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmobjectPropertyTypeEdit.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmobjectPropertyTypeEdit.Description.$valid && frmobjectPropertyTypeEdit.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmobjectPropertyTypeEdit.Description.$invalid && !frmobjectPropertyTypeEdit.Description.$pristine) || frmobjectPropertyTypeEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="{{'Attachments_Files' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'MAIN_IMAGE'|lowercase|translate}} </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="objectPropertyType.openUploadModal()" aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="objectPropertyType.filePickerMainImage" ng-model="objectPropertyType.selectedItem.LinkMainImageId">
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </tab>
+                    </tabset>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <button class="btn btn-primary" ng-disabled="objectPropertyType.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                                <button class="btn btn-default" type="button" ng-click="objectPropertyType.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                            </div>
+</form>
+        </div>
+    </div>
+</div>
+

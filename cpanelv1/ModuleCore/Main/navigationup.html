@@ -1,0 +1,17 @@
+﻿<div ng-controller="navigationCtrl as navCtrl" ng-init="navCtrl.init()" ng-show="navCtrl.addNewItemNotRequested">
+
+    <div class="row" style="margin: 10px;">
+        <nav class="nav navbar-nav" role="navigation" style="width:auto;height:auto">
+
+            <!--<div class="sidebar-collapse" full-scroll>
+            <div rasha-menu-up>
+            </div>
+            </div>-->
+        </nav>
+    </div>
+    <div class="row">
+        <div class="{{navCtrl.root.headerBtngroupClass}}" style="margin-right:20px;">
+            <button ng-repeat="x in navCtrl.root.MenuDetailListUpItems" type="button" class="btn btn-outline {{x.isActivatedClass}}" ng-click="navCtrl.gotoState(x)" style="border-radius:0px"  >{{x.Title}}</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="shopCombine.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Goods_Of_Type_Hybrid'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmshopCombineAdd" novalidate ng-submit="shopCombine.addNewContent(frmshopCombineAdd)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="shopCombine.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmshopCombineAdd.RecordStatus.$invalid && !frmshopCombineAdd.RecordStatus.$pristine,'has-success' : frmshopCombineAdd.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="shopCombine"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="shopCombine.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                     ng-class="{'has-error' : frmshopCombineAdd.Title.$invalid && !frmshopCombineAdd.Title.$pristine,'has-success' : frmshopCombineAdd.Title.$valid}">
+                    <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="shopCombine.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmshopCombineAdd.Title.$invalid">
+                            <small class="text-danger" ng-show="frmshopCombineAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmshopCombineAdd.Title.$valid && frmshopCombineAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmshopCombineAdd.Title.$invalid && !frmshopCombineAdd.Title.$pristine) || frmshopCombineAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group' ng-show="shopCombine.gridOptions.resultAccess.AccessAddField.indexOf('Description')>-1">
+                    <label class='col-sm-2 control-label'> {{'description'|lowercase|translate}} </label>
+                    <div class='col-sm-10'>
+                        <textarea type='text' ng-required="true" ng-model='shopCombine.selectedItem.Description' class='form-control' style="resize: vertical;height: 100px;"></textarea>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group' ng-show="shopCombine.gridOptions.resultAccess.AccessAddField.indexOf('Price')>-1">
+                    <label class='col-sm-2 control-label'>{{'PRICE'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='number' name="Price" ng-model='shopCombine.selectedItem.Price' class='form-control' />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="shopCombine.gridOptions.resultAccess.AccessAddField.indexOf('AddToInvoicePrint')>-1">
+                    <div class="col-sm-10">
+                        <label class="checkbox-inline">
+                            <input icheck type="checkbox" value="AddToInvoicePrint" ng-model="shopCombine.selectedItem.AddToInvoicePrint" /><h4>{{'ADD_TO_INVOICE'|lowercase|translate}}</h4>
+                        </label>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="shopCombine.gridOptions.resultAccess.AccessAddField.indexOf('CheckInventory')>-1">
+                    <div class="col-sm-10">
+                        <label class="checkbox-inline">
+                            <input icheck type="checkbox" value="CheckInventory" ng-model="shopCombine.selectedItem.CheckInventory" /><h4>{{'CHECK_INVENTORY'|lowercase|translate}}</h4>
+                        </label>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group' ng-show="shopCombine.gridOptions.resultAccess.AccessAddField.indexOf('CurrentInventory')>-1">
+                    <label class='col-sm-2 control-label'>{{'STOCK'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='number' step="0.01" ng-model='shopCombine.selectedItem.CurrentInventory' class="form-control" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="back1">
+                    <h3 style="margin-top:10px;">اجناس</h3>
+                    <br />
+                    <div class='form-group'>
+                        <label class='col-sm-2 control-label'>نام جنس</label>
+                        <div class='col-sm-10'>
+                            <angucomplete-alt id="ex1"
+                                              name="Item"
+                                              pause="100"
+                                              selected-object="shopCombine.itemSelected"
+                                              local-data="shopCombine.itemListItems"
+                                              search-fields="Title"
+                                              title-field="Title"
+                                              description-field="Description"
+                                              minlength="2"
+                                              input-class="form-control form-control-small"
+                                              match-class="highlight" />
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="shopCombine.selectedItem.LinkProductItemPrice!=null && shopCombine.selectedItem.LinkProductItemPrice != undefined">
+                        <label class="col-sm-2 control-label">{{'PRICE'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" name="ProductItemPrice" ng-model="shopCombine.selectedItem.LinkProductItemPrice" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{'number'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input type="number" min="1" class="form-control" name="ProductItemCount" placeholder="" value="1" ng-model="shopCombine.selectedItem.ProductItemCount" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <button class="btn btn-primary col-md-offset-2 col-md-10" type="button" ng-click="shopCombine.pushNewItem()">اضافه</button>
+                        </div>
+                    </div>
+                    <div class='form-group' ng-if="shopCombine.selectedItem.ProductItemCombines.length>0">
+                        <div ng-repeat="x in shopCombine.selectedItem.ProductItemCombines" style="margin-bottom:10px;">
+                            <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                            <div class="input-group col-md-8">
+                                <span class="input-group-addon" style="background-color: #ed5565; cursor: pointer" id="basic-addon1" title="{{'DELETE'|lowercase|translate}}" ng-click="shopCombine.popNewItem($index)"><i class="fa fa-remove"></i></span>
+                                <input type="text" class="form-control" readonly="readonly" placeholder="عنوان جنس" value="{{x.LinkProductItemTitle}}&nbsp;-&nbsp;تعداد:{{x.ProductItemCount}}&nbsp;-&nbsp;قیمت:{{x.Price}}" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="shopCombine.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="shopCombine.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

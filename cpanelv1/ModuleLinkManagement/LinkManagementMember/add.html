@@ -1,0 +1,62 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="linkManagementMember.busyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="linkManagementMember.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ linkManagementMember.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmlinkManagementMemberAdd" novalidate ng-submit="linkManagementMember.addNewRow(frmlinkManagementMemberAdd)">
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="linkManagementMember.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmlinkManagementMemberAdd.RecordStatus.$invalid && !frmlinkManagementMemberAdd.RecordStatus.$pristine,'has-success' : frmlinkManagementMemberAdd.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="linkManagementMember"></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'USER'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkExternalCmsUserId" rasha-autocomplete="linkManagementMember.LinkExternalCmsUserIdSelector" ng-model="linkManagementMember.selectedItem.LinkExternalCmsUserId" />
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" >
+                    <div class="col-sm-10">
+                        <label class="checkbox-inline">
+                            <input icheck type="checkbox" value="IsInBlackList" ng-model="linkManagementMember.selectedItem.IsInBlackList" />{{'Black_List'|lowercase|translate}}
+                        </label>
+                    </div>
+                </div>
+                <!--<div class='hr-line-dashed'></div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'description'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <textarea type='text' ng-required="true" ng-model='linkManagementMember.selectedItem.Description' class='form-control' style="resize: vertical;height: 100px;"></textarea>
+                    </div>
+                </div>-->
+                <div class='hr-line-dashed'></div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'Current_Credit_The_Debtor'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='number' ng-model='linkManagementMember.selectedItem.CurrentDebtor' class='form-control' />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'Current_Credit_Creditor'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='number' ng-model='linkManagementMember.selectedItem.CurrentCreditor' class='form-control' />
+                    </div>
+                </div>
+
+
+               
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="linkManagementMember.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="linkManagementMember.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+

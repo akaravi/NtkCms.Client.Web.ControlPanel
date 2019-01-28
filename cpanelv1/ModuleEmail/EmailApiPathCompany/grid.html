@@ -1,0 +1,32 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="emailapipathcompanyCtrl as emailapipathcompany" ng-init="emailapipathcompany.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="emailapipathcompany.Add" ng-click="emailapipathcompany.openAddModal()" ng-show="emailapipathcompany.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="emailapipathcompany.Edit" ng-click="emailapipathcompany.openEditModal()"ng-show="emailapipathcompany.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="emailapipathcompany.Delete" ng-click="emailapipathcompany.deleteRow()" ng-show="emailapipathcompany.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="emailapipathcompany.showAdvancedSearchPanel(emailapipathcompany.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-warning" type="button" ng-click="emailapipathcompany.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="emailapipathcompany.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="emailapipathcompany.getCount()">{{'number'|lowercase|translate}}&nbsp;{{emailapipathcompany.ListItemsTotalRowCount}}</button>
+            <button class="btn btn-warning" type="button" ng-click="emailapipathcompany.changeState('emailpublicconfig')">{{'BACK'|lowercase|translate}}&nbsp;&nbsp;<i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="emailapipathcompany" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div rasha-grid="emailapipathcompany.gridOptions"></div>
+        </div>
+    </div>
+   <!--<h3>جزییات</h3>
+    <div class="row" id="gridLogs" style="display: none;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div rasha-grid="emailapipathcompany.gridLogs"></div>
+        </div>
+    </div>-->
+</div>
+

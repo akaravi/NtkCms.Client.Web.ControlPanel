@@ -1,0 +1,58 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor: pointer" ng-click="deliveryMethodDetail.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Delivery_Method_Detail'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmdeliveryMethodDetailAdd" novalidate ng-submit="deliveryMethodDetail.addNewRow(frmdeliveryMethodDetailAdd)" ng-init="deliveryMethodDetail.loadEmojiPicker()">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="deliveryMethodDetail.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmdeliveryMethodDetailAdd.RecordStatus.$invalid && !frmdeliveryMethodDetailAdd.RecordStatus.$pristine,'has-success' : frmdeliveryMethodDetailAdd.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="deliveryMethodDetail"></div>
+                </div>
+                <div class="form-group" ng-show="deliveryMethodDetail.gridOptions.resultAccess.AccessAddField.indexOf('IsCircular')>-1">
+                    <div class="col-sm-10">
+                        <label class="checkbox-inline">
+                            <input icheck type="checkbox" value="option1" ng-model="deliveryMethodDetail.selectedItem.IsCircular" />{{'IsCircular'|lowercase|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="deliveryMethodDetail.gridOptions.resultAccess.AccessAddField.indexOf('NeedToAcceptFromDeliveryMember')>-1">
+                    <div class="col-sm-10">
+                        <label class="checkbox-inline">
+                            <input icheck type="checkbox" value="option1" ng-model="deliveryMethodDetail.selectedItem.NeedToAcceptFromDeliveryMember" />{{'Need_To_Accept_From_Delivery_Member'|lowercase|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-4  control-label">{{'Estimated_Time_To_Receive_The_Product'|lowercase|translate}}</label>
+                    <div class="col-sm-6  col-md-4">
+                        <div rasha-date-picker="deliveryMethodDetail.EstimateTime" ng-model="deliveryMethodDetail.selectedItem.EstimateTime"></div><input type="hidden" ng-model="deliveryMethodDetail.selectedItem.EstimateTime" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="deliveryMethodDetail.gridOptions.resultAccess.AccessAddField.indexOf('LinkExternalModuleShopProductId')>-1">
+                    <label class="col-sm-2 control-label">{{'Factor_Row'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkExternalModuleShopProductId" rasha-autocomplete="deliveryMethodDetail.LinkExternalModuleShopProductIdSelector" ng-model="frmdeliveryMethodDetailEdit.selectedItem.LinkExternalModuleShopProductId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="deliveryMethodDetail.gridOptions.resultAccess.AccessAddField.indexOf('LinkLocationId')>-1">
+                    <label class="col-sm-2 control-label">{{'CITY'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkLocationId" rasha-autocomplete="deliveryMethodDetail.LinkLocationIdSelector" ng-model="deliveryMethodDetail.selectedItem.LinkLocationId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="deliveryMethodDetail.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="deliveryMethodDetail.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

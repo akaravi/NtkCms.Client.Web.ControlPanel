@@ -1,0 +1,92 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="memberUser.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ memberUser.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmmemberUserAdd" novalidate ng-submit="memberUser.addNewContent(frmmemberUserAdd)">
+                <tabset class="tabs-left">
+                    <tab heading="مشخصات فردی">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmmemberUserAdd.FirstName.$invalid && !frmmemberUserAdd.FirstName.$pristine,'has-success' : frmmemberUserAdd.FirstName.$valid}">
+                                <label class="col-sm-2 control-label"> {{'NAME'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="true" name="FirstName" ng-model="memberUser.selectedItem.FirstName" />
+                                    <div class="m-t-xs" ng-show="frmmemberUserAdd.FirstName.$invalid">
+                                        <small class="text-danger" ng-show="frmmemberUserAdd.FirstName.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmmemberUserAdd.FirstName.$valid && frmmemberUserAdd.FirstName.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmmemberUserAdd.FirstName.$invalid && !frmmemberUserAdd.FirstName.$pristine) || frmmemberUserAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'LASTNAME'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="LastName" ng-model="memberUser.selectedItem.LastName" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="memberUser.gridOptions.resultAccess.AccessAddField.indexOf('Gender')>-1">
+                                <label class="col-sm-2 control-label">Gender</label>
+                                <div class="col-sm-10">
+                                    <select class='form-control' name="Gender" ng-model="memberUser.selectedItem.Gender" ng-options="x.Value as x.Description for x in memberUser.Gender" required></select>
+                                    <span ng-show="frmmemberUserAdd.Gender.$error.required">{{'SELECT_INPUT_TYPE'|lowercase|translate}}</span>
+                                </div>
+                            </div>
+                            <!--<div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> JoinId</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="LastName" ng-model="memberUser.selectedItem.JoinId" />
+                                </div>
+                            </div>-->
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Communication_Paths'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'TELL'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="PhoneNo" ng-model="memberUser.selectedItem.PhoneNo" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'MOBILE_NUMBER'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="MobileNo" ng-model="memberUser.selectedItem.MobileNo" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'TELL'|lowercase|translate}} {{'OFFICE'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="OfficeNo" ng-model="memberUser.selectedItem.OfficeNo" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'ADDRESS'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" style="resize:none;" ng-required="false" name="Address" ng-model="memberUser.selectedItem.Address"></textarea>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+               <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="memberUser.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="memberUser.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="chartComment.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Comment'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmchartCommentEdit" novalidate ng-submit="chartComment.editRow(frmchartCommentEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmchartCommentAdd.LinkSourceId.$invalid && !frmchartCommentAdd.LinkSourceId.$pristine,'has-success' : frmchartCommentAdd.LinkSourceId.$valid}">
+                                <label class="col-sm-2 control-label"> > {{'condition'|lowercase|translate}}  </label>
+                                <div class="col-sm-10" rasha-record-status="chartComment"></div>
+                            </div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmchartCommentEdit.Writer.$invalid && !frmchartCommentEdit.Writer.$pristine,'has-success' : frmchartCommentEdit.Writer.$valid}">
+                                <label class="col-sm-2 control-label"> {{'AUTHOR'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Writer"
+                                           ng-model="chartComment.selectedItem.Writer" />
+                                    <div class="m-t-xs" ng-show="frmchartCommentEdit.Writer.$invalid">
+                                        <small class="text-danger" ng-show="frmchartCommentEdit.Writer.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmchartCommentEdit.Writer.$valid && frmchartCommentEdit.Writer.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmchartCommentEdit.Writer.$invalid && !frmchartCommentEdit.Writer.$pristine) || frmchartCommentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmchartCommentEdit.Comment.$invalid && !frmchartCommentEdit.Comment.$pristine,'has-success' : frmchartCommentEdit.Comment.$valid}">
+                                <label class="col-sm-2 control-label"> {{'COMMENT'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Comment"
+                                           ng-model="chartComment.selectedItem.Comment" />
+                                    <div class="m-t-xs" ng-show="frmchartCommentEdit.Comment.$invalid">
+                                        <small class="text-danger" ng-show="frmchartCommentEdit.Comment.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmchartCommentEdit.Comment.$valid && frmchartCommentEdit.Comment.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmchartCommentEdit.Comment.$invalid && !frmchartCommentEdit.Comment.$pristine) || frmchartCommentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmchartCommentEdit.LinkchartContentId.$invalid && !frmchartCommentEdit.LinkchartContentId.$pristine,'has-success' : frmchartCommentEdit.LinkchartContentId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'SELECT_ARTICLE_CONTENT'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="true" name="LinkChartContentId" rasha-autocomplete="chartComment.LinkChartContentIdSelector" ng-model="chartComment.selectedItem.LinkChartContentId"  />
+                                    <!--<select class="form-control" ng-model="chartComment.selectedItem.LinkChartContentId">
+                        <option ng-repeat="x in chartComment.CommentList" ng-value="x.Id" ng-selected="x.Id == chartComment.selectedItem.LinkChartContentId">{{x.Title}}</option>
+                    </select>-->
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <label class="checkbox-inline">
+                                        <input icheck type="checkbox" value="option1" id="IsActivated" ng-model="chartComment.selectedItem.IsActivated" /> {{'IS_ACTIVE'|lowercase|translate}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <label class="checkbox-inline">
+                                        <input icheck type="checkbox" value="option2" id="IsArchived" ng-model="chartComment.selectedItem.IsArchived" /> {{'IS_ACTIVE'|lowercase|translate}}
+                                    </label>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="chartComment.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="chartComment.closeModal()"> {{'cancel'|lowercase|translate}} </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

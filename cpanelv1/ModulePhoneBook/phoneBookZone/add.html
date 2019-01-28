@@ -1,0 +1,107 @@
+﻿    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12 b-r">
+                <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="phoneBookZone.closeModal()"></i>
+                <h3 class="m-t-none m-b"> {{ phoneBookZone.modalTitle }}</h3>
+                <form method="get" class="form-horizontal" name="frmphoneBookZoneAdd" novalidate ng-submit="phoneBookZone.addNewRow(frmphoneBookZoneAdd)">
+
+
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group"
+                         ng-class="{'has-error' : frmphoneBookZoneAdd.LinkPhoneBookCountryId.$invalid && !frmphoneBookZoneAdd.LinkPhoneBookCountryId.$pristine,'has-success' : frmphoneBookZoneAdd.LinkPhoneBookCountryId.$valid}">
+                        <label class="col-sm-2 control-label"> {{'COUNTRY'|lowercase|translate}} </label>
+                        <div class="col-sm-10">
+                            <select class="form-control"
+                                    ng-required="true"
+                                    name="LinkPhoneBookCountryId"
+                                    ng-model="phoneBookZone.selectedItem.LinkPhoneBookCountryId"
+                                    ng-change="phoneBookZone.getStateByCountryId(phoneBookZone.selectedItem.LinkPhoneBookCountryId)">
+                                <option ng-repeat="country in phoneBookZone.countryList" ng-value="{{country.Id}}">{{country.Title}}</option>
+                            </select>
+                            <div class="m-t-xs" ng-show="frmphoneBookZoneAdd.LinkPhoneBookCountryId.$invalid">
+                                <small class="text-danger" ng-show="frmphoneBookZoneAdd.LinkPhoneBookCountryId.$error.required">
+                                    <i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group"
+                         ng-class="{'has-error' : frmphoneBookZoneAdd.LinkPhoneBookStateId.$invalid && !frmphoneBookZoneAdd.LinkPhoneBookStateId.$pristine,'has-success' : frmphoneBookZoneAdd.LinkPhoneBookStateId.$valid}">
+                        <label class="col-sm-2 control-label"> {{'PROVINCE'|lowercase|translate}} </label>
+                        <div class="col-sm-10">
+                            <select class="form-control"
+                                    ng-required="true"
+                                    name="LinkPhoneBookStateId"
+                                    ng-model="phoneBookZone.selectedItem.LinkPhoneBookStateId"
+                                    ng-change="phoneBookZone.getCityByStateId(phoneBookZone.selectedItem.LinkPhoneBookStateId)">
+                                <option ng-repeat="state in phoneBookZone.stateList" ng-value="{{state.Id}}">{{state.Title}}</option>
+                            </select>
+                            <div class="m-t-xs" ng-show="frmphoneBookZoneAdd.LinkPhoneBookStateId.$invalid">
+                                <small class="text-danger" ng-show="frmphoneBookZoneAdd.LinkPhoneBookStateId.$error.required">
+                                    <i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group"
+                         ng-class="{'has-error' : frmphoneBookZoneAdd.LinkPhoneBookCityId.$invalid &&
+                          !frmphoneBookZoneAdd.LinkPhoneBookCityId.$pristine,'has-success' : frmphoneBookZoneAdd.LinkPhoneBookCityId.$valid}">
+                        <label class="col-sm-2 control-label"> {{'CITY'|lowercase|translate}} </label>
+                        <div class="col-sm-10">
+                            <select class="form-control"
+                                    ng-required="true"
+                                    name="LinkPhoneBookCityId"
+                                    ng-model="phoneBookZone.selectedItem.LinkPhoneBookCityId">
+                                <option ng-repeat="city in phoneBookZone.cityList" ng-value="{{city.Id}}">{{city.Title}}</option>
+                            </select>
+                            <div class="m-t-xs" ng-show="frmphoneBookZoneAdd.LinkPhoneBookCityId.$invalid">
+                                <small class="text-danger" ng-show="frmphoneBookZoneAdd.LinkPhoneBookCityId.$error.required">
+                                    <i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group"
+                         ng-class="{'has-error' : frmphoneBookZoneAdd.Title.$invalid && !frmphoneBookZoneAdd.Title.$pristine,'has-success' : frmphoneBookZoneAdd.Title.$valid}">
+                        <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                        <div class="col-sm-10">
+                            <input class="form-control"
+                                   ng-required="true"
+                                   name="Title"
+                                   ng-model="phoneBookZone.selectedItem.Title">
+                            <div class="m-t-xs" ng-show="frmphoneBookZoneAdd.Title.$invalid">
+                                <small class="text-danger" ng-show="frmphoneBookZoneAdd.Title.$error.required">
+                                    <i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group"
+                         ng-class="{'has-error' : frmphoneBookZoneAdd.Description.$invalid && !frmphoneBookZoneAdd.Description.$pristine,'has-success' : frmphoneBookZoneAdd.Description.$valid}">
+                        <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control"
+                                      ng-required="true"
+                                      name="Description"
+                                      ng-model="phoneBookZone.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                            <div class="m-t-xs" ng-show="frmphoneBookZoneAdd.Description.$invalid">
+                                <small class="text-danger" ng-show="frmphoneBookZoneAdd.Description.$error.required">
+                                    <i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" ng-disabled="phoneBookZone.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                        <button class="btn btn-default" type="button" ng-click="phoneBookZone.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>

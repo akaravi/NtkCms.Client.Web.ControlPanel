@@ -1,0 +1,59 @@
+﻿    <div class="wrapper wrapper-content" ng-controller="articleManageStateCtrl as articleManageCtrl" ng-init="articleManageCtrl.init()">
+    <div class="row">
+        <div class="col-md-3 animated fadeInRight">
+            <div class="row">
+                <h5>{{'ARTICLE_CATEGORIES' |lowercase|translate}}:</h5>
+                <div>
+                    <button class="btn btn-primary " ng-click="articleManageCtrl.openNewFolder()">{{'ADD_NEW_CATEGORY' |lowercase|translate}}</button>
+                    <button class="btn btn-primary " ng-click="articleManageCtrl.openNewFolder()">{{'REMOVE_PAPER_RIGHT' |lowercase|translate}}</button>
+                    <button class="btn btn-primary " ng-click="articleManageCtrl.openNewFolder()">{{'EDIT | translate'}}</button>
+
+                </div>
+                <div class="col-lg-9">
+                    <ul class="tree" tree-options="articleManageCtrl.treeConfig"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9  animated fadeInRight">
+            <h5>{{'LIST'|lowercase|translate}}&nbsp;{{'ARTICLES'|lowercase|translate}}</h5>
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-primary" ng-click="articleManageCtrl.openNewFolder()">{{'ADD'|lowercase|translate}}</button>
+
+                    <button class="btn btn-primary" ng-click="articleManageCtrl.openNewFolder()">{{'EDIT'|lowercase|translate}}</button>
+
+                    <button class="btn btn-primary" ng-click="articleManageCtrl.openNewFolder()">{{'DELETE'|lowercase|translate}}</button>
+
+                    <button class="btn btn-primary" ng-click="articleManageCtrl.openNewFolder()">{{'SEARCH'|lowercase|translate}}</button>
+
+                    <button class="btn btn-primary" ng-click="articleManageCtrl.openNewFolder()">{{'REPORT'|lowercase|translate}}</button>
+
+                    <button class="btn btn-primary" ng-click="articleManageCtrl.openNewFolder()">{{'ACCEPT_ARTICLE'|lowercase|translate}}</button>
+
+                    <button class="btn btn-primary" ng-click="articleManageCtrl.openNewFolder()">{{'DEACCEPT_ARTICLE'|lowercase|translate}}</button>
+
+                    <button class="btn btn-primary" ng-click="articleManageCtrl.openNewFolder()">{{'ARCHIVE'|lowercase|translate}}</button>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8" style="font-size: 26px">{{'COMMENTS_LISTING'|lowercase|translate}}</div>
+                    <div class="row"></div>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary" ng-click="articleManageCtrl.openNewFolder()">{{'ACCEPT'|lowercase|translate}}</button>
+                        <button class="btn btn-primary" ng-click="articleManageCtrl.openNewFolder()">{{'DELETE'|lowercase|translate}}</button>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+</div>

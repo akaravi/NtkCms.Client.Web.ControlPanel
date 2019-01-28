@@ -1,0 +1,31 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="discountGroupController as discountGroup" ng-init="discountGroup.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="discountGroup.busyIndicator"></div>
+            <button class="btn btn-primary" rasha-userrole="discountGroup.Add" ng-click="discountGroup.openAddModal()" type="button" ng-show="discountGroup.gridOptions.resultAccess.AccessAddRow">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="discountGroup.Edit" ng-click="discountGroup.openEditModal()" type="button" ng-show="discountGroup.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="discountGroup.Delete" ng-click="discountGroup.deleteRow()" type="button" ng-show="discountGroup.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="discountGroup.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="discountGroup.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="discountGroup.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="discountGroup.getCount()">{{'number'|lowercase|translate}}&nbsp;{{discountGroup.ListItemsTotalRowCount}}</button>
+        </div>
+        <hr />
+        <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+            <div id="builder" query-builder="discountGroup"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="discountGroup.getRules()">{{'look'|lowercase|translate}}</button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="discountGroup.saveRules()">{{'save_condition'|lowercase|translate}}</button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="discountGroup.setRules()">{{'restore_condition'|lowercase|translate}}</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="discountGroup.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,65 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="cmsModuleSaleItem.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Sale_Module'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmcmsModuleSaleItemEdit" novalidate ng-submit="cmsModuleSaleItem.editContent(frmcmsModuleSaleItemEdit)">
+                
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmcmsModuleSaleItemAdd.LinkSourceId.$invalid && !frmcmsModuleSaleItemAdd.LinkSourceId.$pristine,'has-success' : frmcmsModuleSaleItemAdd.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="cmsModuleSaleItem"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmcmsModuleSaleItemAdd.Description.$invalid && !frmcmsModuleSaleItemAdd.Description.$pristine,'has-success' : frmcmsModuleSaleItemAdd.Description.$valid}">
+                    <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control"
+                               ng-required="true"
+                               name="Description"
+                               ng-model="cmsModuleSaleItem.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                        <div class="m-t-xs" ng-show="frmcmsModuleSaleItemAdd.Description.$invalid">
+                            <small class="text-danger" ng-show="frmcmsModuleSaleItemAdd.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmcmsModuleSaleItemAdd.Description.$valid && frmcmsModuleSaleItemAdd.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmcmsModuleSaleItemAdd.Description.$invalid && !frmcmsModuleSaleItemAdd.Description.$pristine) || frmcmsModuleSaleItemAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'> {{'Month_Length'|lowercase|translate}} </label>
+                    <div class='col-sm-10'>
+                        <input type='number' ng-model='cmsModuleSaleItem.selectedItem.MonthLength' class='form-control' />
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'> {{'Sale_Price'|lowercase|translate}} </label>
+                    <div class='col-sm-10'>
+                        <input type='number' ng-model='cmsModuleSaleItem.selectedItem.SalePrice' class='form-control' />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsModuleSaleItem.gridOptions.resultAccess.AccessEditField.indexOf('EnumCmsModuleSaleItemType')>-1">
+                    <label class="col-sm-2 control-label">{{'Type_Of_Item'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <select class='form-control' name="EnumCmsModuleSaleItemType" ng-model="cmsModuleSaleItem.selectedItem.EnumCmsModuleSaleItemType" ng-options="x.Value as x.Description for x in cmsModuleSaleItem.EnumCmsModuleSaleItemType" required></select>
+                        <span ng-show="frmcmsModuleSaleItemAdd.EnumCmsModuleSaleItemType.$error.required">{{'SELECT_INPUT_TYPE'|lowercase|translate}}</span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsModuleSaleItem.gridOptions.resultAccess.AccessEditField.indexOf('LinkModuleId')>-1">
+                    <label class="col-sm-2 control-label"> {{'Link_Module_Id'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-required="true" name="LinkModuleId" rasha-autocomplete="cmsModuleSaleItem.LinkModuleIdSelector" ng-model="cmsModuleSaleItem.selectedItem.LinkModuleId" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="cmsModuleSaleItem.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="cmsModuleSaleItem.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form><style>.pull-right{margin: 1px 28px;}</style>
+        </div>
+    </div>
+</div>

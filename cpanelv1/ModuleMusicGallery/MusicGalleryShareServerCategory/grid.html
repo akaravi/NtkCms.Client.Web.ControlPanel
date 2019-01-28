@@ -1,0 +1,73 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="musicGalleryShareServerCategoryController as musicGalleryShareServerCategory" ng-init="musicGalleryShareServerCategory.init()">
+    <!--<div class="container">-->
+    <div class="row">
+        <div class="col-md-2">
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;{{'Sharing_Settings'|lowercase|translate}}</h5></div>
+                    <div class="panel-body">
+                        <div style="position: relative">
+                            <ul class="tree" tree-options="musicGalleryShareServerCategory.treeConfig"></ul>
+                        </div>
+                        <!-- Category Section -->
+                        <div style="margin-top: 20px;" ng-show="musicGalleryShareServerCategory.gridOptions.resultAccess.AccessAddRow || musicGalleryShareServerCategory.gridOptions.resultAccess.AccessEditRow ||musicGalleryShareServerCategory.gridOptions.resultAccess.AccessDeleteRow">
+                            <a ng-click="musicGalleryShareServerCategory.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-success">
+                                <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
+                            </a>
+                            <div id="categoryButtons" style="display: none;">
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="musicGalleryShareServerCategory.Add" ng-click="musicGalleryShareServerCategory.addNewCategoryModel()" type="button" ng-show="musicGalleryShareServerCategory.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="musicGalleryShareServerCategory.Edit" ng-click="musicGalleryShareServerCategory.EditCategoryModel()" type="button" ng-show="musicGalleryShareServerCategory.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="musicGalleryShareServerCategory.Delete" ng-click="musicGalleryShareServerCategory.deleteCategory()" type="button" ng-show="musicGalleryShareServerCategory.gridOptions.resultAccess.AccessDeleteRow"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5><i class="fa fa-musicGallerypaper-o " style="font-size: 18px;"></i>&nbsp;{{'LIST'|lowercase|translate}}&nbsp;{{'Subscriptions'|lowercase|translate}}<nospecialtag ng-if="musicGalleryShareServerCategory.treeConfig.currentNode.Id!=null">:&nbsp;{{musicGalleryShareServerCategory.treeConfig.currentNode.Title}}&nbsp; - {{'ID'|lowercase|translate}}:&nbsp;{{musicGalleryShareServerCategory.treeConfig.currentNode.Id}}</nospecialtag></h5>
+                </div>
+                <div class="panel-body" >
+                    <h6>{{'description'|lowercase|translate}}&nbsp;{{musicGalleryShareServerCategory.treeConfig.currentNode.Description}}</h6>
+                </div>
+            </div>
+            <div class="row" id="topMenu">
+                <div class="col-md-12" style="text-align: center;">
+                    <button class="btn btn-primary" ng-click="musicGalleryShareServerCategory.addNewContentModel()" ng-show="musicGalleryShareServerCategory.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="musicGalleryShareServerCategory.openEditModel()" ng-show="musicGalleryShareServerCategory.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="musicGalleryShareServerCategory.deleteContent()" ng-show="musicGalleryShareServerCategory.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-success" ng-click="musicGalleryShareServerCategory.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <button class="btn btn-warning" type="button" ng-click="musicGalleryShareServerCategory.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+                    <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="musicGalleryShareServerCategory.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+                    <button class="btn btn-success" ng-click="musicGalleryShareServerCategory.getCount()">{{'number'|lowercase|translate}}&nbsp;{{musicGalleryShareServerCategory.ListItemsTotalRowCount}}</button>
+                    <!--<button class="btn btn-default" ng-click="musicGalleryShareServerCategory.enableArchive()"><i class="fa fa-archive fontavesome-small"></i>&nbsp; آرشیو</button>--><i ng-if="item.IsArchive == true" class="fa fa-check" style="color: #ff0000"></i>
+                </div>
+                <hr />
+                <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+                    <div id="builder" query-builder="musicGalleryShareServerCategory"></div>
+                    <div class="btn-group" style="float: left;">
+                        <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="musicGalleryShareServerCategory.getRules()"> {{'look'|lowercase|translate}} </button>
+                        <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="musicGalleryShareServerCategory.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                        <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="musicGalleryShareServerCategory.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+                    </div>
+                </div>
+                <div class="col-md-12" rasha-loading="musicGalleryShareServerCategory.contentBusyIndicator">
+                    <div ng-show="musicGalleryShareServerCategory.ListItems==undefined" style="height:150px;"></div>
+                    <h4 ng-show="musicGalleryShareServerCategory.ListItems.length < 1">{{'There_Is_No_Content_In_This_Category'|lowercase|translate}}</h4>
+                    <div ng-show="musicGalleryShareServerCategory.ListItems.length>0" rasha-grid="musicGalleryShareServerCategory.gridOptions"></div>
+                </div>
+                <div class="col-md-12" ng-show="musicGalleryShareServerCategory.showGridComment">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3>{{musicGalleryShareServerCategory.Title}}</h3>
+                        </div>
+                    </div>
+                    <div rasha-grid="musicGalleryShareServerCategory.gridOptions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,279 @@
+﻿<script>
+    function moveAll(from, to) {
+        $('#' + from + ' option').remove().appendTo('#' + to);
+    }
+    function moveSelected(from, to) {
+        $('#' + from + ' option:selected').remove().appendTo('#' + to);
+    }
+    function selectAll() {
+        $("select option").attr("selected", "selected");
+    }
+</script>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor: pointer" ng-click="menuItemCtrl.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Menu'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmmenuItemCtrlAdd" novalidate ng-submit="menuItemCtrl.addNewRow(frmmenuItemCtrlAdd)" ng-init="menuItemCtrl.loadEmojiPicker()">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="menuItemCtrl.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                                 ng-class="{'has-error' : frmmenuItemCtrlAdd.RecordStatus.$invalid && !frmmenuItemCtrlAdd.RecordStatus.$pristine,'has-success' : frmmenuItemCtrlAdd.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="menuItemCtrl"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="menuItemCtrl.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                                 ng-class="{'has-error' : frmmenuItemCtrlAdd.Title.$invalid && !frmmenuItemCtrlAdd.Title.$pristine,'has-success' : frmmenuItemCtrlAdd.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           ng-model="menuItemCtrl.selectedItem.Title" ng-focus="menuItemCtrl.loadEmojiPickerdiscover()"
+                                           data-emojiable="true" />
+                                    <div class="m-t-xs" ng-show="frmmenuItemCtrlAdd.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmmenuItemCtrlAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmmenuItemCtrlAdd.Title.$valid && frmmenuItemCtrlAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmmenuItemCtrlAdd.Title.$invalid && !frmmenuItemCtrlAdd.Title.$pristine) || frmmenuItemCtrlAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <a href="http://unicode.org/emoji/charts/full-emoji-list.html" target="blank" class="pull-right" style="font-family: Georgia, serif; font-size: 15px;">Full Emoji List</a>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'KEY' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <a href="http://unicode.org/emoji/charts/full-emoji-list.html" target="blank" class="pull-right" style="font-family: Georgia, serif; font-size: 15px;">Full Emoji List</a>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-show="menuItemCtrl.gridOptions.resultAccess.AccessAddField.indexOf('Key')>-1">
+                                <label class="col-sm-2 control-label"> {{'KEY'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           name="Key"
+                                           ng-model="menuItemCtrl.selectedItem.Key" ng-focus="menuItemCtrl.loadEmojiPickerdiscover()"
+                                           data-emojiable="true" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="menuItemCtrl.gridOptions.resultAccess.AccessAddField.indexOf('AddKeyToTitle')>-1">
+                                <div class="col-sm-10" style="float: left;">
+                                    <label class="checkbox-inline">
+                                        <input icheck type="checkbox" value="option1" id="ShowInMenu" ng-model="menuItemCtrl.selectedItem.AddKeyToTitle" /> {{'KEY_SHOW_IN_MENU'|lowercase|translate}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="menuItemCtrl.gridOptions.resultAccess.AccessAddField.indexOf('HiddenMenu')>-1">
+                                <div class="col-sm-10" style="float: left;">
+                                    <label class="checkbox-inline">
+                                        <input icheck type="checkbox" value="option1" ng-model="menuItemCtrl.selectedItem.HiddenMenu" />{{'HIDDEN'|lowercase|translate}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="menuItemCtrl.gridOptions.resultAccess.AccessAddField.indexOf('ShowInMenuOrder')>-1">
+                                <label class="col-sm-2 control-label">{{'SHOW_ORDER_IN_MENU'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" name="ShowInMenuOrder" min="1" ng-model="menuItemCtrl.selectedItem.ShowInMenuOrder" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'HtmlBuilder_Default_Operations' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <h4> {{'SELECT_FROM_OPERATIONS_IS_DEFINED'|lowercase|translate}} </h4>
+                            <div class="back1" ng-show="menuItemCtrl.selectFromDefinedPanel">
+                                <div class="form-group" ng-show="menuItemCtrl.gridOptions.resultAccess.AccessAddField.indexOf('MenuItemProcesses')>-1">
+                                    <br />
+                                    <div class="col-sm-8 checkBoxList" style="overflow-y: auto;">
+                                        <div ng-repeat="permission in menuItemCtrl.processesListItems" style="padding-right: 20px;">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" value="{{permission.Id}}" ng-checked="menuItemCtrl.hasInMany2Many(permission)" ng-click="menuItemCtrl.toggleMany2Many(role,permission)">
+                                                {{permission.Title}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'HtmlBuilder_Operations' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <h4> {{'THE_DEFINITION_OF_NEW_OPERATIONS'|lowercase|translate}} </h4>
+                            <div class="back2" ng-show="menuItemCtrl.defineNewProcessPanel">
+                                <br />
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="{{'ENTER_TITLE_OF_OPERATION'|lowercase|translate}}" ng-model="menuItemCtrl.newProcess.Title" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{'CHOOSE_MODULES'|lowercase|translate}} </label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" ng-model="menuItemCtrl.newProcess.LinkModuleId" ng-disabled="menuItemCtrl.loadingCmsModule" ng-change="menuItemCtrl.LoadcmsModuleProcess(menuItemCtrl.newProcess.LinkModuleId)">
+                                            <option value="0"> {{'SELECT'|lowercase|translate}} </option>
+                                            <option ng-repeat="x in menuItemCtrl.cmsModulesListItems" value="{{x.Id}}">{{x.Title}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class='hr-line-dashed'></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{'CHOOSE_ACTIVITY_MODULE'|lowercase|translate}} </label>
+                                    <div class="col-sm-10">
+                                        <select id="cmsModuleProcesses_comboBox" class="form-control" ng-disabled="menuItemCtrl.loadingCmsModuleProcess" ng-model="menuItemCtrl.newProcess.LinkModuleProcessId" ng-change="menuItemCtrl.LoadcmsModuleProcessCustomize(menuItemCtrl.newProcess.LinkModuleProcessId)">
+                                            <option ng-repeat="x in menuItemCtrl.cmsModulesProcessesListItems" value="{{x.Id}}">{{x.Title}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class='hr-line-dashed'></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'SELECT_THE_TYPE_OF_USE'|lowercase|translate}}</label>
+                                    <div class="col-sm-10">
+                                        <select id="cmsModuleProcessesCustomize_comboBox" class="form-control" ng-disabled="menuItemCtrl.loadingCmsModuleProcessCustomize" ng-model="menuItemCtrl.newProcess.LinkModuleProcessCustomizeId" ng-change="menuItemCtrl.LoadProcessInputCustomizeValue(menuItemCtrl.newProcess.LinkModuleProcessCustomizeId)">
+                                            <option ng-repeat="x in menuItemCtrl.cmsModulesProcessesCustomizeListItems" value="{{x.Id}}">{{x.Title}}</option>
+                                        </select>
+                                        <div class="m-t-xs" ng-show="menuItemCtrl.showLinkModuleProcessCustomizeIdIsEmptyError">
+                                            <small class="text-danger"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='hr-line-dashed'></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'description'|lowercase|translate}}:</label>
+                                    <label class="col-sm-10 control-label" style="text-align:right">{{menuItemCtrl.newProcess.Description}}</label>
+                                </div>
+                                <div class='hr-line-dashed'></div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div ng-model="menuItemCtrl.valueSubmit" fb-form="default" fb-default="menuItemCtrl.defaultValue"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-primary pull-right" ng-click="menuItemCtrl.addProcess()" title="{{'SAVE_NEW_PROCESS'|lowercase|translate}}">
+                                            <i class="fa fa-plus-square fa-1x" aria-hidden="true"></i>&nbsp;{{'add'|lowercase|translate}}
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-group col-sm-12" ng-repeat="x in menuItemCtrl.ProcessesList">
+                                        <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                                        <div class="input-group">
+                                            <input type="text" id="option{{$index}}" class="form-control" name="processTitle" readonly="readonly" ng-model="x.Title">
+                                            <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="menuItemCtrl.removeProcess($index)"><i class="fa fa-remove"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'ACCESS_SETTINGS' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class="form-group" ng-show="menuItemCtrl.gridOptions.resultAccess.AccessAddField.indexOf('AccessCheck')>-1">
+                                <div class="col-sm-10" style="float: left;">
+                                    <label class="checkbox-inline">
+                                        <input icheck type="checkbox" value="option1" ng-model="menuItemCtrl.selectedItem.AccessCheck" ng-click="menuItemCtrl.showAccessListPanel()" />{{'ACCESS_SETTINGS'|lowercase|translate}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="setAccessPanel" style="display: none;" class="back1">
+                                <div>
+                                    <div class="col-sm-12" style="float: left;">
+                                        <label class="checkbox-inline">
+                                            <input icheck type="checkbox" value="" ng-model="menuItemCtrl.selectedItem.AccessAfterLogin"/>دسترسی بعد از لاگین
+                                        </label>
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+                                    <div class="col-sm-12" style="float: left;">
+                                        <label class="checkbox-inline">
+                                            <input icheck type="checkbox" value="" ng-model="menuItemCtrl.selectedItem.AccessBeforLogin" />دسترسی قبل از لاگین
+                                        </label>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <!-- Parent List -->
+                                        <label>{{'GROUPS'|lowercase|translate}}</label>
+                                        <a href="javascript:moveSelected('from', 'to1')" class="btn btn-primary pull-right" aria-label="Settings" style="margin-right: 8px; margin-bottom: 8px;"> {{'ADD_TO_WHITE_LIST'|lowercase|translate}}&nbsp;<i class="fa fa-check" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+                                        <a href="javascript:moveSelected('from', 'to2')" class="btn btn-danger pull-right" title="" aria-label="Settings" style="margin-right: 8px; margin-bottom: 8px;"> {{'ADD_TO_BLACK_LIST'|lowercase|translate}}&nbsp;<i class="fa fa-ban" aria-hidden="true"></i></a>
+                                        <select multiple="" size="10" id="from" class="col-sm-12 form-control">
+                                            <option ng-repeat="x in menuItemCtrl.groupsListItems" value="{{x.Id}}">{{x.Title}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-6">
+                                        <h4> {{'WHITE_LIST'|lowercase|translate}} </h4>
+                                        <div class="controls">
+                                        </div>
+                                        <select multiple="" id="to1" class="col-sm-6 form-control" size="10" name="topics[]"></select>
+                                        <a class="btn btn-danger" href="javascript:moveSelected('to1', 'from')" aria-label="Delete" style="margin-top: 8px;"> {{'REMOVE_FROM_LIST'|lowercase|translate}}&nbsp;<i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="controls">
+                                        </div>
+                                        <h4> {{'BLACK_LIST'|lowercase|translate}} </h4>
+                                        <select multiple="" id="to2" size="10" class="col-sm-6 form-control" name="topics[]"></select>
+                                        <a class="btn btn-danger" href="javascript:moveSelected('to2', 'from')" aria-label="Delete" style="margin-top: 8px;"> {{'REMOVE_FROM_LIST'|lowercase|translate}}&nbsp;<i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'SCHEDULE_SETTINGS' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class="form-group" ng-show="menuItemCtrl.gridOptions.resultAccess.AccessAddField.indexOf('LinkTaskSchedulerId')>-1">
+                                <div class="col-sm-10" style="float: left;">
+                                    <label class="checkbox-inline">
+                                        <input icheck type="checkbox" value="1" id="scheduleSettings_check" ng-click="menuItemCtrl.toggleScheduleSettings('scheduleSettings')" /> {{'SCHEDULE_SETTINGS'|lowercase|translate}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="scheduleSettings" style="display: none;" class="back1" ng-show="menuItemCtrl.selectedItem.LinkTaskSchedulerId != 'null'">
+                                <br />
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input class="form-control" ng-disabled="menuItemCtrl.isLoading" name="LinkTaskSchedulerId" rasha-autocomplete="menuItemCtrl.LinkTaskSchedulerIdSelector" ng-model="menuItemCtrl.selectedItem.LinkTaskSchedulerId" />
+                                        <!--<select class="col-sm-12 form-control" ng-disabled="menuItemCtrl.isLoading" ng-options="x.Id as x.Title for x in menuItemCtrl.scheduleListItems" ng-model="menuItemCtrl.selectedItem.LinkTaskSchedulerId"></select>-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="menuItemCtrl.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="menuItemCtrl.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

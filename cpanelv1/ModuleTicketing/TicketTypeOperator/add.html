@@ -1,0 +1,51 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="ticketType.closeModal()"></i>
+            <h3 class="m-t-none m-b">  {{'ADD_OPERATOR'|lowercase|translate}} </h3>
+            <form method="get" class="form-horizontal" name="frmtypeOperatorAdd" novalidate ng-submit="ticketType.addNewTypeOperator(frmtypeOperatorAdd)">
+
+                <!-- TicketType -->
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmtypeOperatorAdd.LinkTicketTypeId.$invalid && !frmtypeOperatorAdd.LinkTicketTypeId.$pristine,'has-success' : frmtypeOperatorAdd.Question.$valid}">
+                    <label class="col-sm-2 control-label"> {{'DEPARTMENT'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-required="true" name="LinkTicketTypeTitle" ng-model="ticketType.gridOptions.selectedRow.item.Title" type="text" ng-readonly="true" style="background-color: White" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+
+                <!-- Title -->
+                <div class="form-group"
+                     ng-class="{'has-error' : frmtypeOperatorAdd.LinkUserId.$invalid && !frmtypeOperatorAdd.LinkUserId.$pristine,'has-success' : frmtypeOperatorAdd.LinkUserId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'OPERATOR'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="LinkUserId" ng-required="true" ng-model="ticketType.TypeOperator.selectedItem.LinkUserId" ng-change="ticketType.setName(ticketType.TypeOperator.selectedItem.LinkUserId)">
+                            <option ng-repeat="x in ticketType.CmsUser.ListItems" ng-value="x.User.Id">{{x.User.Username}}</option>
+                        </select>
+                        <div class="m-t-xs" ng-show="frmtypeOperatorAdd.LinkUserId.$invalid">
+                            <small class="text-danger" ng-show="frmtypeOperatorAdd.LinkUserId.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmtypeOperatorAdd.LinkUserId.$valid && frmtypeOperatorAdd.LinkUserId.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmtypeOperatorAdd.LinkUserId.$invalid && !frmtypeOperatorAdd.LinkUserId.$pristine) || frmtypeOperatorAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <!-- User Name and Lastname -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'NAME'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <label class="control-label">{{ticketType.Name}}&nbsp;{{ticketType.LastName}}</label>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="ticketType.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="ticketType.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

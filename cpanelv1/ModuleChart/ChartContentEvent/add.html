@@ -1,0 +1,84 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="chartContentEvent.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{'Add_Event'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmchartContentEventAdd" novalidate ng-submit="chartContentEvent.addNewRow(frmchartContentEventAdd)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmchartContentEventAdd.LinkSourceId.$invalid && !frmchartContentEventAdd.LinkSourceId.$pristine,'has-success' : frmchartContentEventAdd.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="chartContentEvent"></div>
+                </div>
+
+                <div class="form-group" ng-show="chartContentEvent.gridOptions.resultAccess.AccessAddField.indexOf('LinkChartContentId')>-1">
+                    <label class="col-sm-2 control-label">{{'Chart'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkChartContentId" rasha-autocomplete="chartContentEvent.LinkChartContentIdSelector" ng-model="frmchartContentEventAdd.selectedItem.LinkChartContentId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmchartContentEventAdd.Title.$invalid && !frmchartContentEventAdd.Title.$pristine,'has-success' : frmchartContentEventAdd.Title.$valid}">
+                    <label class="col-sm-2 control-label">{{'title'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="chartContentEvent.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmchartContentEventAdd.Title.$invalid">
+                            <small class="text-danger" ng-show="frmchartContentEventAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmchartContentEventAdd.Title.$valid && frmchartContentEventAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmchartContentEventAdd.Title.$invalid && !frmchartContentEventAdd.Title.$pristine) || frmchartContentEventAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-class="{'has-error' : frmchartContentEventAdd.Description.$invalid && !frmchartContentEventAdd.Description.$pristine,'has-success' : frmchartContentEventAdd.Description.$valid}">
+                    <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control"
+                                  ng-required="true"
+                                  name="Description"
+                                  ng-model="chartContentEvent.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                        <div class="m-t-xs" ng-show="frmchartContentEventAdd.Description.$invalid">
+                            <small class="text-danger" ng-show="frmchartContentEventAdd.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmchartContentEventAdd.Description.$valid && frmchartContentEventAdd.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmchartContentEventAdd.Description.$invalid && !frmchartContentEventAdd.Description.$pristine) || frmchartContentEventAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmchartContentEventAdd.StartDateTime.$invalid && !frmchartContentEventAdd.StartDateTime.$pristine,'has-success' : frmchartContentEventAdd.StartDateTime.$valid}">
+                    <label class="col-sm-2 control-label">{{'From_Date'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <div rasha-date-picker="chartContentEvent.StartDateTime" ng-model="chartContentEvent.selectedItem.StartDateTime"></div><input type="hidden" ng-model="chartContentEvent.selectedItem.StartDateTime" />
+                        <div class="m-t-xs" ng-show="frmchartContentEventAdd.StartDateTime.$invalid">
+                            <small class="text-danger" ng-show="frmchartContentEventAdd.StartDateTime.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmchartContentEventAdd.StartDateTime.$valid && frmchartContentEventAdd.StartDateTime.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmchartContentEventAdd.StartDateTime.$invalid && !frmchartContentEventAdd.StartDateTime.$pristine) || frmchartContentEventAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmchartContentEventAdd.EndDateTime.$invalid && !frmchartContentEventAdd.EndDateTime.$pristine,'has-success' : frmchartContentEventAdd.EndDateTime.$valid}">
+                    <label class="col-sm-2 control-label">{{'To_Date'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <div rasha-date-picker="chartContentEvent.EndDateTime" ng-model="chartContentEvent.selectedItem.EndDateTime"></div><input type="hidden" ng-model="chartContentEvent.selectedItem.EndDateTime" />
+                        <div class="m-t-xs" ng-show="frmchartContentEventAdd.EndDateTime.$invalid">
+                            <small class="text-danger" ng-show="frmchartContentEventAdd.EndDateTime.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmchartContentEventAdd.EndDateTime.$valid && frmchartContentEventAdd.EndDateTime.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmchartContentEventAdd.EndDateTime.$invalid && !frmchartContentEventAdd.EndDateTime.$pristine) || frmchartContentEventAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="chartContentEvent.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="chartContentEvent.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

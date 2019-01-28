@@ -1,0 +1,125 @@
+﻿<style>
+    .boxselected {
+        background-color: #3fcece;
+        /*border: #3fcece;
+        border-width: 3px;
+        border-style: solid;*/
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: #000;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        z-index: 50;
+    }
+
+    .ibox-content2 {
+        background-color: #f3f3f4;
+        color: inherit;
+        padding: 15px 20px 20px 20px;
+        border-color: #e7eaec;
+        border-image: none;
+        border-width: 1px 0px;
+    }
+</style>
+<div class="wrapper wrapper-content" ng-controller="musicGalleryCtrl as mscGallery" ng-init="mscGallery.init()">
+    <!-- Begin Gallery Grid -->
+    <div class="row">
+        <div class="col-sm-3 col-md-3 col-lg-3 animated fadeInRight">
+            <!-- Begin GalleryCategory Tree -->
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;{{'ALBUMS'|lowercase|translate}}</h5></div>
+                <div class="panel-body">
+                    <div style="position: relative">
+                        <ul class="tree" tree-options="mscGallery.treeConfig" rasha-loading="mscGallery.treeBusyIndicator"></ul>
+                    </div>
+                    <!-- Category Section -->
+                    <div style="margin-top: 20px;">
+                        <a ng-click="mscGallery.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-primary">
+                            <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
+                        </a>
+                        <div id="categoryButtons" style="display: none;">
+                            <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="mscGalleryCtrl.Add" ng-click="mscGallery.openAddCategoryModal()" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                            <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="mscGalleryCtrl.Edit" ng-click="mscGallery.openEditCategoryModal()" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                            <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="mscGalleryCtrl.Delete" ng-click="mscGallery.deleteCategory()" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End GalleryCategory Tree -->
+        </div>
+        <div class="col-lg-9 animated fadeInLeft" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5><i class="fa fa-chartpaper-o " style="font-size: 18px;"></i>&nbsp;{{'LIST'|lowercase|translate}}&nbsp;موسیقی ها<nospecialtag ng-if="mscGallery.treeConfig.currentNode.Id!=null">:&nbsp;{{mscGallery.treeConfig.currentNode.Title}}&nbsp; - {{'ID'|lowercase|translate}}:&nbsp;{{mscGallery.treeConfig.currentNode.Id}}</nospecialtag><nospecialtag ng-if="mscGallery.selectedContentId.TitleTag!=null">:&nbsp;بر اساس تگ:&nbsp;{{mscGallery.selectedContentId.TitleTag}}</nospecialtag></h5>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Begin Upload Managing Files Buttons-->
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <button class="btn btn-primary" ng-click="mscGallery.openAddModal()"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                    <button class="btn btn-primary" ng-click="mscGallery.openAddFromFolderModal()"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'SELECT_FROM_FOLDER'|lowercase|translate}} </button>
+                    <button class="btn btn-warning" ng-click="mscGallery.openEditModal()"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="mscGallery.deleteContent()"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}} </button>
+                    <button class="btn btn-success" ng-click="mscGallery.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="mscGallery.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+                    <button class="btn btn-success" ng-click="mscGallery.getCount()">{{'number'|lowercase|translate}}&nbsp;{{mscGallery.ListItemsTotalRowCount}}</button>
+                    <button class="btn btn-info" ng-click="mscGallery.Showstatistics()"><i class="fa fa-pie-chart"></i>&nbsp; آمار&nbsp;&nbsp;</button>
+                </div>
+                <!-- End Upload Managing Files Buttons-->
+            </div>
+            <div class="ibox float-e-margins" style="margin-top: 15px;" rasha-loading="mscGallery.contentBusyIndicator">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <label ng-if="mscGallery.treeConfig.currentNode.Id>0" style="background-color:#ffc355;padding:7px;border-radius:9px;">{{'ALBUM_ID'|lowercase|translate}}:&nbsp;{{mscGallery.treeConfig.currentNode.Id}}</label>
+                    </div>
+                </div><div class="row">
+                    <div class="ibox-content2">
+                        <!-- Begin Gallery Cards -->
+                        <div id="row{{x.Id}}" ng-repeat="x in mscGallery.ListItems" class="col-sm-4 boxShadow body-content" style="border-radius:15px;cursor:pointer;background-image: url('{{x.MainImageSrc}}');background-size: cover;margin:7px;" ng-click="mscGallery.onRowSelected(x)">
+                            <div class="circle-border">
+                                <div class="row text-center" style="height:250px">
+                                    <div class="col-sm-2 backWhite" style="border-radius:0px 10px 0px 10px;background-color: #ffc355;padding: 2px 0px 5px 0px">
+                                        <div class="text-center">
+                                            <input type="checkbox" id="selector{{x.Id}}" class="selector" style="height:15px;width:15px;" title="{{'SELECT'|lowercase|translate}}" value="{{x.Id}}" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-sm-offset-7 col-md-3 col-md-offset-7 col-lg-3 col-lg-offset-7 backWhite" style="border-radius:10px 0px 10px 0px;padding:7px;background-color: #ffc355;">
+                                        <div class="text-center"><i class="fa fa-info-circle" style="color:#075698;font-size:12pt;background-color:white;border-radius:20px;" aria-hidden="true" title="{{'CREATED_DATE'|lowercase|translate}}:&nbsp;{{x.CreatedDate|jalaliDate:'jYY/jMM/jDD'}}"></i></div>
+                                    </div>
+                                    <label style="border-radius:15px;padding:5px;background-color: #ffffff;box-shadow: 3px 3px 11px #7a7a7a">{{x.Title}}</label>
+                                </div>
+                                <div class="row">
+                                    <div class="ibox-footer" id="footer{{x.Id}}" style="border-radius: 0px 0px 15px 15px">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <label class="control-label">{{'ID'|lowercase|translate}}:{{x.Id}}</label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label class="control-label">{{'NUMBER_OF_VISIT'|lowercase|translate}}:{{x.ViewCount}}</label>
+                                            </div>
+                                            <!--<div class="col-sm-4">
+                                                <label class="control-label">{{'SCORE'|lowercase|translate}}:{{x.AverageScore}}</label>
+                                            </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Gallery Cards -->
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <pagination boundary-links="true" total-items="mscGallery.gridOptions.totalRowCount" ng-model="mscGallery.gridOptions.currentPageNumber" max-size="mscGallery.gridOptions.maxSize" items-per-page="mscGallery.gridOptions.rowPerPage" ng-change="mscGallery.gridOptions.pageChanged()" rotate="false"></pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

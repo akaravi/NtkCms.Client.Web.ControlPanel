@@ -1,0 +1,29 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="emailPublicConfigCtrl as emailPublicConfig" ng-init="emailPublicConfig.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="emailPublicConfig.Add" ng-click="emailPublicConfig.autoAdd()" ng-show="emailPublicConfig.gridOptions.resultAccess.AccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="emailPublicConfig.Edit" ng-click="emailPublicConfig.openEditModal()" ng-show="emailPublicConfig.gridOptions.resultAccess.AccessAddRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="emailPublicConfig.Delete" ng-click="emailPublicConfig.deleteRow()" ng-show="emailPublicConfig.gridOptions.resultAccess.AccessAddRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="emailPublicConfig.showAdvancedSearchPanel(emailPublicConfig.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-warning" type="button" ng-click="emailPublicConfig.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="emailPublicConfig.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="emailPublicConfig.getCount()">{{'number'|lowercase|translate}}&nbsp;{{emailPublicConfig.ListItemsTotalRowCount}}</button>
+            <button class="btn btn-primary" ng-click="emailPublicConfig.goToCompany()">&nbsp;شرکت ها</button>
+        </div>
+    </div>
+    <div class="row" rasha-loading="emailPublicConfig.busyIndicator">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="emailPublicConfig" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div rasha-grid="emailPublicConfig.gridOptions"></div>
+        </div>
+    </div>
+</div>
+<!--ng-show="emailPublicConfig.gridOptions.resultAccess.AccessAddRow"
+ng-show="emailPublicConfig.gridOptions.resultAccess.AccessAddRow" 
+ng-show="emailPublicConfig.gridOptions.resultAccess.AccessEditRow"
+ng-show="emailPublicConfig.gridOptions.resultAccess.AccessDeleteRow"-->

@@ -1,0 +1,36 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="tellNumberTypeCtrl as tellNumberType" ng-init="tellNumberType.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-md-5">
+            <h5>{{'List_Of_Types_Of_Phone_Numbers'|lowercase|translate}}</h5>
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-primary" ng-click="tellNumberType.openAddModal()" ng-show="tellNumberType.gridOptions.resultAccess.AccessAddRow">{{'add'|lowercase|translate}}</button>
+
+                    <button class="btn btn-warning" ng-click="tellNumberType.openEditModal()" ng-show="tellNumberType.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
+
+                    <button class="btn btn-danger" ng-click="tellNumberType.deleteRow()" ng-show="tellNumberType.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
+
+                    <button class="btn btn-success" ng-click="tellNumberType.openNewFolder()"> {{'SEARCH'|lowercase|translate}} </button>
+
+                    <button class="btn btn-primary" ng-click="tellNumberType.openNewFolder()"> {{'report'|lowercase|translate}} </button>
+
+                </div>
+                <div class="col-md-12">
+                    <div rasha-grid="tellNumberType.gridOptions"></div>
+                </div>
+                <div class="col-md-12" ng-show="tellNumberType.showGridComment">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h3>{{tellNumberType.Title}}</h3>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-primary" ng-click="tellNumberType.hideGridComment()"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

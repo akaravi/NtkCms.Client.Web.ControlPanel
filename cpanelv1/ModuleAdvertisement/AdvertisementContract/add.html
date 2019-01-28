@@ -1,0 +1,169 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="advertisementContract.busyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="advertisementContract.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ advertisementContract.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmadvertisementContractAdd" novalidate ng-submit="advertisementContract.addNewRow(frmadvertisementContractAdd)">
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="advertisementContract.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmadvertisementContractAdd.LinkSourceId.$invalid && !frmadvertisementContractAdd.LinkSourceId.$pristine,'has-success' : frmadvertisementContractAdd.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="advertisementContract"></div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="advertisementContract.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                     ng-class="{'has-error' : frmadvertisementContractAdd.Title.$invalid && !frmadvertisementContractAdd.Title.$pristine,'has-success' : frmadvertisementContractAdd.Title.$valid}">
+                    <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="advertisementContract.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmadvertisementContractAdd.Title.$invalid">
+                            <small class="text-danger" ng-show="frmadvertisementContractAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmadvertisementContractAdd.Title.$valid && frmadvertisementContractAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmadvertisementContractAdd.Title.$invalid && !frmadvertisementContractAdd.Title.$pristine) || frmadvertisementContractAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="advertisementContract.gridOptions.resultAccess.AccessAddField.indexOf('Description')>-1"  ng-class="{'has-error' : frmadvertisementContractAdd.Description.$invalid && !frmadvertisementContractAdd.Description.$pristine,'has-success' : frmadvertisementContractAdd.Description.$valid}">
+                    <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" ng-required="true" name="Description" ng-model="advertisementContract.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                        <div class="m-t-xs" ng-show="frmadvertisementContractAdd.Description.$invalid">
+                            <small class="text-danger" ng-show="frmadvertisementContractAdd.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmadvertisementContractAdd.Description.$valid && frmadvertisementContractAdd.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmadvertisementContractAdd.Description.$invalid && !frmadvertisementContractAdd.Description.$pristine) || frmadvertisementContractAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'CONTRACT_TYPE'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="LinkContractTypeId" ng-model="advertisementContract.selectedItem.LinkContractTypeId">
+                            <option ng-repeat="x in advertisementContract.contractTypes" value="{{x.Id}}">{{x.Title}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'ESTATE'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <label class="radio-inline"><input type="radio" ng-model="value" ng-change="advertisementContract.onSelectPropertyPanelShowChange(value)" value="select" name="property">{{'Choose_From_Predefined_Property'|lowercase|translate}}</label>
+                        <label class="radio-inline"><input type="radio" ng-model="value" ng-change="advertisementContract.onSelectPropertyPanelShowChange(value)" value="addnew" name="property">{{'New_Estate_definition'|lowercase|translate}}</label>
+                    </div>
+                </div>
+                <div class="back1" id="selectPropertyPanel">
+                    <br />
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"> {{'ESTATE'|lowercase|translate}} </label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="properties" ng-focus="advertisementContract.autoComplete()">
+                        </div>
+                    </div>
+                </div>
+                <div class="back3" id="newPropertyPanel">
+                    <br />
+                    <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="advertisementContract.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmadvertisementContractAdd.Title.$invalid">
+                            <small class="text-danger" ng-show="frmadvertisementContractAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmadvertisementContractAdd.Title.$valid && frmadvertisementContractAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmadvertisementContractAdd.Title.$invalid && !frmadvertisementContractAdd.Title.$pristine) || frmadvertisementContractAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                    <div class="form-group" ng-show="advertisementContract.gridOptions.resultAccess.AccessAddField.indexOf('Description')>-1"
+                         ng-class="{'has-error' : frmadvertisementContractAdd.Description.$invalid && !frmadvertisementContractAdd.Description.$pristine,'has-success' : frmadvertisementContractAdd.Description.$valid}">
+                        <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control"
+                                   ng-required="true"
+                                   name="Description"
+                                   ng-model="advertisementContract.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                            <div class="m-t-xs" ng-show="frmadvertisementContractAdd.Description.$invalid">
+                                <small class="text-danger" ng-show="frmadvertisementContractAdd.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                            </div>
+                            <span style="left: 10px !important;" ng-show="frmadvertisementContractAdd.Description.$valid && frmadvertisementContractAdd.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                            <span style="left: 10px !important;" ng-show="(frmadvertisementContractAdd.Description.$invalid && !frmadvertisementContractAdd.Description.$pristine) || frmadvertisementContractAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"> {{'ESTATE_TYPE'|lowercase|translate}} </label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="LinkPropertyTypeId" ng-model="advertisementContract.selectedItem.LinkPropertyTypeId" ng-change="advertisementContract.onPropertyTypeChange(advertisementContract.selectedItem.LinkPropertyTypeId)">
+                                    <option ng-repeat="x in advertisementContract.propertyTypeListItems" ng-selected="advertisementContract.selectedItem.LinkPropertyTypeId == x.Id" value="{{x.Id}}">{{x.Title}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div ng-repeat="x in advertisementContract.propertyDetailGroupListItems" class="back1">
+                            <br />
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <h4 style="color: dodgerblue;">{{x.Title}}</h4>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-repeat="y in advertisementContract.propertyDetailsListItems" ng-if="x.Id == y.LinkPropertyDetailGroupId">
+                                <label class="col-sm-2 control-label">{{y.Title}}</label>
+                                <div class="col-sm-10">
+                                    <div ng-if="y.InputDataType == 0">
+                                        <input class="form-control" ng-model="y.value" required="{{y.Required}}" type="text" />
+                                    </div>
+                                    <div ng-if="y.InputDataType == 1">
+                                        <input class="form-control" type="number" ng-model="y.value" required="{{y.Required}}" />
+                                    </div>
+                                    <div class="checkbox" ng-if="y.InputDataType == 2">
+                                        <label>
+                                            <input type="checkbox" ng-model="y.value">{{'has_It'|lowercase|translate}}
+                                        </label>
+                                    </div>
+                                    <div ng-repeat="nameValue in y.DefaultValue.nameValue" ng-if="!y.DefaultValue.multipleChoice && y.DefaultValue.forceUse">
+                                        <div class="radio">
+                                            <label>
+                                                <input id="nameValue{{y.Id}}" type="radio" name="nameValue{{y.Id}}" value="{{nameValue}}">{{nameValue}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div ng-if="y.DefaultValue.multipleChoice">
+                                        <div class="checkbox" name="checkboxGroup{{y.Id}}">
+                                            <label ng-repeat="nameValue in y.DefaultValue.nameValue">
+                                                <input type="checkbox" id="nameValue{{y.Id}}" name="nameValue{{y.Id}}" value="{{nameValue}}">{{nameValue}}
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div ng-if="!y.DefaultValue.multipleChoice  && !y.DefaultValue.forceUse && y.DefaultValue.nameValue.length>0">
+                                        <input type="text" list="nameValues" ng-model="y.value" class="form-control" />
+                                        <datalist id="nameValues">
+                                            <option ng-repeat="nameValue in y.DefaultValue.nameValue">{{nameValue}}</option>
+                                        </datalist>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="advertisementContract.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="advertisementContract.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

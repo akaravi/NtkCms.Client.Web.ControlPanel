@@ -1,0 +1,27 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="newsContentTagCtrl as newsContentTag" ng-init="newsContentTag.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="newsContentTag.busyIndicator"></div>
+
+            <button class="btn btn-primary" rasha-userrole="newsContentTag.Add" ng-click="newsContentTag.openAddModal()" ng-show="newsContentTag.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="newsContentTag.Edit" ng-click="newsContentTag.openEditModal()" ng-show="newsContentTag.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="newsContentTag.Delete" ng-click="newsContentTag.deleteRow()" ng-show="newsContentTag.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="newsContentTag.showAdvancedSearchPanel(newsContentTag.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-warning" type="button" ng-click="newsContentTag.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="newsContentTag.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="newsContentTag.getCount()">{{'number'|lowercase|translate}}&nbsp;{{newsContentTag.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="newsContentTag" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="newsContentTag.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,109 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="memberInfo.busyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="memberInfo.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_User'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmmemberInfoAdd" novalidate ng-submit="memberInfo.addNewRow(frmmemberInfoAdd)">
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmmemberInfoAdd.LinkSourceId.$invalid && !frmmemberInfoAdd.LinkSourceId.$pristine,'has-success' : frmmemberInfoAdd.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="memberInfo"></div>
+                </div>
+                
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                     ng-class="{'has-error' : frmmemberInfoAdd.Title.$invalid && !frmmemberInfoAdd.Title.$pristine,'has-success' : frmmemberInfoAdd.Title.$valid}">
+                    <label class="col-sm-2 control-label"> {{'TITLE_OF_BOT'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="memberInfo.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmmemberInfoAdd.Title.$invalid">
+                            <small class="text-danger" ng-show="frmmemberInfoAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmmemberInfoAdd.Title.$valid && frmmemberInfoAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmmemberInfoAdd.Title.$invalid && !frmmemberInfoAdd.Title.$pristine) || frmmemberInfoAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessAddField.indexOf('Username')>-1"
+                     ng-class="{'has-error' : frmmemberInfoAdd.Username.$invalid && !frmmemberInfoAdd.Username.$pristine,'has-success' : frmmemberInfoAdd.Username.$valid}">
+                    <label class="col-sm-2 control-label"> {{'USERNAME'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control ltr-support"
+                               ng-required="true"
+                               name="Username"
+                               ng-model="memberInfo.selectedItem.Username" />
+                        <div class="m-t-xs" ng-show="frmmemberInfoAdd.Username.$invalid">
+                            <small class="text-danger" ng-show="frmmemberInfoAdd.Username.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmmemberInfoAdd.Username.$valid && frmmemberInfoAdd.Username.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmmemberInfoAdd.Username.$invalid && !frmmemberInfoAdd.Username.$pristine) || frmmemberInfoAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessAddField.indexOf('BotToken')>-1"
+                     ng-class="{'has-error' : frmmemberInfoAdd.BotToken.$invalid && !frmmemberInfoAdd.BotToken.$pristine,'has-success' : frmmemberInfoAdd.BotToken.$valid}">
+                    <label class="col-sm-2 control-label"> {{'TOKEN'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control ltr-support"
+                               ng-required="true"
+                               name="BotToken"
+                               ng-model="memberInfo.selectedItem.BotToken" />
+                        <div class="m-t-xs" ng-show="frmmemberInfoAdd.BotToken.$invalid">
+                            <small class="text-danger" ng-show="frmmemberInfoAdd.BotToken.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmmemberInfoAdd.BotToken.$valid && frmmemberInfoAdd.BotToken.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmmemberInfoAdd.BotToken.$invalid && !frmmemberInfoAdd.BotToken.$pristine) || frmmemberInfoAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">LinkUserId</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkUserId" rasha-autocomplete="memberInfo.LinkUserIdSelector" ng-model="memberInfo.selectedItem.LinkUserId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessAddField.indexOf('LinkUniversalMenuId')>-1">
+                    <label class="col-sm-2 control-label"> {{'SELECT_MENUE'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="LinkUniversalMenuId" ng-model="memberInfo.selectedItem.LinkUniversalMenuId">
+                            <option ng-selected="memberInfo.selectedItem.LinkUniversalMenuId == null" value="">-</option>
+                            <option ng-repeat="x in memberInfo.UninversalMenus" ng-selected="memberInfo.selectedItem.LinkUniversalMenuId == x.Id" value="{{x.Id}}" ng-if="x.LinkParentId == null">{{x.Title}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessEditField.indexOf('LinkUniversalMenuIdOnUndetectableKey')>-1">
+                    <div class="col-md-11">
+                        <input type="checkbox" style="width: 15px; height: 15px;" ng-model="memberInfo.selectUniversalMenuOnUndetectableKey" />
+                        <label> {{'CREATE_DEFAULT_MENUE_ELSE_ERROR'|lowercase|translate}} </label>
+                    </div>
+                </div>
+
+                <div ng-show="memberInfo.selectUniversalMenuOnUndetectableKey">
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessEditField.indexOf('LinkUniversalMenuIdOnUndetectableKey')>-1 ">
+                        <label class="col-sm-3 control-label"> {{'SELECT_DEFAULT'|lowercase|translate}} </label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="LinkUniversalMenuIdOnUndetectableKey" ng-model="memberInfo.selectedItem.LinkUniversalMenuIdOnUndetectableKey">
+                                <option ng-repeat="x in memberInfo.UninversalMenus" ng-selected="memberInfo.selectedItem.LinkUniversalMenuIdOnUndetectableKey == x.Id" value="{{x.Id}}" ng-if="x.LinkParentId == null">{{x.Title}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="memberInfo.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="memberInfo.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

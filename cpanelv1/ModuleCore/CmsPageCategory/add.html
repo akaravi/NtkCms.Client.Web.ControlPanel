@@ -1,0 +1,56 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="cmsPageCategorygrd.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ cmsPageCategorygrd.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmCmsPageCategoryAdd" novalidate ng-submit="cmsPageCategorygrd.addNewRow(frmCmsPageCategoryAdd)">
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsPageCategorygrd.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : cmsPageCategorygrd.RecordStatus.$invalid && !frmcmsPageCategorygrdAdd.RecordStatus.$pristine,'has-success' : frmcmsPageCategorygrdAdd.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label">{{'CONDITION'|lowercase|translate}}</label>
+                    <div class="col-sm-10" rasha-record-status="cmsPageCategorygrd"></div>
+                </div>
+
+                <div class="form-group" ng-show="cmsPageCategorygrd.gridOptions.resultAccess.AccessAddField.indexOf('Description')>-1"
+                     ng-class="{'has-error' : frmCmsPageCategoryAdd.Description.$invalid && !frmCmsPageCategoryAdd.Description.$pristine,'has-success' : frmCmsPageCategoryAdd.Description.$valid}">
+                    <label class="col-sm-2 control-label">{{'DESCRIPTION'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control"
+                               ng-required="true"
+                               name="Description"
+                               ng-model="cmsPageCategorygrd.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                        <div class="m-t-xs" ng-show="frmCmsPageCategoryAdd.Description.$invalid">
+                            <small class="text-danger" ng-show="frmCmsPageCategoryAdd.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmCmsPageCategoryAdd.Description.$valid && frmCmsPageCategoryAdd.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmCmsPageCategoryAdd.Description.$invalid && !frmCmsPageCategoryAdd.Description.$pristine) || frmCmsPageCategoryAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsPageCategorygrd.gridOptions.resultAccess.AccessAddField.indexOf('LinkParentId')>-1"
+                     ng-class="{'has-error' : frmCmsPageCategoryAdd.LinkParentId.$invalid && !frmCmsPageCategoryAdd.LinkParentId.$pristine,'has-success' : frmCmsPageCategoryAdd.LinkParentId.$valid}">
+                    <label class="col-sm-2 control-label">{{'SELECT_PARENT'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-required="true" name="LinkParentId" rasha-autocomplete="cmsPageCategorygrd.linkParentIdSelector" ng-model="cmsPageCategorygrd.selectedItem.LinkLinkParentIdId" />
+                        <div class="m-t-xs" ng-show="frmCmsPageCategoryAdd.LinkParentId.$invalid">
+                            <small class="text-danger" ng-show="frmCmsPageCategoryAdd.LinkParentId.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmCmsPageCategoryAdd.LinkParentId.$valid && frmCmsPageCategoryAdd.LinkParentId.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmCmsPageCategoryAdd.LinkParentId.$invalid && !frmCmsPageCategoryAdd.LinkParentId.$pristine) || frmCmsPageCategoryAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+
+
+
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="cmsPageCategorygrd.addRequested" type="submit">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="cmsPageCategorygrd.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+

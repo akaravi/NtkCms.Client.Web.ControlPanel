@@ -1,0 +1,55 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="articleTag.busyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="articleTag.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Tag' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmarticleTagAdd" novalidate ng-submit="articleTag.addNewContent(frmarticleTagAdd)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="articleTag.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                                 ng-class="{'has-error' : frmarticleTagAdd.RecordStatus.$invalid && !frmarticleTagAdd.RecordStatus.$pristine,'has-success' : frmarticleTagAdd.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="articleTag"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="articleTag.gridOptions.resultAccess.AccessAddField.indexOf('LinkCategoryTagId')>-1">
+                                <label class="col-sm-2 control-label">{{'category'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkCategoryTagId" rasha-autocomplete="articleTag.LinkCategoryTagIdSelector" ng-model="articleTag.selectedItem.LinkCategoryTagId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="articleTag.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                                 ng-class="{'has-error' : frmarticleTagAdd.Title.$invalid && !frmarticleTagAdd.Title.$pristine,'has-success' : frmarticleTagAdd.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           ng-model="articleTag.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmarticleTagAdd.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmarticleTagAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmarticleTagAdd.Title.$valid && frmarticleTagAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmarticleTagAdd.Title.$invalid && !frmarticleTagAdd.Title.$pristine) || frmarticleTagAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="articleTag.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="articleTag.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+

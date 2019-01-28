@@ -1,0 +1,29 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="linkManagementCategoryController as linkManagementCategory" ng-init="linkManagementCategory.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="linkManagementCategory.categoryBusyIndicator"></div>
+            <button class="btn btn-primary" rasha-userrole="linkManagementCategory.Add" ng-click="linkManagementCategory.openAddModal()" ng-show="linkManagementCategory.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="linkManagementCategory.Edit" ng-click="linkManagementCategory.openEditModal()"ng-show="linkManagementCategory.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="linkManagementCategory.Delete" ng-click="linkManagementCategory.deleteRow()" ng-show="linkManagementCategory.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="linkManagementCategory.showAdvancedSearchPanel(linkManagementCategory.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-primary" type="button" ng-click="linkManagementCategory.reportData()"> {{'report'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="linkManagementCategory" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="linkManagementCategory" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="linkManagementCategory.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

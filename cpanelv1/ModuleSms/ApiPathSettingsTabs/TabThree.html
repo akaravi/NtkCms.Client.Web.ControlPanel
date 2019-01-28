@@ -1,0 +1,58 @@
+﻿<div class="row">
+    <div class="row">
+        <!-- PerriodStartWorkTime -->
+        <div class="input-group field-margin">
+            <span class="input-group-addon"> {{'DATE_START_WORK'|lowercase|translate}} </span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="apiSetting.selectedItem.PerriodStartWorkTime">
+        </div>
+
+
+        <!-- PerriodEndWorkTime -->
+        <div class="input-group field-margin">
+            <span class="input-group-addon"> {{'DATE_FINISH_WORK'|lowercase|translate}} </span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="apiSetting.selectedItem.PerriodEndWorkTime">
+        </div>
+
+        <!-- ApiPathCompanyCounterIsOn -->
+        <div class="col-md-4">
+            <div class="input-group field-margin">
+                <span class="input-group-addon"> {{'USE_CONTER_COMPANI'|lowercase|translate}} </span>
+                <span class="input-group-addon">
+                    <input type="checkbox" ng-model="apiSetting.selectedItem.ApiPathCompanyCounterIsOn">
+                </span>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- ApiAbilityRegulatorAllowToSend -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'AREA_CODE_ACCEPTABLE'|lowercase|translate}} </span>
+        <textarea type="text" class="form-control" aria-describedby="basic-addon1" name="ApiDefaultNumber" ng-model="apiSetting.selectedItem.selectedItem.ApiAbilityRegulatorAllowToSend" rows="5"></textarea>
+    </div>
+
+
+    <!-- ApiAbilityRegulatorDenayToSend -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'AREA_CODE_NOT_ACCEPTABLE'|lowercase|translate}} </span>
+        <textarea type="text" class="form-control" aria-describedby="basic-addon1" name="ApiDefaultNumber" ng-model="apiSetting.selectedItem.selectedItem.ApiAbilityRegulatorDenayToSend" rows="5"></textarea>
+    </div>
+
+    <!-- ApiAbilityLengthMinToSend -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'MINIMUM_NUMBER'|lowercase|translate}} </span>
+        <input type="number" class="form-control" aria-describedby="basic-addon1" ng-model="apiSetting.selectedItem.ApiAbilityLengthMinToSend">
+    </div>
+
+
+    <!-- ApiAbilityLengthMaxToSend -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon">{{'MAXIMUM_NUMBER'|lowercase|translate}}</span>
+        <input type="number" class="form-control" aria-describedby="basic-addon1" ng-model="apiSetting.selectedItem.ApiAbilityLengthMaxToSend">
+    </div>
+
+
+
+
+
+</div>

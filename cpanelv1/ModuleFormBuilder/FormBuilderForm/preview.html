@@ -1,0 +1,20 @@
+﻿<div class="modal-body">
+    <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="form.closeModal()"></i>
+    <h5> {{'PREVIEW'|lowercase|translate}} </h5>
+    <hr />
+    <!-- Tile Section -->
+    <div class="row">
+        <form class="form-horizontal">
+            <div ng-model="form.input" fb-form="default" fb-default="defaultValue"></div>
+            <div class="col-md-12">
+                <pre>{{form.formJson}}</pre>
+            </div>
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-4">
+                    <!--<button class="btn btn-primary" type="button" ng-click="form.saveProcessInputCustomizeValue()" > {{'save'|lowercase|translate}} </button>-->
+                    <button class="btn btn-default" type="button" ng-click="form.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

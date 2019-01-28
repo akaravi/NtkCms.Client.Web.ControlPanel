@@ -1,0 +1,29 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="platformGridController as platformCtrl" ng-init="platformCtrl.init()">
+    <!--    <div class="container">-->
+    <div class="row" rasha-loading="platformCtrl.busyIndicator">
+        <div class="col-sm-12">
+            <!--<div rasha-loading="platformCtrl.busyIndicator"></div>-->
+            <button class="btn btn-primary" rasha-userrole="platformCtrl.Add" ng-click="platformCtrl.openAddModal()" ng-show="platformCtrl.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="platformCtrl.Edit" ng-click="platformCtrl.openEditModal()" ng-show="platformCtrl.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="platformCtrl.Delete" ng-click="platformCtrl.deleteRow()" ng-show="platformCtrl.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="platformCtrl.showAdvancedSearchPanel(platformCtrl.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-primary" type="button" ng-click="platformCtrl.toggleExportForm()"> {{'report'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="platformCtrl"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="platformCtrl.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="platformCtrl.getJson()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="platformCtrl.getJson()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="platformCtrl.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

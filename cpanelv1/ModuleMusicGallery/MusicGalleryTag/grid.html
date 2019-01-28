@@ -1,0 +1,61 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="mvGalleryTagCtrl as mvGalleryTag" ng-init="mvGalleryTag.init()">
+    <!--<div class="container">-->
+    <div class="row" rasha-loading="mvGalleryTag.categoryBusyIndicator">
+        <div class="col-md-2">
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;&nbsp;  {{'category'|lowercase|translate}}&nbsp;تگ زندگینامه </h5></div>
+                    <div class="panel-body">
+                        <div style="position: relative">
+                            <ul class="tree" tree-options="mvGalleryTag.treeConfig"></ul>
+                        </div>
+                        <!-- Category Section -->
+                        <div style="margin-top: 20px;">
+                            <a ng-click="mvGalleryTag.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-primary">
+                                <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
+                            </a>
+                            <div id="categoryButtons" style="display: none;">
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="mvGalleryTag.Add" ng-click="mvGalleryTag.addNewCategoryModel()" ng-show="mvGalleryTag.gridOptions.resultAccess.AccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="mvGalleryTag.Edit" ng-click="mvGalleryTag.openEditCategoryModel()" ng-show="mvGalleryTag.gridOptions.resultAccess.AccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="mvGalleryTag.Delete" ng-click="mvGalleryTag.deleteCategory()" ng-show="mvGalleryTag.gridOptions.resultAccess.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5><i class="fa fa-articlepaper-o " style="font-size: 18px;"></i>&nbsp;{{'LIST'|lowercase|translate}}&nbsp;تگ {{'mvGallery'|lowercase|translate}}<nospecialtag ng-if="mvGalleryTag.treeConfig.currentNode.Id!=null">:&nbsp;{{mvGalleryTag.treeConfig.currentNode.Title}}&nbsp; - {{'ID'|lowercase|translate}}:&nbsp;{{mvGalleryTag.treeConfig.currentNode.Id}}</nospecialtag></h5>
+                </div>
+            </div>
+            <div class="row" id="topMenu">
+                <div class="col-md-12" style="text-align: center;">
+                    <button class="btn btn-primary" ng-click="mvGalleryTag.openAddModel()" ng-show="mvGalleryTag.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                    <button class="btn btn-warning" ng-click="mvGalleryTag.openEditModel()" ng-show="mvGalleryTag.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="mvGalleryTag.deleteContent()" ng-show="mvGalleryTag.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}} </button>
+                    <button class="btn btn-success" ng-click="mvGalleryTag.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <button class="btn btn-warning" type="button" ng-click="mvGalleryTag.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}} </button>
+                    <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="mvGalleryTag.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+                    <button class="btn btn-success" ng-click="mvGalleryTag.getCount()">{{'number'|lowercase|translate}}&nbsp;{{mvGalleryTag.ListItemsTotalRowCount}}</button>
+                </div>
+                <hr />
+                <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+                    <div id="builder" query-builder="mvGalleryTag"></div>
+                    <div class="btn-group" style="float: left;">
+                        <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="mvGalleryTag.getRules()"> {{'look'|lowercase|translate}} </button>
+                        <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="mvGalleryTag.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                        <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="mvGalleryTag.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h4 ng-show="mvGalleryTag.ListItems.length < 1">{{'There_Is_No_Content_In_This_Category'|lowercase|translate}}</h4>
+                    <div ng-show="mvGalleryTag.ListItems.length>0" rasha-grid="mvGalleryTag.gridOptions"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,49 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="cmsModuleGridCtrl as cmsModulegrd" ng-init="cmsModulegrd.init()">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-xs-12">
+            <button class="btn btn-primary" rasha-userrole="cmsModuleController.Add" ng-click="cmsModulegrd.openAddModal()" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsModuleController.Add" ng-click="cmsModulegrd.autoAdd()" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="cmsModuleController.Edit" ng-click="cmsModulegrd.openEditModal()" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessEditRow" type="button">{{'edit'|lowercase|translate}}</button>
+            <button class="btn btn-danger" rasha-userrole="cmsModuleController.Delete" ng-click="cmsModulegrd.deleteRow()" ng-show="cmsModulegrd.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'delete'|lowercase|translate}}</button>
+            <button class="btn btn-success" type="button" ng-click="cmsModulegrd.showAdvancedSearchPanel(cmsModulegrd.gridOptions.resultAccess.AccessSearchField)">{{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-primary" ng-click="cmsModulegrd.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="cmsModulegrd.getCount()">{{'number'|lowercase|translate}}&nbsp;{{cmsModulegrd.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="cmsModulegrd"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="cmsModulegrd.getRules()">{{'look'|lowercase|translate}}</button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="cmsModulegrd.getJson()">{{'save_condition'|lowercase|translate}}</button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="cmsModulegrd.getJson()">{{'restore_condition'|lowercase|translate}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="row" rasha-loading="cmsModulegrd.busyIndicator">
+        <div class="col-sm-12 col-md-12 col-xs-12">
+            <div rasha-grid="cmsModulegrd.gridOptions"></div>
+        </div>
+    </div>
+    <div id="inputValue_formBuilder" class="row well" style="display: none;">
+        <h4>{{'DESIGN_FORM'|lowercase|translate}}</h4>
+        <div class="col-md-6">
+            <div fb-components></div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> {{'FORM_INPUT_VALUES'|lowercase|translate}} </h3>
+                </div>
+                <div fb-builder="default" style="min-height: 500px; padding: 20px"></div>
+                <div class="panel-footer">
+                    <div class="checkbox">
+                        <button class="btn btn-primary" type="button" ng-click="cmsModulegrd.saveJsonForm()">{{'save'|lowercase|translate}}</button>
+                        <button class="btn btn-success" ng-click="cmsModulegrd.showFormPreview()">{{'PREVIEW'|lowercase|translate}}</button>
+                        <button class="btn btn-warning" ng-click="cmsModulegrd.getFromSystem()">{{'AUTOMATIC_LOAD_FROM_SYSTEM'|lowercase|translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

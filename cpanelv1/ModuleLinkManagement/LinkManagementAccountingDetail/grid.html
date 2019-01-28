@@ -1,0 +1,36 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="linkManagementAccountingDetailController as linkManagementAccountingDetail" ng-init="linkManagementAccountingDetail.init()">
+    <!--    <div class="container">-->
+
+    <div class="row" rasha-loading="linkManagementAccountingDetail.busyIndicator">
+        <div class="col-sm-12">
+            <!--<div rasha-loading="linkManagementAccountingDetail.busyIndicator"></div>-->
+            <button class="btn btn-primary" rasha-userrole="linkManagementAccountingDetail.Add" ng-click="linkManagementAccountingDetail.openAddModal()" ng-show="linkManagementAccountingDetail.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="linkManagementAccountingDetail.Edit" ng-click="linkManagementAccountingDetail.openEditModal()" ng-show="linkManagementAccountingDetail.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="linkManagementAccountingDetail.Delete" ng-click="linkManagementAccountingDetail.deleteRow()" ng-show="linkManagementAccountingDetail.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="linkManagementAccountingDetail.showAdvancedSearchPanel(linkManagementAccountingDetail.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="linkManagementAccountingDetail.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="linkManagementAccountingDetail.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="linkManagementAccountingDetail.getCount()">{{'number'|lowercase|translate}}&nbsp;{{linkManagementAccountingDetail.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="linkManagementAccountingDetail"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="linkManagementAccountingDetail.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="linkManagementAccountingDetail.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="linkManagementAccountingDetail.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div rasha-grid="linkManagementAccountingDetail.gridOptions"></div>
+        </div>
+    </div>
+
+</div>
+<!--ng-show="linkManagementAccountingDetail.gridOptions.resultAccess.AccessAddRow"
+ng-show="linkManagementAccountingDetail.gridOptions.resultAccess.AccessEditRow"
+ng-show="linkManagementAccountingDetail.gridOptions.resultAccess.AccessDeleteRow"-->

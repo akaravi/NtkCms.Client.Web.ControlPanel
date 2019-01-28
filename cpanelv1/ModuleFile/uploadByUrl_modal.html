@@ -1,0 +1,52 @@
+﻿<div class="modal-body" style="width : 100%">
+    <div class="row" rasha-loading="fdm.loadingBusyIndicator">
+        <div class="col-sm-12">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="$dismiss()"></i>
+            <h3 class="m-t-none m-b"> {{ fdm.modalTitle }}</h3>
+            <div class="row">
+                <div class="panel panel-primary" style="margin-right: 5px; margin-left: 5px;">
+                    <div class="panel-heading">
+                        <h5><i class="fa fa-cloud-upload fa"></i>&nbsp;&nbsp; {{'UPLOAD_FILE'|lowercase|translate}}</h5>
+                    </div>
+                    <div class="panel-body">
+                     
+                            <div class="webix_el_box" style="width: 70px; height: 38px">
+                                <div style="width: 66px" class="webix_all_segments">
+                                    <button type="button" style="width: 32px" class="webix_selected webix_segment_0" title="{{'SELECT_FILE'|lowercase|translate}}" button_id="files" ng-click="fdm.UploadByUrlAdd()" ><span class="webix_fmanager_mode_option webix_icon fa-upload"></span></button>
+                                </div>
+                            </div>
+                            <table class="table table-striped">
+                                <tr ng-repeat="file in fdm.UploadByUrlfiles">
+
+                                    <td>{{$index + 1}}</td>
+                                    <td width="500px">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{'UPLOAD_BY_URL'|lowercase|translate}}</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" name="Url" ng-model="file.Url" style="direction:ltr" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{'description'|lowercase|translate}}</label>
+                                            <div class="col-sm-10">
+                                                <textarea class="form-control" name="Description" ng-model="file.Description" style="resize: vertical;height: 100px;"></textarea>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="width:150px;">{{fdm.msgTextERROR}}</td>
+                                    <td style="width : 2px;">|</td>
+                                    <td style="width: 50px;"><button id="save-button-start{{$index}}" type="button" style="width: 32px ; height: 32px;" class="webix_selected webix_segment_0 flashing-button" title="بارگزاری" button_id="files" ng-click="fdm.uploadByUrlStart($index, file);"><span id="save-icon-start{{$index}}" class="webix_fmanager_mode_option webix_icon fa-save save-btn" index="{{$index}}"></span></button></td>
+                                    <td style="width : 2px;">|</td>
+                                    <td style="width: 50px;"><button id="save-button{{$index}}" type="button" ng-show="fdm.canShow(file.uploaded)" style="width: 32px ; height: 32px;" class="webix_selected webix_segment_0 flashing-button" title="ذخیره" button_id="files" ng-click="fdm.uploadFile($index, file,file.Description);"><span id="save-icon{{$index}}" class="webix_fmanager_mode_option webix_icon fa-save save-btn" index="{{$index}}"></span></button></td>
+                                    <td class="result_icon"><span class="fa fa-check" style="display: none; font-size: 23px;"></span></td>
+
+                                </tr>
+                            </table>
+                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

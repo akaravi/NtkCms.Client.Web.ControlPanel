@@ -1,0 +1,214 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="linkManagementTarget.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Content' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmlinkManagementTargetEdit" novalidate ng-submit="linkManagementTarget.editContent(frmlinkManagementTargetEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmlinkManagementTargetAdd.LinkSourceId.$invalid && !frmlinkManagementTargetAdd.LinkSourceId.$pristine,'has-success' : frmlinkManagementTargetAdd.LinkSourceId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="linkManagementTarget"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group'>
+                                <label class='col-sm-2 control-label'>{{'title'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input type='text' name="" ng-model='linkManagementTarget.selectedItem.Title' class='form-control' />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group'>
+                                <label class='col-sm-2 control-label'>{{'description'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <textarea type='text' ng-required="true" ng-model='linkManagementTarget.selectedItem.Description' class='form-control' style="resize: vertical;height: 100px;"></textarea>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group'>
+                                <label class='col-sm-2 control-label'>ToWebAddress</label>
+                                <div class='col-sm-10'>
+                                    <input type='text' name="ToWebAddress" ng-model='linkManagementTarget.selectedItem.ToWebAddress' class='form-control' />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmlinkManagementTargetAdd.WebAddress.$invalid && !frmlinkManagementTargetAdd.WebAddress.$pristine,'has-success' : frmlinkManagementTargetAdd.WebAddress.$valid}">
+                                <label class="col-sm-2 control-label">{{'WEB_ADDRESS'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="WebAddress"
+                                           ng-model="linkManagementTarget.selectedItem.WebAddress" />
+                                    <div class="m-t-xs" ng-show="frmlinkManagementTargetAdd.WebAddress.$invalid">
+                                        <small class="text-danger" ng-show="frmlinkManagementTargetAdd.WebAddress.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmlinkManagementTargetAdd.WebAddress.$valid && frmlinkManagementTargetAdd.WebAddress.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmlinkManagementTargetAdd.WebAddress.$invalid && !frmlinkManagementTargetAdd.WebAddress.$pristine) || frmlinkManagementTargetAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmlinkManagementTargetAdd.SmallPreview.$invalid && !frmlinkManagementTargetAdd.SmallPreview.$pristine,'has-success' : frmlinkManagementTargetAdd.SmallPreview.$valid}">
+                                <label class="col-sm-2 control-label">{{'Show_In_Small_Mode'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="SmallPreview"
+                                           ng-model="linkManagementTarget.selectedItem.SmallPreview" />
+                                    <div class="m-t-xs" ng-show="frmlinkManagementTargetAdd.SmallPreview.$invalid">
+                                        <small class="text-danger" ng-show="frmlinkManagementTargetAdd.SmallPreview.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmlinkManagementTargetAdd.SmallPreview.$valid && frmlinkManagementTargetAdd.SmallPreview.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmlinkManagementTargetAdd.SmallPreview.$invalid && !frmlinkManagementTargetAdd.SmallPreview.$pristine) || frmlinkManagementTargetAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2  control-label">{{'From_Date'|lowercase|translate}}</label>
+                                <div class="col-sm-6  col-md-4">
+                                    <div rasha-date-picker="linkManagementTarget.ShareBeginDate" ng-model="linkManagementTarget.selectedItem.ShareBeginDate"></div><input type="hidden" ng-model="linkManagementTarget.selectedItem.ShareBeginDate" />
+                                </div>
+                                <label class="col-sm-2  control-label">{{'To_Date'|lowercase|translate}} </label>
+                                <div class="col-sm-6 col-md-4">
+                                    <div rasha-date-picker="linkManagementTarget.ShareExpireDate" ng-model="linkManagementTarget.selectedItem.ShareExpireDate"></div><input type="hidden" ng-model="linkManagementTarget.selectedItem.ShareExpireDate" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Target</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkTargetCategoryId" rasha-autocomplete="linkManagementTarget.LinkTargetCategoryIdSelector" ng-model="linkManagementTarget.selectedItem.LinkTargetCategoryId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'Member'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkManagementMemberId" rasha-autocomplete="linkManagementTarget.LinkManagementMemberIdSelector" ng-model="linkManagementTarget.selectedItem.LinkManagementMemberId" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Budget_Information'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group'>
+                                <label class='col-sm-2 control-label'>{{'Click_Amount'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input type='number' ng-model='linkManagementTarget.selectedItem.ClickPrice' class='form-control' />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group'>
+                                <label class='col-sm-2 control-label'>{{'Display_Amount'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input type='number' ng-model='linkManagementTarget.selectedItem.ViewPrice' class='form-control' />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group'>
+                                <label class='col-sm-2 control-label'>{{'Overall_Budget'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input type='number' ng-model='linkManagementTarget.selectedItem.MaxPriceOfShareTotal' class='form-control' />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group'>
+                                <label class='col-sm-2 control-label'>{{'Daily_Budget'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input type='number' ng-model='linkManagementTarget.selectedItem.MaxPriceOfSharePerDay' class='form-control' />
+                                </div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'Pricing_Type'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <select class='form-control' name="SharingLinkType" ng-model="linkManagementTarget.selectedItem.SharingLinkType" ng-options="x.Value as x.Description for x in linkManagementTarget.SharingLinkType"></select>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">ContentSettingType</label>
+                                <div class="col-sm-10">
+                                    <select class='form-control' name="ContentSettingType" ng-model="linkManagementTarget.selectedItem.ContentSettingType" ng-options="x.Value as x.Description for x in linkManagementTarget.ContentSettingType"></select>
+                                </div>
+                            </div>
+
+                        </div>
+                    </tab>
+                    <tab heading="{{'Attachments_Files'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'MAIN_IMAGE'|lowercase|translate}} </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="linkManagementTarget.openUploadModal()" aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="linkManagementTarget.filePickerMainImage" ng-model="linkManagementTarget.selectedItem.LinkMainImageId">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-group col-sm-12" ng-repeat="x in linkManagementTarget.attachedFiles">
+                                    <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                                    <div class="input-group">
+                                        <input type="text" id="option{{$index}}" class="form-control" ng-required="true" name="attachedFileName" required readonly="readonly" ng-model="x.filename">
+                                        <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="linkManagementTarget.deleteAttachedFile($index)"><i class="fa fa-remove"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="Display">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Pattern</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkBillboardPatternId" rasha-autocomplete="linkManagementTarget.LinkBillboardPatternIdSelector" ng-model="linkManagementTarget.selectedItem.LinkBillboardPatternId" />
+                                </div>
+                            </div>
+                            <div ng-style="pattern.myStyles">
+
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="FormulaPrecent">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group'>
+                                <label class='col-sm-2 control-label'>{{'Percentage_Of_Purchase_And_Sales'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input type='number' ng-model='linkManagementTarget.selectedItem.FormulaPercent' class='form-control' />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="linkManagementTarget.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="linkManagementTarget.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+            <style>
+                .pull-right {
+                    margin: 1px 28px;
+                }
+            </style>
+        </div>
+    </div>
+</div>

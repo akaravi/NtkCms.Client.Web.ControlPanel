@@ -1,0 +1,51 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="cmsModuleProcessCustomizeGridCtrl as cmsMdlPrcCustm" ng-init="cmsMdlPrcCustm.init()">
+    <div class="row" >
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="cmsModuleSalePriceController.Add" ng-click="cmsMdlPrcCustm.openAddModal()" ng-show="cmsMdlPrcCustm.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <!--<button class="btn btn-primary" rasha-userrole="cmsModuleSalePriceController.Add" ng-click="cmsMdlPrcCustm.autoAdd()" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>-->
+            <button class="btn btn-warning" rasha-userrole="cmsModuleSalePriceController.Edit" ng-click="cmsMdlPrcCustm.openEditModal()" ng-show="cmsMdlPrcCustm.gridOptions.resultAccess.AccessEditRow" type="button">{{'edit'|lowercase|translate}}</button>
+            <button class="btn btn-danger" rasha-userrole="cmsModuleSalePriceController.Delete" ng-click="cmsMdlPrcCustm.deleteRow()" ng-show="cmsMdlPrcCustm.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'delete'|lowercase|translate}}</button>
+            <button class="btn btn-success" ng-click="cmsMdlPrcCustm.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-success" ng-click="cmsMdlPrcCustm.getCount()">{{'number'|lowercase|translate}}&nbsp;{{cmsMdlPrcCustm.ListItemsTotalRowCount}}</button>
+            <button class="btn btn-primary" type="button" ng-click="cmsMdlPrcCustm.reportData()">{{'report'|lowercase|translate}}</button>
+            <button class="btn btn-info" type="button" ng-click="cmsMdlPrcCustm.openInputvalueBuilder()">{{'FORM_BUILDER'|lowercase|translate}}</button>
+            <button class="btn btn-warning" type="button" ng-click="cmsMdlPrcCustm.changeState('cmsmoduleprocess')">{{'BACK'|lowercase|translate}}&nbsp;&nbsp;<i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div id="builder" query-builder="cmsMdlPrcCustm"></div>
+        <div class="btn-group" style="float: left;">
+            <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="cmsMdlPrcCustm.getRules()"> {{'look'|lowercase|translate}} </button>
+            <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="cmsMdlPrcCustm.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+            <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="cmsMdlPrcCustm.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class='hr-line-dashed'></div>
+    <div class="row" rasha-loading="cmsMdlPrcCustm.busyIndicator">
+        <div class="col-sm-12">
+            <div rasha-grid="cmsMdlPrcCustm.gridOptions"></div>
+        </div>
+    </div>
+    <div id="inputValue_formBuilder" class="row well" rasha-loading="cmsMdlPrcCustm.formBuilderBusyIndicator" style="display: none;">
+        <h4>{{'DESIGN_FORM'|lowercase|translate}}</h4>
+        <div class="col-md-6">
+            <div fb-components></div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{'FORM_INPUT_VALUES'|lowercase|translate}}</h3>
+                </div>
+                <div fb-builder="default" style="min-height: 500px; padding: 20px"></div>
+                <div class="panel-footer">
+                    <div class="checkbox">
+                        <button class="btn btn-primary" type="button" ng-click="cmsMdlPrcCustm.saveProcessInputCustomizeValue()">{{'save'|lowercase|translate}}</button>
+                        <button class="btn btn-success" ng-click="cmsMdlPrcCustm.showForm()">{{'PREVIEW'|lowercase|translate}}</button>
+                        <button class="btn btn-warning" ng-click="cmsMdlPrcCustm.getFromSystem()">{{'AUTOMATIC_LOAD_FROM_SYSTEM'|lowercase|translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

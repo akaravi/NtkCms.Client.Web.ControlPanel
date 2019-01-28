@@ -1,0 +1,62 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="estatePropertyDetailController as estatePropertyDetail" ng-init="estatePropertyDetail.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-md-2">
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;{{'category'|lowercase|translate}}&nbsp;{{'feature'|lowercase|translate}}</h5></div>
+                    <div class="panel-body">
+                        <div style="position: relative">
+                            <ul class="tree" tree-options="estatePropertyDetail.treeConfig"></ul>
+                        </div>
+                        <!-- Category Section -->
+                        <div style="margin-top: 20px;">
+                            <a ng-click="estatePropertyDetail.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-primary">
+                                <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
+                            </a>
+                            <div id="categoryButtons" style="display: none;">
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="estatePropertyDetail.Add" ng-click="estatePropertyDetail.openAddCategoryModal()" ng-show="estatePropertyDetail.gridOptions.resultAccess.AccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="estatePropertyDetail.Edit" ng-click="estatePropertyDetail.openEditCategoryModal()" ng-show="estatePropertyDetail.gridOptions.resultAccess.AccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="estatePropertyDetail.Delete" ng-click="estatePropertyDetail.deleteCategory()" ng-show="estatePropertyDetail.gridOptions.resultAccess.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5><i class="fa fa-articlepaper-o " style="font-size: 18px;"></i>&nbsp;&nbsp;{{'Feature_List'|lowercase|translate}}</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <button class="btn btn-primary" ng-show="estatePropertyDetail.gridOptions.resultAccess.AccessAddRow" ng-click="estatePropertyDetail.openAddContentModal()"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-show="estatePropertyDetail.gridOptions.resultAccess.AccessEditRow" ng-click="estatePropertyDetail.openEditContentModal()"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-show="estatePropertyDetail.gridOptions.resultAccess.AccessDeleteRow" ng-click="estatePropertyDetail.deleteContent()"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-success" ng-click="estatePropertyDetail.showAdvancedSearchPanel(estatePropertyDetail.gridOptions.resultAccess.AccessSearchField)"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <button class="btn btn-warning" type="button" ng-click="estatePropertyDetail.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+                    <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="estatePropertyDetail.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+                    <button class="btn btn-success" ng-click="estatePropertyDetail.getCount()">{{'number'|lowercase|translate}}&nbsp;{{estatePropertyDetail.ListItemsTotalRowCount}}</button>
+                    <button class="btn btn-info" type="button" ng-click="estatePropertyDetail.backToState('index.estatepropertytype')"><i class="fa fa-arrow-left"></i>&nbsp;{{'BACK'|lowercase|translate}} </button>
+                </div>
+                <hr />
+                <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+                    <div id="builder" query-builder="estatePropertyDetail"></div>
+                    <div class="btn-group" style="float: left;">
+                        <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="estatePropertyDetail.getRules()"> {{'look'|lowercase|translate}} </button>
+                        <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="estatePropertyDetail.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                        <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="estatePropertyDetail.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+                    </div>
+                </div>
+                <br />
+                <div class='hr-line-dashed'></div>
+                <br /><br /><br />
+                <div class="col-md-12" rasha-loading="estatePropertyDetail.busyIndicator">
+                    <div rasha-grid="estatePropertyDetail.gridOptions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

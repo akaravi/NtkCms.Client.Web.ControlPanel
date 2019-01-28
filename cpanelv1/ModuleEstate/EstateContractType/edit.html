@@ -1,0 +1,94 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="estateContractType.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Contract_Type'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmestateContractTypeEdit" novalidate ng-submit="estateContractType.editRow(frmestateContractTypeEdit)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="estateContractType.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmestateContractTypeEdit.RecordStatus.$invalid && !frmestateContractTypeEdit.RecordStatus.$pristine,'has-success' : frmestateContractTypeEdit.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="estateContractType"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="estateContractType.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                     ng-class="{'has-error' : frmestateContractTypeEdit.Title.$invalid && !frmestateContractTypeEdit.Title.$pristine,'has-success' : frmestateContractTypeEdit.Title.$valid}">
+                    <label class="col-sm-2 control-label">{{'title'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="estateContractType.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmestateContractTypeEdit.Title.$invalid">
+                            <small class="text-danger" ng-show="frmestateContractTypeEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmestateContractTypeEdit.Title.$valid && frmestateContractTypeEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmestateContractTypeEdit.Title.$invalid && !frmestateContractTypeEdit.Title.$pristine) || frmestateContractTypeEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <div class="checkbox col-sm-6">
+                        <label>
+                            <input type="checkbox" style="width: 15px; height: 15px;" ng-model="estateContractType.selectedItem.HasSalePrice" /><h5>{{'Selling_Price'|lowercase|translate}}</h5>
+                        </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-2 control-label" style="font-weight: bold;">{{'UNIT'|lowercase|translate}}</div>
+                        <div class="col-sm-10">
+                            <input class="form-control" ng-required="true" name="UnitSalePrice" ng-model="estateContractType.selectedItem.UnitSalePrice" />
+                        </div>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <div class="checkbox  col-sm-6">
+                        <label>
+                            <input type="checkbox" style="width: 15px; height: 15px;" ng-model="estateContractType.selectedItem.HasPresalePrice" /><h5>{{'Pre_Selling_Price'|lowercase|translate}}</h5>
+                        </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-2 control-label" style="font-weight: bold;">{{'UNIT'|lowercase|translate}}</div>
+                        <div class="col-sm-10">
+                            <input class="form-control" ng-required="true" name="UnitPresalePrice" ng-model="estateContractType.selectedItem.UnitPresalePrice" />
+                        </div>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <div class="checkbox col-sm-6">
+                        <label>
+                            <input type="checkbox" style="width: 15px; height: 15px;" ng-model="estateContractType.selectedItem.HasRentPrice" /><h5>{{'Lease_Installment_Price'|lowercase|translate}}</h5>
+                        </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-2 control-label" style="font-weight: bold;">{{'UNIT'|lowercase|translate}}</div>
+                        <div class="col-sm-10">
+                            <input class="form-control" ng-required="true" name="UnitRentPrice" ng-model="estateContractType.selectedItem.UnitRentPrice" />
+                        </div>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <div class="checkbox col-sm-6">
+                        <label>
+                            <input type="checkbox" style="width: 15px; height: 15px;" ng-model="estateContractType.selectedItem.HasDepositPrice" /><h5>{{'Mortgage_Price'|lowercase|translate}}</h5>
+                        </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-2 control-label" style="font-weight: bold;">{{'UNIT'|lowercase|translate}}</div>
+                        <div class="col-sm-10">
+                            <input class="form-control" ng-required="true" name="UnitDepositPrice" ng-model="estateContractType.selectedItem.UnitDepositPrice" />
+                        </div>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="estateContractType.addRequested" type="submit">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="estateContractType.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

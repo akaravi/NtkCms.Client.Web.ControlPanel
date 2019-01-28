@@ -1,0 +1,80 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="jobContractType.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Contract_Type'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmjobContractTypeEdit" novalidate ng-submit="jobContractType.editRow(frmjobContractTypeEdit)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="jobContractType.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmjobContractTypeEdit.RecordStatus.$invalid && !frmjobContractTypeEdit.RecordStatus.$pristine,'has-success' : frmjobContractTypeEdit.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="jobContractType"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="jobContractType.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                     ng-class="{'has-error' : frmjobContractTypeEdit.Title.$invalid && !frmjobContractTypeEdit.Title.$pristine,'has-success' : frmjobContractTypeEdit.Title.$valid}">
+                    <label class="col-sm-2 control-label">{{'title'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="jobContractType.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmjobContractTypeEdit.Title.$invalid">
+                            <small class="text-danger" ng-show="frmjobContractTypeEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmjobContractTypeEdit.Title.$valid && frmjobContractTypeEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmjobContractTypeEdit.Title.$invalid && !frmjobContractTypeEdit.Title.$pristine) || frmjobContractTypeEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <div class="checkbox col-sm-6">
+                        <label>
+                            <input type="checkbox" style="width: 15px; height: 15px;" ng-model="jobContractType.selectedItem.HasFixedSalary" /><h5>{{'HAS_FIXED_SALARY'|lowercase|translate}}</h5>
+                        </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-2 control-label" style="font-weight: bold;">{{'UNIT'|lowercase|translate}}</div>
+                        <div class="col-sm-10">
+                            <input class="form-control" name="UnitSalePrice" ng-model="jobContractType.selectedItem.UnitFixedSalary" />
+                        </div>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <div class="checkbox  col-sm-6">
+                        <label>
+                            <input type="checkbox" style="width: 15px; height: 15px;" ng-model="jobContractType.selectedItem.HasCommission" /><h5>{{'HAS_COMMISSION'|lowercase|translate}}</h5>
+                        </label>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-2 control-label" style="font-weight: bold;">{{'UNIT'|lowercase|translate}}</div>
+                        <div class="col-sm-10">
+                            <input class="form-control" name="UnitPresalePrice" ng-model="jobContractType.selectedItem.UnitCommission" />
+                        </div>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <div class="checkbox col-sm-6">
+                        <label>
+                            <input type="checkbox" style="width: 15px; height: 15px;" ng-model="jobContractType.selectedItem.HasShareInCompany" /><h5>{{'HAS_SHARE_IN_COMPANY'|lowercase|translate}}</h5>
+                        </label>
+                    </div>
+                    <!--<div class="col-sm-6">
+                        <div class="col-sm-2 control-label" style="font-weight: bold;">{{'UNIT'|lowercase|translate}}</div>
+                        <div class="col-sm-10">
+                            <input class="form-control" name="UnitRentPrice" ng-model="jobContractType.selectedItem.UnitRentPrice" />
+                        </div>
+                    </div>-->
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="jobContractType.addRequested" type="submit">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="jobContractType.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

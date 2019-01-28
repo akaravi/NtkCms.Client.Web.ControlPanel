@@ -1,0 +1,26 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="cmsPageGridCtrl as cmsPagegrd" ng-init="cmsPagegrd.init()">
+    <!-- <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <button class="btn btn-info" ng-click="cmsPagegrd.redirectToBoxes(null,'صفحه مادر','WithEmbeddedChild',null,null)">{{'master_pages'|lowercase|translate}}</button>
+            <button class="btn btn-success" ng-click="cmsPagegrd.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="cmsPagegrd.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="cmsPagegrd.getCount()">{{'number'|lowercase|translate}}&nbsp;{{cmsPagegrd.ListItemsTotalRowCount}}</button>
+            <button class="btn btn-info" ng-click="cmsPagegrd.openUtilityToolseModal()"><span style="width: 18px;" class="fa fa-cogs"></span>&nbsp;UtilityTools</button>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div id="builder" query-builder="cmsPagegrd"></div>
+        <div class="btn-group" style="float: left;">
+            <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="cmsPagegrd.getRules()"> {{'look'|lowercase|translate}} </button>
+            <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="cmsPagegrd.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+            <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="cmsPagegrd.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row" rasha-loading="cmsPagegrd.busyIndicator">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div rasha-grid="cmsPagegrd.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

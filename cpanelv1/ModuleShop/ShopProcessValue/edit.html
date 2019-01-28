@@ -1,0 +1,109 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="taskScheduleProcessValue.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ taskScheduleProcessValue.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmtaskScheduleProcessValueEdit" novalidate ng-submit="taskScheduleProcessValue.editContent(frmtaskScheduleProcessValueEdit)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="taskScheduleProcessValue.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmtaskScheduleProcessValueEdit.RecordStatus.$invalid && !frmtaskScheduleProcessValueEdit.RecordStatus.$pristine,'has-success' : frmtaskScheduleProcessValueEdit.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="taskScheduleProcessValue"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="taskScheduleProcessValue.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                     ng-class="{'has-error' : frmtaskScheduleProcessValueEdit.Title.$invalid && !frmtaskScheduleProcessValueEdit.Title.$pristine,'has-success' : frmtaskScheduleProcessValueEdit.Title.$valid}">
+                    <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="taskScheduleProcessValue.selectedItem.Title" ng-focus="taskScheduleProcessValue.loadEmojiPickerdiscover()"
+                               data-emojiable="true" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="taskScheduleProcessValue.gridOptions.resultAccess.AccessAddField.indexOf('Key')>-1">
+                    <label class="col-sm-2 control-label"> {{'KEY'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               name="Key"
+                               ng-model="taskScheduleProcessValue.selectedItem.Key" ng-focus="taskScheduleProcessValue.loadEmojiPickerdiscover()"
+                               data-emojiable="true" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <br />
+                <div class="back1">
+                    <div class="form-group" ng-show="taskScheduleProcessValue.gridOptions.resultAccess.AccessAddField.indexOf('MenuItemProcesses')>-1">
+                        <br />
+                        <div class="col-sm-8 checkBoxList" style="overflow-y: auto">
+                            <div ng-repeat="permission in taskScheduleProcessValue.processesListItems">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="{{permission.Id}}" ng-checked="taskScheduleProcessValue.hasInMany2Many(permission)" ng-click="taskScheduleProcessValue.toggleMany2Many(role,permission)">
+                                    {{permission.Title}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="back2">
+                    <br />
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-required="false" placeholder= "{{'ENTER_TITLE_OF_OPERATION'|lowercase|translate}}"  ng-model="taskScheduleProcessValue.newProcess.Title" />
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"> {{'CHOOSE_MODULES'|lowercase|translate}} </label>
+                        <div class="col-sm-10">
+                            <select class="form-control" ng-model="taskScheduleProcessValue.newProcess.LinkModuleId" ng-change="taskScheduleProcessValue.LoadcmsModuleProcess(taskScheduleProcessValue.newProcess.LinkModuleId)">
+                                <option value="0"> {{'SELECT'|lowercase|translate}} </option>
+                                <option ng-repeat="x in taskScheduleProcessValue.cmsModulesListItems" ng-selected="x.Id == taskScheduleProcessValue.newProcess.LinkModuleId" value="{{x.Id}}">{{x.Title}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"> {{'CHOOSE_ACTIVITY_MODULE'|lowercase|translate}} </label>
+                        <div class="col-sm-10">
+                            <select id="cmsModuleProcesses_comboBox" class="form-control" ng-model="taskScheduleProcessValue.newProcess.LinkModuleProcessId" ng-change="taskScheduleProcessValue.LoadcmsModuleProcessCustomize(taskScheduleProcessValue.newProcess.LinkModuleProcessId)">
+                                <option value="0"> {{'SELECT'|lowercase|translate}} </option>
+                                <option ng-repeat="x in taskScheduleProcessValue.cmsModulesProcessesListItems" ng-selected="x.Id == taskScheduleProcessValue.newProcess.LinkModuleProcessId" value="{{x.Id}}">{{x.Title}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"> "{{'SELECT_THE_TYPE_OF_USE'|lowercase|translate}}" </label>
+                        <div class="col-sm-10">
+                            <select id="cmsModuleProcessesCustomize_comboBox" class="form-control" ng-model="taskScheduleProcessValue.newProcess.LinkModuleProcessCustomizeId" ng-change="taskScheduleProcessValue.LoadProcessInputCustomizeValue(taskScheduleProcessValue.newProcess.LinkModuleProcessCustomizeId)">
+                                <option value="0"> {{'SELECT'|lowercase|translate}} </option>
+                                <option ng-repeat="x in taskScheduleProcessValue.cmsModulesProcessesCustomizeListItems" ng-selected="x.Id == taskScheduleProcessValue.newProcess.LinkModuleProcessCustomizeId" value="{{x.Id}}">{{x.Title}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <div ng-model="taskScheduleProcessValue.submitValue" fb-form="default" fb-default="taskScheduleProcessValue.defaultValue"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <pre>{{taskScheduleProcessValue.submitValue}}</pre>
+                        </div>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="taskScheduleProcessValue.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="taskScheduleProcessValue.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,58 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="cmsModuleSitegrd.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ cmsModuleSitegrd.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmCmsModuleSiteAdd" novalidate ng-submit="cmsModuleSitegrd.addNewRow(frmCmsModuleSiteAdd)">
+                <div class="form-group" ng-show="cmsModuleSitegrd.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmcmsModuleSitegrdAdd.RecordStatus.$invalid && !frmcmsModuleSitegrdAdd.RecordStatus.$pristine,'has-success' : frmcmsModuleSitegrdAdd.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
+                    <div class="col-sm-10" rasha-record-status="cmsModuleSitegrd"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group' ng-show="cmsModuleSitegrd.gridOptions.resultAccess.AccessAddField.indexOf('ExpireDate')>-1">
+                    <label class='col-sm-2 control-label'>{{'EXPIRAITION_DATA' |lowercase|translate}}</label>
+                    <div class="col-sm-6  col-md-4">
+                        <div rasha-date-picker="cmsModuleSitegrd.ExpireDate" ng-model="cmsModuleSitegrd.selectedItem.ExpireDate"></div><input type="hidden" ng-model="cmsModuleSitegrd.selectedItem.ExpireDate" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsModuleSitegrd.gridOptions.resultAccess.AccessAddField.indexOf('LinkSiteId')>-1"
+                     ng-class="{'has-error' : frmCmsModuleSiteAdd.LinkSiteId.$invalid && !frmCmsModuleSiteAdd.LinkSiteId.$pristine,'has-success' : frmCmsModuleSiteAdd.LinkSiteId.$valid}">
+                    <label class="col-sm-2 control-label">{{'SELECT_SITE' |lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-model="cmsModuleSitegrd.selectedItem.LinkSiteId">
+                            <option ng-repeat="x in cmsModuleSitegrd.CmsSiteListItems" value="{{x.Id}}">{{x.Title}}</option>
+                        </select>
+                        <div class="m-t-xs" ng-show="frmCmsModuleSiteAdd.LinkSiteId.$invalid">
+                            <small class="text-danger" ng-show="frmCmsModuleSiteAdd.LinkSiteId.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmCmsModuleSiteAdd.LinkSiteId.$valid && frmCmsModuleSiteAdd.LinkSiteId.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmCmsModuleSiteAdd.LinkSiteId.$invalid && !frmCmsModuleSiteAdd.LinkSiteId.$pristine) || frmCmsModuleSiteAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsModuleSitegrd.gridOptions.resultAccess.AccessAddField.indexOf('LinkModuleId')>-1"
+                     ng-class="{'has-error' : frmCmsModuleSiteAdd.LinkModuleId.$invalid && !frmCmsModuleSiteAdd.LinkModuleId.$pristine,'has-success' : frmCmsModuleSiteAdd.LinkModuleId.$valid}">
+                    <label class="col-sm-2 control-label">{{'CHOOSE_MODULE'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-model="cmsModuleSitegrd.selectedItem.LinkModuleId">
+                            <option ng-repeat="x in cmsModuleSitegrd.cmsModuleListItems" value="{{x.Id}}">{{x.Title}}</option>
+                        </select>
+                        <div class="m-t-xs" ng-show="frmCmsModuleSiteAdd.LinkModuleId.$invalid">
+                            <small class="text-danger" ng-show="frmCmsModuleSiteAdd.LinkModuleId.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmCmsModuleSiteAdd.LinkModuleId.$valid && frmCmsModuleSiteAdd.LinkModuleId.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmCmsModuleSiteAdd.LinkModuleId.$invalid && !frmCmsModuleSiteAdd.LinkModuleId.$pristine) || frmCmsModuleSiteAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="cmsModuleSitegrd.addRequested" type="submit">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="cmsModuleSitegrd.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,158 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="campaignAdmin.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_User'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmcampaignAdminEdit" novalidate ng-submit="campaignAdmin.editRow(frmcampaignAdminEdit)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmcampaignAdminEdit.LinkSourceId.$invalid && !frmcampaignAdminEdit.LinkSourceId.$pristine,'has-success' : frmcampaignAdminEdit.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="campaignAdmin"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="campaignAdmin.gridOptions.resultAccess.AccessAddField.indexOf('LinkCampaignDetailId')>-1">
+                    <label class="col-sm-2 control-label">{{'Link_Campaign_Detail_Id'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkCampaignDetailId" rasha-autocomplete="campaignAdmin.LinkCampaignDetailIdSelector" ng-model="frmcampaignAdminEdit.selectedItem.LinkCampaignDetailId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="campaignAdmin.gridOptions.resultAccess.AccessAddField.indexOf('LinkCampaignItemId')>-1">
+                    <label class="col-sm-2 control-label">{{'Link_Campaign_Item_Id'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkCampaignItemId" rasha-autocomplete="campaignAdmin.LinkCampaignItemIdSelector" ng-model="frmcampaignAdminEdit.selectedItem.LinkCampaignItemId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed' ng-show="campaignAdmin.LinkMember"></div>
+                <div class="form-group" ng-show="campaignAdmin.LinkMember">
+                    <label class="col-sm-2 control-label">{{'USER_ID'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" readonly type="text" ng-model="campaignAdmin.selectedItem.LinkModuleCoreCmsUserId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-xs-2 col-sm-2 control-label">{{'Link_National_Code_Or_User_Id'|lowercase|translate}}</label>
+                    <div class="col-xs-2 col-sm-4 col-md-4 col-lg-4">
+                        <input class="form-control" ng-model="campaignAdmin.selectedItem.LinkUserId" />
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <img src="CmsFiles/img/refresh.png" style="cursor:pointer;" ng-click="campaignAdmin.getUser(campaignAdmin.selectedItem.LinkUserId)" />
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class="col-xs-10 " ng-show="campaignAdmin.ViewFindUserDiv">
+                        {{'FirstName_Label'|lowercase|translate}}<label class="control-label">{{campaignAdmin.selectedUser.Name}}</label>
+                        <div class='hr-line-dashed'></div>
+                        {{'LastName_Label'|lowercase|translate}}<label class="control-label">{{campaignAdmin.selectedUser.LastName}}</label>
+                        <div class='hr-line-dashed'></div>
+                        <label class="col-xs-2 col-sm-2 control-label">{{'USER_ID'|lowercase|translate}}</label>
+                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                            <input class="form-control" readonly ng-model="campaignAdmin.selectedUser.Id" />
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="campaignAdmin.ViewNewUserDiv">
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group" ng-class="{'has-error' : frmcampaignAdminEdit.Username.$invalid && !frmcampaignAdminEdit.Username.$pristine,'has-success' : frmcampaignAdminEdit.Username.$valid}">
+                        <label class="col-sm-2 control-label">{{'USERNAME_EMAIL'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" style="direction: ltr;"
+                                   name="Username"
+                                   ng-model="campaignAdmin.selectedMemberUser.Username" />
+                            <div class="m-t-xs" ng-show="frmcampaignAdminEdit.Username.$invalid">
+                                <small class="text-danger" ng-show="frmcampaignAdminEdit.Username.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                            </div>
+                            <span style="left: 10px !important;" ng-show="frmcampaignAdminEdit.Username.$valid && frmcampaignAdminEdit.Username.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                            <span style="left: 10px !important;" ng-show="(frmcampaignAdminEdit.Username.$invalid && !frmcampaignAdminEdit.Username.$pristine) || frmcampaignAdminEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group" ng-class="{'has-error' : frmcampaignAdminEdit.Pwd.$invalid && !frmcampaignAdminEdit.Pwd.$pristine,'has-success' : frmcampaignAdminEdit.Pwd.$valid}">
+                        <label class='col-sm-2 control-label'>{{'PASSWORD'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" style="direction: ltr;"
+                                   name="Pwd" type="password"
+                                   ng-model="campaignAdmin.selectedMemberUser.Pwd" />
+                            <div class="m-t-xs" ng-show="frmcampaignAdminEdit.Pwd.$invalid">
+                                <small class="text-danger" ng-show="frmcampaignAdminEdit.Pwd.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                            </div>
+                            <span style="left: 10px !important;" ng-show="frmcampaignAdminEdit.Pwd.$valid && frmcampaignAdminEdit.Pwd.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                            <span style="left: 10px !important;" ng-show="(frmcampaignAdminEdit.Pwd.$invalid && !frmcampaignAdminEdit.Pwd.$pristine) || frmcampaignAdminEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group" ng-class="{'has-error' : frmcampaignAdminEdit.Name.$invalid && !frmcampaignAdminEdit.Name.$pristine,'has-success' : frmcampaignAdminEdit.Name.$valid}">
+                        <label class="col-sm-2 control-label">{{'NAME'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control"
+                                   name="Name"
+                                   ng-model="campaignAdmin.selectedMemberUser.Name" />
+                            <div class="m-t-xs" ng-show="frmcampaignAdminEdit.Name.$invalid">
+                                <small class="text-danger" ng-show="frmcampaignAdminEdit.Name.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                            </div>
+                            <span style="left: 10px !important;" ng-show="frmcampaignAdminEdit.Name.$valid && frmcampaignAdminEdit.Name.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                            <span style="left: 10px !important;" ng-show="(frmcampaignAdminEdit.Name.$invalid && !frmcampaignAdminEdit.Name.$pristine) || frmcampaignAdminEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group" ng-class="{'has-error' : frmcampaignAdminEdit.LastName.$invalid && !frmcampaignAdminEdit.LastName.$pristine,'has-success' : frmcampaignAdminEdit.LastName.$valid}">
+                        <label class="col-sm-2 control-label">{{'LASTNAME'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control"
+                                   name="LastName"
+                                   ng-model="campaignAdmin.selectedMemberUser.LastName" />
+                            <div class="m-t-xs" ng-show="frmcampaignAdminEdit.LastName.$invalid">
+                                <small class="text-danger" ng-show="frmcampaignAdminEdit.LastName.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                            </div>
+                            <span style="left: 10px !important;" ng-show="frmcampaignAdminEdit.LastName.$valid && frmcampaignAdminEdit.LastName.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                            <span style="left: 10px !important;" ng-show="(frmcampaignAdminEdit.LastName.$invalid && !frmcampaignAdminEdit.LastName.$pristine) || frmcampaignAdminEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group" ng-class="{'has-error' : frmcampaignAdminEdit.NationalCode.$invalid && !frmcampaignAdminEdit.NationalCode.$pristine,'has-success' : frmcampaignAdminEdit.NationalCode.$valid}">
+                        <label class="col-sm-2 control-label">{{'NATIONAL_CODE'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control"
+                                   name="NationalCode"
+                                   ng-model="campaignAdmin.selectedMemberUser.NationalCode" />
+                            <div class="m-t-xs" ng-show="frmcampaignAdminEdit.NationalCode.$invalid">
+                                <small class="text-danger" ng-show="frmcampaignAdminEdit.NationalCode.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                            </div>
+                            <span style="left: 10px !important;" ng-show="frmcampaignAdminEdit.NationalCode.$valid && frmcampaignAdminEdit.NationalCode.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                            <span style="left: 10px !important;" ng-show="(frmcampaignAdminEdit.NationalCode.$invalid && !frmcampaignAdminEdit.NationalCode.$pristine) || frmcampaignAdminEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class='form-group'>
+                        <label class='col-sm-2 control-label'>{{'COMPANY_NAME'|lowercase|translate}}</label>
+                        <div class='col-sm-10'>
+                            <input type='text' name="FullName" ng-model='campaignAdmin.selectedMemberUser.FullName' class='form-control'>
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class='form-group'>
+                        <label class='col-sm-2 control-label'>{{'User_Type'|lowercase|translate}}</label>
+                        <div class='col-sm-10'>
+                            <label><input type="radio" ng-model="campaignAdmin.selectedMemberUser.IsCompany" ng-value="0">&nbsp;{{'True'|lowercase|translate}}</label><br />
+                            <label><input type="radio" ng-model="campaignAdmin.selectedMemberUser.IsCompany" ng-value="1">&nbsp;{{'Legal'|lowercase|translate}}</label><br />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="HasAccessToEvents" ng-model="discountSerialCard.selectedItem.HasAccessToEvents">{{'This_User_Has_Aaccess_To_Scores_And_Events'|lowercase|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="campaignAdmin.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="campaignAdmin.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

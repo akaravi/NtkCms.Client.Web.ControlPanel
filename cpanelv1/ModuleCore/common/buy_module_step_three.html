@@ -1,0 +1,22 @@
+﻿<fieldset>
+    <h3><i class="fa fa-mobile"></i> {{'FINISH_PAYMENT'|lowercase|translate}}</h3>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{'FINISH_PAYMENT'|lowercase|translate}}</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 text-center">
+                <img style="width:50px; margin:5px auto" src="/CmsFiles/img/1406519944.gif" class="img-responsive"/>
+                <button class="btn btn-success">{{'PAY_ONLINE'|lowercase|translate}}</button>
+            </div>
+            <div class="col-sm-2 text-center">
+                <p><i class="fa fa-4x fa-credit-card"></i></p>
+                <button class="btn btn-success">{{'PAY_WHIT_BANK'|lowercase|translate}}</button>
+            </div>
+        </div>
+    </div>
+
+    <a ng-click="buyModule.gotoStepFinal(signupForm)" class="btn btn-primary pull-right" ng-class="{ 'disabled' : signupForm.$invalid }">{{'NEXT_LEVEL'|lowercase|translate}}</a>
+</fieldset>

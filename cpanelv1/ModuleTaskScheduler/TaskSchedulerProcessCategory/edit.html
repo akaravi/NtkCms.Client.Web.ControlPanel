@@ -1,0 +1,68 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="taskSchedulerProcessCategory.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ taskSchedulerProcessCategory.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmtaskSchedulerProcessCategoryEdit" novalidate ng-submit="taskSchedulerProcessCategory.editRow(frmtaskSchedulerProcessCategoryEdit)">
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="taskSchedulerProcessCategory.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmtaskSchedulerProcessCategoryEdit.RecordStatus.$invalid && !frmtaskSchedulerProcessCategoryEdit.RecordStatus.$pristine,'has-success' : frmtaskSchedulerProcessCategoryEdit.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="taskSchedulerProcessCategory"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="taskSchedulerProcessCategory.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                     ng-class="{'has-error' : frmtaskSchedulerProcessCategoryEdit.Title.$invalid && !frmtaskSchedulerProcessCategoryEdit.Title.$pristine,'has-success' : frmtaskSchedulerProcessCategoryEdit.Title.$valid}">
+                    <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="taskSchedulerProcessCategory.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmtaskSchedulerProcessCategoryEdit.Title.$invalid">
+                            <small class="text-danger" ng-show="frmtaskSchedulerProcessCategoryEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmtaskSchedulerProcessCategoryEdit.Title.$valid && frmtaskSchedulerProcessCategoryEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmtaskSchedulerProcessCategoryEdit.Title.$invalid && !frmtaskSchedulerProcessCategoryEdit.Title.$pristine) || frmtaskSchedulerProcessCategoryEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="taskSchedulerProcessCategory.gridOptions.resultAccess.AccessEditField.indexOf('ClassName')>-1"
+                     ng-class="{'has-error' : frmtaskSchedulerProcessCategoryEdit.ClassName.$invalid && !frmtaskSchedulerProcessCategoryEdit.ClassName.$pristine,'has-success' : frmtaskSchedulerProcessCategoryEdit.ClassName.$valid}">
+                    <label class="col-sm-2 control-label"> {{'CLASS_NAME_EN'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control ltr-support"
+                               ng-required="true"
+                               name="ClassName"
+                               ng-model="taskSchedulerProcessCategory.selectedItem.ClassName" />
+                        <div class="m-t-xs" ng-show="frmtaskSchedulerProcessCategoryEdit.ClassName.$invalid">
+                            <small class="text-danger" ng-show="frmtaskSchedulerProcessCategoryEdit.ClassName.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmtaskSchedulerProcessCategoryEdit.ClassName.$valid && frmtaskSchedulerProcessCategoryEdit.ClassName.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmtaskSchedulerProcessCategoryEdit.ClassName.$invalid && !frmtaskSchedulerProcessCategoryEdit.ClassName.$pristine) || frmtaskSchedulerProcessCategoryEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="taskSchedulerProcessCategory.gridOptions.resultAccess.AccessEditField.indexOf('IsPublish')>-1">
+                    <div class="col-sm-12">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="Required" ng-model="taskSchedulerProcessCategory.selectedItem.IsPublish">{{'IS_PUBLIC'|lowercase|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+               
+
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="taskSchedulerProcessCategory.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="taskSchedulerProcessCategory.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,47 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="jobPosition.busyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="jobPosition.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Job'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmjobPositionAdd" novalidate ng-submit="jobPosition.addNewRow(frmjobPositionAdd)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="jobPosition.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmjobPositionAdd.LinkSourceId.$invalid && !frmjobPositionAdd.LinkSourceId.$pristine,'has-success' : frmjobPositionAdd.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="jobPosition"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="jobPosition.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                     ng-class="{'has-error' : frmjobPositionAdd.Title.$invalid && !frmjobPositionAdd.Title.$pristine,'has-success' : frmjobPositionAdd.Title.$valid}">
+                    <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="jobPosition.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmjobPositionAdd.Title.$invalid">
+                            <small class="text-danger" ng-show="frmjobPositionAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmjobPositionAdd.Title.$valid && frmjobPositionAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmjobPositionAdd.Title.$invalid && !frmjobPositionAdd.Title.$pristine) || frmjobPositionAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="jobPosition.gridOptions.resultAccess.AccessAddField.indexOf('LinkParentId')>-1">
+                    <label class="col-sm-2 control-label">{{'LINK_PARENT_ID'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkParentId" ng-model="jobPosition.selectedItem.LinkParentId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="jobPosition.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="jobPosition.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

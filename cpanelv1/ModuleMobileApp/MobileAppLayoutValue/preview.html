@@ -1,0 +1,24 @@
+﻿<div class="modal-body">
+    <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="$dismiss()"></i>
+    <h5>{{'PREVIEW'|lowercase|translate}}</h5>
+    <hr />
+    <!-- Tile Section -->
+    <div class="row">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-4">
+                    <h3>{{appLayoutValue.appTitle}}</h3>
+                </div>
+            </div>
+        </form>
+        <form class="form-horizontal">
+            <div ng-model="appLayoutValue.submitValue" fb-form="default" fb-default="appLayoutValue.defaultValue"></div>
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-4">
+                    <button class="btn btn-primary" type="button" ng-disabled="appLayoutValue.addRequested" ng-click="appLayoutValue.saveSubmitValues()">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="$dismiss()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

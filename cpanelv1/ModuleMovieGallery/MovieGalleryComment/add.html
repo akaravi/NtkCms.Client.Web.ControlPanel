@@ -1,0 +1,78 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="mvGalleryComment.busyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="mvGalleryComment.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Comment'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmmvGalleryCommentAdd" novalidate ng-submit="mvGalleryComment.addNewRow(frmmvGalleryCommentAdd)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="mvGalleryComment.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                                 ng-class="{'has-error' : frmmvGalleryCommentAdd.RecordStatus.$invalid && !frmmvGalleryCommentAdd.RecordStatus.$pristine,'has-success' : frmmvGalleryCommentAdd.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="mvGalleryComment"></div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="mvGalleryComment.gridOptions.resultAccess.AccessAddField.indexOf('Writer')>-1"
+                                 ng-class="{'has-error' : frmmvGalleryCommentAdd.Writer.$invalid && !frmmvGalleryCommentAdd.Writer.$pristine,'has-success' : frmmvGalleryCommentAdd.Writer.$valid}">
+                                <label class="col-sm-2 control-label"> {{'AUTHOR'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Writer"
+                                           ng-model="mvGalleryComment.selectedItem.Writer" />
+                                    <div class="m-t-xs" ng-show="frmmvGalleryCommentAdd.Writer.$invalid">
+                                        <small class="text-danger" ng-show="frmmvGalleryCommentAdd.Writer.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmmvGalleryCommentAdd.Writer.$valid && frmmvGalleryCommentAdd.Writer.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmmvGalleryCommentAdd.Writer.$invalid && !frmmvGalleryCommentAdd.Writer.$pristine) || frmmvGalleryCommentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="mvGalleryComment.gridOptions.resultAccess.AccessAddField.indexOf('Comment')>-1"
+                                 ng-class="{'has-error' : frmmvGalleryCommentAdd.Comment.$invalid && !frmmvGalleryCommentAdd.Comment.$pristine,'has-success' : frmmvGalleryCommentAdd.Comment.$valid}">
+                                <label class="col-sm-2 control-label"> {{'COMMENT'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Comment"
+                                           ng-model="mvGalleryComment.selectedItem.Comment" />
+                                    <div class="m-t-xs" ng-show="frmmvGalleryCommentAdd.Comment.$invalid">
+                                        <small class="text-danger" ng-show="frmmvGalleryCommentAdd.Comment.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmmvGalleryCommentAdd.Comment.$valid && frmmvGalleryCommentAdd.Comment.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmmvGalleryCommentAdd.Comment.$invalid && !frmmvGalleryCommentAdd.Comment.$pristine) || frmmvGalleryCommentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <!--<div class='hr-line-dashed'></div>
+            <div class="form-group" ng-show="mvGalleryComment.gridOptions.resultAccess.AccessAddField.indexOf('LinkmvGalleryContentId')>-1"
+                 ng-class="{'has-error' : frmmvGalleryCommentAdd.LinkmvGalleryContentId.$invalid && !frmmvGalleryCommentAdd.LinkmvGalleryContentId.$pristine,'has-success' : frmmvGalleryCommentAdd.LinkmvGalleryContentId.$valid}">
+                <label class="col-sm-2 control-label"> {{'SELECT_CONTENT'|lowercase|translate}} </label>
+                <div class="col-sm-10">
+                    <input class="form-control" ng-required="true" name="LinkmvGalleryContentId" rasha-autocomplete="mvGalleryComment.LinkmvGalleryContentIdSelector" ng-model="mvGalleryComment.selectedItem.LinkmvGalleryContentId" />
+                </div>
+            </div>-->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'SELECT_CONTENT'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkMovieGalleryContentId" rasha-autocomplete="mvGalleryComment.LinkMovieGalleryContentIdSelector" ng-model="mvGalleryComment.selectedItem.LinkMovieGalleryContentId" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="mvGalleryComment.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="mvGalleryComment.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+

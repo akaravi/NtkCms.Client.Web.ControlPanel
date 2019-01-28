@@ -1,0 +1,57 @@
+﻿<div class="row">
+    <div class="row">
+        <!-- Status -->
+        <div class="col-md-6">
+            <div class="input-group field-margin">
+                <span class="input-group-addon"> {{'condition'|lowercase|translate}} </span>
+                <span class="input-group-addon">
+                    <input type="checkbox" ng-model="apiSetting.selectedItem.Status">
+                </span>
+            </div>
+        </div>
+
+
+        <!-- HasInherits -->
+            <div class="col-md-6">
+                <div class="input-group field-margin">
+                    <span class="input-group-addon"> {{'INHERITANCE'|lowercase|translate}} </span>
+                    <span class="input-group-addon">
+                        <input type="checkbox" ng-model="apiSetting.selectedItem.HasInherits">
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ApiTitle -->
+        <div class="input-group field-margin">
+            <span class="input-group-addon"> {{'WAY_TITLE'|lowercase|translate}} </span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" name="Title" ng-model="apiSetting.selectedItem.Title">
+        </div>
+
+        <!-- ApiDefaultNumber -->
+        <div class="input-group field-margin">
+            <span class="input-group-addon"> {{'DEFAULT_NUMBER_WAY'|lowercase|translate}} </span>
+            <textarea type="text" class="form-control" aria-describedby="basic-addon1" name="ApiDefaultNumber" ng-model="apiSetting.selectedItem.ApiDefaultNumber" rows="5"></textarea>
+        </div>
+
+
+        <!-- ApiIdentity -->
+        <div class="input-group field-margin">
+            <span class="input-group-addon"> {{'WAY_ID'|lowercase|translate}} </span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" name="ApiIdentity" ng-model="apiSetting.selectedItem.ApiIdentity">
+        </div>
+
+
+
+        <!-- Priority -->
+        <div class="input-group field-margin">
+            <span class="input-group-addon"> {{'PRIORITY'|lowercase|translate}} </span>
+            <input type="number" class="form-control" aria-describedby="basic-addon1" name="Priority" ng-model="apiSetting.selectedItem.Priority">
+        </div>
+
+
+
+
+
+    </div>

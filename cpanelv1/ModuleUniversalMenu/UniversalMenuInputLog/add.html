@@ -1,0 +1,61 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="articleComment.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ articleComment.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmarticleCommentAdd" novalidate ng-submit="articleComment.addNewRow(frmarticleCommentAdd)">
+
+           
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="articleComment.gridOptions.resultAccess.AccessAddField.indexOf('Writer')>-1"
+                     ng-class="{'has-error' : frmarticleCommentAdd.Writer.$invalid && !frmarticleCommentAdd.Writer.$pristine,'has-success' : frmarticleCommentAdd.Writer.$valid}">
+                    <label class="col-sm-2 control-label"> {{'AUTHOR'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Writer"
+                               ng-model="articleComment.selectedItem.Writer" />
+                        <div class="m-t-xs" ng-show="frmarticleCommentAdd.Writer.$invalid">
+                            <small class="text-danger" ng-show="frmarticleCommentAdd.Writer.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmarticleCommentAdd.Writer.$valid && frmarticleCommentAdd.Writer.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmarticleCommentAdd.Writer.$invalid && !frmarticleCommentAdd.Writer.$pristine) || frmarticleCommentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="articleComment.gridOptions.resultAccess.AccessAddField.indexOf('Comment')>-1"
+                     ng-class="{'has-error' : frmarticleCommentAdd.Comment.$invalid && !frmarticleCommentAdd.Comment.$pristine,'has-success' : frmarticleCommentAdd.Comment.$valid}">
+                    <label class="col-sm-2 control-label"> {{'COMMENT'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Comment"
+                               ng-model="articleComment.selectedItem.Comment" />
+                        <div class="m-t-xs" ng-show="frmarticleCommentAdd.Comment.$invalid">
+                            <small class="text-danger" ng-show="frmarticleCommentAdd.Comment.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmarticleCommentAdd.Comment.$valid && frmarticleCommentAdd.Comment.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmarticleCommentAdd.Comment.$invalid && !frmarticleCommentAdd.Comment.$pristine) || frmarticleCommentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="articleComment.gridOptions.resultAccess.AccessAddField.indexOf('LinkarticleContentId')>-1"
+                     ng-class="{'has-error' : frmarticleCommentAdd.LinkarticleContentId.$invalid && !frmarticleCommentAdd.LinkarticleContentId.$pristine,'has-success' : frmarticleCommentAdd.LinkarticleContentId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'SELECT_CONTENT'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-required="true" name="LinkArticleContentId" rasha-autocomplete="articleComment.LinkArticleContentIdSelector" ng-model="articleComment.selectedItem.LinkArticleContentId" />
+                        <!--<select class="form-control" ng-model="articleComment.selectedItem.LinkArticleContentId">
+                            <option ng-repeat="x in articleComment.CommentList" ng-value="x.Id" ng-selected="x.Id == articleComment.CommentList[0].Id">{{x.Title}}</option>
+                        </select>-->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="articleComment.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="articleComment.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+

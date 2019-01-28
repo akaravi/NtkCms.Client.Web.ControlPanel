@@ -1,0 +1,94 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="vehicleProperty.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Specify_The_Type_Of_Sales'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmContractAdd" novalidate ng-submit="">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'VEHICLE'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <label class="control-label" style="font-weight: bolder" name="LinkPropertyId">{{vehicleProperty.selectedItem.LinkPropertyTitle}}</label>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="col-sm-12 back1" ng-repeat="x in vehicleProperty.contractsList" style="margin-bottom:10px;">
+                    <h4 style="margin-top:10px;margin-bottom:20px">{{'Type_Of_Transaction_Heading'|lowercase|translate}}&nbsp;{{x.virtual_ContractType.Title}}</h4>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" ng-show="x.virtual_ContractType.HasSalePrice">{{'SALES_PRICE'|lowercase|translate}}</label>
+                        <label class="col-sm-2 control-label" ng-show="x.virtual_ContractType.HasPresalePrice">{{'PRE_PAYMENT'|lowercase|translate}}</label>
+                        <label class="col-sm-2 control-label" ng-show="x.virtual_ContractType.HasDepositPrice">{{'MORTGAGE'|lowercase|translate}}</label>
+                        <label class="col-sm-2 control-label" ng-show="x.virtual_ContractType.HasRentPrice">{{'RENT'|lowercase|translate}}</label>
+                        <div class="col-sm-7">
+                            <input class="form-control" ng-show="x.virtual_ContractType.HasSalePrice" ng-model="x.SalePrice" ng-required="x.virtual_ContractType.HasSalePrice" ng-change="vehicleProperty.thousandSeparator('SalePrice',vehicleProperty.selectedItem.SalePrice)"/>
+                            <input class="form-control" ng-show="x.virtual_ContractType.HasPresalePrice" ng-model="x.PresalePrice" ng-required="x.virtual_ContractType.HasPresalePrice" ng-change="vehicleProperty.thousandSeparator('PresalePrice',vehicleProperty.selectedItem.PresalePrice)"/>
+                            <input class="form-control" ng-show="x.virtual_ContractType.HasDepositPrice" ng-model="x.DepositPrice" ng-required="x.virtual_ContractType.HasDepositPrice" ng-change="vehicleProperty.thousandSeparator('DepositPrice',vehicleProperty.selectedItem.DepositPrice)"/>
+                            <input class="form-control" ng-show="x.virtual_ContractType.HasRentPrice" ng-model="x.RentPrice" ng-required="x.virtual_ContractType.HasRentPrice" ng-change="vehicleProperty.thousandSeparator('RentPrice',vehicleProperty.selectedItem.RentPrice)"/>
+                        </div>
+                        <label class="col-sm-3 control-label" ng-show="x.virtual_ContractType.HasSalePrice">{{x.virtual_ContractType.UnitSalePrice}}</label>
+                        <label class="col-sm-3 control-label" ng-show="x.virtual_ContractType.HasPresalePrice">{{x.virtual_ContractType.UnitPresalePrice}}</label>
+                        <label class="col-sm-3 control-label" ng-show="x.virtual_ContractType.HasDepositPrice">{{x.virtual_ContractType.UnitDepositPrice}}</label>
+                        <label class="col-sm-3 control-label" ng-show="x.virtual_ContractType.HasRentPrice">{{x.virtual_ContractType.UnitRentPrice}}</label>
+                    </div>
+                    <button class="btn btn-warning" style="margin:2px 5px 10px 0px;float:left" title="{{'edit'|lowercase|translate}}" ng-disabled="vehicleProperty.addRequested" ng-click="vehicleProperty.editContract($index)" ng-show="vehicleProperty.contractsListresultAccess.AccessEditRow"><i class="fa fa-edit" aria-hidden="false"></i></button>
+                    <button class="btn btn-danger" style="margin:2px 5px 10px 0px;float:left" title="{{'delete'|lowercase|translate}}" ng-disabled="vehicleProperty.addRequested" ng-click="vehicleProperty.deleteContract($index)" ng-show="vehicleProperty.contractsListresultAccess.AccessDeleteRow"><i class="fa fa-remove" aria-hidden="false"></i></button>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'ADVERTISING_TYPE'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-model="vehicleProperty.selectedItem.LinkVehicleContractTypeId" ng-change="vehicleProperty.onContractTypeChange(vehicleProperty.selectedItem.LinkVehicleContractTypeId)">
+                            <option ng-repeat="x in vehicleProperty.contractTypeListItems" value="{{x.Id}}">{{x.Title}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="vehicleProperty.selectedItem.HasSalePrice">
+                    <label class="col-sm-2 control-label">{{'SALES_PRICE'|lowercase|translate}}</label>
+                    <div class="col-sm-7">
+                        <input class="form-control" name="SalePrice" ng-model="vehicleProperty.selectedItem.SalePrice" ng-change="vehicleProperty.thousandSeparator('SalePrice',vehicleProperty.selectedItem.SalePrice)" />
+                    </div>
+                    <label class="col-sm-3 control-label">{{vehicleProperty.selectedItem.UnitSalePrice}}</label>
+                </div>
+                <div class="form-group" ng-show="vehicleProperty.selectedItem.HasPresalePrice">
+                    <label class="col-sm-2 control-label">{{'PRE_PAYMENT'|lowercase|translate}}</label>
+                    <div class="col-sm-7">
+                        <input class="form-control" name="PresalePrice" ng-model="vehicleProperty.selectedItem.PresalePrice" ng-change="vehicleProperty.thousandSeparator('PresalePrice',vehicleProperty.selectedItem.PresalePrice)" />
+                    </div>
+                    <label class="col-sm-3 control-label">{{vehicleProperty.selectedItem.UnitPresalePrice}}</label>
+                </div>
+                <div class="form-group" ng-show="vehicleProperty.selectedItem.HasDepositPrice">
+                    <label class="col-sm-2 control-label">{{'MORTGAGE'|lowercase|translate}}</label>
+                    <div class="col-sm-7">
+                        <input class="form-control" name="DepositPrice" ng-model="vehicleProperty.selectedItem.DepositPrice" ng-change="vehicleProperty.thousandSeparator('DepositPrice',vehicleProperty.selectedItem.DepositPrice)" />
+                    </div>
+                    <label class="col-sm-3 control-label">{{vehicleProperty.selectedItem.UnitDepositPrice}}</label>
+                </div>
+                <div class="form-group" ng-show="vehicleProperty.selectedItem.HasRentPrice">
+                    <label class="col-sm-2 control-label" ng-show="vehicleProperty.selectedItem.HasDepositPrice">{{'RENT'|lowercase|translate}}</label>
+                    <label class="col-sm-2 control-label" ng-show="vehicleProperty.selectedItem.HasRentPrice">{{'INSTALLMENTS'|lowercase|translate}}</label>
+                    <div class="col-sm-7">
+                        <input class="form-control" name="RentPrice" ng-model="vehicleProperty.selectedItem.RentPrice" ng-change="vehicleProperty.thousandSeparator('RentPrice',vehicleProperty.selectedItem.RentPrice)" />
+                    </div>
+                    <label class="col-sm-3 control-label">{{vehicleProperty.selectedItem.UnitRentPrice}}</label>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'description'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <textarea id="contractDescription"  class="form-control" name="Description" ng-model="vehicleProperty.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button class="btn btn-primary col-md-offset-2 col-md-10" type="button" ng-disabled="vehicleProperty.addRequested" ng-click="vehicleProperty.addContract()">{{'RECORD'|lowercase|translate}}</button>
+                    </div>
+                </div>
+                <!--<label class="control-label">{{vehicleProperty.contractsList.length}} آگهی موجود است</label>-->
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <!--<button class="btn btn-primary" ng-disabled="vehicleProperty.addRequested" type="submit">{{'save'|lowercase|translate}}</button>-->
+                    <button class="btn btn-default" type="button" ng-click="vehicleProperty.closeModal()">{{'CLOSE'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

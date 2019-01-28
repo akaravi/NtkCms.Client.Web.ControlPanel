@@ -1,0 +1,57 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="advertisementPropertyTypeController as advertisementPropertyType" ng-init="advertisementPropertyType.init()">
+    <!--<div class="container">-->
+    <div class="row">
+        <div class="col-md-2">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;{{'category'|lowercase|translate}}&nbsp;{{'ADVERTISEMENT_PROPERTY_TYPES'|lowercase|translate}}</h5></div>
+                    <div class="panel-body">
+                        <div style="position: relative">
+                            <ul class="tree" tree-options="advertisementPropertyType.treeConfig"></ul>
+                        </div>
+                        <!-- Category Section -->
+                        <div style="margin-top: 20px;">
+                            <a ng-click="advertisementPropertyType.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-success">
+                                <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
+                            </a>
+                            <div id="categoryButtons" style="display: none;">
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="advertisementPropertyType.Add" ng-click="advertisementPropertyType.openAddCategoryModal()" ng-show="advertisementPropertyType.gridOptions.resultAccess.AccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp;{{'add'|lowercase|translate}}</button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="advertisementPropertyType.Edit" ng-click="advertisementPropertyType.openEditCategoryModal()" ng-show="advertisementPropertyType.gridOptions.resultAccess.AccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}}</button>
+                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="advertisementPropertyType.Delete" ng-click="advertisementPropertyType.deleteCategory()" ng-show="advertisementPropertyType.gridOptions.resultAccess.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="col-md-10" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h5><i class="fa fa-newspaper-o " style="font-size: 18px;"></i>&nbsp;{{'LIST'|lowercase|translate}}&nbsp;{{'ADVERTISEMENT_PROPERTY_TYPES'|lowercase|translate}}<nospecialtag ng-if="advertisementPropertyType.treeConfig.currentNode.Id!=null">:&nbsp;{{advertisementPropertyType.treeConfig.currentNode.Title}}&nbsp; - کد سیستمی:&nbsp;{{advertisementPropertyType.treeConfig.currentNode.Id}}</nospecialtag></h5></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-primary" ng-click="advertisementPropertyType.openAddModal()" ng-show="advertisementPropertyType.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="advertisementPropertyType.openEditModal()" ng-show="advertisementPropertyType.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="advertisementPropertyType.deleteRow()" ng-show="advertisementPropertyType.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-success" ng-click="advertisementPropertyType.showAdvancedSearchPanel(advertisementPropertyType.gridOptions.resultAccess.AccessSearchField)"><i class="fa fa-search fontaesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="advertisementPropertyType.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+                    <button class="btn btn-success" ng-click="advertisementPropertyType.getCount()">{{'number'|lowercase|translate}}&nbsp;{{advertisementPropertyType.ListItemsTotalRowCount}}</button>
+
+                </div>
+                <hr />
+                <div id="builderPanel" class="col-sm-12 col-lg-12 col-md-12" style="display: none; margin-bottom: 10px;">
+                    <div id="builder" query-builder="advertisementPropertyType"></div>
+                    <div class="btn-group" style="float: left;">
+                        <button class="btn btn-success reset" data-target="basic" type="button" id="btn-get" ng-click="advertisementPropertyType.getRules()"> {{'look'|lowercase|translate}} </button>
+                        <button class="btn btn-primary set-json" data-target="basic" type="button" id="btn-save" ng-click="advertisementPropertyType.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                        <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-set" ng-click="advertisementPropertyType.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" rasha-loading="advertisementPropertyType.busyIndicator">
+                <div class="col-md-12" >
+                    <div rasha-grid="advertisementPropertyType.gridOptions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

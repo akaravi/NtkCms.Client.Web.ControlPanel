@@ -1,0 +1,45 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="cmsCpMainMenuGridCtrl as cmsCpMainMenugrd" ng-init="cmsCpMainMenugrd.init()">
+    <div class="row" rasha-loading="cmsCpMainMenugrd.busyIndicator">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;&nbsp;  {{'MENUS'|lowercase|translate}}</h5></div>
+                    <div class="panel-body">
+                        <div style="position: relative">
+                            <ul class="tree" tree-options="cmsCpMainMenugrd.treeConfig"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5><i class="fa fa-biographypaper-o " style="font-size: 18px;"></i>&nbsp;{{'SUBMENUS'|lowercase|translate}}</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="text-align: right;">
+                    <button class="btn btn-primary" ng-click="cmsCpMainMenugrd.openAddContentModal()" ng-show="cmsCpMainMenugrd.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="cmsCpMainMenugrd.openEditContentModal()" ng-show="cmsCpMainMenugrd.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="cmsCpMainMenugrd.deleteContent()" ng-show="cmsCpMainMenugrd.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-success" ng-click="cmsCpMainMenugrd.showAdvancedSearchPanel(cmsCpMainMenugrd.gridOptions.resultAccess.AccessSearchField)"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <button class="btn btn-warning" type="button" ng-click="cmsCpMainMenugrd.savePriorityOrderBtn()" ng-show="cmsCpMainMenugrd.showSavePriorityOrderBtn" id="save-priorityOrderBtn-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp;{{'SAVE_ORDER_MENU'|lowercase|translate}}</button>
+                </div>
+                <hr />
+                <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+                    <div id="builder" query-builder="cmsCpMainMenugrd"></div>
+                    <div class="btn-group" style="float: left;">
+                        <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="cmsCpMainMenugrd.getRules()">{{'look'|lowercase|translate}}</button>
+                        <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="cmsCpMainMenugrd.saveRules()">{{'save_condition'|lowercase|translate}}</button>
+                        <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="cmsCpMainMenugrd.setRules()">{{'restore_condition'|lowercase|translate}}</button>
+                    </div>
+                </div>
+                <div class="col-md-12" rasha-loading="cmsCpMainMenugrd.gridBusyIndicator">
+                    <div rasha-grid="cmsCpMainMenugrd.gridOptions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

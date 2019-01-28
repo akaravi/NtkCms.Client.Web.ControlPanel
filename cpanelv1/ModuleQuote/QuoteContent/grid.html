@@ -1,0 +1,67 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="quoteContentCtrl as quoteContent" ng-init="quoteContent.init()">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;{{'category'|lowercase|translate}}&nbsp;{{'Quote'|lowercase|translate}}</h5></div>
+                    <div class="panel-body">
+                        <div style="position: relative">
+                            <ul class="tree" tree-options="quoteContent.treeConfig"></ul>
+                        </div>
+                        <!-- Category Section -->
+                        <div style="margin-top: 20px;">
+                            <a ng-click="quoteContent.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-primary">
+                                <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
+                            </a>
+                            <div id="categoryButtons" style="display: none;">
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="quoteContentCtrl.Add" ng-click="quoteContent.addNewCategoryModel()" ng-show="quoteContent.gridOptions.resultAccess.AccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="quoteContentCtrl.Edit" ng-click="quoteContent.editCategoryModel()" ng-show="quoteContent.gridOptions.resultAccess.AccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="quoteContentCtrl.Delete" ng-click="quoteContent.deleteCategory()" ng-show="quoteContent.gridOptions.resultAccess.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5><i class="fa fa-articlepaper-o " style="font-size: 18px;"></i>&nbsp;{{'LIST'|lowercase|translate}}&nbsp;{{'Quote'|lowercase|translate}}</h5>
+                </div>
+            </div>
+            <div class="row" id="topMenu">
+                <div class="col-md-12" style="text-align: center;">
+                    <button class="btn btn-primary" ng-click="quoteContent.addNewContentModel()" ng-show="quoteContent.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                    <button class="btn btn-warning" ng-click="quoteContent.openEditModel()" ng-show="quoteContent.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="quoteContent.deleteContent()" ng-show="quoteContent.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}} </button>
+                    <button class="btn btn-success" ng-click="quoteContent.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <button class="btn btn-warning" type="button" ng-click="quoteContent.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}} </button>
+                    <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="quoteContent.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+                    <button class="btn btn-success" ng-click="quoteContent.getCount()">{{'number'|lowercase|translate}}&nbsp;{{quoteContent.ListItemsTotalRowCount}}</button>
+                    <button class="btn btn-info" ng-click="quoteContent.Showstatistics()"><i class="fa fa-pie-chart"></i>&nbsp; آمار&nbsp;&nbsp;</button>
+                </div>
+                <hr />
+                <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+                    <div ng-if="quoteContent.gridOptions.resultAccess.AccessSearchField" id="builder" query-builder="quoteContent"></div>
+                    <div class="btn-group" style="float: left;">
+                        <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="quoteContent.getRules()"> {{'look'|lowercase|translate}} </button>
+                        <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="quoteContent.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                        <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="quoteContent.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div rasha-grid="quoteContent.gridOptions" rasha-loading="quoteContent.categoryBusyIndicator"></div>
+                </div>
+                <div class="col-md-12" ng-show="quoteContent.showGridComment">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3>{{quoteContent.Title}}</h3>
+                        </div>
+                    </div>
+                    <div rasha-grid="quoteContent.gridContentOptions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

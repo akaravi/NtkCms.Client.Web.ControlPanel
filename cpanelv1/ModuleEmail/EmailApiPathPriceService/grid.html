@@ -1,0 +1,32 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="emailapipathpriceserviceCtrl as emailapipathpriceservice" ng-init="emailapipathpriceservice.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="emailapipathpriceservice.Add" ng-click="emailapipathpriceservice.openAddModal()" ng-show="emailapipathpriceservice.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="emailapipathpriceservice.Edit" ng-click="emailapipathpriceservice.openEditModal()"ng-show="emailapipathpriceservice.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="emailapipathpriceservice.Delete" ng-click="emailapipathpriceservice.deleteRow()" ng-show="emailapipathpriceservice.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="emailapipathpriceservice.showAdvancedSearchPanel(emailapipathpriceservice.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-warning" type="button" ng-click="emailapipathpriceservice.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="emailapipathpriceservice.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="emailapipathpriceservice.getCount()">{{'number'|lowercase|translate}}&nbsp;{{emailapipathpriceservice.ListItemsTotalRowCount}}</button>
+            <button class="btn btn-warning" type="button" ng-click="emailapipathpriceservice.changeState('emailprivatesiteconfig')">{{'BACK'|lowercase|translate}}&nbsp;&nbsp;<i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="emailapipathpriceservice" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div rasha-grid="emailapipathpriceservice.gridOptions"></div>
+        </div>
+    </div>
+    <h3>جزییات</h3>
+    <div class="row" id="gridLogs" style="display: none;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div rasha-grid="emailapipathpriceservice.gridLogs"></div>
+        </div>
+    </div>
+</div>
+

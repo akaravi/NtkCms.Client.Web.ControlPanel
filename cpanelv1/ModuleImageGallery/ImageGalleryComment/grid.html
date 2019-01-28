@@ -1,0 +1,33 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="imgGalleryCommentCtrl as imgGalleryComment" ng-init="imgGalleryComment.init()">
+    <!--    <div class="container">-->
+
+    <div class="row" rasha-loading="imgGalleryComment.busyIndicator">
+        <div class="col-sm-12">
+            <!--<div rasha-loading="imgGalleryComment.busyIndicator"></div>-->
+            <button class="btn btn-primary" rasha-userrole="imgGalleryComment.Add" ng-click="imgGalleryComment.openAddModal()" ng-show="imgGalleryComment.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="imgGalleryComment.Edit" ng-click="imgGalleryComment.openEditModal()" ng-show="imgGalleryComment.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="imgGalleryComment.Delete" ng-click="imgGalleryComment.deleteRow()" ng-show="imgGalleryComment.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="imgGalleryComment.showAdvancedSearchPanel(imgGalleryComment.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="imgGalleryComment.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="imgGalleryComment.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="imgGalleryComment.getCount()">{{'number'|lowercase|translate}}&nbsp;{{imgGalleryComment.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="imgGalleryComment"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="imgGalleryComment.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="imgGalleryComment.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="imgGalleryComment.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div rasha-grid="imgGalleryComment.gridOptions"></div>
+        </div>
+    </div>
+
+</div>

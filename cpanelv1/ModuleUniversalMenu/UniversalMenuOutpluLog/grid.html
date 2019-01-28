@@ -1,0 +1,25 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="articlehareSettingCtrl as articlehareSetting" ng-init="articlehareSetting.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="articlehareSetting.busyIndicator"></div>
+
+            <button class="btn btn-primary" rasha-userrole="articlehareSetting.Add" ng-click="articlehareSetting.openAddModal()" ng-show="articlehareSetting.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="articlehareSetting.Edit" ng-click="articlehareSetting.openEditModal()" ng-show="articlehareSetting.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="articlehareSetting.Delete" ng-click="articlehareSetting.deleteRow()" ng-show="articlehareSetting.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="articlehareSetting.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-primary" type="button" ng-click="articlehareSetting.reportData()"> {{'report'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="articlehareSetting" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="articlehareSetting.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,44 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="reservationComment.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'REPORT' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmCmsSiteAdd" novalidate ng-submit="reservationComment.exportFile(frmCmsSiteAdd)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'File_Type' |lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-options="x.value as x.key for x in reservationComment.EnumExportFileType" name="FileType" ng-model="reservationComment.ExportFileClass.FileType"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'How_To_Receive' |lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-options="x.value as x.key for x in reservationComment.EnumExportReceiveMethod" name="RecieveMethod" ng-model="reservationComment.ExportFileClass.RecieveMethod"></select>
+                    </div>
+                </div>
+                <!-- RowCount -->
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Number_Of_Row' |lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" style="direction: ltr" type="number" min="1" max="2000" name="RowCount" ng-model="reservationComment.ExportFileClass.RowCount" ng-change="reservationComment.rowCountChanged()" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="reservationComment.reportDownloadLink != undefined && reservationComment.reportDownloadLink != null">
+                    <label class="col-sm-2 control-label">{{'DOWNLOAD_LINK' |lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text"  ng-model="reservationComment.reportDownloadLink" readonly/>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="reservationComment.addRequested" type="submit">{{'Receive_Report' |lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="reservationComment.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

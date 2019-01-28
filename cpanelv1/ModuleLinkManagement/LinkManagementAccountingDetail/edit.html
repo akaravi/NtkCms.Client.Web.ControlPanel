@@ -1,0 +1,86 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="linkManagementAccountingDetail.busyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="linkManagementAccountingDetail.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ linkManagementAccountingDetail.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmlinkManagementAccountingDetailEdit" novalidate ng-submit="linkManagementAccountingDetail.editRow(frmlinkManagementAccountingDetailEdit)">
+               
+                 <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="linkManagementAccountingDetail.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmlinkManagementAccountingDetailAdd.RecordStatus.$invalid && !frmlinkManagementAccountingDetailAdd.RecordStatus.$pristine,'has-success' : frmlinkManagementAccountingDetailAdd.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="linkManagementAccountingDetail"></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Document_Code'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkManagementAccountingId" rasha-autocomplete="linkManagementAccountingDetail.LinkManagementAccountingIdSelector" ng-model="linkManagementAccountingDetail.selectedItem.LinkManagementAccountingId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'Row_Type'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='number' ng-model='linkManagementAccountingDetail.selectedItem.AccountingType' class='form-control' />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'The_Row_Number'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='number' ng-model='linkManagementAccountingDetail.selectedItem.RowNumber' class='form-control' />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'description'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <textarea type='text' ng-required="true" ng-model='linkManagementAccountingDetail.selectedItem.Description' class='form-control' style="resize: vertical;height: 100px;"></textarea>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'Debtor'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='number' ng-model='linkManagementAccountingDetail.selectedItem.Debtor' class='form-control' />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'Creditor'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='number' ng-model='linkManagementAccountingDetail.selectedItem.Creditor' class='form-control' />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'Receipt_Number'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='text' ng-model='linkManagementAccountingDetail.selectedItem.FishNumber' class='form-control' />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'Token_Number'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='text' ng-model='linkManagementAccountingDetail.selectedItem.TokenNumber' class='form-control' />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'Receipt_Code'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='text' ng-model='linkManagementAccountingDetail.selectedItem.ReceiptCode' class='form-control' />
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="linkManagementAccountingDetail.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="linkManagementAccountingDetail.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

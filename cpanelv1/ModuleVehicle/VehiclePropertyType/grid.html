@@ -1,0 +1,33 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="vehiclePropertyTypeController as vehiclePropertyType" ng-init="vehiclePropertyType.init()">
+    <!-- <div class="container">-->
+    <div class="row" rasha-loading="vehiclePropertyType.busyIndicator">
+        <div class="col-sm-12">
+            <!--<div rasha-loading="vehiclePropertyType.busyIndicator"></div>-->
+            <button class="btn btn-primary" rasha-userrole="vehiclePropertyType.Add" ng-click="vehiclePropertyType.openAddModal()" ng-show="vehiclePropertyType.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="vehiclePropertyType.Edit" ng-click="vehiclePropertyType.openEditModal()" type="button" ng-show="vehiclePropertyType.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="vehiclePropertyType.Delete" ng-click="vehiclePropertyType.deleteRow()" type="button" ng-show="vehiclePropertyType.gridOptions.resultAccess.AccessDeleteRow" > {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="vehiclePropertyType.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="vehiclePropertyType.openGridConfigModal(vehiclePropertyType.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="vehiclePropertyType.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="vehiclePropertyType.getCount()">{{'number'|lowercase|translate}}&nbsp;{{vehiclePropertyType.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="vehiclePropertyType" ></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="vehiclePropertyType.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="vehiclePropertyType.getJson()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="vehiclePropertyType.getJson()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <form method="get" class="form-horizontal" name="frmvehiclePropertyTypeAdd" novalidate ng-submit="vehiclePropertyType.addNewRow(frmvehiclePropertyTypeAdd)">
+                <div class='hr-line-dashed'></div>
+            </form>
+            <div rasha-grid="vehiclePropertyType.gridOptions"></div>
+        </div>
+    </div>
+</div>

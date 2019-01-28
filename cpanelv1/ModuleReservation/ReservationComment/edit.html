@@ -1,0 +1,90 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="reservationComment.busyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="reservationComment.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Comment' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmreservationCommentEdit" novalidate ng-submit="reservationComment.editRow(frmreservationCommentEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="reservationComment.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                                 ng-class="{'has-error' : frmreservationCommentAdd.RecordStatus.$invalid && !frmreservationCommentAdd.RecordStatus.$pristine,'has-success' : frmreservationCommentAdd.LinkSourceId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="reservationComment"></div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="reservationComment.gridOptions.resultAccess.AccessEditField.indexOf('Writer')>-1"
+                                 ng-class="{'has-error' : frmreservationCommentEdit.Writer.$invalid && !frmreservationCommentEdit.Writer.$pristine,'has-success' : frmreservationCommentEdit.Writer.$valid}">
+                                <label class="col-sm-2 control-label"> {{'AUTHOR'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Writer"
+                                           ng-model="reservationComment.selectedItem.Writer" />
+                                    <div class="m-t-xs" ng-show="frmreservationCommentEdit.Writer.$invalid">
+                                        <small class="text-danger" ng-show="frmreservationCommentEdit.Writer.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmreservationCommentEdit.Writer.$valid && frmreservationCommentEdit.Writer.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmreservationCommentEdit.Writer.$invalid && !frmreservationCommentEdit.Writer.$pristine) || frmreservationCommentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="reservationComment.gridOptions.resultAccess.AccessEditField.indexOf('Comment')>-1"
+                                 ng-class="{'has-error' : frmreservationCommentEdit.Comment.$invalid && !frmreservationCommentEdit.Comment.$pristine,'has-success' : frmreservationCommentEdit.Comment.$valid}">
+                                <label class="col-sm-2 control-label"> {{'COMMENT'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Comment"
+                                           ng-model="reservationComment.selectedItem.Comment" />
+                                    <div class="m-t-xs" ng-show="frmreservationCommentEdit.Comment.$invalid">
+                                        <small class="text-danger" ng-show="frmreservationCommentEdit.Comment.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmreservationCommentEdit.Comment.$valid && frmreservationCommentEdit.Comment.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmreservationCommentEdit.Comment.$invalid && !frmreservationCommentEdit.Comment.$pristine) || frmreservationCommentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" 
+                                 ng-class="{'has-error' : frmreservationCommentEdit.LinkContentId.$invalid && !frmreservationCommentEdit.LinkContentId.$pristine,'has-success' : frmreservationCommentEdit.LinkContentId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'SELECT_CONTENT'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="true" name="LinkContentId" rasha-autocomplete="reservationComment.LinkContentIdSelector" ng-model="reservationComment.selectedItem.LinkContentId" />
+                                    <!--<select class="form-control" ng-model="reservationcategory.selectedItem.LinkContentId">
+                        <option ng-repeat="x in reservationComment.CommentList" ng-value="x.Id">{{x.Title}}</option>
+                    </select>-->
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <label class="checkbox-inline">
+                                        <input icheck type="checkbox" value="option1" id="IsActivated" ng-model="reservationComment.selectedItem.IsActivated" /> {{'IS_ACTIVE'|lowercase|translate}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <label class="checkbox-inline">
+                                        <input icheck type="checkbox" value="option2" id="IsArchived" ng-model="reservationComment.selectedItem.IsArchived" /> {{'IS_ARCHIVE'|lowercase|translate}}
+                                    </label>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="reservationComment.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="reservationComment.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,231 @@
+﻿<div class="wrapper wrapper-content animated fadeInLeft" ng-controller="formCtrl as frm" ng-init="frm.init()">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="tabs-container">
+
+                <form method="get" class="form-horizontal" name="formName" novalidate ng-submit="frm.signupForm(formName)">
+
+                    <tabset>
+                        <tab heading="{{'category'|lowercase|translate}}">
+                            <div class="panel-body">
+                                <!--<js-tree ng-model="instant" tree-plugins="wholerow" tree-events="ready:readyCB;changed:changedCB;open_node:openNodeCB" tree-state-key="stateTree" tree-data="scope" tree-model="treeModel"></js-tree>-->
+                                <div js-tree="frm.treeConfig" ng-model="frm.treeModel" should-apply="frm.ignoreModelChanges()" tree="frm.treeInstance" tree-events="ready:frm.readyCB;create_node:frm.createNodeCB"></div>
+                                <button ng-click="frm.addLog()" style="margin-top: 10px;" class="btn-primary btn-info btn">Log</button>
+                            </div>
+                        </tab>
+                        <tab heading="{{'SEARCH_ENGINE'|lowercase|translate}}">
+                            <div class="panel-body">
+                            </div>
+                        </tab>
+                        <tab>
+
+                            <tab-heading>
+                                <span ng-if="frm.tabContent" class="label label-danger"><i class="fa fa-exclamation-triangle text-center" style="margin-right:0px !important"></i></span>
+                                <span ng-if="!frm.tabContent" class="label label-info"><i class="fa fa-check text-center" style="margin-right:0px !important"></i></span>
+                                {{'CONTENT'|lowercase|translate}}
+                            </tab-heading>
+
+                            <div class=" panel-body">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <h5>
+                                            {{'SEND_NEWS'|lowercase|translate}}
+                                        </h5>
+                                    </div>
+                                    <div class="ibox-content" ng-form="formName" bind-validity="frm.tabContent">
+
+                                        <div class="form-group"
+                                             ng-class="{'has-error' : formName.newsTitle.$invalid && !formName.newsTitle.$pristine,'has-success' : formName.newsTitle.$valid}">
+                                            <label class="col-sm-2 control-label">{{'NEWS_TITLE'|lowercase|translate}}</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control"
+                                                       ng-required="true"
+                                                       name="newsTitle"
+                                                       ng-model="frm.newsTitle">
+                                                <div class="m-t-xs" ng-show="formName.newsTitle.$invalid">
+                                                    <small class="text-danger" ng-show="formName.newsTitle.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'ENTER_NEWS_TITLE_ERROR'|lowercase|translate}}</small>
+                                                </div>
+                                                <span style="left: 10px !important;" ng-show="formName.newsTitle.$valid && formName.newsTitle.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                                <span style="left: 10px !important;" ng-show="(formName.newsTitle.$invalid && !formName.newsTitle.$pristine) || formName.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{'SHORT_DESCRIPTION'|lowercase|translate}}</label>
+                                            <div class="col-sm-10">
+                                                <textarea type="text" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{'FULL_CONTENT'|lowercase|translate}}</label>
+                                            <div class="col-sm-10">
+                                                <div summernote class="summernote" ng-model="frm.summernoteText">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label"> {{'display_setting'|lowercase|translate}} </label>
+                                            <div class="col-sm-10">
+                                                <label class="checkbox-inline">
+                                                    <input icheck type="checkbox" value="option1" id="inlineCheckbox1" ng-model="frm.isComment"> {{'SENDING_COMMENT'|lowercase|translate}}
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input icheck type="checkbox" value="option2" id="inlineCheckbox2" ng-model="frm.isAccepted"> {{'ACCEPTING_COMMENT'|lowercase|translate}}
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input icheck type="checkbox" value="option3" id="inlineCheckbox3" ng-model="frm.isSpecial"> {{'SHOW_ON_SPECIAL_NEWS'|lowercase|translate}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{'TEMPLATE_SETTING'|lowercase|translate}}</label>
+                                            <div class="col-sm-10">
+                                                <div class="col-sm-6">
+                                                    <label class="col-sm-4 control-label">{{'LINK_TITLE_FA'|lowercase|translate}}</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" ng-model="frm.TitleFas">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label class="col-sm-4 control-label">{{'LINK_TITLE_EN'|lowercase|translate}}</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" ng-model="frm.TittleEns">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{'NEWS_PRICE'|lowercase|translate}}</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" currency-input ng-model="frm.Fee" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{'DATE_OF_NEWS'|lowercase|translate}}</label>
+                                            <div class="col-sm-10">
+                                                <input dir="rtl"
+                                                       type="text"
+                                                       id="start_date"
+                                                       datepicker-append-to-body="true"
+                                                       show-button-bar="false"
+                                                       name="start_date"
+                                                       is-open="frm.focus"
+                                                       ng-focus="frm.openDate($event)"
+                                                       datepicker-popup-persian="d MMMM yyyy"
+                                                       datepicker-options="dateOptions"
+                                                       class="form-control"
+                                                       ng-model="frm.selectedItem.NewsDate">
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{'TIME_OF_NEWS'|lowercase|translate}}</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" ng-model="frm.TimeNew">
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{'COLOR_OF_BACKGROUND_NEWS'|lowercase|translate}}</label>
+                                            <div class="col-sm-10">
+                                                <input minicolors class="form-control text-left" type="text" ng-model="frm.color">
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{'NUMBER_OF_SHOW_ON_PAGE'|lowercase|translate}}</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" numbers-only ng-model="frm.viewCount" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{'RANK_NEWS_OF_100'|lowercase|translate}}</label>
+                                            <div class="col-sm-10" ng-init="frm.first" dir="ltr">
+                                                <div style="margin-top: 10px !important;" slider ng-model="frm.first" start=1 end=100 density=2></div>
+                                                <p style="margin-top: 10px;">{{'RANK_OF_NEWS'|lowercase|translate}} <span ng-bind="frm.first"></span></p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{'ACCESS_LEVEL'|lowercase|translate}}</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" ng-model="frm.Per">
+                                                    <option>{{'FOR_ALL'|lowercase|translate}}</option>
+                                                    <option>{{'FOR_SPECIAL_USERS'|lowercase|translate}}</option>
+                                                    <option>{{'FOR_GOLDEN_USER'|lowercase|translate}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{'ACCESS_LEVEL'|lowercase|translate}}</label>
+                                            <div class="col-sm-10">
+                                                <div angucomplete-alt id="members"
+                                                     placeholder="{{'SELECT_REGION'|lowercase|translate}}"
+                                                     pause="100"
+                                                     initial-value="frm.InitalValue"
+                                                     selected-object="frm.selectedCountry"
+                                                     minlength="1"
+                                                     remote-url="/test/province/?item="
+                                                     title-field="Title"
+                                                     description-field="TitleEn"
+                                                     input-class="form-control form-control-small"></div>
+                                            </div>
+                                        </div>
+                                        <div class="hr-line-dashed"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{'MEMBER_RANGE'|lowercase|translate}}</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" class="form-control" ng-model="frm.Baze">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tab>
+                        <tab heading="{{'SHOW'|lowercase|translate}}">
+                            <div class="panel-body">
+                            </div>
+                        </tab>
+                    </tabset>
+                    <div class="row" style="margin-top: 20px;">
+                    <div class="col-sm-9">
+                        <button class="btn btn-white" type="button">{{'BACK'|lowercase|translate}}</button>
+                        <button class="btn btn-primary" type="submit" ng-click="submitted=true">{{'SAVE_CHANGES'|lowercase|translate}}</button>
+                    </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <i class="fa fa-info-circle"></i> {{'HELP_FOR_FILL_OUT_FORM'|lowercase|translate}}
+            </div>
+            <div class="panel-body">
+                <div class="ibox-content no-padding no-borders">
+                    <img alt="image" class="img-responsive" src="/CmsFiles/img/titr_field.jpg">
+                </div>
+                <h4>
+                    {{'FIELD_TITLE'|lowercase|translate}}
+                    <small>{{'TITLE_NEWS_ERROR'|lowercase|translate}}</small>
+                </h4>
+                <div class="ibox-content no-padding no-borders">
+                    <img alt="image" class="img-responsive" src="/CmsFiles/img/titr_field.jpg">
+                </div>
+                <h4>
+                    {{'Field_ON_TITR'|lowercase|translate}}
+                    <small>{{'FOR_HELP_AND_TITLE_USES'|lowercase|translate}}</small>
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,33 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="ReceivedFilesController as receivedFiles" ng-init="receivedFiles.init()">
+    <!-- <div class="container">-->
+    <div class="row" rasha-loading="receivedFiles.busyIndicator">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <button class="btn btn-primary" rasha-userrole="receivedFiles.Add" ng-click="receivedFiles.openAddModal()" ng-show="receivedFiles.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="receivedFiles.Edit" ng-click="receivedFiles.openEditModal()" type="button" ng-show="receivedFiles.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="receivedFiles.Delete" ng-click="receivedFiles.deleteRow()" type="button" ng-show="receivedFiles.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="receivedFiles.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="receivedFiles.openGridConfigModal(receivedFiles.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
+            <button class="btn btn-danger" type="button" ng-click="receivedFiles.qrCode()">{{'QR_Code'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="receivedFiles.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="receivedFiles.getCount()">{{'number'|lowercase|translate}}&nbsp;{{receivedFiles.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div id="builder" query-builder="receivedFiles"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="receivedFiles.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="receivedFiles.getJson()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="receivedFiles.getJson()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <form method="get" class="form-horizontal" name="frmreceivedFilesAdd" novalidate ng-submit="receivedFiles.addNewRow(frmreceivedFilesAdd)">
+                <div class='hr-line-dashed'></div>
+            </form>
+            <div rasha-grid="receivedFiles.gridOptions"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿<div class="bestig wrapper wrapper-content animated fadeInRight" ng-controller="memberInfoController as memberInfo" ng-init="memberInfo.init()">
+    <div class="row" rasha-loading="memberInfo.busyIndicator">
+        <div class="col-sm-12">
+            <!--<button class="btn btn-primary" rasha-userrole="memberInfo.Add" ng-click="memberInfo.openAddModal()" ng-show="memberInfo.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="memberInfo.Edit" ng-click="memberInfo.openEditModal()" type="button" ng-show="memberInfo.gridOptions.resultAccess.AccessEditRow">{{'edit'|lowercase|translate}} </button>-->
+            <button class="btn btn-danger" rasha-userrole="memberInfo.Delete" ng-click="memberInfo.deleteRow()" type="button" ng-show="memberInfo.gridOptions.resultAccess.AccessDeleteRow">{{'delete'|lowercase|translate}}</button>
+            <button class="btn btn-success" type="button" ng-click="memberInfo.showAdvancedSearchPanel()">{{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="memberInfo.openGridConfigModal(memberInfo.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn">{{'display_setting'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="memberInfo.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="memberInfo.getCount()">{{'number'|lowercase|translate}}&nbsp;{{memberInfo.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="memberInfo"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="memberInfo.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="memberInfo.getJson()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="memberInfo.getJson()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <form method="get" class="form-horizontal" name="frmmemberInfoAdd" novalidate ng-submit="memberInfo.addNewRow(frmmemberInfoAdd)">
+                <div class='hr-line-dashed'></div>
+            </form>
+            <div rasha-grid="memberInfo.gridOptions"></div>
+        </div>
+    </div>
+</div>

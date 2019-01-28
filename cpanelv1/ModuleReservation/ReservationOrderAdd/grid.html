@@ -1,0 +1,166 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="orderAddCtrl as orderAdd" ng-init="orderAdd.init()">
+    <!--<div class="container">-->
+    <div class="row" rasha-loading="orderAdd.categoryBusyIndicator">
+        <div class="col-md-2">
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;&nbsp;  {{'category'|lowercase|translate}}&nbsp;{{'BIOGRAPHY'|lowercase|translate}} </h5></div>
+                    <div class="panel-body styled-input-container styled-input--diamond">
+                        <form>
+                            <div class="styled-input-single" ng-repeat="x in orderAdd.treeConfig.Items">
+                                <input type="checkbox" name="fieldset-8" id="{{x.Id}}" ng-click="orderAdd.onNodeSelect(x)" />
+                                <label for="{{x.Id}}">{{x.Title}}</label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5><i class="fa fa-articlepaper-o " style="font-size: 18px;"></i>&nbsp;{{'LIST'|lowercase|translate}}&nbsp;{{'BIOGRAPHY'|lowercase|translate}}<nospecialtag ng-if="orderAdd.treeConfig.currentNode.Id!=null">:&nbsp;{{orderAdd.treeConfig.currentNode.Title}}&nbsp; - {{'ID'|lowercase|translate}}:&nbsp;{{orderAdd.treeConfig.currentNode.Id}}</nospecialtag><nospecialtag ng-if="orderAdd.selectedContentId.TitleTag!=null">:&nbsp;بر اساس تگ:&nbsp;{{orderAdd.selectedContentId.TitleTag}}</nospecialtag></h5>
+                </div>
+                <div class="panel-body styled-input-container styled-input--square">
+                    <!--<div class="styled-input-single" ng-repeat="x in orderAdd.ListItemsAppDate">
+                        <input type="checkbox" name="fieldset-6" id="{{x.Id}}" ng-click="orderAdd.onRowSelect(x)">
+                        <label for="{{x.Id}}">{{x.Id}}</label>
+                    </div>-->
+                    <div class="col-md-12">
+                        <div ng-repeat="x in orderAdd.ListItemsAppDate">
+                            <button class="btn btn-block" ng-click="orderAdd.onRowSelect(x)">{{x.Id}}</button>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-5" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5><i class="fa fa-articlepaper-o " style="font-size: 18px;"></i>&nbsp;{{'LIST'|lowercase|translate}}&nbsp;{{'BIOGRAPHY'|lowercase|translate}}<nospecialtag ng-if="orderAdd.treeConfig.currentNode.Id!=null">:&nbsp;{{orderAdd.treeConfig.currentNode.Title}}&nbsp; - {{'ID'|lowercase|translate}}:&nbsp;{{orderAdd.treeConfig.currentNode.Id}}</nospecialtag><nospecialtag ng-if="orderAdd.selectedContentId.TitleTag!=null">:&nbsp;بر اساس تگ:&nbsp;{{orderAdd.selectedContentId.TitleTag}}</nospecialtag></h5>
+                </div>
+                <div class="panel-body">
+
+                    <div class="col-md-12">
+
+                        <div class="col-xs-6" ng-repeat="x in orderAdd.ListItemsAppDateDetail" style="border: #3277b2 5px solid;" ng-show="x.Id!=orderAdd.DetailSelected">
+                            <span>کدسیستمی:{{x.Id}}</span><br />
+                            <span>کدسیستمی نوبت:{{x.LinkAppointmentDateId}}</span><br />
+                            <span>تاریخ سرویس:{{x.StartService}}</span><br />
+                            <span>پایان سرویس:{{x.EndService}}</span><br />
+                                <!--<input ng-repeat="y in x.AppointmentDateDetailAllowServices" name="Service" type="radio" ng-model="" value="{{x.Id}}_{{y.Id}}" />{{y.Id}}-->
+                                <button ng-repeat="y in x.AppointmentDateDetailAllowServices" class="btn btn-block btn-blue" ng-click="orderAdd.ShowInvoiceSale(x.Id,y.LinkReservationServiceId)" >{{y.Service.Title}}</button>
+                        </div>
+                        <br />
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <table class="table table-striped table-bordered table-responsive floatThead-table" style="border:1px solid gray;max-height:400px;overflow:auto;">
+            <thead>
+                <tr>
+                    <th>ردیف</th>
+                    <th style="width:370px">کد سیستمی جزییات</th>
+                    <th style="width:370px">کد سیستمی سرویس</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="x in orderAdd.ListOrderAdd" style="max-height:30px">
+                    <td>{{$index}}</td>
+                    <td style="overflow:hidden">
+                        {{x.LinkAppointmentDateDetailId}}
+                    </td>
+                    <td style="overflow:hidden">
+                        {{x.LinkServiceId}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button ng-show="orderAdd.ListOrderAdd.length>0" ng-click="orderAdd.ListOrderAddcomplate(orderAdd.ListOrderAdd)">اتمام رزرو</button>
+    </div>
+</div>
+
+<style>
+    .styled-input-single {
+        position: relative;
+        padding: 20px 40px 20px 0;
+    }
+
+        .styled-input-single label {
+            cursor: pointer;
+        }
+
+            .styled-input-single label:before, .styled-input-single label:after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                border-radius: 50%;
+            }
+
+            .styled-input-single label:before {
+                right: 0;
+                width: 20px;
+                height: 20px;
+                margin: -15px 0 0;
+                background: #f7f7f7;
+                box-shadow: 0 0 1px grey;
+            }
+
+            .styled-input-single label:after {
+                right: 5px;
+                width: 10px;
+                height: 10px;
+                margin: -10px 0 0;
+                opacity: 0;
+                background: #37b2b2;
+                transform: translate3d(-40px, 0, 0) scale(0.5);
+                transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+            }
+
+        .styled-input-single input[type="checkbox"] {
+            position: absolute;
+            top: 0;
+            left: -9999px;
+            visibility: hidden;
+        }
+
+            .styled-input-single input[type="checkbox"]:checked + label:after {
+                transform: translate3d(0, 0, 0);
+                opacity: 1;
+            }
+
+    .styled-input--square label:before, .styled-input--square label:after {
+        border-radius: 0;
+    }
+
+    .styled-input--diamond .styled-input-single {
+        padding-left: 45px;
+    }
+
+    .styled-input--diamond label:before, .styled-input--diamond label:after {
+        border-radius: 0;
+    }
+
+    .styled-input--diamond label:before {
+        transform: rotate(45deg);
+    }
+
+    .styled-input--diamond input[type="checkbox"]:checked + label:after {
+        transform: rotate(45deg);
+        opacity: 1;
+    }
+</style>
+<style>
+    .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+        outline: 10px auto -webkit-focus-ring-color;
+        outline-offset: -2px;
+        background-color: red;
+    }
+</style>

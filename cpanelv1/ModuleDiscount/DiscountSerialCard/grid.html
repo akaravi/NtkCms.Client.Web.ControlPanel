@@ -1,0 +1,30 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="discountSerialCardController as discountSerialCard" ng-init="discountSerialCard.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="discountSerialCard.busyIndicator"></div>
+            <button class="btn btn-primary" rasha-userrole="discountSerialCard.Add" ng-click="discountSerialCard.openAddModal()" type="button" ng-show="discountSerialCard.gridOptions.resultAccess.AccessAddRow">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="discountSerialCard.Edit" ng-click="discountSerialCard.openEditModal()" type="button" ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="discountSerialCard.Delete" ng-click="discountSerialCard.deleteRow()" type="button" ng-show="discountSerialCard.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="discountSerialCard.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="discountSerialCard.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="discountSerialCard.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="discountSerialCard.getCount()">{{'number'|lowercase|translate}}&nbsp;{{discountSerialCard.ListItemsTotalRowCount}}</button>
+        </div>
+        <hr />
+        <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+            <div id="builder" query-builder="discountSerialCard"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="discountSerialCard.getRules()">{{'look'|lowercase|translate}}</button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="discountSerialCard.saveRules()">{{'save_condition'|lowercase|translate}}</button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="discountSerialCard.setRules()">{{'restore_condition'|lowercase|translate}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="discountSerialCard.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

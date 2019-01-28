@@ -1,0 +1,57 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="vehiclePropertyType.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Vehicle_Type' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmvehiclePropertyTypeAdd" novalidate ng-submit="vehiclePropertyType.addNewRow(frmvehiclePropertyTypeAdd)">
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="vehiclePropertyType.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmvehiclePropertyTypeAdd.LinkSourceId.$invalid && !frmvehiclePropertyTypeAdd.LinkSourceId.$pristine,'has-success' : frmvehiclePropertyTypeAdd.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="vehiclePropertyType"></div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="vehiclePropertyType.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                     ng-class="{'has-error' : frmvehiclePropertyTypeAdd.Title.$invalid && !frmvehiclePropertyTypeAdd.Title.$pristine,'has-success' : frmvehiclePropertyTypeAdd.Title.$valid}">
+                    <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="vehiclePropertyType.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmvehiclePropertyTypeAdd.Title.$invalid">
+                            <small class="text-danger" ng-show="frmvehiclePropertyTypeAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmvehiclePropertyTypeAdd.Title.$valid && frmvehiclePropertyTypeAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmvehiclePropertyTypeAdd.Title.$invalid && !frmvehiclePropertyTypeAdd.Title.$pristine) || frmvehiclePropertyTypeAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="vehiclePropertyType.gridOptions.resultAccess.AccessAddField.indexOf('Description')>-1" ng-class="{'has-error' : frmvehiclePropertyTypeAdd.Description.$invalid && !frmvehiclePropertyTypeAdd.Description.$pristine,'has-success' : frmvehiclePropertyTypeAdd.Description.$valid}">
+                    <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="Description" ng-required="true" ng-model="vehiclePropertyType.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                        <div class="m-t-xs" ng-show="frmvehiclePropertyTypeAdd.Description.$invalid">
+                            <small class="text-danger" ng-show="frmvehiclePropertyTypeAdd.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmvehiclePropertyTypeAdd.Description.$valid && frmvehiclePropertyTypeAdd.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmvehiclePropertyTypeAdd.Description.$invalid && !frmvehiclePropertyTypeAdd.Description.$pristine) || frmvehiclePropertyTypeAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="vehiclePropertyType.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="vehiclePropertyType.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

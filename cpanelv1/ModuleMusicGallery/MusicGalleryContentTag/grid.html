@@ -1,0 +1,27 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="mscGalleryContentTagCtrl as mscGalleryContentTag" ng-init="mscGalleryContentTag.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="mscGalleryContentTag.busyIndicator"></div>
+
+            <button class="btn btn-primary" rasha-userrole="mscGalleryContentTag.Add" ng-click="mscGalleryContentTag.openAddModal()" ng-show="mscGalleryContentTag.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="mscGalleryContentTag.Edit" ng-click="mscGalleryContentTag.openEditModal()" ng-show="mscGalleryContentTag.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="mscGalleryContentTag.Delete" ng-click="mscGalleryContentTag.deleteRow()" ng-show="mscGalleryContentTag.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="mscGalleryContentTag.showAdvancedSearchPanel(mscGalleryContentTag.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-warning" type="button" ng-click="mscGalleryContentTag.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="mscGalleryContentTag.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="mscGalleryContentTag.getCount()">{{'number'|lowercase|translate}}&nbsp;{{mscGalleryContentTag.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="mscGalleryContentTag" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="mscGalleryContentTag.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

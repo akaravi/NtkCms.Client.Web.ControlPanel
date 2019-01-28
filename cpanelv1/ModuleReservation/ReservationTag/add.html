@@ -1,0 +1,55 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="reservationTag.busyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="reservationTag.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Tag' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmreservationTagAdd" novalidate ng-submit="reservationTag.addNewRow(frmreservationTagAdd)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="reservationTag.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                                 ng-class="{'has-error' : frmreservationTagAdd.RecordStatus.$invalid && !frmreservationTagAdd.RecordStatus.$pristine,'has-success' : frmreservationTagAdd.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="reservationTag"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="reservationTag.gridOptions.resultAccess.AccessAddField.indexOf('LinkCategoryTagId')>-1">
+                                <label class="col-sm-2 control-label">{{'category'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkCategoryTagId" rasha-autocomplete="reservationTag.LinkCategoryTagIdSelector" ng-model="reservationTag.selectedItem.LinkCategoryTagId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="reservationTag.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                                 ng-class="{'has-error' : frmreservationTagAdd.Title.$invalid && !frmreservationTagAdd.Title.$pristine,'has-success' : frmreservationTagAdd.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           ng-model="reservationTag.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmreservationTagAdd.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmreservationTagAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmreservationTagAdd.Title.$valid && frmreservationTagAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmreservationTagAdd.Title.$invalid && !frmreservationTagAdd.Title.$pristine) || frmreservationTagAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="reservationTag.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="reservationTag.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+

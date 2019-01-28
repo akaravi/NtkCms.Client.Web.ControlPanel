@@ -1,0 +1,92 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="discountOfferTransaction.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Transaction'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmdiscountOfferTransactionAdd" novalidate ng-submit="discountOfferTransaction.addNewRow(frmdiscountOfferTransactionAdd)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmdiscountOfferTransactionAdd.LinkSourceId.$invalid && !frmdiscountOfferTransactionAdd.LinkSourceId.$pristine,'has-success' : frmdiscountOfferTransactionAdd.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="discountOfferTransaction"></div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+
+                <div class="form-group" ng-show="discountOfferTransaction.gridOptions.resultAccess.AccessAddField.indexOf('LinkDiscountSellerId')>-1">
+                    <label class="col-sm-2 control-label">{{'Representative'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkDiscountSellerId" rasha-autocomplete="discountOfferTransaction.LinkDiscountSellerIdSelector" ng-model="discountOfferTransaction.selectedItem.LinkDiscountSellerId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="discountOfferTransaction.gridOptions.resultAccess.AccessAddField.indexOf('LinkDiscountSerialCardId')>-1">
+                    <label class="col-sm-2 control-label">{{'Card_Sales_Id'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkDiscountSerialCardId" rasha-autocomplete="discountOfferTransaction.LinkDiscountSerialCardIdSelector" ng-model="discountOfferTransaction.selectedItem.LinkDiscountSerialCardId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmdiscountOfferTransactionAdd.BasePrice.$invalid && !frmdiscountOfferTransactionAdd.BasePrice.$pristine,'has-success' : frmdiscountOfferTransactionAdd.BasePrice.$valid}">
+                    <label class="col-sm-2 control-label">{{'Base_Price'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="BasePrice"
+                               ng-model="discountOfferTransaction.selectedItem.BasePrice" />
+                        <div class="m-t-xs" ng-show="frmdiscountOfferTransactionAdd.BasePrice.$invalid">
+                            <small class="text-danger" ng-show="frmdiscountOfferTransactionAdd.BasePrice.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmdiscountOfferTransactionAdd.BasePrice.$valid && frmdiscountOfferTransactionAdd.BasePrice.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmdiscountOfferTransactionAdd.BasePrice.$invalid && !frmdiscountOfferTransactionAdd.BasePrice.$pristine) || frmdiscountOfferTransactionAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmdiscountOfferTransactionAdd.SellerPrice.$invalid && !frmdiscountOfferTransactionAdd.SellerPrice.$pristine,'has-success' : frmdiscountOfferTransactionAdd.SellerPrice.$valid}">
+                    <label class="col-sm-2 control-label">{{'Representative_Price'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="SellerPrice"
+                               ng-model="discountOfferTransaction.selectedItem.SellerPrice" />
+                        <div class="m-t-xs" ng-show="frmdiscountOfferTransactionAdd.SellerPrice.$invalid">
+                            <small class="text-danger" ng-show="frmdiscountOfferTransactionAdd.SellerPrice.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmdiscountOfferTransactionAdd.SellerPrice.$valid && frmdiscountOfferTransactionAdd.SellerPrice.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmdiscountOfferTransactionAdd.SellerPrice.$invalid && !frmdiscountOfferTransactionAdd.SellerPrice.$pristine) || frmdiscountOfferTransactionAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmdiscountOfferTransactionAdd.SitePrice.$invalid && !frmdiscountOfferTransactionAdd.SitePrice.$pristine,'has-success' : frmdiscountOfferTransactionAdd.SitePrice.$valid}">
+                    <label class="col-sm-2 control-label">{{'Site_Price'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="SitePrice"
+                               ng-model="discountOfferTransaction.selectedItem.SitePrice" />
+                        <div class="m-t-xs" ng-show="frmdiscountOfferTransactionAdd.SitePrice.$invalid">
+                            <small class="text-danger" ng-show="frmdiscountOfferTransactionAdd.SitePrice.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmdiscountOfferTransactionAdd.SitePrice.$valid && frmdiscountOfferTransactionAdd.SitePrice.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmdiscountOfferTransactionAdd.SitePrice.$invalid && !frmdiscountOfferTransactionAdd.SitePrice.$pristine) || frmdiscountOfferTransactionAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="discountOfferTransaction.gridOptions.resultAccess.AccessAddField.indexOf('DiscountOfferTransactionType')>-1">
+                    <label class="col-sm-2 control-label">{{'Transaction_Type'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <select class='form-control' name="DiscountOfferTransactionType" ng-model="discountOfferTransaction.selectedItem.DiscountOfferTransactionType" ng-options="x.Value as x.Description for x in discountOfferTransaction.DiscountOfferTransactionType" required></select>
+                        <span ng-show="frmdiscountOfferTransactionAdd.DiscountOfferTransactionType.$error.required">{{'SELECT_INPUT_TYPE'|lowercase|translate}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="discountOfferTransaction.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="discountOfferTransaction.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

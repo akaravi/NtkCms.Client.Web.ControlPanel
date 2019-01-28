@@ -1,0 +1,48 @@
+﻿<div class="container" ng-controller="registerUserCtrl as register" ng-init="register.init()">
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>{{ 'CREATE_NEW_PROFILE' |lowercase|translate}}</h5>                        
+                    </div>
+                    <div class="ibox-content wizard">
+                        <p>
+                            {{ 'LEVEL_FOR_CREATE_PROFILE' |lowercase|translate}} 
+                        </p>
+
+                        <div class="steps clearfix">
+                            <ul>
+
+                                <li ui-sref-active="current">
+                                    <a ui-sref=".step_one" class="btn-primary"><span>1.</span> {{'MOBILE_NUMBER'|lowercase|translate}} </a>
+                                </li>
+                                <li ui-sref-active="current">
+                                    <a ui-sref=".step_two" class="btn-success"><span>2.</span> {{'ACTIVATION_CODE'|lowercase|translate}}</a>
+                                </li>
+                                <li ui-sref-active="current">
+                                    <a ui-sref=".step_three" class="btn-warning"><span>3.</span> {{'PASSWORD'|lowercase|translate}} </a>
+                                </li>
+                                <li ui-sref-active="current">
+                                    <a ui-sref=".step_four" class="btn-danger"><span>4.</span> {{'EDIT_PROFILE'|lowercase|translate}} </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="wizard">
+                            <div class="content">
+
+                                <form name="signupForm" ng-submit="register.processForm()" class="p-lg">
+
+                                    <!-- our nested state views will be injected here -->
+                                    <div id="form-views" ui-view></div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

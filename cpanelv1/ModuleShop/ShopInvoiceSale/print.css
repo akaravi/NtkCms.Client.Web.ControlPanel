@@ -1,0 +1,63 @@
+﻿
+* {
+    direction:rtl;
+
+}
+.div-btn {
+    display: none !important;
+}
+.ui-datepicker-inline {
+    display: none !important;
+}
+.form-control,
+.single-line {
+    border:none;
+}
+#modalinvocesaledetail {
+    display: none !important;
+}
+.table.table-striped thead tr th input[type="checkbox"] {
+    display: none !important;
+}
+.input-search {
+    display: none !important;
+}
+.pagination {
+    display: none !important;
+}
+.btn-bottem {
+    display: none !important;
+}
+.edit-titr {
+    display: none !important;
+}
+.name {
+    display: none !important;
+}
+hr {
+    display: none !important;
+}
+.open-span {
+    display: none !important;
+}
+.m-t-none {
+    display: none !important;
+}
+
+.col-xs-12{
+    width:100%;
+}
+.col-sm-6{
+    width:50%;
+}
+.f-left {
+    float: left;
+}
+.ng-binding {
+    font-weight:500;
+    font-size:20px;
+    font-style:italic;
+}
+.tbody {
+    border-top:1px solid #eee;
+}

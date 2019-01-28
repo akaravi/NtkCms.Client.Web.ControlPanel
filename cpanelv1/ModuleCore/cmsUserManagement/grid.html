@@ -1,0 +1,31 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="cmsUserGridCtrl as cmsUsergrd" ng-init="cmsUsergrd.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="cmsUserController.Add" ng-click="cmsUsergrd.openAddModal()" ng-show="cmsUsergrd.gridOptions.resultAccess.AccessAddRow" type="button">{{'ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="cmsUserController.Edit" ng-click="cmsUsergrd.openEditModal()" ng-show="cmsUsergrd.gridOptions.resultAccess.AccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>
+            <button class="btn btn-danger" rasha-userrole="cmsUserController.Delete" ng-click="cmsUsergrd.deleteRow()" ng-show="cmsUsergrd.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'DELETE'|lowercase|translate}}</button>
+            <button class="btn btn-success" ng-click="cmsUsergrd.showAdvancedSearchPanel()">{{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="cmsUsergrd.gridOptions.showGridSettings()">{{'display_setting'|lowercase|translate}}</button>
+            <button class="btn btn-primary" type="button" ng-click="cmsUsergrd.reportData()">{{'report'|lowercase|translate}}</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+            <div id="builder" query-builder="cmsUsergrd"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="cmsUsergrd.getRules()">{{'look'|lowercase|translate}}</button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="cmsUsergrd.saveRules()">{{'save_condition'|lowercase|translate}}</button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="cmsUsergrd.setRules()">{{'restore_condition'|lowercase|translate}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="cmsUsergrd.gridOptions"></div>
+        </div>
+
+
+    </div>
+</div>
+

@@ -1,0 +1,349 @@
+﻿<style>
+    .heade {
+        text-align: center;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        background-color: rgba(0, 0, 0, 0.07);
+        color: white;
+    }
+
+    .bodypanel {
+        background-color: rgba(0,0,0,.2);
+        text-align: center;
+        padding-bottom: 20px;
+        padding-top: 20px;
+        color: white;
+    }
+
+    .footerpanel {
+        text-align: right;
+        font-size: 11px;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.37);
+        padding: 4px;
+    }
+
+    .textmenu {
+        font-size: 10px;
+    }
+
+    .miyanbor {
+        text-align: center;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        background-color: rgba(0, 0, 0, 0.37);
+        color: white;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+        width: 22%;
+        border-radius: 5px;
+        height: 76px;
+    }
+</style>
+<style>
+    .progress-bar {
+        background-image: linear-gradient(to bottom,#29292f 0,#29292f 100%);
+    }
+</style>
+<div class="wrapper wrapper-content animated bounceIn" ng-init="dashb.init()" ng-show="dashb.addNewItemNotRequested" data-guide="1">
+    <div class="row" style="background-image:url()">
+        <div class="col-lg-12">
+            <div class="col-lg-3" style="box-shadow: 0 1px 5px rgba(0,0,0,.1);">
+
+                <div class="heade" style=""><b>ماژول</b></div>
+                <div class="bodypanel">
+                    <i class="fa fa-windows fa-4x" style="padding-bottom: 10px;"></i>
+                    <h4 class="font-bold no-margins">
+                        {{'ACTIVE_MODULES'|lowercase|translate}}
+                    </h4>
+                </div>
+                <div class="footerpanel" ui-sref="index.buy_module.step_one">{{ 'BUY_NEW_MODULE'|lowercase|translate}}</div>
+                <!--<div class="">
+
+                <h1 class="m-xs"></h1>
+                <h3 class="font-bold no-margins">
+                    {{'ACTIVE_MODULES'|lowercase|translate}}
+                </h3>
+                <a class="btn btn-xs btn-success" style="margin-top: 10px;" ui-sref="index.buy_module.step_one">{{ 'BUY_NEW_MODULE'|lowercase|translate}}</a>
+            </div>-->
+
+            </div>
+            <div class="col-lg-3">
+                <div class="heade" style=""><b>ماژول</b></div>
+                <div class="bodypanel">
+                    <i class="fa fa-windows fa-4x" style="padding-bottom: 10px;"></i>
+                    <h4 class="font-bold no-margins">
+                        {{'ACTIVE_MODULES'|lowercase|translate}}
+                    </h4>
+                </div>
+                <div class="footerpanel" ui-sref="index.buy_module.step_one">{{ 'BUY_NEW_MODULE'|lowercase|translate}}</div>
+                <!-- <div class="widget navy-bg text-center">
+                <div class="m-b-md">
+                    <i class="fa fa-windows fa-4x"></i>
+                    <h1 class="m-xs"></h1>
+                    <h3 class="font-bold no-margins">
+                        {{'ACTIVE_MODULES'|lowercase|translate}}
+                    </h3>
+                    <a class="btn btn-xs btn-success" style="margin-top: 10px;" ui-sref="index.buy_module.step_one">{{ 'BUY_NEW_MODULE'|lowercase|translate}}</a>
+                </div>
+            </div>-->
+            </div>
+            <div class="col-lg-3">
+                <div class="heade" style=""><b>ماژول</b></div>
+                <div class="bodypanel">
+                    <i class="fa fa-inbox fa-4x" style="padding-bottom: 10px;"></i>
+                    <h4 class="font-bold no-margins">
+                        {{ 'REMAINING_CREDIT_SMS'|lowercase|translate}}
+                    </h4>
+                </div>
+                <div class="footerpanel" ui-sref="index.buy_module.step_one">{{ 'INCREASE_CREDIT'|lowercase|translate}}</div>
+                <!--<div class="widget lazur-bg text-center">
+                <div class="m-b-md">
+                    <i class="fa fa-inbox fa-4x"></i>
+                    <h1 class="m-xs"></h1>
+                    <h3 class="font-bold no-margins">
+                        {{ 'REMAINING_CREDIT_SMS'|lowercase|translate}}
+                    </h3>
+                    <button class="btn btn-xs btn-success" style="margin-top: 10px;">{{ 'INCREASE_CREDIT'|lowercase|translate}}</button>
+                </div>
+            </div>-->
+            </div>
+
+            <div class="col-lg-3">
+                <div class="heade" style=""><b>ماژول</b></div>
+                <div class="bodypanel">
+                    <i class="fa fa-inbox fa-4x" style="padding-bottom: 10px;"></i>
+                    <h4 class="font-bold no-margins">
+                        {{ 'CREDIT_RIAL'|lowercase|translate}}
+                    </h4>
+                </div>
+                <div class="footerpanel" ui-sref="index.buy_module.step_one">{{'INCREASE_CREDIT'|lowercase|translate}}</div>
+                <!--<div class="widget blue-bg text-center">
+                <div class="m-b-md">
+                    <i class="fa fa-inbox fa-4x"></i>
+                    <h1 class="m-xs"></h1>
+                    <h3 class="font-bold no-margins">
+                        {{ 'CREDIT_RIAL'|lowercase|translate}}
+                    </h3>
+                    <button class="btn btn-xs btn-primary" style="margin-top: 10px;">{{'INCREASE_CREDIT'|lowercase|translate}}</button>
+                </div>
+            </div>-->
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="col-lg-6" style="margin-top: 26px;">
+                <div style="padding-bottom: 30px;padding-top: 15px;text-align: right;background-color: rgba(0,0,0,.2);color: white;border-bottom: #f8f8f8a3 2px solid;">
+                    <div class="col-xs-1">
+                        <i class="fa fa-windows" style="padding-left: 10px;"></i>
+                    </div>
+
+                    <div class="col-xs-9">میانبرهای مهم</div>
+                </div>
+                <div class="col-xs-12" style="background-color:rgba(0, 0, 0, 0.07);padding-right: 50px;padding-top: 25px;padding-bottom: 25px;">
+                    <div class="col-xs-3 miyanbor">
+                        <i class="fa fa-envelope fa-2x"></i>
+                        <div class="textmenu">{{ 'ALL_MESSAGES_POSTED'|lowercase|translate}}</div>
+                    </div>
+                    <div class="col-xs-3 miyanbor">
+                        <i class="fa fa-newspaper-o fa-2x"></i>
+                        <div class="textmenu">{{ 'ALL_NEWS'|lowercase|translate}}:&nbsp;{{dashb.newsContentCount}}</div>
+                    </div>
+                    <div class="col-xs-3 miyanbor">
+                        <i class="fa fa-check fa-2x"></i>
+                        <div class="textmenu">{{ 'NUMBER_OF_COMMENTS'|lowercase|translate}}</div>
+                    </div>
+                    <div class="col-xs-3 miyanbor">
+                        <i class="fa fa-picture-o fa-2x"></i>
+                        <div class="textmenu">{{ 'GALLERY'|lowercase|translate}}</div>
+                    </div>
+                    <!-- --------------------------------- -->
+                    <div class="col-xs-3 miyanbor">
+                        <i class="fa fa-mobile fa-2x"></i>
+                        <div class="textmenu">{{'ACTIVE_APPS'|lowercase|translate}}:&nbsp;{{dashb.mobileAppCount}}</div>
+                    </div>
+                    <div class="col-xs-3 miyanbor">
+                        <i class="fa fa-book fa-2x"></i>
+                        <div class="textmenu">{{'ARTICLES'|lowercase|translate}}:&nbsp;{{dashb.articleContentCount}}</div>
+                    </div>
+                    <div class="col-xs-3 miyanbor">
+                        <i class="fa fa-user fa-2x"></i>
+                        <div class="textmenu">{{'MEMBERSHIP'|lowercase|translate}}:&nbsp;{{dashb.cmsUserCount}}</div>
+                    </div>
+                    <div class="col-xs-3 miyanbor">
+                        <i class="fa fa-globe fa-2x"></i>
+                        <div class="textmenu">{{'NUMBER_OF_SITES'|lowercase|translate}}:&nbsp;{{dashb.cmsSiteCount}}</div>
+                    </div>
+                    <!-- --------------------------------- -->
+                    <div class="col-xs-3 miyanbor">
+                        <i class="fa fa-users fa-2x"></i>
+                        <div class="textmenu"> تعداد اعضای سایت:&nbsp;{{dashb.memberCount}}</div>
+                    </div>
+                    <div class="col-xs-3 miyanbor" ng-click="dashb.goToTicket()">
+                        <i class="fa fa-wechat fa-2x"></i>
+                        <div class="textmenu"> تعداد تیکت های خوانده نشده:&nbsp;{{dashb.ticketCount}}</div>
+                    </div>
+                    <div class="col-xs-3 miyanbor" ng-click="dashb.goToShop()">
+                        <i class="fa fa-file-text fa-2x"></i>
+                        <div class="textmenu">تعداد فاکتور های پرداخت نشده:&nbsp;{{dashb.shopinvoicesaleCount}}</div>
+                    </div>
+                    <div class="col-xs-3 miyanbor">
+                        <i class="fa fa-envelope fa-2x"></i>
+                        <div class="textmenu">تعداد چارت های تایید نشده:&nbsp;{{dashb.chartContentCount}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" style="margin-top: 26px;">
+                <div style="padding-bottom: 30px;padding-top: 15px;text-align: right;background-color: rgba(0,0,0,.2);color: white;border-bottom: #f8f8f8a3 2px solid;">
+                    <div class="col-xs-1">
+                        <i class="fa fa-windows" style="padding-left: 10px;"></i>
+                    </div>
+
+                    <div class="col-xs-9">میانبرهای مهم</div>
+                </div>
+                <div class="col-xs-12" style="background-color:rgba(0, 0, 0, 0.07);padding-right: 5px;padding-top: 25px;padding-bottom: 25px;">
+                    <div>
+                        <div>
+                            <span>{{ 'REMAININIG_VOLOME'|lowercase|translate}}</span>
+                            <small class="pull-right"></small>
+                        </div>
+                        <div class="progress progress-small">
+                            <div style="width:{{dashb.freeSpace}}%;" class="progress-bar"></div>
+                        </div>
+                        <div>
+                            <span>{{'BANDWIDTH'|lowercase|translate}}</span>
+                            <small class="pull-right"></small>
+                        </div>
+                        <div class="progress progress-small">
+                            <div style="width: 0%;" class="progress-bar"></div>
+                        </div>
+                        <div>
+                            <span>{{ 'CPU_USAGE'|lowercase|translate}}</span>
+                            <small class="pull-right"></small>
+                        </div>
+                        <div class="progress progress-small">
+                            <div style="width: 0%;" class="progress-bar"></div>
+                        </div>
+                        <div>
+                            <span>{{'MEMORY_CONSUMPTION'|lowercase|translate}}</span>
+                            <small class="pull-right"></small>
+                        </div>
+                        <div class="progress progress-small">
+                            <div width="{{dashb.usedSpace}}%;" class="progress-bar progress-bar-danger"></div>
+                        </div>
+                    </div>
+                    <!--<div class="progress--circle progress--25">
+                        <div class="progress__number">25%</div>
+                    </div>
+
+                <div class="progress--circle progress--50">
+                    <div class="progress__number">50%</div>
+                </div>
+
+                <div class="progress--circle progress--75">
+                    <div class="progress__number">75%</div>
+                </div>
+
+                <div class="progress--circle progress--100">
+                    <div class="progress__number">100%</div>
+                </div>
+                <div class="col-xs-3" style="text-align:  center;color:white">{{ 'REMAININIG_VOLOME'|lowercase|translate}}</div>
+                <div class="col-xs-3" style="text-align:  center;color:white">{{'BANDWIDTH'|lowercase|translate}}</div>
+                <div class="col-xs-3" style="text-align:  center;color:white">{{ 'CPU_USAGE'|lowercase|translate}}</div>
+                <div class="col-xs-3" style="text-align:  center;color:white">{{'MEMORY_CONSUMPTION'|lowercase|translate}}</div>-->
+                </div>
+
+                <!--<div class="ibox-content">
+                <h3>{{ 'STATISTICS_SERVICE'|lowercase|translate}}</h3>
+                <div>
+                    <div>
+                        <span>{{ 'REMAININIG_VOLOME'|lowercase|translate}}</span>
+                        <small class="pull-right"></small>
+                    </div>
+                    <div class="progress progress-small">
+                        <div style="width:{{dashb.freeSpace}}%;" class="progress-bar"></div>
+                    </div>
+                    <div>
+                        <span>{{'BANDWIDTH'|lowercase|translate}}</span>
+                        <small class="pull-right"></small>
+                    </div>
+                    <div class="progress progress-small">
+                        <div style="width: 0%;" class="progress-bar"></div>
+                    </div>
+                    <div>
+                        <span>{{ 'CPU_USAGE'|lowercase|translate}}</span>
+                        <small class="pull-right"></small>
+                    </div>
+                    <div class="progress progress-small">
+                        <div style="width: 0%;" class="progress-bar"></div>
+                    </div>
+                    <div>
+                        <span>{{'MEMORY_CONSUMPTION'|lowercase|translate}}</span>
+                        <small class="pull-right"></small>
+                    </div>
+                    <div class="progress progress-small">
+                        <div width="{{dashb.usedSpace}}%;" class="progress-bar progress-bar-danger"></div>
+                    </div>
+                </div>
+            </div>-->
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <!--<div class="col-lg-6">
+            <div class="ibox-content">
+                <h2>{{ 'LIST'|lowercase|translate}}&nbsp;{{ 'NOTE'|lowercase|translate}}</h2>
+                <small>{{ 'MODULE'|lowercase|translate}}&nbsp;{{ 'NOTE'|lowercase|translate}}</small>
+                <ul class="todo-list m-t">
+                    <li>
+                        <div style="position: relative;" class="icheckbox_square-green">
+                            <input style="position: absolute; opacity: 0;" class="ng-pristine ng-untouched ng-valid" icheck="" ng-model="check1" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins>
+                        </div>
+                        <span class="m-l-xs"></span>
+                        <small class="label label-primary"><i class="fa fa-clock-o"></i></small>
+                    </li>
+                    <li>
+                        <div style="position: relative;" class="icheckbox_square-green checked">
+                            <input style="position: absolute; opacity: 0;" class="ng-pristine ng-untouched ng-valid" icheck="" ng-model="main.checkOne" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins>
+                        </div>
+                        <span class="m-l-xs"></span>
+                        <small class="label label-info"><i class="fa fa-clock-o"></i></small>
+                    </li>
+                    <li>
+                        <div style="position: relative;" class="icheckbox_square-green">
+                            <input style="position: absolute; opacity: 0;" class="ng-pristine ng-untouched ng-valid" icheck="" ng-model="check2" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins>
+                        </div>
+                        <span class="m-l-xs"></span>
+                        <small class="label label-warning"><i class="fa fa-clock-o"></i></small>
+                    </li>
+                    <li>
+                        <div style="position: relative;" class="icheckbox_square-green">
+                            <input style="position: absolute; opacity: 0;" class="ng-pristine ng-untouched ng-valid" icheck="" ng-model="check3" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins>
+                        </div>
+                        <span class="m-l-xs"></span>
+                        <small class="label label-danger"><i class="fa fa-clock-o"></i> </small>
+                    </li>
+                </ul>
+            </div>
+        </div>-->
+
+        </div>
+        <!--<div class="col-lg-12" style="margin-top: 5px;">
+            <div class="col-lg-12">
+                <div class="ibox-content">
+                    <div class="col-md-6 col-sm-12">
+                        <h3>{{ 'USERS_ONLINE'|lowercase|translate}}</h3>{{dashb.onlineUsersCount}}
+                        <div rasha-grid="dashb.gridOptions"></div>
+                    </div>
+                    <div>
+                    <div class="col-md-6 col-sm-12">
+                        <h3>CmsLog</h3>
+                        <div rasha-grid="dashb.gridOptionsLog"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    </div>
+</div>

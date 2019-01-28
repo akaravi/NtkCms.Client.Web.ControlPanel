@@ -1,0 +1,33 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="shopInvoiceSaleController as shopInvoiceSale" ng-init="shopInvoiceSale.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h5><i class="fa fa-Productpaper-o " style="font-size: 18px;"></i>&nbsp;{{'LIST'|lowercase|translate}}&nbsp;{{'INVOICES'|lowercase|translate}}</h5></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <button class="btn btn-primary" ng-click="shopInvoiceSale.addNewContentModel()" ng-show="shopInvoiceSale.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp;{{'NEW_INVOICE'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="shopInvoiceSale.openEditModel()" ng-show="shopInvoiceSale.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="shopInvoiceSale.deleteContent()" ng-show="shopInvoiceSale.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-success" ng-click="shopInvoiceSale.showAdvancedSearchPanel(shopInvoiceSale.gridOptions.resultAccess.AccessSearchField)"><i class="fa fa-search fontaesome-small"></i>&nbsp;{{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="shopInvoiceSale.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+                    <button class="btn btn-success" ng-click="shopInvoiceSale.getCount()">{{'number'|lowercase|translate}}&nbsp;{{shopInvoiceSale.ListItemsTotalRowCount}}</button>
+                </div>
+                <hr />
+                <div id="builderPanel" class="col-sm-12 col-md-12 col-lg-12" style="display: none; margin-bottom: 10px;">
+                    <div id="builder" query-builder="shopInvoiceSale"></div>
+                    <div class="btn-group" style="float: left;">
+                        <button class="btn btn-success reset" data-target="basic" type="button" id="btn-get" ng-click="shopInvoiceSale.getRules()"> {{'look'|lowercase|translate}} </button>
+                        <button class="btn btn-primary set-json" data-target="basic" type="button" id="btn-save" ng-click="shopInvoiceSale.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                        <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-set" ng-click="shopInvoiceSale.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12" rasha-loading="shopInvoiceSale.busyIndicator">
+                    <div rasha-grid="shopInvoiceSale.gridOptions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

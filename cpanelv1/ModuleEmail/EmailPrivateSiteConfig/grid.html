@@ -1,0 +1,30 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="emailPrivateSiteConfigCtrl as emailPrivateSiteConfig" ng-init="emailPrivateSiteConfig.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="emailPrivateSiteConfig.Add" ng-click="emailPrivateSiteConfig.openAddModal()" ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="emailPrivateSiteConfig.Edit" ng-click="emailPrivateSiteConfig.openEditModal()"ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="emailPrivateSiteConfig.Delete" ng-click="emailPrivateSiteConfig.deleteRow()" ng-show="emailPrivateSiteConfig.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="emailPrivateSiteConfig.showAdvancedSearchPanel(emailPrivateSiteConfig.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-primary" type="button" ng-click="emailPrivateSiteConfig.reportData()"> {{'report'|lowercase|translate}} </button>
+            <button class="btn btn-success" ng-click="emailPrivateSiteConfig.getCount()">{{'number'|lowercase|translate}}&nbsp;{{emailPrivateSiteConfig.ListItemsTotalRowCount}}</button>
+            <button class="btn btn-warning" type="button" ng-click="emailPrivateSiteConfig.changeState('emailpublicconfig')">{{'BACK'|lowercase|translate}}&nbsp;&nbsp;<i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="emailPrivateSiteConfig" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="emailPrivateSiteConfig" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div rasha-grid="emailPrivateSiteConfig.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

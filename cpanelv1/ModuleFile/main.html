@@ -1,0 +1,137 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="FileManager as fdm" ng-init="fdm.init()">
+    <!--<div rasha-file-manager="fdm.fileConfig" ></div>-->
+    <div class="row" rasha-loading="fdm.loadingBusyIndicator">
+        <div class="col-md-12" style="text-align: center;">
+            <p style="text-align : center; color:{{fdm.msgColor}}; direction:ltr; font-size:15px;border-style: solid;border-width: 3px;border-style:blue;" ng-bind-html="fdm.msgText" />
+            <ol class="breadcrumb" style="text-align: left; float: left;  font-size: 12px; width: 100%; direction: ltr; padding-top: 5px; padding-bottom: 5px;">
+                <li ng-repeat="x in fdm.Path">{{x.Title}}</li>
+            </ol>
+            <div class="webix_view webix_fmanager webix_layout_line" view_id="files" style="width: 100%; height: 643px; position: relative;">
+                <!-- Header Section Search & Buttons -->
+                <div class="webix_view webix_fmanager_toolbar webix_layout_line" view_id="$layout1" style="white-space: nowrap; border-width: 0px 0px 1px; margin-left: 0px; margin-top: 0px; width: 100%; height: 48px;">
+
+                    <div class="webix_view webix_control webix_el_search webix_fmanager_search" view_id="$search1" style="float:right; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 235px; height: 38px;">
+                        <div class="webix_el_box" style="width: 235px; height: 38px">
+                            <span style="height: 26px; padding-top: 6px;" class="webix_input_icon fa-search" ng-click="fdm.search(fdm.searchStr)" title="{{'look'|lowercase|translate}}"></span>
+                            <span style="height: 26px; padding-top: 6px;margin-right:20px;color:#d73c3c" class="webix_input_icon fa-remove" ng-show="fdm.searchStr!=''" ng-click="fdm.search()" title="{{'Show_All'|lowercase|translate}}"></span>
+                            <input id="1459919132571" ng-model="fdm.searchStr" type="text" value="" style="width: 231px; text-align:left;font-family:'IRANSans';" placeholder="{{'Id_Or_Title'|lowercase|translate}}">
+                        </div>
+                    </div>
+
+                    <div class="webix_view webix_control webix_el_button webix_fmanager_up" view_id="$button4" style="float: left; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 37px; height: 38px;" ng-click="fdm.goToUp()">
+                        <div class="webix_el_box" style="width: 37px; height: 38px">
+                            <button type="button" class="webix_img_btn_abs webixtype_base" title="{{'PARENT_FILE'|lowercase|translate}}" style="width: 100%;"><span class="webix_icon fa-level-up"></span> </button>
+                        </div>
+                    </div>
+
+                    <div class="webix_view webix_control webix_el_button webix_fmanager_up" view_id="$button4" style="float: left; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 37px; height: 38px;" ng-click="fdm.copy()">
+                        <div class="webix_el_box" style="width: 37px; height: 38px">
+                            <button type="button" class="webix_img_btn_abs webixtype_base" title="{{'COPY'|lowercase|translate}}" style="width: 100%;"><span class="webix_icon fa-copy"></span> </button>
+                        </div>
+                    </div>
+
+                    <div class="webix_view webix_control webix_el_button webix_fmanager_up" view_id="$button4" style="float: left; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 37px; height: 38px;" ng-click="fdm.cut()">
+                        <div class="webix_el_box" style="width: 37px; height: 38px">
+                            <button type="button" class="webix_img_btn_abs webixtype_base" title="{{'CUT'|lowercase|translate}}" style="width: 100%;"><span class="webix_icon fa-cut"></span> </button>
+                        </div>
+                    </div>
+
+                    <div class="webix_view webix_control webix_el_button webix_fmanager_up" view_id="$button4" style="float: left; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 37px; height: 38px;" ng-click="fdm.paste()">
+                        <div class="webix_el_box" style="width: 37px; height: 38px">
+                            <button type="button" class="webix_img_btn_abs webixtype_base" title="{{'PASTE'|lowercase|translate}}" style="width: 100%;"><span class="webix_icon fa-paste"></span> </button>
+                        </div>
+                    </div>
+
+                    <div class="webix_view webix_control webix_el_button webix_fmanager_up" view_id="$button4" style="float: left; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 37px; height: 38px;" ng-click="fdm.delete()">
+                        <div class="webix_el_box" style="width: 37px; height: 38px">
+                            <button type="button" class="webix_img_btn_abs webixtype_base" title="{{'delete'|lowercase|translate}}" style="width: 100%;"><span class="webix_icon fa-close"></span> </button>
+                        </div>
+                    </div>
+
+                    <div class="webix_view webix_control webix_el_button webix_fmanager_up" view_id="$button4" style="float: left; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 37px; height: 38px;" ng-click="fdm.rename()">
+                        <div class="webix_el_box" style="width: 37px; height: 38px">
+                            <button type="button" class="webix_img_btn_abs webixtype_base" title="{{'RENAME'|lowercase|translate}}" style="width: 100%;"><span class="webix_icon fa-file-text-o"></span> </button>
+                        </div>
+                    </div>
+
+                    <div class="webix_view webix_control webix_el_button webix_fmanager_up" view_id="$segmented1" style="float: left; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 37px; height: 38px;">
+                        <div class="webix_el_box" style="width: 37px; height: 38px">
+                            <div style="width: 66px" class="webix_all_segments">
+                                <button type="button" style="width: 32px" class="webix_img_btn_abs webixtype_base" title="{{'NEW_FILE'|lowercase|translate}}" button_id="files" ng-click="fdm.createNewFolderAction()"><span class="webix_fmanager_mode_option webix_icon fa-folder"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="webix_view webix_control webix_el_button webix_fmanager_up" view_id="$segmented1" style="float: left; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 37px; height: 38px;">
+                        <div class="webix_el_box" style="width: 37px; height: 38px">
+                            <div style="width: 66px" class="webix_all_segments">
+                                <button type="button" style="width: 32px" class="webix_img_btn_abs webixtype_base" title="{{'UPLOAD'|lowercase|translate}}" button_id="files" ng-click="fdm.openUploadModal()"><span class="webix_fmanager_mode_option webix_icon fa-upload"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="webix_view webix_control webix_el_button webix_fmanager_up" view_id="$segmented1" style="float: left; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 37px; height: 38px;">
+                        <div class="webix_el_box" style="width: 37px; height: 38px">
+                            <div style="width: 66px" class="webix_all_segments">
+                                <button type="button" style="width: 32px" class="webix_img_btn_abs webixtype_base" title="{{'UPLOAD_BY_URL'|lowercase|translate}}" button_id="files" ng-click="fdm.openUploadByUrlModal()"><span class="webix_fmanager_mode_option webix_icon fa-cloud-upload"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="webix_view webix_control webix_el_button webix_fmanager_up" view_id="$segmented1" style="float: left; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 37px; height: 38px;">
+                        <div class="webix_el_box" style="width: 37px; height: 38px">
+                            <div style="width: 66px" class="webix_all_segments">
+                                <button type="button" style="width: 32px" class="webix_img_btn_abs webixtype_base" title="{{'DOWNLOAD_FILE'|lowercase|translate}}" button_id="files" ng-click="fdm.downloadFile(Id, FileName)"><span class="webix_fmanager_mode_option webix_icon fa-cloud-download"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="webix_view webix_control webix_el_button webix_fmanager_up" view_id="$segmented1" style="float: left; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 37px; height: 38px;">
+                        <div class="webix_el_box" style="width: 37px; height: 38px">
+                            <div style="width: 66px" class="webix_all_segments">
+                                <button type="button" style="width: 32px" class="webix_img_btn_abs webixtype_base" title="{{'RELOAD'|lowercase|translate}}" button_id="files" ng-click="fdm.refreshFolder()"><span class="webix_fmanager_mode_option webix_icon fa-refresh"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="webix_view webix_control webix_el_button webix_fmanager_up" view_id="$segmented1" style="float: left; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 37px; height: 38px;">
+                        <div class="webix_el_box" style="width: 37px; height: 38px">
+                            <div style="width: 66px" class="webix_all_segments">
+                                <button type="button" style="width: 32px" class="webix_img_btn_abs webixtype_base" title="{{'IMAGE_EDIT'|lowercase|translate}}" button_id="files" ng-click="fdm.imageFileEdit(Id, FileName)"><span class="webix_fmanager_mode_option webix_icon fa-area-chart"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <!-- File Manager Section -->
+                <div class="webix_view webix_fmanager_body webix_layout_line" view_id="$layout4" style="white-space: nowrap; border-left-width: 0px; border-right-width: 0px; border-bottom-width: 0px; margin-left: 0px; margin-top: -1px; width: 100% ; height: 595px;">
+                    <!-- File Section -->
+                    <div class="webix_view webix_multiview" view_id="$multiview1" style="position: relative; display: inline-block; vertical-align: top; border-right-width: 0px; border-bottom-width: 0px; margin-top: 0px; margin-left: -1px; width: 100%; height: 595px;">
+                        <div class="webix_view webix_dataview webix_fmanager_files" id="dropZone" view_id="$fileview1" style="border-width: 1px 0px 0px 1px; position: relative; overflow-y: scroll; width: 100%; height: 594px;">
+                            <div class="webix_scroll_cont">
+                                <div style="height: 110px; width: 100%; ">
+                                    <div webix_f_id="video3" class="webix_dataview_item webix_fmanager_files " style="width: 150px; height: 110px; float: right; overflow: visible;font-family:'IRANSans';font-style: normal;font-size:13px;" ng-repeat="x in fdm.CurrentCategoryList" ng-class="{ 'webix_selected': (x.Id == fdm.selectedIndex && fdm.fileTypes ==2)}" ng-click="fdm.itemClicked($event,x.Id,'folder')" ng-dblClick="fdm.OnCategoryChange(x.Id,false)">
+                                        <div class="webix_fmanager_file">
+                                            <div class="webix_fmanager_data_icon"><span class="webix_icon webix_fmanager_icon fa-folder" style="color: #ffc001;"></span></div>{{x.Title}}
+                                        </div>
+                                    </div>
+                                    <div webix_f_id="video2" class="webix_dataview_item webix_fmanager_files" style="width:150px;height:110px;float:right;overflow:visible;font-family:'IRANSans';font-style:normal;font-size:13px;" ng-repeat="y in fdm.FileList" ng-class="{ 'webix_selected': (y.Id == fdm.selectedIndex && fdm.fileTypes == 1)}" ng-click="fdm.itemClicked($event,y.Id,'file')" ng-dblClick="fdm.downloadFile(y.Id, y.FileName)">
+                                        <div class="webix_fmanager_file">
+                                            <div class="webix_fmanager_data_icon"><span class="webix_icon webix_fmanager_icon {{fdm.setFileViewByType(y.FileName)}}"></span><span class="file-tooltip" data-toggle="tooltip" data-placement="top" title="Size: {{y.FileSize}} MB" style="display:block;">{{y.FileName}}</span></div>
+                                            <script>
+                                                $(document).ready(function () {
+                                                    $('[data-toggle="tooltip"]').tooltip({ html: true });
+                                                });
+                                            </script>
+                                            <style>
+                                                .tooltip-inner {
+                                                    white-space: pre-wrap;
+                                                }
+                                            </style>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="height: 0px; width: 100%; overflow: hidden;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

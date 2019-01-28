@@ -1,0 +1,82 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="logInputGridController as logInputCtrl" ng-init="logInputCtrl.init()">
+    <!-- <div class="container">-->
+    <div class="row" rasha-loading="logInputCtrl.busyIndicator">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+            <!--<div rasha-loading="logInputCtrl.busyIndicator"></div>-->
+            <!--<button class="btn btn-primary" rasha-userrole="logInputCtrl.Add" ng-click="logInputCtrl.openAddModal()" ng-show="logInputCtrl.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>-->
+            <!--<button class="btn btn-warning" rasha-userrole="logInputCtrl.Edit" ng-click="logInputCtrl.openEditModal()" ng-show="logInputCtrl.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>-->
+            <button class="btn btn-danger" rasha-userrole="logInputCtrl.Delete" ng-click="logInputCtrl.deleteRow()" ng-show="logInputCtrl.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="logInputCtrl.showAdvancedSearchPanel(logInputCtrl.gridOptions.resultAccess.AccessSearchField)">&nbsp;{{'advanced_search'|lowercase|translate}}&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="logInputCtrl.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="logInputCtrl.Report" ng-click="logInputCtrl.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="logInputCtrl.getCount()">{{'number'|lowercase|translate}}&nbsp;{{logInputCtrl.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="logInputCtrl" ></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="logInputCtrl.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="logInputCtrl.getJson()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="logInputCtrl.getJson()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div rasha-grid="logInputCtrl.gridOptions"></div>
+        </div>
+    </div>
+</div>
+<style>
+    /*export button*/
+.tooltip-ntk {
+    position: relative;
+
+}
+
+    .tooltip-ntk .input-exl {
+        height: 35px;
+        margin: 4px 19px 5px -3px;
+        color: #000;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    .tooltip-ntk .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: #eaeae6;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: relative;
+        z-index: 1;
+        height: 56px;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 1s;
+        position: absolute;
+        top: -76px;
+        width: auto;
+        left: -84px;
+        border: 1px solid #d6d3d3;
+        top: -56px;
+        width: auto;
+        left: -26px;
+      -webkit-transition: all .4s ease-in-out;
+  -moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+    }
+
+
+
+    .tooltip-ntk:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+
+    }
+
+</style>

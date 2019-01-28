@@ -1,0 +1,78 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="pollingContentCtrl as pollingContent" ng-init="pollingContent.init()">
+    <!--<div class="container">-->
+    <div class="row">
+        <div class="col-md-2">
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;{{'category'|lowercase|translate}}&nbsp;{{'POLLINGS'|lowercase|translate}}</h5></div>
+                    <div class="panel-body">
+                        <div style="position: relative">
+                            <ul class="tree" tree-options="pollingContent.treeConfig"></ul>
+                        </div>
+                        <!-- Category Section -->
+                        <div style="margin-top: 20px;">
+                            <a ng-click="pollingContent.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-success">
+                                <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
+                            </a>
+                            <div id="categoryButtons" style="display: none;">
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="pollingContent.Add" ng-click="pollingContent.openAddCategoryModal()" ng-show="pollingContent.gridOptions.resultAccess.AccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="pollingContent.Edit" ng-click="pollingContent.openEditCategoryModal()" ng-show="pollingContent.gridOptions.resultAccess.AccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="pollingContent.Delete" ng-click="pollingContent.deleteCategory()" ng-show="pollingContent.gridOptions.resultAccess.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h5><i class="fa fa-newspaper-o " style="font-size: 18px;"></i>&nbsp;{{'LIST'|lowercase|translate}}&nbsp;{{'POLLINGS'|lowercase|translate}}<nospecialtag ng-if="pollingContent.treeConfig.currentNode.Id!=null">:&nbsp;{{pollingContent.treeConfig.currentNode.Title}}&nbsp; - {{'Id_Label'|lowercase|translate}}&nbsp;{{pollingContent.treeConfig.currentNode.Id}}</nospecialtag></h5></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-primary" ng-click="pollingContent.openAddModal()" ng-show="pollingContent.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="pollingContent.openEditModal()" ng-show="pollingContent.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="pollingContent.deleteContent()" ng-show="pollingContent.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-success" ng-click="pollingContent.showAdvancedSearchPanel(pollingContent.gridOptions.resultAccess.AccessSearchField)"><i class="fa fa-search fontaesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <button class="btn btn-warning" type="button" ng-click="pollingContent.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+                    <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="pollingContent.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+                    <button class="btn btn-success" ng-click="pollingContent.getCount()">{{'number'|lowercase|translate}}&nbsp;{{pollingContent.ListItemsTotalRowCount}}</button>
+                    <button class="btn btn-info" ng-click="pollingContent.Showstatistics()"><i class="fa fa-pie-chart"></i>&nbsp; آمار&nbsp;&nbsp;</button>
+
+                </div>
+                <hr />
+                <div id="builderPanel" class="col-sm-12 col-lg-12 col-md-12" style="display: none; margin-bottom: 10px;">
+                    <div id="builder" query-builder="pollingContent"></div>
+                    <div class="btn-group" style="float: left;">
+                        <button class="btn btn-success reset" data-target="basic" type="button" id="btn-get" ng-click="pollingContent.getRules()"> {{'look'|lowercase|translate}} </button>
+                        <button class="btn btn-primary set-json" data-target="basic" type="button" id="btn-save" ng-click="pollingContent.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                        <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-set" ng-click="pollingContent.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" rasha-loading="pollingContent.contentBusyIndicator">
+                <div class="col-md-12">
+                    <h4 ng-show="pollingContent.ListItems.length < 1">{{'There_Is_No_Content_In_This_Category'|lowercase|translate}}</h4>
+                    <div ng-show="pollingContent.ListItems.length > 0" rasha-grid="pollingContent.gridOptions"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-primary" ng-click="pollingContent.openAddOptionModal()" ng-show="pollingContent.gridOptions2.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="pollingContent.openEditOptionModal()" ng-show="pollingContent.gridOptions2.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="pollingContent.deleteOption()" ng-show="pollingContent.gridOptions2.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-success" ng-click="pollingContent.showAdvancedSearchPanel(pollingContent.gridOptions2.resultAccess.AccessSearchField)"><i class="fa fa-search fontaesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="pollingContent.toggleExportForm('options')">{{'report'|lowercase|translate}}&nbsp;</button>
+                    <button class="btn btn-default" ng-click="pollingContent.getOptionsCount()" ng-show="pollingContent.gridOptions2.resultAccess.AccessWatchRow">{{'QUANTITY'|lowercase|translate}}&nbsp;{{pollingContent.ListItemsTotalOptionsRowCount}}</button>
+                </div>
+                <hr />
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="grid-options" rasha-grid="pollingContent.gridOptions2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

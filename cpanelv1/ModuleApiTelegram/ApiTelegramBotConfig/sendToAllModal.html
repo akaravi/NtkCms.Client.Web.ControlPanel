@@ -1,0 +1,226 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="botConfigCtrl.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{'BULK_SEND'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmbotConfigCtrlEdit" novalidate ng-submit="botConfigCtrl.sendMessageToAll()">
+                <div class='hr-line-dashed'></div>
+                <fieldset class="form-group row">
+                    <label class="col-sm-2 control-label">{{'RECIEVER'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="all" ng-click="botConfigCtrl.onReceiverChange('all')" checked>
+                                {{'ALL'|lowercase|translate}}
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="group" ng-click="botConfigCtrl.onReceiverChange('group')">
+                                {{'GROUP'|lowercase|translate}}
+                            </label>
+                        </div>
+                        <div class="form-check disabled">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="chatid" ng-click="botConfigCtrl.onReceiverChange('chatid')">
+                                {{'CERTAIN_ID'|lowercase|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'MESSAGE_TYPE'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <select class='form-control' name="MessageType" ng-model="botConfigCtrl.selectedItem.MessageType" ng-options="x.Value as x.Key for x in botConfigCtrl.messageTypeListItems" ng-change="botConfigCtrl.onMessageTypeChange(botConfigCtrl.selectedItem.MessageType)"></select>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="botConfigCtrl.show_membergroup">
+                    <label class="col-sm-2 control-label"> {{'MEMBER_GROUP'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <select class='form-control' name="MessageType" ng-model="botConfigCtrl.selectedItem.memberGroupid" ng-options="x.Id as x.Title for x in botConfigCtrl.memberGroupListItems"></select>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="botConfigCtrl.show_chatid">
+                    <label class="col-sm-2 control-label"> {{'CERTAIN_ID'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="chatId" ng-model="botConfigCtrl.selectedItem.chatIdStr" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group col-sm-12" ng-repeat="x in botConfigCtrl.attachedFiles">
+                        <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                        <div class="input-group">
+                            <input type="text" id="option{{$index}}" class="form-control" ng-required="true" name="attachedFileName" required ng-model="x.filename">
+                            <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="botConfigCtrl.deleteAttachedFile($index)"><i class="fa fa-remove"> {{'delete'|lowercase|translate}} </i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="botConfigCtrl.show_linkfileid">
+                    <label class="col-sm-2 control-label"> {{'SELECT_FILE'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <div treecontrol class="tree-classic" style="font-family: Tahoma, Verdana, Geneva, sans-serif"
+                             tree-model="botConfigCtrl.dataForTheTree"
+                             options="botConfigCtrl.treeOptions"
+                             selected-node="botConfigCtrl.selectedNode">
+                            {{node.Title}}{{node.FileName}}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="botConfigCtrl.show_menuId">
+                    <label class="col-sm-2 control-label">{{'UNIVERSAL_MENU_ID'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="botConfigCtrl.selectedItem.universalMenuId" />
+                    </div>
+                </div>
+
+
+                <div type="number" step="any" class="form-group" ng-show="botConfigCtrl.show_latitude">
+                    <label class="col-sm-2 control-label"> {{'LATITUDE'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="number" step="any" ng-model="botConfigCtrl.selectedItem.latitude" />
+                    </div>
+                </div>
+                <div type="number" step="any" class="form-group" ng-show="botConfigCtrl.show_longitude">
+                    <label class="col-sm-2 control-label"> {{'LONGITUDE'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="number" step="any" ng-model="botConfigCtrl.selectedItem.longitude" />
+                    </div>
+                </div>
+                <div class="form-group" ng-show="botConfigCtrl.show_title">
+                    <label class="col-sm-2 control-label">{{'title'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="botConfigCtrl.selectedItem.title" />
+                    </div>
+                </div>
+                <div class="form-group" ng-show="botConfigCtrl.show_text">
+                    <label class="col-sm-2 control-label">{{'TEXT'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" ng-model="botConfigCtrl.selectedItem.text" style="height: 85px;"></textarea>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="botConfigCtrl.show_firstName">
+                    <label class="col-sm-2 control-label">{{'FIRST_NAME'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="botConfigCtrl.selectedItem.firstName" />
+                    </div>
+                </div>
+                <div class="form-group" ng-show="botConfigCtrl.show_lastName">
+                    <label class="col-sm-2 control-label">{{'LAST_NAME'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="botConfigCtrl.selectedItem.lastName" />
+                    </div>
+                </div>
+                <div class="form-group" ng-show="botConfigCtrl.show_phoneNumber">
+                    <label class="col-sm-2 control-label">{{'PHONE_NUMBER'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="botConfigCtrl.selectedItem.phoneNumber" />
+                    </div>
+                </div>
+                <!-- فیلدهای زمانبندی -->
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Timing_Type'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <div class="col-sm-10">
+                            <select class='form-control' name="ScheduleCronType" ng-model="botConfigCtrl.selectedItem.ScheduleCronType" ng-change="botConfigCtrl.onScheduleTypeChange(botConfigCtrl.selectedItem.ScheduleCronType)" ng-options="x.Value as x.Description for x in botConfigCtrl.ScheduleCronType"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="border:1px solid blue; border-radius:5px;">
+                    <div class="form-group" ng-show="botConfigCtrl.showonce">
+                        <label class="col-sm-2  control-label">تاریخ</label>
+                        <div class="col-sm-6  col-md-4">
+                            <div rasha-date-picker="botConfigCtrl.CronOnceDate" ng-model="botConfigCtrl.selectedItem.CronOnceDate"></div><input type="hidden" />
+                        </div>
+                    </div>
+                    <div ng-show="botConfigCtrl.showHourly" class="form-group">
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronHourlyMinute" ng-model="botConfigCtrl.selectedItem.CronHourlyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                    <div ng-show="botConfigCtrl.showDaily" class="form-group">
+                        <label class="col-sm-2 control-label ">ساعت</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronDailyHour" ng-model="botConfigCtrl.selectedItem.CronDailyHour" min="0" max="23" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronDailyMinute" ng-model="botConfigCtrl.selectedItem.CronDailyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                    <div class="form-group scedule" ng-show="botConfigCtrl.showWeekly">
+                        <div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label ">{{'Label_Days'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div ng-repeat="x in botConfigCtrl.weekdays">
+                                        <label><input type="radio" name="{{x.Key}}" value="{{x.Value}}" ng-model="botConfigCtrl.selectedItem.CronWeeklyDayOfWeek">{{x.Key}}</label>
+
+                                        <!--<input type="radio" name="{{x.value}}" value="{{x.value}}" class="Weekday" ng-checked="x.checked" />{{x.Key}}-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">ساعت</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronWeeklyHour" ng-model="botConfigCtrl.selectedItem.CronWeeklyHour" min="0" max="23" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronWeeklyMinute" ng-model="botConfigCtrl.selectedItem.CronWeeklyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                    <div ng-show="botConfigCtrl.showmonthly" class="form-group">
+                        <label class="col-sm-2 control-label ">{{'Label_Days'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control monthDay" type="number" name="CronMonthlyDay" ng-model="botConfigCtrl.selectedItem.CronMonthlyDay" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">ساعت</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronMonthlyHour" ng-model="botConfigCtrl.selectedItem.CronMonthlyHour" min="0" max="23" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronMonthlyMinute" ng-model="botConfigCtrl.selectedItem.CronMonthlyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                    <div ng-show="botConfigCtrl.showmonthlyYear" class="form-group">
+                        <label class="col-sm-2 control-label ">ماه های سال</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronYearlyMonth" ng-model="botConfigCtrl.selectedItem.CronYearlyMonth" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">{{'Label_Days'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control monthDay" type="number" name="CronYearlyDay" ng-model="botConfigCtrl.selectedItem.CronYearlyDay" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">ساعت</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronMonthlyHour" ng-model="botConfigCtrl.selectedItem.CronYearlyHour" min="0" max="23" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronMonthlyMinute" ng-model="botConfigCtrl.selectedItem.CronYearlyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                </div>
+                <!-- فیلدهای زمانبندی -->
+
+        <div class='hr-line-dashed'></div>
+        <div class="form-group">
+            <button class="btn btn-primary" ng-disabled="botConfigCtrl.addRequested" type="submit">{{botConfigCtrl.sendButtonText}}</button>
+            <button class="btn btn-default" type="button" ng-click="botConfigCtrl.closeModal()">{{'cancel'|lowercase|translate}}</button>
+        </div>
+        </form>
+    </div>
+    </div>
+</div>

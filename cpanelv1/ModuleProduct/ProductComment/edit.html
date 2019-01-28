@@ -1,0 +1,90 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="ProductComment.busyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="ProductComment.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Comment'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmProductCommentEdit" novalidate ng-submit="ProductComment.editRow(frmProductCommentEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                    <div class="panel-body">
+                        <!--tabStart-->
+                        <div class='hr-line-dashed'></div>
+                        <div class="form-group" ng-show="ProductComment.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                             ng-class="{'has-error' : frmProductCommentAdd.RecordStatus.$invalid && !frmProductCommentAdd.RecordStatus.$pristine,'has-success' : frmProductCommentAdd.LinkSourceId.$valid}">
+                            <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                            <div class="col-sm-10" rasha-record-status="ProductComment"></div>
+                        </div>
+
+                        <div class='hr-line-dashed'></div>
+                        <div class="form-group" ng-show="ProductComment.gridOptions.resultAccess.AccessEditField.indexOf('Writer')>-1"
+                             ng-class="{'has-error' : frmProductCommentEdit.Writer.$invalid && !frmProductCommentEdit.Writer.$pristine,'has-success' : frmProductCommentEdit.Writer.$valid}">
+                            <label class="col-sm-2 control-label"> {{'AUTHOR'|lowercase|translate}} </label>
+                            <div class="col-sm-10">
+                                <input class="form-control"
+                                       ng-required="true"
+                                       name="Writer"
+                                       ng-model="ProductComment.selectedItem.Writer" />
+                                <div class="m-t-xs" ng-show="frmProductCommentEdit.Writer.$invalid">
+                                    <small class="text-danger" ng-show="frmProductCommentEdit.Writer.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                </div>
+                                <span style="left: 10px !important;" ng-show="frmProductCommentEdit.Writer.$valid && frmProductCommentEdit.Writer.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                <span style="left: 10px !important;" ng-show="(frmProductCommentEdit.Writer.$invalid && !frmProductCommentEdit.Writer.$pristine) || frmProductCommentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                            </div>
+                        </div>
+
+                        <div class='hr-line-dashed'></div>
+                        <div class="form-group" ng-show="ProductComment.gridOptions.resultAccess.AccessEditField.indexOf('Comment')>-1"
+                             ng-class="{'has-error' : frmProductCommentEdit.Comment.$invalid && !frmProductCommentEdit.Comment.$pristine,'has-success' : frmProductCommentEdit.Comment.$valid}">
+                            <label class="col-sm-2 control-label"> {{'COMMENT'|lowercase|translate}} </label>
+                            <div class="col-sm-10">
+                                <input class="form-control"
+                                       ng-required="true"
+                                       name="Comment"
+                                       ng-model="ProductComment.selectedItem.Comment" />
+                                <div class="m-t-xs" ng-show="frmProductCommentEdit.Comment.$invalid">
+                                    <small class="text-danger" ng-show="frmProductCommentEdit.Comment.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                </div>
+                                <span style="left: 10px !important;" ng-show="frmProductCommentEdit.Comment.$valid && frmProductCommentEdit.Comment.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                <span style="left: 10px !important;" ng-show="(frmProductCommentEdit.Comment.$invalid && !frmProductCommentEdit.Comment.$pristine) || frmProductCommentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div class='hr-line-dashed'></div>
+                        <div class="form-group" ng-show="ProductComment.gridOptions.resultAccess.AccessEditField.indexOf('LinkProductContentId')>-1"
+                             ng-class="{'has-error' : frmProductCommentEdit.LinkProductContentId.$invalid && !frmProductCommentEdit.LinkProductContentId.$pristine,'has-success' : frmProductCommentEdit.LinkProductContentId.$valid}">
+                            <label class="col-sm-2 control-label"> {{'SELECT_CONTENT'|lowercase|translate}} </label>
+                            <div class="col-sm-10">
+                                <input class="form-control" ng-required="true" name="LinkProductContentId" rasha-autocomplete="ProductComment.LinkProductContentIdSelector" ng-model="ProductComment.selectedItem.LinkProductContentId" />
+                                <!--<select class="form-control" ng-model="Productcategory.selectedItem.LinkProductContentId">
+                                    <option ng-repeat="x in ProductComment.CommentList" ng-value="x.Id">{{x.Title}}</option>
+                                </select>-->
+                            </div>
+                        </div>
+                        <div class='hr-line-dashed'></div>
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <label class="checkbox-inline">
+                                    <input icheck type="checkbox" value="option1" id="IsActivated" ng-model="ProductComment.selectedItem.IsActivated" /> {{'IS_ACTIVE'|lowercase|translate}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <label class="checkbox-inline">
+                                    <input icheck type="checkbox" value="option2" id="IsArchived" ng-model="ProductComment.selectedItem.IsArchived" /> {{'IS_ARCHIVE'|lowercase|translate}}
+                                </label>
+                            </div>
+                        </div>
+                        <!--tabEnd-->
+                    </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="ProductComment.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="ProductComment.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

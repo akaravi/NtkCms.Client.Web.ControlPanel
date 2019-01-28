@@ -1,0 +1,12 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="ticketAnswerController as ticketAnswer" ng-init="ticketAnswer.init()">
+    <!-- <div class="container">-->
+    <div class="row">
+        <div class="col-md-12" style="text-align: center;">
+            <div rasha-loading="ticketAnswer.loadingBusyIndicator"></div>
+            <button class="btn btn-primary" ng-click="ticketAnswer.addNewModel()" ng-show="ticketAnswer.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" ng-click="ticketAnswer.editmodel()" ng-show="ticketAnswer.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" ng-click="ticketAnswer.delete()" ng-show="ticketAnswer.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+            <div rasha-grid="ticketAnswer.gridOptions"></div>
+        </div>
+    </div>
+</div>

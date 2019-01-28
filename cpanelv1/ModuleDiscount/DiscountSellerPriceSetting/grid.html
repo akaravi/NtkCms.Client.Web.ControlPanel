@@ -1,0 +1,31 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="discountSellerPriceSettingController as discountSellerPriceSetting" ng-init="discountSellerPriceSetting.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="discountSellerPriceSetting.busyIndicator"></div>
+            <button class="btn btn-primary" rasha-userrole="discountSellerPriceSetting.Add" ng-click="discountSellerPriceSetting.openAddModal()" type="button" ng-show="discountSellerPriceSetting.gridOptions.resultAccess.AccessAddRow">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="discountSellerPriceSetting.Edit" ng-click="discountSellerPriceSetting.openEditModal()" type="button" ng-show="discountSellerPriceSetting.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="discountSellerPriceSetting.Delete" ng-click="discountSellerPriceSetting.deleteRow()" type="button" ng-show="discountSellerPriceSetting.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="discountSellerPriceSetting.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="discountSellerPriceSetting.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="discountSellerPriceSetting.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="discountSellerPriceSetting.getCount()">{{'number'|lowercase|translate}}&nbsp;{{discountSellerPriceSetting.ListItemsTotalRowCount}}</button>
+        </div>
+        <hr />
+        <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+            <div id="builder" query-builder="discountSellerPriceSetting"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="discountSellerPriceSetting.getRules()">{{'look'|lowercase|translate}}</button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="discountSellerPriceSetting.saveRules()">{{'save_condition'|lowercase|translate}}</button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="discountSellerPriceSetting.setRules()">{{'restore_condition'|lowercase|translate}}</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="discountSellerPriceSetting.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,31 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="shopInvoiceSaleWorkFlowController as shopInvoiceSaleWorkFlow" ng-init="shopInvoiceSaleWorkFlow.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="shopInvoiceSaleWorkFlow.busyIndicator"></div>
+            <button class="btn btn-primary" rasha-userrole="shopInvoiceSaleWorkFlow.Add" ng-click="shopInvoiceSaleWorkFlow.openAddModal()" type="button" ng-show="shopInvoiceSaleWorkFlow.gridOptions.resultAccess.AccessAddRow">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="shopInvoiceSaleWorkFlow.Edit" ng-click="shopInvoiceSaleWorkFlow.openEditModal()" type="button" ng-show="shopInvoiceSaleWorkFlow.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="shopInvoiceSaleWorkFlow.Delete" ng-click="shopInvoiceSaleWorkFlow.deleteRow()" type="button" ng-show="shopInvoiceSaleWorkFlow.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="shopInvoiceSaleWorkFlow.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="shopInvoiceSaleWorkFlow.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="shopInvoiceSaleWorkFlow.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="shopInvoiceSaleWorkFlow.getCount()">{{'number'|lowercase|translate}}&nbsp;{{shopInvoiceSaleWorkFlow.ListItemsTotalRowCount}}</button>
+        </div>
+        <hr />
+        <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+            <div id="builder" query-builder="shopInvoiceSaleWorkFlow"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="shopInvoiceSaleWorkFlow.getRules()">{{'look'|lowercase|translate}}</button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="shopInvoiceSaleWorkFlow.saveRules()">{{'save_condition'|lowercase|translate}}</button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="shopInvoiceSaleWorkFlow.setRules()">{{'restore_condition'|lowercase|translate}}</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="shopInvoiceSaleWorkFlow.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

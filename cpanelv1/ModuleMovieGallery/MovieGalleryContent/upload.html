@@ -1,0 +1,83 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="mvGalleryCtrlCtrl.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ cmsFilegrd.modalTitle }}</h3>
+            
+            <section class="background colourful"></section>
+
+            <section class="xcontainer">
+
+                <section class="droplet" ng-class="{ uploading: mvGalleryCtrlCtrl.interface.isUploading() }">
+                
+                    <!--<ul class="statistics">
+                        <li><label>Valid:</label> {{mvGalleryCtrlCtrl.interface.getFiles(mvGalleryCtrlCtrl.interface.FILE_TYPES.VALID).length}}</li>
+                        <li><label>Invalid:</label> {{mvGalleryCtrlCtrl.interface.getFiles(mvGalleryCtrlCtrl.interface.FILE_TYPES.INVALID).length}}</li>
+                        <li><label>Uploaded:</label> {{mvGalleryCtrlCtrl.interface.getFiles(mvGalleryCtrlCtrl.interface.FILE_TYPES.UPLOADED).length}}</li>
+                        <li><label>Deleted:</label> {{mvGalleryCtrlCtrl.interface.getFiles(mvGalleryCtrlCtrl.interface.FILE_TYPES.DELETED).length}}</li>
+                        <li><label>Total:</label> {{mvGalleryCtrlCtrl.interface.getFiles().length}}</li>
+                    </ul>-->
+
+                    <section class="toolbar">
+
+                        <input type="button" class="button upload-files" value="{{'SEND_FILE'|lowercase|translate}}"
+                               ng-click="mvGalleryCtrlCtrl.interface.uploadFiles()"
+                               ng-hide="mvGalleryCtrlCtrl.interface.isUploading()"
+                               ng-class="{ clickable: mvGalleryCtrlCtrl.interface.isReady() }" />
+
+                        <input type="button" class="button upload-files" value="{{'Uploading'|lowercase|translate}}" ng-show="mvGalleryCtrlCtrl.interface.isUploading()" />
+
+                        <div class="add-files">
+                            <input type="button" class="button add-files" value="{{'SELECT_FILE'|lowercase|translate}}" />
+                            <droplet-upload-multiple ng-model="mvGalleryCtrlCtrl.interface"></droplet-upload-multiple>
+                        </div>
+
+                        <comment class="progress" ng-class="{ visible: mvGalleryCtrlCtrl.interface.isUploading() }">
+                            Uploaded: {{mvGalleryCtrlCtrl.interface.progress.percent}}%
+                        </comment>
+
+                    </section>
+
+                    <droplet ng-model="mvGalleryCtrlCtrl.interface">
+
+                        <!--<div class="loading" ng-class="{ visible: mvGalleryCtrlCtrl.interface.isUploading() }">
+                            <svg viewBox="0 0 400 400">
+                                <path class="loading-path" data-progressbar ng-model="mvGalleryCtrlCtrl.interface.progress.percent"
+                                      d="M 0,1 L 398,1 L 398,234 L 1,234 L 0,1"
+                                      stroke="#D3B2D1" stroke-width="1" fill-opacity="0"
+                                      style="stroke-dasharray: 392px, 392px;stroke-dashoffset: 392px;"></path>
+                            </svg>
+                        </div>-->
+
+                        <comment></comment>
+
+                        <section class="message success" ng-class="{ visible: mvGalleryCtrlCtrl.interface.success }" ng-click="mvGalleryCtrlCtrl.interface.success = false">
+                            {{mvGalleryCtrlCtrl.interface.uploadCount}} {{'File'|lowercase|translate}} {{'Successfully_Uploaded'|lowercase|translate}}
+                        </section>
+
+                        <section class="message error" ng-class="{ visible: mvGalleryCtrlCtrl.interface.error }" ng-click="mvGalleryCtrlCtrl.interface.error = false">
+                            {{'Failed_To_Upload_Any_Of_The_Files'|lowercase|translate}}
+                        </section>
+
+                        <ul class="files">
+
+                            <li ng-repeat="model in mvGalleryCtrlCtrl.interface.getFiles(mvGalleryCtrlCtrl.interface.FILE_TYPES.VALID)">
+                                <droplet-preview ng-model="model"></droplet-preview>
+                                <div class="delete" ng-click="model.deleteFile()">&times;</div>
+                                <div class="size">{{model.file.size / 1024 / 1024 | number: 1}}{{'MB'|lowercase|translate}}</div>
+                            </li>
+
+                        </ul>
+
+                    </droplet>
+
+                </section>
+
+            </section>
+            
+            
+
+        </div>
+    </div>
+</div>
+
