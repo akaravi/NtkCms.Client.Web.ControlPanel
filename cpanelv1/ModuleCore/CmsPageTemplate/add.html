@@ -1,0 +1,73 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="cmsPageTemplategrd.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Template'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmCmsPageTemplateAdd" novalidate ng-submit="cmsPageTemplategrd.addNewRow(frmCmsPageTemplateAdd)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsPageTemplategrd.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmcmsPageTemplategrdAdd.RecordStatus.$invalid && !frmcmsPageTemplategrdAdd.RecordStatus.$pristine,'has-success' : frmcmsPageTemplategrdAdd.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
+                    <div class="col-sm-10" rasha-record-status="cmsPageTemplategrd"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsPageTemplategrd.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                     ng-class="{'has-error' : frmCmsPageTemplateAdd.Title.$invalid && !frmCmsPageTemplateAdd.Title.$pristine,'has-success' : frmCmsPageTemplateAdd.Title.$valid}">
+                    <label class="col-sm-2 control-label">{{'TITLE_TEMPLATE'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-required="true" name="Title" ng-model="cmsPageTemplategrd.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmCmsPageTemplateAdd.Title.$invalid">
+                            <small class="text-danger" ng-show="frmCmsPageTemplateAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmCmsPageTemplateAdd.Title.$valid && frmCmsPageTemplateAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmCmsPageTemplateAdd.Title.$invalid && !frmCmsPageTemplateAdd.Title.$pristine) || frmCmsPageTemplateAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsPageTemplategrd.gridOptions.resultAccess.AccessAddField.indexOf('Folder')>-1"
+                     ng-class="{'has-error' : frmCmsPageTemplateAdd.Folder.$invalid && !frmCmsPageTemplateAdd.Folder.$pristine,'has-success' : frmCmsPageTemplateAdd.Folder.$valid}">
+                    <label class="col-sm-2 control-label">{{'Folder_TEMPLATE'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-required="true" name="Folder" ng-model="cmsPageTemplategrd.selectedItem.Folder" />
+                        <div class="m-t-xs" ng-show="frmCmsPageTemplateAdd.Folder.$invalid">
+                            <small class="text-danger" ng-show="frmCmsPageTemplateAdd.Folder.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmCmsPageTemplateAdd.Folder.$valid && frmCmsPageTemplateAdd.Folder.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmCmsPageTemplateAdd.Folder.$invalid && !frmCmsPageTemplateAdd.Folder.$pristine) || frmCmsPageTemplateAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsPageTemplategrd.gridOptions.resultAccess.AccessAddField.indexOf('IndexFile')>-1"
+                     ng-class="{'has-error' : frmCmsPageTemplateAdd.IndexFile.$invalid && !frmCmsPageTemplateAdd.IndexFile.$pristine,'has-success' : frmCmsPageTemplateAdd.IndexFile.$valid}">
+                    <label class="col-sm-2 control-label">{{'IndexFile_TEMPLATE'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-required="true" name="IndexFile" ng-model="cmsPageTemplategrd.selectedItem.IndexFile" />
+                        <div class="m-t-xs" ng-show="frmCmsPageTemplateAdd.IndexFile.$invalid">
+                            <small class="text-danger" ng-show="frmCmsPageTemplateAdd.IndexFile.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmCmsPageTemplateAdd.IndexFile.$valid && frmCmsPageTemplateAdd.IndexFile.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmCmsPageTemplateAdd.IndexFile.$invalid && !frmCmsPageTemplateAdd.IndexFile.$pristine) || frmCmsPageTemplateAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsPageTemplategrd.gridOptions.resultAccess.AccessAddField.indexOf('Description')>-1"
+                     >
+                    <label class="col-sm-2 control-label">{{'Description_TEMPLATE'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" ng-required="true" name="Description" ng-model="cmsPageTemplategrd.selectedItem.Description" ></textarea>
+                        <div class="m-t-xs" ng-show="frmCmsPageTemplateAdd.Description.$invalid">
+                            <small class="text-danger" ng-show="frmCmsPageTemplateAdd.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="cmsPageTemplategrd.addRequested" type="submit">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="cmsPageTemplategrd.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

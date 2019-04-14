@@ -1,0 +1,18 @@
+﻿<div id="wrapper" ng-controller="MainCtrl as main" ng-init="main.init()" style="background-image: url(cpanelv1/images/bg_Dashboard.jpg);background-repeat: no-repeat;background-attachment: fixed;background-size: 100%;">
+    <div ui-view="navigation"></div>
+    <div id="page-wrapper" class="gray-bg {{$state.current.name}}" style="background-image: url(cpanelv1/images/bg_Dashboard.jpg);background-repeat: no-repeat;background-attachment: fixed;background-size: 100%;">
+        <div ui-view="topnavbar"></div>
+        <div ui-view="navigationup"></div>
+        <!--<div class="row wrapper border-bottom white-bg page-heading">
+            <div ncy-breadcrumb class="col-lg-10" ng-show=""></div>
+        </div>-->
+        <!-- Main view  -->
+        <div ui-view style="border:1px solid gray;padding:7px"></div>
+
+
+        <br />
+        <br />
+        <br />
+        <div ui-view="footer"></div>
+    </div>
+</div>

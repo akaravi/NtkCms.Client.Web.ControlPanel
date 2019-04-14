@@ -1,0 +1,50 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="pollingContent.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Option'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmpollingContentAdd" novalidate ng-submit="pollingContent.addNewOption(frmpollingContentAdd,'true')">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="pollingContent.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmpollingContentAdd.RecordStatus.$invalid && !frmpollingContentAdd.RecordStatus.$pristine,'has-success' : frmpollingContentAdd.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="pollingContent"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-class="{'has-error' : frmpollingContentAdd.Option.$invalid && !frmpollingContentAdd.Option.$pristine,'has-success' : frmpollingContentAdd.Option.$valid}">
+                    <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Option"
+                               ng-model="pollingContent.selectedItem.Option" />
+                        <div class="m-t-xs" ng-show="frmpollingContentAdd.Option.$invalid">
+                            <small class="text-danger" ng-show="frmpollingContentAdd.Option.$error.required"><i class="fa fa-exclamation-triangle"></i>{{'this_information_is_required'|lowercase|translate}}</small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmpollingContentAdd.Option.$valid && frmpollingContentAdd.Option.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmpollingContentAdd.Option.$invalid && !frmpollingContentAdd.Option.$pristine) || frmpollingContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="pollingContent.gridOptions2.resultAccess.AccessAddField.indexOf('OptionAnswer')>-1">
+                    <label class="col-sm-2 control-label">{{'OPTION_ANSWER'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="OptionAnswer" ng-model="pollingContent.selectedItem.OptionAnswer" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group" ng-show="pollingContent.gridOptions2.resultAccess.AccessAddField.indexOf('LinkPollingContentId')>-1">
+                    <label class="col-sm-2 control-label">کد سیستمی نظرسنجی</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkPollingContentId" ng-model="pollingContent.selectedItem.LinkPollingContentId" readonly />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="pollingContent.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="pollingContent.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

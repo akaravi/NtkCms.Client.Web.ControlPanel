@@ -1,0 +1,45 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="cmsGuideController as cmsGuide" ng-init="cmsGuide.init()">
+    <div class="row" rasha-loading="cmsGuide.busyIndicator">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;&nbsp;  {{'MENUS'|lowercase|translate}}</h5></div>
+                    <div class="panel-body">
+                        <div style="position: relative">
+                            <ul class="tree" tree-options="cmsGuide.treeConfig"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5><i class="fa fa-biographypaper-o " style="font-size: 18px;"></i>&nbsp;{{'SUBMENUS'|lowercase|translate}}</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="text-align: right;" data-guide="6">
+                    <button class="btn btn-primary" ng-click="cmsGuide.openAddContentModal()" ng-show="cmsGuide.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="cmsGuide.openEditContentModal()" ng-show="cmsGuide.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="cmsGuide.deleteContent()" ng-show="cmsGuide.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-success" ng-click="cmsGuide.showAdvancedSearchPanel(cmsGuide.gridOptions.resultAccess.AccessSearchField)"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <button class="btn btn-warning" type="button" ng-click="cmsGuide.savePriorityOrderBtn()" ng-show="cmsGuide.showSavePriorityOrderBtn" id="save-priorityOrderBtn-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp;{{'SAVE_ORDER_MENU'|lowercase|translate}}</button>
+                </div>
+                <hr />
+                <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+                    <div id="builder" query-builder="cmsGuide"></div>
+                    <div class="btn-group" style="float: left;">
+                        <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="cmsGuide.getRules()">{{'look'|lowercase|translate}}</button>
+                        <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="cmsGuide.saveRules()">{{'save_condition'|lowercase|translate}}</button>
+                        <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="cmsGuide.setRules()">{{'restore_condition'|lowercase|translate}}</button>
+                    </div>
+                </div>
+                <div class="col-md-12" rasha-loading="cmsGuide.gridBusyIndicator">
+                    <div rasha-grid="cmsGuide.gridOptions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

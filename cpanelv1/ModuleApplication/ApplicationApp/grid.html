@@ -1,0 +1,31 @@
+﻿<div class="bestig wrapper wrapper-content animated fadeInRight" ng-controller="applicationAppController as appApplication" ng-init="appApplication.init()">
+    <div class="row" rasha-loading="appApplication.busyIndicator">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="appApplication.Add" ng-click="appApplication.openAddModal()" ng-show="appApplication.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="appApplication.Edit" ng-click="appApplication.openEditModal()" type="button" ng-show="appApplication.gridOptions.resultAccess.AccessEditRow">{{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="appApplication.Delete" ng-click="appApplication.deleteRow()" type="button" ng-show="appApplication.gridOptions.resultAccess.AccessDeleteRow">{{'delete'|lowercase|translate}}</button>
+            <button class="btn btn-success" type="button" ng-click="appApplication.showAdvancedSearchPanel()">{{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="appApplication.openGridConfigModal(appApplication.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn">{{'display_setting'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="appApplication.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="appApplication.getCount()">{{'number'|lowercase|translate}}&nbsp;{{appApplication.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="appApplication"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="appApplication.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="appApplication.getJson()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="appApplication.getJson()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <form method="get" class="form-horizontal" name="frmappApplicationAdd" novalidate ng-submit="appApplication.addNewRow(frmappApplicationAdd)">
+                <div class='hr-line-dashed'></div>
+            </form>
+            <div rasha-grid="appApplication.gridOptions"></div>
+        </div>
+    </div>
+</div>

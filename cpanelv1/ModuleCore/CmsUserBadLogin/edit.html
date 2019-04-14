@@ -1,0 +1,67 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="cmdUserBadLogin.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ cmdUserBadLogin.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmCmsUserBadLoginEdit" novalidate ng-submit="cmdUserBadLogin.editRow(frmCmsUserBadLoginEdit)">
+
+                <div class='form-group' ng-show="cmdUserBadLogin.gridOptions.resultAccess.AccessEditField.indexOf('DeviceId')>-1">
+                    <label class='col-sm-2 control-label'>{{'DEVICE_ID'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='text' ng-model='cmdUserBadLogin.selectedItem.DeviceId' class='form-control'>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group' ng-show="cmdUserBadLogin.gridOptions.resultAccess.AccessEditField.indexOf('RequestDate')>-1">
+                    <label class='col-sm-2 control-label'>{{'DATE_OF_REGISTER'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input dir="rtl"
+                               type="text"
+                               id="RequestDate"
+                               datepicker-append-to-body="true"
+                               show-button-bar="false"
+                               name="RequestDate"
+                               is-open="cmdUserBadLogin.focusRequestDate"
+                               ng-focus="cmdUserBadLogin.openDateRequestDate($event)"
+                               datepicker-popup-persian="d MMMM yyyy"
+                               datepicker-options="dateOptions"
+                               class="form-control"
+                               ng-model="cmdUserBadLogin.selectedItem.RequestDate">
+
+
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group' ng-show="cmdUserBadLogin.gridOptions.resultAccess.AccessEditField.indexOf('UsedUsername')>-1">
+                    <label class='col-sm-2 control-label'>{{'USERNAME_USED'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='text' ng-model='cmdUserBadLogin.selectedItem.UsedUsername' class='form-control'>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group' ng-show="cmdUserBadLogin.gridOptions.resultAccess.AccessEditField.indexOf('UsedPwd')>-1">
+                    <label class='col-sm-2 control-label'>{{'PASSWORD'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='text' ng-model='cmdUserBadLogin.selectedItem.UsedPwd' class='form-control'>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmdUserBadLogin.gridOptions.resultAccess.AccessEditField.indexOf('LinkLinkUserIdId')>-1">
+                    <label class="col-sm-2 control-label">{{'SYSTEM_USER'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" rasha-autocomplete="cmdUserBadLogin.linkUserIdSelector" ng-model="cmdUserBadLogin.selectedItem.LinkLinkUserIdId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+
+
+
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="cmdUserBadLogin.addRequested" type="submit">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="cmdUserBadLogin.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

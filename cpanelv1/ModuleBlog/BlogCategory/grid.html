@@ -1,0 +1,25 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="blogContentCtrl as blogCategory" ng-init="blogCategory.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="blogCategory.busyIndicator"></div>
+            <button class="btn btn-primary" rasha-userrole="blogCategory.Add" ng-click="blogCategory.openAddModal()" ng-show="blogCategory.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="blogCategory.Edit" ng-click="blogCategory.openEditModal()" ng-show="blogCategory.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="blogCategory.Delete" ng-click="blogCategory.deleteRow()" ng-show="blogCategory.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="blogCategory.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-primary" type="button" ng-click="blogCategory.reportData()"> {{'report'|lowercase|translate}} </button>
+            <button class="btn btn-success" ng-click="blogCategory.getCount()">{{'number'|lowercase|translate}}&nbsp;{{publicConfig.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="blogCategory" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="blogCategory.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

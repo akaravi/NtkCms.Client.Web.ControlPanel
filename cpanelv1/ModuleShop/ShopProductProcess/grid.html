@@ -1,0 +1,31 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="shopProductProcessController as shopProcess" ng-init="shopProcess.init()">
+    <!-- <div class="container">-->
+    <div class="row" rasha-loading="shopProcess.busyIndicator">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="shopProcess.Add" ng-click="shopProcess.openAddModal()" ng-show="shopProcess.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="shopProcess.Edit" ng-click="shopProcess.openEditModal()" type="button" ng-show="shopProcess.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="shopProcess.Delete" ng-click="shopProcess.deleteContent()" type="button" ng-show="shopProcess.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="shopProcess.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="shopProcess.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="shopProcess.getCount()">{{'number'|lowercase|translate}}&nbsp;{{shopProcess.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="shopProcess"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="shopProcess.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="shopProcess.getJson()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="shopProcess.getJson()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <form method="get" class="form-horizontal" name="frmshopProcessAdd" novalidate ng-submit="shopProcess.addNewRow(frmshopProcessAdd)">
+                <div class='hr-line-dashed'></div>
+            </form>
+            <div rasha-grid="shopProcess.gridOptions"></div>
+        </div>
+    </div>
+</div>

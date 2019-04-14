@@ -1,0 +1,127 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="logInputCtrl.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ logInputCtrl.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmlogInputCtrlEdit" novalidate ng-submit="logInputCtrl.sendMessageToSender()">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'NAME'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" readonly="readonly" ng-model="logInputCtrl.selectedItem.FirstName" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'LASTNAME'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" readonly="readonly" ng-model="logInputCtrl.selectedItem.LastName" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'USERNAME'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" readonly="readonly" ng-model="logInputCtrl.selectedItem.Username" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'USER_ID'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" readonly="readonly" ng-model="logInputCtrl.selectedItem.LinkUserId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'CONTENT_OF_SMS'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" ng-model="logInputCtrl.selectedItem.ContentMessage" style="height: 85px;" readonly="readonly"></textarea>
+                    </div>
+                </div>
+               
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'MESSAGE_TYPE'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <select class='form-control' name="MessageType" ng-model="logInputCtrl.selectedItem.MessageType" ng-options="x.Value as x.Key for x in logInputCtrl.messageTypeListItems" ng-change="logInputCtrl.onMessageTypeChange(logInputCtrl.selectedItem.MessageType)"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group col-sm-12" ng-repeat="x in logInputCtrl.attachedFiles">
+                        <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                        <div class="input-group">
+                            <input type="text" id="option{{$index}}" class="form-control" ng-required="true" name="attachedFileName" required ng-model="x.filename">
+                            <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="logInputCtrl.deleteAttachedFile($index)"><i class="fa fa-remove"> {{'delete'|lowercase|translate}} </i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="logInputCtrl.show_linkfileid">
+                    <label class="col-sm-2 control-label"> {{'SELECT_FILE'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <div treecontrol class="tree-classic" style="font-family: Tahoma, Verdana, Geneva, sans-serif"
+                             tree-model="logInputCtrl.dataForTheTree"
+                             options="logInputCtrl.treeOptions"
+                             selected-node="logInputCtrl.selectedNode">
+                            {{node.Title}}{{node.FileName}}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="logInputCtrl.show_menuId">
+                    <label class="col-sm-2 control-label">{{'UNIVERSAL_MENU_ID'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="logInputCtrl.selectedItem.universalMenuId" />
+                    </div>
+                </div>
+
+
+                <div type="number" step="any" class="form-group" ng-show="logInputCtrl.show_latitude">
+                    <label class="col-sm-2 control-label"> {{'LATITUDE'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="number" step="any" ng-model="logInputCtrl.selectedItem.latitude" />
+                    </div>
+                </div>
+                <div type="number" step="any" class="form-group" ng-show="logInputCtrl.show_longitude">
+                    <label class="col-sm-2 control-label"> {{'LONGITUDE'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="number" step="any" ng-model="logInputCtrl.selectedItem.longitude" />
+                    </div>
+                </div>
+                <div class="form-group" ng-show="logInputCtrl.show_title">
+                    <label class="col-sm-2 control-label">{{'title'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="logInputCtrl.selectedItem.title" />
+                    </div>
+                </div>
+                <div class="form-group" ng-show="logInputCtrl.show_text">
+                    <label class="col-sm-2 control-label">{{'TEXT'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" ng-model="logInputCtrl.selectedItem.text" style="height: 85px;"></textarea>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="logInputCtrl.show_firstName">
+                    <label class="col-sm-2 control-label">{{'FIRST_NAME'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="logInputCtrl.selectedItem.firstName" />
+                    </div>
+                </div>
+                <div class="form-group" ng-show="logInputCtrl.show_lastName">
+                    <label class="col-sm-2 control-label">{{'LAST_NAME'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="logInputCtrl.selectedItem.lastName" />
+                    </div>
+                </div>
+                <div class="form-group" ng-show="logInputCtrl.show_phoneNumber">
+                    <label class="col-sm-2 control-label">{{'PHONE_NUMBER'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="logInputCtrl.selectedItem.phoneNumber" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit" ng-disabled="logInputCtrl.addRequested">{{logInputCtrl.sendButtonText}}</button>
+                    <button class="btn btn-default" type="button" ng-click="logInputCtrl.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

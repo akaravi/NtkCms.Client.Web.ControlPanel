@@ -1,0 +1,192 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="$dismiss()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Advertisement'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmadvertisementPropertyEdit" novalidate ng-submit="advertisementProperty.editRow(frmadvertisementPropertyEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="advertisementProperty.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                                 ng-class="{'has-error' : frmadvertisementPropertyEdit.LinkSourceId.$invalid && !frmadvertisementPropertyEdit.LinkSourceId.$pristine,'has-success' : frmadvertisementPropertyEdit.LinkSourceId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="advertisementProperty"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="advertisementProperty.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                                 ng-class="{'has-error' : frmadvertisementPropertyEdit.Title.$invalid && !frmadvertisementPropertyEdit.Title.$pristine,'has-success' : frmadvertisementPropertyEdit.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           ng-model="advertisementProperty.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmadvertisementPropertyEdit.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmadvertisementPropertyEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmadvertisementPropertyEdit.Title.$valid && frmadvertisementPropertyEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmadvertisementPropertyEdit.Title.$invalid && !frmadvertisementPropertyEdit.Title.$pristine) || frmadvertisementPropertyEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="advertisementProperty.gridOptions.resultAccess.AccessEditField.indexOf('Description')>-1" ng-class="{'has-error' : frmadvertisementPropertyEdit.Description.$invalid && !frmadvertisementPropertyEdit.Description.$pristine,'has-success' : frmadvertisementPropertyEdit.Description.$valid}">
+                                <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" name="Description" ng-required="true" title="{{'Added_Description_On_Estate'|lowercase|translate}}" ng-model="advertisementProperty.selectedItem.Description" style="resize:vertical;height:65px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmadvertisementPropertyEdit.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmadvertisementPropertyEdit.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmadvertisementPropertyEdit.Description.$valid && frmadvertisementPropertyEdit.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmadvertisementPropertyEdit.Description.$invalid && !frmadvertisementPropertyEdit.Description.$pristine) || frmadvertisementPropertyEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+
+                            <div class='hr-line-dashed'></div>
+                            <div ng-show="advertisementProperty.gridOptions.resultAccess.AccessEditField.indexOf('LinkPropertyTypeId')>-1 ">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'ADVERTISEMENT_TYPE'|lowercase|translate}}</label>
+                                    <div class="col-sm-10">
+                                        <input ng-repeat="x in advertisementProperty.propertyTypeListItems" ng-if="advertisementProperty.selectedItem.LinkPropertyTypeId == x.Id" value="{{x.Title}}" class="form-control" style="background-color: white; font-weight: bold;" name="LinkPropertyTypeId" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div ng-repeat="x in advertisementProperty.propertyDetailGroupListItems" class="back2">
+                                    <br />
+                                    <h4 style="color: dodgerblue;">{{x.Title}}</h4>
+                                    <div class="form-group" ng-repeat="y in advertisementProperty.propertyDetailsListItems" ng-if="x.Id == y.LinkPropertyDetailGroupId">
+                                        <label ng-show="!y.InvisibleForEndUser" class="col-sm-12 control-label">{{y.Title}}&nbsp;</label>
+                                        <label ng-show="y.InvisibleForEndUser" class="col-sm-12 control-label" style="color:red">{{y.Title}}&nbsp;{{'Hidden_Information_From_The_End_User'|lowercase|translate}}</label>
+                                        <div class="col-sm-12">
+                                            <div ng-if="y.InputDataType == 0 && y.DefaultValue.nameValue.length <= 0">
+                                                <input id="detail{{y.Id}}" class="form-control" type="text" ng-model="y.value" ng-required="y.Required" placeholder="{{y.Unit}}" />
+                                            </div>
+                                            <div ng-if="y.InputDataType == 4 && y.DefaultValue.nameValue.length == 0">
+                                                <textarea id="detail{{y.Id}}" class="form-control" ng-model="y.value" ng-required="y.Required" placeholder="{{y.Unit}}" style="resize:vertical;height:65px;"></textarea>
+                                            </div>
+                                            <div ng-if="y.InputDataType == 1 && y.DefaultValue.nameValue.length <= 0">
+                                                <input id="detail{{y.Id}}" class="form-control" type="number" ng-model="y.value" ng-required="y.Required" placeholder="{{y.Unit}}" />
+                                            </div>
+                                            <div class="checkbox" ng-if="y.InputDataType == 2 && y.DefaultValue.nameValue.length <= 0">
+                                                <label>
+                                                    <input id="detail{{y.Id}}" type="checkbox" ng-model="y.value">{{'has_It'|lowercase|translate}}
+                                                </label>
+                                            </div>
+                                            <div class="m-t-xs" ng-if="y.Required">
+                                                <small class="text-danger"><i class="fa fa-exclamation-triangle"></i>{{'this_information_is_required'|lowercase|translate}}</small>
+                                            </div>
+                                            <div ng-if="y.DefaultValue.multipleChoice">
+                                                <div class="checkbox" ng-repeat="nameValue in y.DefaultValue.nameValue">
+                                                    <label>
+                                                        <input type="checkbox"
+                                                               id="detail{{y.Id}}-nameValue{{$index}}"
+                                                               value="{{nameValue}}"
+                                                               name="{{y.Title}}"
+                                                               ng-checked="advertisementProperty.selection{{y.Id}}.indexOf(nameValue) > -1"
+                                                               ng-click="advertisementProperty.toggleSelection(y.Id, nameValue)"> {{nameValue}}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div ng-if="!y.DefaultValue.multipleChoice && y.DefaultValue.forceUse">
+                                                <select class="form-control" id="dropDown{{y.Id}}">
+                                                    <option ng-repeat="nameValue in y.DefaultValue.nameValue" ng-model="y.value" ng-selected="y.value == nameValue" value="{{nameValue}}">{{nameValue}}</option>
+                                                </select>
+                                            </div>
+                                            <div ng-if="!y.DefaultValue.multipleChoice && !y.DefaultValue.forceUse && y.DefaultValue.nameValue.length > 0">
+                                                <input type="text" list="cars" ng-model="y.value" class="form-control" />
+                                                <datalist id="cars">
+                                                    <option ng-repeat="nameValue in y.DefaultValue.nameValue">{{nameValue}}</option>
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Place_Location' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="advertisementProperty.gridOptions.resultAccess.AccessAddField.indexOf('LinkLocationId')>-1">
+                                <label class="col-sm-2 control-label">{{'Position'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkLocationId" rasha-autocomplete="advertisementProperty.LinkLocationIdSelector" ng-model="advertisementProperty.selectedItem.LinkLocationId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="advertisementProperty.gridOptions.resultAccess.AccessEditField.indexOf('Geolocationlatitude')>-1">
+                                <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div rasha-map="advertisementProperty.GeolocationConfig" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="advertisementProperty.gridOptions.resultAccess.AccessEditField.indexOf('Address')>-1 ">
+                                <label class="col-sm-2 control-label"> {{'ADDRESS'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="Address" ng-model="advertisementProperty.selectedItem.Address" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Attachments_Files' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'MAIN_IMAGE'|lowercase|translate}} </label>
+
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="advertisementProperty.openUploadModal()" aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <!--<label>{{advertisementProperty.FileItem.FileName}}</label>-->
+
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="advertisementProperty.filePickerMainImage" ng-model="advertisementProperty.selectedItem.LinkMainImageId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'ATTACH_FILE'|lowercase|translate}} </label>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="advertisementProperty.filePickerFiles" ng-model="advertisementProperty.selectedItem.LinkFileIds"></div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a class="btn btn-primary" ng-click="advertisementProperty.addAttachedFile(advertisementProperty.selectedItem.LinkFileIds)" style="margin-right: -52px;margin-top: 1px;" title="">
+                                        <i class="fa fa-" aria-hidden="true" title="{{'ADD_FILE'|lowercase|translate}}" style="font-family: iransans;font-size: 12px;"> {{'ADD_FILE'|lowercase|translate}} </i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group col-sm-12" ng-repeat="x in advertisementProperty.attachedFiles">
+                                    <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                                    <div class="input-group">
+                                        <input type="text" id="option{{$index}}" class="form-control" name="attachedFileName" readonly="readonly" ng-model="x.filename">
+                                        <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="advertisementProperty.deleteAttachedFile($index)"><i class="fa fa-remove"> {{'delete'|lowercase|translate}} </i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="advertisementProperty.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="$dismiss()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

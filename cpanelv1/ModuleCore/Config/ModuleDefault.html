@@ -1,0 +1,388 @@
+﻿<div class="modal-body">
+    <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="$dismiss()"></i>
+    <h5>{{cmsModulegrd.gridOptions.selectedRow.item.Title}}
+        <br>
+        Id: {{cmsModulegrd.gridOptions.selectedRow.item.Id}}
+        <br>
+        {{cmsModulegrd.ModuleConfigSelected.TitleML}}</h5>
+    <hr />
+    <!-- Tile Section -->
+    <div class="row" rasha-loading="cmsModulegrd.contentBusyConfig">
+        <div class="col-md-12" ng-show="tokenInfo.UserAccessAdminAllowToProfessionalData">
+     
+                <div class="panel panel-primary" >
+                    <div class="panel-heading">
+                        <h5>
+                            <i class="fa fa-folder-open fa"></i>&nbsp;{{'تنظیمات ماژول'|lowercase|translate}}</h5>
+                    </div>
+                    <div class="panel-body">
+                        <div style="position: relative">
+                            <form method="get" class="form-horizontal" name="fAdminMain" novalidate ng-submit="cmsModulegrd.AdminMainSave(fAdminMain)">
+                                <div class="panel-body">
+
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"> {{'دسترسی خرید'|lowercase|translate}}
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="checkbox" class="form-control" name="AccessBuy" ng-model="cmsModulegrd.Item.AdminMain.AccessBuy" />
+                                        </div>
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+                                    <div class="form-group" ng-class="{'has-error' : fAdminMain.AccessBuyPrice.$invalid && !fAdminMain.AccessBuyPrice.$pristine,'has-success' : fAdminMain.AccessBuyPrice.$valid}">
+                                        <label class="col-sm-2 control-label"> {{'قیمت'|lowercase|translate}} </label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" ng-required="true" name="AccessBuyPrice"
+                                                ng-model="cmsModulegrd.Item.AdminMain.AccessBuyPrice" />
+                                            <div class="m-t-xs" ng-show="fAdminMain.AccessBuyPrice.$invalid">
+                                                <small class="text-danger" ng-show="fAdminMain.AccessBuyPrice.$error.required"><i
+                                                        class="fa fa-exclamation-triangle"></i>
+                                                    {{'this_information_is_required'|lowercase|translate}} </small>
+                                            </div>
+                                            <span style="left: 10px !important;" ng-show="fAdminMain.AccessBuyPrice.$valid && fAdminMain.AccessBuyPrice.$dirty"
+                                                class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                                aria-hidden="true"></span>
+                                            <span style="left: 10px !important;" ng-show="(fAdminMain.AccessBuyPrice.$invalid && !fAdminMain.AccessBuyPrice.$pristine) || fAdminMain.submitted"
+                                                class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                                aria-hidden="true"></span>
+                                        </div>
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+
+
+                                    <div class="form-group" ng-class="{'has-error' : fAdminMain.AccessBuyMonth.$invalid && !fAdminMain.AccessBuyMonth.$pristine,'has-success' : fAdminMain.AccessBuyPrice.$valid}">
+                                        <label class="col-sm-2 control-label"> {{'دسترسی ماه
+                                            خرید'|lowercase|translate}} </label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" ng-required="true" name="AccessBuyMonth"
+                                                ng-model="cmsModulegrd.Item.AdminMain.AccessBuyMonth" />
+                                            <div class="m-t-xs" ng-show="fAdminMain.AccessBuyMonth.$invalid">
+                                                <small class="text-danger" ng-show="fAdminMain.AccessBuyMonth.$error.required"><i
+                                                        class="fa fa-exclamation-triangle"></i>
+                                                    {{'this_information_is_required'|lowercase|translate}} </small>
+                                            </div>
+                                            <span style="left: 10px !important;" ng-show="fAdminMain.AccessBuyMonth.$valid && fAdminMain.AccessBuyMonth.$dirty"
+                                                class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                                aria-hidden="true"></span>
+                                            <span style="left: 10px !important;" ng-show="(fAdminMain.AccessBuyMonth.$invalid && !fAdminMain.AccessBuyMonth.$pristine) || fAdminMain.submitted"
+                                                class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                                aria-hidden="true"></span>
+                                        </div>
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"> {{'ارائه رایگان'|lowercase|translate}}
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="checkbox" class="form-control" name="AccessFree" ng-model="cmsModulegrd.Item.AdminMain.AccessFree" />
+
+                                        </div>
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+
+                                    <div class="form-group" ng-class="{'has-error' : fAdminMain.AccessFreeDay.$invalid && !fAdminMain.AccessFreeDay.$pristine,'has-success' : fAdminMain.AccessBuyPrice.$valid}">
+                                        <label class="col-sm-2 control-label"> {{'تعداد روز ارائه
+                                            رایگان'|lowercase|translate}} </label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" ng-required="true" name="AccessFreeDay"
+                                                ng-model="cmsModulegrd.Item.AdminMain.AccessFreeDay" />
+                                            <div class="m-t-xs" ng-show="fAdminMain.AccessFreeDay.$invalid">
+                                                <small class="text-danger" ng-show="fAdminMain.AccessFreeDay.$error.required"><i
+                                                        class="fa fa-exclamation-triangle"></i>
+                                                    {{'this_information_is_required'|lowercase|translate}} </small>
+                                            </div>
+                                            <span style="left: 10px !important;" ng-show="fAdminMain.AccessFreeDay.$valid && fAdminMain.AccessFreeDay.$dirty"
+                                                class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                                aria-hidden="true"></span>
+                                            <span style="left: 10px !important;" ng-show="(fAdminMain.AccessFreeDay.$invalid && !fAdminMain.AccessFreeDay.$pristine) || fAdminMain.submitted"
+                                                class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                                aria-hidden="true"></span>
+                                        </div>
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+
+
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"> {{'لیست دامنه های پیش
+                                            فرض'|lowercase|translate}} </label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" name="DomainsList" ng-model="cmsModulegrd.Item.AdminMain.DomainsList">
+
+                                                    </textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class='hr-line-dashed'></div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"> {{'ثبت کاربر پنل
+                                            مدیریتی'|lowercase|translate}} </label>
+                                        <div class="col-sm-10">
+                                            <input type="checkbox" class="form-control" name="AdminCpUserRegidteryBool"
+                                                ng-model="cmsModulegrd.Item.AdminMain.AdminCpUserRegidteryBool" />
+
+                                        </div>
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"> {{'وضعیت بعد از ثبت کاربر پنل
+                                            مدیریتی'|lowercase|translate}} </label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="AdminCpUserRegidteryRecordStatus"
+                                                ng-model="cmsModulegrd.Item.AdminMain.AdminCpUserRegidteryRecordStatus">
+                                                <option ng-repeat="x in cmsModulegrd.itemRecordStatus" ng-selected="cmsModulegrd.Item.AdminMain.AdminCpUserRegidteryRecordStatus == x.Value"
+                                                    value={{x.Value}}>{{x.Key + ": " + x.Description}}</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"> {{'انقضای کاربر پنل
+                                            مدیریتی'|lowercase|translate}}
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" name="AdminCpUserRegidteryExpireDateDay"
+                                                ng-model="cmsModulegrd.Item.AdminMain.AdminCpUserRegidteryExpireDateDay" />
+
+
+                                        </div>
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"> {{'عرض عکس های
+                                            کوچک'|lowercase|translate}}
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" name="ThumbnailImageWidth" ng-model="cmsModulegrd.Item.AdminMain.ThumbnailImageWidth" />
+
+
+                                        </div>
+                                        <label class="col-sm-2 control-label">px</label>
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"> {{'ارتفاع عکس های
+                                            کوچک'|lowercase|translate}}
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" name="ThumbnailImageHeight" ng-model="cmsModulegrd.Item.AdminMain.ThumbnailImageHeight" />
+
+                                        </div>
+                                        <label class="col-sm-2 control-label">px</label>
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" ng-disabled="cmsModulegrd.buttonIsPressed" type="submit">
+                                            {{'save'|lowercase|translate}} </button>
+                                        <button class="btn btn-primary" ng-disabled="cmsModulegrd.buttonIsPressed" type="button"
+                                            ng-click="cmsModulegrd.AdminMainLoad()">
+                                            {{'reload'|lowercase|translate}} </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+            <div class="col-md-6" ng-show="tokenInfo.UserAccessAdminAllowToProfessionalData">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h5>
+                            <i class="fa fa-folder-open fa"></i>&nbsp;{{'تنظیمات پیش فرض
+                            دسترسی'|lowercase|translate}}</h5>
+                    </div>
+                    <div class="panel-body">
+                        <div style="position: relative">
+                            <form method="get" class="form-horizontal" name="fSiteAccessDefault" novalidate ng-submit="cmsModulegrd.SiteAccessDefaultSave(fSiteAccessDefault)">
+                                <div class="panel-body">
+
+                                    <div class="form-group" ng-class="{'has-error' : fSiteAccessDefault.MainDataContentRowCount.$invalid && !fSiteAccessDefault.MainDataContentRowCount.$pristine,'has-success' : fSiteAccessDefault.MainDataContentRowCount.$valid}">
+                                        <label class="col-sm-2 control-label"> {{'تعداد دسترسی ایجاد
+                                            ردیف'|lowercase|translate}} </label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" ng-required="true" name="MainDataContentRowCount"
+                                                ng-model="cmsModulegrd.Item.SiteAccessDefault.MainDataContentRowCount" />
+                                            <div class="m-t-xs" ng-show="fSiteAccessDefault.MainDataContentRowCount.$invalid">
+                                                <small class="text-danger" ng-show="fSiteAccessDefault.MainDataContentRowCount.$error.required"><i
+                                                        class="fa fa-exclamation-triangle"></i>
+                                                    {{'this_information_is_required'|lowercase|translate}} </small>
+                                            </div>
+                                            <span style="left: 10px !important;" ng-show="fSiteAccessDefault.MainDataContentRowCount.$valid && fSiteAccessDefault.MainDataContentRowCount.$dirty"
+                                                class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                                aria-hidden="true"></span>
+                                            <span style="left: 10px !important;" ng-show="(fSiteAccessDefault.MainDataContentRowCount.$invalid && !fSiteAccessDefault.MainDataContentRowCount.$pristine) || fSiteAccessDefault.submitted"
+                                                class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                                aria-hidden="true"></span>
+                                        </div>
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"> {{'لیست دامنه های پیش
+                                            فرض'|lowercase|translate}}
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" name="DomainsList" ng-model="cmsModulegrd.Item.SiteAccessDefault.DomainsList">
+
+                                                        </textarea>
+                                        </div>
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+
+                                    <div class="form-group" ng-class="{'has-error' : fSiteAccessDefault.MaxAdminCpUserCreation.$invalid && !fSiteAccessDefault.MaxAdminCpUserCreation.$pristine,'has-success' : fSiteAccessDefault.MaxAdminCpUserCreation.$valid}">
+                                        <label class="col-sm-2 control-label"> {{'تعداد دسترسی ایجاد
+                                            کاربر پنل'|lowercase|translate}} </label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" ng-required="true" name="MaxAdminCpUserCreation"
+                                                ng-model="cmsModulegrd.Item.SiteAccessDefault.MaxAdminCpUserCreation" />
+                                            <div class="m-t-xs" ng-show="fSiteAccessDefault.MaxAdminCpUserCreation.$invalid">
+                                                <small class="text-danger" ng-show="fSiteAccessDefault.MaxAdminCpUserCreation.$error.required"><i
+                                                        class="fa fa-exclamation-triangle"></i>
+                                                    {{'this_information_is_required'|lowercase|translate}} </small>
+                                            </div>
+                                            <span style="left: 10px !important;" ng-show="fSiteAccessDefault.MaxAdminCpUserCreation.$valid && fSiteAccessDefault.MaxAdminCpUserCreation.$dirty"
+                                                class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                                aria-hidden="true"></span>
+                                            <span style="left: 10px !important;" ng-show="(fSiteAccessDefault.MaxAdminCpUserCreation.$invalid && !fSiteAccessDefault.MaxAdminCpUserCreation.$pristine) || fSiteAccessDefault.submitted"
+                                                class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                                aria-hidden="true"></span>
+                                        </div>
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+                                    <div class="form-group" ng-class="{'has-error' : fSiteAccessDefault.MaxUserCreation.$invalid && !fSiteAccessDefault.MaxUserCreation.$pristine,'has-success' : fSiteAccessDefault.MaxUserCreation.$valid}">
+                                        <label class="col-sm-2 control-label"> {{'تعداد دسترسی ایجاد
+                                            کاربر سایت'|lowercase|translate}} </label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" ng-required="true" name="MaxUserCreation"
+                                                ng-model="cmsModulegrd.Item.SiteAccessDefault.MaxUserCreation" />
+                                            <div class="m-t-xs" ng-show="fSiteAccessDefault.MaxUserCreation.$invalid">
+                                                <small class="text-danger" ng-show="fSiteAccessDefault.MaxUserCreation.$error.required"><i
+                                                        class="fa fa-exclamation-triangle"></i>
+                                                    {{'this_information_is_required'|lowercase|translate}} </small>
+                                            </div>
+                                            <span style="left: 10px !important;" ng-show="fSiteAccessDefault.MaxUserCreation.$valid && fSiteAccessDefault.MaxUserCreation.$dirty"
+                                                class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                                aria-hidden="true"></span>
+                                            <span style="left: 10px !important;" ng-show="(fSiteAccessDefault.MaxUserCreation.$invalid && !fSiteAccessDefault.MaxUserCreation.$pristine) || fSiteAccessDefault.submitted"
+                                                class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                                aria-hidden="true"></span>
+                                        </div>
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" ng-disabled="cmsModulegrd.buttonIsPressed" type="submit">
+                                            {{'save'|lowercase|translate}} </button>
+                                        <button class="btn btn-primary" ng-disabled="cmsModulegrd.buttonIsPressed" type="button"
+                                            ng-click="cmsModulegrd.SiteAccessDefaultLoad()">
+                                            {{'reload'|lowercase|translate}} </button>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6" ng-show="tokenInfo.UserAccessAdminAllowToProfessionalData">
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h5>
+                            <i class="fa fa-folder-open fa"></i>&nbsp;{{'تنظیمات پیش فرض
+                            سایت'|lowercase|translate}}</h5>
+                    </div>
+                    <div class="panel-body" rasha-loading="cmsModulegrd.contentBusySiteDefault">
+                        <div style="position: relative">
+                            <form method="get" class="form-horizontal" name="fSiteDefault" novalidate ng-submit="cmsModulegrd.SiteDefaultSave(fSiteDefault)">
+                                <div class="panel-body">
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"> {{'اجرا برای
+                                            کاربر'|lowercase|translate}}
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="checkbox" class="form-control" name="AccessBuy" ng-model="cmsModulegrd.Item.SiteDefault.StatusRenderUser" />
+                                        </div>
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"> {{'امکان ثبت کاربر
+                                            جدید'|lowercase|translate}}
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="checkbox" class="form-control" name="AccessBuy" ng-model="cmsModulegrd.Item.SiteDefault.UserRegidteryBool" />
+                                        </div>
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"> {{'وضعیت بعد از ثبت کاربر
+                                            جدید'|lowercase|translate}}
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <select class="form-control" name="UserRegidteryRecordStatus" ng-model="cmsModulegrd.Item.SiteDefault.UserRegidteryRecordStatus">
+                                                <option ng-repeat="x in cmsModulegrd.itemRecordStatus" ng-selected="cmsModulegrd.Item.SiteDefault.UserRegidteryRecordStatus == x.Value"
+                                                    value={{x.Value}}>{{x.Key + ": " + x.Description}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"> {{'انقضای حساب
+                                            کاربری'|lowercase|translate}}
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" name="UserRegidteryExpireDateDay" ng-model="cmsModulegrd.Item.SiteDefault.UserRegidteryExpireDateDay" />
+                                        </div>
+                                        <label class="col-sm-2 control-label"> روز
+                                        </label>
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"> {{'تعداد ردیف rss'|lowercase|translate}}
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" name="RSSCount" ng-model="cmsModulegrd.Item.SiteDefault.RSSCount" />
+                                        </div>
+                                        <label class="col-sm-2 control-label"> ردیف
+                                        </label>
+                                    </div>
+                                    <div class='hr-line-dashed'></div>
+
+                                    <button class="btn btn-primary" ng-disabled="cmsModulegrd.buttonIsPressed" type="submit">
+                                        {{'save'|lowercase|translate}} </button>
+                                    <button class="btn btn-primary" ng-disabled="cmsModulegrd.buttonIsPressed" type="button"
+                                        ng-click="cmsModulegrd.SiteDefaultLoad()">
+                                        {{'reload'|lowercase|translate}} </button>
+
+
+
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+
+
+    </div>

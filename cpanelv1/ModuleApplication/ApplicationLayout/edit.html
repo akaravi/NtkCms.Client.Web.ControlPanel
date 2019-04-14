@@ -1,0 +1,119 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor: pointer" ng-click="appLayout.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ appLayout.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmappLayoutEdit" novalidate ng-submit="appLayout.editRow(frmappLayoutEdit)"
+                ng-init="appLayout.loadEmojiPicker()">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group" ng-show="appLayout.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                                ng-class="{'has-error' : frmappLayoutEdit.RecordStatus.$invalid && !frmappLayoutEdit.RecordStatus.$pristine,'has-success' : frmappLayoutEdit.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="appLayout"></div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group" ng-show="appLayout.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                                ng-class="{'has-error' : frmappLayoutEdit.Title.$invalid && !frmappLayoutEdit.Title.$pristine,'has-success' : frmappLayoutEdit.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="true" name="Title" ng-model="appLayout.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmappLayoutEdit.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmappLayoutEdit.Title.$error.required"><i
+                                                class="fa fa-exclamation-triangle"></i>
+                                            {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmappLayoutEdit.Title.$valid && frmappLayoutEdit.Title.$dirty"
+                                        class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmappLayoutEdit.Title.$invalid && !frmappLayoutEdit.Title.$pristine) || frmappLayoutEdit.submitted"
+                                        class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group" ng-show="appLayout.gridOptions.resultAccess.AccessEditField.indexOf('ClassName')>-1">
+                                <label class="col-sm-2 control-label">{{'Class_Name'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="ClassName" ng-model="appLayout.selectedItem.ClassName" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group" ng-show="appLayout.gridOptions.resultAccess.AccessEditField.indexOf('LinkSourceId')>-1">
+                                <label class="col-sm-2 control-label"> {{'SELECT_TEMPLATE'|lowercase|translate}}
+                                </label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" ng-disabled="true" ng-model="appLayout.selectedItem.LinkSourceId">
+                                        <option ng-repeat="x in appLayout.sourceListItems" value="{{x.Id}}" ng-selected="x.Id == appLayout.selectedItem.LinkSourceId">{{x.Title}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                          
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="appLayout.selectedItem.previewImageSrc != null">
+                                <label class="col-sm-2 control-label"> {{'IMAGE'|lowercase|translate}} </label>
+                                <img src="{{appLayout.selectedItem.previewImageSrc}}" width="300" height="300" class="img-rounded col-sm-3 col-md-3 col-lg-3"
+                                    alt="{{appLayout.selectedItem.Title}}" />
+                            </div>
+                            <div id="treecontrol" class="form-group" ng-show="appLayout.gridOptions.resultAccess.AccessEditField.indexOf('LinkModuleFilePreviewImageId')>-1">
+                                <label class="col-sm-2 control-label">{{'SELECT_IMAGE'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div treecontrol class="tree-boot" style="color:black" tree-model="appLayout.dataForTheTree"
+                                        options="appLayout.treeOptions" selected-node="appLayout.selectedNode"
+                                        on-selection="appLayout.onSelection(node, selected)" on-node-toggle="appLayout.onNodeToggle(node,expanded)">
+                                        {{node.Title}}{{node.FileName}}&nbsp;&nbsp;<label class="label-control" style="color:#ff6500;font-style:italic;font-size:12px;">{{node.messageText}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="{{'Attachments_Files' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'MAIN_IMAGE'|lowercase|translate}} </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="appLayout.openUploadModal()"
+                                    aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="appLayout.filePickerMainImage" ng-model="appLayout.selectedItem.LinkMainImageId">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="{{'تنظیمات مدیریت کل  ' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-include="appLayout.includeHtmlAdmin" include-replace="ThemeFinderConfig|appLayout.ConfigAdmin">
+
+                            </div>
+
+                        </div>
+                    </tab>
+                    <tab heading="{{'تنظیمات پیش فرض مدیریت سایت  ' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-include="appLayout.includeHtmlSite"  include-replace="ThemeFinderConfig|appLayout.ConfigSite">
+
+                            </div>
+
+                        </div>
+                    </tab>
+                
+                </tabset>
+
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="appLayout.EditRequested" type="submit">
+                        {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="appLayout.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

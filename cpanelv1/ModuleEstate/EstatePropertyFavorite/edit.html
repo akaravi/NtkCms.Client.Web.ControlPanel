@@ -1,0 +1,55 @@
+﻿<div class="modal-body">
+    <div class="row" >
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="estatePropertyFavorite.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ estatePropertyFavorite.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmestatePropertyFavoriteEdit" novalidate ng-submit="estatePropertyFavorite.editRow(frmestatePropertyFavoriteEdit)">
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="estatePropertyFavorite.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmestatePropertyFavoriteEdit.LinkSourceId.$invalid && !frmestatePropertyFavoriteEdit.LinkSourceId.$pristine,'has-success' : frmestatePropertyFavoriteEdit.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="estatePropertyFavorite"></div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="estatePropertyFavorite.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                     ng-class="{'has-error' : frmestatePropertyFavoriteEdit.Title.$invalid && !frmestatePropertyFavoriteEdit.Title.$pristine,'has-success' : frmestatePropertyFavoriteEdit.Title.$valid}">
+                    <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="estatePropertyFavorite.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmestatePropertyFavoriteEdit.Title.$invalid">
+                            <small class="text-danger" ng-show="frmestatePropertyFavoriteEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmestatePropertyFavoriteEdit.Title.$valid && frmestatePropertyFavoriteEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmestatePropertyFavoriteEdit.Title.$invalid && !frmestatePropertyFavoriteEdit.Title.$pristine) || frmestatePropertyFavoriteEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="estatePropertyFavorite.gridOptions.resultAccess.AccessAddField.indexOf('Description')>-1" ng-class="{'has-error' : frmestatePropertyFavoriteEdit.Description.$invalid && !frmestatePropertyFavoriteEdit.Description.$pristine,'has-success' : frmestatePropertyFavoriteEdit.Description.$valid}">
+                    <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="Description" ng-required="true" ng-model="estatePropertyFavorite.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                        <div class="m-t-xs" ng-show="frmestatePropertyFavoriteEdit.Description.$invalid">
+                            <small class="text-danger" ng-show="frmestatePropertyFavoriteEdit.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmestatePropertyFavoriteEdit.Description.$valid && frmestatePropertyFavoriteEdit.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmestatePropertyFavoriteEdit.Description.$invalid && !frmestatePropertyFavoriteEdit.Description.$pristine) || frmestatePropertyFavoriteEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="estatePropertyFavorite.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="estatePropertyFavorite.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,27 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="reservationContentTagCtrl as reservationContentTag" ng-init="reservationContentTag.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="reservationContentTag.busyIndicator"></div>
+
+            <button class="btn btn-primary" rasha-userrole="reservationContentTag.Add" ng-click="reservationContentTag.openAddModal()" ng-show="reservationContentTag.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="reservationContentTag.Edit" ng-click="reservationContentTag.openEditModal()" ng-show="reservationContentTag.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="reservationContentTag.Delete" ng-click="reservationContentTag.deleteRow()" ng-show="reservationContentTag.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="reservationContentTag.showAdvancedSearchPanel(reservationContentTag.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-warning" type="button" ng-click="reservationContentTag.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="reservationContentTag.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="reservationContentTag.getCount()">{{'number'|lowercase|translate}}&nbsp;{{reservationContentTag.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="reservationContentTag" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="reservationContentTag.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

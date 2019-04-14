@@ -1,0 +1,62 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="chartContentCtrl as chartContent" ng-init="chartContent.init()">
+    <div class="row" >
+        <div class="col-md-2">
+            <div class="row" rasha-loading="chartContent.categoryBusyIndicator">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;{{'category'|lowercase|translate}}&nbsp;{{'Chart'|lowercase|translate}}</h5></div>
+                    <div class="panel-body">
+                        <div style="position: relative">
+                            <ul class="tree" tree-options="chartContent.treeConfig"></ul>
+                        </div>
+                        <!-- Category Section -->
+                        <div style="margin-top: 20px;">
+                            <a ng-click="chartContent.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-primary">
+                                <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
+                            </a>
+                            <div id="categoryButtons" style="display: none;">
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" ng-click="chartContent.addNewCategoryModel()" ng-show="chartContent.gridOptions.resultAccess.AccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" ng-click="chartContent.editCategoryModel()" ng-show="chartContent.gridOptions.resultAccess.AccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" ng-click="chartContent.deleteCategory()" ng-show="chartContent.gridOptions.resultAccess.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5><i class="fa fa-chartpaper-o " style="font-size: 18px;"></i>&nbsp;{{'LIST'|lowercase|translate}}&nbsp;{{'Chart'|lowercase|translate}}<nospecialtag ng-if="chartContent.treeConfig.currentNode.Id!=null">:&nbsp;{{chartContent.treeConfig.currentNode.Title}}&nbsp; - {{'ID'|lowercase|translate}}:&nbsp;{{chartContent.treeConfig.currentNode.Id}}</nospecialtag><nospecialtag ng-if="chartContent.selectedContentId.TitleTag!=null">:&nbsp;بر اساس تگ:&nbsp;{{chartContent.selectedContentId.TitleTag}}</nospecialtag></h5>
+                </div>
+            </div>
+            <div class="row" rasha-loading="chartContent.contentBusyIndicator">
+                <div class="col-md-12" style="text-align: center;">
+                    <button class="btn btn-primary" ng-click="chartContent.addNewContentModel()" ng-show="chartContent.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                    <button class="btn btn-warning" ng-click="chartContent.openEditModel()" ng-show="chartContent.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="chartContent.deleteContent()" ng-show="chartContent.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}} </button>
+                    <button class="btn btn-success" ng-click="chartContent.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <button class="btn btn-warning" type="button" ng-click="chartContent.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}} </button>
+                    <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="chartContent.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+                    <button class="btn btn-success" ng-click="chartContent.getCount()">{{'number'|lowercase|translate}}&nbsp;{{chartContent.ListItemsTotalRowCount}}</button>
+                    <button class="btn btn-info" ng-click="chartContent.Showstatistics()"><i class="fa fa-pie-chart"></i>&nbsp; آمار&nbsp;&nbsp;</button>
+                </div>
+                <hr />
+                <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+                    <div ng-if="chartContent.gridOptions.resultAccess.AccessSearchField" id="builder" query-builder="chartContent"></div>
+                    <div class="btn-group" style="float: left;">
+                        <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="chartContent.getRules()"> {{'look'|lowercase|translate}} </button>
+                        <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="chartContent.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                        <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="chartContent.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div rasha-grid="chartContent.gridOptions"></div>
+                </div>
+                <div class="col-md-12">
+                    <div rasha-grid="chartContent.gridContentEventOptions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

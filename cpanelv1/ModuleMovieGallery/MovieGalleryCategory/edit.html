@@ -1,0 +1,91 @@
+﻿<style>
+    [treecontrol].tree-boot i.tree-branch-head,
+    [treecontrol].tree-boot i.tree-leaf-head {
+        float: right;
+        height: 16px;
+        margin: 5px;
+    }
+</style>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="mvGallery.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Category' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmmvGalleryEdit" novalidate ng-submit="mvGallery.editCategory(frmmvGalleryEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmmvGalleryEdit.RecordStatus.$invalid && !frmmvGalleryEdit.RecordStatus.$pristine,'has-success' : frmmvGalleryEdit.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="mvGallery"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmmvGalleryEdit.Title.$invalid && !frmmvGalleryEdit.Title.$pristine,'has-success' : frmmvGalleryEdit.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'CATEGORY_TITLE'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           maxlength="256"
+                                           ng-model="mvGallery.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmmvGalleryEdit.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmmvGalleryEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmmvGalleryEdit.Title.$valid && frmmvGalleryEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmmvGalleryEdit.Title.$invalid && !frmmvGalleryEdit.Title.$pristine) || frmmvGalleryEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-class="{'has-error' : frmmvGalleryEdit.Description.$invalid && !frmmvGalleryEdit.Description.$pristine,'has-success' : frmmvGalleryEdit.Description.$valid}">
+                                <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" maxlength="2048" ng-required="true" name="Description" ng-model="mvGallery.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmmvGalleryEdit.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmmvGalleryEdit.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmmvGalleryEdit.Description.$valid && frmmvGalleryEdit.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmmvGalleryEdit.Description.$invalid && !frmmvGalleryEdit.Description.$pristine) || frmmvGalleryEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="mvGallery.selectedItem.previewImageSrc != null">
+                                <label class="col-sm-2 control-label"> {{'IMAGE'|lowercase|translate}} </label>
+                                <mv src="{{mvGallery.selectedItem.previewImageSrc}}"  width="300" height="300" class="mv-rounded col-sm-10 col-md-10 col-lg-10" alt="{{mvGallery.selectedItem.Title}}" />
+                            </div>
+                            <div id="treecontrol" class="form-group">
+                                <label class="col-sm-2 control-label">{{'SELECT_ICON'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div treecontrol class="tree-boot" style="color:black"
+                                         tree-model="mvGallery.dataForTheTree"
+                                         options="mvGallery.treeOptions"
+                                         selected-node="mvGallery.selectedNode"
+                                         expanded-nodes="mvGallery.expandedNodes"
+                                         on-selection="mvGallery.onSelection(node, selected)"
+                                         on-node-toggle="mvGallery.onNodeToggle(node, expanded)">
+                                        {{node.Title}}{{node.FileName}}&nbsp;&nbsp;<label class="label-control" style="color:#ff6500;font-style:italic;font-size:12px;">{{node.messageText}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="mvGallery.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="mvGallery.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

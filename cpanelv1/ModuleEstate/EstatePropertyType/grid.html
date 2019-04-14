@@ -1,0 +1,33 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="estatePropertyTypeController as estatePropertyType" ng-init="estatePropertyType.init()">
+    <!-- <div class="container">-->
+    <div class="row" rasha-loading="estatePropertyType.busyIndicator">
+        <div class="col-sm-12">
+            <!--<div rasha-loading="estatePropertyType.busyIndicator"></div>-->
+            <button class="btn btn-primary" rasha-userrole="estatePropertyType.Add" ng-click="estatePropertyType.openAddModal()" ng-show="estatePropertyType.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="estatePropertyType.Edit" ng-click="estatePropertyType.openEditModal()" type="button" ng-show="estatePropertyType.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="estatePropertyType.Delete" ng-click="estatePropertyType.deleteRow()" type="button" ng-show="estatePropertyType.gridOptions.resultAccess.AccessDeleteRow" > {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="estatePropertyType.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="estatePropertyType.openGridConfigModal(estatePropertyType.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="estatePropertyType.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="estatePropertyType.getCount()">{{'number'|lowercase|translate}}&nbsp;{{estatePropertyType.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="estatePropertyType" ></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="estatePropertyType.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="estatePropertyType.getJson()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="estatePropertyType.getJson()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <form method="get" class="form-horizontal" name="frmestatePropertyTypeAdd" novalidate ng-submit="estatePropertyType.addNewRow(frmestatePropertyTypeAdd)">
+                <div class='hr-line-dashed'></div>
+            </form>
+            <div rasha-grid="estatePropertyType.gridOptions"></div>
+        </div>
+    </div>
+</div>

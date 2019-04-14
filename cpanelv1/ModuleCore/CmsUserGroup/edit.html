@@ -1,0 +1,78 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="cmsUserGroupgrd.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_User_Group'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmCmsUserGroupEdit" novalidate ng-submit="cmsUserGroupgrd.editRow(frmCmsUserGroupEdit)">
+
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsUserGroupgrd.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmcmsUserGroupgrdEdit.RecordStatus.$invalid && !frmcmsUserGroupgrdEdit.RecordStatus.$pristine,'has-success' : frmcmsUserGroupgrdEdit.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label">{{'CONDIRION'|lowercase|translate}}</label>
+                    <div class="col-sm-10" rasha-record-status="cmsUserGroupgrd"></div>
+                </div>
+
+                <div class="form-group" ng-show="cmsUserGroupgrd.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                     ng-class="{'has-error' : frmCmsUserGroupEdit.Title.$invalid && !frmCmsUserGroupEdit.Title.$pristine,'has-success' : frmCmsUserGroupEdit.Title.$valid}">
+                    <label class="col-sm-2 control-label">{{'GROUP'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="cmsUserGroupgrd.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmCmsUserGroupEdit.Title.$invalid">
+                            <small class="text-danger" ng-show="frmCmsUserGroupEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmCmsUserGroupEdit.Title.$valid && frmCmsUserGroupEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmCmsUserGroupEdit.Title.$invalid && !frmCmsUserGroupEdit.Title.$pristine) || frmCmsUserGroupEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="cmsUserGroupgrd.gridOptions.resultAccess.AccessEditField.indexOf('TitleResourceLanguage')>-1"
+                     ng-class="{'has-error' : frmCmsUserGroupEdit.TitleResourceLanguage.$invalid && !frmCmsUserGroupEdit.Title.$pristine,'has-success' : frmCmsUserGroupEdit.TitleResourceLanguage.$valid}">
+                    <label class="col-sm-2 control-label">{{ 'TitleResourceLanguage' |lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="TitleResourceLanguage"
+                               ng-model="cmsUserGroupgrd.selectedItem.TitleResourceLanguage" />
+                        <div class="m-t-xs" ng-show="frmCmsUserGroupEdit.TitleResourceLanguage.$invalid">
+                            <small class="text-danger" ng-show="frmCmsUserGroupEdit.TitleResourceLanguage.$error.required"><i class="fa fa-exclamation-triangle"></i> {{ 'THIS_INFORMATION_IS_REQUIRED' |lowercase|translate}}</small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmCmsUserGroupEdit.TitleResourceLanguage.$valid && frmCmsUserGroupEdit.TitleResourceLanguage.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmCmsUserGroupEdit.TitleResourceLanguage.$invalid && !frmCmsUserGroupEdit.TitleResourceLanguage.$pristine) || frmCmsUserGroupEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group' ng-show="cmsUserGroupgrd.gridOptions.resultAccess.AccessEditField.indexOf('UserType')>-1">
+                    <label class='col-sm-2 control-label'>{{'ID'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <select class='form-control' ng-model='cmsUserGroupgrd.selectedItem.UserType'>
+                            <option ng-repeat="x in cmsUserGroupgrd.UserAccessControllerTypes" ng-selected="cmsUserGroupgrd.selectedItem.UserType == x.Value" value={{x.Value}} class='form-control'>{{x.Key + ": " + x.Description}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsUserGroupgrd.gridOptions.resultAccess.AccessEditField.indexOf('Description')>-1"  ng-class="{'has-error' : frmCmsUserGroupEdit.Description.$invalid && !frmCmsUserGroupEdit.Description.$pristine,'has-success' : frmCmsUserGroupEdit.Description.$valid}">
+                    <label class="col-sm-2 control-label">{{'description'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" ng-required="true" name="Description" ng-model="cmsUserGroupgrd.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                       <div class="m-t-xs" ng-show="frmCmsUserGroupEdit.Description.$invalid">
+                       <div class="m-t-xs" ng-show="frmCmsUserGroupEdit.Description.$invalid">
+                <small class="text-danger" ng-show="frmCmsUserGroupEdit.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+            </div>
+            <span style="left: 10px !important;" ng-show="frmCmsUserGroupEdit.Description.$valid && frmCmsUserGroupEdit.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+            <span style="left: 10px !important;" ng-show="(frmCmsUserGroupEdit.Description.$invalid && !frmCmsUserGroupEdit.Description.$pristine) || frmCmsUserGroupEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div></div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="cmsUserGroupgrd.addRequested" type="submit">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="cmsUserGroupgrd.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+

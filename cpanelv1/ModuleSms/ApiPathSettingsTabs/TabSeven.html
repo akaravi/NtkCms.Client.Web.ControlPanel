@@ -1,0 +1,7 @@
+﻿<div class="row">
+    <div class="input-group field-margin" ng-repeat="items in  apiSetting.PathListItems">
+        <span class="input-group-addon">{{items.Title}}</span>
+        <input type="checkbox" class="form-control" placeholder="Username" aria-describedby="basic-addon1" ng-model="apiSetting.sederList[items.Id]">
+    </div>
+
+</div>

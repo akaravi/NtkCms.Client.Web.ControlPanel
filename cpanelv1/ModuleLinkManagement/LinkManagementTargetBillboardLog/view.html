@@ -1,0 +1,86 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="linkManagementTargetBillboardLog.busyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="linkManagementTargetBillboardLog.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ linkManagementTargetBillboardLog.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmlinkManagementTargetBillboardLogEdit" novalidate ng-submit="linkManagementTargetBillboardLog.editRow(frmlinkManagementTargetBillboardLogEdit)">
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="linkManagementTargetBillboardLog.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmlinkManagementTargetBillboardLogAdd.RecordStatus.$invalid && !frmlinkManagementTargetBillboardLogAdd.RecordStatus.$pristine,'has-success' : frmlinkManagementTargetBillboardLogAdd.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="linkManagementTargetBillboardLog"></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">LinkManagementBillboardId</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" readonly name="LinkManagementBillboardId" ng-model="linkManagementTargetBillboardLog.selectedItem.LinkManagementBillboardId"  />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">LinkManagementTargetId</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" readonly name="LinkManagementTargetId" ng-model="linkManagementTargetBillboardLog.selectedItem.LinkManagementTargetId" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2  control-label">ClickPrice</label>
+                    <div class="col-sm-6  col-md-4">
+                        <input type='text' readonly ng-model='linkManagementTargetBillboardLog.selectedItem.ClickPrice' class='form-control' />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2  control-label">ViewPrice</label>
+                    <div class="col-sm-6  col-md-4">
+                        <input type='text' readonly ng-model='linkManagementTargetBillboardLog.selectedItem.ViewPrice' class='form-control' />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2  control-label">{{'Date_Of_Visit'|lowercase|translate}}</label>
+                    <div class="col-sm-6  col-md-4">
+                        <div ng-model="linkManagementTargetBillboardLog.selectedItem.VisitDate"></div><input type="hidden" ng-model="linkManagementTargetBillboardLog.selectedItem.VisitDate" />
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'Device_Code'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='text' readonly ng-model='linkManagementTargetBillboardLog.selectedItem.DeviceId' class='form-control' />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'IP_Address'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='text' readonly ng-model='linkManagementTargetBillboardLog.selectedItem.IpAddress' class='form-control' />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'Browser_Name'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='text' readonly ng-model='linkManagementTargetBillboardLog.selectedItem.BrowserName' class='form-control' />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'>{{'The_User_Is_Waiting_For_That_Moment_On_That_Page'|lowercase|translate}}</label>
+                    <div class='col-sm-10'>
+                        <input type='number' readonly ng-model='linkManagementTargetBillboardLog.selectedItem.VisitTimeInSecond' class='form-control' />
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <!--<button class="btn btn-primary" ng-disabled="linkManagementTargetBillboardLog.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>-->
+                    <button class="btn btn-default" type="button" ng-click="linkManagementTargetBillboardLog.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

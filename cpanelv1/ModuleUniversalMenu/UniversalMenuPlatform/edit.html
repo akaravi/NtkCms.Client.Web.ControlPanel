@@ -1,0 +1,52 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="platformCtrl.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ platformCtrl.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmplatformCtrlEdit" novalidate ng-submit="platformCtrl.editRow(frmplatformCtrlEdit)">
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="platformCtrl.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmplatformCtrlEdit.RecordStatus.$invalid && !frmplatformCtrlEdit.RecordStatus.$pristine,'has-success' : frmplatformCtrlEdit.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="platformCtrl"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="platformCtrl.gridOptions.resultAccess.AccessEditField.indexOf('Type')>-1"
+                     ng-class="{'has-error' : frmplatformCtrlEdit.Type.$invalid && !frmplatformCtrlEdit.Type.$pristine,'has-success' : frmplatformCtrlEdit.Type.$valid}">
+                    <label class="col-sm-2 control-label"> {{'TYPE'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <select class='form-control' ng-model="platformCtrl.selectedItem.Type">
+                            <option ng-repeat="x in platformCtrl.platformTypeArray" ng-selected="platformCtrl.selectedItem.Type == x.Value" value={{x.Value}} class='form-control'>{{x.Key + ": " + x.Description}}</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="platformCtrl.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                     ng-class="{'has-error' : frmplatformCtrlEdit.Title.$invalid && !frmplatformCtrlEdit.Name.$pristine,'has-success' : frmplatformCtrlEdit.Title.$valid}">
+                    <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input ng-required="true"
+                               name="Name"
+                               ng-model="platformCtrl.selectedItem.Title" ng-selected="platformCtrl.selectedItem.Title == x.Value" value={{x.Value}} class='form-control' />
+                        <div class="m-t-xs" ng-show="frmplatformCtrlEdit.Title.$invalid">
+                            <small class="text-danger" ng-show="frmplatformCtrlEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmplatformCtrlEdit.Title.$valid && frmplatformCtrlEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmplatformCtrlEdit.Title.$invalid && !frmplatformCtrlEdit.Title.$pristine) || frmplatformCtrlEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+           
+               
+
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="platformCtrl.AddRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="platformCtrl.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

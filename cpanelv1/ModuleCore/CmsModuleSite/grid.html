@@ -1,0 +1,29 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="cmsModuleSiteGridCtrl as cmsModuleSitegrd" ng-init="cmsModuleSitegrd.init()">
+    <!-- <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="cmsModuleSitegrd.Add" ng-click="cmsModuleSitegrd.openAddModal()" ng-show="cmsModuleSitegrd.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="cmsModuleSitegrd.Edit" ng-click="cmsModuleSitegrd.openEditModal()" ng-show="cmsModuleSitegrd.gridOptions.resultAccess.AccessEditRow"  type="button">{{'edit'|lowercase|translate}}</button>
+            <button class="btn btn-danger" rasha-userrole="cmsModuleSitegrd.Delete" ng-click="cmsModuleSitegrd.deleteRow()" ng-show="cmsModuleSitegrd.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'delete'|lowercase|translate}}</button>
+            <button class="btn btn-success" ng-click="cmsModuleSitegrd.showAdvancedSearchPanel(cmsModuleSitegrd.gridOptions.resultAccess.AccessSearchField)"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-primary" ng-click="cmsModuleSitegrd.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="cmsModuleSitegrd.getCount()">{{'number'|lowercase|translate}}&nbsp;{{cmsModuleSitegrd.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="cmsModuleSitegrd"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="cmsModuleSitegrd.getRules()">{{'look'|lowercase|translate}}</button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="cmsModuleSitegrd.getJson()">{{'save_condition'|lowercase|translate}}</button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="cmsModuleSitegrd.getJson()">{{'restore_condition'|lowercase|translate}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="row" rasha-loading="cmsModuleSitegrd.busyIndicator">
+        <div class="col-sm-12">
+            <div rasha-grid="cmsModuleSitegrd.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,90 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="shopProcessController as shopProcess" ng-init="shopProcess.init()">
+    <div class="row" rasha-loading="shopProcess.busyIndicator">
+        <div class="col-sm-12">
+            <!--<button class="btn btn-primary" rasha-userrole="shopProcess.Add" ng-click="shopProcess.openAddModal()" ng-show="shopProcess.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>-->
+            <button class="btn btn-primary" rasha-userrole="shopProcess.Add" ng-click="shopProcess.autoAdd()" ng-show="shopProcess.gridOptions.resultAccess.AccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="shopProcess.Edit" ng-click="shopProcess.openEditModal()" type="button" ng-show="shopProcess.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="shopProcess.Delete" ng-click="shopProcess.deleteRow()" ng-show="shopProcess.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="shopProcess.showAdvancedSearchPanel(shopProcess.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-default" type="button" ng-click="shopProcess.changeState('shopprocesscategory')">{{'BACK'|lowercase|translate}}&nbsp;&nbsp;<i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="shopProcess"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="shopProcess.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="shopProcess.getJson()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="shopProcess.getJson()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="shopProcess.gridOptions"></div>
+        </div>
+    </div>
+    <div id="inputValue_formBuilderMainAdmin" class="row well" style="display: none;">
+        <h4>{{'Determine_Input_Values'|lowercase|translate}}</h4>
+        <div class="col-md-6">
+            <div fb-components></div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{'FORM_INPUT_VALUES'|lowercase|translate}}</h3>
+                </div>
+                <div fb-builder="default" style="min-height: 500px; padding: 20px"></div>
+                <div class="panel-footer">
+                    <div class="checkbox">
+                        <button class="btn btn-primary" type="button" ng-click="shopProcess.saveJsonFormMainAdmin()">{{'save'|lowercase|translate}}</button>
+                        <button class="btn btn-success" ng-click="shopProcess.showFormMainAdmin('true')">{{'PREVIEW'|lowercase|translate}}</button>
+                        <button class="btn btn-warning" ng-click="shopProcess.getFromSystemMainAdmin()">{{'AUTOMATIC_LOAD_FROM_SYSTEM'|lowercase|translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="inputValue_formBuilderSiteAdmin" class="row well" style="display: none;">
+        <h4>{{'Determine_Input_Values'|lowercase|translate}}</h4>
+        <div class="col-md-6">
+            <div fb-components></div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{'FORM_INPUT_VALUES'|lowercase|translate}}</h3>
+                </div>
+                <div fb-builder="default" style="min-height: 500px; padding: 20px"></div>
+                <div class="panel-footer">
+                    <div class="checkbox">
+                        <button class="btn btn-primary" type="button" ng-click="shopProcess.saveJsonFormSiteAdmin()">{{'save'|lowercase|translate}}</button>
+                        <button class="btn btn-success" ng-click="shopProcess.showFormSiteAdmin('true')">{{'PREVIEW'|lowercase|translate}}</button>
+                        <button class="btn btn-warning" ng-click="shopProcess.getFromSystemSiteAdmin()">{{'AUTOMATIC_LOAD_FROM_SYSTEM'|lowercase|translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div id="inputValue_formBuilder" class="row well" style="display: none;">
+        <h4>{{'DESIGN_FORM'|lowercase|translate}}</h4>
+        <div class="col-md-6">
+            <div fb-components></div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> {{'FORM_INPUT_VALUES'|lowercase|translate}} </h3>
+                </div>
+                <div fb-builder="default" style="min-height: 500px; padding: 20px"></div>
+                <div class="panel-footer">
+                    <div class="checkbox">
+                        <button class="btn btn-primary" type="button" ng-click="shopProcess.saveProcessInputCustomizeValue()">{{'save'|lowercase|translate}}</button>
+                        <button class="btn btn-success" ng-click="shopProcess.showFormPreview()">{{'PREVIEW'|lowercase|translate}}</button>
+                        <button class="btn btn-warning" ng-click="shopProcess.getFromSystem()">{{'AUTOMATIC_LOAD_FROM_SYSTEM'|lowercase|translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+</div>

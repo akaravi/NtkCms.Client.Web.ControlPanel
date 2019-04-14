@@ -1,0 +1,39 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor: pointer" ng-click="deliveryMethod.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Delivery_Method'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmdeliveryMethodAdd" novalidate ng-submit="deliveryMethod.addNewRow(frmdeliveryMethodAdd)" ng-init="deliveryMethod.loadEmojiPicker()">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="deliveryMethod.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmdeliveryMethodAdd.RecordStatus.$invalid && !frmdeliveryMethodAdd.RecordStatus.$pristine,'has-success' : frmdeliveryMethodAdd.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="deliveryMethod"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-required="false" name="Title" ng-model="deliveryMethod.selectedItem.Title" />
+                    </div>
+                </div>
+              
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2  control-label">{{'START_DATE'|lowercase|translate}}</label>
+                    <div class="col-sm-6  col-md-4">
+                        <div rasha-date-picker="deliveryMethod.ActivateDate" ng-model="deliveryMethod.selectedItem.ActivateDate"></div><input type="hidden" ng-model="deliveryMethod.selectedItem.ActivateDate" />
+                    </div>
+                </div>
+                
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="deliveryMethod.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="deliveryMethod.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

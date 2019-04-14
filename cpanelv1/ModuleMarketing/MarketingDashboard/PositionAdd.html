@@ -1,0 +1,78 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="marketingPosition.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'ADD_EDIT_CUSTOMER'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmAddEdit" novalidate ng-submit="addNewPositionToDb(frmAddEdit)">
+                <div class="form-group"
+                     ng-class="{'has-error' : frmAddEdit.Title.$invalid && !frmAddEdit.Title.$pristine,'has-success' : frmAddEdit.Title.$valid}">
+                    <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmAddEdit.Title.$invalid">
+                            <small class="text-danger" ng-show="frmAddEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmAddEdit.Title.$valid && frmAddEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmAddEdit.Title.$invalid && !frmAddEdit.Title.$pristine) || frmAddEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmAddEdit.Description.$invalid && !frmAddEdit.Description.$pristine,'has-success' : frmAddEdit.Description.$valid}">
+                    <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control"
+                               ng-required="true"
+                               name="Description"
+                               ng-model="selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                        <div class="m-t-xs" ng-show="frmAddEdit.Description.$invalid">
+                            <small class="text-danger" ng-show="frmAddEdit.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmAddEdit.Description.$valid && frmAddEdit.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmAddEdit.Description.$invalid && !frmAddEdit.Description.$pristine) || frmAddEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'SuccessPercent'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" ng-required="true" name="SuccessPercent" ng-model="selectedItem.SuccessPercent" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Priority'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" ng-required="true" name="Priority" ng-model="selectedItem.Priority" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'ATTACH_FILE'|lowercase|translate}} </label>
+                    <div class="col-sm-8 smallFileManager">
+                        <div rasha-file-picker-b="filePickerFiles" ng-model="selectedItem.LinkFileIds"></div>
+                    </div>
+                    <div class="col-sm-1">
+                        <a class="btn btn-primary" ng-click="addAttachedFile(selectedItem.LinkFileIds)" style="margin-right: -52px;margin-top: 1px;">
+                            <i class="fa fa-" aria-hidden="true" title="{{'ADD_FILE'|lowercase|translate}}" style="font-family: iransans;font-size: 12px;"> <i class="fa fa-plus-square" aria-hidden="true"></i> </i>
+                        </a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group col-sm-12" ng-repeat="x in attachedFiles">
+                        <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                        <div class="input-group">
+                            <input type="text" id="option{{$index}}" class="form-control" ng-required="true" name="attachedFileName" required readonly="readonly" ng-model="x.filename">
+                            <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="deleteAttachedFile($index)"><i class="fa fa-remove"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="marketingPosition.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

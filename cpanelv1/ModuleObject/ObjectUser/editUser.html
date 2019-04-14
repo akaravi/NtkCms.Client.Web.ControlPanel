@@ -1,0 +1,141 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="objectUser.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ objectUser.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmobjectUserEdit" novalidate ng-submit="objectUser.editContent(frmobjectUserEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="مشخصات فردی">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmobjectUserEdit.RecordStatus.$invalid && !frmobjectUserEdit.RecordStatus.$pristine,'has-success' : frmobjectUserEdit.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="objectUser"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmobjectUserEdit.Title.$invalid && !frmobjectUserEdit.Title.$pristine,'has-success' : frmobjectUserEdit.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           ng-model="objectUser.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmobjectUserEdit.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmobjectUserEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmobjectUserEdit.Title.$valid && frmobjectUserEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmobjectUserEdit.Title.$invalid && !frmobjectUserEdit.Title.$pristine) || frmobjectUserEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-class="{'has-error' : frmobjectUserEdit.Description.$invalid && !frmobjectUserEdit.Description.$pristine,'has-success' : frmobjectUserEdit.Description.$valid}">
+                                <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="Description" ng-model="objectUser.selectedItem.Description" />
+                                    <div class="m-t-xs" ng-show="frmobjectUserEdit.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmobjectUserEdit.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmobjectUserEdit.Description.$valid && frmobjectUserEdit.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmobjectUserEdit.Description.$invalid && !frmobjectUserEdit.Description.$pristine) || frmobjectUserEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> JoinId</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" readonly="readonly" ng-required="false" name="JoinId" ng-model="objectUser.selectedItem.JoinId" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Communication_Paths'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmobjectUserEdit.DateManufacture.$invalid && !frmobjectUserEdit.DateManufacture.$pristine,'has-success' : frmobjectUserEdit.DateManufacture.$valid}">
+                                <label class="col-sm-2 control-label">{{'DateManufacture'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div rasha-date-picker="objectUser.DateManufacture" ng-model="objectUser.selectedItem.DateManufacture"></div><input type="hidden" ng-model="objectUser.selectedItem.DateManufacture" />
+                                    <div class="m-t-xs" ng-show="frmobjectUserEdit.DateManufacture.$invalid">
+                                        <small class="text-danger" ng-show="frmobjectUserEdit.DateManufacture.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmobjectUserEdit.DateManufacture.$valid && frmobjectUserEdit.DateManufacture.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmobjectUserEdit.DateManufacture.$invalid && !frmobjectUserEdit.DateManufacture.$pristine) || frmobjectUserEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'PlaceProduction'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="PlaceProduction" ng-model="objectUser.selectedItem.PlaceProduction" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'SerialNumber'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="SerialNumber" ng-model="objectUser.selectedItem.SerialNumber" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'SerialRfId'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="SerialRfId" ng-model="objectUser.selectedItem.SerialRfId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'ADDRESS'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" style="resize:none;" ng-required="false" name="Address" ng-model="objectUser.selectedItem.Address"></textarea>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Place_Location' |lowercase|translate}}">
+                        <div class="panel-body">
+
+                            <div class="form-group" ng-show="objectUser.gridOptions.resultAccess.AccessEditField.indexOf('Geolocationlatitude')>-1">
+                                <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div rasha-map="objectUser.GeolocationConfig" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </tab>
+                    <tab heading="اطلاعات گروه">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group back1" >
+                                <label class="col-sm-3 control-label" style="margin-bottom:10px;">انتخاب گروه</label>
+                                <div class="col-sm-7 checkBoxList" style="overflow-y: auto">
+                                    <div ng-repeat="permission in objectUser.menueGroups">
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" value="{{permission.Id}}" ng-checked="objectUser.hasInMany2Many(permission)" ng-click="objectUser.toggleMany2Many(role,permission)">
+                                            {{permission.Title}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="objectUser.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="objectUser.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

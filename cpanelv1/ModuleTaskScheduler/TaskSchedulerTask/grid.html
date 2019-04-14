@@ -1,0 +1,46 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="taskscheduleTaskController as task" ng-init="task.init()">
+    <!--    <div class="container">-->
+    <div class="row" >
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="task.Add" ng-click="task.openAddModal()" ng-show="task.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="task.Edit" ng-click="task.openEditModal()" ng-show="task.gridOptions.resultAccess.AccessEditRow"  type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="task.Delete" ng-click="task.deleteRow()" ng-show="task.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="task.showAdvancedSearchPanel(task.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-warning" type="button" ng-click="task.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="task.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="task.getCount()">{{'number'|lowercase|translate}}&nbsp;{{task.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="task"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="task.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="task.getJson()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="task.getJson()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+    <div class="row" rasha-loading="task.busyIndicator">
+        <div class="col-sm-12">
+            <div rasha-grid="task.gridOptions" ></div>
+        </div>
+        <div class="col-md-12">
+            <div rasha-grid="task.gridOptionsTaskLog"></div>
+        </div>
+    </div>
+    <!--<div id="inputValue_form" class="row well"  style="display: none;">
+        <div class='hr-line-dashed'></div>
+        <h4> مقادیر ورودی</h4>
+        <div class="col-md-6">
+            <div ng-model="task.valueSubmit" fb-form="default" fb-default="task.defaultValue"></div>
+            <div class="form-group">
+                <div class="col-md-12 col-md-offset-4">
+                    <button type="button" ng-click="task.showSubmitValueForm()" class="btn btn-success">نمایش مقدار خروجی</button>
+                    <input type="submit" name="submitValues" ng-click="task.submitValues()" value="ذخیره" class="btn btn-primary"/>
+                </div>
+            </div>
+        </div>
+    </div>-->
+</div>
+

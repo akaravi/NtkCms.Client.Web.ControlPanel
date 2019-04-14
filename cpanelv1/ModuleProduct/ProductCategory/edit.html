@@ -1,0 +1,90 @@
+﻿<style>
+    [treecontrol].tree-boot i.tree-branch-head,
+    [treecontrol].tree-boot i.tree-leaf-head {
+        float: right;
+        height: 16px;
+        margin: 5px;
+    }
+</style>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="productContent.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Category' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmproductContentEdit" novalidate ng-submit="productContent.editCategory(frmproductContentEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmproductContentAdd.RecordStatus.$invalid && !frmproductContentAdd.RecordStatus.$pristine,'has-success' : frmproductContentAdd.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="productContent"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmproductContentEdit.Title.$invalid && !frmproductContentEdit.Title.$pristine,'has-success' : frmproductContentEdit.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           ng-model="productContent.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmproductContentEdit.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmproductContentEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmproductContentEdit.Title.$valid && frmproductContentEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmproductContentEdit.Title.$invalid && !frmproductContentEdit.Title.$pristine) || frmproductContentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-class="{'has-error' : frmproductContentEdit.Description.$invalid && !frmproductContentEdit.Description.$pristine,'has-success' : frmproductContentEdit.Description.$valid}">
+                                <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" ng-required="true" name="Description" ng-model="productContent.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmproductContentEdit.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmproductContentEdit.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmproductContentEdit.Description.$valid && frmproductContentEdit.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmproductContentEdit.Description.$invalid && !frmproductContentEdit.Description.$pristine) || frmproductContentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="productContent.selectedItem.previewImageSrc != null">
+                                <label class="col-sm-2 control-label"> {{'IMAGE'|lowercase|translate}} </label>
+                                <img src="{{productContent.selectedItem.previewImageSrc}}"  width="300" height="300" class="img-rounded col-sm-3 col-md-3 col-lg-3" alt="{{productContent.selectedItem.Title}}" />
+                            </div>
+                            <div id="treecontrol" class="form-group">
+                                <label class="col-sm-2 control-label">{{'SELECT_ICON'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div treecontrol class="tree-boot" style="color:black"
+                                         tree-model="productContent.dataForTheTree"
+                                         options="productContent.treeOptions"
+                                         selected-node="productContent.selectedNode"
+                                         expanded-nodes="productContent.expandedNodes"
+                                         on-selection="productContent.onSelection(node, selected)"
+                                         on-node-toggle="productContent.onNodeToggle(node, expanded)">
+                                        {{node.Title}}{{node.FileName}}&nbsp;&nbsp;<label class="label-control" style="color:#ff6500;font-style:italic;font-size:12px;">{{node.messageText}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="productContent.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="productContent.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

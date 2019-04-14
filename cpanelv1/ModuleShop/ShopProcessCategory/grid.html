@@ -1,0 +1,30 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="shopProcessCategoryController as shopProcessCategory" ng-init="shopProcessCategory.init()">
+    <div class="row" rasha-loading="shopProcessCategory.busyIndicator">
+        <div class="col-sm-12">
+           <!-- <button class="btn btn-primary" rasha-userrole="shopProcessCategory.Add" ng-click="shopProcessCategory.openAddModal()" ng-show="shopProcessCategory.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>-->
+            <button class="btn btn-primary" rasha-userrole="shopProcessCategory.Add" ng-click="shopProcessCategory.autoAdd()" ng-show="shopProcessCategory.gridOptions.resultAccess.AccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="shopProcessCategory.Edit" ng-click="shopProcessCategory.openEditModal()" type="button" ng-show="shopProcessCategory.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="shopProcessCategory.Delete" ng-click="shopProcessCategory.deleteRow()" type="button" ng-show="shopProcessCategory.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="shopProcessCategory.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="shopProcessCategory.openGridConfigModal(shopProcessCategory.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="shopProcessCategory"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="shopProcessCategory.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="shopProcessCategory.getJson()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="shopProcessCategory.getJson()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <form method="get" class="form-horizontal" name="frmshopProcessCategoryAdd" novalidate ng-submit="shopProcessCategory.addNewRow(frmshopProcessCategoryAdd)">
+                <div class='hr-line-dashed'></div>
+            </form>
+            <div rasha-grid="shopProcessCategory.gridOptions"></div>
+        </div>
+    </div>
+</div>

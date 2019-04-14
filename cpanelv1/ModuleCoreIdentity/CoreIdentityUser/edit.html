@@ -1,0 +1,208 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="coreIdentityUser.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_User' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmcoreIdentityUserEdit" novalidate ng-submit="coreIdentityUser.editRow(frmcoreIdentityUserEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="coreIdentityUser.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                                 ng-class="{'has-error' : frmcoreIdentityUserEdit.RecordStatus.$invalid && !frmcoreIdentityUserEdit.RecordStatus.$pristine,'has-success' : frmcoreIdentityUserEdit.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
+                                <div class="col-sm-10" rasha-record-status="coreIdentityUser"></div>
+                            </div>
+                            <div class="form-group" ng-show="coreIdentityUser.gridOptions.resultAccess.AccessWatchField.indexOf('UserName')>-1"
+                                 ng-class="{'has-error' : frmcoreIdentityUserEdit.UserName.$invalid && !frmcoreIdentityUserEdit.UserName.$pristine,'has-success' : frmcoreIdentityUserEdit.UserName.$valid}">
+                                <label class="col-sm-2 control-label">{{'USERNAME_EMAIL'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" style="direction: ltr;"
+                                           ng-required="true"
+                                           name="UserName"
+                                           ng-readonly="coreIdentityUser.gridOptions.resultAccess.AccessEditField.indexOf('UserName')<0"
+                                           ng-model="coreIdentityUser.selectedItem.UserName" />
+                                    <div class="m-t-xs" ng-show="frmcoreIdentityUserEdit.UserName.$invalid">
+                                        <small class="text-danger" ng-show="frmcoreIdentityUserEdit.UserName.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmcoreIdentityUserEdit.UserName.$valid && frmcoreIdentityUserEdit.UserName.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmcoreIdentityUserEdit.UserName.$invalid && !frmcoreIdentityUserEdit.UserName.$pristine) || frmcoreIdentityUserEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="coreIdentityUser.gridOptions.resultAccess.AccessWatchField.indexOf('Pwd')>-1">
+                                <label class="col-sm-2 control-label">{{'PASSWORD'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" style="direction: ltr;"
+                                           placeholder="{{'ENTER_NEW_PASSWORD'|lowercase|translate}}"
+                                           ng-required="false"
+                                           name="Pwd" type="password"
+                                           ng-model="coreIdentityUser.selectedItem.Pwd" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group'>
+                                <label class='col-sm-2 control-label'>{{'EXPIRAITION_DATA'|lowercase|translate}}</label>
+                                <div class="col-md-10">
+                                    <div rasha-date-picker="coreIdentityUser.ExpireDate" ng-model="coreIdentityUser.selectedItem.ExpireDate"></div>
+                                    <input type="hidden" ng-model="coreIdentityUser.selectedItem.ExpireDate" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="coreIdentityUser.gridOptions.resultAccess.AccessEditField.indexOf('Name')>-1"
+                                 ng-class="{'has-error' : frmcoreIdentityUserEdit.Name.$invalid && !frmcoreIdentityUserEdit.Name.$pristine,'has-success' : frmcoreIdentityUserEdit.Name.$valid}">
+                                <label class="col-sm-2 control-label">{{'NAME'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Name"
+                                           ng-model="coreIdentityUser.selectedItem.Name" />
+                                    <div class="m-t-xs" ng-show="frmcoreIdentityUserEdit.Name.$invalid">
+                                        <small class="text-danger" ng-show="frmcoreIdentityUserEdit.Name.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmcoreIdentityUserEdit.Name.$valid && frmcoreIdentityUserEdit.Name.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmcoreIdentityUserEdit.Name.$invalid && !frmcoreIdentityUserEdit.Name.$pristine) || frmcoreIdentityUserEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="coreIdentityUser.gridOptions.resultAccess.AccessEditField.indexOf('LastName')>-1"
+                                 ng-class="{'has-error' : frmcoreIdentityUserEdit.LastName.$invalid && !frmcoreIdentityUserEdit.LastName.$pristine,'has-success' : frmcoreIdentityUserEdit.LastName.$valid}">
+                                <label class="col-sm-2 control-label">{{'LASTNAME'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="LastName"
+                                           ng-model="coreIdentityUser.selectedItem.LastName" />
+                                    <div class="m-t-xs" ng-show="frmcoreIdentityUserEdit.LastName.$invalid">
+                                        <small class="text-danger" ng-show="frmcoreIdentityUserEdit.LastName.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmcoreIdentityUserEdit.LastName.$valid && frmcoreIdentityUserEdit.LastName.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmcoreIdentityUserEdit.LastName.$invalid && !frmcoreIdentityUserEdit.LastName.$pristine) || frmcoreIdentityUserEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="coreIdentityUser.gridOptions.resultAccess.AccessAddField.indexOf('Gender')>-1">
+                                <label class="col-sm-2 control-label">Gender</label>
+                                <div class="col-sm-10">
+                                    <select class='form-control' name="Gender" ng-model="coreIdentityUser.selectedItem.Gender" ng-options="x.Value as x.Description for x in coreIdentityUser.Gender" required></select>
+                                    <span ng-show="frmcoreIdentityUserAdd.Gender.$error.required">{{'SELECT_INPUT_TYPE'|lowercase|translate}}</span>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group' ng-show="coreIdentityUser.gridOptions.resultAccess.AccessAddField.indexOf('NationalCode')>-1">
+                                <label class='col-sm-2 control-label'>{{'NATIONAL_CODE'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input id="phoneNo" type='text' name="NationalCode" ng-model='coreIdentityUser.selectedItem.NationalCode' class='form-control'>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group' ng-show="coreIdentityUser.gridOptions.resultAccess.AccessEditField.indexOf('FullName')>-1">
+                                <label class='col-sm-2 control-label'>{{'COMPANY_NAME'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input type='text' ng-model='coreIdentityUser.selectedItem.FullName' class='form-control'>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="coreIdentityUser.gridOptions.resultAccess.AccessEditField.indexOf('LinkLocationId')>-1">
+                                <label class="col-sm-2 control-label"> شهر</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkLocationId" rasha-autocomplete="coreIdentityUser.LinkLocationIdSelector" ng-model="frmcoreIdentityUserAdd.selectedItem.LinkLocationId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group' ng-show="coreIdentityUser.gridOptions.resultAccess.AccessEditField.indexOf('Address')>-1">
+                                <label class='col-sm-2 control-label'>{{'ADDRESS'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input type='text' ng-model='coreIdentityUser.selectedItem.Address' class='form-control'>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group' ng-show="coreIdentityUser.gridOptions.resultAccess.AccessEditField.indexOf('Tell')>-1">
+                                <label class='col-sm-2 control-label'>{{'TELL'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input type='text' ng-model='coreIdentityUser.selectedItem.Tell' class='form-control'>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group' ng-show="coreIdentityUser.gridOptions.resultAccess.AccessEditField.indexOf('Mobile')>-1">
+                                <label class='col-sm-2 control-label'>{{'Mobile'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input type='text' ng-model='coreIdentityUser.selectedItem.Mobile' class='form-control'>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group' ng-show="coreIdentityUser.gridOptions.resultAccess.AccessEditField.indexOf('Email')>-1">
+                                <label class='col-sm-2 control-label'>{{'Email'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input type='text' ng-model='coreIdentityUser.selectedItem.Email' class='form-control'>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group' ng-show="coreIdentityUser.gridOptions.resultAccess.AccessEditField.indexOf('ExpireLockAccount')>-1">
+                                <label class='col-sm-2 control-label'>{{'EXPIRE_LOCK_ACCOUNT'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input type='text' ng-model='coreIdentityUser.selectedItem.ExpireLockAccount' class='form-control'>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group' ng-show="coreIdentityUser.gridOptions.resultAccess.AccessEditField.indexOf('FirewallAllowIP')>-1">
+                                <label class='col-sm-2 control-label'>{{'FIREWALLALLOWIP'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input type='text' ng-model='coreIdentityUser.selectedItem.FirewallAllowIP' class='form-control'>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Attachments_Files'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'MAIN_IMAGE'|lowercase|translate}} </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="coreIdentityUser.openUploadModal()" aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="coreIdentityUser.filePickerMainImage" ng-model="coreIdentityUser.selectedItem.LinkMainImageId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'ATTACH_FILE'|lowercase|translate}} </label>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="coreIdentityUser.filePickerFiles" ng-model="coreIdentityUser.selectedItem.LinkFileIds"></div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a class="btn btn-primary" ng-click="coreIdentityUser.addAttachedFile(coreIdentityUser.selectedItem.LinkFileIds)" style="margin-right: -52px;margin-top: 1px;" title="">
+                                        <i class="fa fa" aria-hidden="true" title="{{'ADD_FILE'|lowercase|translate}}" style="font-family: iransans;font-size: 12px;"> {{'ADD_FILE'|lowercase|translate}} </i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group col-sm-12" ng-repeat="x in coreIdentityUser.attachedFiles">
+                                    <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                                    <div class="input-group">
+                                        <input type="text" id="option{{$index}}" class="form-control" ng-required="true" name="attachedFileName" required readonly="readonly" ng-model="x.filename">
+                                        <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="coreIdentityUser.deleteAttachedFile($index)"><i class="fa fa-remove"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="coreIdentityUser.addRequested" type="submit">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="coreIdentityUser.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

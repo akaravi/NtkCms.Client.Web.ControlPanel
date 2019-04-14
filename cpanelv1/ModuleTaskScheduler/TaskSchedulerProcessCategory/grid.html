@@ -1,0 +1,30 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="taskSchedulerProcessCategoryController as taskSchedulerProcessCategory" ng-init="taskSchedulerProcessCategory.init()">
+    <div class="row" rasha-loading="taskSchedulerProcessCategory.busyIndicator">
+        <div class="col-sm-12">
+           <!-- <button class="btn btn-primary" rasha-userrole="taskSchedulerProcessCategory.Add" ng-click="taskSchedulerProcessCategory.openAddModal()" ng-show="taskSchedulerProcessCategory.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>-->
+            <button class="btn btn-primary" rasha-userrole="taskSchedulerProcessCategory.Add" ng-click="taskSchedulerProcessCategory.autoAdd()" ng-show="taskSchedulerProcessCategory.gridOptions.resultAccess.AccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="taskSchedulerProcessCategory.Edit" ng-click="taskSchedulerProcessCategory.openEditModal()" type="button" ng-show="taskSchedulerProcessCategory.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="taskSchedulerProcessCategory.Delete" ng-click="taskSchedulerProcessCategory.deleteRow()" type="button" ng-show="taskSchedulerProcessCategory.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="taskSchedulerProcessCategory.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="taskSchedulerProcessCategory.openGridConfigModal(taskSchedulerProcessCategory.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="taskSchedulerProcessCategory"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="taskSchedulerProcessCategory.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="taskSchedulerProcessCategory.getJson()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="taskSchedulerProcessCategory.getJson()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <form method="get" class="form-horizontal" name="frmtaskSchedulerProcessCategoryAdd" novalidate ng-submit="taskSchedulerProcessCategory.addNewRow(frmtaskSchedulerProcessCategoryAdd)">
+                <div class='hr-line-dashed'></div>
+            </form>
+            <div rasha-grid="taskSchedulerProcessCategory.gridOptions"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="jobPropertyDetailController as jobPropertyDetail" ng-init="jobPropertyDetail.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-md-2">
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;{{'category'|lowercase|translate}}&nbsp;{{'feature'|lowercase|translate}}</h5></div>
+                    <div class="panel-body">
+                        <div style="position: relative">
+                            <ul class="tree" tree-options="jobPropertyDetail.treeConfig"></ul>
+                        </div>
+                        <!-- Category Section -->
+                        <div style="margin-top: 20px;">
+                            <a ng-click="jobPropertyDetail.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-primary">
+                                <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
+                            </a>
+                            <div id="categoryButtons" style="display: none;">
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="jobPropertyDetail.Add" ng-click="jobPropertyDetail.openAddCategoryModal()" ng-show="jobPropertyDetail.gridOptions.resultAccess.AccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="jobPropertyDetail.Edit" ng-click="jobPropertyDetail.openEditCategoryModal()" ng-show="jobPropertyDetail.gridOptions.resultAccess.AccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="jobPropertyDetail.Delete" ng-click="jobPropertyDetail.deleteCategory()" ng-show="jobPropertyDetail.gridOptions.resultAccess.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5><i class="fa fa-articlepaper-o " style="font-size: 18px;"></i>&nbsp;&nbsp;{{'Feature_List'|lowercase|translate}}</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <button class="btn btn-primary" ng-show="jobPropertyDetail.gridOptions.resultAccess.AccessAddRow" ng-click="jobPropertyDetail.openAddContentModal()"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-show="jobPropertyDetail.gridOptions.resultAccess.AccessEditRow" ng-click="jobPropertyDetail.openEditContentModal()"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-show="jobPropertyDetail.gridOptions.resultAccess.AccessDeleteRow" ng-click="jobPropertyDetail.deleteContent()"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-success" ng-click="jobPropertyDetail.showAdvancedSearchPanel(jobPropertyDetail.gridOptions.resultAccess.AccessSearchField)"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <button class="btn btn-warning" type="button" ng-click="jobPropertyDetail.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+                    <button class="btn btn-info" type="button" ng-click="jobPropertyDetail.backToState('index.jobpropertytype')"><i class="fa fa-arrow-left"></i>&nbsp;{{'BACK'|lowercase|translate}} </button>
+                </div>
+                <hr />
+                <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+                    <div id="builder" query-builder="jobPropertyDetail"></div>
+                    <div class="btn-group" style="float: left;">
+                        <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="jobPropertyDetail.getRules()"> {{'look'|lowercase|translate}} </button>
+                        <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="jobPropertyDetail.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                        <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="jobPropertyDetail.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+                    </div>
+                </div>
+                <br />
+                <div class='hr-line-dashed'></div>
+                <br /><br /><br />
+                <div class="col-md-12" rasha-loading="jobPropertyDetail.busyIndicator">
+                    <div rasha-grid="jobPropertyDetail.gridOptions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

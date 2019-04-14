@@ -1,0 +1,26 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="cmsSiteCategoryGridCtrl as cmsSiteCategorygrd" ng-init="cmsSiteCategorygrd.init()">
+    <!-- <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="cmsSiteCategoryController.Add" ng-click="cmsSiteCategorygrd.openAddModal()" ng-show="cmsSiteCategorygrd.gridOptions.resultAccess.AccessAddRow" type="button">{{'ADD'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="cmsSiteCategoryController.Edit" ng-click="cmsSiteCategorygrd.openEditModal()" ng-show="cmsSiteCategorygrd.gridOptions.resultAccess.AccessEditRow" type="button">{{'EDIT'|lowercase|translate}}</button>
+            <button class="btn btn-danger" rasha-userrole="cmsSiteCategoryController.Delete" ng-click="cmsSiteCategorygrd.deleteRow()" ng-show="cmsSiteCategorygrd.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'DELETE'|lowercase|translate}}</button>
+            <button class="btn btn-success" ng-click="cmsSiteCategorygrd.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-primary" type="button" ng-click="cmsSiteCategorygrd.reportData()">{{'report'|lowercase|translate}}</button>
+        </div>
+    </div>
+    <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div id="builder" query-builder="cmsSiteCategorygrd"></div>
+        <div class="btn-group" style="float: left;">
+            <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="cmsSiteCategorygrd.getRules()"> {{'look'|lowercase|translate}} </button>
+            <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="cmsSiteCategorygrd.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+            <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="cmsSiteCategorygrd.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="cmsSiteCategorygrd.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,193 @@
+﻿
+
+<div class="modal-body" id="printableArea1">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="shopInvoiceSale.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Invoice'|lowercase|translate}}</h3>
+            <div id="main">
+                <!--<form method="get" class="form-horizontal" name="frmshopInvoiceSaleAdd" novalidate ng-submit="shopInvoiceSale.addNewContent(frmshopInvoiceSaleAdd)">-->
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="shopInvoiceSale.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1 && shopInvoiceSale.gridOptions.resultAccess.AccessAddField.indexOf('LinkCmsUserId')>-1"
+                     ng-class="{'has-error' : frmshopInvoiceSaleAdd.RecordStatus.$invalid && !frmshopInvoiceSaleAdd.RecordStatus.$pristine,'has-success' : frmshopInvoiceSaleAdd.RecordStatus.$valid}">
+                    <label class="col-sm-1 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="shopInvoiceSale"></div>
+
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label>&nbsp;{{'Invoice_To_User'|lowercase|translate}}</label><br />
+
+                    <label class="col-sm-2  control-label">{{'USER_ID'|lowercase|translate}}&nbsp;</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" name="LinkCmsUserId" rasha-autocomplete="shopInvoiceSale.LinkCmsUserIdSelector" ng-model="shopInvoiceSale.selectedItem.LinkCmsUserId" ng-disabled="shopInvoiceSale.selectedItem.Id > 0" />
+                    </div>
+
+                </div>
+
+            </div>
+            <div class='hr-line-dashed'></div>
+            <p>{{'Receiver_Specifications'|lowercase|translate}}</p>
+            <div class='hr-line-dashed'></div>
+            <div>
+                <div class="form-group">
+                    <label class="col-sm-2  control-label">{{'Receiver_FirstName'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="shopInvoiceSale.selectedItem.ReceiverName" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2  control-label">{{'Receiver_LastName'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="shopInvoiceSale.selectedItem.ReceiverLastName" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2  control-label">{{'Receiver_Mobile_Number'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="shopInvoiceSale.selectedItem.ReceiverMobile" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2  control-label">{{'Receiver_Phone_Number'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="shopInvoiceSale.selectedItem.ReceiverTel" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2  control-label">{{'Provincial_Receiver'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="shopInvoiceSale.selectedItem.ReceiverOstan" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2  control-label">{{'Receiver_City'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="shopInvoiceSale.selectedItem.ReceiverCity" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2  control-label">{{'Rrceiver_Postal_Code'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="shopInvoiceSale.selectedItem.ReceiverPostalCode" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2  control-label">{{'Rrceiver_Address'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="shopInvoiceSale.selectedItem.ReceiverAddress" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2  control-label">{{'Rrceiver_Note'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="shopInvoiceSale.selectedItem.ReceiverMemo" />
+                    </div>
+                </div>
+            </div>
+
+            <div class='hr-line-dashed'></div>
+            <!--ng-show="shopInvoiceSale.gridOptions.resultAccess.AccessAddField.indexOf('FactorId')>-1"-->
+            <div class="form-group">
+                <label class="col-sm-1  control-label">{{'DATE'|lowercase|translate}}&nbsp;</label>
+                <div class="col-sm-5  col-md-4">
+                    <div rasha-date-picker="shopInvoiceSale.RegisterDate" ng-model="shopInvoiceSale.selectedItem.RegisterDate"></div><input type="hidden" ng-model="shopInvoiceSale.selectedItem.RegisterDate" />
+                </div>
+                <div class="form-group" ng-show="shopInvoiceSale.gridOptions.resultAccess.AccessAddField.indexOf('PaymentStatus')>-1">
+                    <label class="col-sm-2 control-label">{{'Payment_Stutus'|lowercase|translate}}</label>
+                    <div class="col-sm-4">
+                        <select class='form-control' ng-disabled="true" name="PaymentStatus" ng-model="shopInvoiceSale.selectedItem.PaymentStatus" ng-options="x.Value as x.Description for x in shopInvoiceSale.PaymentStatus" required></select>
+                        <span ng-show="frmshopInvoiceSaleAdd.PaymentStatus.$error.required">{{'SELECT_INPUT_TYPE'|lowercase|translate}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class='hr-line-dashed' ng-show="shopInvoiceSale.gridOptions.resultAccess.AccessAddField.indexOf('RegisterDate')>-1"></div>
+            <div class="form-group">
+                <label class="col-sm-1  control-label">{{"Delivery_Date"|lowercase|translate}}&nbsp;</label>
+                <div class="col-sm-4">
+                    <div rasha-date-picker="shopInvoiceSale.DeliveryDate" ng-model="shopInvoiceSale.selectedItem.DeliveryDate"></div><input type="hidden" ng-model="shopInvoiceSale.selectedItem.DeliveryDate" />
+                </div>
+                <label class="col-sm-2  control-label">{{"Invoice_Stutus"|lowercase|translate}}&nbsp;</label>
+                <div class="col-sm-4">
+                    <input class="form-control" ng-model="shopInvoiceSale.selectedItem.InvoiceStatus" />
+                </div>
+            </div>
+            <div class='hr-line-dashed'></div>
+
+            <!--</form>-->
+        </div>
+        <div ng-show="shopInvoiceSale.showInvoiceSaleDetail">
+
+            <div class='hr-line-dashed'></div>
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style="position: relative">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><h5><i class="fa fa-Productpaper-o "></i>&nbsp;&nbsp;{{'INVOICE_RECORDS'|lowercase|translate}} </h5></div>
+                    </div>
+                    <button class="btn btn-primary" ng-click="shopInvoiceSale.openAddModalSaleDetail()" ng-show="shopInvoiceSale.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="shopInvoiceSale.openEditModelSaleDetail()" ng-show="false"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="shopInvoiceSale.deleteContentSaleDetail()" ng-show="shopInvoiceSale.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+                    <!--<button class="btn btn-success" ng-click="shopInvoiceSale.showAdvancedSearchPanel(shopInvoiceSale.gridOptions.resultAccess.AccessSearchField)"><i class="fa fa-search fontaesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>-->
+                    <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="shopInvoiceSale.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+                    <button class="btn btn-success" ng-click="shopInvoiceSale.getCount()">{{'number'|lowercase|translate}}&nbsp;{{shopInvoiceSale.ListItemsTotalRowCount}}</button>
+                </div>
+            </div>
+            <hr />
+            <div id="builderPanel" class="col-sm-12 col-md-12 col-lg-12" style="display: none; margin-bottom: 10px;">
+                <div id="builder" query-builder="shopInvoiceSale"></div>
+                <div class="btn-group" style="float: left;">
+                    <button class="btn btn-success reset" data-target="basic" type="button" id="btn-get" ng-click="shopInvoiceSale.getRules()"> {{'look'|lowercase|translate}} </button>
+                    <button class="btn btn-primary set-json" data-target="basic" type="button" id="btn-save" ng-click="shopInvoiceSale.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                    <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-set" ng-click="shopInvoiceSale.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+                </div>
+            </div>
+            <hr />
+            <div class="row" id="printableArea">
+                <div rasha-grid="shopInvoiceSale.gridOptionIvoceSaleDetail"></div>
+            </div>
+            <div class="col-xs-12">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="false">
+                    <div class="col-sm-6">
+
+                    </div>
+                    <label class="col-sm-1  control-label">{{'Discount'|lowercase|translate}}&nbsp;</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" readonly ng-model="shopInvoiceSale.selectedItem.Discount" />
+                    </div>
+                </div>
+                <div class="form-group" ng-show="false">
+                    <div class="col-sm-6">
+
+                    </div>
+                    <label class="col-sm-1  control-label">{{'Add_This_Page'|lowercase|translate}}&nbsp;</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" readonly ng-model="shopInvoiceSale.selectedItem" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6">
+
+                    </div>
+                    <label class="col-sm-2  control-label">{{'TOTAL'|lowercase|translate}}&nbsp;</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" readonly ng-model="shopInvoiceSale.selectedItem.TotalAmount" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-6">
+
+                    </div>
+                    <label class="col-sm-1  control-label">{{'TAX'|lowercase|translate}}&nbsp;</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" readonly ng-model="shopInvoiceSale.selectedItem.Tax" />
+                    </div>
+                </div>
+
+            </div>
+            <button class="btn btn-default" type="button" ng-click="shopInvoiceSale.closeModal()">{{'cancel'|lowercase|translate}}</button>
+            <input type="button" ng-click="shopInvoiceSale.printDiv('printableArea1')" value="{{'Print_Invoice'|lowercase|translate}}" />
+        </div>
+    </div>
+</div>

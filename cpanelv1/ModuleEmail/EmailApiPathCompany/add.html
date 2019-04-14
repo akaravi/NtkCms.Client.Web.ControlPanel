@@ -1,0 +1,85 @@
+﻿
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="emailapipathcompany.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Outbox_Details'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmemailapipathcompanyAdd" novalidate ng-submit="emailapipathcompany.addNewRow(frmemailapipathcompanyAdd)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmemailapipathcompanyAdd.RecordStatus.$invalid && !frmemailapipathcompanyAdd.RecordStatus.$pristine,'has-success' : frmemailapipathcompanyAdd.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
+                                <div class="col-sm-10" rasha-record-status="emailapipathcompany"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="emailapipathcompany.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1">
+                                <label class="col-sm-2 control-label">Title</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="Title" ng-model="emailapipathcompany.selectedItem.Title" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group" ng-show="emailapipathcompany.gridOptions.resultAccess.AccessAddField.indexOf('ServiceAvailableCredit')>-1">
+                                <label class="col-sm-2 control-label">ServiceAvailableCredit</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="ServiceAvailableCredit" ng-model="emailapipathcompany.selectedItem.ServiceAvailableCredit" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group" ng-show="emailapipathcompany.gridOptions.resultAccess.AccessAddField.indexOf('ServiceSumCredit')>-1">
+                                <label class="col-sm-2 control-label">ServiceSumCredit</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="ServiceSumCredit" ng-model="emailapipathcompany.selectedItem.ServiceSumCredit" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group" ng-show="emailapipathcompany.gridOptions.resultAccess.AccessAddField.indexOf('UserAvailableCredit')>-1">
+                                <label class="col-sm-2 control-label">UserAvailableCredit</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="UserAvailableCredit" ng-model="emailapipathcompany.selectedItem.UserAvailableCredit" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group" ng-show="emailapipathcompany.gridOptions.resultAccess.AccessAddField.indexOf('UserSumCredit')>-1">
+                                <label class="col-sm-2 control-label">UserSumCredit</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="UserSumCredit" ng-model="emailapipathcompany.selectedItem.UserSumCredit" class="form-control" />
+                                </div>
+                            </div>
+
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2  control-label"> {{'DATE'|lowercase|translate}}&nbsp;ServiceCreditLastEdit </label>
+                                <div class="col-sm-6  col-md-4">
+                                    <div rasha-date-picker="emailapipathcompany.ServiceCreditLastEdit" ng-model="emailapipathcompany.selectedItem.ServiceCreditLastEdit"></div><input type="hidden" ng-model="emailapipathcompany.selectedItem.ServiceCreditLastEdit" />
+                                </div>
+                                <label class="col-sm-2  control-label"> UserCreditLastEdit </label>
+                                <div class="col-sm-6 col-md-4">
+                                    <div rasha-date-picker="emailapipathcompany.UserCreditLastEdit" ng-model="emailapipathcompany.selectedItem.UserCreditLastEdit"></div><input type="hidden" ng-model="emailapipathcompany.selectedItem.UserCreditLastEdit" />
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                   
+                </tabset>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="emailapipathcompany.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="emailapipathcompany.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

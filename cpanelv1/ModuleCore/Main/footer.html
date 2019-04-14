@@ -1,0 +1,13 @@
+﻿<div class="footer fixed" ng-controller="footerCtrl" ng-show="footer.addNewItemNotRequested">
+    <!--<div ui-view="navigationdown"></div>-->
+    <div class="pull-right">
+        <strong>Total Space:</strong>{{totalSpace}} MB
+        <strong>Used Space:</strong>{{usedSpace}} MB
+         <strong>Free Space:</strong>{{freeSpace}} MB
+    </div>
+    <div>
+        <strong>{{'COPYRIGHT'|lowercase|translate}}</strong>
+        <strong><a href="#CleanCache" onclick="javascript:location.reload(true);"></a></strong>
+    </div>
+    
+</div>

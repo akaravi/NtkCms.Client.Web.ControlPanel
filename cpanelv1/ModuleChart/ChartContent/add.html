@@ -1,0 +1,378 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="chartContent.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Content' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmchartContentAdd" novalidate ng-submit="chartContent.addNewContent(frmchartContentAdd)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmchartContentAdd.LinkSourceId.$invalid && !frmchartContentAdd.LinkSourceId.$pristine,'has-success' : frmchartContentAdd.LinkSourceId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="chartContent"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmchartContentAdd.Title.$invalid && !frmchartContentAdd.Title.$pristine,'has-success' : frmchartContentAdd.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="true" name="Title" ng-model="chartContent.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmchartContentAdd.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmchartContentAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmchartContentAdd.Title.$valid && frmchartContentAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmchartContentAdd.Title.$invalid && !frmchartContentAdd.Title.$pristine) || frmchartContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-class="{'has-error' : frmchartContentAdd.Description.$invalid && !frmchartContentAdd.Description.$pristine,'has-success' : frmchartContentAdd.Description.$valid}">
+                                <label class="col-sm-2 control-label">{{'description'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" ng-required="true" name="Description" ng-model="chartContent.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmchartContentAdd.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmchartContentAdd.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmchartContentAdd.Description.$valid && frmchartContentAdd.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmchartContentAdd.Description.$invalid && !frmchartContentAdd.Description.$pristine) || frmchartContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Content_Matter'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'MANAGER'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="Manager" ng-model="chartContent.selectedItem.Manager" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'TAGS'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <tags-input ng-model="chartContent.tags" placeholder="{{'Tag'|lowercase|translate}}" min-length="2" add-from-autocomplete-only="true" add-on-enter="true">
+                                        <auto-complete source="chartContent.loadTags($query)" module="charttag" style="font-family: 'Yekan'"></auto-complete>
+                                    </tags-input>
+                                    <small>{{'Important_words_used_in_related_content_in_the_tag'|lowercase|translate}}</small>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmchartContentAdd.Keyword.$invalid && !frmchartContentAdd.Keyword.$pristine,'has-success' : frmchartContentAdd.Keyword.$valid}">
+                                <label class="col-sm-2 control-label"> {{'KEYWORDS'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <tags-input ng-model="chartContent.kwords" placeholder="{{'Key_Word' |lowercase|translate}}" min-length="2" add-on-enter="true" add-on-comma="true">
+                                        <auto-complete></auto-complete>
+                                    </tags-input>
+                                    <small>{{'Keywords_Help'|lowercase|translate}}</small>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'FULL_CONTENT'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <div summernote class="summernote" config="chartContent.summernoteOptions" ng-model="chartContent.selectedItem.Body">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Communication_Paths'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'Phone'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="Phone" ng-model="chartContent.selectedItem.Phone" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'CellPhone'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="CellPhone" ng-model="chartContent.selectedItem.CellPhone" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Fax</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="Fax" ng-model="chartContent.selectedItem.Fax" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'SOCIALEMAIL'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="SocialEmail" ng-model="chartContent.selectedItem.SocialEmail" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'SOCIALTELEGRAM'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="SocialTelegram" ng-model="chartContent.selectedItem.SocialTelegram" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'SOCIALINSTAGRAM'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="SocialInstagram" ng-model="chartContent.selectedItem.SocialInstagram" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'SOCIALWEBSITE'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="Socialwebsite" ng-model="chartContent.selectedItem.SocialWebsite" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'SocialIGap'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="SocialIGap" ng-model="chartContent.selectedItem.SocialIGap" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'SocialGap'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="SocialGap" ng-model="chartContent.selectedItem.SocialGap" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'SocialSoroush'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="SocialSoroush" ng-model="chartContent.selectedItem.SocialSoroush" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">SocialBale</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="SocialBale" ng-model="chartContent.selectedItem.SocialBale" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">SocialBisphone</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="SocialBisphone" ng-model="chartContent.selectedItem.SocialBisphone" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'SOCIALOTHER'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="SocialOther" ng-model="chartContent.selectedItem.SocialOther" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab> 
+                    <tab heading="{{'Place_Location'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="chartContent.gridOptions.resultAccess.AccessAddField.indexOf('LinkLocationId')>-1">
+                                <label class="col-sm-2 control-label">{{'Position'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkLocationId" rasha-autocomplete="chartContent.LinkLocationIdSelector" ng-model="chartContent.selectedItem.LinkLocationId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="chartContent.gridOptions.resultAccess.AccessAddField.indexOf('Geolocationlatitude')>-1">
+                                <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div rasha-map="chartContent.GeolocationConfig" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="chartContent.gridOptions.resultAccess.AccessAddField.indexOf('Address')>-1 ">
+                                <label class="col-sm-2 control-label"> {{'ADDRESS'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="Address" ng-model="chartContent.selectedItem.Address" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Attachments_Files'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'MAIN_IMAGE'|lowercase|translate}} </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="chartContent.openUploadModal()" aria-label="Upload">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="chartContent.filePickerMainImage" ng-model="chartContent.selectedItem.LinkMainImageId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> Podcast </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="chartContent.openUploadModalPodcast()" aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="chartContent.filePickerFilePodcast" ng-model="chartContent.selectedItem.LinkFilePodcastId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'ATTACH_FILE'|lowercase|translate}} </label>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="chartContent.filePickerFiles" ng-model="chartContent.selectedItem.LinkFileIds"></div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a class="btn btn-primary" ng-click="chartContent.addAttachedFile(chartContent.selectedItem.LinkFileIds)" style="margin-right: -52px;margin-top: 1px;" title="">
+                                        <i class="fa fa-" aria-hidden="true" title="{{'ADD_FILE'|lowercase|translate}}" style="font-family: iransans;font-size: 12px;"> {{'ADD_FILE'|lowercase|translate}} </i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group col-sm-12" ng-repeat="x in chartContent.attachedFiles">
+                                    <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                                    <div class="input-group">
+                                        <input type="text" id="option{{$index}}" class="form-control" ng-required="true" name="attachedFileName" required readonly="readonly" ng-model="x.filename">
+                                        <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="chartContent.deleteAttachedFile($index)"><i class="fa fa-remove"> {{'delete'|lowercase|translate}} </i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Related_Information'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class="form-group back1">
+                                <br />
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'Related' |lowercase|translate}}</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" name="LinkDestinationId" rasha-autocomplete="chartContent.LinkDestinationIdSelector" ng-model="chartContent.selectedItem.LinkDestinationId" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <a ng-click="chartContent.moveSelected('Content', 'to',false)" class="btn btn-primary" aria-label="Settings" style="margin-right: 8px; margin-bottom: 8px;">{{'ADD_NOW' |lowercase|translate}}&nbsp;<i class="fa fa-plus" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="controls">
+                                    </div>
+                                    <br />
+                                    <table class="table table-striped table-bordered table-responsive floatThead-table" style="border:1px solid gray;max-height:400px;overflow:auto;">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:370px">{{'title' |lowercase|translate}}</th>
+                                                <th>{{'OPERATOIN' |lowercase|translate}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in chartContent.selectedItem.Similars" style="max-height:30px">
+                                                <td style="overflow:hidden">
+                                                    {{x.Destination.Title}}
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-danger" ng-click="chartContent.removeFromCollection(chartContent.selectedItem.Similars,x.LinkDestinationId)" aria-label="Delete"> {{'REMOVE_FROM_LIST'|lowercase|translate}}&nbsp;<i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Additional_Information'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class="form-group back2">
+                                <h4>{{'Additional_Information' |lowercase|translate}}</h4>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'title' |lowercase|translate}}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" ng-model="chartContent.selectedItemOtherInfos.Title" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'Information' |lowercase|translate}}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" ng-model="chartContent.selectedItemOtherInfos.HtmlBody" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'Information_Source' |lowercase|translate}}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" ng-model="chartContent.selectedItemOtherInfos.Source" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a ng-click="chartContent.moveSelectedOtherInfo('Content', 'to')" class="btn btn-primary" aria-label="Settings" style="margin-right: 8px; margin-bottom: 8px;">{{'ADD_NOW' |lowercase|translate}}&nbsp;<i class="fa fa-plus" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+                                </div>
+                                <br />
+                                <div class="col-sm-12">
+                                    <h4>{{'Information' |lowercase|translate}}</h4>
+                                    <div class="controls">
+                                    </div>
+                                    <br />
+                                    <table class="table table-striped table-bordered table-responsive floatThead-table" style="border:1px solid gray;max-height:400px;overflow:auto;">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:20%">{{'title' |lowercase|translate}}</th>
+                                                <th style="width:40%">{{'Information' |lowercase|translate}}</th>
+                                                <th style="width:20%">{{'SOURCE' |lowercase|translate}}</th>
+                                                <th>{{'OPERATOIN' |lowercase|translate}}</th>
+                                                <th>{{'OPERATOIN' |lowercase|translate}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="y in chartContent.selectedItem.OtherInfos" style="max-height:30px">
+                                                <td style="overflow:hidden">
+                                                    {{y.Title}}
+                                                </td>
+                                                <td style="overflow:hidden">
+                                                    <div ng-bind-html="y.HtmlBody"></div>
+                                                </td>
+                                                <td style="overflow:hidden">
+                                                    {{y.Source}}
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-danger" ng-click="chartContent.editOtherInfo(y)"> Edit&nbsp;<i class="fa fa-edit" aria-hidden="true"></i></a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-danger" ng-click="chartContent.removeFromOtherInfo(chartContent.selectedItem.OtherInfos,y.Title,y.HtmlBody,y.Source)" aria-label="Delete"> {{'REMOVE_FROM_LIST'|lowercase|translate}}&nbsp;<i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="chartContent.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="chartContent.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

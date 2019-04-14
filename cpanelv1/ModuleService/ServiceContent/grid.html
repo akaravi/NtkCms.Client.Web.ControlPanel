@@ -1,0 +1,59 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="serviceContentController as serviceContent" ng-init="serviceContent.init()">
+    <!--    <div class="container">-->
+    <div class="row" rasha-loading="serviceContent.categoryBusyIndicator">
+        <div class="col-md-2">
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;{{'category'|lowercase|translate}}&nbsp;{{'SERVICES'|lowercase|translate}}</h5></div>
+                    <div class="panel-body">
+                        <div style="position: relative">
+                            <ul class="tree" tree-options="serviceContent.treeConfig"></ul>
+                        </div>
+                        <!-- Category Section -->
+                        <div style="margin-top: 20px;">
+                            <a ng-click="serviceContent.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-primary">
+                                <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
+                            </a>
+                            <div id="categoryButtons" style="display: none;">
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="serviceContent.Add" ng-click="serviceContent.addNewCategoryModel()" ng-show="serviceContent.gridOptions.resultAccess.AccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="serviceContent.Edit" ng-click="serviceContent.openEditCategoryModel()" ng-show="serviceContent.gridOptions.resultAccess.AccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="serviceContent.Delete" ng-click="serviceContent.deleteCategory()" ng-show="serviceContent.gridOptions.resultAccess.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h5><i class="fa fa-Servicepaper-o " style="font-size: 18px;"></i>&nbsp;{{'LIST'|lowercase|translate}}&nbsp;{{'SERVICES'|lowercase|translate}}<nospecialtag ng-if="serviceContent.treeConfig.currentNode.Id!=null">:&nbsp;{{serviceContent.treeConfig.currentNode.Title}}&nbsp; - {{'ID'|lowercase|translate}}:&nbsp;{{serviceContent.treeConfig.currentNode.Id}}</nospecialtag><nospecialtag ng-if="serviceContent.selectedContentId.TitleTag!=null">:&nbsp;بر اساس تگ:&nbsp;{{serviceContent.selectedContentId.TitleTag}}</nospecialtag></h5></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <button class="btn btn-primary" ng-click="serviceContent.addNewContentModel()" ng-show="serviceContent.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp;{{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="serviceContent.openEditModel()" ng-show="serviceContent.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="serviceContent.deleteContent()" ng-show="serviceContent.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-success" ng-click="serviceContent.showAdvancedSearchPanel(serviceContent.gridOptions.resultAccess.AccessSearchField)"><i class="fa fa-search fontaesome-small"></i>&nbsp;{{'advanced_search'|lowercase|translate}}&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <button class="btn btn-warning" type="button" ng-click="serviceContent.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+                    <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="serviceContent.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+                    <button class="btn btn-success" ng-click="serviceContent.getCount()">{{'number'|lowercase|translate}}&nbsp;{{serviceContent.ListItemsTotalRowCount}}</button>
+                    <button class="btn btn-info" ng-click="serviceContent.Showstatistics()"><i class="fa fa-pie-chart"></i>&nbsp; آمار&nbsp;&nbsp;</button>
+                </div>
+                <hr />
+                <div id="builderPanel" class="col-sm-12 col-lg-12 col-md-12" style="display: none; margin-bottom: 10px;">
+                    <div id="builder" query-builder="serviceContent"></div>
+                    <div class="btn-group" style="float: left;">
+                        <button class="btn btn-success reset" data-target="basic" type="button" id="btn-get" ng-click="serviceContent.getRules()"> {{'look'|lowercase|translate}} </button>
+                        <button class="btn btn-primary set-json" data-target="basic" type="button" id="btn-save" ng-click="serviceContent.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                        <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-set" ng-click="serviceContent.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+                    </div>
+                </div>
+                <div class="col-md-12" rasha-loading="serviceContent.contentBusyIndicator">
+                    <h4 ng-show="serviceContent.ListItems.length < 1">{{'There_Is_No_Content_In_This_Category'|lowercase|translate}}</h4>
+                    <div ng-show="serviceContent.ListItems.length > 0" rasha-grid="serviceContent.gridOptions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

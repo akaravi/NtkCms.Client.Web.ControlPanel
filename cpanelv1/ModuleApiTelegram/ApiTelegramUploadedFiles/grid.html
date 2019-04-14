@@ -1,0 +1,33 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="UploadedFilesController as uploadedFiles" ng-init="uploadedFiles.init()">
+    <!-- <div class="container">-->
+    <div class="row" rasha-loading="uploadedFiles.busyIndicator">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <button class="btn btn-primary" rasha-userrole="uploadedFiles.Add" ng-click="uploadedFiles.openAddModal()" ng-show="uploadedFiles.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="uploadedFiles.Edit" ng-click="uploadedFiles.openEditModal()" type="button" ng-show="uploadedFiles.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="uploadedFiles.Delete" ng-click="uploadedFiles.deleteRow()" type="button" ng-show="uploadedFiles.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="uploadedFiles.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="uploadedFiles.openGridConfigModal(uploadedFiles.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
+            <button class="btn btn-danger" type="button" ng-click="uploadedFiles.qrCode()">{{'QR_Code'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="uploadedFiles.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="uploadedFiles.getCount()">{{'number'|lowercase|translate}}&nbsp;{{uploadedFiles.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div id="builder" query-builder="uploadedFiles"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="uploadedFiles.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="uploadedFiles.getJson()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="uploadedFiles.getJson()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <form method="get" class="form-horizontal" name="frmuploadedFilesAdd" novalidate ng-submit="uploadedFiles.addNewRow(frmuploadedFilesAdd)">
+                <div class='hr-line-dashed'></div>
+            </form>
+            <div rasha-grid="uploadedFiles.gridOptions"></div>
+        </div>
+    </div>
+</div>

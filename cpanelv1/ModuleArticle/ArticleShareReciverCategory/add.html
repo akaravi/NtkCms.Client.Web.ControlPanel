@@ -1,0 +1,75 @@
+﻿<style>
+    [treecontrol].tree-boot i.tree-branch-head,
+    [treecontrol].tree-boot i.tree-leaf-head {
+        float: right;
+        height: 16px;
+        margin: 5px;
+    }
+</style>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="articleShareReciverCategory.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Content'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmarticleShareReciverCategoryAdd" novalidate ng-submit="articleShareReciverCategory.addNewContent(frmarticleShareReciverCategoryAdd)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmarticleShareReciverCategoryAdd.RecordStatus.$invalid && !frmarticleShareReciverCategoryAdd.RecordStatus.$pristine,'has-success' : frmarticleShareReciverCategoryAdd.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="articleShareReciverCategory"></div>
+                </div>
+
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="articleShareReciverCategory.gridOptions.resultAccess.AccessAddField.indexOf('LinkShareServerCategoryId')>-1">
+                    <label class="col-sm-2 control-label">{{'The_Subscriber'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkShareServerCategoryId" rasha-autocomplete="articleShareReciverCategory.LinkShareServerCategoryIdSelector" ng-model="frmarticleShareReciverCategoryAdd.selectedItem.LinkShareServerCategoryId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="articleShareReciverCategory.gridOptions.resultAccess.AccessAddField.indexOf('LinkShareReciverCategoryId')>-1">
+                    <label class="col-sm-2 control-label">{{'Connect_To_Category'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkShareReciverCategoryId" rasha-autocomplete="articleShareReciverCategory.LinkShareReciverCategoryIdSelector" ng-model="frmarticleShareReciverCategoryAdd.selectedItem.LinkShareReciverCategoryId" />
+                    </div>
+                </div>
+
+
+
+            
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmarticleShareReciverCategoryAdd.FromDate.$invalid && !frmarticleShareReciverCategoryAdd.FromDate.$pristine,'has-success' : frmarticleShareReciverCategoryAdd.FromDate.$valid}">
+                    <label class="col-sm-2 control-label">{{'From_Date'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <div rasha-date-picker="articleShareReciverCategory.FromDate" ng-model="articleShareReciverCategory.selectedItem.FromDate"></div><input type="hidden" ng-model="articleShareReciverCategory.selectedItem.FromDate" />
+                        <div class="m-t-xs" ng-show="frmarticleShareReciverCategoryAdd.FromDate.$invalid">
+                            <small class="text-danger" ng-show="frmarticleShareReciverCategoryAdd.FromDate.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmarticleShareReciverCategoryAdd.FromDate.$valid && frmarticleShareReciverCategoryAdd.FromDate.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmarticleShareReciverCategoryAdd.FromDate.$invalid && !frmarticleShareReciverCategoryAdd.FromDate.$pristine) || frmarticleShareReciverCategoryAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmarticleShareReciverCategoryAdd.ToDate.$invalid && !frmarticleShareReciverCategoryAdd.ToDate.$pristine,'has-success' : frmarticleShareReciverCategoryAdd.ToDate.$valid}">
+                    <label class="col-sm-2 control-label">{{'To_Date'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <div rasha-date-picker="articleShareReciverCategory.ToDate" ng-model="articleShareReciverCategory.selectedItem.ToDate"></div><input type="hidden" ng-model="articleShareReciverCategory.selectedItem.ToDate" />
+                        <div class="m-t-xs" ng-show="frmarticleShareReciverCategoryAdd.ToDate.$invalid">
+                            <small class="text-danger" ng-show="frmarticleShareReciverCategoryAdd.ToDate.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmarticleShareReciverCategoryAdd.ToDate.$valid && frmarticleShareReciverCategoryAdd.ToDate.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmarticleShareReciverCategoryAdd.ToDate.$invalid && !frmarticleShareReciverCategoryAdd.ToDate.$pristine) || frmarticleShareReciverCategoryAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="articleShareReciverCategory.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="articleShareReciverCategory.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

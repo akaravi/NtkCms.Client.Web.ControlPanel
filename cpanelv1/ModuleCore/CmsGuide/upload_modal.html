@@ -1,0 +1,44 @@
+﻿<div class="modal-body" style="width : 100%">
+    <div class="row">
+        <div class="col-sm-12">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="$dismiss()"></i>
+            <h3 class="m-t-none m-b"> {{ cmsGuide.modalTitle }}</h3>
+            <div class="row">
+                <div class="panel panel-primary" style="margin-right: 5px; margin-left: 5px;">
+                    <div class="panel-heading">
+                        <h5><i class="fa fa-cloud-upload fa"></i>&nbsp;&nbsp; {{'UPLOAD_FILE'|lowercase|translate}}</h5>
+                    </div>
+                    <div class="panel-body">
+                        <div class="webix_view webix_control webix_el_segmented webix_fmanager_modes" view_id="$segmented1" style="float: left; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 100%; height: auto;" flow-init="{target: cmsGuide.mainPathApiUpload}"
+                             flow-files-submitted="$flow.upload()"
+                             flow-name="cmsGuide.flow"
+                             flow-file-success="$file.msg = $message">
+                            <div class="webix_el_box" style="width: 70px; height: 38px">
+                                <div style="width: 66px" class="webix_all_segments">
+                                    <button type="button" style="width: 32px" class="webix_selected webix_segment_0" title="{{'SELECT_FILE'|lowercase|translate}}" button_id="files" flow-btn><span class="webix_fmanager_mode_option webix_icon fa-upload"></span></button>
+                                </div>
+                            </div>
+                            <table class="table table-striped">
+                                <tr ng-repeat="file in cmsGuide.flow.files">
+                                    <td>{{$index}}</td>
+                                    <td>{{file.name}}</td>
+                                    <td width="500px">
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-{{cmsGuide.whatcolor(file.progress())}} progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:{{cmsGuide.calcuteProgress(file.progress())}}%">
+                                                {{cmsGuide.calcuteProgress(file.progress())}} %
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="width : 2px;">|</td>
+                                    <td style="width: 50px;"><button type="button" id="save-button{{$index}}" ng-show="cmsGuide.canShow(file.progress())" style="width: 32px ; height: 32px;" class="webix_selected webix_segment_0 flashing-button" title="{{'CLICK_FOR_SAVE'|lowercase|translate}}" button_id="files" ng-click="cmsGuide.uploadFile($index, file);"><span id="save-icon{{$index}}" class="webix_fmanager_mode_option webix_icon fa-save save-btn" index="{{$index}}"></span></button></td>
+                                    <td class="result_icon"><span class="fa fa-check" style="display: none; font-size: 23px;"></span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,24 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="dbContentCtrl as dbCategory" ng-init="dbCategory.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="dbCategory.busyIndicator"></div>
+            <button class="btn btn-primary" rasha-userrole="dbCategory.Add" ng-click="dbCategory.openAddModal()" ng-show="dbCategory.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="dbCategory.Edit" ng-click="dbCategory.openEditModal()" ng-show="dbCategory.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="dbCategory.Delete" ng-click="dbCategory.deleteRow()" ng-show="dbCategory.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="dbCategory.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-primary" type="button" ng-click="dbCategory.reportData()"> {{'report'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="dbCategory" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="dbCategory.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

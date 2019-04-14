@@ -1,0 +1,92 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="cmsModulePaymentProcessCustomizeCtrl as cmsMdlPayPrcCust" ng-init="cmsMdlPayPrcCust.init()">
+    <!-- <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="cmsModuleSalePriceController.Add" ng-click="cmsMdlPayPrcCust.openAddModal()" ng-show="cmsMdlPayPrcCust.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="cmsModuleSalePriceController.Edit" ng-click="cmsMdlPayPrcCust.openEditModal()" ng-show="cmsMdlPayPrcCust.gridOptions.resultAccess.AccessEditRow" type="button">{{'edit'|lowercase|translate}}</button>
+            <button class="btn btn-danger" rasha-userrole="cmsModuleSalePriceController.Delete" ng-click="cmsMdlPayPrcCust.deleteRow()" ng-show="cmsMdlPayPrcCust.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'delete'|lowercase|translate}}</button>
+            <button class="btn btn-success" ng-click="cmsMdlPayPrcCust.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-primary" type="button" ng-click="cmsMdlPayPrcCust.reportData()">{{'report'|lowercase|translate}}</button>
+            <button class="btn btn-info" type="button" ng-click="cmsMdlPayPrcCust.openInputvalueBuilder()">{{'FORM_BUILDER'|lowercase|translate}}</button>
+            <button class="btn btn-warning" type="button" ng-click="cmsMdlPayPrcCust.changeState('cmsmodulepaymentprocess')">{{'BACK'|lowercase|translate}}&nbsp;&nbsp;<i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div id="builder" query-builder="cmsMdlPayPrcCust"></div>
+        <div class="btn-group" style="float: left;">
+            <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="cmsMdlPayPrcCust.getRules()" ng-disabled="cmsMdlPayPrcCust.addRequested"> {{'look'|lowercase|translate}} </button>
+            <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="cmsMdlPayPrcCust.saveRules()" ng-disabled="cmsMdlPayPrcCust.addRequested"> {{'save_condition'|lowercase|translate}} </button>
+            <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="cmsMdlPayPrcCust.setRules()" ng-disabled="cmsMdlPayPrcCust.addRequested"> {{'restore_condition'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class='hr-line-dashed'></div>
+    <div class="row" rasha-loading="cmsMdlPayPrcCust.busyIndicator">
+        <div class="col-sm-12">
+            <div rasha-grid="cmsMdlPayPrcCust.gridOptions"></div>
+        </div>
+    </div>
+    <div id="inputValue_formBuilderSiteAdmin" class="row well" style="display: none;">
+        <h4>{{'Determine_Input_Values'|lowercase|translate}}</h4>
+        <div class="col-md-6">
+            <div fb-components></div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{'FORM_INPUT_VALUES'|lowercase|translate}}</h3>
+                </div>
+                <div fb-builder="default" style="min-height: 500px; padding: 20px"></div>
+                <div class="panel-footer">
+                    <div class="checkbox">
+                        <button class="btn btn-primary" type="button" ng-click="cmsMdlPayPrcCust.saveJsonFormSiteAdmin()">{{'save'|lowercase|translate}}</button>
+                        <button class="btn btn-success" ng-click="cmsMdlPayPrcCust.showFormSiteAdmin('true')">{{'PREVIEW'|lowercase|translate}}</button>
+                        <button class="btn btn-warning" ng-click="cmsMdlPayPrcCust.getFromSystemSiteAdmin()">{{'AUTOMATIC_LOAD_FROM_SYSTEM'|lowercase|translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="inputValue_formBuilderMainAdmin" class="row well" style="display: none;">
+        <h4>{{'Determine_Input_Values'|lowercase|translate}}</h4>
+        <div class="col-md-6">
+            <div fb-components></div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{'FORM_INPUT_VALUES'|lowercase|translate}}</h3>
+                </div>
+                <div fb-builder="default" style="min-height: 500px; padding: 20px"></div>
+                <div class="panel-footer">
+                    <div class="checkbox">
+                        <button class="btn btn-primary" type="button" ng-click="cmsMdlPayPrcCust.saveJsonFormMainAdmin()">{{'save'|lowercase|translate}}</button>
+                        <button class="btn btn-success" ng-click="cmsMdlPayPrcCust.showFormMainAdmin('true')">{{'PREVIEW'|lowercase|translate}}</button>
+                        <button class="btn btn-warning" ng-click="cmsMdlPayPrcCust.getFromSystemMainAdmin()">{{'AUTOMATIC_LOAD_FROM_SYSTEM'|lowercase|translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="inputValue_formBuilderEndUser" class="row well" style="display: none;">
+        <h4>{{'Determine_Input_Values'|lowercase|translate}}</h4>
+        <div class="col-md-6">
+            <div fb-components></div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{'FORM_INPUT_VALUES'|lowercase|translate}}</h3>
+                </div>
+                <div fb-builder="default" style="min-height: 500px; padding: 20px"></div>
+                <div class="panel-footer">
+                    <div class="checkbox">
+                        <button class="btn btn-primary" type="button" ng-click="cmsMdlPayPrcCust.saveJsonFormEndUser()">{{'save'|lowercase|translate}}</button>
+                        <button class="btn btn-success" ng-click="cmsMdlPayPrcCust.showFormEndUser('true')">{{'PREVIEW'|lowercase|translate}}</button>
+                        <button class="btn btn-warning" ng-click="cmsMdlPayPrcCust.getFromSystemEndUser()">{{'AUTOMATIC_LOAD_FROM_SYSTEM'|lowercase|translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

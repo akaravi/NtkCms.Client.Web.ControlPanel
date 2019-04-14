@@ -1,0 +1,30 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="cmsLocationController as cmsLocation" ng-init="cmsLocation.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-xs-12">
+            <button class="btn btn-primary" rasha-userrole="cmsLocationController.Add" ng-click="cmsLocation.openAddModal()" ng-show="cmsLocation.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="cmsLocationController.Edit" ng-click="cmsLocation.openEditModal()"ng-show="cmsLocation.gridOptions.resultAccess.AccessEditRow" type="button">{{'edit'|lowercase|translate}}</button>
+            <button class="btn btn-danger" rasha-userrole="cmsLocationController.Delete" ng-click="cmsLocation.deleteRow()"ng-show="cmsLocation.gridOptions.resultAccess.AccessDeleteRow" type="button">{{'delete'|lowercase|translate}}</button>
+            <button class="btn btn-success" ng-click="cmsLocation.showAdvancedSearchPanel(cmsLocation.gridOptions.resultAccess.AccessSearchField)">{{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="cmsLocation.gridOptions.showGridSettings()">{{'display_setting'|lowercase|translate}}</button>
+            <button class="btn btn-primary" ng-click="cmsLocation.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="cmsLocation.getCount()">{{'number'|lowercase|translate}}&nbsp;{{cmsLocation.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="cmsLocation"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="cmsLocation.getRules()">{{'look'|lowercase|translate}}</button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="cmsLocation.getJson()">{{'save_condition'|lowercase|translate}}</button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="cmsLocation.getJson()">{{'restore_condition'|lowercase|translate}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="row" rasha-loading="cmsLocation.busyIndicator">
+        <div class="col-sm-12 col-md-12 col-xs-12" >
+            <div rasha-grid="cmsLocation.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

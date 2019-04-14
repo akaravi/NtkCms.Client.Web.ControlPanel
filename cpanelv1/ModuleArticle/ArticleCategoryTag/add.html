@@ -1,0 +1,84 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="articleTag.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Category' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmarticleTagAdd" novalidate ng-submit="articleTag.addNewCategory(frmarticleTagAdd)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmarticleTagAdd.RecordStatus.$invalid && !frmarticleTagAdd.RecordStatus.$pristine,'has-success' : frmarticleTagAdd.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="articleTag"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmarticleTagAdd.Title.$invalid && !frmarticleTagAdd.Title.$pristine,'has-success' : frmarticleTagAdd.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           maxlength="256"
+                                           ng-model="articleTag.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmarticleTagAdd.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmarticleTagAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmarticleTagAdd.Title.$valid && frmarticleTagAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmarticleTagAdd.Title.$invalid && !frmarticleTagAdd.Title.$pristine) || frmarticleTagAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-class="{'has-error' : frmarticleTagAdd.Description.$invalid && !frmarticleTagAdd.Description.$pristine,'has-success' : frmarticleTagAdd.Description.$valid}">
+                                <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" maxlength="2048" ng-required="true" name="Description" ng-model="articleTag.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmarticleTagAdd.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmarticleTagAdd.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmarticleTagAdd.Description.$valid && frmarticleTagAdd.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmarticleTagAdd.Description.$invalid && !frmarticleTagAdd.Description.$pristine) || frmarticleTagAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="articleTag.selectedItem.previewImageSrc != null">
+                                <label class="col-sm-2 control-label"> {{'IMAGE'|lowercase|translate}} </label>
+                                <img src="{{articleTag.selectedItem.previewImageSrc}}"  width="300" height="300" class="img-rounded col-sm-3 col-md-3 col-lg-3" alt="{{articleTag.selectedItem.Title}}" />
+                            </div>
+                            <div id="treecontrol" class="form-group">
+                                <label class="col-sm-2 control-label">{{'SELECT_ICON'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div treecontrol class="tree-boot" style="color:black"
+                                         tree-model="articleTag.dataForTheTree"
+                                         options="articleTag.treeOptions"
+                                         selected-node="articleTag.selectedNode"
+                                         expanded-nodes="articleTag.expandedNodes"
+                                         on-selection="articleTag.onSelection(node, selected)"
+                                         on-node-toggle="articleTag.onNodeToggle(node, expanded)">
+                                        {{node.Title}}{{node.FileName}}&nbsp;&nbsp;<label class="label-control" style="color:#ff6500;font-style:italic;font-size:12px;">{{node.messageText}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="articleTag.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="articleTag.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

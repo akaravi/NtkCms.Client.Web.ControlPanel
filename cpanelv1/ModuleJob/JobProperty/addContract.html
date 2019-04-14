@@ -1,0 +1,79 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="jobProperty.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Specify_The_Type_Of_Sales'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmContractAdd" novalidate ng-submit="">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Job'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <label class="control-label" style="font-weight: bolder" name="LinkPropertyId">{{jobProperty.selectedItem.LinkPropertyTitle}}</label>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="col-sm-12 back1" ng-repeat="x in jobProperty.contractsList" style="margin-bottom:10px;">
+                    <h4 style="margin-top:10px;margin-bottom:20px">{{'CONTRACT_TYPE'|lowercase|translate}}:&nbsp;{{x.virtual_ContractType.Title}}</h4>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" ng-show="x.virtual_ContractType.HasFixedSalary">{{'SALES_PRICE'|lowercase|translate}}</label>
+                        <label class="col-sm-2 control-label" ng-show="x.virtual_ContractType.HasCommission">{{'PRE_PAYMENT'|lowercase|translate}}</label>
+                        <!--<label class="col-sm-2 control-label" ng-show="x.virtual_ContractType.HasDepositPrice">{{'MORTGAGE'|lowercase|translate}}</label>
+                        <label class="col-sm-2 control-label" ng-show="x.virtual_ContractType.HasRentPrice">{{'RENT'|lowercase|translate}}</label>-->
+                        <div class="col-sm-7">
+                            <input class="form-control" ng-show="x.virtual_ContractType.HasFixedSalary" ng-model="x.FixedSalary" ng-required="x.virtual_ContractType.HasFixedSalary" ng-change="jobProperty.thousandSeparator('FixedSalary',jobProperty.selectedItem.FixedSalary)" />
+                            <input class="form-control" ng-show="x.virtual_ContractType.HasCommission" ng-model="x.Commission" ng-required="x.virtual_ContractType.HasCommission" ng-change="jobProperty.thousandSeparator('Commission',jobProperty.selectedItem.Commission)" />
+                            <!--<input class="form-control" ng-show="x.virtual_ContractType.HasDepositPrice" ng-model="x.DepositPrice" ng-required="x.virtual_ContractType.HasDepositPrice" ng-change="jobProperty.thousandSeparator('DepositPrice',jobProperty.selectedItem.DepositPrice)"/>-->
+                            <!--<input class="form-control" ng-show="x.virtual_ContractType.HasRentPrice" ng-model="x.RentPrice" ng-required="x.virtual_ContractType.HasRentPrice" ng-change="jobProperty.thousandSeparator('RentPrice',jobProperty.selectedItem.RentPrice)"/>-->
+                        </div>
+                        <label class="col-sm-3 control-label" ng-show="x.virtual_ContractType.HasFixedSalary">{{x.virtual_ContractType.UnitFixedSalary}}</label>
+                        <label class="col-sm-3 control-label" ng-show="x.virtual_ContractType.HasCommission">{{x.virtual_ContractType.UnitCommission}}</label>
+                        <label class="col-sm-3 control-label" ng-show="x.virtual_ContractType.HasDepositPrice">{{x.virtual_ContractType.UnitDepositPrice}}</label>
+                        <!--<label class="col-sm-3 control-label" ng-show="x.virtual_ContractType.HasRentPrice">{{x.virtual_ContractType.UnitRentPrice}}</label>-->
+                    </div>
+                    <button class="btn btn-warning" style="margin:2px 5px 10px 0px;float:left" title="{{'edit'|lowercase|translate}}" ng-disabled="jobProperty.addRequested" ng-click="jobProperty.editContract($index)" ng-show="jobProperty.contractsListresultAccess.AccessEditRow"><i class="fa fa-edit" aria-hidden="false"></i></button>
+                    <button class="btn btn-danger" style="margin:2px 5px 10px 0px;float:left" title="{{'delete'|lowercase|translate}}" ng-disabled="jobProperty.addRequested" ng-click="jobProperty.deleteContract($index)" ng-show="jobProperty.contractsListresultAccess.AccessDeleteRow"><i class="fa fa-remove" aria-hidden="false"></i></button>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'ADVERTISING_TYPE'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-model="jobProperty.selectedItem.LinkJobContractTypeId" ng-change="jobProperty.onContractTypeChange(jobProperty.selectedItem.LinkJobContractTypeId)">
+                            <option ng-repeat="x in jobProperty.contractTypeListItems" value="{{x.Id}}">{{x.Title}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="jobProperty.selectedItem.HasFixedSalary">
+                    <label class="col-sm-2 control-label">{{'SALES_PRICE'|lowercase|translate}}</label>
+                    <div class="col-sm-7">
+                        <input class="form-control" name="FixedSalary" ng-model="jobProperty.selectedItem.FixedSalary" ng-change="jobProperty.thousandSeparator('FixedSalary',jobProperty.selectedItem.FixedSalary)" />
+                    </div>
+                    <label class="col-sm-3 control-label">{{jobProperty.selectedItem.UnitFixedSalary}}</label>
+                </div>
+                <div class="form-group" ng-show="jobProperty.selectedItem.HasCommission">
+                    <label class="col-sm-2 control-label">{{'PRE_PAYMENT'|lowercase|translate}}</label>
+                    <div class="col-sm-7">
+                        <input class="form-control" name="Commission" ng-model="jobProperty.selectedItem.Commission" ng-change="jobProperty.thousandSeparator('Commission',jobProperty.selectedItem.Commission)" />
+                    </div>
+                    <label class="col-sm-3 control-label">{{jobProperty.selectedItem.UnitCommission}}</label>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'description'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <textarea id="contractDescription" class="form-control"  name="Description" ng-model="jobProperty.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button class="btn btn-primary col-md-offset-2 col-md-10" type="button" ng-disabled="jobProperty.addRequested" ng-click="jobProperty.addContract()">{{'RECORD'|lowercase|translate}}</button>
+                    </div>
+                </div>
+                <!--<label class="control-label">{{jobProperty.contractsList.length}} آگهی موجود است</label>-->
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <!--<button class="btn btn-primary" ng-disabled="jobProperty.addRequested" type="submit">{{'save'|lowercase|translate}}</button>-->
+                    <button class="btn btn-default" type="button" ng-click="jobProperty.closeModal()">{{'CLOSE'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

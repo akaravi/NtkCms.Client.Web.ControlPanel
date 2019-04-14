@@ -1,0 +1,49 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor: pointer" ng-click="deliveryMemberAbsent.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Absent_Distributor'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmdeliveryMemberAbsentAdd" novalidate ng-submit="deliveryMemberAbsent.addNewRow(frmdeliveryMemberAbsentAdd)" ng-init="deliveryMemberAbsent.loadEmojiPicker()">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="deliveryMemberAbsent.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmdeliveryMemberAbsentAdd.RecordStatus.$invalid && !frmdeliveryMemberAbsentAdd.RecordStatus.$pristine,'has-success' : frmdeliveryMemberAbsentAdd.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="deliveryMemberAbsent"></div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2  control-label">{{'From_Date_And_Time'|lowercase|translate}} </label>
+                    <div class="col-sm-6  col-md-4">
+                        <div rasha-date-picker="deliveryMemberAbsent.BeginDate" ng-model="deliveryMemberAbsent.selectedItem.BeginDate"></div><input type="hidden" ng-model="deliveryMemberAbsent.selectedItem.BeginDate" />
+                    </div>
+                    <label class="col-sm-2  control-label"> {{'To_Date_And_Time'|lowercase|translate}} </label>
+                    <div class="col-sm-6  col-md-4">
+                        <div rasha-date-picker="deliveryMemberAbsent.EndDate" ng-model="deliveryMemberAbsent.selectedItem.EndDate"></div><input type="hidden" ng-model="deliveryMemberAbsent.selectedItem.EndDate" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group" ng-show="deliveryInvoice.gridOptions.resultAccess.AccessAddField.indexOf('MemberPriority')">
+                    <label class="col-sm-2 control-label">{{'Turning_Number'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input type="number" ng-model="deliveryInvoice.selectedItem.MemberPriority" class="form-control" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="deliveryMemberAbsent.gridOptions.resultAccess.AccessAddField.indexOf('LinkDeliveryMemberId')>-1">
+                    <label class="col-sm-2 control-label">{{'Distributor'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkDeliveryMemberId" rasha-autocomplete="deliveryMemberAbsent.LinkDeliveryMemberIdSelector" ng-model="frmdeliveryMemberAbsentEdit.selectedItem.LinkDeliveryMemberId" />
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="deliveryMemberAbsent.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="deliveryMemberAbsent.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

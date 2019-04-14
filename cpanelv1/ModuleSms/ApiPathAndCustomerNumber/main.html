@@ -1,0 +1,16 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="apiPathCustomerCtrl as apiPathCustomer" ng-init="apiPathCustomer.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="apiPathCustomer.Add" ng-click="apiPathCustomer.addNewModel()" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="apiPathCustomer.Edit" ng-click="apiPathCustomer.editOpenModel()" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="apiPathCustomer.Delete" ng-click="apiPathCustomer.deleteRow()" type="button"> {{'delete'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="apiPathCustomer.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

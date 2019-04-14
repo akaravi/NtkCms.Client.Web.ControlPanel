@@ -1,0 +1,58 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="pollingLogCtrl as pollingLog" ng-init="pollingLog.init()">
+    <!--<div class="container">-->
+    <div class="row">
+        <!--<div class="col-md-2">
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;{{'category'|lowercase|translate}}</h5></div>
+                    <div class="panel-body">
+                        <div style="position: relative">
+                            <ul class="tree" tree-options="pollingLog.treeConfig"></ul>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <a ng-click="pollingLog.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-success">
+                                <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
+                            </a>
+                            <div id="categoryButtons" style="display: none;">
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="pollingLog.Add" ng-click="pollingLog.openAddCategoryModal()" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="pollingLog.Edit" ng-click="pollingLog.openEditCategoryModal()" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="pollingLog.Delete" ng-click="pollingLog.deleteCategory()" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        <div class="col-md-12" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h5><i class="fa fa-newspaper-o " style="font-size: 18px;"></i>{{'Selected_Thumbnails'|lowercase|translate}}</h5></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <!--<button class="btn btn-primary" ng-click="pollingLog.openAddModal()" ng-show="pollingLog.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp;{{'add'|lowercase|translate}}</button>-->
+                    <!--<button class="btn btn-warning" ng-click="pollingLog.openEditModal()" ng-show="pollingLog.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>-->
+                    <button class="btn btn-danger" ng-click="pollingLog.deleteContent()" ng-show="pollingLog.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-success" ng-click="pollingLog.showAdvancedSearchPanel(pollingLog.gridOptions.resultAccess.AccessSearchField)"><i class="fa fa-search fontaesome-small"></i>&nbsp;{{'advanced_search'|lowercase|translate}}&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <button class="btn btn-warning" type="button" ng-click="pollingLog.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+                    <button class="btn btn-primary" ng-click="pollingLog.toggleExportForm()" rasha-userrole="pollingLog.Report" >{{'report'|lowercase|translate}}&nbsp;</button>
+                    <button class="btn btn-success" ng-click="pollingLog.getCount()">{{'number'|lowercase|translate}}&nbsp;{{pollingLog.ListItemsTotalRowCount}}</button>
+                 </div>
+                <hr />
+                <div id="builderPanel" class="col-sm-12 col-lg-12 col-md-12" style="display: none; margin-bottom: 10px;">
+                    <div id="builder" query-builder="pollingLog"></div>
+                    <div class="btn-group" style="float: left;">
+                        <button class="btn btn-success reset" data-target="basic" type="button" id="btn-get" ng-click="pollingLog.getRules()"> {{'look'|lowercase|translate}} </button>
+                        <button class="btn btn-primary set-json" data-target="basic" type="button" id="btn-save" ng-click="pollingLog.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                        <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-set" ng-click="pollingLog.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" rasha-loading="pollingLog.contentBusyIndicator">
+                <div class="col-md-12">
+                    <div rasha-grid="pollingLog.gridOptions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

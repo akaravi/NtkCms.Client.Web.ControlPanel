@@ -1,0 +1,56 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="campaignDetailProgram.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Program'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmcampaignDetailProgramAdd" novalidate ng-submit="campaignDetailProgram.addNewRow(frmcampaignDetailProgramAdd)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmcampaignDetailProgramAdd.LinkSourceId.$invalid && !frmcampaignDetailProgramAdd.LinkSourceId.$pristine,'has-success' : frmcampaignDetailProgramAdd.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="campaignDetailProgram"></div>
+                </div>
+             
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group" ng-show="campaignDetailProgram.gridOptions.resultAccess.AccessAddField.indexOf('LinkCampaignDetailId')>-1">
+                        <label class="col-sm-2 control-label">{{'Link_Campaign_Detail_Id'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" name="LinkCampaignDetailId" rasha-autocomplete="campaignDetailProgram.LinkCampaignDetailIdSelector" ng-model="frmcampaignDetailProgramAdd.selectedItem.LinkCampaignDetailId" />
+                        </div>
+                    </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Program'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               name="Program"
+                               ng-model="campaignDetailProgram.selectedItem.Program" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control"
+                               ng-required="true"
+                               name="Description"
+                               ng-model="campaignDetailProgram.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Website'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               name="WebAddress"
+                               ng-model="campaignDetailProgram.selectedItem.WebAddress" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="campaignDetailProgram.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="campaignDetailProgram.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

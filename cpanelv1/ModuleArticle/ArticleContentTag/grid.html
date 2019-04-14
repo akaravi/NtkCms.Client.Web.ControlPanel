@@ -1,0 +1,25 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="articleContentTagCtrl as articleContentTag" ng-init="articleContentTag.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="articleContentTag.busyIndicator"></div>
+
+            <button class="btn btn-primary" rasha-userrole="articleContentTag.Add" ng-click="articleContentTag.openAddModal()" ng-show="articleContentTag.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="articleContentTag.Edit" ng-click="articleContentTag.openEditModal()" ng-show="articleContentTag.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="articleContentTag.Delete" ng-click="articleContentTag.deleteRow()" ng-show="articleContentTag.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="articleContentTag.showAdvancedSearchPanel(articleContentTag.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-primary" type="button" ng-click="articleContentTag.reportData()"> {{'report'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="articleContentTag" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="articleContentTag.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

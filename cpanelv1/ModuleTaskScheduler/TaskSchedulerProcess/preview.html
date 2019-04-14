@@ -1,0 +1,17 @@
+﻿<div class="modal-body">
+    <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="$dismiss()"></i>
+    <h5>{{'PREVIEW'|lowercase|translate}}</h5>
+    <hr />
+    <!-- Tile Section -->
+    <div class="row">
+        <form class="form-horizontal">
+            <div ng-model="taskSchedulerProcess.submitValue" fb-form="default" fb-default="taskSchedulerProcess.defaultValue"></div>
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-4">
+                    <button class="btn btn-primary" type="button" ng-disabled="taskSchedulerProcess.addRequested" ng-click="taskSchedulerProcess.saveSubmitValues()">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="$dismiss()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

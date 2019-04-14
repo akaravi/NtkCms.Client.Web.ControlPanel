@@ -1,0 +1,73 @@
+﻿<style>
+    table {
+        -webkit-box-shadow: -10px 10px 24px -18px rgba(196,196,196,1);
+        -moz-box-shadow: -10px 10px 24px -18px rgba(196,196,196,1);
+        box-shadow: -10px 10px 24px -18px rgba(196,196,196,1);
+        border-color: #d6d6d6;
+    }
+
+    td {
+        /*padding: 14px 5px;*/
+    }
+
+    tr {
+        background-color: white;
+        cursor: pointer;
+    }
+
+    .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+        /*background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);*/
+    }
+</style>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="shopInvoiceSaleDetailController as shopInvoiceSaleDetail" ng-init="shopInvoiceSaleDetail.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h5><i class="fa fa-Productpaper-o "></i>&nbsp;&nbsp;{{'INVOICE_RECORDS'|lowercase|translate}} </h5></div>
+            </div>
+            <button class="btn btn-primary" ng-click="shopInvoiceSaleDetail.openAddModal()" ng-show="shopInvoiceSaleDetail.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" ng-click="shopInvoiceSaleDetail.openEditModel()" ng-show="shopInvoiceSaleDetail.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" ng-click="shopInvoiceSaleDetail.deleteContent()" ng-show="shopInvoiceSaleDetail.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+            <button class="btn btn-success" ng-click="shopInvoiceSaleDetail.showAdvancedSearchPanel(shopInvoiceSaleDetail.gridOptions.resultAccess.AccessSearchField)"><i class="fa fa-search fontaesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" ng-click="shopInvoiceSaleDetail.backToPrevState()"><i class="fa fa-arrow-left"></i>&nbsp;{{'BACK'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style="position: relative">
+            <h2>فاکتور فروش</h2>
+            <p>شماره فاکتور:&nbsp;{{shopInvoiceSaleDetail.invoiceSale.Id}}</p>
+            <p>توضیحات:&nbsp;{{shopInvoiceSaleDetail.invoiceSale.Description}}</p>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>{{'ID'|lowercase|translate}}</th>
+                        <th>{{'IMAGE'|lowercase|translate}}</th>
+                        <th>{{'title'|lowercase|translate}}</th>
+                        <th>{{'QUANTITY'|lowercase|translate}}</th>
+                        <th>{{'FEE'|lowercase|translate}}</th>
+                        <th>{{'SUM_ROW'|lowercase|translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="x in shopInvoiceSaleDetail.ListItems" id="row{{x.Id}}" ng-click="shopInvoiceSaleDetail.gridOptions.onRowSelected(x)">
+                        <!--<td><img class="crop" ng-src="{{x.MainImageSrc}}" height="150" width="100" alt="{{x.virtual_Content.Title}}" /></td>-->
+                        <td>{{x.Id}}</td>
+                        <td><div class="img-rounded" style="background-image: url('{{x.MainImageSrc}}'); width:120px; height:120px; background-position:center;"></div></td>
+                        <td>{{x.virtual_Content.Title}}</td>
+                        <td>{{x.Quantity}}</td>
+                        <td>{{x.Fee}}</td>
+                        <td>{{x.SumRow}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

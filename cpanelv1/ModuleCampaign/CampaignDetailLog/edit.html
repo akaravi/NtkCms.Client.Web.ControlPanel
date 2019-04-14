@@ -1,0 +1,113 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="campaignDetailLog.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Information' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmcampaignDetailLogEdit" novalidate ng-submit="campaignDetailLog.editRow(frmcampaignDetailLogEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmcampaignDetailLogEdit.LinkSourceId.$invalid && !frmcampaignDetailLogEdit.LinkSourceId.$pristine,'has-success' : frmcampaignDetailLogEdit.LinkSourceId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="campaignDetailLog"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="campaignDetailLog.gridOptions.resultAccess.AccessAddField.indexOf('LinkCampaignDetailId')>-1">
+                                <label class="col-sm-2 control-label">{{'Link_Campaign_Detail_Id'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkCampaignDetailId" rasha-autocomplete="campaignDetailLog.LinkCampaignDetailIdSelector" ng-model="frmcampaignDetailLogEdit.selectedItem.LinkCampaignDetailId" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'Information'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           name="Log"
+                                           ng-model="campaignDetailLog.selectedItem.Log" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control"
+                                           ng-required="true"
+                                           name="Description"
+                                           ng-model="campaignDetailLog.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'Website'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           name="WebAddress"
+                                           ng-model="campaignDetailLog.selectedItem.WebAddress" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Place_Location' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="campaignDetailLog.gridOptions.resultAccess.AccessEditField.indexOf('Geolocationlatitude')>-1">
+                                <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div rasha-map="campaignDetailLog.GeolocationConfig" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Attachments_Files' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'ATTACH_FILE'|lowercase|translate}} </label>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="campaignDetailLog.filePickerFiles" ng-model="campaignDetailLog.selectedItem.LinkFileIds"></div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <a class="btn btn-primary" ng-click="campaignDetailLog.addAttachedFile(campaignDetailLog.selectedItem.LinkFileIds)" style="margin-right: -52px;margin-top: 1px;">
+                                        <i class="fa fa-" aria-hidden="true" title="{{'ADD_FILE'|lowercase|translate}}" style="font-family: iransans;font-size: 12px;"> <i class="fa fa-plus-square" aria-hidden="true"></i> </i>
+                                    </a>
+                                </div>
+                                <!--<div class="col-sm-1">
+                                    <a class="btn btn-primary uoload-file-m" href="" ng-click="campaignDetailLog.openUploadModal()" aria-label="Delete" >
+                                        <i class="fa fa-upload" aria-hidden="true"></i>
+                                    </a>
+                                </div>-->
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group col-sm-12" ng-repeat="x in campaignDetailLog.attachedFiles">
+                                    <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                                    <div class="input-group">
+                                        <input type="text" id="option{{$index}}" class="form-control" ng-required="false" name="attachedFileName" required readonly="readonly" ng-model="x.filename">
+                                        <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="campaignDetailLog.deleteAttachedFile($index)"><i class="fa fa-remove"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="campaignDetailLog.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="campaignDetailLog.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

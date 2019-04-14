@@ -1,0 +1,193 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="$dismiss()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Advertiser'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmjobPropertyAdd" novalidate ng-submit="jobProperty.addNewRow(frmjobPropertyAdd)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="jobProperty.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                                 ng-class="{'has-error' : frmjobPropertyAdd.RecordStatus.$invalid && !frmjobPropertyAdd.RecordStatus.$pristine,'has-success' : frmjobPropertyAdd.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="jobProperty"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="jobProperty.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                                 ng-class="{'has-error' : frmjobPropertyAdd.Title.$invalid && !frmjobPropertyAdd.Title.$pristine,'has-success' : frmjobPropertyAdd.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'NAME'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           ng-model="jobProperty.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmjobPropertyAdd.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmjobPropertyAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmjobPropertyAdd.Title.$valid && frmjobPropertyAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmjobPropertyAdd.Title.$invalid && !frmjobPropertyAdd.Title.$pristine) || frmjobPropertyAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-class="{'has-error' : frmjobPropertyAdd.Description.$invalid && !frmjobPropertyAdd.Description.$pristine,'has-success' : frmjobPropertyAdd.Description.$valid}">
+                                <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" ng-required="true" name="Description" title="{{'Added_Explanation_On_The_Applicant'|lowercase|translate}}" ng-model="jobProperty.selectedItem.Description" style="resize: vertical;height: 65px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmjobPropertyAdd.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmjobPropertyAdd.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmjobPropertyAdd.Description.$valid && frmjobPropertyAdd.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmjobPropertyAdd.Description.$invalid && !frmjobPropertyAdd.Description.$pristine) || frmjobPropertyAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Type_Of_Advertiser'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div ng-show="jobProperty.gridOptions.resultAccess.AccessAddField.indexOf('LinkPropertyTypeId')>-1 ">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'Type_Of_Advertiser'|lowercase|translate}}</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="LinkPropertyTypeId" ng-model="jobProperty.selectedItem.LinkPropertyTypeId" ng-change="jobProperty.onPropertyTypeChange(jobProperty.selectedItem.LinkPropertyTypeId)">
+                                            <option ng-repeat="x in jobProperty.propertyTypeListItems" ng-selected="jobProperty.selectedItem.LinkPropertyTypeId == x.Id" value="{{x.Id}}">{{x.Title}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div ng-show="jobProperty.addRequested==true"><label class="control-label" style="color:#ff6a00">{{'Loading_Label'|lowercase|translate}}</label></div>
+                                <div ng-repeat="x in jobProperty.propertyDetailGroupListItems" class="back1">
+                                    <br />
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <h4 style="color: dodgerblue;">{{x.Title}}</h4>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-repeat="y in jobProperty.propertyDetailsListItems" ng-if="x.Id == y.LinkPropertyDetailGroupId">
+
+                                        <label ng-show="!y.InvisibleForEndUser" class="col-sm-12 control-label">{{y.Title}}&nbsp;</label>
+                                        <label ng-show="y.InvisibleForEndUser" class="col-sm-12 control-label" style="color:red">{{y.Title}}&nbsp;{{'Hidden_Information_From_The_End_User'|lowercase|translate}}</label>
+                                        <div class="col-sm-12">
+                                            <div ng-if="y.InputDataType == 0 && y.DefaultValue.nameValue.length == 0">
+                                                <input class="form-control" ng-model="y.value" type="text" ng-required="y.Required" placeholder="{{y.Unit}}" />
+                                            </div>
+                                            <div ng-if="y.InputDataType == 4 && y.DefaultValue.nameValue.length == 0">
+                                                <textarea class="form-control" ng-model="y.value" type="text" ng-required="y.Required" placeholder="{{y.Unit}}" style="resize:vertical;height:65px;"></textarea>
+                                            </div>
+                                            <div ng-if="y.InputDataType == 1 && y.DefaultValue.nameValue.length == 0">
+                                                <input class="form-control" ng-model="y.value" type="number" min="0" ng-required="y.Required" placeholder="{{y.Unit}}" />
+                                            </div>
+                                            <div class="m-t-xs" ng-if="y.Required">
+                                                <small class="text-danger"><i class="fa fa-exclamation-triangle"></i>{{'this_information_is_required'|lowercase|translate}}</small>
+                                            </div>
+                                            <div class="checkbox" ng-if="y.InputDataType == 2">
+                                                <label>
+                                                    <input type="checkbox" ng-model="y.value">{{'has_It'|lowercase|translate}}
+                                                </label>
+                                            </div>
+                                            <div ng-if="!y.DefaultValue.multipleChoice && y.DefaultValue.forceUse">
+                                                <select class="form-control" id="dropDown{{y.Id}}">
+                                                    <option ng-repeat="nameValue in y.DefaultValue.nameValue" ng-model="y.value" value="{{nameValue}}">{{nameValue}}</option>
+                                                </select>
+                                            </div>
+                                            <div ng-if="y.DefaultValue.multipleChoice">
+                                                <div class="checkbox" ng-repeat="nameValue in y.DefaultValue.nameValue">
+                                                    <label>
+                                                        <input type="checkbox"
+                                                               id="nameValue{{y.Id}}"
+                                                               name="nameValue{{y.Id}}"
+                                                               value="{{nameValue}}">{{nameValue}}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div ng-if="!y.DefaultValue.multipleChoice  && !y.DefaultValue.forceUse && y.DefaultValue.nameValue.length>0">
+                                                <input type="text" list="nameValues" ng-model="y.value" class="form-control" />
+                                                <datalist id="nameValues">
+                                                    <option ng-repeat="nameValue in y.DefaultValue.nameValue">{{nameValue}}</option>
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Attachments_Files'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'MAIN_IMAGE'|lowercase|translate}} </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="jobProperty.openUploadModal()" aria-label="Upload">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="jobProperty.filePickerMainImage" ng-model="jobProperty.selectedItem.LinkMainImageId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'ATTACH_FILE'|lowercase|translate}} </label>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="jobProperty.filePickerFiles" ng-model="jobProperty.selectedItem.LinkFileIds"></div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a class="btn btn-primary" ng-click="jobProperty.addAttachedFile(jobProperty.selectedItem.LinkFileIds)" style="margin-right: -52px;margin-top: 1px;" title="">
+                                        <i class="fa fa-" aria-hidden="true" title="{{'ADD_FILE'|lowercase|translate}}" style="font-family: iransans;font-size: 12px;"> {{'ADD_FILE'|lowercase|translate}} </i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group col-sm-12" ng-repeat="x in jobProperty.attachedFiles">
+                                    <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                                    <div class="input-group">
+                                        <input type="text" id="option{{$index}}" class="form-control" name="attachedFileName" readonly="readonly" ng-model="x.filename">
+                                        <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="jobProperty.deleteAttachedFile($index)"><i class="fa fa-remove"> {{'delete'|lowercase|translate}} </i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Place_Location'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="jobProperty.gridOptions.resultAccess.AccessAddField.indexOf('LinkLocationId')>-1">
+                                <label class="col-sm-2 control-label">{{'Position'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkLocationId" rasha-autocomplete="jobProperty.LinkLocationIdSelector" ng-model="jobProperty.selectedItem.LinkLocationId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="jobProperty.gridOptions.resultAccess.AccessAddField.indexOf('Geolocationlatitude')>-1">
+                                <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div rasha-map="jobProperty.GeolocationConfig" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="jobProperty.gridOptions.resultAccess.AccessAddField.indexOf('Address')>-1 ">
+                                <label class="col-sm-2 control-label"> {{'ADDRESS'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="Address" ng-model="jobProperty.selectedItem.Address" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="jobProperty.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="$dismiss()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

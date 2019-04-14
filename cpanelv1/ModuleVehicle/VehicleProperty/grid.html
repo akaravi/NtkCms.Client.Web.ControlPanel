@@ -1,0 +1,39 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="vehiclePropertyController as vehicleProperty" ng-init="vehicleProperty.init()">
+    <!-- <div class="container">-->
+    <div class="row" id="topMenuSource">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="vehicleProperty.Add" ng-click="vehicleProperty.openAddModal()" ng-show="vehicleProperty.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="vehicleProperty.Edit" ng-click="vehicleProperty.openEditModal()" type="button" ng-show="vehicleProperty.gridOptions.resultAccess.AccessEditRow">{{'edit'|lowercase|translate}}</button>
+            <button class="btn btn-danger" rasha-userrole="vehicleProperty.Delete" ng-click="vehicleProperty.deleteRow()" type="button" ng-show="vehicleProperty.gridOptions.resultAccess.AccessDeleteRow">{{'delete'|lowercase|translate}}</button>
+            <button class="btn btn-success" type="button" ng-click="vehicleProperty.showAdvancedSearchPanel()">&nbsp;{{'advanced_search'|lowercase|translate}}&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="vehicleProperty.openGridConfigModal(vehicleProperty.gridOptions.resultAccess.AccessSearchField)" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="vehicleProperty.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="vehicleProperty.getCount()">{{'number'|lowercase|translate}}&nbsp;{{vehicleProperty.ListItemsTotalRowCount}}</button>
+            <!--<select class="col-sm-2 form-control" ng-change="vehicleProperty.onRecordStatusChange(RecordStatus)" ng-model="RecordStatus"><option value="1">تایید شده</option><option value="3">در انتظار تایید</option><option value="0">همه</option></select>-->
+        </div>
+    </div>
+    
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="vehicleProperty"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="vehicleProperty.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="vehicleProperty.getJson()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="vehicleProperty.getJson()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+    <div class="row" rasha-loading="vehicleProperty.busyIndicator">
+        <div class="col-sm-12">
+            <div rasha-grid="vehicleProperty.gridOptions"></div>
+        </div>
+    </div>
+    <!--<div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="vehicleProperty.Add" ng-click="vehicleProperty.openAddModal()" ng-show="vehicleProperty.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="vehicleProperty.Edit" ng-click="vehicleProperty.openEditModal()" type="button" ng-show="vehicleProperty.gridOptions.resultAccess.AccessEditRow"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="vehicleProperty.Delete" ng-click="vehicleProperty.deleteRow()" type="button" ng-show="vehicleProperty.gridOptions.resultAccess.AccessDeleteRow"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="vehicleProperty.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+        </div>
+    </div>-->
+</div>

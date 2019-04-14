@@ -1,0 +1,321 @@
+﻿<div class="modal-body">
+    <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="$dismiss()"></i>
+    <h5>{{cmsSitegrd.gridOptions.selectedRow.item.Title}}
+        <br>
+        Id: {{cmsSitegrd.gridOptions.selectedRow.item.Id}}
+        <br>
+        {{cmsSitegrd.ModuleConfigSelected.TitleML}}</h5>
+    <hr />
+    <!-- Tile Section -->
+    <div class="row" rasha-loading="cmsSitegrd.contentBusyConfig">
+        <div class="col-md-12">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5>
+                        <i class="fa fa-folder-open fa"></i>&nbsp;{{'مقادیر ذخیره شده این وب
+                        سایت'|lowercase|translate}}</h5>
+                </div>
+                <div class="panel-body">
+                    <div style="position: relative">
+                        <form method="get" class="form-horizontal" name="fSiteStorage" novalidate ng-submit="cmsSitegrd.SiteStorageSave(fSiteStorage)">
+                            <div class="panel-body">
+                                <div class="form-group" ng-class="{'has-error' : fSiteStorage.MainDataContentRowCount.$invalid && !fSiteStorage.MainDataContentRowCount.$pristine,'has-success' : fSiteStorage.MainDataContentRowCount.$valid}">
+                                    <label class="col-sm-2 control-label"> {{'تعداد دسترسی ایجاد
+                                        ردیف'|lowercase|translate}} </label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" ng-required="true" name="MainDataContentRowCount"
+                                            ng-model="cmsSitegrd.Item.SiteStorage.MainDataContentRowCount" />
+                                        <div class="m-t-xs" ng-show="fSiteStorage.MainDataContentRowCount.$invalid">
+                                            <small class="text-danger" ng-show="fSiteStorage.MainDataContentRowCount.$error.required"><i
+                                                    class="fa fa-exclamation-triangle"></i>
+                                                {{'this_information_is_required'|lowercase|translate}} </small>
+                                        </div>
+                                        <span style="left: 10px !important;" ng-show="fSiteStorage.MainDataContentRowCount.$valid && fSiteStorage.MainDataContentRowCount.$dirty"
+                                            class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                            aria-hidden="true"></span>
+                                        <span style="left: 10px !important;" ng-show="(fSiteStorage.MainDataContentRowCount.$invalid && !fSiteStorage.MainDataContentRowCount.$pristine) || fSiteStorage.submitted"
+                                            class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                            aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class='hr-line-dashed'></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{'last_update'|lowercase|translate}}
+                                    </label>
+                                    <div class="col-sm-10">
+                                        {{cmsSitegrd.Item.SiteStorage.UpdatedContent|jalaliDate:'HH:mm jYY/jMM/jDD'}}
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" ng-class="{'has-error' : fSiteStorage.AdminCpUserCreation.$invalid && !fSiteStorage.AdminCpUserCreation.$pristine,'has-success' : fSiteStorage.AdminCpUserCreation.$valid}">
+                                    <label class="col-sm-2 control-label"> {{'تعداد مدیر ایجاد
+                                        شده'|lowercase|translate}} </label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" ng-required="true" name="AdminCpUserCreation"
+                                            ng-model="cmsSitegrd.Item.SiteStorage.AdminCpUserCreation" />
+                                        <div class="m-t-xs" ng-show="fSiteStorage.AdminCpUserCreation.$invalid">
+                                            <small class="text-danger" ng-show="fSiteStorage.AdminCpUserCreation.$error.required"><i
+                                                    class="fa fa-exclamation-triangle"></i>
+                                                {{'this_information_is_required'|lowercase|translate}} </small>
+                                        </div>
+                                        <span style="left: 10px !important;" ng-show="fSiteStorage.AdminCpUserCreation.$valid && fSiteStorage.AdminCpUserCreation.$dirty"
+                                            class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                            aria-hidden="true"></span>
+                                        <span style="left: 10px !important;" ng-show="(fSiteStorage.AdminCpUserCreation.$invalid && !fSiteStorage.AdminCpUserCreation.$pristine) || fSiteStorage.submitted"
+                                            class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                            aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class='hr-line-dashed'></div>
+
+                                <div class="form-group" ng-class="{'has-error' : fSiteStorage.UserCreation.$invalid && !fSiteStorage.UserCreation.$pristine,'has-success' : fSiteStorage.UserCreation.$valid}">
+                                    <label class="col-sm-2 control-label"> {{'تعداد کاربر ایجاد
+                                        شده'|lowercase|translate}} </label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" ng-required="true" name="UserCreation" ng-model="cmsSitegrd.Item.SiteStorage.UserCreation" />
+                                        <div class="m-t-xs" ng-show="fSiteStorage.UserCreation.$invalid">
+                                            <small class="text-danger" ng-show="fSiteStorage.UserCreation.$error.required"><i
+                                                    class="fa fa-exclamation-triangle"></i>
+                                                {{'this_information_is_required'|lowercase|translate}} </small>
+                                        </div>
+                                        <span style="left: 10px !important;" ng-show="fSiteStorage.UserCreation.$valid && fSiteStorage.UserCreation.$dirty"
+                                            class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                            aria-hidden="true"></span>
+                                        <span style="left: 10px !important;" ng-show="(fSiteStorage.UserCreation.$invalid && !fSiteStorage.UserCreation.$pristine) || fSiteStorage.submitted"
+                                            class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                            aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class='hr-line-dashed'></div>
+
+                                <div class='hr-line-dashed'></div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary" ng-disabled="cmsSitegrd.buttonIsPressed" type="submit"
+                                        ng-show="tokenInfo.UserAccessAdminAllowToProfessionalData">
+                                        {{'save'|lowercase|translate}} </button>
+                                    <button class="btn btn-primary" ng-disabled="cmsSitegrd.buttonIsPressed" type="button"
+                                        ng-click="cmsSitegrd.SiteStorageLoad()">
+                                        {{'reload'|lowercase|translate}} </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5>
+                        <i class="fa fa-folder-open fa"></i>&nbsp;{{'تنظیمات دسترسی'|lowercase|translate}}</h5>
+                </div>
+                <div class="panel-body">
+                    <div style="position: relative">
+                        <form method="get" class="form-horizontal" name="fSiteAccess" novalidate ng-submit="cmsSitegrd.SiteAccessSave(fSiteAccess)">
+                            <div class="panel-body">
+
+                                <div class="form-group" ng-class="{'has-error' : fSiteAccess.MainDataContentRowCount.$invalid && !fSiteAccess.MainDataContentRowCount.$pristine,'has-success' : fSiteAccess.MainDataContentRowCount.$valid}">
+                                    <label class="col-sm-2 control-label"> {{'تعداد دسترسی ایجاد
+                                        ردیف'|lowercase|translate}} </label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" ng-required="true" name="MainDataContentRowCount"
+                                            ng-model="cmsSitegrd.Item.SiteAccess.MainDataContentRowCount" />
+                                        <div class="m-t-xs" ng-show="fSiteAccess.MainDataContentRowCount.$invalid">
+                                            <small class="text-danger" ng-show="fSiteAccess.MainDataContentRowCount.$error.required"><i
+                                                    class="fa fa-exclamation-triangle"></i>
+                                                {{'this_information_is_required'|lowercase|translate}} </small>
+                                        </div>
+                                        <span style="left: 10px !important;" ng-show="fSiteAccess.MainDataContentRowCount.$valid && fSiteAccess.MainDataContentRowCount.$dirty"
+                                            class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                            aria-hidden="true"></span>
+                                        <span style="left: 10px !important;" ng-show="(fSiteAccess.MainDataContentRowCount.$invalid && !fSiteAccess.MainDataContentRowCount.$pristine) || fSiteAccess.submitted"
+                                            class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                            aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class='hr-line-dashed'></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{'لیست دامنه های پیش
+                                        فرض'|lowercase|translate}}
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" name="DomainsList" ng-model="cmsSitegrd.Item.SiteAccess.DomainsList">
+
+                                                        </textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" ng-class="{'has-error' : fSiteAccess.MaxAdminCpUserCreation.$invalid && !fSiteAccess.MaxAdminCpUserCreation.$pristine,'has-success' : fSiteAccess.MaxAdminCpUserCreation.$valid}">
+                                    <label class="col-sm-2 control-label"> {{'تعداد دسترسی ایجاد
+                                        کاربر پنل'|lowercase|translate}} </label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" ng-required="true" name="MaxAdminCpUserCreation"
+                                            ng-model="cmsSitegrd.Item.SiteAccess.MaxAdminCpUserCreation" />
+                                        <div class="m-t-xs" ng-show="fSiteAccess.MaxAdminCpUserCreation.$invalid">
+                                            <small class="text-danger" ng-show="fSiteAccess.MaxAdminCpUserCreation.$error.required"><i
+                                                    class="fa fa-exclamation-triangle"></i>
+                                                {{'this_information_is_required'|lowercase|translate}} </small>
+                                        </div>
+                                        <span style="left: 10px !important;" ng-show="fSiteAccess.MaxAdminCpUserCreation.$valid && fSiteAccess.MaxAdminCpUserCreation.$dirty"
+                                            class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                            aria-hidden="true"></span>
+                                        <span style="left: 10px !important;" ng-show="(fSiteAccess.MaxAdminCpUserCreation.$invalid && !fSiteAccess.MaxAdminCpUserCreation.$pristine) || fSiteAccess.submitted"
+                                            class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                            aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class='hr-line-dashed'></div>
+                                <div class="form-group" ng-class="{'has-error' : fSiteAccess.MaxUserCreation.$invalid && !fSiteAccess.MaxUserCreation.$pristine,'has-success' : fSiteAccess.MaxUserCreation.$valid}">
+                                    <label class="col-sm-2 control-label"> {{'تعداد دسترسی ایجاد
+                                        کاربر سایت'|lowercase|translate}} </label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" ng-required="true" name="MaxUserCreation" ng-model="cmsSitegrd.Item.SiteAccess.MaxUserCreation" />
+                                        <div class="m-t-xs" ng-show="fSiteAccess.MaxUserCreation.$invalid">
+                                            <small class="text-danger" ng-show="fSiteAccess.MaxUserCreation.$error.required"><i
+                                                    class="fa fa-exclamation-triangle"></i>
+                                                {{'this_information_is_required'|lowercase|translate}} </small>
+                                        </div>
+                                        <span style="left: 10px !important;" ng-show="fSiteAccess.MaxUserCreation.$valid && fSiteAccess.MaxUserCreation.$dirty"
+                                            class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                            aria-hidden="true"></span>
+                                        <span style="left: 10px !important;" ng-show="(fSiteAccess.MaxUserCreation.$invalid && !fSiteAccess.MaxUserCreation.$pristine) || fSiteAccess.submitted"
+                                            class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                            aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class='hr-line-dashed'></div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary" ng-disabled="cmsSitegrd.buttonIsPressed" type="submit"
+                                        ng-show="tokenInfo.UserAccessAdminAllowToProfessionalData">
+                                        {{'save'|lowercase|translate}} </button>
+                                    <button class="btn btn-primary" ng-disabled="cmsSitegrd.buttonIsPressed" type="button"
+                                        ng-click="cmsSitegrd.SiteAccessLoad()">
+                                        {{'reload'|lowercase|translate}} </button>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5>
+                        <i class="fa fa-folder-open fa"></i>&nbsp;{{'تنظیمات سایت'|lowercase|translate}}</h5>
+                </div>
+                <div class="panel-body">
+                    <div style="position: relative">
+                        <form method="get" class="form-horizontal" name="fSite" novalidate ng-submit="cmsSitegrd.SiteSave(fSite)">
+                            <div class="panel-body">
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{'اجرا برای
+                                        کاربر'|lowercase|translate}}
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="checkbox" class="form-control" name="AccessBuy" ng-model="cmsSitegrd.Item.Site.StatusRenderUser" />
+                                    </div>
+                                </div>
+                                <div class='hr-line-dashed'></div>
+
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{'امکان ثبت کاربر
+                                        جدید'|lowercase|translate}}
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input type="checkbox" class="form-control" name="AccessBuy" ng-model="cmsSitegrd.Item.Site.UserRegidteryBool" />
+                                    </div>
+                                </div>
+                                <div class='hr-line-dashed'></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{'وضعیت بعد از ثبت کاربر
+                                        جدید'|lowercase|translate}}
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="UserRegidteryRecordStatus" ng-model="cmsSitegrd.Item.Site.UserRegidteryRecordStatus">
+                                            <option ng-repeat="x in cmsSitegrd.itemRecordStatus" ng-selected="cmsSitegrd.Item.Site.UserRegidteryRecordStatus == x.Value"
+                                                value={{x.Value}}>{{x.Key + ": " + x.Description}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class='hr-line-dashed'></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{'انقضای حساب
+                                        کاربری'|lowercase|translate}}
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control" name="UserRegidteryExpireDateDay" ng-model="cmsSitegrd.Item.Site.UserRegidteryExpireDateDay" />
+                                    </div>
+                                    <label class="col-sm-2 control-label"> روز
+                                    </label>
+                                </div>
+                                <div class='hr-line-dashed'></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{'تعداد ردیف rss'|lowercase|translate}}
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control" name="RSSCount" ng-model="cmsSitegrd.Item.Site.RSSCount" />
+                                    </div>
+                                    <label class="col-sm-2 control-label"> ردیف
+                                    </label>
+                                </div>
+                                <div class='hr-line-dashed'></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{'Google Site
+                                        key'|lowercase|translate}}
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" name="DomainsGoogleSitekey" ng-model="cmsSitegrd.Item.Site.DomainsGoogleSitekey" />
+                                    </div>
+
+                                </div>
+                                <div class='hr-line-dashed'></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{'Google Secret
+                                        key'|lowercase|translate}}
+                                    </label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" name="DomainsGoogleSecretkey" ng-model="cmsSitegrd.Item.Site.DomainsGoogleSecretkey" />
+                                    </div>
+
+                                </div>
+                                <div class='hr-line-dashed'></div>
+
+                                <div class="form-group">
+                                    <button class="btn btn-primary" ng-disabled="cmsSitegrd.buttonIsPressed" type="submit">
+                                        {{'save'|lowercase|translate}} </button>
+                                    <button class="btn btn-primary" ng-disabled="cmsSitegrd.buttonIsPressed" type="button"
+                                        ng-click="cmsSitegrd.SiteLoad()">
+                                        {{'reload'|lowercase|translate}} </button>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

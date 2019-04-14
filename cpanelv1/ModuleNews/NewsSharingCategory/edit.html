@@ -1,0 +1,67 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="newssharingcategory.busyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="newssharingcategory.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ newssharingcategory.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmnewssharingcategoryEdit" novalidate ng-submit="newssharingcategory.editRow(frmnewssharingcategoryEdit)">
+
+              
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="newssharingcategory.gridOptions.resultAccess.AccessAddField.indexOf('LinkSharedSettingCategoryId')>-1">
+                    <label class="col-sm-2 control-label">SharedSetting</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkSharedSettingCategoryId" rasha-autocomplete="newssharingcategory.LinkSharedSettingCategoryIdSelector" ng-model="frmnewssharingcategoryEdit.selectedItem.LinkSharedSettingCategoryId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="newssharingcategory.gridOptions.resultAccess.AccessAddField.indexOf('LinkCategoryTargetId')>-1">
+                    <label class="col-sm-2 control-label">CategoryTargetId</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkCategoryTargetId" rasha-autocomplete="newssharingcategory.LinkCategoryTargetIdSelector" ng-model="frmnewssharingcategoryEdit.selectedItem.LinkCategoryTargetId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmnewssharingcategoryEdit.FromDate.$invalid && !frmnewssharingcategoryEdit.FromDate.$pristine,'has-success' : frmnewssharingcategoryEdit.FromDate.$valid}">
+                    <label class="col-sm-2 control-label">{{'From_Date'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <div rasha-date-picker="newssharingcategory.FromDate" ng-model="newssharingcategory.selectedItem.FromDate"></div><input type="hidden" ng-model="newssharingcategory.selectedItem.FromDate" />
+                        <div class="m-t-xs" ng-show="frmnewssharingcategoryEdit.FromDate.$invalid">
+                            <small class="text-danger" ng-show="frmnewssharingcategoryEdit.FromDate.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmnewssharingcategoryEdit.FromDate.$valid && frmnewssharingcategoryEdit.FromDate.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmnewssharingcategoryEdit.FromDate.$invalid && !frmnewssharingcategoryEdit.FromDate.$pristine) || frmnewssharingcategoryEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmnewssharingcategoryEdit.ToDate.$invalid && !frmnewssharingcategoryEdit.ToDate.$pristine,'has-success' : frmnewssharingcategoryEdit.ToDate.$valid}">
+                    <label class="col-sm-2 control-label">{{'To_Date'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <div rasha-date-picker="newssharingcategory.ToDate" ng-model="newssharingcategory.selectedItem.ToDate"></div><input type="hidden" ng-model="newssharingcategory.selectedItem.ToDate" />
+                        <div class="m-t-xs" ng-show="frmnewssharingcategoryEdit.ToDate.$invalid">
+                            <small class="text-danger" ng-show="frmnewssharingcategoryEdit.ToDate.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmnewssharingcategoryEdit.ToDate.$valid && frmnewssharingcategoryEdit.ToDate.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmnewssharingcategoryEdit.ToDate.$invalid && !frmnewssharingcategoryEdit.ToDate.$pristine) || frmnewssharingcategoryEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> Price </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               name="Price"
+                               ng-model="newssharingcategory.selectedItem.Price" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="newssharingcategory.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="newssharingcategory.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

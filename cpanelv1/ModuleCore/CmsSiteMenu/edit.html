@@ -1,0 +1,73 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="cmsSiteMenu.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Menu'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmcmsSiteMenuEdit" novalidate ng-submit="cmsSiteMenu.editContent(frmcmsSiteMenuEdit)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsSiteMenu.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmcmsSiteMenuEdit.RecordStatus.$invalid && !frmcmsSiteMenuEdit.RecordStatus.$pristine,'has-success' : frmcmsSiteMenuEdit.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label">{{'CONDITION'|lowercase|translate}}</label>
+                    <div class="col-sm-10" rasha-record-status="cmsSiteMenu"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsSiteMenu.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                     ng-class="{'has-error' : frmcmsSiteMenuEdit.Title.$invalid && !frmcmsSiteMenuEdit.Title.$pristine,'has-success' : frmcmsSiteMenuEdit.Title.$valid}">
+                    <label class="col-sm-2 control-label">{{'TITLE'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="cmsSiteMenu.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmcmsSiteMenuEdit.Title.$invalid">
+                            <small class="text-danger" ng-show="frmcmsSiteMenuEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmcmsSiteMenuEdit.Title.$valid && frmcmsSiteMenuEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmcmsSiteMenuEdit.Title.$invalid && !frmcmsSiteMenuEdit.Title.$pristine) || frmcmsSiteMenuEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" >
+                    <label class="col-sm-2 control-label">{{'Area_Type'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <select class='form-control' name="AreaType" ng-model="cmsSiteMenu.selectedItem.AreaType" ng-options="x.Value as x.Description for x in cmsSiteMenu.AreaType" required></select>
+                        <span ng-show="frmcmsSiteMenuAdd.AreaType.$error.required">{{'SELECT_INPUT_TYPE'|lowercase|translate}}</span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsSiteMenu.gridOptions.resultAccess.AccessEditField.indexOf('JsonValues')>-1"
+                     ng-class="{'has-error' : frmcmsSiteMenuEdit.JsonValues.$invalid && !frmcmsSiteMenuEdit.JsonValues.$pristine,'has-success' : frmcmsSiteMenuEdit.JsonValues.$valid}">
+                    <label class="col-sm-2 control-label">{{'ORDER'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <rasha-ui-tree content="cmsSiteMenu.treeMenuConfig"></rasha-ui-tree>
+                    </div>
+                </div>
+                <div id="setMenuLinkPanel" style="display:none;">
+                    <h4>{{'SELECT_LINK'|lowercase|translate}}</h4>
+                    <div class="back1">
+                        <br />
+                        <div class="form-group">
+                            <label class='col-sm-2 control-label'>{{'SELECT_PAGE'|lowercase|translate}}</label>
+                            <div class="col-sm-10">
+                                <label class="control-label" style="color:#ff6500;font-style:italic;font-size:12px;" ng-show="cmsSiteMenu.loadingPages">در حال بارگذاری صفحات...</label>
+                                <select class="form-control" ng-model="cmsSiteMenu.selectedPage" ng-options="x.Title for x in cmsSiteMenu.cmsPagesListItems" ng-change="cmsSiteMenu.onPageChange(cmsSiteMenu.selectedPage)" ng-disabled="cmsSiteMenu.loadingPages"></select>
+                            </div>
+                        </div>
+                        <div class='hr-line-dashed'></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{{'LINK_ADDRESS'|lowercase|translate}}</label>
+                            <div class="col-sm-10">
+                                <input class="form-control ltr-support" style="direction: ltr" ng-required="false" name="selectedLinkAddress" ng-model="cmsSiteMenu.selectedNode.AddressLink" ng-disabled="cmsSiteMenu.addRequested"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="cmsSiteMenu.addRequested" type="submit">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="cmsSiteMenu.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

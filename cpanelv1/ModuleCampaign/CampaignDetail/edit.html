@@ -1,0 +1,137 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="campaignDetail.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Details' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmcampaignDetailEdit" novalidate ng-submit="campaignDetail.editRow(frmcampaignDetailEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmcampaignDetailEdit.LinkSourceId.$invalid && !frmcampaignDetailEdit.LinkSourceId.$pristine,'has-success' : frmcampaignDetailEdit.LinkSourceId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="campaignDetail"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="campaignDetail.gridOptions.resultAccess.AccessAddField.indexOf('LinkCampaignContentId')>-1">
+                                <label class="col-sm-2 control-label">{{'Link_Campaign_Id'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkCampaignContentId" rasha-autocomplete="campaignDetail.LinkCampaignContentIdSelector" ng-model="frmcampaignDetailEdit.selectedItem.LinkCampaignContentId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="campaignDetail.gridOptions.resultAccess.AccessAddField.indexOf('LinkMemberGroupId')>-1">
+                                <label class="col-sm-2 control-label">{{'Link_Member_Group_Id'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkMemberGroupId" rasha-autocomplete="campaignDetail.LinkMemberGroupIdSelector" ng-model="frmcampaignDetailEdit.selectedItem.LinkMemberGroupId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'title'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           name="Title"
+                                           ng-model="campaignDetail.selectedItem.Title" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control"
+                                           ng-required="true"
+                                           name="Description"
+                                           ng-model="campaignDetail.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'Website'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           name="WebAddress"
+                                           ng-model="campaignDetail.selectedItem.WebAddress" />
+                                </div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'Number_Of_Participants'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           name="NumberOfMainMembers"
+                                           ng-model="campaignDetail.selectedItem.NumberOfMainMembers" />
+                                </div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'Number_Of_Bookings'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           name="NumberOfReserveMembers"
+                                           ng-model="campaignDetail.selectedItem.NumberOfReserveMembers" />
+                                </div>
+                            </div>
+
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmcampaignDetailEdit.FromDate.$invalid && !frmcampaignDetailEdit.FromDate.$pristine,'has-success' : frmcampaignDetailEdit.FromDate.$valid}">
+                                <label class="col-sm-2 control-label">{{'From_Date'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div rasha-date-picker="campaignDetail.FromDate" ng-model="campaignDetail.selectedItem.FromDate"></div><input type="hidden" ng-model="campaignDetail.selectedItem.FromDate" />
+                                    <div class="m-t-xs" ng-show="frmcampaignDetailEdit.FromDate.$invalid">
+                                        <small class="text-danger" ng-show="frmcampaignDetailEdit.FromDate.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmcampaignDetailEdit.FromDate.$valid && frmcampaignDetailEdit.FromDate.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmcampaignDetailEdit.FromDate.$invalid && !frmcampaignDetailEdit.FromDate.$pristine) || frmcampaignDetailEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmcampaignDetailEdit.ToDate.$invalid && !frmcampaignDetailEdit.ToDate.$pristine,'has-success' : frmcampaignDetailEdit.ToDate.$valid}">
+                                <label class="col-sm-2 control-label">{{'To_Date'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div rasha-date-picker="campaignDetail.ToDate" ng-model="campaignDetail.selectedItem.ToDate"></div><input type="hidden" ng-model="campaignDetail.selectedItem.ToDate" />
+                                    <div class="m-t-xs" ng-show="frmcampaignDetailEdit.ToDate.$invalid">
+                                        <small class="text-danger" ng-show="frmcampaignDetailEdit.ToDate.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmcampaignDetailEdit.ToDate.$valid && frmcampaignDetailEdit.ToDate.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmcampaignDetailEdit.ToDate.$invalid && !frmcampaignDetailEdit.ToDate.$pristine) || frmcampaignDetailEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Place_Location' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="campaignDetail.gridOptions.resultAccess.AccessEditField.indexOf('Geolocationlatitude')>-1">
+                                <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div rasha-map="campaignDetail.GeolocationConfig" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="campaignDetail.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="campaignDetail.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

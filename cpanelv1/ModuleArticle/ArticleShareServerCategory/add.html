@@ -1,0 +1,68 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="articleShareServerCategory.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Content'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmarticleShareServerCategoryAdd" novalidate ng-submit="articleShareServerCategory.addNewContent(frmarticleShareServerCategoryAdd)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmarticleShareServerCategoryAdd.LinkSourceId.$invalid && !frmarticleShareServerCategoryAdd.LinkSourceId.$pristine,'has-success' : frmarticleShareServerCategoryAdd.LinkSourceId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="articleShareServerCategory"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmarticleShareServerCategoryAdd.Title.$invalid && !frmarticleShareServerCategoryAdd.Title.$pristine,'has-success' : frmarticleShareServerCategoryAdd.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           ng-model="articleShareServerCategory.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmarticleShareServerCategoryAdd.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmarticleShareServerCategoryAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmarticleShareServerCategoryAdd.Title.$valid && frmarticleShareServerCategoryAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmarticleShareServerCategoryAdd.Title.$invalid && !frmarticleShareServerCategoryAdd.Title.$pristine) || frmarticleShareServerCategoryAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmarticleShareServerCategoryAdd.Description.$invalid && !frmarticleShareServerCategoryAdd.Description.$pristine,'has-success' : frmarticleShareServerCategoryAdd.Description.$valid}">
+                                <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control"
+                                           ng-required="true"
+                                           name="Description"
+                                           ng-model="articleShareServerCategory.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmarticleShareServerCategoryAdd.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmarticleShareServerCategoryAdd.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmarticleShareServerCategoryAdd.Description.$valid && frmarticleShareServerCategoryAdd.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmarticleShareServerCategoryAdd.Description.$invalid && !frmarticleShareServerCategoryAdd.Description.$pristine) || frmarticleShareServerCategoryAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="articleShareServerCategory.gridOptions.resultAccess.AccessAddField.indexOf('LinkServerCategoryId')>-1">
+                                <label class="col-sm-2 control-label">{{'Link_Group_Id'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkServerCategoryId" rasha-autocomplete="articleShareServerCategory.LinkShareMainAdminSettingIdSelector" ng-model="frmarticleShareServerCategoryAdd.selectedItem.LinkServerCategoryId" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="articleShareServerCategory.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="articleShareServerCategory.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

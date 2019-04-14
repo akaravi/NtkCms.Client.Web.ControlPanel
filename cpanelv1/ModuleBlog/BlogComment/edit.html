@@ -1,0 +1,73 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="blogComment.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Comment'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmblogCommentEdit" novalidate ng-submit="blogComment.editRow(frmblogCommentEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmblogCommentAdd.LinkSourceId.$invalid && !frmblogCommentAdd.LinkSourceId.$pristine,'has-success' : frmblogCommentAdd.LinkSourceId.$valid}">
+                                <label class="col-sm-2 control-label"> > {{'condition'|lowercase|translate}}  </label>
+                                <div class="col-sm-10" rasha-record-status="blogComment"></div>
+                            </div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmblogCommentEdit.Writer.$invalid && !frmblogCommentEdit.Writer.$pristine,'has-success' : frmblogCommentEdit.Writer.$valid}">
+                                <label class="col-sm-2 control-label"> {{'AUTHOR'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Writer"
+                                           ng-model="blogComment.selectedItem.Writer" />
+                                    <div class="m-t-xs" ng-show="frmblogCommentEdit.Writer.$invalid">
+                                        <small class="text-danger" ng-show="frmblogCommentEdit.Writer.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmblogCommentEdit.Writer.$valid && frmblogCommentEdit.Writer.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmblogCommentEdit.Writer.$invalid && !frmblogCommentEdit.Writer.$pristine) || frmblogCommentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmblogCommentEdit.Comment.$invalid && !frmblogCommentEdit.Comment.$pristine,'has-success' : frmblogCommentEdit.Comment.$valid}">
+                                <label class="col-sm-2 control-label"> {{'COMMENT'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <textarea  class="form-control"
+                                    ng-required="true"
+                                    name="Comment"
+                                    ng-model="blogComment.selectedItem.Comment"
+                                    style="resize: vertical;height: 100px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmblogCommentEdit.Comment.$invalid">
+                                        <small class="text-danger" ng-show="frmblogCommentEdit.Comment.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmblogCommentEdit.Comment.$valid && frmblogCommentEdit.Comment.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmblogCommentEdit.Comment.$invalid && !frmblogCommentEdit.Comment.$pristine) || frmblogCommentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmblogCommentEdit.LinkblogContentId.$invalid && !frmblogCommentEdit.LinkblogContentId.$pristine,'has-success' : frmblogCommentEdit.LinkblogContentId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'SELECT_ARTICLE_CONTENT'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="true" name="LinkContentId" rasha-autocomplete="blogComment.LinkBlogContentIdSelector" ng-model="blogComment.selectedItem.LinkBlogContentId" ng-selected="x.Id == blogComment.selectedItem.LinkContentId" ng-value="x.Id" />
+                                    <!--<select class="form-control" ng-model="blogComment.selectedItem.LinkBlogContentId">
+                        <option ng-repeat="x in blogComment.CommentList" ng-value="x.Id" ng-selected="x.Id == blogComment.selectedItem.LinkBlogContentId">{{x.Title}}</option>
+                    </select>-->
+                                </div>
+                            </div>
+                                                   
+                        </div>
+                    </tab>
+                </tabset>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="blogComment.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="blogComment.closeModal()"> {{'cancel'|lowercase|translate}} </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

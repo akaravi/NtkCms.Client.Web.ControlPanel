@@ -1,0 +1,18 @@
+﻿<div class="modal-body">
+    <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="cmsMdlPayPrcCust.closeModal()"></i>
+    <h5>{{'PREVIEW'|lowercase|translate}}</h5>
+    <hr />
+    <!-- Tile Section -->
+    <div class="row">
+        <form class="form-horizontal">
+            <div ng-model="cmsMdlPayPrcCust.submitValueFormEndUser" fb-form="defaultEndUser" fb-default="cmsMdlPayPrcCust.defaultValueEndUser"></div>
+
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-4">
+                    <button class="btn btn-primary" type="button" ng-disabled="cmsMdlPayPrcCust.addRequested" ng-click="cmsMdlPayPrcCust.saveSubmitValuesEndUser()" ng-if="cmsMdlPayPrcCust.showSaveButton && cmsMdlPayPrcCust.gridOptions.resultAccess.AccessEditRow">{{'SAVE_VALUES'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="cmsMdlPayPrcCust.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

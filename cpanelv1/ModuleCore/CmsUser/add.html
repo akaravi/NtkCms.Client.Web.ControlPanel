@@ -1,0 +1,207 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="cmsUser.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_User' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmCmsUserAdd" novalidate ng-submit="cmsUser.addNewRow(frmCmsUserAdd)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="cmsUser.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                                 ng-class="{'has-error' : frmcmsUserAdd.RecordStatus.$invalid && !frmcmsUserAdd.RecordStatus.$pristine,'has-success' : frmcmsUserAdd.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
+                                <div class="col-sm-10" rasha-record-status="cmsUser"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-class="{'has-error' : frmCmsUserAdd.Username.$invalid && !frmCmsUserAdd.Username.$pristine,'has-success' : frmCmsUserAdd.Username.$valid}"
+                                 ng-show="cmsUser.gridOptions.resultAccess.AccessAddField.indexOf('Username')>-1">
+                                <label class="col-sm-2 control-label">{{'USERNAME_EMAIL'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" style="direction: ltr;"
+                                           ng-required="true"
+                                           name="Username"
+                                           ng-model="cmsUser.selectedItem.Username" />
+                                    <div class="m-t-xs" ng-show="frmCmsUserAdd.Username.$invalid">
+                                        <small class="text-danger" ng-show="frmCmsUserAdd.Username.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmCmsUserAdd.Username.$valid && frmCmsUserAdd.Username.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmCmsUserAdd.Username.$invalid && !frmCmsUserAdd.Username.$pristine) || frmCmsUserAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-class="{'has-error' : frmCmsUserAdd.Pwd.$invalid && !frmCmsUserAdd.Pwd.$pristine,'has-success' : frmCmsUserAdd.Pwd.$valid}"
+                                 ng-show="cmsUser.gridOptions.resultAccess.AccessAddField.indexOf('Pwd')>-1">
+                                <label class='col-sm-2 control-label'>{{'PASSWORD'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" style="direction: ltr;"
+                                           ng-required="true"
+                                           name="Pwd" type="password"
+                                           ng-model="cmsUser.selectedItem.Pwd" />
+                                    <div class="m-t-xs" ng-show="frmCmsUserAdd.Pwd.$invalid">
+                                        <small class="text-danger" ng-show="frmCmsUserAdd.Pwd.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmCmsUserAdd.Pwd.$valid && frmCmsUserAdd.Pwd.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmCmsUserAdd.Pwd.$invalid && !frmCmsUserAdd.Pwd.$pristine) || frmCmsUserAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group'>
+                                <label class='col-sm-2 control-label'>{{'EXPIRAITION_DATA'|lowercase|translate}}</label>
+                                <div class="col-md-10">
+                                    <div rasha-date-picker="cmsUser.ExpireDate" ng-model="cmsUser.selectedItem.ExpireDate"></div><input type="hidden" ng-model="cmsUser.selectedItem.ExpireDate" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="cmsUser.gridOptions.resultAccess.AccessAddField.indexOf('Name')>-1"
+                                 ng-class="{'has-error' : frmCmsUserAdd.Name.$invalid && !frmCmsUserAdd.Name.$pristine,'has-success' : frmCmsUserAdd.Name.$valid}">
+                                <label class="col-sm-2 control-label">{{'NAME'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Name"
+                                           ng-model="cmsUser.selectedItem.Name" />
+                                    <div class="m-t-xs" ng-show="frmCmsUserAdd.Name.$invalid">
+                                        <small class="text-danger" ng-show="frmCmsUserAdd.Name.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmCmsUserAdd.Name.$valid && frmCmsUserAdd.Name.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmCmsUserAdd.Name.$invalid && !frmCmsUserAdd.Name.$pristine) || frmCmsUserAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="cmsUser.gridOptions.resultAccess.AccessAddField.indexOf('LastName')>-1"
+                                 ng-class="{'has-error' : frmCmsUserAdd.LastName.$invalid && !frmCmsUserAdd.LastName.$pristine,'has-success' : frmCmsUserAdd.LastName.$valid}">
+                                <label class="col-sm-2 control-label">{{'LASTNAME'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="LastName"
+                                           ng-model="cmsUser.selectedItem.LastName" />
+                                    <div class="m-t-xs" ng-show="frmCmsUserAdd.LastName.$invalid">
+                                        <small class="text-danger" ng-show="frmCmsUserAdd.LastName.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmCmsUserAdd.LastName.$valid && frmCmsUserAdd.LastName.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmCmsUserAdd.LastName.$invalid && !frmCmsUserAdd.LastName.$pristine) || frmCmsUserAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="cmsUser.gridOptions.resultAccess.AccessAddField.indexOf('Gender')>-1">
+                                <label class="col-sm-2 control-label">Gender</label>
+                                <div class="col-sm-10">
+                                    <select class='form-control' name="Gender" ng-model="cmsUser.selectedItem.Gender" ng-options="x.Value as x.Description for x in cmsUser.Gender" required></select>
+                                    <span ng-show="frmcmsUserAdd.Gender.$error.required">{{'SELECT_INPUT_TYPE'|lowercase|translate}}</span>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group' ng-show="cmsUser.gridOptions.resultAccess.AccessAddField.indexOf('NationalCode')>-1">
+                                <label class='col-sm-2 control-label'>{{'NATIONAL_CODE'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input id="phoneNo" type='text' name="NationalCode" ng-model='cmsUser.selectedItem.NationalCode' class='form-control'>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group' ng-show="cmsUser.gridOptions.resultAccess.AccessAddField.indexOf('FullName')>-1">
+                                <label class='col-sm-2 control-label'>{{'COMPANY_NAME'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input type='text' name="FullName" ng-model='cmsUser.selectedItem.FullName' class='form-control'>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="cmsUser.gridOptions.resultAccess.AccessAddField.indexOf('LinkLocationId')>-1">
+                                <label class="col-sm-2 control-label"> شهر</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkLocationId" rasha-autocomplete="cmsUser.LinkLocationIdSelector" ng-model="frmcmsUserAdd.selectedItem.LinkLocationId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group' ng-show="cmsUser.gridOptions.resultAccess.AccessAddField.indexOf('Address')>-1">
+                                <label class='col-sm-2 control-label'>{{'ADDRESS'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input type='text' name="Address" ng-model='cmsUser.selectedItem.Address' class='form-control'>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group' ng-show="cmsUser.gridOptions.resultAccess.AccessAddField.indexOf('Tell')>-1">
+                                <label class='col-sm-2 control-label'>{{'TELL'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input id="phoneNo" type='text' name="Tell" ng-model='cmsUser.selectedItem.Tell' class='form-control'>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group' ng-show="cmsUser.gridOptions.resultAccess.AccessAddField.indexOf('Mobile')>-1">
+                                <label class='col-sm-2 control-label'>{{'Mobile'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input type='text' ng-model='cmsUser.selectedItem.Mobile' class='form-control'>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group' ng-show="cmsUser.gridOptions.resultAccess.AccessAddField.indexOf('Email')>-1">
+                                <label class='col-sm-2 control-label'>{{'Email'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input type='text' ng-model='cmsUser.selectedItem.Email' class='form-control'>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group' ng-show="cmsUser.gridOptions.resultAccess.AccessAddField.indexOf('FirewallAllowIP')>-1">
+                                <label class='col-sm-2 control-label'>{{'FIREWALLALLOWIP'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <input id="ip" type='text' name="Tell" ng-model='cmsUser.selectedItem.FirewallAllowIP' class='form-control'>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Attachments_Files'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'MAIN_IMAGE'|lowercase|translate}} </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="cmsUser.openUploadModal()" aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="cmsUser.filePickerMainImage" ng-model="cmsUser.selectedItem.LinkMainImageId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'ATTACH_FILE'|lowercase|translate}} </label>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="cmsUser.filePickerFiles" ng-model="cmsUser.selectedItem.LinkFileIds"></div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a class="btn btn-primary" ng-click="cmsUser.addAttachedFile(cmsUser.selectedItem.LinkFileIds)" style="margin-right: -52px;margin-top: 1px;" title="">
+                                        <i class="fa fa" aria-hidden="true" title="{{'ADD_FILE'|lowercase|translate}}" style="font-family: iransans;font-size: 12px;"> {{'ADD_FILE'|lowercase|translate}} </i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group col-sm-12" ng-repeat="x in cmsUser.attachedFiles">
+                                    <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                                    <div class="input-group">
+                                        <input type="text" id="option{{$index}}" class="form-control" ng-required="true" name="attachedFileName" required readonly="readonly" ng-model="x.filename">
+                                        <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="cmsUser.deleteAttachedFile($index)"><i class="fa fa-remove"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                </tabset>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="cmsUser.addRequested" type="submit">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="cmsUser.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

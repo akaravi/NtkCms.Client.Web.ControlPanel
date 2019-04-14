@@ -1,0 +1,92 @@
+﻿<style>
+    [treecontrol].tree-boot i.tree-branch-head,
+    [treecontrol].tree-boot i.tree-leaf-head {
+        float: right;
+        height: 16px;
+        margin: 5px;
+    }
+</style>
+<div class="modal-body">
+    <div class="row" rasha-loading="chartContent.busyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="chartContent.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Category' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmchartContentEdit" novalidate ng-submit="chartContent.editCategory(frmchartContentEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmchartContentAdd.LinkSourceId.$invalid && !frmchartContentAdd.LinkSourceId.$pristine,'has-success' : frmchartContentAdd.LinkSourceId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="chartContent"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmchartContentEdit.Title.$invalid && !frmchartContentEdit.Title.$pristine,'has-success' : frmchartContentEdit.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'CATEGORY_TITLE'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           maxlength="256"
+                                           ng-model="chartContent.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmchartContentEdit.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmchartContentEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmchartContentEdit.Title.$valid && frmchartContentEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmchartContentEdit.Title.$invalid && !frmchartContentEdit.Title.$pristine) || frmchartContentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-class="{'has-error' : frmchartContentEdit.Description.$invalid && !frmchartContentEdit.Description.$pristine,'has-success' : frmchartContentEdit.Description.$valid}" >
+                                <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" maxlength="2048" ng-required="true" name="Description" ng-model="chartContent.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmchartContentEdit.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmchartContentEdit.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmchartContentEdit.Description.$valid && frmchartContentEdit.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmchartContentEdit.Description.$invalid && !frmchartContentEdit.Description.$pristine) || frmchartContentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="chartContent.selectedItem.previewImageSrc != null">
+                                <label class="col-sm-2 control-label"> {{'IMAGE'|lowercase|translate}} </label>
+                                <img src="{{chartContent.selectedItem.previewImageSrc}}"  width="300" height="300" class="img-rounded col-sm-3 col-md-3 col-lg-3" alt="{{chartContent.selectedItem.Title}}" />
+                            </div>
+                            <div id="treecontrol" class="form-group">
+                                <label class="col-sm-2 control-label">{{'SELECT_ICON'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div treecontrol class="tree-boot" style="color:black"
+                                         tree-model="chartContent.dataForTheTree"
+                                         options="chartContent.treeOptions"
+                                         selected-node="chartContent.selectedNode"
+                                         expanded-nodes="chartContent.expandedNodes"
+                                         on-selection="chartContent.onSelection(node, selected)"
+                                         on-node-toggle="chartContent.onNodeToggle(node, expanded)">
+                                        {{node.Title}}{{node.FileName}}&nbsp;&nbsp;<label class="label-control" style="color:#ff6500;font-style:italic;font-size:12px;">{{node.messageText}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="chartContent.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="chartContent.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

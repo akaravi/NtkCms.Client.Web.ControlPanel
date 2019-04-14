@@ -1,0 +1,84 @@
+﻿<style>
+    [treecontrol].tree-boot i.tree-branch-head,
+    [treecontrol].tree-boot i.tree-leaf-head {
+        float: right;
+        height: 16px;
+        margin: 5px;
+    }
+</style>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="pollingContent.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Category' |lowercase|translate}}</h3>
+            <div class='hr-line-dashed'></div>
+            <form method="get" class="form-horizontal" name="frmpollingCategoryEdit" novalidate ng-submit="pollingContent.editCategory(frmpollingCategoryEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class="form-group" ng-class="{'has-error' : frmpollingCategoryEdit.Title.$invalid && !frmpollingCategoryEdit.Title.$pristine,'has-success' : frmpollingCategoryEdit.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           ng-model="pollingContent.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmpollingCategoryEdit.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmpollingCategoryEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmpollingCategoryEdit.Title.$valid && frmpollingCategoryEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmpollingCategoryEdit.Title.$invalid && !frmpollingCategoryEdit.Title.$pristine) || frmpollingCategoryEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-class="{'has-error' : frmpollingCategoryEdit.Description.$invalid && !frmpollingCategoryEdit.Description.$pristine,'has-success' : frmpollingCategoryEdit.Description.$valid}">
+                                <label class="col-sm-2 control-label">{{'description'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" name="Description" ng-required="true" ng-model="pollingContent.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmpollingCategoryEdit.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmpollingCategoryEdit.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmpollingCategoryEdit.Description.$valid && frmpollingCategoryEdit.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmpollingCategoryEdit.Description.$invalid && !frmpollingCategoryEdit.Description.$pristine) || frmpollingCategoryEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="pollingContent.selectedItem.previewImageSrc != null">
+                                <label class="col-sm-2 control-label"> {{'IMAGE'|lowercase|translate}} </label>
+                                <img src="{{pollingContent.selectedItem.previewImageSrc}}"  width="300" height="300" class="img-rounded col-sm-3 col-md-3 col-lg-3" alt="{{pollingContent.selectedItem.Title}}" />
+                            </div>
+                            <div id="treecontrol" class="form-group">
+                                <label class="col-sm-2 control-label">{{'SELECT_ICON'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div treecontrol class="tree-boot" style="color:black"
+                                         tree-model="pollingContent.dataForTheTree"
+                                         options="pollingContent.treeOptions"
+                                         selected-node="pollingContent.selectedNode"
+                                         expanded-nodes="pollingContent.expandedNodes"
+                                         on-selection="pollingContent.onSelection(node, selected)"
+                                         on-node-toggle="pollingContent.onNodeToggle(node, expanded)">
+                                        {{node.Title}}{{node.FileName}}&nbsp;&nbsp;<label class="label-control" style="color:#ff6500;font-style:italic;font-size:12px;">{{node.messageText}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="pollingContent.addRequested" type="submit">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="pollingContent.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

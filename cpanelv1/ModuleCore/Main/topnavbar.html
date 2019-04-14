@@ -1,0 +1,79 @@
+﻿<div class="row border-bottom" ng-controller="topNavBarCtrl as topNavBar" ng-init="topNavBar.init()" ng-show="topNavBar.addNewItemNotRequested" data-guide="2" rasha-loading="topNavBar.busyIndicator">
+    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0;    background: rgba(61, 61, 102, 0.24);" >
+        <div class="navbar-header">
+            <span minimaliza-sidebar></span>
+        </div>
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown" dropdown="">
+                <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle count-info" href="" dropdown-toggle="">
+                    <i class="fa fa-envelope" style="font-size:25px"></i><span class="label label-warning"></span>
+                </a>
+            </li>
+            <li >
+               <!--<span aria-expanded="false" aria-haspopup="true" class="glyphicon glyphicon-info-sign " style="font-size:35px" ng-click="topNavBar.guideShow()"></span>-->
+                <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle count-info" href="" dropdown-toggle=""   ng-click="topNavBar.guideShow()" title="راهنما">
+                    <span class="glyphicon glyphicon-info-sign " style="font-size:25px"></span>
+                </a>
+            </li>
+            
+            <li class="dropdown" dropdown="">
+                <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle count-info " href="" dropdown-toggle="" ng-show="tokenInfo.UserAccessAdminAllowToAllData" ng-click="topNavBar.appLoginByIdShow()" data-guide="5" title="دسترسی سریع پشتیبانی">
+                    <span class="fa fa-universal-access " style="font-size:25px"></span> 
+                </a>
+            </li>
+            
+            <li class="dropdown" dropdown="">
+                <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle count-info" href="" dropdown-toggle="" title="{{ 'LANGUAGE' |lowercase|translate}} : {{tokenInfo.UserLanguageTitle}}">
+                   <span class="fa fa-language" style="font-size:25px"></span>
+                </a>
+                <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                    <li><a ng-click="topNavBar.changeLanguage('fa_IR')">فارسی</a></li>
+                    <li><a ng-click="topNavBar.changeLanguage('en_US')">English</a></li>
+                    <li><a ng-click="topNavBar.changeLanguage('el_GR')">German</a></li>
+                    <li><a ng-click="topNavBar.changeLanguage('ar_AE')">عربی</a></li>
+                </ul>
+            </li>
+            <li>
+                <a ng-click="topNavBar.logOut()" title="{{'LOGOUT' |lowercase|translate}}">
+                    <i class="fa fa-sign-out" style="font-size:25px"></i>
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+    <div class="row" style="margin: 10px;">
+        <div class="col-sm-4">
+            <label class="label label-success" style="padding-bottom: 5px;">{{'CURRENT_SITE'|lowercase|translate}}&nbsp;{{tokenInfo.Item.virtual_CmsSite.Title}}&nbsp;[{{tokenInfo.Item.virtual_CmsSite.Id}}]</label>
+            <label class="label label-success" style="padding-bottom: 5px;">{{'ACCESS'|lowercase|translate}}&nbsp;{{tokenInfo.UserTypeTitle}}&nbsp;[{{tokenInfo.Item.virtual_CmsUser.Id}}]</label>
+        </div>
+        <div class="col-sm-4">
+            <angucomplete-alt id="site_selector_autocomplete"
+                              name="site"
+                              placeholder="عنوان سایت را بنویسید"
+                              pause="100"
+                              selected-object="topNavBar.siteSelected"
+                              local-data="topNavBar.cmsSitesListItems"
+                              search-fields="Title,SubDomain,Id"
+                              title-field="Title"
+                              description-field="SubDomain"
+                              minlength="2"
+                              input-class="form-control form-control-small"
+                              match-class="highlight"
+                              input-changed="topNavBar.inputSiteChanged"
+                              field-required="true" />
+        </div>
+        <div class="col-sm-4"  >
+            <button class="btn btn-primary" type="button" ng-click="topNavBar.appFilter()">{{'FILTER'|lowercase|translate}}</button>
+            <button id="UserAccessAdminAllowToAllData_btn" ng-show="tokenInfo.Item.virtual_CmsUserGroup.UserType == 1 || tokenInfo.Item.virtual_CmsUserGroup.UserType == 2 || tokenInfo.Item.virtual_CmsUserGroup.UserType == 3" class="btn btn-primary" name="UserAccessAdminAllowToAllData" ng-model="topNavBar.UserAccessAdminAllowToAllData" ng-click="topNavBar.appFilter('UserAccessAdminAllowToAllData')"  data-guide="4">
+                <i id="UserAccessAdminAllowToAllData_icon" class="fa {{tokenInfo.UserAccessAdminAllowToAllData ? 'fa-toggle-on' : 'fa-toggle-off'}}"></i>&nbsp;{{'SHOW_ALL_DATA'|lowercase|translate}}
+            </button>
+            <button id="UserAccessAdminAllowToProfessionalData_btn"   ng-show="tokenInfo.Item.virtual_CmsUserGroup.UserType == 1 || tokenInfo.Item.virtual_CmsUserGroup.UserType == 2 || tokenInfo.Item.virtual_CmsUserGroup.UserType == 3" class="btn btn-primary" name="UserAccessAdminAllowToProfessionalData" ng-model="topNavBar.UserAccessAdminAllowToProfessionalData" ng-click="topNavBar.appFilter('UserAccessAdminAllowToProfessionalData')" data-guide="3">
+                <i id="UserAccessAdminAllowToProfessionalData_icon" class="fa {{tokenInfo.UserAccessAdminAllowToProfessionalData ? 'fa-toggle-on' : 'fa-toggle-off'}}"></i>&nbsp;{{'SHOW_PROFESSIONAL_DATA'|lowercase|translate}}
+            </button>
+
+        </div>
+
+       
+    </div>
+   
+</div>

@@ -1,0 +1,53 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="memberInfo.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ memberInfo.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmmemberInfoEdit" novalidate ng-submit="memberInfo.editRow(frmmemberInfoEdit)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmmemberInfoEdit.RecordStatus.$invalid && !frmmemberInfoEdit.RecordStatus.$pristine,'has-success' : frmmemberInfoEdit.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="memberInfo"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                     ng-class="{'has-error' : frmmemberInfoEdit.Title.$invalid && !frmmemberInfoEdit.Title.$pristine,'has-success' : frmmemberInfoEdit.Title.$valid}">
+                    <label class="col-sm-2 control-label"> {{'APP_TITLE'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="memberInfo.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmmemberInfoEdit.Title.$invalid">
+                            <small class="text-danger" ng-show="frmmemberInfoEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmmemberInfoEdit.Title.$valid && frmmemberInfoEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmmemberInfoEdit.Title.$invalid && !frmmemberInfoEdit.Title.$pristine) || frmmemberInfoEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">LinkUserId</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkUserId" rasha-autocomplete="memberInfo.LinkUserIdSelector" ng-model="memberInfo.selectedItem.LinkUserId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="memberInfo.gridOptions.resultAccess.AccessEditField.indexOf('LinkSourceId')>-1"
+                     ng-class="{'has-error' : frmmemberInfoEdit.PackageName.$invalid && !frmmemberInfoEdit.PackageName.$pristine,'has-success' : frmmemberInfoEdit.PackageName.$valid}">
+                    <label class="col-sm-2 control-label"> {{'SOURCE_NAME'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <select class='form-control' name="LinkSourceId" ng-model="memberInfo.selectedItem.LinkSourceId" ng-selected="memberInfo.selectedItem.LinkSourceId == x.Id" ng-options="x.Id as x.Title for x in memberInfo.sourceListItems" required></select>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="memberInfo.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="memberInfo.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

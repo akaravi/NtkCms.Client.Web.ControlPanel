@@ -1,0 +1,60 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="formController as form" ng-init="form.init()">
+    <!-- <div class="container">-->
+    <div class="row" rasha-loading="form.busyIndicator">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="cmsModuleSalePriceController.Add" ng-click="form.openAddModal()" ng-show="form.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="cmsModuleSalePriceController.Edit" ng-click="form.openEditModal()" ng-show="form.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="cmsModuleSalePriceController.Delete" ng-click="form.deleteRow()" ng-show="form.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="form.showAdvancedSearchPanel(form.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-primary" type="button" ng-click="form.toggleExportForm()"> {{'report'|lowercase|translate}} </button>
+            <!--<button class="btn btn-info" type="button" ng-click="form.openInputvalueBuilder()">{{'FORM_BUILDER'|lowercase|translate}}</button>-->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+            <div id="builder" query-builder="form"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="form.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="form.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="form.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+    <!--<div class='row'>
+        <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+            <div id="builder" query-builder="form"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="form.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="form.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="form.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="form.gridOptions"></div>
+        </div>
+    </div>
+    <div id="inputValue_formBuilder" class="row well" rasha-loading="form.formBuilderBusyIndicator" style="display: none;">
+        <h4>{{'Determine_Input_Values'|lowercase|translate}}</h4>
+        <div class="col-md-6">
+            <div fb-components></div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> {{'FORM_INPUT_VALUES'|lowercase|translate}} </h3>
+                </div>
+                <div fb-builder="default" style="min-height: 500px; padding: 20px"></div>
+                <div class="panel-footer">
+                    <div class="checkbox">
+                        <button class="btn btn-primary" type="button" ng-click="form.saveFormValues()"> {{'save'|lowercase|translate}} </button>
+                        <button class="btn btn-success" ng-click="form.showForm()"> {{'PREVIEW'|lowercase|translate}} </button>
+                        <button class="btn btn-warning" ng-click="form.getFromSystem()"> {{'AUTOMATIC_LOAD_FROM_SYSTEM'|lowercase|translate}} </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,25 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="ServiceContentTagCtrl as ServiceContentTag" ng-init="ServiceContentTag.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="ServiceContentTag.busyIndicator"></div>
+
+            <button class="btn btn-primary" rasha-userrole="ServiceContentTag.Add" ng-click="ServiceContentTag.openAddModal()" ng-show="ServiceContentTag.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="ServiceContentTag.Edit" ng-click="ServiceContentTag.openEditModal()" ng-show="ServiceContentTag.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="ServiceContentTag.Delete" ng-click="ServiceContentTag.deleteRow()" ng-show="ServiceContentTag.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="ServiceContentTag.showAdvancedSearchPanel(ServiceContentTag.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-primary" type="button" ng-click="ServiceContentTag.reportData()"> {{'report'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="ServiceContentTag" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="ServiceContentTag.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

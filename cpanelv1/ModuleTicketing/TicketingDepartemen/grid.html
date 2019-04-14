@@ -1,0 +1,33 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="ticketingDepartemenController as ticketingDepartemen" ng-init="ticketingDepartemen.init()">
+    <!-- <div class="container">-->
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-primary" ng-click="ticketingDepartemen.openAddModal()" ng-show="ticketingDepartemen.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" ng-click="ticketingDepartemen.openEditModal()" ng-show="ticketingDepartemen.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" ng-click="ticketingDepartemen.delete()" ng-show="ticketingDepartemen.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+            <button class="btn btn-success" type="button" ng-click="ticketingDepartemen.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-primary" ng-click="ticketingDepartemen.openOperatorModal()"><i class="fa fa-user-plus fontavesome-small"></i>&nbsp; {{'ADD_OPERATOR'|lowercase|translate}} </button>
+            <button class="btn btn-warning" type="button" ng-click="ticketingDepartemen.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="ticketingDepartemen.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="ticketingDepartemen.getCount()">{{'number'|lowercase|translate}}&nbsp;{{ticketingDepartemen.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="ticketingDepartemen"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="ticketingDepartemen.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="ticketingDepartemen.getJson()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="ticketingDepartemen.getJson()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+    <div class="row" rasha-loading="ticketingDepartemen.busyIndicator">
+        <div class="col-sm-12">
+            <form method="get" class="form-horizontal" name="frmticketingDepartemenAdd" novalidate ng-submit="ticketingDepartemen.addNewRowRow(frmticketingDepartemenAdd)">
+                <div class='hr-line-dashed'></div>
+            </form>
+            <div rasha-grid="ticketingDepartemen.gridOptions"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,235 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="imgGallery.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Content' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmimgGalleryEdit" novalidate ng-submit="imgGallery.editContent(frmimgGalleryEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmimgGalleryEdit.LinkSourceId.$invalid && !frmimgGalleryEdit.LinkSourceId.$pristine,'has-success' : frmimgGalleryEdit.LinkSourceId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="imgGallery"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="imgGallery.gridOptions.resultAccess.AccessAddField.indexOf('LinkCategoryId')>-1">
+                                <label class="col-sm-2 control-label">{{'category'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkCategoryId" rasha-autocomplete="imgGallery.LinkCategoryIdSelector" ng-model="imgGallery.selectedItem.LinkCategoryId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmimgGalleryEdit.Title.$invalid && !frmimgGalleryEdit.Title.$pristine,'has-success' : frmimgGalleryEdit.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           ng-model="imgGallery.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmimgGalleryEdit.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmimgGalleryEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmimgGalleryEdit.Title.$valid && frmimgGalleryEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmimgGalleryEdit.Title.$invalid && !frmimgGalleryEdit.Title.$pristine) || frmimgGalleryEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-class="{'has-error' : frmimgGalleryEdit.Description.$invalid && !frmimgGalleryEdit.Description.$pristine,'has-success' : frmimgGalleryEdit.Description.$valid}">
+                                <label class="col-sm-2 control-label">{{'description'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control"
+                                              ng-required="true"
+                                              name="Description"
+                                              ng-model="imgGallery.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmimgGalleryEdit.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmimgGalleryEdit.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmimgGalleryEdit.Description.$valid && frmimgGalleryEdit.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmimgGalleryEdit.Description.$invalid && !frmimgGalleryEdit.Description.$pristine) || frmimgGalleryEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'FILE_ID'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" ng-model="imgGallery.selectedItem.LinkFileId" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Content_Matter'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'TAGS'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <tags-input ng-model="imgGallery.tags" placeholder="{{'Tag'|lowercase|translate}}" min-length="2" add-from-autocomplete-only="true">
+                                        <auto-complete source="imgGallery.loadTags($query)" module="blogtag" style="font-family: 'Yekan'"></auto-complete>
+                                    </tags-input>
+                                    <small>{{'Important_words_used_in_related_content_in_the_tag'|lowercase|translate}}</small>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'SOURCE'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" ng-model="imgGallery.selectedItem.Source" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2  control-label"> {{'DATE'|lowercase|translate}}&nbsp;{{'INSERT'|lowercase|translate}} </label>
+                                <div class="col-sm-6  col-md-4">
+                                    <div rasha-date-picker="imgGallery.startDate" ng-model="imgGallery.selectedItem.FromDate"></div><input type="hidden" ng-model="imgGallery.selectedItem.FromDate" />
+                                </div>
+                                <label class="col-sm-2  control-label"> {{'FINISH_DATE'|lowercase|translate}} </label>
+                                <div class="col-sm-6 col-md-4">
+                                    <div rasha-date-picker="imgGallery.endDate" ng-model="imgGallery.selectedItem.ToDate"></div><input type="hidden" ng-model="imgGallery.selectedItem.ToDate" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Place_Location' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="imgGallery.gridOptions.resultAccess.AccessEditField.indexOf('Geolocationlatitude')>-1">
+                                <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div rasha-map="imgGallery.GeolocationConfig" />
+                                </div>
+                            </div>
+                            <!--<div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'SELECT_IMAGE_FILE'|lowercase|translate}} </label>
+                                <div class="col-sm-10 smallFileManager">
+                                    <div rasha-file-picker-b="imgGallery.filePickerMainImage" ng-model="imgGallery.selectedItem.LinkFileId">
+                                    </div>
+                                </div>
+                            </div>-->
+>
+                            
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Similar_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class="form-group back1">
+                                <br />
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'Related' |lowercase|translate}}</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" name="LinkDestinationId" rasha-autocomplete="imgGallery.LinkDestinationIdSelector" ng-model="imgGallery.selectedItem.LinkDestinationId" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <a ng-click="imgGallery.moveSelected('Content', 'to',false)" class="btn btn-primary" aria-label="Settings" style="margin-right: 8px; margin-bottom: 8px;">{{'ADD_NOW' |lowercase|translate}}&nbsp;<i class="fa fa-plus" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="controls">
+                                    </div>
+                                    <br />
+                                    <table class="table table-striped table-bordered table-responsive floatThead-table" style="border:1px solid gray;max-height:400px;overflow:auto;">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:370px">{{'title' |lowercase|translate}}</th>
+                                                <th>{{'OPERATOIN' |lowercase|translate}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in imgGallery.selectedItem.Similars" style="max-height:30px">
+                                                <td style="overflow:hidden">
+                                                    {{x.Destination.Title}}
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-danger" ng-click="imgGallery.removeFromCollection(imgGallery.selectedItem.Similars,x.LinkDestinationId)" aria-label="Delete"> {{'REMOVE_FROM_LIST'|lowercase|translate}}&nbsp;<i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+
+                    <tab heading="{{'Additional_Information'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class="form-group back2">
+                                <h4>{{'Additional_Information' |lowercase|translate}}</h4>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'title' |lowercase|translate}}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" ng-model="imgGallery.selectedItemOtherInfos.Title" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'Information' |lowercase|translate}}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" ng-model="imgGallery.selectedItemOtherInfos.HtmlBody" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'Information_Source' |lowercase|translate}}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" ng-model="imgGallery.selectedItemOtherInfos.Source" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a ng-click="imgGallery.moveSelectedOtherInfo('Content', 'to')" class="btn btn-primary" aria-label="Settings" style="margin-right: 8px; margin-bottom: 8px;">{{'ADD_NOW' |lowercase|translate}}&nbsp;<i class="fa fa-plus" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+                                </div>
+                                <br />
+                                <div class="col-sm-12">
+                                    <h4>{{'Information' |lowercase|translate}}</h4>
+                                    <div class="controls">
+                                    </div>
+                                    <br />
+                                    <table class="table table-striped table-bordered table-responsive floatThead-table" style="border:1px solid gray;max-height:400px;overflow:auto;">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:20%">{{'title' |lowercase|translate}}</th>
+                                                <th style="width:40%">{{'Information' |lowercase|translate}}</th>
+                                                <th style="width:20%">{{'SOURCE' |lowercase|translate}}</th>
+                                                <th>{{'OPERATOIN' |lowercase|translate}}</th>
+                                                <th>{{'OPERATOIN' |lowercase|translate}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="y in imgGallery.selectedItem.OtherInfos" style="max-height:30px">
+                                                <td style="overflow:hidden">
+                                                    {{y.Title}}
+                                                </td>
+                                                <td style="overflow:hidden">
+                                                    <div ng-bind-html="y.HtmlBody"></div>
+                                                </td>
+                                                <td style="overflow:hidden">
+                                                    {{y.Source}}
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-danger" ng-click="imgGallery.editOtherInfo(y)"> Edit&nbsp;<i class="fa fa-edit" aria-hidden="true"></i></a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-danger" ng-click="imgGallery.removeFromOtherInfo(imgGallery.selectedItem.OtherInfos,y.Title,y.HtmlBody,y.Source)" aria-label="Delete"> {{'REMOVE_FROM_LIST'|lowercase|translate}}&nbsp;<i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>						
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="imgGallery.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="imgGallery.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

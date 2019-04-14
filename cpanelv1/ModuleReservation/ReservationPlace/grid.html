@@ -1,0 +1,196 @@
+﻿<!--<div class="row" style="text-align:center">
+  طراحی مقادیر
+   </div>
+   <div >
+       <div class="drag" style="float:left">
+           <img src="http://www.coffeecup.com/images/software/feature-icons/image_editing.png" />
+       </div>
+       <div class="clear"></div>
+       <div class="drop-zone"></div>
+   </div>-->
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="reservationplaceController as place" ng-init="place.init()">
+    <!-- <div class="container">-->
+    <div class="row" rasha-loading="place.busyIndicator">
+        <div class="col-sm-12">
+            <!--<div rasha-loading="place.busyIndicator"></div>-->
+            <button class="btn btn-primary" rasha-userrole="place.Add" ng-click="place.openAddModal()" ng-show="place.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button><!--ng-show="place.gridOptions.resultAccess.AccessAddRow"-->
+            <button class="btn btn-warning" rasha-userrole="place.Edit" ng-click="place.openEditModal()" ng-show="place.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button><!--ng-show="place.gridOptions.resultAccess.AccessEditRow"-->
+            <button class="btn btn-danger" rasha-userrole="place.Delete" ng-click="place.deleteRow()" ng-show="place.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button><!--ng-show="place.gridOptions.resultAccess.AccessDeleteRow"-->
+            <button class="btn btn-success" type="button" ng-click="place.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-warning" type="button" ng-click="place.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="place.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="place.getCount()">{{'number'|lowercase|translate}}&nbsp;{{place.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+
+
+    <div class="row" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="place"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="place.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="place.getJson()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="place.getJson()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div rasha-grid="place.gridOptions"></div>
+        a
+        <style>
+            div[resizable] {
+                border: 1px solid Black;
+                width: 150px;
+                height: 100px;
+            }
+
+            .enter {
+                background-color: #efefef;
+            }
+
+            #mainDrag {
+                border: #00ffff 1px solid;
+                width: 600px;
+                height: 600px;
+            }
+        </style>
+        <div resizable="place.resizableConfig">
+            <div id='sourceDrag' style="background-color:beige">             
+            </div>
+            <div id='controllerDrag' style="background-color:red">
+            </div>
+            <div id="mainDrag">
+            </div>
+        </div>
+        b
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12" ng-show="place.viewDetailPlace">
+            <div class="col-sm-2" style="float:left;margin-top: 10%;">
+                <center>
+                    <div id='divcontainerSurce'>
+
+                        <div id="type1" class="dragg" ng-mousedown='place.ntkDragg.startMoving(this.$id,$event);' style="width:60px;height: 60px; background-color: green;    display: inline-block;position: relative;">
+                            <img src="../template/bootstrap/images/top-view-cloth-covered-office-chair-isolated-on-white-background-3d-KMD9PC.jpg" style="width:100%;height:100%;z-index: 10;" />
+                        </div>
+
+
+                        <!--<div id="type2" class="dragg" ng-mousedown='place.ntkDragg.startMoving(this);' style="width:50px;height: 50px;z-index: 10;    display: inline-block; background-color: red;position: relative;">
+                            تست
+                            type2
+                        </div>-->
+                    </div>
+                </center>
+                <div id='containerControler'>
+                    <p ng-click="place.ntkDragg.startSize()" style="font-size: 20px;">
+                        <i class="glyphicon glyphicon-resize-full"></i>
+                        Size
+                    </p>
+                    <p ng-click="place.ntkDragg.startRotator()" style="font-size: 20px;">
+                        <i class="glyphicon glyphicon-repeat"></i>
+                        Rotator
+                    </p>
+                    <p ng-click="place.ntkDragg.startRotatorZiro()" style="font-size: 16px;">
+                        <i class="glyphicon glyphicon-repeat"></i>
+                        Rotator Ziro
+                    </p>
+                    <p ng-click="place.ntkDragg.startRemove()" style="font-size: 20px;">
+                        <i class="glyphicon glyphicon-trash"></i>
+                        remove
+                    </p>
+                </div>
+
+                <div id='divcontainerdelete'>
+                    <img src="../template/bootstrap/images/download.png" style="width:50%;height:50%;margin-top: 30px;margin-left: 38px;" />
+                </div>
+            </div>
+            <div>
+                <div id='divcontainer' ng-style="place.myStyles">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <button class="btn btn-primary" ng-click="place.SaveDesign(place.gridOptions.selectedRow.item)"> {{'save'|lowercase|translate}} </button>
+</div>
+<style>
+    body {
+        background-image: url(cpanelv1/images/bg_Dashboard.jpg);
+    }
+
+    p {
+        direction: ltr;
+    }
+
+    #divcontainer {
+        background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQptHK_r3d0klIF97kqe9tT3C5fGSIzydWduB-KJUPoPmMfjENK);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        margin: 30px;
+        position: relative;
+        background-color: yellow;
+        height: 400px;
+    }
+
+    #divcontainerSurce {
+        position: relative;
+        background-color: rgba(0, 0, 0, 0.3);
+        box-shadow: 0 1px 5px rgba(0,0,0,.1);
+        border-radius: 5px;
+        height: 120px;
+    }
+
+    #divcontainerdelete {
+        position: relative;
+        background-color: rgba(0, 0, 0, 0.3);
+        box-shadow: 0 1px 5px rgba(0,0,0,.1);
+        border-radius: 5px;
+        height: 120px;
+        z-index: 1;
+    }
+
+    #containerControler {
+        position: relative;
+        background-color: rgba(0, 0, 0, 0.4);
+        box-shadow: 0 1px 5px rgba(0,0,0,.1);
+        border-radius: 5px;
+        color: white;
+        height: 200px;
+        padding: 10px 20px;
+        margin: 10px 0px;
+    }
+
+    .dragg {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        -ms-user-select: none;
+        -khtml-user-select: none;
+        user-select: none;
+    }
+
+    /*.dragg:active img,
+            .dragg:focus {
+                border: 2px solid red !important;
+            }*/
+
+    img:focus {
+        border: 2px solid red !important;
+    }
+
+    .glyphicon {
+        margin-right: 10px;
+        font-size: 20px;
+    }
+</style>
+<script>
+
+
+
+</script>

@@ -1,0 +1,184 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="serviceContent.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Content' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmserviceContentAdd" novalidate ng-submit="serviceContent.addNewContent(frmserviceContentAdd)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmserviceContentAdd.LinkSourceId.$invalid && !frmserviceContentAdd.LinkSourceId.$pristine,'has-success' : frmserviceContentAdd.LinkSourceId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="serviceContent"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmserviceContentAdd.Title.$invalid && !frmserviceContentAdd.Title.$pristine,'has-success' : frmserviceContentAdd.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           ng-model="serviceContent.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmserviceContentAdd.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmserviceContentAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmserviceContentAdd.Title.$valid && frmserviceContentAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmserviceContentAdd.Title.$invalid && !frmserviceContentAdd.Title.$pristine) || frmserviceContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-class="{'has-error' : frmserviceContentAdd.Description.$invalid && !frmserviceContentAdd.Description.$pristine,'has-success' : frmserviceContentAdd.Description.$valid}">
+                                <label class="col-sm-2 control-label">{{'description'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" ng-required="true" name="Description" ng-model="serviceContent.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmserviceContentAdd.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmserviceContentAdd.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmserviceContentAdd.Description.$valid && frmserviceContentAdd.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmserviceContentAdd.Description.$invalid && !frmserviceContentAdd.Description.$pristine) || frmserviceContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2  control-label"> {{'DATE'|lowercase|translate}}&nbsp;{{'INSERT'|lowercase|translate}} </label>
+                                <div class="col-sm-6  col-md-4">
+                                    <adm-dtp ng-model='FromDate' ng-model-db="serviceContent.selectedItem.FromDate" full-data='FromDate_detail' maxdate="{{ExpireDate_detail.unix}}" options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}' ng-show="serviceContent.gridOptions.resultAccess.AccessAddField.indexOf('FromDate')>-1"></adm-dtp>
+                                </div>
+                                <label class="col-sm-2  control-label"> {{'FINISH_DATE'|lowercase|translate}} </label>
+                                <div class="col-sm-6 col-md-4">
+                                    <adm-dtp ng-model='ExpireDate' ng-model-db="serviceContent.selectedItem.ExpireDate" full-data='ExpireDate_detail' mindate="{{FromDate_detail.unix}}" options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}' ng-show="serviceContent.gridOptions.resultAccess.AccessAddField.indexOf('ExpireDate')>-1"></adm-dtp>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="{{'Content_Matter'|lowercase|translate}}">
+                        <div class="panel-body">
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'SOURCE'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" ng-model="serviceContent.selectedItem.Source" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'TAGS'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <tags-input ng-model="serviceContent.tags" placeholder="{{'Tag'|lowercase|translate}}" min-length="2" add-from-autocomplete-only="true" add-on-comma="true">
+                                        <auto-complete source="serviceContent.loadTags($query)" module="servicetag" style="font-family: 'Yekan'"></auto-complete>
+                                    </tags-input>
+                                    <small>{{'Important_words_used_in_related_content_in_the_tag'|lowercase|translate}}</small>
+                                </div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmserviceContentAdd.Keyword.$invalid && !frmserviceContentAdd.Keyword.$pristine,'has-success' : frmserviceContentAdd.Keyword.$valid}">
+                                <label class="col-sm-2 control-label"> {{'KEYWORDS'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <tags-input ng-model="serviceContent.kwords" placeholder="{{'Key_Word' |lowercase|translate}}" min-length="2" add-on-enter="true" add-on-comma="true">
+                                        <auto-complete></auto-complete>
+                                    </tags-input>
+                                    <small>{{'Keywords_Help'|lowercase|translate}}</small>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'FULL_CONTENT'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <div summernote class="summernote" config="serviceContent.summernoteOptions" ng-model="serviceContent.selectedItem.Body">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </tab>
+                    <tab heading="{{'Attachments_Files'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'MAIN_IMAGE'|lowercase|translate}} </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="serviceContent.openUploadModal()" aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="serviceContent.filePickerMainImage" ng-model="serviceContent.selectedItem.LinkMainImageId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> Podcast </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="serviceContent.openUploadModalPodcast()" aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="serviceContent.filePickerFilePodcast" ng-model="serviceContent.selectedItem.LinkFilePodcastId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> Movie </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="serviceContent.openUploadModalMovie()" aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="serviceContent.filePickerFileMovie" ng-model="serviceContent.selectedItem.LinkFileMovieId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'ATTACH_FILE'|lowercase|translate}} </label>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="serviceContent.filePickerFiles" ng-model="serviceContent.selectedItem.LinkFileIds"></div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <a class="btn btn-primary" ng-click="serviceContent.addAttachedFile(serviceContent.selectedItem.LinkFileIds)" style="margin-right: -52px;margin-top: 1px;">
+                                        <i class="fa fa-" aria-hidden="true" title="{{'ADD_FILE'|lowercase|translate}}" style="font-family: iransans;font-size: 12px;"> <i class="fa fa-plus-square" aria-hidden="true"></i> </i>
+                                    </a>
+                                </div>
+                                <!--<div class="col-sm-1">
+                                    <a class="btn btn-primary uoload-file-m" href="" ng-click="serviceContent.openUploadModal()" aria-label="Delete" >
+                                        <i class="fa fa-upload" aria-hidden="true"></i>
+                                    </a>
+                                </div>-->
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group col-sm-12" ng-repeat="x in serviceContent.attachedFiles">
+                                        <img src="{{x.previewImageSrc}}"  width="50" height="50" class="img-rounded col-sm-3 col-md-3 col-lg-3" alt="{{x.filename}}" />
+                                    <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                                    <div class="input-group">
+                                        <input type="text" id="option{{$index}}" class="form-control" ng-required="true" name="attachedFileName" required readonly="readonly" ng-model="x.filename">
+                                        <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="serviceContent.deleteAttachedFile($index)"><i class="fa fa-remove"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="{{'Place_Location' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="serviceContent.gridOptions.resultAccess.AccessAddField.indexOf('Geolocationlatitude')>-1">
+                                <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div rasha-map="serviceContent.GeolocationConfig" ></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </tab>
+
+                </tabset>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="serviceContent.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="serviceContent.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

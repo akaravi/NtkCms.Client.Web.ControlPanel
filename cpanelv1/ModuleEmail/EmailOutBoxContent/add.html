@@ -1,0 +1,155 @@
+﻿<style>
+    [treecontrol].tree-boot i.tree-branch-head,
+    [treecontrol].tree-boot i.tree-leaf-head {
+        float: right;
+        height: 16px;
+        margin: 5px;
+    }
+</style>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="emailOutBoxContent.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Outbox'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmemailOutBoxContentAdd" novalidate ng-submit="emailOutBoxContent.addNewContent(frmemailOutBoxContentAdd)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmemailOutBoxContentAdd.RecordStatus.$invalid && !frmemailOutBoxContentAdd.RecordStatus.$pristine,'has-success' : frmemailOutBoxContentAdd.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label">{{'condition'|lowercase|translate}}</label>
+                                <div class="col-sm-10" rasha-record-status="emailOutBoxContent"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2  control-label">{{'USER_ID'|lowercase|translate}}&nbsp;</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkCmsUserId" rasha-autocomplete="emailOutBoxContent.LinkCmsUserIdSelector" ng-model="emailOutBoxContent.selectedItem.LinkCmsUserId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="emailOutBoxContent.gridOptions.resultAccess.AccessAddField.indexOf('Message')>-1"
+                                 ng-class="{'has-error' : frmemailOutBoxContentAdd.Message.$invalid && !frmemailOutBoxContentAdd.Message.$pristine,'has-success' : frmemailOutBoxContentAdd.Message.$valid}">
+                                <label class="col-sm-2 control-label"> {{'Message'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control"
+                                              ng-required="true"
+                                              name="Message"
+                                              ng-model="emailOutBoxContent.selectedItem.Message"></textarea>
+                                    <div class="m-t-xs" ng-show="frmemailOutBoxContentAdd.Message.$invalid">
+                                        <small class="text-danger" ng-show="frmemailOutBoxContentAdd.Message.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmemailOutBoxContentAdd.Message.$valid && frmemailOutBoxContentAdd.Message.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmemailOutBoxContentAdd.Message.$invalid && !frmemailOutBoxContentAdd.Message.$pristine) || frmemailOutBoxContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group" ng-show="emailOutBoxContent.gridOptions.resultAccess.AccessAddField.indexOf('Memo')>-1">
+                                <label class="col-sm-2 control-label">{{"MEMO"|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <textarea type="text" name="Memo" ng-model="emailOutBoxContent.selectedItem.Memo" class="form-control" style="resize:vertical"></textarea>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmemailOutBoxContentAdd.RegisterDate.$invalid && !frmemailOutBoxContentAdd.RegisterDate.$pristine,'has-success' : frmemailOutBoxContentAdd.RegisterDate.$valid}">
+                                <label class="col-sm-2 control-label">{{"REGISTER_DATE"|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div rasha-date-picker="emailOutBoxContent.RegisterDate" ng-model="emailOutBoxContent.selectedItem.RegisterDate"></div><input type="hidden" ng-model="emailOutBoxContent.selectedItem.RegisterDate" />
+                                    <div class="m-t-xs" ng-show="frmemailOutBoxContentAdd.RegisterDate.$invalid">
+                                        <small class="text-danger" ng-show="frmemailOutBoxContentAdd.RegisterDate.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmemailOutBoxContentAdd.RegisterDate.$valid && frmemailOutBoxContentAdd.RegisterDate.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmemailOutBoxContentAdd.RegisterDate.$invalid && !frmemailOutBoxContentAdd.RegisterDate.$pristine) || frmemailOutBoxContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmemailOutBoxContentAdd.SendDate.$invalid && !frmemailOutBoxContentAdd.SendDate.$pristine,'has-success' : frmemailOutBoxContentAdd.SendDate.$valid}">
+                                <label class="col-sm-2 control-label">{{'Postage_Date' |lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div rasha-date-picker="emailOutBoxContent.SendDate" ng-model="emailOutBoxContent.selectedItem.SendDate"></div><input type="hidden" ng-model="emailOutBoxContent.selectedItem.SendDate" />
+                                    <div class="m-t-xs" ng-show="frmemailOutBoxContentAdd.SendDate.$invalid">
+                                        <small class="text-danger" ng-show="frmemailOutBoxContentAdd.SendDate.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmemailOutBoxContentAdd.SendDate.$valid && frmemailOutBoxContentAdd.SendDate.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmemailOutBoxContentAdd.SendDate.$invalid && !frmemailOutBoxContentAdd.SendDate.$pristine) || frmemailOutBoxContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="emailOutBoxContent.gridOptions.resultAccess.AccessAddField.indexOf('CreditOverPlus')>-1">
+                                <label class="col-sm-2 control-label">{{"Credit_Over_Plus"|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" name="CreditOverPlus" ng-model="emailOutBoxContent.selectedItem.CreditOverPlus" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="emailOutBoxContent.gridOptions.resultAccess.AccessAddField.indexOf('DefaultApiNumber')>-1">
+                                <label class="col-sm-2 control-label">{{"Default_Api_Number"|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" name="DefaultApiNumber" ng-model="emailOutBoxContent.selectedItem.DefaultApiNumber" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="emailOutBoxContent.gridOptions.resultAccess.AccessAddField.indexOf('Flash')>-1">
+                                <label class="col-sm-2 control-label">{{"Flash"|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" name="Flash" ng-model="emailOutBoxContent.selectedItem.Flash" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="emailOutBoxContent.gridOptions.resultAccess.AccessAddField.indexOf('EngineTryToSendCount')>-1">
+                                <label class="col-sm-2 control-label">{{"Engine_Try_To_Send_Count"|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" name="EngineTryToSendCount" ng-model="emailOutBoxContent.selectedItem.EngineTryToSendCount" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="emailOutBoxContent.gridOptions.resultAccess.AccessAddField.indexOf('OutBoxType')>-1">
+                                <label class="col-sm-2 control-label">{{"OutBox_Type"|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" name="OutBoxType" ng-model="emailOutBoxContent.selectedItem.OutBoxType" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="ReceiverNumberHidden" ng-model="emailOutBoxContent.selectedItem.ReceiverNumberHidden">{{'Receiver_Number_Hidden'|lowercase|translate}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="EngineApiAllowToChange" ng-model="emailOutBoxContent.selectedItem.EngineApiAllowToChange">{{'Engine_Api_Allow_To_Change'|lowercase|translate}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="emailOutBoxContent.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="emailOutBoxContent.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

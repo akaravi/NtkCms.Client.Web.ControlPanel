@@ -1,0 +1,68 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="dbContentCtrl as dbContent" ng-init="dbContent.init()">
+    <!--    <div class="container">-->
+    <div class="row" rasha-loading="dbContent.categoryBusyIndicator">
+        <div class="col-md-2">
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;&nbsp;  {{'CATEGORIES'|lowercase|translate}}</h5></div>
+                    <div class="panel-body">
+                        <div style="position: relative">
+                            <ul class="tree" tree-options="dbContent.treeConfig"></ul>
+                        </div>
+                        <!-- For Category Section -->
+                        <div style="margin-top: 20px;">
+                            <button title="{{'operatoin'|lowercase|translate}}">
+                                <i id="CategoryMenuCollapseIcon" class="fa fa-plus-square-o fontavesome-small"></i>
+                            </button>
+                            <div>
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="dbContent.Add" ng-click="dbContent.addNewCategoryModel()" ng-show="dbContent.gridOptions.resultAccess.AccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="dbContent.Edit" ng-click="dbContent.EditCategoryModel()" ng-show="dbContent.gridOptions.resultAccess.AccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="dbContent.Delete" ng-click="dbContent.deleteCategory()" ng-show="dbContent.gridOptions.resultAccess.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5><i class="fa fa-articlepaper-o " style="font-size: 18px;"></i>&nbsp;{{'LIST'|lowercase|translate}}&nbsp;{{'BLOGS'|lowercase|translate}}</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <button class="btn btn-primary" ng-click="dbContent.addNewContentModel()" ng-show="dbContent.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="dbContent.editContentModel()" ng-show="dbContent.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="dbContent.deleteContent()" ng-show="dbContent.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-success" ng-click="dbContent.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <button class="btn btn-warning" type="button" ng-click="dbContent.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+                    <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="dbContent.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+                    <button class="btn btn-success" ng-click="dbContent.getCount()">{{'number'|lowercase|translate}}&nbsp;{{dbContent.ListItemsTotalRowCount}}</button>
+                </div>
+                <hr />
+                <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+                    <div id="builder" query-builder="dbContent"></div>
+                    <div class="btn-group" style="float: left;">
+                        <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="dbContent.getRules()"> {{'look'|lowercase|translate}} </button>
+                        <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="dbContent.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                        <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="dbContent.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div rasha-grid="dbContent.gridOptions"></div>
+                    <div rasha-loading="dbContent.dbBusyIndicator"></div>
+                </div>
+                <div class="col-md-12" ng-show="dbContent.showGridComment">
+                    <div class="row" rasha-loading="dbContent.dbBusyIndicator">
+                        <div class="col-sm-12">
+                            <h3>{{dbContent.Title}}</h3>
+                        </div>
+                    </div>
+                    <div rasha-grid="dbContent.gridContentOptions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

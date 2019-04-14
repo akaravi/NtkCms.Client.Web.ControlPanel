@@ -1,0 +1,74 @@
+﻿<div class="modal-body" id="modalinvocesaledetail">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="shopInvoiceSale.close()"></i>
+            <h3 class="m-t-none m-b"> {{ shopInvoiceSale.modalTitle}}</h3>
+            <form method="get" class="form-horizontal" name="frmshopInvoiceSaledetailAdd" novalidate ng-submit="shopInvoiceSale.addNewContentsaledetail(frmshopInvoiceSaledetailAdd)">
+                <div class="hr-line-dashed"></div>
+                <div class="form-group" >
+                    <label class="col-sm-2 control-label"> کالا</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkContentId" rasha-autocomplete="shopInvoiceSale.LinkContentIdSelector" ng-model="shopInvoiceSale.selectedItemSaleDetail.LinkContentId" />
+                    </div>
+                </div>
+                <!--<div class="form-group" ng-show="shopInvoiceSale.gridOptions.resultAccess.AccessAddField.indexOf('LinkContentId')>-1">
+                    <label class="col-sm-2 control-label">{{"SEARCH"|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <angucomplete-alt id="ex2"
+                                          name="user"
+                                          placeholder="عنوان کالا"
+                                          pause="100"
+                                          selected-object="shopInvoiceSale.contentSelected"
+                                          local-data="shopInvoiceSale.contentListItems"
+                                          search-fields="Title"
+                                          title-field="Title"
+                                          description-field="Description"
+                                          minlength="3"
+                                          input-class="form-control form-control-small"
+                                          match-class="highlight"
+                                          input-changed="shopInvoiceSale.inputContentChanged"
+                                          field-required="false" />
+                    </div>
+                </div>
+                <div class="form-group" ng-show="shopInvoiceSale.gridOptions.resultAccess.AccessWatchField.indexOf('LinkContentId')">
+                    <label class="col-sm-2 control-label">{{"ID"|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input type="number" ng-model="shopInvoiceSale.selectedItemSaleDetail.LinkContentId" class="form-control" readonly />
+                    </div>
+                </div>-->
+                <div class="hr-line-dashed"></div>
+                <div class="form-group" ng-show="shopInvoiceSale.gridOptions.resultAccess.AccessAddField.indexOf('Quantity')">
+                    <label class="col-sm-2 control-label">{{"QUANTITY"|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input type="number" ng-model="shopInvoiceSale.selectedItemSaleDetail.Quantity" class="form-control" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group" ng-show="shopInvoiceSale.gridOptions.resultAccess.AccessAddField.indexOf('Fee')">
+                    <label class="col-sm-2 control-label">{{"FEE"|lowercase|translate}}</label>
+                    <div class="col-sm-8">
+                        <input type="number" ng-model="shopInvoiceSale.selectedItemSaleDetail.Fee" class="form-control" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="control-label">{{shopInvoiceSale.Currency}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group" ng-show="shopInvoiceSale.gridOptions.resultAccess.AccessAddField.indexOf('SumRow')">
+                    <label class="col-sm-2 control-label">{{"SUM_ROW"|lowercase|translate}}</label>
+                    <div class="col-sm-8">
+                        <input type="number" readonly value="{{shopInvoiceSale.selectedItemSaleDetail.Fee * shopInvoiceSale.selectedItemSaleDetail.Quantity}}" class="form-control" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="control-label">{{shopInvoiceSale.Currency}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="shopInvoiceSale.addRequested" type="submit"> {{"SAVE"|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="shopInvoiceSale.close()" data-dismiss="modal">{{"CANCEL"|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

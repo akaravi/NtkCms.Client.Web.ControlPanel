@@ -1,0 +1,74 @@
+﻿<div class="modal-body" id="modalinvocesaledetail">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="shopCart.close()"></i>
+            <h3 class="m-t-none m-b"> {{ shopCart.modalTitle}}</h3>
+            <form method="get" class="form-horizontal" name="frmshopCartdetailAdd" novalidate ng-submit="shopCart.addNewContentsaledetail(frmshopCartdetailAdd)">
+                <div class="hr-line-dashed"></div>
+                <div class="form-group" >
+                    <label class="col-sm-2 control-label"> کالا</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkContentId" rasha-autocomplete="shopCart.LinkContentIdSelector" ng-model="shopCart.selectedItemSaleDetail.LinkContentId" />
+                    </div>
+                </div>
+                <!--<div class="form-group" ng-show="shopCart.gridOptions.resultAccess.AccessAddField.indexOf('LinkContentId')>-1">
+                    <label class="col-sm-2 control-label">{{"SEARCH"|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <angucomplete-alt id="ex2"
+                                          name="user"
+                                          placeholder="عنوان کالا"
+                                          pause="100"
+                                          selected-object="shopCart.contentSelected"
+                                          local-data="shopCart.contentListItems"
+                                          search-fields="Title"
+                                          title-field="Title"
+                                          description-field="Description"
+                                          minlength="3"
+                                          input-class="form-control form-control-small"
+                                          match-class="highlight"
+                                          input-changed="shopCart.inputContentChanged"
+                                          field-required="false" />
+                    </div>
+                </div>
+                <div class="form-group" ng-show="shopCart.gridOptions.resultAccess.AccessWatchField.indexOf('LinkContentId')">
+                    <label class="col-sm-2 control-label">{{"ID"|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input type="number" ng-model="shopCart.selectedItemSaleDetail.LinkContentId" class="form-control" readonly />
+                    </div>
+                </div>-->
+                <div class="hr-line-dashed"></div>
+                <div class="form-group" ng-show="shopCart.gridOptions.resultAccess.AccessAddField.indexOf('Quantity')">
+                    <label class="col-sm-2 control-label">{{"QUANTITY"|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input type="number" ng-model="shopCart.selectedItemSaleDetail.Quantity" class="form-control" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group" ng-show="shopCart.gridOptions.resultAccess.AccessAddField.indexOf('Fee')">
+                    <label class="col-sm-2 control-label">{{"FEE"|lowercase|translate}}</label>
+                    <div class="col-sm-8">
+                        <input type="number" ng-model="shopCart.selectedItemSaleDetail.Fee" class="form-control" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="control-label">{{shopCart.Currency}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group" ng-show="shopCart.gridOptions.resultAccess.AccessAddField.indexOf('SumRow')">
+                    <label class="col-sm-2 control-label">{{"SUM_ROW"|lowercase|translate}}</label>
+                    <div class="col-sm-8">
+                        <input type="number" readonly value="{{shopCart.selectedItemSaleDetail.Fee * shopCart.selectedItemSaleDetail.Quantity}}" class="form-control" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="control-label">{{shopCart.Currency}}</label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="shopCart.addRequested" type="submit"> {{"SAVE"|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="shopCart.close()" data-dismiss="modal">{{"CANCEL"|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

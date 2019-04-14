@@ -1,0 +1,32 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="$dismiss()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Operation'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmtaskAddProcess" novalidate >
+
+
+                            <div class="back3">
+                                <br />
+
+                                <div class='hr-line-dashed'></div>
+                                <div class="row">
+                                    <div class="col-md-12" ng-model="task.valueSubmit" fb-form="default" fb-default="task.defaultValue"></div>
+                                </div>
+                            </div>
+                            <div class="form-group back1">
+                                <br />
+                                <div class="form-group">
+
+                                    <div class="col-sm-2">
+                                        <a ng-click="task.moveSelectedAndEdit('Content', 'to',false)" class="btn btn-primary" aria-label="Settings" style="margin-right: 8px; margin-bottom: 8px;">ویرایش</a>&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                                
+                            </div>
+                       
+                
+            </form>
+        </div>
+    </div>
+</div>

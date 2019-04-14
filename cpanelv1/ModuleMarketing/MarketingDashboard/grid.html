@@ -1,0 +1,1268 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="marketingDashboardController as dashboard" ng-init="init()">
+    <!--<div class="container">-->
+    <!--<div class="row" rasha-loading="busyIndicatorManagement">
+        <!--Position And Price-->
+        <div class="row" rasha-loading="busyIndicatorManagement['position']">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="position:relative">
+                <div style="position:absolute;right:25px;top:-40px;z-index:5">
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li class="dropdown" dropdown="">
+                            <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle count-info" href="" dropdown-toggle="">
+                                <i class="fa fa-cog fa-2x" />
+                            </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a ng-click="addEditPosition()">{{'AddEditPosition'|lowercase|translate}}</a></li>
+                                <li><a ng-click="addEditCustomer()">{{'AddEditCustomer'|lowercase|translate}}</a></li>
+                                <li><a ng-click="addEditProductGroup()">{{'AddEditProductGroup'|lowercase|translate}}</a></li>
+                                <li><a ng-click="addEditProduct()">{{'AddEditProduct'|lowercase|translate}}</a></li>
+                                <li><a ng-click="addEditSettingKind()">{{'AddEditSettingKind'|lowercase|translate}}</a></li>
+                                <li><a ng-click="addEditMarketerGroup()">{{'AddEditMarketerGroup'|lowercase|translate}}</a></li>
+                                <li><a ng-click="addEditMarketer()">{{'AddEditMarketer'|lowercase|translate}}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <div class="widget style2 yellow-bg">
+                        <div class="row">
+                            <a ui-sref="index.marketingcustomersettingposition({id:-1})" style="color:white">
+                                <div class="col-xs-4">
+                                    <i class="fa fa-frown-o fa-3x"></i>
+                                </div>
+                                <div class="col-xs-8 text-right">
+                                    <h2>{{'Lost'|lowercase|translate}}</h2>
+                                    <h3 class="font-bold">
+                                        {{lostCount}}
+                                    </h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3" ng-repeat="pos in positionList" style="overflow:hidden">
+                    <div class="widget style1 lazur-bg">
+                        <div class="row">
+                            <a ui-sref="index.marketingcustomersettingposition({id:{{pos.Id}}})" style="color:white">
+                                <div class="col-xs-4">
+                                    <i class="fa fa-share fa-2x"></i>
+                                </div>
+                                <div class="col-xs-8 text-right">
+                                    <h3>{{pos.Title}}</h3>
+                                    <h3 class="font-bold">
+                                        {{pos.Count}}
+                                    </h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="widget style2 navy-bg">
+                        <div class="row">
+                            <a ui-sref="index.marketingcustomersettingposition({id:-2})" style="color:white">
+                                <div class="col-xs-4">
+                                    <i class="fa fa-smile-o fa-3x"></i>
+                                </div>
+                                <div class="col-xs-8 text-right">
+                                    <h2>{{'Win'|lowercase|translate}}</h2>
+                                    <h3 class="font-bold">
+                                        {{winCount}}
+                                    </h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!--MyCustomers And Positions-->
+        <!--Product And Data-->
+        <!--<div class="row">
+            <!--MyCustomers And Positions-->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="overflow:hidden;padding:0 30px" rasha-loading="busyIndicatorManagement['customer']">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 style="display:inline-block">{{'MyCustomers'|lowercase|translate}}</h4>
+                        <span class="label label-primary" ng-show="customerList.length>0">{{customerList.length}}</span>
+                        <div class="ibox-tools">
+                            <a ui-sref="index.marketingcustomer">
+                                <i class="fa fa-arrow-left"></i>
+                            </a>
+                            <a ng-click="addCustomer()">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!--Product And Data-->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="overflow:hidden;padding:0 30px" rasha-loading="busyIndicatorManagement['product']">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        >
+
+                        <h4 style="display:inline-block;color:black">{{'MyProducts'|lowercase|translate}}</h4>
+                        <span class="label label-primary" ng-show="productList.length>0">{{productList.length}}</span>
+                        <div class="ibox-tools">
+                            <a ui-sref="index.marketingproduct">
+                                <i class="fa fa-arrow-left"></i>
+                            </a>
+                            <a ng-click="addProduct()">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                    </div>
+                </div>
+            </div>
+        
+
+
+
+        <div class=" col-lg-6 col-md-6">
+            <div>
+                <!-- Reminder For Me-->
+                <div class="box col-lg-12 col-md-12" style="border-color:#1ab394">
+                    <div class=" row box-head" style="background-color:#1ab394">
+                        <div class="box-head-right">
+                            <span>R</span>
+                            <h4 style="color:white">{{'Reminder'|lowercase|translate}}</h4>
+                        </div>
+
+                        <div class="box-head-left">
+                            <span ng-show="reminderList.length>0">{{reminderList.length}}</span>
+                            <a ng-click="addReminder()"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                            <a ui-sref="index.marketingcustomersettingactivity({type:'reminder'})"><i class="fa fa-play" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div class="row box-body" style="background-color:#f3f3f4">
+
+                        <div ng-repeat="a in reminderList" class="col-lg-12 col-sm-12 col-xs-12 greenhover" style="padding:5px">
+                            <div href="#" class="box-body-right">
+                                <i class="fa fa-play" style="color:#cfcfd0"></i>
+                                <strong>{{a.Title}}</strong>
+                                <span>{{a.Description}}</span>
+                            </div>
+                            <div class="box-body-left" style="margin-top:20px;margin-left:10px">
+                                <!--archive({{a.Id}})-->
+                                <a ng-click="" class="text-danger"><i class="fa fa-times"></i></a>
+                                <a>
+                                    <i ui-sref="index.marketingcustomersettingactivity({type:'reminder',id:a.Id})" class="fa fa-eye text-primary" aria-hidden="true" style="color:#1ab394"></i>
+                                </a>
+                            </div>
+                            <div class="box-body-left hidden-xs" style="margin-top:5px;min-width:90px;direction:rtl">
+                                <p>
+                                    <i class="fa  fa-clock-o" aria-hidden="true">
+                                    </i>
+                                    <time style="color:black;overflow:hidden;font-size:8pt">123</time>
+                                </p>
+                                <p style="font-size:8pt">
+                                    <i class="fa fa-exclamation-circle" aria-hidden="true" style="color:black"></i>
+                                    {{timeDiff}}123
+                                </p>
+                            </div>
+                            <hr ng-show="$index<reminderList.length-1" class="clearfix" style="clear:both;border-top:1px solid #aeaeae" />
+                        </div>
+
+                    </div>
+                    <div class="row box-foot" style="background-color:#f3f3f4">
+                        <span class="">10 </span><span>of</span><span>{{reminderList.length}}</span>
+                        <a class="text-primary" ui-sref="index.marketingcustomersettingactivity({type:'reminder'})">Show More<i class="fa fa-play" aria-hidden="true"></i></a>
+                    </div>
+
+                </div>
+                <!-- Meeting For Me-->
+                <div class="box col-lg-12 col-md-12" style="margin-top:20px;border-color:#f8ac59">
+                    <div class=" row box-head" style="background-color:#f8ac59">
+                        <div class="box-head-right">
+                            <span>M</span>
+                            <h4 style="color:white">{{'Meeting'|lowercase|translate}}</h4>
+                        </div>
+
+                        <div class="box-head-left">
+                            <span ng-show="meetingList.length>0">{{meetingList.length}}</span>
+                            <a ng-click="addMeeting()"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                            <a ui-sref="index.marketingcustomersettingactivity({type:'meeting'})"><i class="fa fa-play" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div class="row box-body" style="background-color:#f3f3f4">
+
+                        <div ng-repeat="a in meetingList" class="col-lg-12 col-sm-12 col-xs-12 orangehover" style="padding:5px">
+                            <div href="#" class="box-body-right">
+                                <i class="fa fa-play" style="color:#cfcfd0"></i>
+                                <strong>{{a.Title}}</strong>
+                                <span>{{a.Description}}</span>
+                            </div>
+                            <div class="box-body-left" style="margin-top:20px;margin-left:10px">
+                                <!--archive({{a.Id}})-->
+                                <a ng-click="" class="text-danger"><i class="fa fa-times"></i></a>
+                                <a>
+                                    <i ui-sref="index.marketingcustomersettingactivity({type:'meeting',id:a.Id})" class="fa fa-eye text-primary" aria-hidden="true" style="color:#1ab394"></i>
+                                </a>
+                            </div>
+                            <div class="box-body-left hidden-xs" style="margin-top:5px;min-width:90px;direction:rtl">
+                                <p>
+                                    <i class="fa  fa-clock-o" aria-hidden="true">
+                                    </i>
+                                    <time style="color:black;overflow:hidden;font-size:8pt">123</time>
+                                </p>
+                                <p style="font-size:8pt">
+                                    <i class="fa fa-exclamation-circle" aria-hidden="true" style="color:black"></i>
+                                    {{timeDiff}}123
+                                </p>
+                            </div>
+                            <hr ng-show="$index<meetingList.length-1" class="clearfix" style="clear:both;border-top:1px solid #aeaeae" />
+                        </div>
+
+                    </div>
+                    <div class="row box-foot" style="background-color:#f3f3f4">
+                        <span class="">10 </span><span>of</span><span>{{meetingList.length}}</span>
+                        <a class="text-primary" ui-sref="index.marketingcustomersettingactivity({type:'meeting'})">Show More<i class="fa fa-play" aria-hidden="true"></i></a>
+                    </div>
+
+                </div>
+                <!-- Alert For Me-->
+                <div class="box col-lg-12 col-md-12" style="margin-top:20px;border-color:#23c6c8">
+                    <div class=" row box-head" style="background-color:#23c6c8">
+                        <div class="box-head-right">
+                            <span>A</span>
+                            <h4 style="color:white">{{'Alert'|lowercase|translate}}</h4>
+                        </div>
+
+                        <div class="box-head-left">
+                            <span ng-show="alertList.length>0">{{alertList.length}}</span>
+                            <a ng-click="addAlert()"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                            <a ui-sref="index.marketingcustomersettingactivity({type:'alert'})"><i class="fa fa-play" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div class="row box-body" style="background-color:#f3f3f4">
+
+                        <div ng-repeat="a in alertList" class="col-lg-12 col-sm-12 col-xs-12 bluehover" style="padding:5px">
+                            <div href="#" class="box-body-right">
+                                <i class="fa fa-play" style="color:#cfcfd0"></i>
+                                <strong>{{a.Title}}</strong>
+                                <span>{{a.Description}}</span>
+                            </div>
+                            <div class="box-body-left" style="margin-top:20px;margin-left:10px">
+                                <!--archive({{a.Id}})-->
+                                <a ng-click="" class="text-danger"><i class="fa fa-times"></i></a>
+                                <a>
+                                    <i ui-sref="index.marketingcustomersettingactivity({type:'alert',id:a.Id})" class="fa fa-eye text-primary" aria-hidden="true" style="color:#1ab394"></i>
+                                </a>
+                            </div>
+                            <!--<div class="box-body-left hidden-xs" style="margin-top:5px;min-width:90px;direction:rtl">
+                                <p>
+                                    <i class="fa  fa-clock-o" aria-hidden="true">
+                                    </i>
+                                    <time style="color:black;overflow:hidden;font-size:8pt">123</time>
+                                </p>
+                                <p style="font-size:8pt">
+                                    <i class="fa fa-exclamation-circle" aria-hidden="true" style="color:black"></i>
+                                    {{timeDiff}}123
+                                </p>
+                            </div>-->
+                            <hr ng-show="$index<alertList.length-1" class="clearfix" style="clear:both;border-top:1px solid #aeaeae" />
+                        </div>
+
+                    </div>
+                    <div class="row box-foot" style="background-color:#f3f3f4">
+                        <span class="">10 </span><span>of</span><span>{{alertList.length}}</span>
+                        <a class="text-primary" ui-sref="index.marketingcustomersettingactivity({type:'alert'})">Show More<i class="fa fa-play" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6">
+            <div>
+                <!-- Comment For Me-->
+                <div class="box col-lg-12 col-md-12" style="margin-top:20px;border-color:rgba(174,174,174,0.46)">
+                    <div class=" row box-head" style="background-color:rgba(174,174,174,0.46)">
+                        <div class="box-head-right">
+                            <span>C</span>
+                            <h4 style="color:white">{{'Comment'|lowercase|translate}}</h4>
+                        </div>
+
+                        <div class="box-head-left">
+                            <span ng-show="commentList.length>0">{{commentList.length}}</span>
+                            <a ng-click="addComment()"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                            <a ui-sref="index.marketingcustomersettingactivity({type:'comment'})"><i class="fa fa-play" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div class="row box-body" style="background-color:#f3f3f4">
+
+                        <div ng-repeat="a in commentList" class="col-lg-12 col-sm-12 col-xs-12 defaulthover" style="padding:5px">
+                            <div href="#" class="box-body-right">
+                                <i class="fa fa-play" style="color:#cfcfd0"></i>
+                                <strong>{{a.Title}}</strong>
+                                <span>{{a.Description}}</span>
+                            </div>
+                            <div class="box-body-left" style="margin-top:20px;margin-left:10px">
+                                <!--archive({{a.Id}})-->
+                                <a ng-click="" class="text-danger"><i class="fa fa-times"></i></a>
+                                <a>
+                                    <i ui-sref="index.marketingcustomersettingactivity({type:'comment',id:a.Id})" class="fa fa-eye text-primary" aria-hidden="true" style="color:#1ab394"></i>
+                                </a>
+                            </div>
+                            <!--<div class="box-body-left hidden-xs" style="margin-top:5px;min-width:90px;direction:rtl">
+                                <p>
+                                    <i class="fa  fa-clock-o" aria-hidden="true">
+                                    </i>
+                                    <time style="color:black;overflow:hidden;font-size:8pt">123</time>
+                                </p>
+                                <p style="font-size:8pt">
+                                    <i class="fa fa-exclamation-circle" aria-hidden="true" style="color:black"></i>
+                                    {{timeDiff}}123
+                                </p>
+                            </div>-->
+                            <hr ng-show="$index<commentList.length-1" class="clearfix" style="clear:both;border-top:1px solid #aeaeae" />
+                        </div>
+
+                    </div>
+                    <div class="row box-foot" style="background-color:#f3f3f4">
+                        <span class="">10 </span><span>of</span><span>{{commentList.length}}</span>
+                        <a class="text-primary" ui-sref="index.marketingcustomersettingactivity({type:'comment'})">Show More<i class="fa fa-play" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <!-- Session For Me-->
+                <div class="box col-lg-12 col-md-12" style="margin-top:20px;border-color:#ed5565">
+                    <div class=" row box-head" style="background-color:#ed5565">
+                        <div class="box-head-right">
+                            <span>S</span>
+                            <h4 style="color:white">{{'Session'|lowercase|translate}}</h4>
+                        </div>
+
+                        <div class="box-head-left">
+                            <span ng-show="sessionList.length>0">{{sessionList.length}}</span>
+                            <a ng-click="addSession()"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                            <a ui-sref="index.marketingcustomersettingactivity({type:'session'})"><i class="fa fa-play" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div class="row box-body" style="background-color:#f3f3f4">
+
+                        <div ng-repeat="a in sessionList" class="col-lg-12 col-sm-12 col-xs-12 redhover" style="padding:5px">
+                            <div href="#" class="box-body-right">
+                                <i class="fa fa-play" style="color:#cfcfd0"></i>
+                                <strong>{{a.Title}}</strong>
+                                <span>{{a.Description}}</span>
+                            </div>
+                            <div class="box-body-left" style="margin-top:20px;margin-left:10px">
+                                <!--archive({{a.Id}})-->
+                                <a ng-click="" class="text-danger"><i class="fa fa-times"></i></a>
+                                <a>
+                                    <i ui-sref="index.marketingcustomersettingactivity({type:'session',id:a.Id})" class="fa fa-eye text-primary" aria-hidden="true" style="color:#1ab394"></i>
+                                </a>
+                            </div>
+                            <div class="box-body-left hidden-xs" style="margin-top:5px;min-width:90px;direction:rtl">
+                                <p>
+                                    <i class="fa  fa-clock-o" aria-hidden="true">
+                                    </i>
+                                    <time style="color:black;overflow:hidden;font-size:8pt">123</time>
+                                </p>
+                                <p style="font-size:8pt">
+                                    <i class="fa fa-exclamation-circle" aria-hidden="true" style="color:black"></i>
+                                    {{timeDiff}}123
+                                </p>
+                            </div>
+                            <hr ng-show="$index<sessionList.length-1" class="clearfix" style="clear:both;border-top:1px solid #aeaeae" />
+                        </div>
+
+                    </div>
+                    <div class="row box-foot" style="background-color:#f3f3f4">
+                        <span class="">10 </span><span>of</span><span>{{sessionList.length}}</span>
+                        <a class="text-primary" ui-sref="index.marketingcustomersettingactivity({type:'session'})">Show More<i class="fa fa-play" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <!-- Communication For Me-->
+                <div class="box col-lg-12 col-md-12" style="margin-top:20px;border-color:#1c84c6">
+                    <div class=" row box-head" style="background-color:#1c84c6">
+                        <div class="box-head-right">
+                            <span>C</span>
+                            <h4 style="color:white">{{'Communication'|lowercase|translate}}</h4>
+                        </div>
+
+                        <div class="box-head-left">
+                            <span ng-show="communicationList.length>0">{{communicationList.length}}</span>
+                            <a ng-click="addCommunication()"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                            <a ui-sref="index.marketingcustomersettingactivity({type:'communication'})"><i class="fa fa-play" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div class="row box-body" style="background-color:#f3f3f4">
+
+                        <div ng-repeat="a in communicationList" class="col-lg-12 col-sm-12 col-xs-12 blue2hover" style="padding:5px">
+                            <div href="#" class="box-body-right">
+                                <i class="fa fa-play" style="color:#cfcfd0"></i>
+                                <strong>{{a.Title}}</strong>
+                                <span>{{a.Description}}</span>
+                            </div>
+                            <div class="box-body-left" style="margin-top:20px;margin-left:10px">
+                                <!--archive({{a.Id}})-->
+                                <a ng-click="" class="text-danger"><i class="fa fa-times"></i></a>
+                                <a>
+                                    <i ui-sref="index.marketingcustomersettingactivity({type:'communication',id:a.Id})" class="fa fa-eye text-primary" aria-hidden="true" style="color:#1ab394"></i>
+                                </a>
+                            </div>
+                            <div class="box-body-left hidden-xs" style="margin-top:5px;min-width:90px;direction:rtl">
+                                <p>
+                                    <i class="fa  fa-clock-o" aria-hidden="true">
+                                    </i>
+                                    <time style="color:black;overflow:hidden;font-size:8pt">123</time>
+                                </p>
+                                <p style="font-size:8pt">
+                                    <i class="fa fa-exclamation-circle" aria-hidden="true" style="color:black"></i>
+                                    {{timeDiff}}123
+                                </p>
+                            </div>
+                            <hr ng-show="$index<communicationList.length-1" class="clearfix" style="clear:both;border-top:1px solid #aeaeae" />
+                        </div>
+
+                    </div>
+                    <div class="row box-foot" style="background-color:#f3f3f4">
+                        <span class="">10 </span><span>of</span><span>{{communicationList.length}}</span>
+                        <a class="text-primary" ui-sref="index.marketingcustomersettingactivity({type:'communication'})">Show More<i class="fa fa-play" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <style>
+      
+
+        /*a {
+            text-decoration: none;
+        }
+
+        .panelcustomers {
+            border: 1px solid #33cc99;
+            border-radius: 3px;
+        }
+
+        .headpanel {
+            border-bottom: 1px solid #33cc99;
+            background-color: #336699;
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+        }
+
+            .headpanel span {
+                text-align: right;
+                color: #ffffff;
+                padding: 20px 5px;
+                font-size: 18px;
+                font-weight: bold;
+                float: right;
+            }
+
+            .headpanel a {
+                color: #cccccc;
+                text-align: left;
+                padding: 20px 5px;
+                float: left;
+            }*/
+        /*------------------------موار پیمایش ------------------------*/
+        /*.scrollbar {
+                height: 300px;
+                background: transparent;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                display: inline-block;
+                width: 99%;
+                border-radius: 3px;
+            }
+
+            .force-overflow {
+                min-height: 450px;
+            }
+
+            #wrapper {
+                text-align: center;
+                margin: auto;
+            }
+
+            #style-8::-webkit-scrollbar-track {
+                border: 1px solid #336699;
+                background-color: #F5F5F5;
+                border-radius: 3px;
+            }
+
+            #style-8::-webkit-scrollbar {
+                width: 10px;
+                background-color: #F5F5F5;
+            }
+
+            #style-8::-webkit-scrollbar-thumb {
+                background-color: #336699;
+            }
+
+            .hid {
+                visibility: hidden;
+                position: absolute;
+            }
+
+            #style-default {
+                width: 10%;
+            }*/
+        /*------------------------panelbody------------------------*/
+        /*.bodypanel {
+            background-color: #fefefe;
+            height: 100%;
+            padding-top: 30px;
+            width: 100%;
+            direction: rtl;
+        }
+
+            .bodypanel ul {
+                margin: auto auto;
+                text-align: right;
+                list-style: none;
+            }
+
+                .bodypanel ul li {
+                    display: inline-block;
+                }
+
+                    .bodypanel ul li .vhr {
+                        height: 65px;
+                        margin-top: 10px;
+                        width: 1px;
+                        border-left: 1px solid #33cccc;
+                        position: absolute;
+                        display: inline-block;
+                    }
+
+                    .bodypanel ul li.hhr {
+                        height: 1px;
+                        width: 82%;
+                        margin-right: 40px;
+                        box-shadow: 0px 1px 0px 0px #33cccc;
+                        display: table;
+                    }
+
+                    .bodypanel ul li div.firsttag, .bodypanel ul li div.secondtag, .bodypanel ul li div.threetag, .bodypanel ul li div.fourtag, .bodypanel ul li div.fivetag {
+                        float: right;
+                        margin-top: 20px;
+                    }
+
+        @media (max-width: 992px) and (min-width: 280px) {
+            .bodypanel ul li {
+                margin-bottom: 20px;
+            }
+
+                .bodypanel ul li.hhr {
+                    visibility: hidden;
+                }
+
+                .bodypanel ul li .vhr {
+                    visibility: hidden;
+                }
+
+                .bodypanel ul li div.firsttag, .bodypanel ul li div.fourtag, .bodypanel ul li div.fivetag {
+                    text-align: right;
+                }
+
+                .bodypanel ul li div.threetag div {
+                    float: right;
+                }
+
+                .bodypanel ul li div.secondtag {
+                    text-align: right !important;
+                    display: inline-block;
+                }
+
+                    .bodypanel ul li div.secondtag progress {
+                        margin: 25px 0px;
+                    }
+        }
+
+        .bodypanel ul li div.firsttag img {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            border: 1px solid #99cccc;
+            vertical-align: middle;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .bodypanel ul li div.firsttag div {
+            display: inline-block;
+            position: absolute;
+            margin-right: 4px;
+        }
+
+            .bodypanel ul li div.firsttag div strong, .bodypanel ul li div.firsttag div span {
+                display: block;
+                border: none;
+            }
+
+            .bodypanel ul li div.firsttag div strong {
+                font-size: 22px;
+                font-family: "Sylfaen";
+                color: rgb(0, 0, 0);
+            }
+
+            .bodypanel ul li div.firsttag div span {
+                font-size: 16px;
+                font-family: "Sylfaen";
+                color: rgb(48, 116, 175);
+            }
+
+        .secondtag {
+            text-align: center;
+        }
+
+            .secondtag progress {
+                display: block;
+                width: 110px;
+                margin: 20px auto;
+                background: transparent;
+                border: 1px solid #33cccc;
+                position: absolute;
+                margin: 35px 87px;
+                border-radius: 1px;
+            }
+
+                .secondtag progress::-moz-progress-bar {
+                    background: #ff6600;
+                }
+
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+            .secondtag progress {
+                height: 8px;
+            }
+        }
+
+        .secondtag progress::-webkit-progress-bar {
+            background: transparent;
+        }
+
+        .secondtag progress::-webkit-progress-value {
+            background: #ff6600;
+        }
+
+        .threetag div {
+            border: 1px solid #33cc99;
+            padding: 7px;
+            text-align: center;
+            width: 53px;
+            margin: auto auto;
+        }
+
+            .threetag div span {
+                display: block;
+                font-weight: bold;
+            }
+
+        .fourtag label {
+            display: block;
+            font-size: 14px;
+            font-family: "Sylfaen";
+            color: rgb(0, 0, 0);
+        }
+
+        .fourtag input[type="radio"] {
+            border: 1px solid #33cc99;
+            color: transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            display: inline-block;
+            height: 15px;
+            margin-right: 15px;
+            position: relative;
+            width: 15px;
+            vertical-align: middle;
+            margin-left: 3px;
+            -webkit-appearance: none;
+        }
+
+            .fourtag input[type="radio"]:checked {
+                background-color: #ffff00;
+            }
+
+        .fivetag .dropdown {
+            border: 1px solid #33cc99;
+            position: absolute;
+            margin: auto auto;
+            font-size: 14px;
+            font-family: "Sylfaen";
+            color: rgb(0, 0, 0);
+        }
+
+        .dropdown-menu > li > a {
+            display: inline;
+        }
+
+        .fivetag .btn {
+            padding: 10px 20px;
+            border: none;
+            color: #fff;
+            border-radius: 0px;
+            background-color: #33cc99;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            display: none;
+            float: right;
+            top: 52px;
+            min-width: 180px;
+            text-align: right;
+            list-style: none;
+            background-color: #fefefe;
+            -webkit-background-clip: padding-box;
+            background-clip: padding-box;
+            border: 2px solid #33cc99;
+            border-radius: 0px;
+            height: auto;
+        }
+
+            .dropdown-menu li.caption {
+                background-color: #33cc99;
+                padding: 10px 20px;
+                margin-top: -5px;
+            }
+
+            .dropdown-menu li {
+                border-bottom: 1px solid #33cc99;
+                margin-right: 20px;
+                padding: 10px 0px 0px 0px;
+                width: 85%;
+            }
+
+                .dropdown-menu li a {
+                    padding-top: 10px;
+                }
+
+                .dropdown-menu li.caption {
+                    border-bottom: none;
+                    margin-right: 0px;
+                    width: 100%;
+                }
+
+                .dropdown-menu li a img {
+                    content: url("../img/itemlist.png");
+                    display: inline-block;
+                    vertical-align: middle;
+                    float: right;
+                    padding-left: 3px;
+                }
+
+                .dropdown-menu li a {
+                    background-color: transparent;
+                    border-radius: 0px;
+                    padding: 0px 0px;
+                }
+
+                .dropdown-menu li:hover {
+                    background-color: #cccccc;
+                }
+
+                .dropdown-menu li a:hover {
+                    background-color: transparent;
+                }
+
+        .fivetag .fa-caret-down {
+            color: #fff;
+            size: 18px;
+        }*/
+        /*------------------------footbody------------------------*/
+        /*.footpanel {
+            border-bottom: 1px solid #33cc99;
+            background-color: #336699;
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+            width: 100%;
+        }
+
+        #pagination {
+            display: inline-block;
+            vertical-align: middle;
+            border-radius: 4px;
+            padding: 10px 2px 20px 12px;
+        }
+
+            #pagination a, #pagination i {
+                display: inline-block;
+                vertical-align: middle;
+                width: 22px;
+                color: #5279a3;
+                text-align: center;
+                font-size: 10px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                -o-user-select: none;
+                user-select: none;
+            }
+
+            #pagination a {
+                margin: 0 2px 0 2px;
+                cursor: pointer;
+                border-radius: 100%;
+                background-color: #87bef3;
+                opacity: .9;
+                display: inline-block;
+                padding: 3px;
+                text-decoration: none;
+            }
+
+            #pagination span a {
+                background-color: #336699;
+                padding: 5px 7px;
+                box-shadow: 2px 2px 2px 0px #ffffff;
+                border-radius: 4px;
+                display: inline-block;
+                margin-left: 3px;
+                margin-right: 3px;
+                color: #fff;
+            }
+
+            #pagination i {
+                margin: 0 3px 0 3px;
+            }
+
+            #pagination a.current {
+                border: 1px solid #fff;
+                box-shadow: 0 1px 1px #fffee8;
+                background-color: #003366;
+            }*/
+        /****************************************************************/
+        hr {
+            margin-top: 2px;
+            margin-bottom: 2px;
+            margin-left: 20px;
+            border: 0;
+            border-top: 1px solid #aeaeae;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .box {
+            border: 1px solid #aeaeae;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+            height: 100%;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .box-head {
+            /*background-color: #f3f3f4;*/
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+            height: 15%;
+            font-family: "Arial";
+            font-weight: bold;
+            line-height: 1.2;
+            border-bottom: 1px solid #aeaeae;
+        }
+
+            .box-head .box-head-right span, .box-head-right h4 {
+                display: inline-block;
+            }
+
+        .box-head-right {
+            float: right;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+
+            .box-head-right span {
+                border-radius: 50%;
+                background-color: white;
+                padding: 3px 5px;
+                border: 1px solid #aeaeae;
+            }
+
+            .box-head-right h4 {
+                color: #535354;
+            }
+
+        .box-head-left {
+            float: left;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+            .box-head-left span {
+                background-color: white;
+                padding: 2px 4px;
+                text-align: right;
+                border-radius: 5px;
+                border: 1px solid #aeaeae;
+                display: inline-block;
+            }
+
+            .box-head-left i {
+                color: black;
+                font-weight: bold;
+                margin-right: 7px;
+                text-align: left;
+                -ms-transform: rotate(180deg); /* IE 9 */
+                -webkit-transform: rotate(180deg); /* Safari */
+                transform: rotate(180deg); /* Standard syntax */
+            }
+
+        .box-body {
+            background-color: #ffffff;
+            /* height:370px; */
+            font-family: "Arial";
+        }
+
+            .box-body ul {
+                list-style: none;
+            }
+
+                .box-body ul li {
+                    /*width: 100%;
+                        margin-left: 10px;*/
+                    margin-right: -34px;
+                    /*border-bottom: 1px solid #aeaeae;*/
+                }
+
+        /* .default ul li:hover {
+                           background-color: #d6d6d9;
+                        }*/
+
+        .greenhover:hover {
+            background-color: #9cd4c8;
+        }
+
+        .orangehover:hover {
+            background-color: #eccead;
+        }
+
+        .bluehover:hover {
+            background-color: #a6e6e6;
+        }
+
+        .redhover:hover {
+            background-color: #efc0c5;
+        }
+
+        .blue2hover:hover {
+            background-color: #b9dff7;
+        }
+
+        .defaulthover:hover {
+            background-color: #e2dede;
+        }
+
+
+
+
+        .box-body ul li .box-body-right, .box-body ul li .box-body-center, .box-body ul li .box-body-left {
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .box-body-right {
+            float: right;
+        }
+
+            .box-body-right i {
+                text-align: right;
+                -ms-transform: rotate(180deg); /* IE 9 */
+                -webkit-transform: rotate(180deg); /* Safari */
+                transform: rotate(180deg); /* Standard syntax */
+            }
+
+            .box-body-right strong, span {
+                display: block;
+            }
+
+            .box-body-right strong {
+                color: #535354;
+                font-size: 18px;
+                display: inline-block;
+            }
+
+            .box-body-right span {
+                font-size: 10px;
+                text-align: right;
+                padding-right: 10px;
+                color: rgb(139, 139, 144);
+            }
+
+        .box-body ul li .box-body-center {
+            /*margin: 10px 70px !important;*/
+            position: absolute;
+        }
+
+        .box-body-center .divtop .divdown {
+            display: block;
+        }
+
+        .box-body-center .divtop time, .divtop i {
+            font-size: 10px;
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+        }
+
+        .box-body-center .divtop i {
+            -ms-transform: rotate(180deg); /* IE 9 */
+            -webkit-transform: rotate(180deg); /* Safari */
+            transform: rotate(180deg); /* Standard syntax */
+        }
+
+        .box-body-center .divdown i, .divdown span {
+            font-size: 10px;
+            color: rgb(47, 148, 2);
+            display: inline-block;
+        }
+
+        .box-body-center .divdown i {
+            -ms-transform: rotate(180deg); /* IE 9 */
+            -webkit-transform: rotate(180deg); /* Safari */
+            transform: rotate(180deg); /* Standard syntax */
+        }
+
+        .box-body-left {
+            float: left;
+            /*margin-left: -70px;*/
+        }
+
+            .box-body-left div {
+                width: 100px;
+                margin-top: 10px;
+                /*      margin-left:30px; */
+            }
+
+                .box-body-left div a {
+                    padding: 10px 7px;
+                    /*background-color: #277803;*/
+                    text-decoration: none;
+                    font-size: 12px;
+                    /*color: rgb(255, 255, 255);*/
+                }
+                /* .box-body-left  div a:hover{
+                background-color:#6b2600;
+            } */
+                .box-body-left div i {
+                    font-size: 10px;
+                    color: rgb(255, 255, 255);
+                    padding: 12px 10px;
+                    cursor: pointer;
+                    /*background-color: #2f9402;*/
+                    position: absolute;
+                    margin-top: -8px;
+                }
+
+        /* .box-body-left  div i:hover{ */
+        /* background-color:#943502; */
+        /* } */
+        .box-foot {
+            border-top: 1px solid #aeaeae;
+            height: 10%;
+            background-color: #f3f3f4;
+            font-family: "Arial";
+            font-weight: bold;
+            line-height: 1.2;
+            /*margin-top: 50px;*/
+        }
+
+            .box-foot span {
+                float: right;
+                margin: 10px 5px;
+            }
+
+            .box-foot a {
+                float: left;
+                font-size: 14px;
+                color: rgb(0, 0, 0);
+                font-weight: bold;
+                line-height: 1.2;
+                margin: 10px 30px;
+            }
+
+                .box-foot a i {
+                    padding-right: 5px;
+                }
+                /*******************************************************/
+
+
+        .paneldashboardMain {
+            border: 1px solid #33cc99;
+            border-radius: 3px;
+        }
+
+        .headpanel {
+            border-bottom: 1px solid #33cc99;
+            background-color: #336699;
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+        }
+
+            .headpanel span {
+                text-align: right;
+                color: #ffffff;
+                padding: 20px 5px;
+                font-size: 18px;
+                font-weight: bold;
+                float: right;
+            }
+
+            .headpanel a {
+                color: #cccccc;
+                text-align: left;
+                padding: 20px 5px;
+                float: left;
+            }
+
+        .bodypanel {
+            background-color: #fefefe;
+            height: 100%;
+            padding-top: 30px;
+            width: 100%;
+            direction: rtl;
+        }
+
+        #style-default {
+            width: 10%;
+        }
+
+        .hid {
+            visibility: hidden;
+            position: absolute;
+        }
+
+        .scrollbar {
+            height: 300px;
+            background: transparent;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            display: inline-block;
+            width: 99%;
+            border-radius: 3px;
+        }
+
+        .divrow {
+            margin: auto auto;
+            text-align: right;
+            list-style: none;
+        }
+
+        .divinto {
+            display: inline-block;
+        }
+
+        .firsttag, .secondtag, .threetag, .fourtag, .fivetag {
+            float: right;
+            margin-top: 10px;
+        }
+
+            .firsttag img {
+                width: 65px;
+                height: 65px;
+                border-radius: 50%;
+                border: 1px solid #99cccc;
+                vertical-align: middle;
+                display: inline-block;
+                margin-top: 10px;
+            }
+            .firsttag div {
+                display: inline-block;
+                position: absolute;
+                margin-right: 4px;
+                margin-top: 25px;
+            }
+            .firsttag div strong, .firsttag div span {
+                display: block;
+                border: none;
+            }
+        .firsttag div span {
+            font-size: 16px;
+            font-family: "Sylfaen";
+            color: rgb(48, 116, 175);
+        }
+        .vhr {
+            height: 65px;
+            margin-top: 10px;
+            width: 1px;
+            border-left: 1px solid #33cccc;
+            position: absolute;
+            display: inline-block;
+        }
+
+        @media screen and (-webkit-min-device-pixel-ratio: 0) {
+            .secondtag .progress {
+                height: 8px;
+            }
+        }
+
+        .secondtag .progress {
+            display: block;
+            width: 110px;
+            margin: 20px auto;
+            background: transparent;
+            border: 1px solid #33cccc;
+            position: absolute;
+            margin: 35px 87px;
+            border-radius: 1px;
+        }
+        .threetag div {
+            border: 1px solid #33cc99;
+            padding: 7px;
+            text-align: center;
+            width: 53px;
+            margin: auto auto;
+        }
+            .threetag div span {
+                display: block;
+                font-weight: bold;
+            }
+        .fourtag label {
+            display: block;
+            font-size: 14px;
+            font-family: "Sylfaen";
+            color: rgb(0, 0, 0);
+        }
+        .fourtag input[type="radio"] {
+            border: 1px solid #33cc99;
+            color: transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            display: inline-block;
+            height: 15px;
+            margin-right: 15px;
+            position: relative;
+            width: 15px;
+            vertical-align: middle;
+            margin-left: 3px;
+            -webkit-appearance: none;
+        }
+        .fivetag .btn {
+            padding: 10px 20px;
+            border: none;
+            color: #fff;
+            border-radius: 0px;
+            background-color: #33cc99;
+        }
+        .footpanel {
+            border-bottom: 1px solid #33cc99;
+            background-color: #336699;
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+            width: 100%;
+        }
+    </style>

@@ -1,0 +1,241 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="campaignContent.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{'Edit_Content' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmcampaignContentEdit" novalidate ng-submit="campaignContent.editContent(frmcampaignContentEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmcampaignContentEdit.LinkSourceId.$invalid && !frmcampaignContentEdit.LinkSourceId.$pristine,'has-success' : frmcampaignContentEdit.LinkSourceId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="campaignContent"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmcampaignContentEdit.Title.$invalid && !frmcampaignContentEdit.Title.$pristine,'has-success' : frmcampaignContentEdit.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           ng-model="campaignContent.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmcampaignContentEdit.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmcampaignContentEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmcampaignContentEdit.Title.$valid && frmcampaignContentEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmcampaignContentEdit.Title.$invalid && !frmcampaignContentEdit.Title.$pristine) || frmcampaignContentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="campaignContent.gridOptions.resultAccess.AccessEditField.indexOf('LinkMemberGroupId')>-1">
+                                <label class="col-sm-2 control-label">{{'Link_Member_Group_Id'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkMemberGroupId" rasha-autocomplete="campaignContent.LinkMemberGroupIdSelector" ng-model="frmcampaignContentEdit.selectedItem.LinkMemberGroupId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <!--ng-show="campaignContent.gridOptions.resultAccess.AccessEditField.indexOf('LinkProductId')>-1"-->
+                                <label class="col-sm-2 control-label">{{'SELECT_CATEGORIES'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkProductId" rasha-autocomplete="campaignContent.LinkProductIdSelector" ng-model="frmcampaignContentEdit.selectedItem.LinkProductId" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Content_Matter'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'TAGS'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <tags-input ng-model="campaignContent.tags" placeholder="{{'Tag'|lowercase|translate}}" min-length="2" add-from-autocomplete-only="true" add-on-comma="true">
+                                        <auto-complete source="campaignContent.loadTags($query)" module="newstag" style="font-family: 'Yekan'"></auto-complete>
+                                    </tags-input>
+                                    <small>{{'Important_words_used_in_related_content_in_the_tag'|lowercase|translate}}</small>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Access_License'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="AllowSmsReminderToMember" ng-model="campaignContent.selectedItem.AllowSmsReminderToMember">{{'Allow_SMS_To_Remind_Members'|lowercase|translate}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="AllowSmsReminderToAdmin" ng-model="campaignContent.selectedItem.AllowSmsReminderToAdmin">{{'Allow_SMS_To_Remind_Administrator'|lowercase|translate}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="AllowSmsAbsentToMember" ng-model="campaignContent.selectedItem.AllowSmsAbsentToMember">{{'Allow_SMS_To_Be_Absent_Members'|lowercase|translate}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="AllowSmsAbsentToAdmin" ng-model="campaignContent.selectedItem.AllowSmsAbsentToAdmin">{{'Allow_SMS_To_Be_Absent_Admin'|lowercase|translate}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="AllowSmsLogToMember" ng-model="campaignContent.selectedItem.AllowSmsLogToMember">{{'Allow_SMS_To_Send_User_Logs_To_Members'|lowercase|translate}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="AllowSmsGradeToMember" ng-model="campaignContent.selectedItem.AllowSmsGradeToMember">{{'Allows_Users_To_Send_SMS_Messages'|lowercase|translate}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="AllowSmsActivateDeActivateToMember" ng-model="campaignContent.selectedItem.AllowSmsActivateDeActivateToMember">{{'Allow_Or_Disable_The_Sending_Of_Camp_Detail_To_Members'|lowercase|translate}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="AllowSmsActivateDeActivateToAdmin" ng-model="campaignContent.selectedItem.AllowSmsActivateDeActivateToAdmin">{{'Allow_Or_Disable_The_Sending_Of_Camp_Detail_To_Admin'|lowercase|translate}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Place_Location'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="campaignContent.gridOptions.resultAccess.AccessEditField.indexOf('Geolocationlatitude')>-1">
+                                <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div rasha-map="campaignContent.GeolocationConfig" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Attachments_Files'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'ATTACH_FILE'|lowercase|translate}} </label>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="campaignContent.filePickerFiles" ng-model="campaignContent.selectedItem.LinkFileIds"></div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <a class="btn btn-primary" ng-click="campaignContent.addAttachedFile(campaignContent.selectedItem.LinkFileIds)" style="margin-right: -52px;margin-top: 1px;">
+                                        <i class="fa fa-" aria-hidden="true" title="{{'ADD_FILE'|lowercase|translate}}" style="font-family: iransans;font-size: 12px;"> <i class="fa fa-plus-square" aria-hidden="true"></i> </i>
+                                    </a>
+                                </div>
+                                <!--<div class="col-sm-1">
+                                    <a class="btn btn-primary uoload-file-m" href="" ng-click="campaignContent.openUploadModal()" aria-label="Delete" >
+                                        <i class="fa fa-upload" aria-hidden="true"></i>
+                                    </a>
+                                </div>-->
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group col-sm-12" ng-repeat="x in campaignContent.attachedFiles">
+                                    <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                                    <div class="input-group">
+                                        <input type="text" id="option{{$index}}" class="form-control" ng-required="false" name="attachedFileName" required readonly="readonly" ng-model="x.filename">
+                                        <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="campaignContent.deleteAttachedFile($index)"><i class="fa fa-remove"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Additional_Information'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Sales_Information'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'Website'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           name="WebAddress"
+                                           ng-model="campaignContent.selectedItem.WebAddress" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'Commodity_Price'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           name="ProductPrice"
+                                           ng-model="campaignContent.selectedItem.ProductPrice" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'Sale_Price'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           name="SalePrice"
+                                           ng-model="campaignContent.selectedItem.SalePrice" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="campaignContent.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="campaignContent.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+            <style>
+                .pull-right {
+                    margin: 1px 28px;
+                }
+            </style>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+﻿
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="biographyContentParameter.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Parameter' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmbiographyContentParameterEdit" novalidate ng-submit="biographyContentParameter.editRow(frmbiographyContentParameterEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmbiographyContentParameterAdd.RecordStatus.$invalid && !frmbiographyContentParameterAdd.RecordStatus.$pristine,'has-success' : frmbiographyContentParameterAdd.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="biographyContentParameter"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="biographyContentParameter.gridOptions.resultAccess.AccessEditField.indexOf('LinkContentParameterTypeId')>-1">
+                                <label class="col-sm-2 control-label">{{'ParameterType'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkContentParameterTypeId" rasha-autocomplete="biographyContentParameter.LinkContentParameterTypeIdSelector" ng-model="frmbiographyContentParameterAdd.selectedItem.LinkContentParameterTypeId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="biographyContentParameter.gridOptions.resultAccess.AccessEditField.indexOf('LinkExternalCoreCmsSiteCategoryId')>-1">
+                                <label class="col-sm-2 control-label">{{'Site_Categories'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkExternalCoreCmsSiteCategoryId" rasha-autocomplete="biographyContentParameter.LinkExternalCoreCmsSiteCategoryIdSelector" ng-model="frmbiographyContentParameterAdd.selectedItem.LinkExternalCoreCmsSiteCategoryId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="biographyContentParameter.gridOptions.resultAccess.AccessEditField.indexOf('LinkModuleCategoryId')>-1">
+                                <label class="col-sm-2 control-label">{{'Module_Categorization'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkModuleCategoryId" rasha-autocomplete="biographyContentParameter.LinkModuleCategoryIdSelector" ng-model="frmbiographyContentParameterAdd.selectedItem.LinkModuleCategoryId" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'Parameter_Name'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="ParameterName" ng-model="biographyContentParameter.selectedItem.ParameterName" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'Admin_Default_Value'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="AdminDefaultValue" ng-model="biographyContentParameter.selectedItem.AdminDefaultValue" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'Default_Site_Value'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="SiteDefaultValue" ng-model="biographyContentParameter.selectedItem.SiteDefaultValue" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'User_Default_Value'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="UserDefaultValue" ng-model="biographyContentParameter.selectedItem.UserDefaultValue" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="biographyContentParameter.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="biographyContentParameter.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

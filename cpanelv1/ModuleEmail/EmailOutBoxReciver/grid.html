@@ -1,0 +1,26 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="emailOutBoxReciverController as emailOutBoxReciver" ng-init="emailOutBoxReciver.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <!--<button class="btn btn-primary" rasha-userrole="emailOutBoxReciver.Add" ng-click="emailOutBoxReciver.openAddModal()" ng-show="emailOutBoxReciver.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>-->
+            <!--<button class="btn btn-primary" rasha-userrole="emailOutBoxReciver.Add" ng-click="emailOutBoxReciver.autoAdd()" ng-show="emailOutBoxReciver.gridOptions.resultAccess.AccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>-->
+            <!--<button class="btn btn-warning" rasha-userrole="emailOutBoxReciver.Edit" ng-click="emailOutBoxReciver.openEditModal()" ng-show="emailOutBoxReciver.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>-->
+            <!--<button class="btn btn-danger" rasha-userrole="emailOutBoxReciver.Delete" ng-click="emailOutBoxReciver.deleteRow()" ng-show="emailOutBoxReciver.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>-->
+            <button class="btn btn-success" type="button" ng-click="emailOutBoxReciver.showAdvancedSearchPanel(emailOutBoxReciver.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-primary" type="button" ng-click="emailOutBoxReciver.toggleExportForm()"> {{'report'|lowercase|translate}} </button>
+            <button class="btn btn-success" ng-click="emailOutBoxReciver.getCount()">{{'number'|lowercase|translate}}&nbsp;{{emailOutBoxReciver.ListItemsTotalRowCount}}</button>
+            <button class="btn btn-warning" type="button" ng-show="emailOutBoxReciverId!=null" ng-click="emailOutBoxReciver.changeState('emailoutboxcontent')">{{'BACK'|lowercase|translate}}&nbsp;&nbsp;<i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <div class="row" rasha-loading="emailOutBoxReciver.busyIndicator">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="emailOutBoxReciver" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div rasha-grid="emailOutBoxReciver.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

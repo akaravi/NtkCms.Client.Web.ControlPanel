@@ -1,0 +1,18 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="apiPathCompanyCtrl as apiCompany" ng-init="apiCompany.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="inbox.Add" ng-click="apiCompany.addNewModel()" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="inbox.Edit" ng-click="apiCompany.editOpenModel()" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="inbox.Delete" ng-click="apiCompany.deleteRow()" type="button"> {{'delete'|lowercase|translate}} </button>
+            <!--<button class="btn btn-default" type="button" ng-click="apiCompany.searchData()"> {{'advanced_search'|lowercase|translate}} </button>-->
+            <!--<button class="btn btn-default" type="button" ng-click="apiCompany.reportData()"> {{'report'|lowercase|translate}} </button>-->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="apiCompany.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

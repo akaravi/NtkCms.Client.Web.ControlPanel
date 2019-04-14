@@ -1,0 +1,45 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="ticketingDepartemen.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Section'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmnewsContentAdd" novalidate ng-submit="ticketingDepartemen.addNewRow(frmnewsContentAdd)">
+                <div class='hr-line-dashed'></div>
+                <!-- Title -->
+                <div class="form-group" ng-show="ticketingDepartemen.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                     ng-class="{'has-error' : frmnewsContentAdd.Title.$invalid && !frmnewsContentAdd.Title.$pristine,'has-success' : frmnewsContentAdd.Title.$valid}">
+                    <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-required="true" name="Title" ng-model="ticketingDepartemen.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmnewsContentAdd.Title.$invalid">
+                            <small class="text-danger" ng-show="frmnewsContentAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmnewsContentAdd.Title.$valid && frmnewsContentAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmnewsContentAdd.Title.$invalid && !frmnewsContentAdd.Title.$pristine) || frmnewsContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <!-- Priority -->
+                <div class="form-group"
+                     ng-class="{'has-error' : frmnewsContentAdd.Priority.$invalid && !frmnewsContentAdd.Priority.$pristine,'has-success' : frmnewsContentAdd.Priority.$valid}">
+                    <label class="col-sm-2 control-label"> {{'PRIORITY'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-options="x.Value as x.Description for x in ticketingDepartemen.priorityEnum" ng-model="ticketingDepartemen.selectedItem.Priority"></select>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <!-- Default Answer Body -->
+                <div class="form-group" ng-show="ticketingDepartemen.gridOptions.resultAccess.AccessAddField.indexOf('DefaultAnswerBody')>-1">
+                    <label class="col-sm-2 control-label">{{'DEFAULT_ANSWER'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <div summernote class="summernote" config="ticketingDepartemen.summernoteOptions" ng-model="ticketingDepartemen.selectedItem.DefaultAnswerBody" ></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="ticketingDepartemen.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="ticketingDepartemen.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

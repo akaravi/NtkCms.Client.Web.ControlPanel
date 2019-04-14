@@ -1,0 +1,184 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="articleContent.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Content' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmarticleContentAdd" novalidate ng-submit="articleContent.addNewContent(frmarticleContentAdd)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmarticleContentAdd.LinkSourceId.$invalid && !frmarticleContentAdd.LinkSourceId.$pristine,'has-success' : frmarticleContentAdd.LinkSourceId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="articleContent"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmarticleContentAdd.Title.$invalid && !frmarticleContentAdd.Title.$pristine,'has-success' : frmarticleContentAdd.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           ng-model="articleContent.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmarticleContentAdd.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmarticleContentAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmarticleContentAdd.Title.$valid && frmarticleContentAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmarticleContentAdd.Title.$invalid && !frmarticleContentAdd.Title.$pristine) || frmarticleContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-class="{'has-error' : frmarticleContentAdd.Description.$invalid && !frmarticleContentAdd.Description.$pristine,'has-success' : frmarticleContentAdd.Description.$valid}">
+                                <label class="col-sm-2 control-label">{{'description'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" ng-required="true" name="Description" ng-model="articleContent.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmarticleContentAdd.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmarticleContentAdd.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmarticleContentAdd.Description.$valid && frmarticleContentAdd.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmarticleContentAdd.Description.$invalid && !frmarticleContentAdd.Description.$pristine) || frmarticleContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2  control-label"> {{'DATE'|lowercase|translate}}&nbsp;{{'INSERT'|lowercase|translate}} </label>
+                                <div class="col-sm-6  col-md-4">
+                                    <adm-dtp ng-model='FromDate' ng-model-db="articleContent.selectedItem.FromDate" full-data='FromDate_detail' maxdate="{{ExpireDate_detail.unix}}" options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}' ng-show="articleContent.gridOptions.resultAccess.AccessAddField.indexOf('FromDate')>-1"></adm-dtp>
+                                </div>
+                                <label class="col-sm-2  control-label"> {{'FINISH_DATE'|lowercase|translate}} </label>
+                                <div class="col-sm-6 col-md-4">
+                                    <adm-dtp ng-model='ExpireDate' ng-model-db="articleContent.selectedItem.ExpireDate" full-data='ExpireDate_detail' mindate="{{FromDate_detail.unix}}" options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}' ng-show="articleContent.gridOptions.resultAccess.AccessAddField.indexOf('ExpireDate')>-1"></adm-dtp>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="{{'Content_Matter'|lowercase|translate}}">
+                        <div class="panel-body">
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'SOURCE'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" ng-model="articleContent.selectedItem.Source" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'TAGS'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <tags-input ng-model="articleContent.tags" placeholder="{{'Tag'|lowercase|translate}}" min-length="2" add-from-autocomplete-only="true" add-on-comma="true">
+                                        <auto-complete source="articleContent.loadTags($query)" module="articletag" style="font-family: 'Yekan'"></auto-complete>
+                                    </tags-input>
+                                    <small>{{'Important_words_used_in_related_content_in_the_tag'|lowercase|translate}}</small>
+                                </div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmarticleContentAdd.Keyword.$invalid && !frmarticleContentAdd.Keyword.$pristine,'has-success' : frmarticleContentAdd.Keyword.$valid}">
+                                <label class="col-sm-2 control-label"> {{'KEYWORDS'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <tags-input ng-model="articleContent.kwords" placeholder="{{'Key_Word' |lowercase|translate}}" min-length="2" add-on-enter="true" add-on-comma="true">
+                                        <auto-complete></auto-complete>
+                                    </tags-input>
+                                    <small>{{'Keywords_Help'|lowercase|translate}}</small>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'FULL_CONTENT'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <div summernote class="summernote" config="articleContent.summernoteOptions" ng-model="articleContent.selectedItem.Body">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </tab>
+                    <tab heading="{{'Attachments_Files'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'MAIN_IMAGE'|lowercase|translate}} </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="articleContent.openUploadModal()" aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="articleContent.filePickerMainImage" ng-model="articleContent.selectedItem.LinkMainImageId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> Podcast </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="articleContent.openUploadModalPodcast()" aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="articleContent.filePickerFilePodcast" ng-model="articleContent.selectedItem.LinkFilePodcastId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> Movie </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="articleContent.openUploadModalMovie()" aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="articleContent.filePickerFileMovie" ng-model="articleContent.selectedItem.LinkFileMovieId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'ATTACH_FILE'|lowercase|translate}} </label>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="articleContent.filePickerFiles" ng-model="articleContent.selectedItem.LinkFileIds"></div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <a class="btn btn-primary" ng-click="articleContent.addAttachedFile(articleContent.selectedItem.LinkFileIds)" style="margin-right: -52px;margin-top: 1px;">
+                                        <i class="fa fa-" aria-hidden="true" title="{{'ADD_FILE'|lowercase|translate}}" style="font-family: iransans;font-size: 12px;"> <i class="fa fa-plus-square" aria-hidden="true"></i> </i>
+                                    </a>
+                                </div>
+                                <!--<div class="col-sm-1">
+                                    <a class="btn btn-primary uoload-file-m" href="" ng-click="articleContent.openUploadModal()" aria-label="Delete" >
+                                        <i class="fa fa-upload" aria-hidden="true"></i>
+                                    </a>
+                                </div>-->
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group col-sm-12" ng-repeat="x in articleContent.attachedFiles">
+                                        <img src="{{x.previewImageSrc}}"  width="50" height="50" class="img-rounded col-sm-3 col-md-3 col-lg-3" alt="{{x.filename}}" />
+                                    <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                                    <div class="input-group">
+                                        <input type="text" id="option{{$index}}" class="form-control" ng-required="true" name="attachedFileName" required readonly="readonly" ng-model="x.filename">
+                                        <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="articleContent.deleteAttachedFile($index)"><i class="fa fa-remove"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="{{'Place_Location' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="articleContent.gridOptions.resultAccess.AccessAddField.indexOf('Geolocationlatitude')>-1">
+                                <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div rasha-map="articleContent.GeolocationConfig" ></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </tab>
+
+                </tabset>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="articleContent.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="articleContent.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

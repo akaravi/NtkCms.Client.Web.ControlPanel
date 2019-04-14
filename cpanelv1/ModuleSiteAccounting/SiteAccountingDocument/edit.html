@@ -1,0 +1,82 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="ServiceComment.busyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="ServiceComment.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ ServiceComment.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmServiceCommentEdit" novalidate ng-submit="ServiceComment.editRow(frmServiceCommentEdit)">
+               
+                 <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="ServiceComment.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmServiceCommentAdd.RecordStatus.$invalid && !frmServiceCommentAdd.RecordStatus.$pristine,'has-success' : frmServiceCommentAdd.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="ServiceComment"></div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                 <div class="form-group" ng-show="ServiceComment.gridOptions.resultAccess.AccessEditField.indexOf('Writer')>-1"
+                     ng-class="{'has-error' : frmServiceCommentEdit.Writer.$invalid && !frmServiceCommentEdit.Writer.$pristine,'has-success' : frmServiceCommentEdit.Writer.$valid}">
+                    <label class="col-sm-2 control-label"> {{'AUTHOR'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Writer"
+                               ng-model="ServiceComment.selectedItem.Writer"/>
+                        <div class="m-t-xs" ng-show="frmServiceCommentEdit.Writer.$invalid">
+                            <small class="text-danger" ng-show="frmServiceCommentEdit.Writer.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmServiceCommentEdit.Writer.$valid && frmServiceCommentEdit.Writer.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmServiceCommentEdit.Writer.$invalid && !frmServiceCommentEdit.Writer.$pristine) || frmServiceCommentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="ServiceComment.gridOptions.resultAccess.AccessEditField.indexOf('Comment')>-1"
+                     ng-class="{'has-error' : frmServiceCommentEdit.Comment.$invalid && !frmServiceCommentEdit.Comment.$pristine,'has-success' : frmServiceCommentEdit.Comment.$valid}">
+                    <label class="col-sm-2 control-label"> {{'COMMENT'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Comment"
+                               ng-model="ServiceComment.selectedItem.Comment" />
+                        <div class="m-t-xs" ng-show="frmServiceCommentEdit.Comment.$invalid">
+                            <small class="text-danger" ng-show="frmServiceCommentEdit.Comment.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmServiceCommentEdit.Comment.$valid && frmServiceCommentEdit.Comment.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmServiceCommentEdit.Comment.$invalid && !frmServiceCommentEdit.Comment.$pristine) || frmServiceCommentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="ServiceComment.gridOptions.resultAccess.AccessEditField.indexOf('LinkServiceContentId')>-1"
+                     ng-class="{'has-error' : frmServiceCommentEdit.LinkServiceContentId.$invalid && !frmServiceCommentEdit.LinkServiceContentId.$pristine,'has-success' : frmServiceCommentEdit.LinkServiceContentId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'SELECT_CONTENT'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-required="true" name="LinkServiceContentId" rasha-autocomplete="ServiceComment.LinkServiceContentIdSelector" ng-model="ServiceComment.selectedItem.LinkServiceContentId" />
+                        <!--<select class="form-control" ng-model="Servicecategory.selectedItem.LinkServiceContentId">
+                            <option ng-repeat="x in ServiceComment.CommentList" ng-value="x.Id">{{x.Title}}</option>
+                        </select>-->
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <label class="checkbox-inline">
+                            <input icheck type="checkbox" value="option1" id="IsActivated" ng-model="ServiceComment.selectedItem.IsActivated"/> {{'IS_ACTIVE'|lowercase|translate}} 
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <label class="checkbox-inline">
+                            <input icheck type="checkbox" value="option2" id="IsArchived" ng-model="ServiceComment.selectedItem.IsArchived" /> {{'IS_ARCHIVE'|lowercase|translate}} 
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="ServiceComment.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="ServiceComment.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

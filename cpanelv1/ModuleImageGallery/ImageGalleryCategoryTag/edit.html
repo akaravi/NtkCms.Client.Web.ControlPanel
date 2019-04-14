@@ -1,0 +1,82 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="imgGalleryTag.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Category' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmimgGalleryTagEdit" novalidate ng-submit="imgGalleryTag.editCategory(frmimgGalleryTagEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmimgGalleryTagAdd.RecordStatus.$invalid && !frmimgGalleryTagAdd.RecordStatus.$pristine,'has-success' : frmimgGalleryTagAdd.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="imgGalleryTag"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmimgGalleryTagEdit.Title.$invalid && !frmimgGalleryTagEdit.Title.$pristine,'has-success' : frmimgGalleryTagEdit.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           maxlength="256"
+                                           ng-model="imgGalleryTag.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmimgGalleryTagEdit.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmimgGalleryTagEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmimgGalleryTagEdit.Title.$valid && frmimgGalleryTagEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmimgGalleryTagEdit.Title.$invalid && !frmimgGalleryTagEdit.Title.$pristine) || frmimgGalleryTagEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            
+                            <div class="form-group" ng-class="{'has-error' : frmimgGalleryTagEdit.Description.$invalid && !frmimgGalleryTagEdit.Description.$pristine,'has-success' : frmimgGalleryTagEdit.Description.$valid}">
+                                <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" maxlength="2048" ng-required="true" name="Description" ng-model="imgGalleryTag.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmimgGalleryTagEdit.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmimgGalleryTagEdit.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmimgGalleryTagEdit.Description.$valid && frmimgGalleryTagEdit.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmimgGalleryTagEdit.Description.$invalid && !frmimgGalleryTagEdit.Description.$pristine) || frmimgGalleryTagEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="imgGalleryTag.selectedItem.previewImageSrc != null">
+                                <label class="col-sm-2 control-label"> {{'IMAGE'|lowercase|translate}} </label>
+                                <img src="{{imgGalleryTag.selectedItem.previewImageSrc}}"  width="300" height="300" class="img-rounded col-sm-3 col-md-3 col-lg-3" alt="{{imgGalleryTag.selectedItem.Title}}" />
+                            </div>
+                            <div id="treecontrol" class="form-group">
+                                <label class="col-sm-2 control-label">{{'SELECT_ICON'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div treecontrol class="tree-boot" style="color:black"
+                                         tree-model="imgGalleryTag.dataForTheTree"
+                                         options="imgGalleryTag.treeOptions"
+                                         selected-node="imgGalleryTag.selectedNode"
+                                         expanded-nodes="imgGalleryTag.expandedNodes"
+                                         on-selection="imgGalleryTag.onSelection(node, selected)"
+                                         on-node-toggle="imgGalleryTag.onNodeToggle(node, expanded)">
+                                        {{node.Title}}{{node.FileName}}&nbsp;&nbsp;<label class="label-control" style="color:#ff6500;font-style:italic;font-size:12px;">{{node.messageText}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="imgGalleryTag.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="imgGalleryTag.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

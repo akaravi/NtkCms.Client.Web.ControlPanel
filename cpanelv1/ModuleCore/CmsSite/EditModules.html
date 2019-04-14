@@ -1,0 +1,103 @@
+﻿<style>
+    table,
+    td,
+    th {
+        border-bottom: 1px dashed #29a2d9;
+        text-align: right;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 1px;
+    }
+
+    tr.odd {
+        background: yellow;
+    }
+
+    tr.even {
+        background: cyan;
+    }
+
+    .enabled {
+        background-color: #c6edff;
+    }
+
+    .disabled {
+        background-color: #d6d6d6;
+    }
+</style>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="$dismiss()"></i>
+            <h3 class="m-t-none m-b"> {{ cmsSitegrd.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmCmsSiteAdd" novalidate
+                ng-submit="cmsSitegrd.EditModuleSites(frmCmsSiteAdd)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <table>
+                            <tr>
+                                <th> ماژول</th>
+                                <th>تاریخ تمدید</th>
+                                <th>تاریخ انقضا</th>
+                                <th>تنظیمات سایت</th>
+                            </tr>
+                            <tr ng-repeat="x in cmsSitegrd.cmsModulesListItems"
+                                ng-class="{enabled: x.Checked, disabled: !x.Checked}">
+                                <td>
+                                    <div
+                                        ng-show="cmsSitegrd.cmsModulesSiteresultAccess.AccessEditField.indexOf('ExpireDate')>=0">
+                                        <input type="checkbox" ng-model="x.Checked"
+                                            ng-click="cmsSitegrd.onModuleCkeckedChange( x)">
+                                    </div>
+                                    <div
+                                        ng-show="cmsSitegrd.cmsModulesSiteresultAccess.AccessEditField.indexOf('ExpireDate')<0">
+                                        <input type="checkbox" ng-model="x.Checked" disabled>
+                                    </div>
+                                    &nbsp;<h4>
+                                        {{x.Title}}</h4>
+                                </td>
+                                <td>
+                                    # <label>{{x.RenewDate|jalaliDate:'HH:mm jYY/jMM/jDD'}}</label>
+                                </td>
+                                <td>
+                                    <div
+                                        ng-show="cmsSitegrd.cmsModulesSiteresultAccess.AccessEditField.indexOf('ExpireDate')<0">
+                                        <label>{{x.ModuleSiteExpireDate|jalaliDate:'HH:mm jYY/jMM/jDD'}}</label>
+                                    </div>
+                                    <div
+                                        ng-show="cmsSitegrd.cmsModulesSiteresultAccess.AccessEditField.indexOf('ExpireDate')>=0">
+                                        <adm-dtp ng-model='ExpireDate' ng-model-db="x.ModuleSiteExpireDate"
+                                            full-data='ExpireDate_detail'
+                                            options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}'
+                                            on-close="cmsSitegrd.onModuleCkeckedChange(x)"></adm-dtp>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a class="btn btn-success" id="ModuleConfigSiteAccessValuesJson"
+                                        ng-disabled="cmsSitegrd.addRequested"
+                                        ng-click="cmsSitegrd.openModuleConfigModal(x)" title="تنظیمات وب سایت">
+                                        تنظیمات
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="cmsSitegrd.addRequested"
+                        type="submit">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button"
+                        ng-click="$dismiss()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

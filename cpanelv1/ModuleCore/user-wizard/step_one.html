@@ -1,0 +1,20 @@
+<fieldset rasha-loading="register.sendSmsActivationCodeBusyIndicator">
+    <h3><i class="fa fa-mobile"></i> {{'ENTER_MOBILE_NUMBER'|lowercase|translate}}</h3>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="form-group">                
+                <input id="userName" ng-model="register.selectedItem.Username" name="username" type="text" class="form-control text-left" ng-required="true">
+                <p ng-show="signupForm.username.$error.requierd" class="help-block">{{'ENTER_MOBILE_NUMBER_FOR_CONTINUE'|lowercase|translate}}</p>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="text-center">
+                <p class="text-justify">                    
+                    {{'MOBILE_NUMBER_ERROR_USER_WIZARD'|lowercase|translate}}
+                </p>
+            </div>
+        </div>
+    </div>
+    <a ng-click="register.gotoStepTwo(signupForm)" class="btn btn-primary pull-right" ng-class="{ 'disabled' : signupForm.$invalid }">{{'NEXT_LEVEL'|lowercase|translate}}</a>
+</fieldset>

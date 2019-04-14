@@ -1,0 +1,29 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="cmsModuleSitegrd.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ cmsModuleSitegrd.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmCmsModuleSiteEdit" novalidate ng-submit="cmsModuleSitegrd.editRow(frmCmsModuleSiteEdit)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsModuleSitegrd.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmcmsModuleSitegrdEdit.RecordStatus.$invalid && !frmcmsModuleSitegrdEdit.RecordStatus.$pristine,'has-success' : frmcmsModuleSitegrdEdit.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label">{{'CONDITION'|lowercase|translate}}</label>
+                    <div class="col-sm-10" rasha-record-status="cmsModuleSitegrd"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class='form-group' ng-show="cmsModuleSitegrd.gridOptions.resultAccess.AccessEditField.indexOf('ExpireDate')>-1">
+                    <label class='col-sm-2 control-label'>{{'EXPIRAITION_DATA' |lowercase|translate}}</label>
+                    <div class="col-sm-6  col-md-4">
+                        <div rasha-date-picker="cmsModuleSitegrd.ExpireDate" ng-model="cmsModuleSitegrd.selectedItem.ExpireDate"></div><input type="hidden" ng-model="cmsModuleSitegrd.selectedItem.ExpireDate" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="cmsModuleSitegrd.addRequested" type="submit">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="cmsModuleSitegrd.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

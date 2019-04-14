@@ -1,0 +1,440 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="shopContent.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Content' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmshopContentEdit" novalidate ng-submit="shopContent.editContent(frmshopContentEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'Specifications' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="shopContent.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                                 ng-class="{'has-error' : frmshopContentEdit.RecordStatus.$invalid && !frmshopContentEdit.RecordStatus.$pristine,'has-success' : frmshopContentEdit.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="shopContent"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="shopContent.gridOptions.resultAccess.AccessAddField.indexOf('LinkCategoryId')>-1">
+                                <label class="col-sm-2 control-label">{{'category'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkCategoryId" rasha-autocomplete="shopContent.LinkCategoryIdSelector" ng-model="shopContent.selectedItem.LinkCategoryId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="shopContent.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                                 ng-class="{'has-error' : frmshopContentEdit.Title.$invalid && !frmshopContentEdit.Title.$pristine,'has-success' : frmshopContentEdit.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           ng-model="shopContent.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmshopContentEdit.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmshopContentEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmshopContentEdit.Title.$valid && frmshopContentEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmshopContentEdit.Title.$invalid && !frmshopContentEdit.Title.$pristine) || frmshopContentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-show="frmshopContentEdit.gridOptions.resultAccess.AccessEditField.indexOf('SerialRfId')>-1||frmshopContentEdit.gridOptions.resultAccess.AccessWatchField.indexOf('SerialRfId')>-1">
+                                <label class="col-sm-2 control-label">{{'RfId_Serial'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-readonly="frmshopContentEdit.gridOptions.resultAccess.AccessEditField.indexOf('SerialRfId')<0 && frmshopContentEdit.gridOptions.resultAccess.AccessWatchField.indexOf('SerialRfId')>-1"
+                                           name="SerialRfId"
+                                           ng-model="frmshopContentEdit.selectedItem.SerialRfId" />
+                                </div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-show="frmshopContentEdit.gridOptions.resultAccess.AccessEditField.indexOf('SerialNumber')>-1||frmshopContentEdit.gridOptions.resultAccess.AccessWatchField.indexOf('SerialNumber')>-1">
+                                <label class="col-sm-2 control-label">{{'Serial_Number'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-readonly="frmshopContentEdit.gridOptions.resultAccess.AccessEditField.indexOf('SerialNumber')<0 && frmshopContentEdit.gridOptions.resultAccess.AccessWatchField.indexOf('SerialNumber')>-1"
+                                           name="SerialNumber"
+                                           ng-model="frmshopContentEdit.selectedItem.SerialNumber" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group' ng-class="{'has-error' : frmshopContentEdit.Description.$invalid && !frmshopContentEdit.Description.$pristine,'has-success' : frmshopContentEdit.Description.$valid}">
+                                <label class='col-sm-2 control-label'>{{'description'|lowercase|translate}}</label>
+                                <div class='col-sm-10'>
+                                    <textarea type='text' ng-required="true" ng-model='shopContent.selectedItem.Description' class='form-control' style="resize: vertical;height: 100px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmshopContentEdit.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmshopContentEdit.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmshopContentEdit.Description.$valid && frmshopContentEdit.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmshopContentEdit.Description.$invalid && !frmshopContentEdit.Description.$pristine) || frmshopContentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'FULL_CONTENT'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <div summernote class="summernote" config="newsContent.summernoteOptions" ng-model="shopContent.selectedItem.Body">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'TAGS'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+
+                                    <tags-input ng-model="shopContent.tags" placeholder="{{'Tag'|lowercase|translate}}" min-length="2" add-from-autocomplete-only="true" add-on-comma="true">
+                                        <auto-complete source="shopContent.loadTags($query)" module="shoptag" style="font-family: 'Yekan'"></auto-complete>
+                                    </tags-input>
+                                    <small>{{'Important_words_used_in_related_content_in_the_tag'|lowercase|translate}}</small>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'PRICE'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input type="number" name="Price" ng-model="shopContent.selectedItem.Price" class="form-control" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'Price_Befor_Off'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input type="number" name="PriceBeforOff" min="0" ng-model="shopContent.selectedItem.PriceBeforOff" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'PRODUCT_UNIT'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="ProductUnit" min="0" ng-model="shopContent.selectedItem.ProductUnit" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'BUY_POINTS'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="BuyPoints" min="0" ng-model="shopContent.selectedItem.BuyPoints" class="form-control" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <label class="checkbox-inline">
+                                        <input icheck type="checkbox" value="IsAvailable" ng-model="shopContent.selectedItem.IsAvailable" /><h4>{{'Is_Available'|lowercase|translate}}</h4>
+                                    </label>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Goods'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class="hr-line-dashed"></div>
+                            <div id="set-shopcontent-panel" class="back1">
+                                <br />
+                                <div class="form-group">
+                                    <div class="col-sm-12" style="margin-top:7px;">
+
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{'Goods'|lowercase|translate}}</label>
+                                            <div class="col-sm-8">
+                                                <input class="form-control" name="ItemListId" rasha-autocomplete="shopContent.ItemListIdSelector" ng-model="shopContent.selectedItem.ItemListId" />
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <a ng-click="shopContent.moveSelected('Item', 'to',false)" class="btn btn-primary pull-right" aria-label="Settings" style="margin-right: 8px; margin-bottom: 8px;">{{'ADD_NOW' |lowercase|translate}}&nbsp;<i class="fa fa-plus" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+                                            </div>
+                                        </div>
+                                        <!--<select multiple="" size="10" id="Item" class="col-sm-12 form-control" style="overflow-x:auto">
+                                            <option ng-repeat="x in shopContent.otherItemListItems" source="Item" value="{{x.Id}}">{{x.Title}}</option>
+                                        </select>-->
+                                    </div>
+                                    
+                                    <div class="col-sm-12" style="margin-top:7px;">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{'Combined_Goods'|lowercase|translate}}</label>
+                                            <div class="col-sm-8">
+                                                <input class="form-control" name="CombineListId" rasha-autocomplete="shopContent.CombineListIdSelector" ng-model="shopContent.selectedItem.CombineListId" />
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <a ng-click="shopContent.moveSelected('Combine', 'to',false)" class="btn btn-primary pull-right" aria-label="Settings" style="margin-right: 8px; margin-bottom: 8px;">{{'ADD_NOW' |lowercase|translate}}&nbsp;<i class="fa fa-plus" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+                                            </div>
+                                        </div>
+                                        <!--<label>اجناس ترکیبی</label>
+                                        <select multiple="" size="10" id="Combine" class="col-sm-12 form-control" style="overflow-x:auto">
+                                            <option ng-repeat="x in shopContent.otherCombineListItems" source="Combine" value="{{x.Id}}">{{x.Title}}</option>
+                                        </select>-->
+                                    </div>
+                                    <div class="col-sm-12" style="margin-top:7px;">
+
+
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{'SERVICES'|lowercase|translate}}</label>
+                                            <div class="col-sm-8">
+                                                <input class="form-control" name="ServiceListId" rasha-autocomplete="shopContent.ServiceListIdSelector" ng-model="shopContent.selectedItem.ServiceListId" />
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <a ng-click="shopContent.moveSelected('Service', 'to',false)" class="btn btn-primary pull-right" aria-label="Settings" style="margin-right: 8px; margin-bottom: 8px;">{{'ADD_NOW' |lowercase|translate}}&nbsp;<i class="fa fa-plus" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+                                            </div>
+                                        </div>
+                                        <!--<label>خدمات</label>
+                                        <select multiple="" size="10" id="Service" class="col-sm-12 form-control" style="overflow-x:auto">
+                                            <option ng-repeat="x in shopContent.otherServiceListItems" source="Service" value="{{x.Id}}">{{x.Title}}</option>
+                                        </select>-->
+                                    </div>
+                                    <div class="col-sm-12" style="margin-top:7px;">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">{{'Activities'|lowercase|translate}}</label>
+
+                                            <div class="col-sm-8">
+                                                <input class="form-control" name="ProcessListId" rasha-autocomplete="shopContent.ProcessListIdSelector" ng-model="shopContent.selectedItem.ProcessListId" />
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <a ng-click="shopContent.moveSelected('Process', 'to',false)" class="btn btn-primary pull-right" aria-label="Settings" style="margin-right: 8px; margin-bottom: 8px;">{{'ADD_NOW' |lowercase|translate}}&nbsp;<i class="fa fa-plus" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+                                            </div>
+                                        </div>
+
+                                        <!--<label>فعّالیت ها</label>
+                                        <select multiple="" size="10" id="Process" class="col-sm-12 form-control" style="overflow-x:auto">
+                                            <option ng-repeat="x in shopContent.otherProcessListItems" source="Process" value="{{x.Id}}">{{x.Title}}</option>
+                                        </select>-->
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <!--<div class="col-sm-12">
+                                        <h4>کالا</h4>
+                                        <div class="controls">
+                                        </div>
+                                        <select multiple="" id="to" class="col-sm-6 form-control" size="10" name="topics[]">
+                                            <option ng-repeat="x in shopContent.collectionListItems" source="Process" value="{{x.Id}}">{{x.Title}}</option>
+                                        </select>
+                                        <a ng-click="shopContent.moveBack('to',false)" class="btn btn-danger" aria-label="Delete" style="margin-top: 8px;"> {{'REMOVE_FROM_LIST'|lowercase|translate}}&nbsp;<i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                    </div>-->
+                                    <div class="col-sm-12">
+                                        <h4>{{'Commodity'|lowercase|translate}}</h4>
+                                        <div class="controls">
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <table class="table table-striped table-bordered table-responsive floatThead-table" style="border:1px solid gray;max-height:400px;overflow:auto;">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width:370px">منبع</th>
+                                                    <th style="width:370px">{{'title' |lowercase|translate}}</th>
+                                                    <th style="width:370px">قیمت</th>
+                                                    <th>{{'OPERATOIN' |lowercase|translate}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="x in shopContent.collectionListItems" style="max-height:30px">
+                                                    <td style="overflow:hidden">
+                                                        {{x.Source}}
+                                                    </td>
+                                                    <td style="overflow:hidden">
+                                                        {{x.Title}}
+                                                    </td>
+                                                    <td style="overflow:hidden">
+                                                        {{x.Price}}
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-danger" ng-click="shopContent.removeFromCollection(x)" aria-label="Delete"> {{'REMOVE_FROM_LIST'|lowercase|translate}}&nbsp;<i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    <label class="checkbox-inline">
+                                        <input icheck type="checkbox" value="option1" id="MostSaleSerial" ng-model="shopContent.selectedItem.MostSaleSerial" /> {{'MostSaleSerial'|lowercase|translate}}
+                                    </label>
+                                </div>
+                                <a class="btn btn-primary pull-right" ng-click="shopContent.SaveSerial()" style="margin-right: 8px; margin-bottom: 8px;" ng-disabled="!shopContent.selectedItem.MostSaleSerial">{{'ADD_NOW'|lowercase|translate}}</a>
+                            </div>
+
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Similar_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class="form-group back1">
+                                <br />
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'Related' |lowercase|translate}}</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" name="LinkDestinationId" rasha-autocomplete="shopContent.LinkDestinationIdSelector" ng-model="shopContent.selectedItem.LinkDestinationId" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <a ng-click="shopContent.moveSelectedSimilar('Content', 'to',false)" class="btn btn-primary" aria-label="Settings" style="margin-right: 8px; margin-bottom: 8px;">{{'ADD_NOW' |lowercase|translate}}&nbsp;<i class="fa fa-plus" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="controls">
+                                    </div>
+                                    <br />
+                                    <table class="table table-striped table-bordered table-responsive floatThead-table" style="border:1px solid gray;max-height:400px;overflow:auto;">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:370px">{{'title' |lowercase|translate}}</th>
+                                                <th>{{'OPERATOIN' |lowercase|translate}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in shopContent.selectedItem.Similars" style="max-height:30px">
+                                                <td style="overflow:hidden">
+                                                    {{x.Destination.Title}}
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-danger" ng-click="shopContent.removeFromCollectionSimilar(shopContent.selectedItem.Similars,x.LinkDestinationId)" aria-label="Delete"> {{'REMOVE_FROM_LIST'|lowercase|translate}}&nbsp;<i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+
+                    <tab heading="{{'Additional_Information'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class="form-group back2">
+                                <h4>{{'Additional_Information' |lowercase|translate}}</h4>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'title' |lowercase|translate}}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" ng-model="shopContent.selectedItemOtherInfos.Title" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'Information' |lowercase|translate}}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" ng-model="shopContent.selectedItemOtherInfos.HtmlBody" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'Information_Source' |lowercase|translate}}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" ng-model="shopContent.selectedItemOtherInfos.Source" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a ng-click="shopContent.moveSelectedOtherInfo('Content', 'to')" class="btn btn-primary" aria-label="Settings" style="margin-right: 8px; margin-bottom: 8px;">{{'ADD_NOW' |lowercase|translate}}&nbsp;<i class="fa fa-plus" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+                                </div>
+                                <br />
+                                <div class="col-sm-12">
+                                    <h4>{{'Information' |lowercase|translate}}</h4>
+                                    <div class="controls">
+                                    </div>
+                                    <br />
+                                    <table class="table table-striped table-bordered table-responsive floatThead-table" style="border:1px solid gray;max-height:400px;overflow:auto;">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:20%">{{'title' |lowercase|translate}}</th>
+                                                <th style="width:40%">{{'Information' |lowercase|translate}}</th>
+                                                <th style="width:20%">{{'SOURCE' |lowercase|translate}}</th>
+                                                <th>{{'OPERATOIN' |lowercase|translate}}</th>
+                                                <th>{{'OPERATOIN' |lowercase|translate}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="y in shopContent.selectedItem.OtherInfos" style="max-height:30px">
+                                                <td style="overflow:hidden">
+                                                    {{y.Title}}
+                                                </td>
+                                                <td style="overflow:hidden">
+                                                    <div ng-bind-html="y.HtmlBody"></div>
+                                                </td>
+                                                <td style="overflow:hidden">
+                                                    {{y.Source}}
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-danger" ng-click="shopContent.editOtherInfo(y)"> Edit&nbsp;<i class="fa fa-edit" aria-hidden="true"></i></a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-danger" ng-click="shopContent.removeFromOtherInfo(shopContent.selectedItem.OtherInfos,y.Title,y.HtmlBody,y.Source)" aria-label="Delete"> {{'REMOVE_FROM_LIST'|lowercase|translate}}&nbsp;<i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>						
+                    <tab heading="{{'Attachments_Files'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'MAIN_IMAGE'|lowercase|translate}} </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="shopContent.openUploadModal()" aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <label>{{shopContent.FileItem.FileName}}</label>
+                                <div class="col-sm-8 samallManager">
+                                    <div rasha-file-picker-b="shopContent.filePickerMainImage" ng-model="shopContent.selectedItem.LinkMainImageId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> Podcast </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="shopContent.openUploadModalPodcast()" aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="shopContent.filePickerFilePodcast" ng-model="shopContent.selectedItem.LinkFilePodcastId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'ATTACH_FILE'|lowercase|translate}} </label>
+                                <div class="col-sm-8 samallManager">
+                                    <div rasha-file-picker-b="shopContent.filePickerFiles" ng-model="shopContent.selectedItem.LinkFileIds"></div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a class="btn btn-primary" ng-click="shopContent.addAttachedFile(shopContent.selectedItem.LinkFileIds)" style="margin-right: -52px;margin-top: 1px;">
+                                        <i class="fa fa-" aria-hidden="true" title="{{'ADD_FILE'|lowercase|translate}}" style="font-family: iransans;font-size: 12px;"> {{'ADD_FILE'|lowercase|translate}} </i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group col-sm-12" ng-repeat="x in shopContent.attachedFiles">
+                                    <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                                    <div class="input-group">
+                                        <input type="text" id="option{{$index}}" class="form-control" ng-required="true" name="attachedFileName" required readonly="readonly" ng-model="x.filename">
+                                        <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="shopContent.deleteAttachedFile($index)"><i class="fa fa-remove"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="shopContent.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="shopContent.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+
+
+
+    </div>
+</div>

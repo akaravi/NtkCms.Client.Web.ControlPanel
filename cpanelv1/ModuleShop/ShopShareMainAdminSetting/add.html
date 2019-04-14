@@ -1,0 +1,65 @@
+﻿<style>
+    [treecontrol].tree-boot i.tree-branch-head,
+    [treecontrol].tree-boot i.tree-leaf-head {
+        float: right;
+        height: 16px;
+        margin: 5px;
+    }
+</style>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="shopShareServerCategory.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Category' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmshopShareServerCategoryAdd" novalidate ng-submit="shopShareServerCategory.addNewCategory(frmshopShareServerCategoryAdd)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmshopShareServerCategoryAdd.RecordStatus.$invalid && !frmshopShareServerCategoryAdd.RecordStatus.$pristine,'has-success' : frmshopShareServerCategoryAdd.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="shopShareServerCategory"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmshopShareServerCategoryAdd.Title.$invalid && !frmshopShareServerCategoryAdd.Title.$pristine,'has-success' : frmshopShareServerCategoryAdd.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           ng-model="shopShareServerCategory.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmshopShareServerCategoryAdd.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmshopShareServerCategoryAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmshopShareServerCategoryAdd.Title.$valid && frmshopShareServerCategoryAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmshopShareServerCategoryAdd.Title.$invalid && !frmshopShareServerCategoryAdd.Title.$pristine) || frmshopShareServerCategoryAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-class="{'has-error' : frmshopShareServerCategoryAdd.Description.$invalid && !frmshopShareServerCategoryAdd.Description.$pristine,'has-success' : frmshopShareServerCategoryAdd.Description.$valid}">
+                                <label class="col-sm-2 control-label">{{'description'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" ng-required="true" name="Description" ng-model="shopShareServerCategory.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmshopShareServerCategoryAdd.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmshopShareServerCategoryAdd.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmshopShareServerCategoryAdd.Description.$valid && frmshopShareServerCategoryAdd.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmshopShareServerCategoryAdd.Description.$invalid && !frmshopShareServerCategoryAdd.Description.$pristine) || frmshopShareServerCategoryAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="shopShareServerCategory.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="shopShareServerCategory.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

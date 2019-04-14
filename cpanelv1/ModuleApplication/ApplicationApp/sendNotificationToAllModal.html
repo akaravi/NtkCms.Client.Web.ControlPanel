@@ -1,0 +1,191 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="appApplication.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{'BULK_SEND'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmappApplicationEdit" novalidate ng-submit="appApplication.sendMessageToAll()">
+                <div class='hr-line-dashed'></div>
+                <fieldset class="form-group row">
+                    <label class="col-sm-2 control-label">{{'RECIEVER'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="all" ng-click="appApplication.onReceiverChange('all')" checked>
+                                {{'ALL'|lowercase|translate}}
+                            </label>
+                        </div>
+                        <div class="form-check disabled">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="chatid" ng-click="appApplication.onReceiverChange('memberId')">
+                                {{'CERTAIN_ID'|lowercase|translate}}
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="form-group" ng-show="appApplication.show_memberId">
+                    <label class="col-sm-2 control-label"> {{'CERTAIN_ID'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="chatId" ng-model="appApplication.selectedItem.memberIds" />
+                        <br />
+                        شناسه عضویت در بخش کاربران اپلیکیشن
+                    </div>
+                </div>
+        
+
+
+
+                <div class="form-group" >
+                    <label class="col-sm-2 control-label">{{'title'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-model="appApplication.selectedItem.Title" />
+                    </div>
+                </div>
+                <div class="form-group" >
+                    <label class="col-sm-2 control-label">{{'TEXT'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" ng-model="appApplication.selectedItem.Content" style="height: 85px;"></textarea>
+                    </div>
+                </div>
+            
+                
+                    <div class="panel-body">
+                        <div class='hr-line-dashed'></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"> {{'attachments_small_image'|lowercase|translate}} </label>
+                            <a class="btn btn-primary uoload-file-m" href="" ng-click="appApplication.openUploadModal()" aria-label="Delete">
+                                {{'UPLOAD'|lowercase|translate}}
+                                <i class="fa fa-upload" aria-hidden="true"></i>
+                            </a>
+                            <div class="col-sm-8 smallFileManager">
+                                <div rasha-file-picker-b="appApplication.filePickerSmallImage" ng-model="appApplication.selectedItem.SmallImageId">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="panel-body">
+                        <div class='hr-line-dashed'></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"> {{'attachments_big_image'|lowercase|translate}} </label>
+                            <a class="btn btn-primary uoload-file-m" href="" ng-click="appApplication.openUploadModal()" aria-label="Delete">
+                                {{'UPLOAD'|lowercase|translate}}
+                                <i class="fa fa-upload" aria-hidden="true"></i>
+                            </a>
+                            <div class="col-sm-8 smallFileManager">
+                                <div rasha-file-picker-b="appApplication.filePickerBigImage" ng-model="appApplication.selectedItem.BigImageId">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+
+
+
+                <!-- فیلدهای زمانبندی -->
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Timing_Type'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <div class="col-sm-10">
+                            <select class='form-control' name="ScheduleCronType" ng-model="appApplication.selectedItem.ScheduleCronType" ng-change="appApplication.onScheduleTypeChange(appApplication.selectedItem.ScheduleCronType)" ng-options="x.Value as x.Description for x in appApplication.ScheduleCronType"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="border:1px solid blue; border-radius:5px;">
+                    <div class="form-group" ng-show="appApplication.showonce">
+                        <label class="col-sm-2  control-label">تاریخ</label>
+                        <div class="col-sm-6  col-md-4">
+                            <div rasha-date-picker="appApplication.CronOnceDate" ng-model="appApplication.selectedItem.CronOnceDate"></div><input type="hidden" />
+                        </div>
+                    </div>
+                    <div ng-show="appApplication.showHourly" class="form-group">
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronHourlyMinute" ng-model="appApplication.selectedItem.CronHourlyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                    <div ng-show="appApplication.showDaily" class="form-group">
+                        <label class="col-sm-2 control-label ">ساعت</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronDailyHour" ng-model="appApplication.selectedItem.CronDailyHour" min="0" max="23" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronDailyMinute" ng-model="appApplication.selectedItem.CronDailyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                    <div class="form-group scedule" ng-show="appApplication.showWeekly">
+                        <div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label ">{{'Label_Days'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div ng-repeat="x in appApplication.weekdays">
+                                        <label><input type="radio" name="{{x.Key}}" value="{{x.Value}}" ng-model="appApplication.selectedItem.CronWeeklyDayOfWeek">{{x.Key}}</label>
+
+                                        <!--<input type="radio" name="{{x.value}}" value="{{x.value}}" class="Weekday" ng-checked="x.checked" />{{x.Key}}-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">ساعت</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronWeeklyHour" ng-model="appApplication.selectedItem.CronWeeklyHour" min="0" max="23" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronWeeklyMinute" ng-model="appApplication.selectedItem.CronWeeklyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                    <div ng-show="appApplication.showmonthly" class="form-group">
+                        <label class="col-sm-2 control-label ">{{'Label_Days'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control monthDay" type="number" name="CronMonthlyDay" ng-model="appApplication.selectedItem.CronMonthlyDay" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">ساعت</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronMonthlyHour" ng-model="appApplication.selectedItem.CronMonthlyHour" min="0" max="23" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronMonthlyMinute" ng-model="appApplication.selectedItem.CronMonthlyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                    <div ng-show="appApplication.showmonthlyYear" class="form-group">
+                        <label class="col-sm-2 control-label ">ماه های سال</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronYearlyMonth" ng-model="appApplication.selectedItem.CronYearlyMonth" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">{{'Label_Days'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control monthDay" type="number" name="CronYearlyDay" ng-model="appApplication.selectedItem.CronYearlyDay" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">ساعت</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronMonthlyHour" ng-model="appApplication.selectedItem.CronYearlyHour" min="0" max="23" />
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <label class="col-sm-2 control-label ">دقیقه</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="number" name="CronMonthlyMinute" ng-model="appApplication.selectedItem.CronYearlyMinute" min="0" max="59" />
+                        </div>
+                    </div>
+                </div>
+                <!-- فیلدهای زمانبندی -->
+
+        <div class='hr-line-dashed'></div>
+        <div class="form-group">
+            <button class="btn btn-primary" ng-disabled="appApplication.addRequested" type="submit">{{appApplication.sendButtonText}}</button>
+            <button class="btn btn-default" type="button" ng-click="appApplication.closeModal()">{{'cancel'|lowercase|translate}}</button>
+        </div>
+        </form>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="cmsModuleSaleSerial.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Sale_Serial_Number'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmcmsModuleSaleSerialEdit" novalidate ng-submit="cmsModuleSaleSerial.editContent(frmcmsModuleSaleSerialEdit)">
+                
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmcmsModuleSaleSerialAdd.LinkSourceId.$invalid && !frmcmsModuleSaleSerialAdd.LinkSourceId.$pristine,'has-success' : frmcmsModuleSaleSerialAdd.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="cmsModuleSaleSerial"></div>
+                </div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'> {{'PRICE'|lowercase|translate}} </label>
+                    <div class='col-sm-10'>
+                        <input type='number' ng-required="true" ng-model='cmsModuleSaleSerial.selectedItem.Price' class='form-control' />
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'> {{'Serial_Number'|lowercase|translate}} </label>
+                    <div class='col-sm-10'>
+                        <input type='text' ng-required="true" ng-model='cmsModuleSaleSerial.selectedItem.SerialNumber' class='form-control' />
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'> {{'Number_Of_Max_Use'|lowercase|translate}} </label>
+                    <div class='col-sm-10'>
+                        <input type='number' ng-required="true" ng-model='cmsModuleSaleSerial.selectedItem.NumberOfMaxUse' class='form-control' />
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <label class='col-sm-2 control-label'> {{'Pwd_For_Use'|lowercase|translate}} </label>
+                    <div class='col-sm-10'>
+                        <input type='text' ng-required="true" ng-model='cmsModuleSaleSerial.selectedItem.PwdForUse' class='form-control' />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <label class="checkbox-inline">
+                            <input icheck type="checkbox" value="" id="HasDemo" ng-model="cmsModuleSaleSerial.selectedItem.HasDemo" /> {{'Has_Demo'|lowercase|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <label class="checkbox-inline">
+                            <input icheck type="checkbox" value="" id="HasUsed" ng-model="cmsModuleSaleSerial.selectedItem.HasUsed" /> {{'Has_Used'|lowercase|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2  control-label"> {{'Max_Expire_To_Use'|lowercase|translate}}&nbsp;{{'INSERT'|lowercase|translate}} </label>
+                    <div class="col-sm-6  col-md-4">
+                        <div rasha-date-picker="cmsModuleSaleSerial.endDate" ng-model="cmsModuleSaleSerial.selectedItem.MaxExpireToUse"></div><input type="hidden" ng-model="cmsModuleSaleSerial.selectedItem.MaxExpireToUse" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="cmsModuleSaleSerial.gridOptions.resultAccess.AccessEditField.indexOf('LinkSiteIdDeposit')>-1">
+                    <label class="col-sm-2 control-label"> {{'Link_Site_Id_Deposit'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkSiteIdDeposit" rasha-autocomplete="cmsModuleSaleSerial.LinkSiteIdDepositSelector" ng-model="cmsModuleSaleSerial.selectedItem.LinkModuleId" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="cmsModuleSaleSerial.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="cmsModuleSaleSerial.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form><style>.pull-right{margin: 1px 28px;}</style>
+        </div>
+    </div>
+</div>

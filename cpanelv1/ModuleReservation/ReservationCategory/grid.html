@@ -1,0 +1,29 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="reservationcategoryCtrl as reservationcategory" ng-init="reservationcategory.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="reservationcategory.categoryBusyIndicator"></div>
+            <button class="btn btn-primary" rasha-userrole="reservationcategory.Add" ng-click="reservationcategory.openAddModal()" ng-show="reservationcategory.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="reservationcategory.Edit" ng-click="reservationcategory.openEditModal()"ng-show="reservationcategory.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="reservationcategory.Delete" ng-click="reservationcategory.deleteRow()" ng-show="reservationcategory.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="reservationcategory.showAdvancedSearchPanel(reservationcategory.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-primary" type="button" ng-click="reservationcategory.reportData()"> {{'report'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="reservationcategory" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="reservationcategory" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="reservationcategory.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

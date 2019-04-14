@@ -1,0 +1,346 @@
+﻿
+
+
+<style>
+    body {
+        background-image: url(cpanelv1/images/bg_Dashboard.jpg);
+    }
+
+    p {
+        direction: ltr;
+    }
+
+    #divcontainer {
+        background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQptHK_r3d0klIF97kqe9tT3C5fGSIzydWduB-KJUPoPmMfjENK);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        margin: 30px;
+        position: relative;
+        background-color: yellow;
+        height: 400px;
+    }
+
+    #divcontainerSurce {
+        position: relative;
+        background-color: rgba(0, 0, 0, 0.3);
+        box-shadow: 0 1px 5px rgba(0,0,0,.1);
+        border-radius: 5px;
+        height: 120px;
+    }
+
+    #divcontainerdelete {
+        position: relative;
+        background-color: rgba(0, 0, 0, 0.3);
+        box-shadow: 0 1px 5px rgba(0,0,0,.1);
+        border-radius: 5px;
+        height: 120px;
+        z-index: 1;
+    }
+
+    #containerControler {
+        position: relative;
+        background-color: rgba(0, 0, 0, 0.4);
+        box-shadow: 0 1px 5px rgba(0,0,0,.1);
+        border-radius: 5px;
+        color: white;
+        height: 200px;
+        padding: 10px 20px;
+        margin: 10px 0px;
+    }
+
+    .dragg {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        -ms-user-select: none;
+        -khtml-user-select: none;
+        user-select: none;
+    }
+
+    /*.dragg:active img,
+            .dragg:focus {
+                border: 2px solid red !important;
+            }*/
+
+    img:focus {
+        border: 2px solid red !important;
+    }
+
+    .glyphicon {
+        margin-right: 10px;
+        font-size: 20px;
+    }
+</style>
+<link href="cpanelv1/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="/fonts/mfn-icons.css" type="text/css">
+<link rel="stylesheet" href="/fonts/font-awesome/css/font-awesome.css" type="text/css">
+<link rel="stylesheet" href="/fonts/fontiran.css" type="text/css">
+<div class="modal-body " style="right:-660px;width:1600px">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <div class="col-xs-12">
+                <div class="col-sm-2" style="float:left;width:10%;margin-top: 10%;">
+                    <center>
+                        <div id='divcontainerSurce'>
+
+                            <div id="type1" class="dragg" onmousedown='mydragg.startMoving(this);' style="width:60px;height: 60px; background-color: green;    display: inline-block;position: relative;">
+                                <img src="../template/bootstrap/images/top-view-cloth-covered-office-chair-isolated-on-white-background-3d-KMD9PC.jpg" style="width:100%;height:100%;z-index: 10;" />
+                            </div>
+
+
+                            <!--<div id="type2" class="dragg" onmousedown='mydragg.startMoving(this);' style="width:50px;height: 50px;z-index: 10;    display: inline-block; background-color: red;position: relative;">
+                                تست
+                                type2
+                            </div>-->
+                        </div>
+                    </center>
+                    <div id='containerControler'>
+                        <p onclick="mydragg.startSize()" style="font-size: 20px;">
+                            <i class="glyphicon glyphicon-resize-full"></i>
+                            Size
+                        </p>
+                        <p onclick="mydragg.startRotator()" style="font-size: 20px;">
+                            <i class="glyphicon glyphicon-repeat"></i>
+                            Rotator
+                        </p>
+                        <p onclick="mydragg.startRotatorZiro()" style="font-size: 16px;">
+                            <i class="glyphicon glyphicon-repeat"></i>
+                            Rotator Ziro
+                        </p>
+                        <p onclick="mydragg.startRemove()" style="font-size: 20px;">
+                            <i class="glyphicon glyphicon-trash"></i>
+                            remove
+                        </p>
+                    </div>
+
+                    <div id='divcontainerdelete'>
+                        <img src="../template/bootstrap/images/download.png" style="width:50%;height:50%;margin-top: 30px;margin-left: 38px;" />
+                    </div>
+                </div>
+                <div class="col-sm-10" style="margin-top: 10%;">
+                    <div id='divcontainer'>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+            <button class="btn btn-primary"  ng-click="place.SaveDesign(mydragg.arrayList)"> {{'save'|lowercase|translate}} </button>
+        </div>
+    </div>
+</div>
+<script>
+
+
+    var joystickX;
+    var joystickY;
+
+    var mydragg = function () {
+        var arrayList = [];
+        var container;
+        var containerSource;
+        var containerDelete;
+        var elementLast;
+        var cloneNodeId = 0;
+        return {
+            startMoving: function (divid, evt) {
+                elementLast = divid;
+                if (divid.parentElement.id == containerSource.id) {
+                    cloneNodeId++;
+                    mydragg.startClone(divid.id, divid.id + cloneNodeId, container);
+                    return;
+                }
+
+
+                var eWs = divid.offsetLeft;
+                var eWi = divid.offsetWidth;
+                if (!eWs) eWs = 0;
+                if (!eWi) eWi = 0;
+
+                var eHs = divid.offsetTop;
+                var eHi = divid.offsetHeight;
+                if (!eHs) eHs = 0;
+                if (!eHi) eHi = 0;
+
+                var cWs = container.offsetLeft;
+                var cWi = container.offsetWidth;
+                if (!cWs) cWs = 0;
+                if (!cWi) cWi = 0;
+
+                var cHs = container.offsetTop;
+                var cHi = container.offsetHeight;
+                if (!eWs) eWs = 0;
+                if (!cHi) cHi = 0;
+
+                var cWsDelete = containerDelete.offsetLeft;
+                var cWiDelete = containerDelete.offsetWidth;
+                if (!cWsDelete) cWsDelete = 0;
+                if (!cWiDelete) cWiDelete = 0;
+
+                var cHsDelete = containerDelete.offsetTop;
+                var cHiDelete = containerDelete.offsetHeight;
+                if (!cHsDelete) cHsDelete = 0;
+                if (!cHiDelete) cHiDelete = 0;
+
+
+                evt = evt || window.event;
+                var diffX = evt.pageX - eWs;
+                var diffY = evt.pageY - eHs;
+                document.onmousemove = function (evt) {
+                    container.style.cursor = 'move';
+                    evt = evt || window.event;
+                    var aX = evt.pageX - diffX;
+                    var aY = evt.pageY - diffY;
+                    mydragg.move(divid, aX, aY);
+                }
+                document.onmouseup = function (evt) {
+                    container.style.cursor = 'default';
+                    evt = evt || window.event;
+                    var aX = evt.pageX - diffX;
+                    var aY = evt.pageY - diffY;
+                    if (evt.pageX > cWsDelete && evt.pageX < (cWsDelete + cWiDelete) && evt.pageY > cHsDelete && evt.pageY < (cHsDelete + cHiDelete)) {
+                        if (divid.parentNode)
+                            divid.parentNode.removeChild(divid);
+                        mydragg.valueSet(null, true);
+                        document.onmousemove = function () { }
+                        document.onmouseup = function () { }
+                        return;
+                    }
+                    if (aX < 0) aX = 0;
+                    if (aY < 0) aY = 0;
+                    if (aX + eWi > cWi) aX = cWi - eWi;
+                    if (aY + eHi > cHi) aY = cHi - eHi;
+
+                    mydragg.move(divid, aX, aY);
+                    var a = document.createElement('script');
+                    document.onmousemove = function () { }
+                    document.onmouseup = function () { }
+                }
+
+            },
+            move: function (divid, xpos, ypos) {
+                divid.style.left = xpos + 'px';
+                divid.style.top = ypos + 'px';
+                mydragg.valueSet({ top: xpos, left: ypos });
+            },
+            readFromDb: function (valueList, containerId, containerDeleteId, containerSourceId, evt) {
+                containerSource = document.getElementById(containerSourceId);
+                container = document.getElementById(containerId);
+                containerDelete = document.getElementById(containerDeleteId);
+                arrayList = valueList;
+                for (var i = 0; i < arrayList.length; i++) {
+                    mydragg.startClone(arrayList[i].type, arrayList[i].id, document.getElementById(containerId), arrayList[i]);
+                }
+            },
+            startClone: function (mainId, newId, container, setValue) {
+                //if (!elementLast)
+                elementLast = document.getElementById(mainId);
+                if (!elementLast)
+                    return;
+                var cln = elementLast.cloneNode(true);
+                cln.id = newId;
+                container.appendChild(cln);
+                elementLast = document.getElementById(cln.id);
+                elementLast.style.position = 'absolute';
+                if (setValue) {
+                    mydragg.valueSet(setValue)
+                    elementLast.style.top = setValue.top + 'px';
+                    elementLast.style.left = setValue.left + 'px';
+                    elementLast.style.width = setValue.width + 'px';
+                    elementLast.style.height = setValue.height + 'px';
+                    elementLast.style.transform = ' rotate(' + setValue.rotate + 'deg)';
+                }
+                else
+                    mydragg.valueSet({ type: mainId, top: elementLast.clientTop, left: elementLast.clientLeft, height: elementLast.clientHeight, width: elementLast.clientWidth, rotate: 0 });
+            },
+            startSize: function (evt) {
+                if (!elementLast)
+                    return;
+                document.onmousemove = function (evt) {
+                    elementLast.style.width = (evt.pageX - elementLast.offsetLeft) + 'px';
+                    elementLast.style.height = (evt.pageY - elementLast.offsetTop) + 'px';
+                    mydragg.valueSet({ height: (evt.pageY - elementLast.offsetTop), width: (evt.pageX - elementLast.offsetLeft) });
+                }
+                document.onmouseup = function () {
+                    document.onmousemove = function () { }
+                }
+            },
+            startRotator: function (evt) {
+                if (!elementLast)
+                    return;
+                document.onmousemove = function (evt) {
+                    elementLast.style.transform = 'rotate(0deg)';
+
+                    var rotate_X;
+                    var invert = false;
+
+                    if (invert) {
+                        rotate_X = evt.pageX;
+                    } else if (!invert) {
+                        rotate_X = evt.pageX;
+                    }
+                    //
+                    elementLast.style.transform = ' rotate(' + rotate_X + 'deg)';
+                    mydragg.valueSet({ rotate: rotate_X });
+                }
+                document.onmouseup = function () {
+                    document.onmousemove = function () { }
+                }
+            },
+            startRotatorZiro: function (evt) {
+                if (!elementLast)
+                    return;
+                elementLast.style.transform = 'rotate(0deg)';
+                mydragg.valueSet({ rotate: 0 });
+            },
+            startRemove: function (evt) {
+                if (!elementLast)
+                    return;
+                if (elementLast.parentNode)
+                    elementLast.parentNode.removeChild(elementLast);
+                mydragg.valueSet(null, true);
+            },
+            valueSet: function (setValue, remove) {
+                var idKey = elementLast.id;
+                //mydragg.valueSet( {  top: top, left: left, height: height, width: width, rotate: rotate });
+                for (var i = 0; i < arrayList.length; i++) {
+                    if (arrayList[i] && arrayList[i].id === idKey) {
+                        if (remove) {
+                            arrayList.splice(i, 1);
+                            console.log(arrayList);
+                            return;
+                        }
+                        if (setValue) {
+                            if (setValue.type)
+                                arrayList[i].type = setValue.type;
+                            if (setValue.top)
+                                arrayList[i].top = setValue.top;
+                            if (setValue.left)
+                                arrayList[i].left = setValue.left;
+                            if (setValue.height)
+                                arrayList[i].height = setValue.height;
+                            if (setValue.width)
+                                arrayList[i].width = setValue.width;
+                            if (setValue.rotate)
+                                arrayList[i].rotate = setValue.rotate;
+                        }
+                        console.log(arrayList);
+                        return arrayList[i];
+                    }
+                }
+                if (setValue) {
+                    setValue.id = idKey;
+                    arrayList.push(setValue);
+                }
+                console.log(arrayList);
+            }
+        }
+    }();
+    var aaa = [
+          { type: "type1", height: 100, id: "a", left: 199, rotate: 0, top: 62, width: 200 },
+      { type: "type2", height: 100, id: "b", left: 199, rotate: 30, top: 162, width: 300 }
+    ];
+    mydragg.readFromDb(aaa, "divcontainer", "divcontainerdelete", "divcontainerSurce", event);
+
+</script>

@@ -1,0 +1,432 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="serviceContent.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Content' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmserviceContentEdit" novalidate ng-submit="serviceContent.editContent(frmserviceContentEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-class="{'has-error' : frmserviceContentEdit.LinkSourceId.$invalid && !frmserviceContentEdit.LinkSourceId.$pristine,'has-success' : frmserviceContentEdit.LinkSourceId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="serviceContent"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="serviceContent.gridOptions.resultAccess.AccessEditField.indexOf('LinkCategoryId')>-1">
+                                <label class="col-sm-2 control-label">{{'category'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkCategoryId" rasha-autocomplete="serviceContent.LinkCategoryIdSelector"
+                                        ng-model="serviceContent.selectedItem.LinkCategoryId" />
+                                </div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-class="{'has-error' : frmserviceContentEdit.Title.$invalid && !frmserviceContentEdit.Name.$pristine,'has-success' : frmserviceContentEdit.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="true" name="Name" ng-model="serviceContent.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmserviceContentEdit.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmserviceContentEdit.Title.$error.required"><i
+                                                class="fa fa-exclamation-triangle"></i>
+                                            {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmserviceContentEdit.Title.$valid && frmserviceContentEdit.Title.$dirty"
+                                        class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmserviceContentEdit.Title.$invalid && !frmserviceContentEdit.Title.$pristine) || frmserviceContentEdit.submitted"
+                                        class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-class="{'has-error' : frmserviceContentEdit.Description.$invalid && !frmserviceContentEdit.Description.$pristine,'has-success' : frmserviceContentEdit.Description.$valid}">
+                                <label class="col-sm-2 control-label">{{'description'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" ng-required="true" name="Description" ng-model="serviceContent.selectedItem.Description"
+                                        style="resize: vertical;height: 100px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmserviceContentEdit.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmserviceContentEdit.Description.$error.required"><i
+                                                class="fa fa-exclamation-triangle"></i>
+                                            {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmserviceContentEdit.Description.$valid && frmserviceContentEdit.Description.$dirty"
+                                        class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmserviceContentEdit.Description.$invalid && !frmserviceContentEdit.Description.$pristine) || frmserviceContentEdit.submitted"
+                                        class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2  control-label">
+                                    {{'DATE'|lowercase|translate}}&nbsp;{{'INSERT'|lowercase|translate}} </label>
+                                <div class="col-sm-6  col-md-4">
+                                    <adm-dtp ng-model='FromDate' ng-model-db="serviceContent.selectedItem.FromDate"
+                                        full-data='FromDate_detail' maxdate="{{ExpireDate_detail.unix}}" options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}'
+                                        ng-show="serviceContent.gridOptions.resultAccess.AccessEditField.indexOf('FromDate')>-1"></adm-dtp>
+                                </div>
+                                <label class="col-sm-2  control-label"> {{'FINISH_DATE'|lowercase|translate}} </label>
+                                <div class="col-sm-6 col-md-4">
+                                    <adm-dtp ng-model='ExpireDate' ng-model-db="serviceContent.selectedItem.ExpireDate"
+                                        full-data='ExpireDate_detail' mindate="{{FromDate_detail.unix}}" options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}'
+                                        ng-show="serviceContent.gridOptions.resultAccess.AccessEditField.indexOf('ExpireDate')>-1"></adm-dtp>
+                                </div>
+                            </div>
+
+                        </div>
+                    </tab>
+                    <tab heading="{{'Content_Matter'|lowercase|translate}}">
+                        <div class="panel-body">
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'SOURCE'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" ng-model="serviceContent.selectedItem.Source" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'TAGS'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <tags-input ng-model="serviceContent.tags" placeholder="{{'Tag'|lowercase|translate}}"
+                                        min-length="2" add-from-autocomplete-only="true" add-on-comma="true">
+                                        <auto-complete source="serviceContent.loadTags($query)" module="servicetag"
+                                            style="font-family: 'Yekan'"></auto-complete>
+                                    </tags-input>
+                                    <small>{{'Important_words_used_in_related_content_in_the_tag'|lowercase|translate}}</small>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group" ng-class="{'has-error' : frmserviceContentEdit.Keyword.$invalid && !frmserviceContentEdit.Keyword.$pristine,'has-success' : frmserviceContentEdit.Keyword.$valid}">
+                                <label class="col-sm-2 control-label"> {{'KEYWORDS'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <tags-input ng-model="serviceContent.kwords" placeholder="{{'Key_Word' |lowercase|translate}}"
+                                        min-length="2" add-on-enter="true" add-on-comma="true">
+                                        <auto-complete></auto-complete>
+                                    </tags-input>
+                                    <small>{{'Keywords_Help'|lowercase|translate}}</small>
+                                </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'FULL_CONTENT'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <div summernote class="summernote" config="serviceContent.summernoteOptions"
+                                        ng-model="serviceContent.selectedItem.Body">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </tab>
+                    <tab heading="{{'Attachments_Files'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'MAIN_IMAGE'|lowercase|translate}} </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="serviceContent.openUploadModal()"
+                                    aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <label>{{serviceContent.FileItem.FileName}}</label>
+                                <div class="col-sm-8 samallManager">
+                                    <div rasha-file-picker-b="serviceContent.filePickerMainImage" ng-model="serviceContent.selectedItem.LinkMainImageId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> Podcast </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="serviceContent.openUploadModalPodcast()"
+                                    aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="serviceContent.filePickerFilePodcast" ng-model="serviceContent.selectedItem.LinkFilePodcastId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> Movie </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="serviceContent.openUploadModalMovie()"
+                                    aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="serviceContent.filePickerFileMovie" ng-model="serviceContent.selectedItem.LinkFileMovieId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'ATTACH_FILE'|lowercase|translate}} </label>
+                                <div class="col-sm-8 samallManager">
+                                    <div rasha-file-picker-b="serviceContent.filePickerFiles" ng-model="serviceContent.selectedItem.LinkFileIds"></div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a class="btn btn-primary" ng-click="serviceContent.addAttachedFile(serviceContent.selectedItem.LinkFileIds)"
+                                        style="margin-right: -52px;margin-top: 1px;">
+                                        <i class="fa fa-" aria-hidden="true" title="{{'ADD_FILE'|lowercase|translate}}"
+                                            style="font-family: iransans;font-size: 12px;">
+                                            {{'ADD_FILE'|lowercase|translate}} </i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group col-sm-12" ng-repeat="x in serviceContent.attachedFiles">
+                                        <img src="{{x.previewImageSrc}}"  width="50" height="50" class="img-rounded col-sm-3 col-md-3 col-lg-3" alt="{{x.filename}}" />
+                                    <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                                    <div class="input-group">
+                                        <input type="text" id="option{{$index}}" class="form-control" ng-required="true"
+                                            name="attachedFileName" required readonly="readonly" ng-model="x.filename">
+                                        <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer"
+                                            title="{{'delete'|lowercase|translate}}" ng-click="serviceContent.deleteAttachedFile($index)"><i
+                                                class="fa fa-remove"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="{{'Place_Location' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="serviceContent.gridOptions.resultAccess.AccessEditField.indexOf('Geolocationlatitude')>-1">
+                                <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div rasha-map="serviceContent.GeolocationConfig" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </tab>
+                    <tab heading="{{'Additional_Information'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class="form-group back2">
+                                <h4>{{'Additional_Information' |lowercase|translate}}</h4>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'title' |lowercase|translate}}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" ng-model="serviceContent.selectedItemOtherInfos.Title" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'Information_Source' |lowercase|translate}}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" ng-model="serviceContent.selectedItemOtherInfos.Source" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'نوع محتوا' |lowercase|translate}}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" ng-model="serviceContent.selectedItemOtherInfos.TypeId" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'Information' |lowercase|translate}}</label>
+                                    <div class="col-sm-10">
+                                        <div summernote class="summernote" config="serviceContent.summernoteOptions"
+                                            ng-model="serviceContent.selectedItemOtherInfos.HtmlBody">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <span> <a class="btn btn-danger"  ng-click="serviceContent.saveOtherInfos()">{{serviceContent.todoModeTitle}}</a></span>
+                                    </div>
+                                    <br />
+                                    <div class="col-sm-12">
+                                        <h4>{{'Information' |lowercase|translate}}</h4>
+                                        <div class="controls">
+                                        </div>
+                                        <br />
+                                        <table class="table table-striped table-bordered table-responsive floatThead-table"
+                                            style="border:1px solid gray;max-height:400px;overflow:auto;">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width:10%">{{'ID' |lowercase|translate}}</th>
+                                                    <th style="width:20%">{{'title' |lowercase|translate}}</th>
+                                                    <th style="width:40%">{{'Information' |lowercase|translate}}</th>
+                                                    <th style="width:20%">{{'SOURCE' |lowercase|translate}}</th>
+                                                    <th>{{'OPERATOIN' |lowercase|translate}}</th>
+                                                    <th>{{'OPERATOIN' |lowercase|translate}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="y in serviceContent.OtherInfos" style="max-height:30px">
+                                                    <td style="overflow:hidden">
+                                                        {{y.Id}}
+                                                    </td>
+                                                    <td style="overflow:hidden">
+                                                        {{y.Title}}
+                                                    </td>
+                                                    <td style="overflow:hidden">
+                                                        <div ng-bind-html="y.HtmlBody"></div>
+                                                    </td>
+                                                    <td style="overflow:hidden">
+                                                        {{y.Source}}
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-danger" ng-click="serviceContent.editFromCollectionOtherInfo(y)">
+                                                            Edit&nbsp;<i class="fa fa-edit" aria-hidden="true"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-danger" ng-click="serviceContent.removeFromCollectionOtherInfo(y)"
+                                                            aria-label="Delete">
+                                                            {{'REMOVE_FROM_LIST'|lowercase|translate}}&nbsp;<i class="fa fa-trash-o"
+                                                                aria-hidden="true"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </tab>
+                    <tab heading="{{'Similar_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class="form-group back1">
+                                <br />
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">{{'Related' |lowercase|translate}}</label>
+                                    <div class="col-sm-6">
+                                        <input class="form-control" name="Id" rasha-autocomplete="serviceContent.SimilarsSelector"
+                                            ng-model="serviceContent.SimilarsSelectedItem.Id" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <a ng-click="serviceContent.moveSelected('Content', 'to',false)" class="btn btn-primary"
+                                            aria-label="Settings" style="margin-right: 8px; margin-bottom: 8px;">{{'ADD_NOW'
+                                            |lowercase|translate}}&nbsp;<i class="fa fa-plus" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="controls">
+                                    </div>
+                                    <br />
+                                    <table class="table table-striped table-bordered table-responsive floatThead-table"
+                                        style="border:1px solid gray;max-height:400px;overflow:auto;">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:370px">{{'title' |lowercase|translate}}</th>
+                                                <th>{{'OPERATOIN' |lowercase|translate}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="x in serviceContent.Similars" style="max-height:30px">
+                                                <td style="overflow:hidden">
+                                                    {{x.Title}}
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-danger" ng-click="serviceContent.removeFromCollectionSimilars(x)"
+                                                        aria-label="Delete">
+                                                        {{'REMOVE_FROM_LIST'|lowercase|translate}}&nbsp;<i class="fa fa-trash-o"
+                                                            aria-hidden="true"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                
+                
+                    <tab heading="{{'ارتباط با دیگر ماژولها'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-class="{'has-error' : frmserviceContentEdit.Title.$invalid && !frmserviceContentEdit.Title.$pristine,'has-success' : frmserviceContentEdit.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-required="false" name="Title" ng-model="serviceContent.selectedItemRelationship.Title" />
+                                    <div class="m-t-xs" ng-show="frmserviceContentEdit.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmserviceContentEdit.Title.$error.required"><i
+                                                class="fa fa-exclamation-triangle"></i>
+                                            {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmserviceContentEdit.Title.$valid && frmserviceContentEdit.Title.$dirty"
+                                        class="fa fa-check form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmserviceContentEdit.Title.$invalid && !frmserviceContentEdit.Title.$pristine) || frmserviceContentEdit.submitted"
+                                        class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary"
+                                        aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{ 'SELECT_MODULE'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <select class='form-control' name="EnumModuleRelationshipName" ng-model="serviceContent.selectedItemRelationship.ModuleNameOther"
+                                        ng-change="serviceContent.changSelectedRelationModuleEdit()" ng-options="x as x.Description for x in serviceContent.EnumModuleRelationshipName"
+                                        ng-change="serviceContent.selectModule()"></select>
+                                    <span ng-show="frmserviceContentEdit.EnumModuleRelationshipName.$error.required">{{'SELECT_INPUT_TYPE'|lowercase|translate}}</span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'Related' |lowercase|translate}}</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" name="LinkModuleContentIdOther" rasha-autocomplete="serviceContent.LinkModuleContentIdOtherSelector"
+                                        ng-model="serviceContent.selectedItem.LinkModuleContentIdOther" />
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <a ng-click="serviceContent.moveSelectedRelationOnEdit()" class="btn btn-primary"
+                                    aria-label="Settings" style="margin-right: 8px; margin-bottom: 8px;">{{'ADD_NOW'
+                                    |lowercase|translate}}&nbsp;<i class="fa fa-plus" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+                            </div>
+                            <table class="table table-striped table-bordered table-responsive floatThead-table" style="border:1px solid gray;max-height:400px;overflow:auto;">
+                                <thead>
+                                    <tr>
+                                            <th style="width:20%">{{'Id' |lowercase|translate}}</th>
+                                        <th style="width:20%">{{'title' |lowercase|translate}}</th>
+                                        <th style="width:40%">{{'ModuleNameOther' |lowercase|translate}}</th>
+                                        
+                                        <th>{{'OPERATOIN' |lowercase|translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="y in serviceContent.ModuleRelationShip" style="max-height:30px">
+                                        <td>
+                                            {{y.LinkModuleContentIdOther}}
+                                        </td>
+                                        <td>
+                                            {{y.Title}}
+                                        </td>
+                                        <td>
+                                            {{serviceContent.EnumModuleName(y.ModuleNameOther)}}
+                                        </td>
+                                      
+                                        <td>
+                                            <a class="btn btn-danger" ng-click="serviceContent.removeFromCollectionRelationShip(y)"
+                                                aria-label="Delete"> {{'REMOVE_FROM_LIST'|lowercase|translate}}&nbsp;<i
+                                                    class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </tab>
+
+                    
+                </tabset>
+
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="serviceContent.addRequested" type="submit">
+                        {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="serviceContent.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+            <style>
+                .pull-right {
+                    margin: 1px 28px;
+                }
+            </style>
+        </div>
+    </div>
+</div>

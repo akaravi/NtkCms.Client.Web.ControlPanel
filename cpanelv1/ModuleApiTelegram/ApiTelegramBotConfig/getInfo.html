@@ -1,0 +1,42 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="botConfigCtrl.busyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="botConfigCtrl.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ botConfigCtrl.modalTitle }}</h3>
+            <h3 class="m-t-none m-b"> {{ botConfigCtrl.ErrorMessage }}</h3>
+        </div>
+    </div>
+    <form method="get" class="form-horizontal" role="form" name="frmbotConfigCtrlAdd" novalidate ng-submit="botConfigCtrl.addNewRow(frmbotConfigCtrlAdd)">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{'BOT_ID'|lowercase|translate}}</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" readonly="readonly" value="{{botConfigCtrl.selectedItem.id}}" />
+            </div>
+        </div>
+        <div class='hr-line-dashed'></div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">{{'NAME_OF_BOT'|lowercase|translate}}</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" readonly="readonly" value="{{botConfigCtrl.selectedItem.first_name}}" />
+            </div>
+
+        </div>
+        <div class='hr-line-dashed'></div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label"> {{'USERNAME'|lowercase|translate}} </label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" readonly="readonly" value="{{botConfigCtrl.selectedItem.username}}" />
+            </div>
+        </div>
+        <div class='hr-line-dashed'></div>
+        <div class="form-group">
+            <button class="btn btn-default" type="button" ng-click="botConfigCtrl.closeModal()">{{'cancel'|lowercase|translate}}</button>
+            <button class="btn btn-primary" ng-if="botConfigCtrl.IsSuccess" type="button" ng-click="botConfigCtrl.setWebhook()">{{'SET_THE_HOOK'|lowercase|translate}}</button>
+            <button class="btn btn-danger" ng-if="botConfigCtrl.IsSuccess" type="button" ng-click="botConfigCtrl.setWebhookEmpty()">{{'DELETE_THE_HOOK'|lowercase|translate}}</button>
+            <button class="btn btn-success" ng-if="botConfigCtrl.IsSuccess" type="button" ng-click="botConfigCtrl.GetUpdatesAsync()">{{'CHECK_RECEIVE'|lowercase|translate}}</button>
+            <button class="btn btn-success" ng-if="botConfigCtrl.IsSuccess" type="button" ng-click="botConfigCtrl.GetUpdatesAsyncLast()">{{'CHECK_RECEIVE_LAST'|lowercase|translate}}</button>
+        </div>
+    </form>
+</div>
+
+

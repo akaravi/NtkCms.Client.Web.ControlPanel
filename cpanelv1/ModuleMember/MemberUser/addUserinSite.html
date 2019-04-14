@@ -1,0 +1,59 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="memberUser.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ memberUser.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmmemberUserAdd" novalidate ng-submit="memberUser.CheckMemberToSite(frmmemberUserAdd)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">کد سیستمی عضو جدید</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" ng-disabled="memberUser.addRequested" name="LinkMemberUserId" ng-model="memberUser.selectedItemMemberInSiteLinkMemberUserId" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" 
+                                 ng-class="{'has-error' : frmmemberUserAdd.JoinId.$invalid && !frmmemberUserAdd.JoinId.$pristine,'has-success' : frmmemberUserAdd.JoinId.$valid}">
+                                <label class="col-sm-2 control-label"> JoinId </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           ng-disabled="memberUser.addRequested"
+                                           name="JoinId"
+                                           ng-model="memberUser.selectedItemMemberInSiteJoinId" />
+                                    <div class="m-t-xs" ng-show="frmmemberUserAdd.JoinId.$invalid">
+                                        <small class="text-danger" ng-show="frmmemberUserAdd.JoinId.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmmemberUserAdd.JoinId.$valid && frmmemberUserAdd.JoinId.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmmemberUserAdd.JoinId.$invalid && !frmmemberUserAdd.JoinId.$pristine) || frmmemberUserAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                   
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class="form-group back2" ng-show="!memberUser.addRequestedAddUserInSite">
+                    <label class="col-sm-1 control-label">نام:</label>
+                    <label class="col-sm-2 control-label" style="right:0px">{{memberUser.selectedItemMemberInSite.FirstName}}</label>
+                    <br />
+                    <br />
+                    <label class="col-sm-1 control-label">نام خانوادگی:</label>
+                    <label class="col-sm-2 control-label" style="right:0px">{{memberUser.selectedItemMemberInSite.LastName}}</label>
+                    <br />
+                </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group">
+                        <button class="btn btn-warning" ng-disabled="memberUser.addRequested" type="submit"> بررسی </button>
+                        <button class="btn btn-primary" ng-disabled="memberUser.addRequestedAddUserInSite" ng-click="memberUser.addNewMemberToSite()"> اضافه </button>
+                        <button class="btn btn-default" type="button" ng-click="memberUser.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                    </div>
+</form>
+        </div>
+    </div>
+</div>
+

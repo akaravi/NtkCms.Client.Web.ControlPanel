@@ -1,0 +1,25 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="emailOutBoxReciverLockController as emailOutBoxReciverLock" ng-init="emailOutBoxReciverLock.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <!--<button class="btn btn-primary" rasha-userrole="emailOutBoxReciverLock.Add" ng-click="emailOutBoxReciverLock.openAddModal()" ng-show="emailOutBoxReciverLock.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>-->
+            <!--<button class="btn btn-primary" rasha-userrole="emailOutBoxReciverLock.Add" ng-click="emailOutBoxReciverLock.autoAdd()" ng-show="emailOutBoxReciverLock.gridOptions.resultAccess.AccessAddRow" type="button">{{'AUTO_ADD'|lowercase|translate}}</button>-->
+            <!--<button class="btn btn-warning" rasha-userrole="emailOutBoxReciverLock.Edit" ng-click="emailOutBoxReciverLock.openEditModal()" ng-show="emailOutBoxReciverLock.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>-->
+            <!--<button class="btn btn-danger" rasha-userrole="emailOutBoxReciverLock.Delete" ng-click="emailOutBoxReciverLock.deleteRow()" ng-show="emailOutBoxReciverLock.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>-->
+            <button class="btn btn-success" type="button" ng-click="emailOutBoxReciverLock.showAdvancedSearchPanel(emailOutBoxReciverLock.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-primary" type="button" ng-click="emailOutBoxReciverLock.reportData()"> {{'report'|lowercase|translate}} </button>
+            <button class="btn btn-success" ng-click="emailOutBoxReciverLock.getCount()">{{'number'|lowercase|translate}}&nbsp;{{emailOutBoxReciverLock.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row" rasha-loading="emailOutBoxReciverLock.busyIndicator">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="emailOutBoxReciverLock" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div rasha-grid="emailOutBoxReciverLock.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

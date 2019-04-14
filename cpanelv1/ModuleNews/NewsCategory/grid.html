@@ -1,0 +1,29 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="newscategoryCtrl as newscategory" ng-init="newscategory.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="newscategory.categoryBusyIndicator"></div>
+            <button class="btn btn-primary" rasha-userrole="newscategory.Add" ng-click="newscategory.openAddModal()" ng-show="newscategory.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="newscategory.Edit" ng-click="newscategory.openEditModal()"ng-show="newscategory.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="newscategory.Delete" ng-click="newscategory.deleteRow()" ng-show="newscategory.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="newscategory.showAdvancedSearchPanel(newscategory.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-primary" type="button" ng-click="newscategory.reportData()"> {{'report'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="newscategory" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="newscategory" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="newscategory.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

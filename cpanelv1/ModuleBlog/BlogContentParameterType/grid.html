@@ -1,0 +1,29 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="blogContentParameterTypeController as blogContentParameterType" ng-init="blogContentParameterType.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="blogContentParameterType.categoryBusyIndicator"></div>
+            <button class="btn btn-primary" rasha-userrole="blogContentParameterType.Add" ng-click="blogContentParameterType.openAddModal()" ng-show="blogContentParameterType.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="blogContentParameterType.Edit" ng-click="blogContentParameterType.openEditModal()" ng-show="blogContentParameterType.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="blogContentParameterType.Delete" ng-click="blogContentParameterType.deleteRow()" ng-show="blogContentParameterType.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" ng-click="blogContentParameterType.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="blogContentParameterType.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="blogContentParameterType.getCount()">{{'QUANTITY'|lowercase|translate}}&nbsp;{{blogContentParameterType.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <hr />
+    <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div id="builder" query-builder="blogContentParameterType"></div>
+        <div class="btn-group" style="float: left;">
+            <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="blogContentParameterType.getRules()"> {{'look'|lowercase|translate}} </button>
+            <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="blogContentParameterType.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+            <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="blogContentParameterType.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="blogContentParameterType.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,42 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="buyModuleCtrl as buyModule" ng-init="buyModule.init()">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>{{'BUY_NEW_MODULE'|lowercase|translate}}</h5>
+                </div>
+                <div class="ibox-content wizard">
+                    <p>
+                        {{'FOR_BUY_NEW_MODULE'|lowercase|translate}}
+                    </p>
+
+                    <div class="steps clearfix">
+                        <ul>
+                            <li ui-sref-active="current">
+                                <a ui-sref=".step_one" class="btn-primary"><span>1.</span> {{'SELECT_MODULE'|lowercase|translate}}</a>
+                            </li>
+                            <li ui-sref-active="current">
+                                <a ui-sref=".step_two" class="btn-primary"><span>2.</span> {{'PURCHASE_INVOICE'|lowercase|translate}}</a>
+                            </li>
+                            <li ui-sref-active="current">
+                                <a ui-sref=".step_three" class="btn-primary"><span>3.</span> {{'CHECKOUT'|lowercase|translate}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="wizard">
+                        <div class="content">
+
+                            <form name="signupForm" ng-submit="buyModule.processForm()" class="p-lg">
+
+                                <!-- our nested state views will be injected here -->
+                                <div id="form-views" ui-view></div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

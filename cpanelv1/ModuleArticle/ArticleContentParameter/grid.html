@@ -1,0 +1,29 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="articleContentParameterController as articleContentParameter" ng-init="articleContentParameter.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="articleContentParameter.categoryBusyIndicator"></div>
+            <button class="btn btn-primary" rasha-userrole="articleContentParameter.Add" ng-click="articleContentParameter.openAddModal()" ng-show="articleContentParameter.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="articleContentParameter.Edit" ng-click="articleContentParameter.openEditModal()"ng-show="articleContentParameter.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="articleContentParameter.Delete" ng-click="articleContentParameter.deleteRow()" ng-show="articleContentParameter.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" ng-click="articleContentParameter.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="articleContentParameter.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="articleContentParameter.getCount()">{{'number'|lowercase|translate}}&nbsp;{{articleContentParameter.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <hr />
+    <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div id="builder" query-builder="articleContentParameter"></div>
+        <div class="btn-group" style="float: left;">
+            <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="articleContentParameter.getRules()"> {{'look'|lowercase|translate}} </button>
+            <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="articleContentParameter.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+            <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="articleContentParameter.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="articleContentParameter.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

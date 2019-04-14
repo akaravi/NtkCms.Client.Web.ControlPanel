@@ -1,0 +1,131 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="ticketingTask.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ ticketingTask.modalTitle}}</h3>
+            <form method="get" class="form-horizontal" name="frmnewsContentAdd" novalidate ng-submit="ticketingTask.addNew(frmnewsContentAdd)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <!-- Title -->
+                        <div class='hr-line-dashed'></div>
+                        <div class="form-group"
+                             ng-class="{'has-error' : frmnewsContentAdd.Title.$invalid && !frmnewsContentAdd.Title.$pristine,'has-success' : frmnewsContentAdd.Title.$valid}">
+                            <label class="col-sm-2 control-label"> {{'AS_QUESTION'|lowercase|translate}} </label>
+                            <div class="col-sm-10">
+                                <input class="form-control" ng-required="true" name="Title" ng-model="ticketingTask.selectedItem.Title" />
+                                <div class="m-t-xs" ng-show="frmnewsContentAdd.Title.$invalid">
+                                    <small class="text-danger" ng-show="frmnewsContentAdd.Url.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                </div>
+                                <span style="left: 10px !important;" ng-show="frmnewsContentAdd.Title.$valid && frmnewsContentAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                <span style="left: 10px !important;" ng-show="(frmnewsContentAdd.Title.$invalid && !frmnewsContentAdd.Title.$pristine) || frmnewsContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                            </div>
+                        </div>
+
+                        <!-- Priority -->
+                        <div class='hr-line-dashed'></div>
+                        <div class="form-group"
+                             ng-class="{'has-error' : frmnewsContentAdd.Priority.$invalid && !frmnewsContentAdd.Priority.$pristine,'has-success' : frmnewsContentAdd.Priority.$valid}">
+                            <label class="col-sm-2 control-label"> {{'PRIORITY'|lowercase|translate}} </label>
+                            <div class="col-sm-10">
+                                <div class="radio">
+                                    <label><input type="radio" name="Priority" value="1" ng-model="ticketingTask.Answers.selectedItem.Priority"> {{'NECESSARY'|lowercase|translate}} </label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Priority" value="0" ng-model="ticketingTask.Answers.selectedItem.Priority"> {{'UNNECESSARY'|lowercase|translate}} </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Answer -->
+                        <div class='hr-line-dashed'></div>
+                        <div class="form-group"
+                             ng-class="{'has-error' : frmnewsContentAdd.Answer.$invalid && !frmnewsContentAdd.Answer.$pristine,'has-success' : frmnewsContentAdd.Answer.$valid}">
+                            <label class="col-sm-2 control-label"> {{'RESPONSE'|lowercase|translate}} </label>
+                            <div class="col-sm-10">
+                                <div summernote class="summernote" config="ticketingTask.summernoteOptions" ng-model="ticketingTask.selectedItem.HtmlBody"></div>
+                                <div class="m-t-xs" ng-show="frmnewsContentAdd.BaseHtmlValue.$invalid">
+                                    <small class="text-danger" name="Answer" ng-show="frmnewsContentAdd.BaseHtmlValue.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                </div>
+                                <span style="left: 10px !important;" ng-show="frmnewsContentAdd.Answer.$valid && frmnewsContentAdd.Answer.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                <span style="left: 10px !important;" ng-show="(frmnewsContentAdd.Answer.$invalid && !frmnewsContentAdd.Answer.$pristine) || frmnewsContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                            </div>
+                        </div>
+
+                        <!-- LinkUserId -->
+                        <div class="form-group"
+                             ng-class="{'has-error' : frmnewsContentAdd.LinkUserId.$invalid && !frmnewsContentAdd.LinkUserId.$pristine,'has-success' : frmnewsContentAdd.LinkUserId.$valid}">
+                            <label class="col-sm-2 control-label"> {{'WRITER'|lowercase|translate}} </label>
+                            <div class="col-sm-10">
+                                <input class="form-control" ng-required="true" name="LinkUserId" ng-model="ticketingTask.selectedItem.LinkUserId" />
+                                <div class="m-t-xs" ng-show="frmnewsContentAdd.LinkUserId.$invalid">
+                                    <small class="text-danger" ng-show="frmnewsContentAdd.LinkUserId.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                </div>
+                                <span style="left: 10px !important;" ng-show="frmnewsContentAdd.LinkUserId.$valid && frmnewsContentAdd.LinkUserId.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                <span style="left: 10px !important;" ng-show="(frmnewsContentAdd.LinkUserId.$invalid && !frmnewsContentAdd.LinkUserId.$pristine) || frmnewsContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <!-- LinkSiteId -->
+                        <div class="form-group"
+                             ng-class="{'has-error' : frmnewsContentAdd.LinkSiteId.$invalid && !frmnewsContentAdd.LinkSiteId.$pristine,'has-success' : frmnewsContentAdd.LinkSiteId.$valid}">
+                            <label class="col-sm-2 control-label"> {{'SITE_ID'|lowercase|translate}} </label>
+                            <div class="col-sm-10">
+                                <input class="form-control" ng-required="true" name="LinkSiteId" ng-model="ticketingTask.selectedItem.LinkSiteId" type="number" />
+                                <div class="m-t-xs" ng-show="frmnewsContentAdd.LinkSiteId.$invalid">
+                                    <small class="text-danger" ng-show="frmnewsContentAdd.LinkSiteId.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                </div>
+                                <span style="left: 10px !important;" ng-show="frmnewsContentAdd.LinkSiteId.$valid && frmnewsContentAdd.LinkSiteId.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                <span style="left: 10px !important;" ng-show="(frmnewsContentAdd.LinkSiteId.$invalid && !frmnewsContentAdd.LinkSiteId.$pristine) || frmnewsContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <!-- TicketType -->
+                        <div class="form-group"
+                             ng-class="{'has-error' : frmnewsContentAdd.LinkTicketTypeId.$invalid && !frmnewsContentAdd.LinkTicketTypeId.$pristine,'has-success' : frmnewsContentAdd.LinkTicketTypeId.$valid}">
+                            <label class="col-sm-2 control-label"> {{'QUESTION_TYPE'|lowercase|translate}} </label>
+                            <div class="col-sm-10">
+                                <select class="form-control" ng-required="true" name="LinkTicketTypeId" ng-model="ticketingTask.selectedItem.LinkTicketingTypeId">
+                                    <option ng-repeat="type in ticketingTask.TypeListItems" ng-value="{{type.Id}}">{{type.Title}}</option>
+                                </select>
+
+                                <div class="m-t-xs" ng-show="frmnewsContentAdd.LinkTicketTypeId.$invalid">
+                                    <small class="text-danger" ng-show="frmnewsContentAdd.LinkTicketTypeId.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                </div>
+                                <span style="left: 10px !important;" ng-show="frmnewsContentAdd.LinkTicketTypeId.$valid && frmnewsContentAdd.LinkTicketTypeId.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                <span style="left: 10px !important;" ng-show="(frmnewsContentAdd.LinkTicketTypeId.$invalid && !frmnewsContentAdd.LinkTicketTypeId.$pristine) || frmnewsContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        </tab>
+                        <tab heading="{{'Attachments_Files'|lowercase|translate}}">
+                            <div class="panel-body">
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"> {{'ATTACH_FILE'|lowercase|translate}} </label>
+                                    <div class="col-sm-8 smallFileManager">
+                                        <div rasha-file-picker-b="ticketingTask.filePickerFiles" ng-model="ticketingTask.selectedItem.LinkFileIds"></div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <a class="btn btn-primary" ng-click="ticketingTask.addAttachedFile(ticketingTask.selectedItem.LinkFileIds)" style="margin-right: -52px;margin-top: 1px;" title="">
+                                            <i class="fa fa" aria-hidden="true" title="{{'ADD_FILE'|lowercase|translate}}" style="font-family: iransans;font-size: 12px;"> {{'ADD_FILE'|lowercase|translate}} </i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-group col-sm-12" ng-repeat="x in ticketingTask.attachedFiles">
+                                        <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                                        <div class="input-group">
+                                            <input type="text" id="option{{$index}}" class="form-control" ng-required="true" name="attachedFileName" required readonly="readonly" ng-model="x.filename">
+                                            <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="ticketingTask.deleteAttachedFile($index)"><i class="fa fa-remove"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tab>
+                    </tabset>
+                        <div class="form-group">
+                            <button class="btn btn-primary" ng-disabled="ticketingTask.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                            <button class="btn btn-default" type="button" ng-click="ticketingTask.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                        </div>
+
+            </form>
+        </div>
+    </div>
+</div>

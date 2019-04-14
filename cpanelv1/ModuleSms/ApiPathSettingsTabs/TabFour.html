@@ -1,0 +1,197 @@
+﻿<div class="row">
+    <div class="row">
+        <!-- ApiSendIsOn -->
+        <div class="col-md-4">
+            <div class="input-group field-margin">
+                <span class="input-group-addon"> {{'VALUES_RECEIVE_CONDITION_IS_ACTIVE'|lowercase|translate}} </span>
+                <span class="input-group-addon">
+                    <input type="checkbox" ng-model="apiSetting.selectedItem.ApiSendIsOn">
+                </span>
+            </div>
+        </div>
+        
+        <!-- ApiSendMethod -->
+        <div class="input-group field-margin">
+            <span class="input-group-addon"> {{'METHOD'|lowercase|translate}} </span>
+            <select name="ApiSendMethod" id="ApiSendMethod" ng-model="apiSetting.selectedItem.ApiSendMethod">
+                <option value="0" selected>None</option>
+                <option value="1">Post</option>
+                <option value="2">Get</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- ApiSendMessageUrl -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'SEND_WAY_ADDRESS'|lowercase|translate}} </span>
+        <input type="text" class="form-control"   aria-describedby="basic-addon1" ng-model="apiSetting.selectedItem.ApiSendMessageUrl">
+    </div>
+
+
+    <!-- ApiSendMessageUrlParameter -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'PARAMETERS_IN_SEND_WAY_IN_REST_METHOD'|lowercase|translate}} </span>
+        <input type="text" class="form-control"   aria-describedby="basic-addon1" ng-model="apiSetting.selectedItem.ApiSendMessageUrlParameter">
+    </div>
+
+    <!-- --------------------------------------------------- -->
+    <hr class="hr-line-dashed"/>
+    <div class="row">
+        <!-- ApiDeliveryIsOn -->
+        <div class="col-md-4">
+            <div class="input-group field-margin">
+                <span class="input-group-addon"> {{'VALUES_RECEIVE_CONDITION_IS_ACTIVE'|lowercase|translate}} </span>
+                <span class="input-group-addon">
+                    <input type="checkbox" ng-model="apiSetting.selectedItem.ApiDeliveryIsOn">
+                </span>
+            </div>
+        </div>
+
+
+        <!-- ApiDeliveryMethod -->
+        <div class="input-group field-margin">
+            <span class="input-group-addon"> {{'METHOD'|lowercase|translate}} </span>
+            <select name="ApiDeliveryMethod" id="ApiDeliveryMethod" ng-model="apiSetting.selectedItem.ApiDeliveryMethod">
+                <option value="0" selected>None</option>
+                <option value="1">Post</option>
+                <option value="2">Get</option>
+            </select>
+        </div>
+    </div>
+
+  
+
+    <!-- ApiDeliveryUrl -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'RECEIVE_ADDRESS_WAY'|lowercase|translate}} </span>
+        <input type="text" class="form-control"   aria-describedby="basic-addon1" ng-model="apiSetting.selectedItem.ApiDeliveryUrl">
+    </div>
+
+
+    <!-- ApiDeliveryUrlParameter -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'PARAMETERS_IN_RECEIVE_WAY_IN_REST_METHOD'|lowercase|translate}} </span>
+        <input type="text" class="form-control"   aria-describedby="basic-addon1" ng-model="apiSetting.selectedItem.ApiDeliveryUrlParameter">
+    </div>
+
+    <!-- --------------------------------------------------- -->
+    <hr class="hr-line-dashed" />
+    <div class="row">
+        <!-- ApiReciveIsOn -->
+        <div class="col-md-4">
+            <div class="input-group field-margin">
+                <span class="input-group-addon"> {{'VALUES_RECEIVE_CONDITION_IS_ACTIVE'|lowercase|translate}} </span>
+                <span class="input-group-addon" ng-model="apiSetting.selectedItem.ApiReciveIsOn">
+                    <input type="checkbox">
+                </span>
+            </div>
+        </div>
+
+
+        <!-- ApiReciveMethod -->
+        <div class="input-group field-margin">
+            <span class="input-group-addon"> {{'METHOD'|lowercase|translate}} </span>
+            <select name="ApiReciveMethod" id="ApiReciveMethod" ng-model="apiSetting.selectedItem.ApiReciveMethod">
+                <option value="0" selected>None</option>
+                <option value="1">Post</option>
+                <option value="2">Get</option>
+            </select>
+        </div>
+    </div>
+
+
+    <!-- ApiReciveUrl -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'RECEIVE_ADDRESS_WAY'|lowercase|translate}} </span>
+        <input type="text" class="form-control"   aria-describedby="basic-addon1" ng-model="apiSetting.selectedItem.ApiReciveUrl">
+    </div>
+
+
+    <!-- ApiReciveUrlParameter -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'PARAMETERS_IN_RECEIVE_WAY_IN_REST_METHOD'|lowercase|translate}} </span>
+        <input type="text" class="form-control"   aria-describedby="basic-addon1" ng-model="apiSetting.selectedItem.ApiReciveUrlParameter">
+    </div>
+
+
+    <hr class="hr-line-dashed" />
+    <!-- --------------------------------------------------- -->
+
+    <div class="row">
+        <!-- ApiInfoCreditCheckIsOn -->
+        <div class="col-md-4">
+            <div class="input-group field-margin">
+                <span class="input-group-addon"> {{'VALUES_BACK_CREDIT_CONDITION_IS_ACTIVE'|lowercase|translate}} </span>
+                <span class="input-group-addon">
+                    <input type="checkbox" ng-model="apiSetting.selectedItem.ApiInfoCreditCheckIsOn">
+                </span>
+            </div>
+        </div>
+
+
+        <!-- ApiInfoCreditCheckMethod -->
+        <div class="input-group field-margin">
+            <span class="input-group-addon"> {{'METHOD'|lowercase|translate}} </span>
+            <select name="ApiInfoCreditCheckMethod" id="ApiInfoCreditCheckMethod" ng-model="apiSetting.selectedItem.ApiInfoCreditCheckMethod">
+                <option value="0" selected>None</option>
+                <option value="1">Post</option>
+                <option value="2">Get</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- ApiInfoCreditCheckUrl -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'BACK_CREDIT_ADDRESS_WAY'|lowercase|translate}} </span>
+        <input type="text" class="form-control"   aria-describedby="basic-addon1" ng-model="apiSetting.selectedItem.ApiInfoCreditCheckUrl">
+    </div>
+
+
+    <!-- ApiInfoCreditCheckParameter -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'PARAMETERS'|lowercase|translate}} </span>
+        <input type="text" class="form-control"   aria-describedby="basic-addon1" ng-model="apiSetting.selectedItem.ApiInfoCreditCheckParameter">
+    </div>
+
+
+    <!-- --------------------------------------------------- -->
+    <hr class="hr-line-dashed" />
+<div class="row">
+    <!-- ApiSendVoiceIsOn -->
+    <div class="col-md-4">
+        <div class="input-group field-margin">
+            <span class="input-group-addon"> {{'VOICE_IS_ACTIVE'|lowercase|translate}} </span>
+            <span class="input-group-addon">
+                    <input type="checkbox" ng-model="apiSetting.selectedItem.ApiSendVoiceIsOn">
+                </span>
+        </div>
+    </div>
+
+
+    <!-- ApiSendVoiceMethod -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'METHOD'|lowercase|translate}} </span>
+        <select name="ApiSendVoiceMethod" id="ApiSendVoiceMethod" ng-model="apiSetting.selectedItem.ApiSendVoiceMethod">
+            <option value="0" selected>None</option>
+            <option value="1">Post</option>
+            <option value="2">Get</option>
+        </select>
+    </div>
+</div>
+
+
+    <!-- ApiSendVoiceUrl -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'ADDRESS_OF_SEND_VOICE'|lowercase|translate}} </span>
+        <input type="text" class="form-control"   aria-describedby="basic-addon1" ng-model="apiSetting.selectedItem.ApiSendVoiceUrl">
+    </div>
+
+
+    <!-- ApiSendVoiceUrlParameter -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'SENT_PARAMETERS'|lowercase|translate}} </span>
+        <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="apiSetting.selectedItem.ApiSendVoiceUrlParameter">
+    </div>
+
+
+</div>

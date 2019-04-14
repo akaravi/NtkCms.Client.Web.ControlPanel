@@ -1,0 +1,41 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="formBuilderFormSubmitController as value" ng-init="value.init()">
+    <!--    <div class="container">-->
+    <div class="row" rasha-loading="value.busyIndicator">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="value.Add" ng-click="value.openAddModal()" ng-show="value.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="value.Edit" ng-click="value.openEditModal()" ng-show="value.gridOptions.resultAccess.AccessEditRow"  type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="value.Delete" ng-click="value.deleteRow()" ng-show="value.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="value.showAdvancedSearchPanel(value.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-primary" type="button" ng-click="value.toggleExportForm()"> {{'report'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+            <div id="builder" query-builder="value"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="value.getRules()"> {{'look'|lowercase|translate}} </button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="value.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="value.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="value.gridOptions"></div>
+        </div>
+    </div>
+    <div id="inputValue_form" class="row well"  style="display: none;">
+        <div class='hr-line-dashed'></div>
+        <h4> مقادیر ورودی</h4>
+        <div class="col-md-6">
+            <div ng-model="value.valueSubmit" fb-form="default" fb-default="value.defaultValue"></div>
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-4">
+                    <input type="submit" ng-click="value.submit()" class="btn btn-default"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

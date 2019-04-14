@@ -1,0 +1,65 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor: pointer" ng-click="deliveryInvoice.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Invoice'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmdeliveryInvoiceAdd" novalidate ng-submit="deliveryInvoice.addNewRow(frmdeliveryInvoiceAdd)" ng-init="deliveryInvoice.loadEmojiPicker()">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="deliveryInvoice.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmdeliveryInvoiceAdd.RecordStatus.$invalid && !frmdeliveryInvoiceAdd.RecordStatus.$pristine,'has-success' : frmdeliveryInvoiceAdd.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="deliveryInvoice"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'Receipt_Code'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-required="false" name="ReceiptCode" ng-model="deliveryInvoice.selectedItem.ReceiptCode" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group" ng-show="deliveryInvoice.gridOptions.resultAccess.AccessAddField.indexOf('DeliveryNumber')">
+                    <label class="col-sm-2 control-label">{{"Delivery_Number"|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input type="number" ng-model="deliveryInvoice.selectedItem.DeliveryNumber" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group" ng-show="deliveryInvoice.gridOptions.resultAccess.AccessAddField.indexOf('IsCompleted')>-1">
+                    <div class="col-sm-10">
+                        <label class="checkbox-inline">
+                            <input icheck type="checkbox" value="option1" ng-model="deliveryInvoice.selectedItem.IsCompleted" />{{'Is_Completed'|lowercase|translate}}
+                        </label>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2  control-label">{{'Distribution_Starting_Date'|lowercase|translate}}</label>
+                    <div class="col-sm-6  col-md-4">
+                        <div rasha-date-picker="deliveryInvoice.BeginTime" ng-model="deliveryInvoice.selectedItem.BeginTime"></div><input type="hidden" ng-model="deliveryInvoice.selectedItem.BeginTime" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="deliveryInvoice.gridOptions.resultAccess.AccessEditField.indexOf('LinkExternalModuleShopInvoiceId')>-1">
+                    <label class="col-sm-2 control-label">{{'Factor'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkExternalModuleShopInvoiceId" rasha-autocomplete="deliveryInvoice.LinkExternalModuleShopInvoiceIdSelector" ng-model="frmdeliveryInvoiceEdit.selectedItem.LinkExternalModuleShopInvoiceId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="deliveryInvoice.gridOptions.resultAccess.AccessAddField.indexOf('LinkDeliveryMemberSettingId')>-1">
+                    <label class="col-sm-2 control-label">{{'Delivery_Settings'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkDeliveryMemberSettingId" rasha-autocomplete="deliveryInvoice.LinkDeliveryMemberSettingIdSelector" ng-model="deliveryInvoice.selectedItem.LinkExternalModuleShopInvoiceId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="deliveryInvoice.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="deliveryInvoice.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

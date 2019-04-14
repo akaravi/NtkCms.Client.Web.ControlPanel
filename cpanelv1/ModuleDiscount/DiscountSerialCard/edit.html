@@ -1,0 +1,198 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="discountSerialCard.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Card'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmdiscountSerialCardEdit" novalidate ng-submit="discountSerialCard.editRow(frmdiscountSerialCardEdit)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmdiscountSerialCardEdit.LinkSourceId.$invalid && !frmdiscountSerialCardEdit.LinkSourceId.$pristine,'has-success' : frmdiscountSerialCardEdit.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="discountSerialCard"></div>
+                </div>
+                <div class="form-group" ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('DiscountSerialCardIdentifier')>-1||discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('DiscountSerialCardIdentifier')>-1"
+                     ng-class="{'has-error' : frmdiscountSerialCardEdit.DiscountSerialCardIdentifier.$invalid && !frmdiscountSerialCardEdit.DiscountSerialCardIdentifier.$pristine,'has-success' : frmdiscountSerialCardEdit.DiscountSerialCardIdentifier.$valid}">
+                    <label class="col-sm-2 control-label">{{'CARD_NUMBER'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-readonly="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('DiscountSerialCardIdentifier')<0 && discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('DiscountSerialCardIdentifier')>-1"
+                               ng-required="true"
+                               name="DiscountSerialCardIdentifier"
+                               ng-model="discountSerialCard.selectedItem.DiscountSerialCardIdentifier" />
+                        <div class="m-t-xs" ng-show="frmdiscountSerialCardEdit.DiscountSerialCardIdentifier.$invalid">
+                            <small class="text-danger" ng-show="frmdiscountSerialCardEdit.DiscountSerialCardIdentifier.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmdiscountSerialCardEdit.DiscountSerialCardIdentifier.$valid && frmdiscountSerialCardEdit.DiscountSerialCardIdentifier.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmdiscountSerialCardEdit.DiscountSerialCardIdentifier.$invalid && !frmdiscountSerialCardEdit.DiscountSerialCardIdentifier.$pristine) || frmdiscountSerialCardEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('SerialRfId')>-1||discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('SerialRfId')>-1"
+                     >
+                    <label class="col-sm-2 control-label">{{'RfId_Serial'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-readonly="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('SerialRfId')<0 && discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('SerialRfId')>-1"
+                               name="SerialRfId"
+                               ng-model="discountSerialCard.selectedItem.SerialRfId" />
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('SerialNumber')>-1||discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('SerialNumber')>-1"
+                     >
+                    <label class="col-sm-2 control-label">{{'Serial_Number'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-readonly="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('SerialNumber')<0 && discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('SerialNumber')>-1"
+                               name="SerialNumber"
+                               ng-model="discountSerialCard.selectedItem.SerialNumber" />
+                    </div>
+                </div>
+                <div class="form-group"
+                     ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('MonthExpireLength')>-1||discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('MonthExpireLength')>-1"
+                     ng-class="{'has-error' : frmdiscountSerialCardEdit.MonthExpireLength.$invalid && !frmdiscountSerialCardEdit.MonthExpireLength.$pristine,'has-success' : frmdiscountSerialCardEdit.MonthExpireLength.$valid}">
+                    <label class="col-sm-2 control-label">{{'Number_Of_Months_Expiration'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-readonly="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('MonthExpireLength')<0 && discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('MonthExpireLength')>-1"
+                               ng-required="true"
+                               name="MonthExpireLength"
+                               ng-model="discountSerialCard.selectedItem.MonthExpireLength" />
+                        <div class="m-t-xs" ng-show="frmdiscountSerialCardEdit.MonthExpireLength.$invalid">
+                            <small class="text-danger" ng-show="frmdiscountSerialCardEdit.MonthExpireLength.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmdiscountSerialCardEdit.MonthExpireLength.$valid && frmdiscountSerialCardEdit.MonthExpireLength.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmdiscountSerialCardEdit.MonthExpireLength.$invalid && !frmdiscountSerialCardEdit.MonthExpireLength.$pristine) || frmdiscountSerialCardEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('LinkDiscountGroupId')>-1">
+                    <label class="col-sm-2 control-label">{{'GROUP'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkDiscountGroupId" rasha-autocomplete="discountSerialCard.LinkDiscountGroupIdSelector" ng-model="discountSerialCard.selectedItem.LinkDiscountGroupId" />
+                    </div>
+                </div>
+                <div class="form-group" ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('LinkDiscountGroupId')<0 && discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('LinkDiscountGroupId')>-1">
+                    <label class="col-sm-2 control-label">{{'GROUP'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" readonly name="virtual_DiscountGroup.Title" ng-model="discountSerialCard.selectedItem.virtual_DiscountGroup.Title" />
+                    </div>
+                </div>
+
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('LinkDiscountSerialCardFlowGroupId')>-1">
+                    <label class="col-sm-2 control-label">{{'Work_Process'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkDiscountGroupId" rasha-autocomplete="discountSerialCard.LinkDiscountSerialCardFlowGroupIdSelector" ng-model="discountSerialCard.selectedItem.LinkDiscountSerialCardFlowGroupId" />
+                    </div>
+                </div>
+                <div class="form-group" ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('LinkDiscountSerialCardFlowGroupId')<0 && discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('LinkDiscountSerialCardFlowGroupId')>-1">
+                    <label class="col-sm-2 control-label">{{'Work_Process'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" readonly name="virtual_DiscountSerialCardFlowGroup.Title"  ng-model="discountSerialCard.selectedItem.virtual_DiscountSerialCardFlowGroup.Title" />
+                    </div>
+                </div>
+
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('LinkDiscountSellerId')>-1">
+                    <label class="col-sm-2 control-label">{{'Representative'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkDiscountSellerId" rasha-autocomplete="discountSerialCard.LinkDiscountSellerIdSelector" ng-model="discountSerialCard.selectedItem.LinkDiscountSellerId" />
+                    </div>
+                </div>
+                <div class="form-group" ng-show="discountSerialCard.gridOptions.resultAccess.AccessEditField.indexOf('LinkDiscountSellerId')<0 && discountSerialCard.gridOptions.resultAccess.AccessWatchField.indexOf('LinkDiscountSellerId')>-1">
+                    <label class="col-sm-2 control-label">{{'Representative'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" readonly name="virtual_DiscountSeller.BranchTitle" ng-model="discountSerialCard.selectedItem.virtual_DiscountSeller.BranchTitle" />
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed' ng-show="discountSerialCard.ViewInfoUserDiv"></div>
+                <div class="form-group" ng-show="discountSerialCard.ViewInfoUserDiv">
+                    <label class="col-sm-2 control-label">{{'Card_Consumer_Id'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" readonly type="text" ng-model="discountSerialCard.selectedItem.LinkMemberId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+
+                <div class="form-group">
+                    <label class="col-xs-2 col-sm-2 control-label">{{'FINAL_CUSTPMER_NATIONAL_CODE'|lowercase|translate}}</label>
+                    <div class="col-xs-2 col-sm-4 col-md-4 col-lg-4">
+                        <input class="form-control" ng-model="discountSerialCard.selectedItem.NationalCode" />
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <img src=mainPathCmsFiles+"refresh.png" style="cursor:pointer;" ng-click="discountSerialCard.getUser(discountSerialCard.selectedItem.NationalCode)" />
+                    </div>
+                </div>
+                <div style="color:red">{{'To_add_or_change_customer_enter_the_customer_national_code'|lowercase|translate}}</div>
+
+                <div class='hr-line-dashed' ng-show="discountSerialCard.ViewFindUserDiv"></div>
+                <div class="form-group" style="border-color:red;border-style:solid">
+
+                    <div class="col-xs-10 " ng-show="discountSerialCard.ViewFindUserDiv">
+                        {{'FirstName_Label'|lowercase|translate}}<label class="control-label">{{discountSerialCard.selectedMemberUser.FirstName}}</label>
+                        <div class='hr-line-dashed'></div>
+                        {{'LastName_Label'|lowercase|translate}}<label class="control-label">{{discountSerialCard.selectedMemberUser.LastName}}</label>
+                        <div class='hr-line-dashed'></div>
+                        {{'Phone_Label'|lowercase|translate}}<label class="control-label">{{discountSerialCard.selectedMemberUser.MobileNo}}</label>
+                        <div class='hr-line-dashed'></div>
+                        کدملی:<label class="control-label">{{discountSerialCard.selectedMemberUser.NationalCode}}</label>
+                    </div>
+
+                </div>
+                <div ng-show="discountSerialCard.ViewNewUserDiv">
+                    <div style="color:red">{{'Your_Customer_Could_Not_Be_Found_Please_Enter_Customer_Profile_New'|lowercase|translate}}</div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{'NAME'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" ng-model="discountSerialCard.selectedMemberUser.FirstName" />
+                            <small class="text-danger"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{'LAST_NAME'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" ng-model="discountSerialCard.selectedMemberUser.LastName" />
+                            <small class="text-danger"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{'Mobile'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" ng-model="discountSerialCard.selectedMemberUser.MobileNo" />
+                            <small class="text-danger"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{'ADDRESS'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" ng-model="discountSerialCard.selectedMemberUser.Address" />
+                            <small class="text-danger"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{'NATIONAL_CODE'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" ng-model="discountSerialCard.selectedMemberUser.NationalCode" />
+                            <small class="text-danger"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="discountSerialCard.EditRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="discountSerialCard.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

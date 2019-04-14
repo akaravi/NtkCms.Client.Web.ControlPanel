@@ -1,0 +1,129 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="dbContent.categoryBusyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="dbContent.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ dbContent.modalTitle}}</h3>
+            <form method="get" class="form-horizontal" name="frmdbContentAdd" novalidate ng-submit="dbContent.addNewContent(frmdbContentAdd)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmdbContentAdd.LinkSourceId.$invalid && !frmdbContentAdd.LinkSourceId.$pristine,'has-success' : frmdbContentAdd.LinkSourceId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="dbContent"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmdbContentAdd.Title.$invalid && !frmdbContentAdd.Title.$pristine,'has-success' : frmdbContentAdd.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           ng-model="dbContent.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmdbContentAdd.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmdbContentAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmdbContentAdd.Title.$valid && frmdbContentAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmdbContentAdd.Title.$invalid && !frmdbContentAdd.Title.$pristine) || frmdbContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmdbContentAdd.Description.$invalid && !frmdbContentAdd.Description.$pristine,'has-success' : frmdbContentAdd.Description.$valid}">
+                                <label class="col-sm-2 control-label"> {{'description'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control"
+                                           ng-required="true"
+                                           name="Description"
+                                           ng-model="dbContent.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmdbContentAdd.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmdbContentAdd.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmdbContentAdd.Description.$valid && frmdbContentAdd.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmdbContentAdd.Description.$invalid && !frmdbContentAdd.Description.$pristine) || frmdbContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2  control-label"> {{'DATE'|lowercase|translate}}&nbsp;{{'INSERT'|lowercase|translate}} </label>
+                                <div class="col-sm-6  col-md-4">
+                                    <div rasha-date-picker="dbContent.startDate" ng-model="dbContent.selectedItem.FromDate"></div><input type="hidden" ng-model="dbContent.selectedItem.FromDate" />
+                                </div>
+                                <label class="col-sm-2  control-label"> {{'FINISH_DATE'|lowercase|translate}} </label>
+                                <div class="col-sm-6 col-md-4">
+                                    <div rasha-date-picker="dbContent.endDate" ng-model="dbContent.selectedItem.ToDate"></div><input type="hidden" ng-model="dbContent.selectedItem.ToDate" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Content_Matter'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <!--    is-open="dbContent.focus1" -->
+                            <!-- ng-focus="dbContent.openDate1($event)" -->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmdbContentAdd.Keyword.$invalid && !frmdbContentAdd.Keyword.$pristine,'has-success' : frmdbContentAdd.Description.$valid}">
+                                <label class="col-sm-2 control-label"> {{'KEYWORDS'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Keyword"
+                                           ng-model="dbContent.selectedItem.Keyword" />
+                                    <div class="m-t-xs" ng-show="frmdbContentAdd.Keyword.$invalid">
+                                        <small class="text-danger" ng-show="frmdbContentAdd.Keyword.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <small>{{'Keywords_Help'|lowercase|translate}}</small>
+                                    <span style="left: 10px !important;" ng-show="frmdbContentAdd.Keyword.$valid && frmdbContentAdd.Keyword.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmdbContentAdd.Keyword.$invalid && !frmdbContentAdd.Keyword.$pristine) || frmdbContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'FULL_CONTENT'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <div summernote class="summernote" config="dbContent.summernoteOptions" ng-model="dbContent.selectedItem.Body">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Place_Location' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                    
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="dbContent.gridOptions.resultAccess.AccessAddField.indexOf('Geolocationlatitude')>-1">
+                                <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div rasha-map="dbContent.GeolocationConfig" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <div class="form-group col-sm-12" ng-repeat="x in dbContent.attachedFiles">
+                                    <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                                    <div class="input-group">
+                                        <input type="text" id="option{{$index}}" class="form-control" ng-required="true" name="attachedFileName" required readonly="readonly" ng-model="x.filename">
+                                        <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="dbContent.deleteAttachedFile($index)"><i class="fa fa-remove"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="dbContent.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="dbContent.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

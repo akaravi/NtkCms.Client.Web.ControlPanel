@@ -1,0 +1,56 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="productSalePriceController as shopSalePrice" ng-init="shopSalePrice.init()">
+    <!--<div class="container">-->
+    <div class="row" rasha-loading="shopSalePrice.categoryBusyIndicator">
+        <div class="col-md-2">
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h5><i class="fa fa-folder-open fa"></i>&nbsp;&nbsp;  {{'PRODUCTS_CATEGORY'|lowercase|translate}} </h5></div>
+                    <div class="panel-body">
+                        <div style="position: relative">
+                            <ul class="tree" tree-options="shopSalePrice.treeConfig"></ul>
+                        </div>
+                        <!-- Category Section -->
+                        <div style="margin-top: 20px;">
+                            <a ng-click="shopSalePrice.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-primary">
+                                <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
+                            </a>
+                            <div id="categoryButtons" style="display: none;">
+                                <button class="btn btn-primary" style="width: 100%; margin-top:5px;" rasha-userrole="shopSalePrice.Add" ng-click="shopSalePrice.addNewCategoryModel()" ng-show="shopSalePrice.gridOptions.resultAccess.AccessAddRow" type="button"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}} </button>
+                                <button class="btn btn-warning" style="width: 100%;margin-top:5px;" rasha-userrole="shopSalePrice.Edit" ng-click="shopSalePrice.openEditCategoryModel()" ng-show="shopSalePrice.gridOptions.resultAccess.AccessEditRow" type="button"><i class="fa fa-edit fontavesome-small"></i>&nbsp;{{'edit'|lowercase|translate}} </button>
+                                <button class="btn btn-danger" style="width: 100%;margin-top:5px;" rasha-userrole="shopSalePrice.Delete" ng-click="shopSalePrice.deleteCategory()" ng-show="shopSalePrice.gridOptions.resultAccess.AccessDeleteRow" type="button"> <i class="fa  fa-remove fontavesome-small"></i>&nbsp;{{'delete'|lowercase|translate}} </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10" style="position: relative">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h5><i class="fa fa-Productpaper-o " style="font-size: 18px;"></i>&nbsp;&nbsp; {{'LIST'|lowercase|translate}}&nbsp;{{'PRODUCTS'|lowercase|translate}} </h5></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <button class="btn btn-primary" ng-click="shopSalePrice.addNewContentModel()" ng-show="shopSalePrice.gridOptions.resultAccess.AccessAddRow"><i class="fa fa-plus-square fontavesome-small"></i>&nbsp; {{'add'|lowercase|translate}}</button>
+                    <button class="btn btn-warning" ng-click="shopSalePrice.openEditModel()" ng-show="shopSalePrice.gridOptions.resultAccess.AccessEditRow"><i class="fa fa-edit fontavesome-small"></i>&nbsp; {{'edit'|lowercase|translate}} </button>
+                    <button class="btn btn-danger" ng-click="shopSalePrice.deleteContent()" ng-show="shopSalePrice.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
+                    <button class="btn btn-success" ng-click="shopSalePrice.showAdvancedSearchPanel(shopSalePrice.gridOptions.resultAccess.AccessSearchField)"><i class="fa fa-search fontaesome-small"></i>&nbsp; {{'advanced_search'|lowercase|translate}}&nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+                    <!--<button class="btn btn-warning" type="button" ng-click="shopSalePrice.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>-->
+                </div>
+                <hr />
+                <div id="builderPanel" class="col-sm-12 col-lg-12 col-md-12" style="display: none; margin-bottom: 10px;">
+                    <div id="builder" query-builder="shopSalePrice"></div>
+                    <div class="btn-group" style="float: left;">
+                        <button class="btn btn-success reset" data-target="basic" type="button" id="btn-get" ng-click="shopSalePrice.getRules()"> {{'look'|lowercase|translate}} </button>
+                        <button class="btn btn-primary set-json" data-target="basic" type="button" id="btn-save" ng-click="shopSalePrice.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+                        <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-set" ng-click="shopSalePrice.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div rasha-grid="shopSalePrice.gridOptions"></div>
+                    <div rasha-loading="shopSalePrice.contentBusyIndicator"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

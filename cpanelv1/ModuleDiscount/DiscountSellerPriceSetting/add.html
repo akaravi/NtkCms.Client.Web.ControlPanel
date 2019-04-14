@@ -1,0 +1,61 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="discountSellerPriceSetting.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{'Add_Price'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmdiscountSellerPriceSettingAdd" novalidate ng-submit="discountSellerPriceSetting.addNewRow(frmdiscountSellerPriceSettingAdd)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmdiscountSellerPriceSettingAdd.LinkSourceId.$invalid && !frmdiscountSellerPriceSettingAdd.LinkSourceId.$pristine,'has-success' : frmdiscountSellerPriceSettingAdd.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="discountSellerPriceSetting"></div>
+                </div>
+             
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group" ng-show="discountSellerPriceSetting.gridOptions.resultAccess.AccessAddField.indexOf('LinkDiscountSellerId')>-1">
+                        <label class="col-sm-2 control-label">{{'Representative_Id'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" name="LinkDiscountSellerId" rasha-autocomplete="discountSellerPriceSetting.LinkDiscountSellerIdSelector" ng-model="discountSellerPriceSetting.selectedItem.LinkDiscountSellerId" />
+                        </div>
+                    </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="discountSellerPriceSetting.gridOptions.resultAccess.AccessAddField.indexOf('LinkDiscountGroupId')>-1">
+                    <label class="col-sm-2 control-label">{{'Link_Group_Id'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkDiscountGroupId" rasha-autocomplete="discountSellerPriceSetting.LinkDiscountGroupIdSelector" ng-model="discountSellerPriceSetting.selectedItem.LinkDiscountGroupId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="discountSellerPriceSetting.gridOptions.resultAccess.AccessAddField.indexOf('BasePrice')>-1"
+                     ng-class="{'has-error' : frmdiscountSellerPriceSettingAdd.BasePrice.$invalid && !frmdiscountSellerPriceSettingAdd.BasePrice.$pristine,'has-success' : frmdiscountSellerPriceSettingAdd.BasePrice.$valid}">
+                    <label class="col-sm-2 control-label">{{'Fixed_Price'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="BasePrice"
+                               ng-model="discountSellerPriceSetting.selectedItem.BasePrice" />
+                        <div class="m-t-xs" ng-show="frmdiscountSellerPriceSettingAdd.BasePrice.$invalid">
+                            <small class="text-danger" ng-show="frmdiscountSellerPriceSettingAdd.BasePrice.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmdiscountSellerPriceSettingAdd.BasePrice.$valid && frmdiscountSellerPriceSettingAdd.BasePrice.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmdiscountSellerPriceSettingAdd.BasePrice.$invalid && !frmdiscountSellerPriceSettingAdd.BasePrice.$pristine) || frmdiscountSellerPriceSettingAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Representative_Price'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               name="SellerPrice"
+                               ng-model="discountSellerPriceSetting.selectedItem.SellerPrice" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="discountSellerPriceSetting.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="discountSellerPriceSetting.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

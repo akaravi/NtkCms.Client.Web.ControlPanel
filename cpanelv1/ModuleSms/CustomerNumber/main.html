@@ -1,0 +1,18 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="customerNumberCtrl as customerNumber" ng-init="customerNumber.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="customerNumber.Add" ng-click="customerNumber.addNewModel()" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="customerNumber.Edit" ng-click="customerNumber.editOpenModel()" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="customerNumber.Delete" ng-click="customerNumber.deleteRow()" type="button"> {{'delete'|lowercase|translate}} </button>
+            <!--<button class="btn btn-default" type="button" ng-click="apiCompany.searchData()"> {{'advanced_search'|lowercase|translate}} </button>-->
+            <!--<button class="btn btn-default" type="button" ng-click="apiCompany.reportData()"> {{'report'|lowercase|translate}} </button>-->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="customerNumber.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,72 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="articleComment.busyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="articleComment.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Comment'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmarticleCommentEdit" novalidate ng-submit="articleComment.editRow(frmarticleCommentEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="articleComment.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                                 ng-class="{'has-error' : frmarticleCommentAdd.RecordStatus.$invalid && !frmarticleCommentAdd.RecordStatus.$pristine,'has-success' : frmarticleCommentAdd.LinkSourceId.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="articleComment"></div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="articleComment.gridOptions.resultAccess.AccessEditField.indexOf('Writer')>-1"
+                                 ng-class="{'has-error' : frmarticleCommentEdit.Writer.$invalid && !frmarticleCommentEdit.Writer.$pristine,'has-success' : frmarticleCommentEdit.Writer.$valid}">
+                                <label class="col-sm-2 control-label"> {{'AUTHOR'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Writer"
+                                           ng-model="articleComment.selectedItem.Writer" />
+                                    <div class="m-t-xs" ng-show="frmarticleCommentEdit.Writer.$invalid">
+                                        <small class="text-danger" ng-show="frmarticleCommentEdit.Writer.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmarticleCommentEdit.Writer.$valid && frmarticleCommentEdit.Writer.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmarticleCommentEdit.Writer.$invalid && !frmarticleCommentEdit.Writer.$pristine) || frmarticleCommentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="articleComment.gridOptions.resultAccess.AccessEditField.indexOf('Comment')>-1"
+                                 ng-class="{'has-error' : frmarticleCommentEdit.Comment.$invalid && !frmarticleCommentEdit.Comment.$pristine,'has-success' : frmarticleCommentEdit.Comment.$valid}">
+                                <label class="col-sm-2 control-label"> {{'COMMENT'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                        <textarea  class="form-control"
+                                        ng-required="true"
+                                        name="Comment"
+                                        ng-model="articleComment.selectedItem.Comment"
+                                        style="resize: vertical;height: 100px;"></textarea>
+                                   
+                                    <div class="m-t-xs" ng-show="frmarticleCommentEdit.Comment.$invalid">
+                                        <small class="text-danger" ng-show="frmarticleCommentEdit.Comment.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmarticleCommentEdit.Comment.$valid && frmarticleCommentEdit.Comment.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmarticleCommentEdit.Comment.$invalid && !frmarticleCommentEdit.Comment.$pristine) || frmarticleCommentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{{'SELECT_CONTENT'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkarticleContentId" rasha-autocomplete="articleComment.LinkarticleContentIdSelector" ng-model="articleComment.selectedItem.LinkarticleContentId" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="articleComment.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="articleComment.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="emailProcessTask.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Outbox_Details'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmemailProcessTaskEdit" novalidate ng-submit="emailProcessTask.editRow(frmemailProcessTaskEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group"
+                                 ng-class="{'has-error' : frmemailProcessTaskEdit.RecordStatus.$invalid && !frmemailProcessTaskEdit.RecordStatus.$pristine,'has-success' : frmemailProcessTaskEdit.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="emailProcessTask"></div>
+                            </div>
+                            <!--<div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="emailProcessTask.gridOptions.resultAccess.AccessEditField.indexOf('Credit')>-1"
+                                 ng-class="{'has-error' : frmemailProcessTaskAdd.Credit.$invalid && !frmemailProcessTaskAdd.Credit.$pristine,'has-success' : frmemailProcessTaskAdd.Credit.$valid}">
+                                <label class="col-sm-2 control-label"> {{'Credit'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Credit"
+                                           type="number"
+                                           ng-model="emailProcessTask.selectedItem.Credit" />
+                                    <div class="m-t-xs" ng-show="frmemailProcessTaskAdd.Credit.$invalid">
+                                        <small class="text-danger" ng-show="frmemailProcessTaskAdd.Credit.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmemailProcessTaskAdd.Credit.$valid && frmemailProcessTaskAdd.Credit.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmemailProcessTaskAdd.Credit.$invalid && !frmemailProcessTaskAdd.Credit.$pristine) || frmemailProcessTaskAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>-->
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2  control-label"> {{'DATE'|lowercase|translate}}&nbsp;{{'INSERT'|lowercase|translate}} </label>
+                                <div class="col-sm-6  col-md-4">
+                                    <div rasha-date-picker="emailProcessTask.DateSendStart" ng-model="emailProcessTask.selectedItem.DateSendStart"></div><input type="hidden" ng-model="emailProcessTask.selectedItem.DateSendStart" />
+                                </div>
+                                <label class="col-sm-2  control-label"> {{'FINISH_DATE'|lowercase|translate}} </label>
+                                <div class="col-sm-6 col-md-4">
+                                    <div rasha-date-picker="emailProcessTask.DateSendEnd" ng-model="emailProcessTask.selectedItem.DateSendEnd"></div><input type="hidden" ng-model="emailProcessTask.selectedItem.DateSendEnd" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="emailProcessTask.gridOptions.resultAccess.AccessEditField.indexOf('DefaultSubject')>-1">
+                                <label class="col-sm-2 control-label">{{'DefaultSubject'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="DefaultSubject" ng-model="emailProcessTask.selectedItem.DefaultSubject" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group" ng-show="emailProcessTask.gridOptions.resultAccess.AccessEditField.indexOf('DefaultSender')>-1">
+                                <label class="col-sm-2 control-label">{{"DefaultSender"|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="DefaultSender" ng-model="emailProcessTask.selectedItem.DefaultSender" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group" ng-show="emailProcessTask.gridOptions.resultAccess.AccessEditField.indexOf('DefaultSenderDisplayName')>-1">
+                                <label class="col-sm-2 control-label">{{"DefaultSenderDisplayName"|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="DefaultSenderDisplayName" ng-model="emailProcessTask.selectedItem.DefaultSenderDisplayName" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group" ng-show="emailProcessTask.gridOptions.resultAccess.AccessEditField.indexOf('DefaultBody')>-1">
+                                <label class="col-sm-2 control-label">{{"DefaultBody"|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="DefaultBody" ng-model="emailProcessTask.selectedItem.DefaultBody" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <label class="checkbox-inline">
+                                        <input icheck type="checkbox" value="BodyIsHtml" ng-model="emailProcessTask.selectedItem.BodyIsHtml" /><h4>{{'BodyIsHtml'|lowercase|translate}}</h4>
+                                    </label>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="emailProcessTask.addRequested" type="submit">{{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="emailProcessTask.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

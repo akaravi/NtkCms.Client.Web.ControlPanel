@@ -1,0 +1,31 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="newsSharingCategoryController as newssharingcategory" ng-init="newssharingcategory.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-loading="newssharingcategory.busyIndicator"></div>
+
+            <button class="btn btn-primary" rasha-userrole="newssharingcategoryController.Add" ng-click="newssharingcategory.openAddModal()" ng-show="newssharingcategory.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="newssharingcategoryController.Edit" ng-click="newssharingcategory.openEditModal()" ng-show="newssharingcategory.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="newssharingcategoryController.Delete" ng-click="newssharingcategory.deleteRow()" ng-show="newssharingcategory.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="newssharingcategory.showAdvancedSearchPanel()"> {{'advanced_search'|lowercase|translate}} &nbsp;&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="newssharingcategory.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="newssharingcategory.getCount()">{{'number'|lowercase|translate}}&nbsp;{{newssharingcategory.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+            <div id="builder" query-builder="newssharingcategory"></div>
+            <div class="btn-group" style="float: left;">
+                <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="newssharingcategory.getRules()">{{'look'|lowercase|translate}}</button>
+                <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="newssharingcategory.saveRules()">{{'save_condition'|lowercase|translate}}</button>
+                <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="newssharingcategory.setRules()">{{'restore_condition'|lowercase|translate}}</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div rasha-grid="newssharingcategory.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,149 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="discountSeller.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Sales_Representative'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmdiscountSellerAdd" novalidate ng-submit="discountSeller.addNewRow(frmdiscountSellerAdd)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmdiscountSellerAdd.LinkSourceId.$invalid && !frmdiscountSellerAdd.LinkSourceId.$pristine,'has-success' : frmdiscountSellerAdd.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="discountSeller"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmdiscountSellerAdd.BranchTitle.$invalid && !frmdiscountSellerAdd.BranchTitle.$pristine,'has-success' : frmdiscountSellerAdd.BranchTitle.$valid}">
+                    <label class="col-sm-2 control-label">{{'Branch_Title'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               name="BranchTitle"
+                               ng-model="discountSeller.selectedItem.BranchTitle" />
+                        <div class="m-t-xs" ng-show="frmdiscountSellerAdd.BranchTitle.$invalid">
+                            <small class="text-danger" ng-show="frmdiscountSellerAdd.BranchTitle.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmdiscountSellerAdd.BranchTitle.$valid && frmdiscountSellerAdd.BranchTitle.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmdiscountSellerAdd.BranchTitle.$invalid && !frmdiscountSellerAdd.BranchTitle.$pristine) || frmdiscountSellerAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-xs-3 col-sm-3 control-label">{{'Representative_Id'|lowercase|translate}}</label>
+                    <div class="col-xs-2 col-sm-4 col-md-4 col-lg-4">
+                        <input class="form-control" ng-model="discountSeller.selectedItem.LinkModuleCoreCmsUserId" />
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <img src=mainPathCmsFiles+"refresh.png" style="cursor:pointer;" ng-click="discountSeller.getUser(discountSeller.selectedItem.LinkModuleCoreCmsUserId)" />
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="color:red">{{'Enter_The_Representative_To_Add_Or_Change_The_Representative_Of_The_National_Code'|lowercase|translate}}</div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group " style="border-color:red;border-style:solid" ng-show="discountSeller.ViewFindUserDiv">
+                    {{'FirstName_Label'|lowercase|translate}}<label class="control-label">{{discountSeller.selectedUser.Name}}</label>
+                    <div class='hr-line-dashed'></div>
+                    {{'LastName_Label'|lowercase|translate}}<label class="control-label">{{discountSeller.selectedUser.LastName}}</label>
+                    <div class='hr-line-dashed'></div>
+                    <label class="col-xs-2 col-sm-2 control-label">{{'Representative_Id'|lowercase|translate}}</label>
+                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                        <input class="form-control" readonly ng-model="discountSeller.selectedUser.Id" />
+                    </div>
+                </div>
+
+                <div ng-show="discountSeller.ViewNewUserDiv">
+                    <div style="color:red">{{'Your_representative_has_not_been_found_Please_enter_the_New_Representative_Features'|lowercase|translate}}</div>
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group" ng-class="{'has-error' : frmdiscountSellerAdd.Username.$invalid && !frmdiscountSellerAdd.Username.$pristine,'has-success' : frmdiscountSellerAdd.Username.$valid}">
+                        <label class="col-sm-2 control-label">{{'USERNAME_EMAIL'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" style="direction: ltr;"
+                                   name="Username"
+                                   ng-model="discountSeller.selectedUser.Username" />
+                            <div class="m-t-xs" ng-show="frmdiscountSellerAdd.Username.$invalid">
+                                <small class="text-danger" ng-show="frmdiscountSellerAdd.Username.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                            </div>
+                            <span style="left: 10px !important;" ng-show="frmdiscountSellerAdd.Username.$valid && frmdiscountSellerAdd.Username.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                            <span style="left: 10px !important;" ng-show="(frmdiscountSellerAdd.Username.$invalid && !frmdiscountSellerAdd.Username.$pristine) || frmdiscountSellerAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group" ng-class="{'has-error' : frmdiscountSellerAdd.Pwd.$invalid && !frmdiscountSellerAdd.Pwd.$pristine,'has-success' : frmdiscountSellerAdd.Pwd.$valid}">
+                        <label class='col-sm-2 control-label'>{{'PASSWORD'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" style="direction: ltr;"
+                                   name="Pwd" type="password"
+                                   ng-model="discountSeller.selectedUser.Pwd" />
+                            <div class="m-t-xs" ng-show="frmdiscountSellerAdd.Pwd.$invalid">
+                                <small class="text-danger" ng-show="frmdiscountSellerAdd.Pwd.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                            </div>
+                            <span style="left: 10px !important;" ng-show="frmdiscountSellerAdd.Pwd.$valid && frmdiscountSellerAdd.Pwd.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                            <span style="left: 10px !important;" ng-show="(frmdiscountSellerAdd.Pwd.$invalid && !frmdiscountSellerAdd.Pwd.$pristine) || frmdiscountSellerAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group" ng-class="{'has-error' : frmdiscountSellerAdd.Name.$invalid && !frmdiscountSellerAdd.Name.$pristine,'has-success' : frmdiscountSellerAdd.Name.$valid}">
+                        <label class="col-sm-2 control-label">{{'NAME'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control"
+                                   name="Name"
+                                   ng-model="discountSeller.selectedUser.Name" />
+                            <div class="m-t-xs" ng-show="frmdiscountSellerAdd.Name.$invalid">
+                                <small class="text-danger" ng-show="frmdiscountSellerAdd.Name.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                            </div>
+                            <span style="left: 10px !important;" ng-show="frmdiscountSellerAdd.Name.$valid && frmdiscountSellerAdd.Name.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                            <span style="left: 10px !important;" ng-show="(frmdiscountSellerAdd.Name.$invalid && !frmdiscountSellerAdd.Name.$pristine) || frmdiscountSellerAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group" ng-class="{'has-error' : frmdiscountSellerAdd.LastName.$invalid && !frmdiscountSellerAdd.LastName.$pristine,'has-success' : frmdiscountSellerAdd.LastName.$valid}">
+                        <label class="col-sm-2 control-label">{{'LASTNAME'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control"
+                                   name="LastName"
+                                   ng-model="discountSeller.selectedUser.LastName" />
+                            <div class="m-t-xs" ng-show="frmdiscountSellerAdd.LastName.$invalid">
+                                <small class="text-danger" ng-show="frmdiscountSellerAdd.LastName.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                            </div>
+                            <span style="left: 10px !important;" ng-show="frmdiscountSellerAdd.LastName.$valid && frmdiscountSellerAdd.LastName.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                            <span style="left: 10px !important;" ng-show="(frmdiscountSellerAdd.LastName.$invalid && !frmdiscountSellerAdd.LastName.$pristine) || frmdiscountSellerAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class="form-group" ng-class="{'has-error' : frmdiscountSellerAdd.NationalCode.$invalid && !frmdiscountSellerAdd.NationalCode.$pristine,'has-success' : frmdiscountSellerAdd.NationalCode.$valid}">
+                        <label class="col-sm-2 control-label">{{'NATIONAL_CODE'|lowercase|translate}}</label>
+                        <div class="col-sm-10">
+                            <input class="form-control"
+                                   name="NationalCode"
+                                   ng-model="discountSeller.selectedUser.NationalCode" />
+                            <div class="m-t-xs" ng-show="frmdiscountSellerAdd.NationalCode.$invalid">
+                                <small class="text-danger" ng-show="frmdiscountSellerAdd.NationalCode.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}}</small>
+                            </div>
+                            <span style="left: 10px !important;" ng-show="frmdiscountSellerAdd.NationalCode.$valid && frmdiscountSellerAdd.NationalCode.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                            <span style="left: 10px !important;" ng-show="(frmdiscountSellerAdd.NationalCode.$invalid && !frmdiscountSellerAdd.NationalCode.$pristine) || frmdiscountSellerAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class='form-group'>
+                        <label class='col-sm-2 control-label'>{{'COMPANY_NAME'|lowercase|translate}}</label>
+                        <div class='col-sm-10'>
+                            <input type='text' name="FullName" ng-model='discountSeller.selectedUser.FullName' class='form-control'>
+                        </div>
+                    </div>
+                    <div class='hr-line-dashed'></div>
+                    <div class='form-group'>
+                        <label class='col-sm-2 control-label'>{{'User_Type'|lowercase|translate}}</label>
+                        <div class='col-sm-10'>
+                            <label><input type="radio" ng-model="discountSeller.selectedUser.IsCompany" ng-value="0">&nbsp;{{'True'|lowercase|translate}}</label><br />
+                            <label><input type="radio" ng-model="discountSeller.selectedUser.IsCompany" ng-value="1">&nbsp;{{'Legal'|lowercase|translate}}</label><br />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <button class="btn btn-primary" ng-disabled="discountSeller.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="discountSeller.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

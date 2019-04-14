@@ -1,0 +1,17 @@
+﻿<div class="modal-body">
+    <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="$dismiss()"></i>
+    <h5>{{cmsSitegrd.gridOptions.selectedRow.item.Title}} - Id: {{cmsSitegrd.gridOptions.selectedRow.item.Id}} -   {{cmsSitegrd.ModuleConfigSelected.TitleML}}</h5>
+    <hr />
+    <!-- Tile Section -->
+    <div class="row">
+        <form class="form-horizontal">
+            <div ng-model="cmsSitegrd.submitValue" fb-form="default" fb-default="cmsSitegrd.defaultValue"></div>
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-4" ng-show="!(cmsSitegrd.configType=='SiteStorage')">
+                    <button class="btn btn-primary" type="button" ng-disabled="cmsSitegrd.addRequested" ng-click="cmsSitegrd.saveSubmitValues()">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="$dismiss()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

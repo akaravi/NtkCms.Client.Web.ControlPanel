@@ -1,0 +1,24 @@
+﻿<div class="modal-body">
+    <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="$dismiss()"></i>
+    <h5>{{'PREVIEW'|lowercase|translate}}</h5>
+    <hr />
+    <!-- Tile Section -->
+    <div class="row">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-4">
+                    <h3>{{taskScheduleProcessValue.appTitle}}</h3>
+                </div>
+            </div>
+        </form>
+        <form class="form-horizontal">
+            <div ng-model="taskScheduleProcessValue.submitValue" fb-form="default" fb-default="taskScheduleProcessValue.defaultValue"></div>
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-4">
+                    <button class="btn btn-primary" type="button" ng-disabled="taskScheduleProcessValue.addRequested" ng-click="taskScheduleProcessValue.saveSubmitValues()">{{'save'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="$dismiss()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

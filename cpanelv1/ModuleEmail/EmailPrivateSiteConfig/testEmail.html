@@ -1,0 +1,69 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="emailPrivateSiteConfig.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'SEND'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmemailPrivateSiteConfigAdd" novalidate ng-submit="emailPrivateSiteConfig.testEmail()">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'From_The_Address'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" dir="ltr" name="emailFrom" ng-model="emailPrivateSiteConfig.EmailSendMakerClass.emailFrom"/>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'From_The_Name'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" dir="ltr" name="emailFromName" ng-model="emailPrivateSiteConfig.EmailSendMakerClass.emailFromName" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'To'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" dir="ltr" name="emailTo" ng-model="emailPrivateSiteConfig.EmailSendMakerClass.emailTo"/>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Subject'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control"  name="emailSubject" ng-model="emailPrivateSiteConfig.EmailSendMakerClass.emailSubject" />
+                    </div>
+                </div>
+                <!--<div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">متن</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="body" ng-model="emailPrivateSiteConfig.EmailSendMakerClass.body"></textarea>
+                    </div>
+                </div>-->
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'TEXT'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <div summernote class="summernote" config="emailPrivateSiteConfig.summernoteOptions" ng-model="emailPrivateSiteConfig.EmailSendMakerClass.emailBody">
+                        </div>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="emailPrivateSiteConfig.addRequested" type="submit">{{'SEND'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="emailPrivateSiteConfig.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+            <div ng-show="emailPrivateSiteConfig.testPayValue.ErrorMessage.length >= 0 ">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Result'|lowercase|translate}}:</label>
+                    <div class="col-sm-10">
+                        {{emailPrivateSiteConfig.testPayValue.ErrorMessage}}
+                        <br />
+                        <span ng-bind-html="emailPrivateSiteConfig.testPayValue.Item.OutHtml | html"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

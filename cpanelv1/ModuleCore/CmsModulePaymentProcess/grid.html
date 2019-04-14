@@ -1,0 +1,26 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="cmsModulePaymentProcessCtrl as cmsMdlPayPrc" ng-init="cmsMdlPayPrc.init()">
+    <!--<div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-primary" rasha-userrole="cmsModuleSalePriceController.Add" ng-click="cmsMdlPayPrc.openAddModal()" ng-show="cmsMdlPayPrc.gridOptions.resultAccess.AccessAddRow" ng-disabled="cmsMdlPayPrc.addRequested">{{'ADD'|lowercase|translate}}</button>
+            <button type="button" class="btn btn-primary" rasha-userrole="cmsModuleSalePriceController.Add" ng-click="cmsMdlPayPrc.autoAdd()" ng-show="cmsMdlPayPrc.gridOptions.resultAccess.AccessAddRow" ng-disabled="cmsMdlPayPrc.addRequested">{{'AUTO_ADD'|lowercase|translate}}</button>
+            <button type="button" class="btn btn-warning" rasha-userrole="cmsModuleSalePriceController.Edit" ng-click="cmsMdlPayPrc.openEditModal()" ng-show="cmsMdlPayPrc.gridOptions.resultAccess.AccessEditRow" ng-disabled="cmsMdlPayPrc.addRequested">{{'edit'|lowercase|translate}}</button>
+            <button type="button" class="btn btn-danger" rasha-userrole="cmsModuleSalePriceController.Delete" ng-click="cmsMdlPayPrc.deleteRow()" ng-show="cmsMdlPayPrc.gridOptions.resultAccess.AccessDeleteRow" ng-disabled="cmsMdlPayPrc.addRequested">{{'delete'|lowercase|translate}}</button>
+            <button type="button" class="btn btn-success" ng-click="cmsMdlPayPrc.showAdvancedSearchPanel()"><i class="fa fa-search fontavesome-small"></i>&nbsp;{{'advanced_search'|lowercase|translate}}&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
+        </div>
+    </div>
+    <div class="col-sm-12 col-lg-12 col-md-12" id="builderPanel" style="display: none; margin-bottom: 10px;">
+        <div id="builder" query-builder="cmsMdlPayPrc"></div>
+        <div class="btn-group" style="float: left;">
+            <button class="btn btn-primary reset" data-target="basic" type="button" id="btn-reset" ng-click="cmsMdlPayPrc.getRules()"> {{'look'|lowercase|translate}} </button>
+            <button class="btn btn-success set-json" data-target="basic" type="button" id="btn-set" ng-click="cmsMdlPayPrc.saveRules()"> {{'save_condition'|lowercase|translate}} </button>
+            <button class="btn btn-warning parse-json" data-target="basic" type="button" id="btn-get" ng-click="cmsMdlPayPrc.setRules()"> {{'restore_condition'|lowercase|translate}} </button>
+        </div>
+    </div>
+    <div class="row" rasha-loading="cmsMdlPayPrc.busyIndicator">
+        <div class="col-sm-12">
+            <div rasha-grid="cmsMdlPayPrc.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

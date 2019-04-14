@@ -1,0 +1,17 @@
+﻿<div class="modal-body">
+    <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="shopProcess.closeModal()"></i>
+    <h5>{{'PREVIEW'|lowercase|translate}}</h5>
+    <hr />
+    <!-- Tile Section -->
+    <div class="row">
+        <form class="form-horizontal">
+            <div ng-model="shopProcess.submitValueFormMainAdmin" fb-form="defaultMainAdmin" fb-default="shopProcess.defaultValueMainAdmin"></div>
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-4">
+                    <button class="btn btn-primary" type="button" ng-disabled="shopProcess.addRequested" ng-click="shopProcess.saveSubmitValuesMainAdmin()" ng-if="shopProcess.showSaveButton && shopProcess.gridOptions.resultAccess.AccessEditRow">{{'SAVE_VALUES'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="shopProcess.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

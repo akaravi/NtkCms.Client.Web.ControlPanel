@@ -1,0 +1,48 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="ticketingFaq.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Question'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmticketingFaqEdit" novalidate ng-submit="ticketingFaq.editRow(frmticketingFaqEdit)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="ticketingFaq.gridOptions.resultAccess.AccessEditField.indexOf('Question')>-1"
+                     ng-class="{'has-error' : frmticketingFaqEdit.Question.$invalid && !frmticketingFaqEdit.Question.$pristine,'has-success' : frmticketingFaqEdit.Question.$valid}">
+                    <label class="col-sm-2 control-label"> {{'QUESTION'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" ng-required="true" name="Question" ng-model="ticketingFaq.selectedItem.Question" />
+                        <div class="m-t-xs" ng-show="frmticketingFaqEdit.Question.$invalid">
+                            <small class="text-danger" ng-show="frmticketingFaqEdit.Url.$error.required"><i class="fa fa-exclamation-triangle"></i>{{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmticketingFaqEdit.Question.$valid && frmticketingFaqEdit.Question.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmticketingFaqEdit.Question.$invalid && !frmticketingFaqEdit.Question.$pristine) || frmticketingFaqEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="ticketingFaq.gridOptions.resultAccess.AccessEditField.indexOf('Answer')>-1"
+                     ng-class="{'has-error' : frmticketingFaqEdit.Answer.$invalid && !frmticketingFaqEdit.Answer.$pristine,'has-success' : frmticketingFaqEdit.Answer.$valid}">
+                    <label class="col-sm-2 control-label">{{'RESPONSE'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <div summernote class="summernote" config="ticketingFaq.summernoteOptions" ng-model="ticketingFaq.selectedItem.Answer"></div>
+                        <div class="m-t-xs" ng-show="frmticketingFaqEdit.Answer.$invalid">
+                            <small class="text-danger" ng-show="frmticketingFaqEdit.Answer.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmticketingFaqEdit.Answer.$valid && frmticketingFaqEdit.Answer.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmticketingFaqEdit.Answer.$invalid && !frmticketingFaqEdit.Answer.$pristine) || frmticketingFaqEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div><div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="ticketingFaq.gridOptions.resultAccess.AccessEditField.indexOf('LinkTicketingDepartemenId')>-1">
+                    <label class="col-sm-2 control-label">{{'QUESTION_TYPE'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-required="true" ng-model="ticketingFaq.selectedItem.LinkTicketingDepartemenId">
+                            <option ng-repeat="type in ticketingFaq.ticketTypeListItems" value="{{type.Id}}" ng-selected="type.Id == ticketingFaq.selectedItem.LinkTicketingDepartemenId">{{type.Title}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="ticketingFaq.addRequested" type="submit">{{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="ticketingFaq.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

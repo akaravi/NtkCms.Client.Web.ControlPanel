@@ -1,0 +1,91 @@
+﻿<style>
+    [treecontrol].tree-boot i.tree-branch-head,
+    [treecontrol].tree-boot i.tree-leaf-head {
+        float: right;
+        height: 16px;
+        margin: 5px;
+    }
+</style>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="shopContent.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Add_Category' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmshopContentAdd" novalidate ng-submit="shopContent.addNewCategory(frmshopContentAdd)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="shopContent.gridOptions.resultAccess.AccessAddField.indexOf('RecordStatus')>-1"
+                                 ng-class="{'has-error' : frmshopContentAdd.RecordStatus.$invalid && !frmshopContentAdd.RecordStatus.$pristine,'has-success' : frmshopContentAdd.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="shopContent"></div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="shopContent.gridOptions.resultAccess.AccessAddField.indexOf('Title')>-1"
+                                 ng-class="{'has-error' : frmshopContentAdd.Title.$invalid && !frmshopContentAdd.Title.$pristine,'has-success' : frmshopContentAdd.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Title"
+                                           ng-model="shopContent.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmshopContentAdd.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmshopContentAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmshopContentAdd.Title.$valid && frmshopContentAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmshopContentAdd.Title.$invalid && !frmshopContentAdd.Title.$pristine) || frmshopContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group' ng-class="{'has-error' : frmshopContentAdd.Description.$invalid && !frmshopContentAdd.Description.$pristine,'has-success' : frmshopContentAdd.Description.$valid}">
+                                <label class='col-sm-2 control-label'> {{'description'|lowercase|translate}} </label>
+                                <div class='col-sm-10'>
+                                    <textarea type='text' ng-required="true" ng-model='shopContent.selectedItem.Description' class='form-control' style="resize: vertical;height: 100px;"></textarea>
+                                    <div class="m-t-xs" ng-show="frmshopContentAdd.Description.$invalid">
+                                        <small class="text-danger" ng-show="frmshopContentAdd.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmshopContentAdd.Description.$valid && frmshopContentAdd.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmshopContentAdd.Description.$invalid && !frmshopContentAdd.Description.$pristine) || frmshopContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Further_Information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="shopContent.selectedItem.previewImageSrc != null">
+                                <label class="col-sm-2 control-label"> {{'IMAGE'|lowercase|translate}} </label>
+                                <img src="{{shopContent.selectedItem.previewImageSrc}}"  width="300" height="300" class="img-rounded col-sm-3 col-md-3 col-lg-3" alt="{{shopContent.selectedItem.Title}}" />
+                            </div>
+                            <div id="treecontrol" class="form-group">
+                                <label class="col-sm-2 control-label">{{'SELECT_ICON'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div treecontrol class="tree-boot" style="color:black"
+                                         tree-model="shopContent.dataForTheTree"
+                                         options="shopContent.treeOptions"
+                                         selected-node="shopContent.selectedNode"
+                                         expanded-nodes="shopContent.expandedNodes"
+                                         on-selection="shopContent.onSelection(node, selected)"
+                                         on-node-toggle="shopContent.onNodeToggle(node, expanded)">
+                                        {{node.Title}}{{node.FileName}}&nbsp;&nbsp;<label class="label-control" style="color:#ff6500;font-style:italic;font-size:12px;">{{node.messageText}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="shopContent.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="shopContent.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

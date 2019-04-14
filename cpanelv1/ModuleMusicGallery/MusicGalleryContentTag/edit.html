@@ -1,0 +1,41 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="mscGalleryContentTag.busyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="mscGalleryContentTag.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ mscGalleryContentTag.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmmscGalleryContentTagEdit" novalidate ng-submit="mscGalleryContentTag.editRow(frmmscGalleryContentTagEdit)">
+
+             
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="mscGalleryContentTag.gridOptions.resultAccess.AccessEditField.indexOf('LinkContentId')>-1"
+                     ng-class="{'has-error' : frmmscGalleryContentTagEdit.LinkContentId.$invalid && !frmmscGalleryContentTagEdit.LinkContentId.$pristine,'has-success' : frmmscGalleryContentTagEdit.LinkContentId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'SELECT_CONTENT'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-model="mscGalleryContentOther.selectedItem.LinkContentId">
+                            <option ng-repeat="x in mscGalleryContentSim.DestinationList" ng-value="x.Id">{{x.Title}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="mscGalleryContentTag.gridOptions.resultAccess.AccessEditField.indexOf('LinkTagId')>-1"
+                     ng-class="{'has-error' : frmmscGalleryContentTagEdit.LinkTagId.$invalid && !frmmscGalleryContentTagEdit.LinkTagId.$pristine,'has-success' : frmmscGalleryContentTagEdit.LinkTagId.$valid}">
+                    <label class="col-sm-2 control-label">  {{'SELECT_TAG'|lowercase|translate}}  </label>
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-model="mscGalleryContentOther.selectedItem.LinkTagId">
+                            <option ng-repeat="x in mscGalleryContentSim.DestinationList" ng-value="x.Id">{{x.Title}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+
+
+
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="mscGalleryContentTag.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="mscGalleryContentTag.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

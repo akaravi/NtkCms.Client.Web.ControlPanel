@@ -1,0 +1,100 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="discountOfferDetail.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Offer_Detail'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmdiscountOfferDetailEdit" novalidate ng-submit="discountOfferDetail.editRow(frmdiscountOfferDetailEdit)">      
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmdiscountOfferDetailEdit.LinkSourceId.$invalid && !frmdiscountOfferDetailEdit.LinkSourceId.$pristine,'has-success' : frmdiscountOfferDetailEdit.LinkSourceId.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="discountOfferDetail"></div>
+                </div>
+
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="discountOfferDetail.gridOptions.resultAccess.AccessEditField.indexOf('LinkDiscountOfferId')>-1">
+                    <label class="col-sm-2 control-label">{{ 'Offer_Id'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkDiscountOfferId" rasha-autocomplete="discountOfferDetail.LinkDiscountOfferIdSelector" ng-model="discountOfferDetail.selectedItem.LinkDiscountOfferId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="discountOfferDetail.gridOptions.resultAccess.AccessEditField.indexOf('LinkDiscountGroupId')>-1">
+                    <label class="col-sm-2 control-label">{{ 'Link_Group_Id'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkDiscountGroupId" rasha-autocomplete="discountOfferDetail.LinkDiscountGroupIdSelector" ng-model="discountOfferDetail.selectedItem.LinkDiscountGroupId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="discountOfferDetail.gridOptions.resultAccess.AccessEditField.indexOf('LinkModuleReservationServiceId')>-1">
+                    <label class="col-sm-2 control-label">{{'Reservation_Service'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkModuleReservationServiceId" rasha-autocomplete="discountOfferDetail.LinkModuleReservationServiceIdSelector" ng-model="discountOfferDetail.selectedItem.LinkModuleReservationServiceId" />
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'Fixed_Card_Price'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="CardFixedPrice"
+                               ng-model="discountOfferDetail.selectedItem.CardFixedPrice" />
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'Percent_Card_Price'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="CardPercentPrice"
+                               ng-model="discountOfferDetail.selectedItem.CardPercentPrice" />
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'Representative_Fixed_Price'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="MarketerFixedPrice"
+                               ng-model="discountOfferDetail.selectedItem.MarketerFixedPrice" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'Representative_Percent_Price'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="MarketerPercentPrice"
+                               ng-model="discountOfferDetail.selectedItem.MarketerPercentPrice" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'Star'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Star"
+                               ng-model="discountOfferDetail.selectedItem.Star" />
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="discountOfferDetail.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="discountOfferDetail.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

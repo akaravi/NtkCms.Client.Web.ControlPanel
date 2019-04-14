@@ -1,0 +1,56 @@
+﻿
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="blogContentParameterType.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Parameter_Type'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmblogContentParameterTypeEdit" novalidate ng-submit="blogContentParameterType.editRow(frmblogContentParameterTypeEdit)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmblogContentParameterTypeAdd.RecordStatus.$invalid && !frmblogContentParameterTypeAdd.RecordStatus.$pristine,'has-success' : frmblogContentParameterTypeAdd.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="blogContentParameterType"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmblogContentParameterTypeAdd.Title.$invalid && !frmblogContentParameterTypeAdd.Title.$pristine,'has-success' : frmblogContentParameterTypeAdd.Title.$valid}">
+                    <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="blogContentParameterType.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmblogContentParameterTypeAdd.Title.$invalid">
+                            <small class="text-danger" ng-show="frmblogContentParameterTypeAdd.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmblogContentParameterTypeAdd.Title.$valid && frmblogContentParameterTypeAdd.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmblogContentParameterTypeAdd.Title.$invalid && !frmblogContentParameterTypeAdd.Title.$pristine) || frmblogContentParameterTypeAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmblogContentParameterTypeAdd.ParameterType.$invalid && !frmblogContentParameterTypeAdd.ParameterType.$pristine,'has-success' : frmblogContentParameterTypeAdd.ParameterType.$valid}">
+                    <label class="col-sm-2 control-label"> {{'ParameterType'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="ParameterType"
+                               ng-model="blogContentParameterType.selectedItem.ParameterType" />
+                        <div class="m-t-xs" ng-show="frmblogContentParameterTypeAdd.ParameterType.$invalid">
+                            <small class="text-danger" ng-show="frmblogContentParameterTypeAdd.ParameterType.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmblogContentParameterTypeAdd.ParameterType.$valid && frmblogContentParameterTypeAdd.ParameterType.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmblogContentParameterTypeAdd.ParameterType.$invalid && !frmblogContentParameterTypeAdd.ParameterType.$pristine) || frmblogContentParameterTypeAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+               
+                <div class='hr-line-dashed'></div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="blogContentParameterType.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="blogContentParameterType.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

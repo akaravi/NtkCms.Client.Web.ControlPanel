@@ -1,0 +1,119 @@
+﻿<div class="modal-body">
+    <div class="row" rasha-loading="shopSalePrice.categoryBusyIndicator">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="shopSalePrice.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ shopSalePrice.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmshopSalePriceEdit" novalidate ng-submit="shopSalePrice.editContent(frmshopSalePriceEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="shopSalePrice.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                                 ng-class="{'has-error' : frmshopSalePriceAdd.RecordStatus.$invalid && !frmshopSalePriceAdd.RecordStatus.$pristine,'has-success' : frmshopSalePriceAdd.RecordStatus.$valid}">
+                                <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                                <div class="col-sm-10" rasha-record-status="shopSalePrice"></div>
+                            </div>
+
+                            <div class="form-group" ng-show="shopSalePrice.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                                 ng-class="{'has-error' : frmshopSalePriceEdit.Title.$invalid && !frmshopSalePriceEdit.Title.$pristine,'has-success' : frmshopSalePriceEdit.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Name"
+                                           ng-model="shopSalePrice.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmshopSalePriceEdit.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmshopSalePriceEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmshopSalePriceEdit.Title.$valid && frmshopSalePriceEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmshopSalePriceEdit.Title.$invalid && !frmshopSalePriceEdit.Title.$pristine) || frmshopSalePriceEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class='form-group'>
+                                <label class='col-sm-2 control-label'> {{'description'|lowercase|translate}} </label>
+                                <div class='col-sm-10'>
+                                    <textarea type='text' ng-required="true" ng-model='shopSalePrice.selectedItem.Description' class='form-control' style="resize: vertical;height: 100px;"></textarea>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'TAGS'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <tags-input ng-model="shopSalePrice.tags" placeholder="{{'TAGS'|lowercase|translate}}" on-tag-added="shopSalePrice.onTagAdded($tag)" min-length="2" add-on-enter="true" add-on-comma="true">
+                                        <auto-complete source="shopSalePrice.loadTags($query)" module="producttag" style="font-family: 'Yekan'"></auto-complete>
+                                    </tags-input>
+                                    <small>{{'Important_words_used_in_related_content_in_the_tag'|lowercase|translate}}</small>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2  control-label"> {{'DATE'|lowercase|translate}} {{'INSERT'|lowercase|translate}} </label>
+                                <div class="col-sm-6  col-md-4">
+                                    <div rasha-date-picker="shopSalePrice.startDate" ng-model="shopSalePrice.selectedItem.FromDate"></div><input type="hidden" ng-model="shopSalePrice.selectedItem.FromDate" />
+                                </div>
+                                <label class="col-sm-2  control-label"> {{'FINISH_DATE'|lowercase|translate}} </label>
+                                <div class="col-sm-6 col-md-4">
+                                    <div rasha-date-picker="shopSalePrice.endDate" ng-model="shopSalePrice.selectedItem.ToDate"></div><input type="hidden" ng-model="shopSalePrice.selectedItem.ToDate" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="shopSalePrice.gridOptions.resultAccess.AccessEditField.indexOf('Keyword')>-1"
+                                 ng-class="{'has-error' : frmshopSalePriceEdit.Keyword.$invalid && !frmshopSalePriceEdit.Keyword.$pristine,'has-success' : frmshopSalePriceEdit.Keyword.$valid}">
+                                <label class="col-sm-2 control-label"> {{'KEYWORDS'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <tags-input ng-model="shopSalePrice.kwords" placeholder="{{'Key_Word' |lowercase|translate}}" min-length="2" add-on-enter="true" add-on-comma="true">
+                                        <auto-complete></auto-complete>
+                                    </tags-input>
+                                    <small>{{'Keywords_Help'|lowercase|translate}}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="{{'Attachments_Files' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'MAIN_IMAGE'|lowercase|translate}} </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="shopSalePrice.openUploadModal()" aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <label>{{shopSalePrice.FileItem.FileName}}</label>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="shopSalePrice.filePickerMainImage" ng-model="shopSalePrice.selectedItem.LinkMainImageId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'ATTACH_FILE'|lowercase|translate}} </label>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="shopSalePrice.filePickerFiles" ng-model="shopSalePrice.selectedItem.LinkFileIds"></div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a class="btn btn-primary" ng-click="shopSalePrice.addAttachedFile(shopSalePrice.selectedItem.LinkFileIds)" style="margin-right: -52px;margin-top: 1px;" title="">
+                                        <i class="fa fa-" aria-hidden="true" title="{{'ADD_FILE'|lowercase|translate}}" style="font-family: iransans;font-size: 12px;"> {{'ADD_FILE'|lowercase|translate}} </i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group col-sm-12" ng-repeat="x in shopSalePrice.attachedFiles">
+                                    <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                                    <div class="input-group">
+                                        <input type="text" id="option{{$index}}" class="form-control" ng-required="true" name="attachedFileName" required readonly="readonly" ng-model="x.filename">
+                                        <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="shopSalePrice.deleteAttachedFile($index)"><i class="fa fa-remove"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                </tabset>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="shopSalePrice.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="shopSalePrice.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

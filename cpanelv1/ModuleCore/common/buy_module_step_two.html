@@ -1,0 +1,84 @@
+﻿<fieldset>
+    <h3><i class="fa fa-mobile"></i> {{'PURCHASE_INVOICE'|lowercase|translate}}</h3>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{'PURCHASE_INVOICE'|lowercase|translate}}</h1>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="ibox-content p-xl">                    
+                    <div class="table-responsive m-t">
+                        <table class="table invoice-table">
+                            <thead>
+                                <tr>
+                                    <th>{{'MODULE'|lowercase|translate}}</th>
+                                    <th>{{'NUBER'|lowercase|translate}}</th>
+                                    <th>{{'PRICE'|lowercase|translate}}</th>
+                                    <th>{{'TAX'|lowercase|translate}}</th>
+                                    <th>{{'TOTAL'|lowercase|translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div><strong>{{'MANAGMENT_NEWS'|lowercase|translate}}</strong></div>
+                                        <small>اطلاعات زیادی از لپ‌تاپ‌ها و موبایل‌های سربازان آمریکایی دستگیرشده استخراج کرده‌ایم</small>
+                                    </td>
+                                    <td>1</td>
+                                    <td>25،000 ریال</td>
+                                    <td>250 ریال</td>
+                                    <td>25،250 ریال</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div><strong>{{'MANAGMENT_PICS'|lowercase|translate}}</strong></div>
+                                        <small>اطلاعات زیادی از لپ‌تاپ‌ها و موبایل‌های سربازان آمریکایی دستگیرشده استخراج کرده‌ایم</small>
+                                    </td>
+                                    <td>1</td>
+                                    <td>25،000 ریال</td>
+                                    <td>250 ریال</td>
+                                    <td>25،250 ریال</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div><strong>{{'MANAGMENT_SMS'|lowercase|translate}}</strong></div>
+                                        <small>اطلاعات زیادی از لپ‌تاپ‌ها و موبایل‌های سربازان آمریکایی دستگیرشده استخراج کرده‌ایم</small>
+                                    </td>
+                                    <td>1</td>
+                                    <td>25،000 ریال</td>
+                                    <td>250 ریال</td>
+                                    <td>25،250 ریال</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /table-responsive -->
+                    <table class="table invoice-total">
+                        <tbody>
+                            <tr>
+                                <td style="text-align:left !important"><strong>{{'TOTAL_WHITOUT_TAX'|lowercase|translate}} :</strong></td>
+                                <td>25,0000 ریال</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left !important"><strong>{{'TAX'|lowercase|translate}} :</strong></td>
+                                <td>ریال 235.98</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:left !important"><strong>{{'TOTAL'|lowercase|translate}} :</strong></td>
+                                <td>ریال 1261.98</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="well m-t">
+                        {{'TAX_ERROR'|lowercase|translate}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <a ng-click="buyModule.gotoStepThree(signupForm)" class="btn btn-primary pull-right" ng-class="{ 'disabled' : signupForm.$invalid }">{{'NEXT_LEVEL'|lowercase|translate}}</a>
+</fieldset>

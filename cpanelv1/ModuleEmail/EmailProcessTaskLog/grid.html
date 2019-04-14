@@ -1,0 +1,24 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="emailProcessTaskLogCtrl as emailProcessTaskLog" ng-init="emailProcessTaskLog.init()">
+    <!--<div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <!--<button class="btn btn-primary" rasha-userrole="emailProcessTaskLog.Add" ng-click="emailProcessTaskLog.openAddModal()" ng-show="emailProcessTaskLog.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>-->
+            <!--<button class="btn btn-warning" rasha-userrole="emailProcessTaskLog.Edit" ng-click="emailProcessTaskLog.openEditModal()"ng-show="emailProcessTaskLog.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>-->
+            <!--<button class="btn btn-danger" rasha-userrole="emailProcessTaskLog.Delete" ng-click="emailProcessTaskLog.deleteRow()" ng-show="emailProcessTaskLog.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>-->
+            <button class="btn btn-success" type="button" ng-click="emailProcessTaskLog.showAdvancedSearchPanel(emailProcessTaskLog.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-primary" type="button" ng-click="emailProcessTaskLog.reportData()"> {{'report'|lowercase|translate}} </button>
+            <button class="btn btn-success" ng-click="emailProcessTaskLog.getCount()">{{'number'|lowercase|translate}}&nbsp;{{emailProcessTaskLog.ListItemsTotalRowCount}}</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="emailProcessTaskLog" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div rasha-grid="emailProcessTaskLog.gridOptions"></div>
+        </div>
+    </div>
+</div>
+

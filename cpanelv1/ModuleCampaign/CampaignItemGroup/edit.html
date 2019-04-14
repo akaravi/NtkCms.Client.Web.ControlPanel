@@ -1,0 +1,46 @@
+﻿<style>
+    [treecontrol].tree-boot i.tree-branch-head,
+    [treecontrol].tree-boot i.tree-leaf-head {
+        float: right;
+        height: 16px;
+        margin: 5px;
+    }
+</style>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="campaignItem.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'edit_category'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmcampaignItemEdit" novalidate ng-submit="campaignItem.EditCategory(frmcampaignItemEdit)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmcampaignItemAdd.RecordStatus.$invalid && !frmcampaignItemAdd.RecordStatus.$pristine,'has-success' : frmcampaignItemAdd.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="campaignItem"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmcampaignItemEdit.Title.$invalid && !frmcampaignItemEdit.Title.$pristine,'has-success' : frmcampaignItemEdit.Title.$valid}">
+                    <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="campaignItem.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmcampaignItemEdit.Title.$invalid">
+                            <small class="text-danger" ng-show="frmcampaignItemEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i>{{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmcampaignItemEdit.Title.$valid && frmcampaignItemEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmcampaignItemEdit.Title.$invalid && !frmcampaignItemEdit.Title.$pristine) || frmcampaignItemEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+              
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="campaignItem.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="campaignItem.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

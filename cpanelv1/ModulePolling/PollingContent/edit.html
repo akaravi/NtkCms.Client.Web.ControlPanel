@@ -1,0 +1,155 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="pollingContent.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'Edit_Content' |lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmpollingContentEdit" novalidate ng-submit="pollingContent.editContent(frmpollingContentEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="pollingContent.gridOptions.resultAccess.AccessAddField.indexOf('LinkCategoryId')>-1">
+                                <label class="col-sm-2 control-label">{{'category'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="LinkCategoryId" rasha-autocomplete="pollingContent.LinkCategoryIdSelector" ng-model="pollingContent.selectedItem.LinkCategoryId" />
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error' : frmpollingContentEdit.Title.$invalid && !frmpollingContentEdit.Title.$pristine,'has-success' : frmpollingContentEdit.Title.$valid}">
+                                <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control"
+                                           ng-required="true"
+                                           name="Name"
+                                           ng-model="pollingContent.selectedItem.Title" />
+                                    <div class="m-t-xs" ng-show="frmpollingContentEdit.Title.$invalid">
+                                        <small class="text-danger" ng-show="frmpollingContentEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmpollingContentEdit.Title.$valid && frmpollingContentEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmpollingContentEdit.Title.$invalid && !frmpollingContentEdit.Title.$pristine) || frmpollingContentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-class="{'has-error' : frmpollingContentEdit.Question.$invalid && !frmpollingContentEdit.Question.$pristine,'has-success' : frmpollingContentEdit.Question.$valid}">
+                                <label class="col-sm-2 control-label"> {{'QUESTION'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="Question" ng-required="true" ng-model="pollingContent.selectedItem.Question" />
+                                    <div class="m-t-xs" ng-show="frmpollingContentEdit.Question.$invalid">
+                                        <small class="text-danger" ng-show="frmpollingContentEdit.Question.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                    </div>
+                                    <span style="left: 10px !important;" ng-show="frmpollingContentEdit.Question.$valid && frmpollingContentEdit.Question.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                    <span style="left: 10px !important;" ng-show="(frmpollingContentEdit.Question.$invalid && !frmpollingContentEdit.Question.$pristine) || frmpollingContentEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2  control-label">{{'START_DATE'|lowercase|translate}}</label>
+                                <div class="col-sm-6  col-md-4">
+                                    <adm-dtp ng-model='FromDate' ng-model-db="pollingContent.selectedItem.FromDate" full-data='FromDate_detail' maxdate="{{ExpireDate_detail.unix}}" options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}' ng-show="pollingContent.gridOptions.resultAccess.AccessEditField.indexOf('FromDate')>-1"></adm-dtp>
+                                </div>
+                                <label class="col-sm-2  control-label">{{'FINISH_DATE'|lowercase|translate}} </label>
+                                <div class="col-sm-6 col-md-4">
+                                    <adm-dtp ng-model='ExpireDate' ng-model-db="pollingContent.selectedItem.ExpireDate" full-data='ExpireDate_detail' mindate="{{FromDate_detail.unix}}" options='{calType: "jalali",format: "YYYY/MM/DD hh:mm", zIndex:10000}' ng-show="pollingContent.gridOptions.resultAccess.AccessEditField.indexOf('ExpireDate')>-1"></adm-dtp>
+                                </div>
+                            </div>
+                 
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Poll_Information'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'MAX_VOTE_FOR_THIS_CONTENT'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="MaxVoteForThisContent" ng-required="true" ng-model="pollingContent.selectedItem.MaxVoteForThisContent" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'MAX_VOTE_FOR_EACH_OPTION'|lowercase|translate}} </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" name="MaxVoteForEachOption" ng-required="true" ng-model="pollingContent.selectedItem.MaxVoteForEachOption" />
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="pollingContent.gridOptions.resultAccess.AccessAddField.indexOf('ViewStatisticsBeforeVote')>-1">
+                                <div class="col-sm-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="ViewStatisticsBeforeVote" ng-model="pollingContent.selectedItem.ViewStatisticsBeforeVote">نمایش آمار قبل از رای
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="pollingContent.gridOptions.resultAccess.AccessAddField.indexOf('ViewStatisticsAfterVote')>-1">
+                                <div class="col-sm-12">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="ViewStatisticsAfterVote" ng-model="pollingContent.selectedItem.ViewStatisticsAfterVote">نمایش آمار بعد از رای
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Attachments_Files'|lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'MAIN_IMAGE'|lowercase|translate}} </label>
+                                <a class="btn btn-primary uoload-file-m" href="" ng-click="pollingContent.openUploadModal()" aria-label="Delete">
+                                    {{'UPLOAD'|lowercase|translate}}
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </a>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="pollingContent.filePickerMainImage" ng-model="pollingContent.selectedItem.LinkMainImageId">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> {{'ATTACH_FILE'|lowercase|translate}} </label>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="pollingContent.filePickerFiles" ng-model="pollingContent.selectedItem.LinkFileIds"></div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <a class="btn btn-primary" ng-click="pollingContent.addAttachedFile(pollingContent.selectedItem.LinkFileIds)" style="margin-right: -52px;margin-top: 1px;">
+                                        <i class="fa fa-" aria-hidden="true" title="{{'ADD_FILE'|lowercase|translate}}" style="font-family: iransans;font-size: 12px;"> <i class="fa fa-plus-square" aria-hidden="true"></i> </i>
+                                    </a>
+                                </div>
+                                <!--<div class="col-sm-1">
+                                    <a class="btn btn-primary uoload-file-m" href="" ng-click="pollingContent.openUploadModal()" aria-label="Delete" >
+                                        <i class="fa fa-upload" aria-hidden="true"></i>
+                                    </a>
+                                </div>-->
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                    <tab heading="{{'Place_Location' |lowercase|translate}}">
+                        <div class="panel-body">
+                            <!--tabStart-->
+                            <div class='hr-line-dashed'></div>
+                            <div class="form-group" ng-show="pollingContent.gridOptions.resultAccess.AccessAddField.indexOf('Geolocationlatitude')>-1">
+                                <label class="col-sm-2 control-label">{{'Position_On_The_Map'|lowercase|translate}}</label>
+                                <div class="col-sm-10">
+                                    <div rasha-map="pollingContent.GeolocationConfig" />
+                                </div>
+                            </div>
+                            <!--tabEnd-->
+                        </div>
+                    </tab>
+                </tabset>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="pollingContent.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="pollingContent.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

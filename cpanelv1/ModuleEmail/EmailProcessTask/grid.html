@@ -1,0 +1,32 @@
+﻿<div class="wrapper wrapper-content animated fadeInRight" ng-controller="emailProcessTaskCtrl as emailProcessTask" ng-init="emailProcessTask.init()">
+    <!--    <div class="container">-->
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" rasha-userrole="emailProcessTask.Add" ng-click="emailProcessTask.openAddModal()" ng-show="emailProcessTask.gridOptions.resultAccess.AccessAddRow" type="button">{{'add'|lowercase|translate}}</button>
+            <button class="btn btn-warning" rasha-userrole="emailProcessTask.Edit" ng-click="emailProcessTask.openEditModal()"ng-show="emailProcessTask.gridOptions.resultAccess.AccessEditRow" type="button"> {{'edit'|lowercase|translate}} </button>
+            <button class="btn btn-danger" rasha-userrole="emailProcessTask.Delete" ng-click="emailProcessTask.deleteRow()" ng-show="emailProcessTask.gridOptions.resultAccess.AccessDeleteRow" type="button"> {{'delete'|lowercase|translate}} </button>
+            <button class="btn btn-success" type="button" ng-click="emailProcessTask.showAdvancedSearchPanel(emailProcessTask.gridOptions.resultAccess.AccessSearchField)"> {{'advanced_search'|lowercase|translate}} </button>
+            <button class="btn btn-warning" type="button" ng-click="emailProcessTask.openGridConfigModal()" id="gridView-btn"><i class="fa fa-cog fontavesome-small"></i>&nbsp; {{'display_setting'|lowercase|translate}}</button>
+            <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="emailProcessTask.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>
+            <button class="btn btn-success" ng-click="emailProcessTask.getCount()">{{'number'|lowercase|translate}}&nbsp;{{emailProcessTask.ListItemsTotalRowCount}}</button>
+            <!--<button class="btn btn-warning" type="button" ng-click="emailProcessTask.changeState('bankpaymentpublicconfig')">{{'BACK'|lowercase|translate}}&nbsp;&nbsp;<i class="fa fa-arrow-left" aria-hidden="true"></i></button>-->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div id="builder" query-builder="emailProcessTask" style="display: none"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div rasha-grid="emailProcessTask.gridOptions"></div>
+        </div>
+    </div>
+    <h3>جزییات</h3>
+    <div class="row" id="gridLogs" style="display: none;">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div rasha-grid="emailProcessTask.gridLogs"></div>
+        </div>
+    </div>
+</div>
+

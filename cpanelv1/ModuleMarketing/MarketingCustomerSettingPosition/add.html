@@ -1,0 +1,80 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="marketingPosition.closeModal()"></i>
+            <h3 class="m-t-none m-b">{{'ADD_EDIT_CUSTOMER'|lowercase|translate}}</h3>
+            <form method="get" class="form-horizontal" name="frmAddEdit" novalidate ng-submit="addNewCustomerToDb(frmAddEdit)">
+                <div class="form-group"
+                     ng-class="{'has-error' : frmAddEdit.Title.$invalid && !frmAddEdit.Title.$pristine,'has-success' : frmAddEdit.Title.$valid}">
+                    <label class="col-sm-2 control-label"> {{'title'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmAddEdit.Title.$invalid">
+                            <small class="text-danger" ng-show="frmAddEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmAddEdit.Title.$valid && frmAddEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmAddEdit.Title.$invalid && !frmAddEdit.Title.$pristine) || frmAddEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'User_Name'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkMemberId" rasha-autocomplete="LinkMemberIdSelector" ng-model="selectedItem.LinkMemberId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'GROUP'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkCategoryId" rasha-autocomplete="LinkCategoryIdSelector" ng-model="selectedItem.LinkCategoryId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Commodity'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkProductId" rasha-autocomplete="LinkProductIdSelector" ng-model="selectedItem.LinkProductId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Selling_Type'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkCustomerSettingKindId" rasha-autocomplete="LinkCustomerSettingKindIdSelector" ng-model="selectedItem.LinkCustomerSettingKindId" />
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'Selling_Position'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkCustomerSettingPositionId" rasha-autocomplete="LinkCustomerSettingPositionIdSelector" ng-model="selectedItem.LinkCustomerSettingPositionId" />
+                    </div>
+                </div>
+
+                <div class='hr-line-dashed'></div>
+                <div class="form-group"
+                     ng-class="{'has-error' : frmAddEdit.FromDate.$invalid && !frmAddEdit.FromDate.$pristine,'has-success' : frmAddEdit.FromDate.$valid}">
+                    <label class="col-sm-2 control-label">{{'From_Date'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <div rasha-date-picker="StartDate" ng-model="selectedItem.StartDate"></div><input type="hidden" ng-model="selectedItem.StartDate" />
+                        <div class="m-t-xs" ng-show="frmAddEdit.FromDate.$invalid">
+                            <small class="text-danger" ng-show="frmAddEdit.FromDate.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmAddEdit.FromDate.$valid && frmAddEdit.FromDate.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmAddEdit.FromDate.$invalid && !frmAddEdit.FromDate.$pristine) || frmAddEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="marketingPosition.closeModal())">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

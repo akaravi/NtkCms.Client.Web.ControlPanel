@@ -1,0 +1,40 @@
+﻿<div class="row">
+   
+
+    <!-- --------------------------------------------------- -->
+    <!-- ApiPhoneBookIsOn -->
+    <div class="col-md-4">
+        <div class="input-group field-margin">
+            <span class="input-group-addon">{{'ACTIVE_NUMBER_BANK'|lowercase|translate}}</span>
+            <span class="input-group-addon">
+                <input type="checkbox"  ng-model="apiSetting.selectedItem.ApiPhoneBookIsOn">
+            </span>
+        </div>
+    </div>
+
+
+
+    <!-- ApiPhoneBookUrl -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'DIRECTION_ADDRESS'|lowercase|translate}} </span>
+        <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"  ng-model="apiSetting.selectedItem.ApiPhoneBookUrl">
+    </div>
+
+
+    <!-- ApiPhoneBookMethod -->
+    <div class="input-group field-margin">
+        <span class="input-group-addon"> {{'SEND_WAY'|lowercase|translate}} </span>
+        <select name="id" id="sa"  ng-model="apiSetting.selectedItem.ApiPhoneBookMethod">
+            <option value="0" selected>None</option>
+            <option value="1">Post</option>
+            <option value="2">Get</option>
+        </select>
+    </div>
+
+
+  
+
+
+
+
+</div>

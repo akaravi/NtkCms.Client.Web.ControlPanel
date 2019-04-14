@@ -1,0 +1,20 @@
+﻿<div ui-tree-handle class="tree-node tree-node-content angular-ui-tree-handle">
+    <input ng-model="node.title"  data-nodrag />&nbsp;&nbsp;<a ng-model="node.link" ng-click="onLinkClick(node)" data-nodrag><i class="fa fa-link" aria-hidden="true" title="تنظیم لینک"></i></a>&nbsp;{{node.pageTitle}}&nbsp;&nbsp;
+    <a class="btn btn-primary btn-xs" ng-if="node.nodes && node.nodes.length > 0" data-nodrag ng-click="toggle(this)">
+        <span class="glyphicon glyphicon-chevron-down"
+              ng-class="{
+          'glyphicon-chevron-right': collapsed,
+          'glyphicon-chevron-down': !collapsed
+        }"></span>
+    </a>
+    <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="remove(this)" style="margin-right: 4px;">
+        <span class="glyphicon glyphicon-remove"></span>
+    </a>
+    <a class="pull-right btn btn-success btn-xs" data-nodrag ng-click="newSubItem(this)">
+        <span class="glyphicon glyphicon-plus"></span>
+    </a>
+</div>
+<ol ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}" class="ng-pristine ng-untouched ng-valid angular-ui-tree-nodes">
+    <li ng-repeat="node in node.nodes" ui-tree-node ng-include="'cpanelv1/ModuleCore/common/directiveTemplateMenu.html'" >
+    </li>
+</ol>
