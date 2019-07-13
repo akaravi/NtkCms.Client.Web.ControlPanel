@@ -1,0 +1,78 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="ticketingTask.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ ticketingTask.modalTitle}}</h3>
+            <form method="get" class="form-horizontal" name="frmticketingTaskEdit" novalidate ng-submit="ticketingTask.editAnswer(frmticketingTaskEdit)">
+                <tabset class="tabs-left">
+                    <tab heading="{{'necessary_information' |lowercase|translate}}">
+                        <!-- LinkTicketId -->
+                        <div class="form-group">
+                                <div class="hr-line-dashed"></div>
+
+                            <label class="col-sm-2 control-label">کد سیستمی تیکت</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" name="LinktickeingId" type="number" ng-required="true" ng-model="ticketingTask.selectedItem.LinkTicketId" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">موضوع تیکت</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" name="ticketingTitle" type="text" ng-required="true" ng-model="ticketingTask.selectedItem.virtual_ticketing.Title" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">موضوع تیکت</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" name="ticketingHtmlBody" style="resize:vertical" ng-required="true" ng-model="ticketingTask.selectedItem.virtual_ticketing.HtmlBody" readonly></textarea>
+                            </div>
+                        </div>
+                        <div class='hr-line-dashed'></div>
+                        <div class="form-group" ng-class="{'has-error' : frmticketingTaskEdit.HtmlBody.$invalid && !frmticketingTaskEdit.HtmlBody.$pristine,'has-success' : frmticketingTaskEdit.HtmlBody.$valid}">
+                            <label class="col-sm-2 control-label">متن پاسخ</label>
+                            <div class="col-sm-10">
+                                <div summernote class="summernote" config="ticketingTask.summernoteOptions" ng-model="ticketingTask.selectedItem.HtmlBody"></div>
+                                <div class="m-t-xs" ng-show="frmticketingTaskEdit.HtmlBody.$invalid">
+                                    <small class="text-danger" ng-show="frmticketingTaskEdit.HtmlBody.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                </div>
+                                <span style="left: 10px !important;" ng-show="frmticketingTaskEdit.HtmlBody.$valid && frmticketingTaskEdit.HtmlBody.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                <span style="left: 10px !important;" ng-show="(frmticketingTaskEdit.HtmlBody.$invalid && !frmticketingTaskEdit.HtmlBody.$pristine) || frmticketingTaskEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="{{'Attachments_Files'|lowercase|translate}}">
+                        <div class="panel-body">
+
+                            <div class="form-group">
+                                    <div class="hr-line-dashed"></div>
+
+                                <label class="col-sm-2 control-label"> {{'ATTACH_FILE'|lowercase|translate}} </label>
+                                <div class="col-sm-8 smallFileManager">
+                                    <div rasha-file-picker-b="ticketingTask.filePickerFiles" ng-model="ticketingTask.selectedItem.LinkFileIds"></div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a class="btn btn-primary" ng-click="ticketingTask.addAttachedFile(ticketingTask.selectedItem.LinkFileIds)" style="margin-right: -52px;margin-top: 1px;" title="">
+                                        <i class="fa fa" aria-hidden="true" title="{{'ADD_FILE'|lowercase|translate}}" style="font-family: iransans;font-size: 12px;"> {{'ADD_FILE'|lowercase|translate}} </i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group col-sm-12" ng-repeat="x in ticketingTask.attachedFiles">
+                                    <label class="col-sm-2 control-label">{{$index + 1}}</label>
+                                    <div class="input-group">
+                                        <input type="text" id="option{{$index}}" class="form-control" ng-required="true" name="attachedFileName" required readonly="readonly" ng-model="x.filename">
+                                        <span class="input-group-addon danger" style="background-color:#ed5565; cursor:pointer" title="{{'delete'|lowercase|translate}}" ng-click="ticketingTask.deleteAttachedFile($index)"><i class="fa fa-remove"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                </tabset>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="ticketingTask.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="ticketingTask.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

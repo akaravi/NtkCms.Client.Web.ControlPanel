@@ -1,0 +1,81 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12 b-r">
+            <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="applicationIntro.closeModal()"></i>
+            <h3 class="m-t-none m-b"> {{ applicationIntro.modalTitle }}</h3>
+            <form method="get" class="form-horizontal" name="frmapplicationIntroEdit" novalidate ng-submit="applicationIntro.editRow(frmapplicationIntroEdit)">
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="applicationIntro.gridOptions.resultAccess.AccessEditField.indexOf('RecordStatus')>-1"
+                     ng-class="{'has-error' : frmapplicationIntroEdit.RecordStatus.$invalid && !frmapplicationIntroEdit.RecordStatus.$pristine,'has-success' : frmapplicationIntroEdit.RecordStatus.$valid}">
+                    <label class="col-sm-2 control-label"> {{'condition'|lowercase|translate}} </label>
+                    <div class="col-sm-10" rasha-record-status="applicationIntro"></div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">{{'SELECT_Application'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="LinkApplicationId" rasha-autocomplete="applicationIntro.LinkApplicationIdSelector" ng-model="applicationIntro.selectedItem.LinkApplicationId" />
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="applicationIntro.gridOptions.resultAccess.AccessEditField.indexOf('Title')>-1"
+                     ng-class="{'has-error' : frmapplicationIntroEdit.Title.$invalid && !frmapplicationIntroEdit.Title.$pristine,'has-success' : frmapplicationIntroEdit.Title.$valid}">
+                    <label class="col-sm-2 control-label"> {{'TITLE'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <input class="form-control"
+                               ng-required="true"
+                               name="Title"
+                               ng-model="applicationIntro.selectedItem.Title" />
+                        <div class="m-t-xs" ng-show="frmapplicationIntroEdit.Title.$invalid">
+                            <small class="text-danger" ng-show="frmapplicationIntroEdit.Title.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmapplicationIntroEdit.Title.$valid && frmapplicationIntroEdit.Title.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmapplicationIntroEdit.Title.$invalid && !frmapplicationIntroEdit.Title.$pristine) || frmapplicationIntroEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+               
+                <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-class="{'has-error' : frmapplicationIntroEdit.Description.$invalid && !frmapplicationIntroEdit.Description.$pristine,'has-success' : frmapplicationIntroEdit.Description.$valid}">
+                    <label class="col-sm-2 control-label">{{'description'|lowercase|translate}}</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" ng-required="true" name="Description" ng-model="applicationIntro.selectedItem.Description" style="resize: vertical;height: 100px;"></textarea>
+                        <div class="m-t-xs" ng-show="frmapplicationIntroEdit.Description.$invalid">
+                            <small class="text-danger" ng-show="frmapplicationIntroEdit.Description.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                        </div>
+                        <span style="left: 10px !important;" ng-show="frmapplicationIntroEdit.Description.$valid && frmapplicationIntroEdit.Description.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                        <span style="left: 10px !important;" ng-show="(frmapplicationIntroEdit.Description.$invalid && !frmapplicationIntroEdit.Description.$pristine) || frmapplicationIntroEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> {{'MAIN_IMAGE'|lowercase|translate}} </label>
+                    <!-- <a class="btn btn-primary uoload-file-m" href=""
+                        ng-click="applicationIntro.openUploadModal()" aria-label="Delete">
+                        {{'UPLOAD'|lowercase|translate}}
+                        <i class="fa fa-upload" aria-hidden="true"></i>
+                    </a> -->
+                    <div class="col-sm-8 smallFileManager">
+                        <div rasha-file-picker-b="applicationIntro.filePickerMainImage"
+                            ng-model="applicationIntro.selectedItem.LinkMainImageId">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class='hr-line-dashed'></div>
+                <div class="form-group" ng-show="applicationIntro.gridOptions.resultAccess.AccessEditField.indexOf('LinkSourceId')>-1"
+                     ng-class="{'has-error' : frmapplicationIntroEdit.PackageName.$invalid && !frmapplicationIntroEdit.PackageName.$pristine,'has-success' : frmapplicationIntroEdit.PackageName.$valid}">
+                    <label class="col-sm-2 control-label"> {{'SOURCE_NAME'|lowercase|translate}} </label>
+                    <div class="col-sm-10">
+                        <select class='form-control' name="LinkSourceId" ng-model="applicationIntro.selectedItem.LinkSourceId" ng-selected="applicationIntro.selectedItem.LinkSourceId == x.Id" ng-options="x.Id as x.Title for x in applicationIntro.sourceListItems" required></select>
+                    </div>
+                </div> -->
+                <div class='hr-line-dashed'></div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-disabled="applicationIntro.addRequested" type="submit"> {{'save'|lowercase|translate}} </button>
+                    <button class="btn btn-default" type="button" ng-click="applicationIntro.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
