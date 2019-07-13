@@ -22,7 +22,7 @@
         displayMember: 'Username',
         id: 'Id',
         fId: 'LinkCmsUserId',
-        url: 'cmsuser',
+        url: 'coreuser',
         sortColumn: 'Id',
         //onSelectionChanged: emailOutBoxContent.selectionChangedUser,
         sortType: 0,

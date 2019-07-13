@@ -25,7 +25,7 @@
         displayMember: 'Title',
         id: 'Id',
         fId: 'LinkCreatedBySiteId',
-        url: 'cmssite',
+        url: 'coresite',
         sortColumn: 'Id',
         sortType: 0,
         filterText: 'Id',
@@ -246,7 +246,8 @@
                     cmsSitegrd.filterEnumSiteCategory(response.Item);
                     cmsSitegrd.filterEnumOwnerSiteSetStatus(response.Item);
                     cmsSitegrd.ListItems.unshift(response.Item);
-                    cmsSitegrd.gridOptions.fillData(cmsSitegrd.ListItems, response.resultAccess);
+                    cmsSitegrd.gridOptions.fillData(cmsSitegrd.ListItems,cmsSitegrd.gridOptions.resultAccess);
+                    
                     cmsSitegrd.busyIndicator.isActive = false;
                     cmsSitegrd.setUserLanguageEnum(cmsSitegrd.ListItems, cmsSitegrd.UserLanguage);
                     cmsSitegrd.closeModal();
@@ -307,7 +308,7 @@
                             cmsSitegrd.filterEnumSiteCategory(response.Item);
                             cmsSitegrd.filterEnumOwnerSiteSetStatus(response.Item);
                             cmsSitegrd.ListItems.unshift(response.Item);
-                            cmsSitegrd.gridOptions.fillData(cmsSitegrd.ListItems, response.resultAccess);
+                            cmsSitegrd.gridOptions.fillData(cmsSitegrd.ListItems, cmsSitegrd.gridOptions.resultAccess);
                             cmsSitegrd.busyIndicator.isActive = false;
                             cmsSitegrd.closeModal();
                             ajax.call(mainPathApi + 'CoreSiteUser/add', {
@@ -399,7 +400,7 @@
                 cmsSitegrd.filterEnumSiteCategory(response.Item);
                 cmsSitegrd.filterEnumOwnerSiteSetStatus(response.Item);
                 cmsSitegrd.replaceItem(cmsSitegrd.selectedItem.Id, response.Item);
-                cmsSitegrd.gridOptions.fillData(cmsSitegrd.ListItems, response.resultAccess);
+                cmsSitegrd.gridOptions.fillData(cmsSitegrd.ListItems, cmsSitegrd.gridOptions.resultAccess);
                 cmsSitegrd.setUserLanguageEnum(cmsSitegrd.ListItems, cmsSitegrd.UserLanguage);
                 cmsSitegrd.closeModal();
             }

@@ -35,8 +35,7 @@
         rowPerPage: 200,
         scope: memberInfo,
         columnOptions: {
-            columns: [
-                {
+            columns: [{
                     name: "Id",
                     displayName: "کد سیستمی",
                     sortable: true,
@@ -53,28 +52,22 @@
                     displayName: "نام خانوادگی",
                     sortable: true,
                     type: "string"
-                },
-                {
-                    name: "JoinId",
-                    displayName: "JoinId",
-                    sortable: true,
-                    type: "string"
                 }
             ]
         }
     };
     memberInfo.calculatePercantage = function (list) {
         if (angular.isDefined(list) && list.length > 0) {
-  
+
             $.each(list, function (index, item) {
 
-                    item.Virtual_ScoreSumPercent = '%' +(item.ScorePercent ).toFixed(2);
+                item.Virtual_ScoreSumPercent = '%' + (item.ScorePercent).toFixed(2);
             });
         }
     }
     memberInfo.init = function () {
         memberInfo.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"Applicationmemberinfo/getall", memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi + "Applicationmemberinfo/getall", memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
 
             memberInfo.busyIndicator.isActive = false;
@@ -92,12 +85,19 @@
             rashaErManage.checkAction(data, errCode);
         });
         //@help برای زمانبندی
-        ajax.call(mainPathApi+"TaskSchedulerSchedule/getAllScheduleCronType", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi + "TaskSchedulerSchedule/getAllScheduleCronType", {}, 'POST').success(function (response) {
             memberInfo.ScheduleCronType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(mainPathApi+"TaskSchedulerSchedule/getAllDayOfWeek", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi + "ApplicationEnum/EnumNotificationType", '', 'GET').success(function (responseGetEnum) {
+            rashaErManage.checkAction(responseGetEnum);
+            if (responseGetEnum.IsSuccess)
+                memberInfo.EnumNotificationType = responseGetEnum.ListItems;
+        }).error(function (data, errCode, c, d) {
+            rashaErManage.checkAction(data, errCode);
+        });
+        ajax.call(mainPathApi + "TaskSchedulerSchedule/getAllDayOfWeek", {}, 'POST').success(function (response) {
             memberInfo.weekdays = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -115,7 +115,7 @@
 
         memberInfo.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'ApplicationmemberInfo/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi + 'ApplicationmemberInfo/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             memberInfo.busyIndicator.isActive = false;
@@ -140,7 +140,7 @@
         }
         memberInfo.busyIndicator.isActive = true;
         memberInfo.addRequested = true;
-        ajax.call(mainPathApi+'ApplicationMemberInfo/add', memberInfo.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi + 'ApplicationMemberInfo/add', memberInfo.selectedItem, 'POST').success(function (response) {
             memberInfo.addRequested = false;
             memberInfo.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -155,6 +155,7 @@
             memberInfo.addRequested = false;
         });
     }
+    
 
     memberInfo.openEditModal = function () {
         if (buttonIsPressed) return;
@@ -165,7 +166,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'ApplicationMemberInfo/getviewmodel', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi + 'ApplicationMemberInfo/getviewmodel', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -187,7 +188,7 @@
             return;
         }
         memberInfo.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'ApplicationMemberInfo/edit', memberInfo.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi + 'ApplicationMemberInfo/edit', memberInfo.selectedItem, 'PUT').success(function (response) {
             memberInfo.addRequested = true;
             rashaErManage.checkAction(response);
             memberInfo.busyIndicator.isActive = false;
@@ -233,11 +234,11 @@
                 memberInfo.busyIndicator.isActive = true;
                 console.log(memberInfo.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'ApplicationMemberInfo/getviewmodel', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi + 'ApplicationMemberInfo/getviewmodel', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     memberInfo.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'ApplicationMemberInfo/delete', memberInfo.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi + 'ApplicationMemberInfo/delete', memberInfo.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         memberInfo.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -265,16 +266,64 @@
     }
 
     memberInfo.gridOptions = {
-        columns: [
-            { name: 'Id', displayName: 'کد سیستمی', sortable: true, type: 'integer', visible: true },
-            { name: 'LinkSiteId', displayName: 'کد سیستمی سایت', sortable: true, type: 'integer', visible: true },
-            { name: 'CreatedDate', displayName: 'ساخت', sortable: true, isDate: true, type: 'date', visible: 'true' },
-            { name: 'UpdatedDate', displayName: 'ویرایش', sortable: true, isDate: true, type: 'date', visible: 'true' },
-            { name: 'AppSourceVer', displayName: 'Source Ver', sortable: true, type: 'integer', visible: true },
-            { name: 'AppBuildVer', displayName: 'Build Ver', sortable: true, type: 'integer', visible: true },
-            { name: 'LinkApplicationId', displayName: 'کد سیستمی اپ', sortable: true, type: 'integer', visible: true },
-            { name: 'LinkMemberId', displayName: 'کد سیستمی عضو', sortable: true, type: 'integer', visible: true }
-            ,
+        columns: [{
+                name: 'Id',
+                displayName: 'کد سیستمی',
+                sortable: true,
+                type: 'integer',
+                visible: true
+            },
+            {
+                name: 'LinkSiteId',
+                displayName: 'کد سیستمی سایت',
+                sortable: true,
+                type: 'integer',
+                visible: true
+            },
+            {
+                name: 'CreatedDate',
+                displayName: 'ساخت',
+                sortable: true,
+                isDate: true,
+                type: 'date',
+                visible: 'true'
+            },
+            {
+                name: 'UpdatedDate',
+                displayName: 'ویرایش',
+                sortable: true,
+                isDate: true,
+                type: 'date',
+                visible: 'true'
+            },
+            {
+                name: 'AppSourceVer',
+                displayName: 'Source Ver',
+                sortable: true,
+                type: 'integer',
+                visible: true
+            },
+            {
+                name: 'AppBuildVer',
+                displayName: 'Build Ver',
+                sortable: true,
+                type: 'integer',
+                visible: true
+            },
+            {
+                name: 'LinkApplicationId',
+                displayName: 'کد سیستمی اپ',
+                sortable: true,
+                type: 'integer',
+                visible: true
+            },
+            {
+                name: 'LinkMemberId',
+                displayName: 'کد سیستمی عضو',
+                sortable: true,
+                type: 'integer',
+                visible: true
+            },
             {
                 name: 'Virtual_ScoreSumPercent',
                 displayName: 'امتیاز',
@@ -283,9 +332,23 @@
                 visible: 'true',
                 displayForce: true
             },
-            
-            { name: 'DeviceId', displayName: 'شناسه دستگاه', sortable: true, type: 'string', visible: true },
-            { name: 'ActionButton2', displayName: 'عملیات', sortable: true, type: 'string', visible: true, displayForce: true, template: '<button type="button" name="getInfo_btn" ng-click="memberInfo.openSendToModal($index, x)" class="btn btn-success">{{"SEND"|lowercase|translate}}&nbsp;<i class="fa fa-envelope-o" aria-hidden="true"></i></button>' }
+
+            {
+                name: 'DeviceId',
+                displayName: 'شناسه دستگاه',
+                sortable: true,
+                type: 'string',
+                visible: true
+            },
+            {
+                name: 'ActionButton2',
+                displayName: 'عملیات',
+                sortable: true,
+                type: 'string',
+                visible: true,
+                displayForce: true,
+                template: '<button type="button" name="getInfo_btn" ng-click="memberInfo.openSendToModal($index, x)" class="btn btn-success">{{"SEND"|lowercase|translate}}&nbsp;<i class="fa fa-envelope-o" aria-hidden="true"></i></button>'
+            }
         ],
         data: {},
         multiSelect: false,
@@ -323,8 +386,7 @@
                 //var temp = element[0].checked;
                 memberInfo.gridOptions.columns[i].visible = element[0].checked;
             }
-        }
-        else {
+        } else {
             var prechangeColumns = memberInfo.gridOptions.columns;
             for (var i = 0; i < memberInfo.gridOptions.columns.length; i++) {
                 memberInfo.gridOptions.columns[i].visible = true;
@@ -339,7 +401,11 @@
     }
 
     memberInfo.changeState = function (state, app) {
-        $state.go("index." + state, { sourceid: app.LinkSourceId, appid: app.Id, apptitle: app.Title });
+        $state.go("index." + state, {
+            sourceid: app.LinkSourceId,
+            appid: app.Id,
+            apptitle: app.Title
+        });
     }
 
     function parseJSONcomponent(str) {
@@ -357,7 +423,7 @@
     memberInfo.exportFile = function () {
         memberInfo.addRequested = true;
         memberInfo.gridOptions.advancedSearchData.engine.ExportFile = memberInfo.ExportFileClass;
-        ajax.call(mainPathApi+'ApplicationMemberInfo/exportfile', memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi + 'ApplicationMemberInfo/exportfile', memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             memberInfo.addRequested = false;
             rashaErManage.checkAction(response);
             memberInfo.reportDownloadLink = response.LinkFile;
@@ -371,22 +437,50 @@
     }
     //Open Export Report Modal
     memberInfo.toggleExportForm = function () {
-        memberInfo.SortType = [
-            { key: 'نزولی', value: 0 },
-            { key: 'صعودی', value: 1 },
-            { key: 'تصادفی', value: 3 }
+        memberInfo.SortType = [{
+                key: 'نزولی',
+                value: 0
+            },
+            {
+                key: 'صعودی',
+                value: 1
+            },
+            {
+                key: 'تصادفی',
+                value: 3
+            }
         ];
-        memberInfo.EnumExportFileType = [
-            { key: 'Excel', value: 1 },
-            { key: 'PDF', value: 2 },
-            { key: 'Text', value: 3 }
+        memberInfo.EnumExportFileType = [{
+                key: 'Excel',
+                value: 1
+            },
+            {
+                key: 'PDF',
+                value: 2
+            },
+            {
+                key: 'Text',
+                value: 3
+            }
         ];
-        memberInfo.EnumExportReceiveMethod = [
-            { key: 'دانلود', value: 0 },
-            { key: 'ایمیل', value: 1 },
-            { key: 'فایل منیجر', value: 3 }
+        memberInfo.EnumExportReceiveMethod = [{
+                key: 'دانلود',
+                value: 0
+            },
+            {
+                key: 'ایمیل',
+                value: 1
+            },
+            {
+                key: 'فایل منیجر',
+                value: 3
+            }
         ];
-        memberInfo.ExportFileClass = { FileType: 1, RecieveMethod: 0, RowCount: 100 };
+        memberInfo.ExportFileClass = {
+            FileType: 1,
+            RecieveMethod: 0,
+            RowCount: 100
+        };
         $modal.open({
             templateUrl: 'cpanelv1/ModuleApplication/ApplicationMemberInfo/report.html',
             scope: $scope
@@ -399,7 +493,7 @@
     }
     //Get TotalRowCount
     memberInfo.getCount = function () {
-        ajax.call(mainPathApi+"ApplicationMemberInfo/count", memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi + "ApplicationMemberInfo/count", memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             memberInfo.addRequested = false;
             rashaErManage.checkAction(response);
             memberInfo.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -410,7 +504,10 @@
     }
     //@help@ ارسال پیام
     memberInfo.openSendToModal = function (selectedIndex, selected) {
-        memberInfo.selectedItem = { AppId: selected.LinkApplicationId, memberIds: "" + selected.Id };
+        memberInfo.selectedItem = {
+            AppId: selected.LinkApplicationId,
+            memberIds: "" + selected.Id
+        };
         memberInfo.filePickerSmallImage.filename = null;
         memberInfo.filePickerBigImage.fileId = null;
         $modal.open({
@@ -423,8 +520,32 @@
     var date = moment().format();
     memberInfo.CronOnceDate = {
         defaultDate: date,
-        setTime: function (date) { this.defaultDate = date; }
+        setTime: function (date) {
+            this.defaultDate = date;
+        }
     }
+    memberInfo.onEnumNotificationTypeChange = function (NotificationType) {
+        switch (NotificationType) {
+            case 1:
+                // memberInfo.showWeekly = false;
+                // memberInfo.showmonthly = false;
+                // memberInfo.showonce = true;
+                // memberInfo.showmonthlyYear = false;
+                // memberInfo.showHourly = false;
+                // memberInfo.showDaily = false;
+                break;
+            case 2:
+                // memberInfo.showWeekly = false;
+                // memberInfo.showmonthly = false;
+                // memberInfo.showonce = false;
+                // memberInfo.showmonthlyYear = false;
+                // memberInfo.showHourly = true;
+                // memberInfo.showDaily = false;
+                break;
+        }
+    };
+
+
     memberInfo.onScheduleTypeChange = function (scheduleType) {
         switch (scheduleType) {
             case 1:
@@ -503,7 +624,7 @@
         if (memberInfo.selectedItem.memberIds != '')
             memberInfo.selectedItem.LinkMemberIds = memberInfo.selectedItem.memberIds.split(',');
 
-        ajax.call(mainPathApi+'ApplicationLogNotification/SendNotification', memberInfo.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi + 'ApplicationLogNotification/SendNotification', memberInfo.selectedItem, 'POST').success(function (response) {
             memberInfo.busyIndicator.isActive = false;
             memberInfo.addRequested = false;
             memberInfo.sendButtonText = "ارسال";
@@ -519,4 +640,3 @@
     }
     //@help@ ارسال پیام
 }]);
-

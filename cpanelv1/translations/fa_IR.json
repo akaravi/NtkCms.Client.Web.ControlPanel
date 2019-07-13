@@ -1199,7 +1199,7 @@
   "goods_are_repetitive!": "کالا تکراری است!",
   "please_select_a_content": "لطفاَ یک محتوا را انتخاب کنید .",
   "user_id_is_incorrect": "کد سیستمی کاربر اشتباه است",
- 
+ "SourceNameGit":"آدرس فولدر مخزن git",
   "socialigap": "آی گپ",
   "socialgap": "گپ",
   "socialsoroush": "سروش",
@@ -1208,5 +1208,7 @@
   "dateperiodstart":"شروع دوره",
   "dateperiodend":"پایان دوره",
   "attachments_small_image":"عکس پیوست کوچک",
-  "attachments_big_image":"عکس پیوست بزرگ"
+  "attachments_big_image":"عکس پیوست بزرگ",
+  "select_application":"انتخاب اپلیکیشن",
+  "themeconfigjsonvalues":"تنظیمات قالب Json"
 }

@@ -61,7 +61,7 @@
         displayMember: 'Username',
         id: 'Id',
         fId: 'LinkCmsUserId',
-        url: 'cmsuser',
+        url: 'coreuser',
         sortColumn: 'Id',
         onSelectionChanged: shopCart.selectionChangedUser,
         sortType: 0,

@@ -254,7 +254,7 @@
         displayMember: 'Id',
         id: 'Id',
         fId: 'LinkExternalUserId',
-        url: 'cmsuser',
+        url: 'coreuser',
         sortColumn: 'Id',
         sortType: 0,
         filterText: 'Id',

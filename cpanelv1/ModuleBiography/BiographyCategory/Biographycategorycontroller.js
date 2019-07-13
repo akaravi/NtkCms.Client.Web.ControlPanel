@@ -92,7 +92,7 @@
     }
 
 
-    biographycategory.openEditModal = function () {
+    biographycategory.EditCategoryModel = function () {
         biographycategory.modalTitle = 'ویرایش';
         if (!biographycategory.gridOptions.selectedRow.item) {
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
@@ -188,9 +188,6 @@
             biographycategory.categoryBusyIndicator.isActive = false;
         });
     }
-
-
-
 
 
 

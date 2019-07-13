@@ -293,7 +293,7 @@ $scope.LinkExternalCoreCmsUserIdSelector = {
         displayMember: 'Name,LastName',
         id: 'Id',
         fId: 'LinkCustomerSettingKindId',
-        url: 'CmsUser',
+        url: 'coreuser',
         sortColumn: 'Id',
         sortType: 0,
         filterText: 'Name,LastName',

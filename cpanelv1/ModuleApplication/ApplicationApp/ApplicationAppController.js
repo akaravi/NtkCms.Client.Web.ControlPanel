@@ -5,32 +5,47 @@
         message: "در حال بار گذاری ..."
     }
     var buttonIsPressed = false; // برای جلوگیری از فشرده شدن چندباره دکمه ها
-    appApplication.filePickerMainImage = {
+    appApplication.FileIdIcon = {
         isActive: true,
-        backElement: "filePickerMainImage",
+        backElement: "LinkFileIdIcon",
+        filename: null,
+        fileId: null,
+        multiSelect: false
+    };
+    appApplication.FileIdLogo = {
+        isActive: true,
+        backElement: "LinkFileIdLogo",
+        filename: null,
+        fileId: null,
+        multiSelect: false
+    };
+    appApplication.FileIdSplashScreen = {
+        isActive: true,
+        backElement: "LinkFileIdSplashScreen",
         filename: null,
         fileId: null,
         multiSelect: false
     };
     appApplication.filePickerSmallImage = {
         isActive: true,
-        backElement: "filePickerSmallImage",
+        backElement: "SmallImageId",
         filename: null,
         fileId: null,
         multiSelect: false
     };
     appApplication.filePickerBigImage = {
         isActive: true,
-        backElement: "filePickerBigImage",
+        backElement: "BigImageId",
         filename: null,
         fileId: null,
         multiSelect: false
     };
 
-    
+
 
 
     appApplication.UninversalMenus = [];
+    appApplication.EnumNotificationType = [];
     appApplication.selectUniversalMenuOnUndetectableKey = true;
     if (itemRecordStatus != undefined) appApplication.itemRecordStatus = itemRecordStatus;
 
@@ -57,8 +72,15 @@
             });
             //Get all Sources
             ajax.call(mainPathApi + "applicationApp/getBuildStatusEnum", {}, 'POST').success(function (responseGetEnum) {
-                appApplication.buildStatusEnum = responseGetEnum;
+                appApplication.buildStatusEnum = responseGetEnum.ListItems;
                 appApplication.setBuildStatusEnum(appApplication.ListItems, appApplication.buildStatusEnum);
+            }).error(function (data, errCode, c, d) {
+                rashaErManage.checkAction(data, errCode);
+            });
+            ajax.call(mainPathApi + "ApplicationEnum/EnumNotificationType", '', 'GET').success(function (responseGetEnum) {
+                rashaErManage.checkAction(responseGetEnum);
+                if (responseGetEnum.IsSuccess)
+                    appApplication.EnumNotificationType = responseGetEnum.ListItems;
             }).error(function (data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
             });
@@ -89,12 +111,17 @@
     }
 
     appApplication.setBuildStatusEnum = function (listItems, enumList) {
-        angular.forEach(listItems, function (item, property) {
-            angular.forEach(enumList, function (value, key) {
-                if (item.LastBuildStatus == value.Value)
-                    item.LastBuildStatusTitle = value.Description;
-            });
-        });
+        // angular.forEach(listItems, function (item, property) {
+        //     angular.forEach(enumList, function (value, key) {
+        //         if (item.LastBuildStatus == value.Value)
+        //             item.LastBuildStatusTitle = value.Description;
+        //     });
+        // });
+        for (var i = 0; i < listItems.length; i++) {
+            var fId = findWithAttr(enumList, 'Value', listItems[i].LastBuildStatus)
+            if (fId >= 0)
+                listItems[i].LastBuildStatusTitle = enumList[fId].Description;
+        }
     }
 
     // Open Add Modal
@@ -106,8 +133,12 @@
         if (buttonIsPressed) return;
 
         appApplication.modalTitle = 'اضافه';
-        appApplication.filePickerMainImage.filename = "";
-        appApplication.filePickerMainImage.fileId = null;
+        appApplication.FileIdIcon.filename = "";
+        appApplication.FileIdIcon.fileId = null;
+        appApplication.FileIdLogo.filename = "";
+        appApplication.FileIdLogo.fileId = null;
+        appApplication.FileIdSplashScreen.filename = "";
+        appApplication.FileIdSplashScreen.fileId = null;
         buttonIsPressed = true;
         ajax.call(mainPathApi + 'ApplicationApp/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
@@ -163,6 +194,11 @@
             rashaErManage.showMessage("لطفاً منبع اپلیکیشن را انتخاب کنید!");
             return;
         }
+        if (appApplication.selectedItem.LinkThemeConfigId == null) {
+            rashaErManage.showMessage("لطفاً قالب اپلیکیشن را انتخاب کنید!");
+            return;
+        }
+        
         appApplication.addRequested = true;
         appApplication.busyIndicator.isActive = true;
         //appApplication.selectedItem[appApplication.selectedConfig] = $.trim(angular.toJson(appApplication.submitValue));
@@ -184,6 +220,7 @@
                 appApplication.setBuildStatusEnum(appApplication.ListItems, appApplication.buildStatusEnum);
                 appApplication.closeModal();
             }
+            appApplication.closeModal();
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             appApplication.busyIndicator.isActive = false;
@@ -220,20 +257,55 @@
             appApplication.ConfigRuntimeSite = $.parseJSON(appApplication.selectedItem.ConfigRuntimeSiteJsonValues);
 
 
-            appApplication.filePickerMainImage.filename = null;
-            appApplication.filePickerMainImage.fileId = null;
-            if (response.Item.LinkMainImageId != null) {
+            appApplication.FileIdIcon.filename = null;
+            appApplication.FileIdIcon.fileId = null;
+            appApplication.FileIdLogo.filename = null;
+            appApplication.FileIdLogo.fileId = null;
+            appApplication.FileIdSplashScreen.filename = null;
+            appApplication.FileIdSplashScreen.fileId = null;
+            if (response.Item.LinkFileIdIcon != null) {
                 ajax
                     .call(
                         mainPathApi + "FileContent/getviewmodel",
-                        response.Item.LinkMainImageId,
+                        response.Item.LinkFileIdIcon,
                         "GET"
                     )
                     .success(function (response2) {
                         buttonIsPressed = false;
-                        appApplication.filePickerMainImage.filename =
-                            response2.Item.FileName;
-                        appApplication.filePickerMainImage.fileId = response2.Item.Id;
+                        appApplication.FileIdIcon.filename = response2.Item.FileName;
+                        appApplication.FileIdIcon.fileId = response2.Item.Id;
+                    })
+                    .error(function (data, errCode, c, d) {
+                        rashaErManage.checkAction(data, errCode);
+                    });
+            }
+            if (response.Item.LinkFileIdLogo != null) {
+                ajax
+                    .call(
+                        mainPathApi + "FileContent/getviewmodel",
+                        response.Item.LinkFileIdLogo,
+                        "GET"
+                    )
+                    .success(function (response2) {
+                        buttonIsPressed = false;
+                        appApplication.FileIdLogo.filename = response2.Item.FileName;
+                        appApplication.FileIdLogo.fileId = response2.Item.Id;
+                    })
+                    .error(function (data, errCode, c, d) {
+                        rashaErManage.checkAction(data, errCode);
+                    });
+            }
+            if (response.Item.LinkFileIdSplashScreen != null) {
+                ajax
+                    .call(
+                        mainPathApi + "FileContent/getviewmodel",
+                        response.Item.LinkFileIdSplashScreen,
+                        "GET"
+                    )
+                    .success(function (response2) {
+                        buttonIsPressed = false;
+                        appApplication.FileIdSplashScreen.filename = response2.Item.FileName;
+                        appApplication.FileIdSplashScreen.fileId = response2.Item.Id;
                     })
                     .error(function (data, errCode, c, d) {
                         rashaErManage.checkAction(data, errCode);
@@ -333,6 +405,14 @@
     appApplication.editRow = function (frm) {
         if (frm.$invalid) {
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
+            return;
+        }  
+        if (appApplication.selectedItem.LinkSourceId == null) {
+            rashaErManage.showMessage("لطفاً منبع اپلیکیشن را انتخاب کنید!");
+            return;
+        }
+        if (appApplication.selectedItem.LinkThemeConfigId == null) {
+            rashaErManage.showMessage("لطفاً قالب اپلیکیشن را انتخاب کنید!");
             return;
         }
         appApplication.addRequested = true;
@@ -640,122 +720,7 @@
         return $.parseJSON(str);
     }
     //upload file
-    appApplication.uploadFile = function (index, uploadFile) {
-        if ($("#save-icon" + index).hasClass("fa-save")) {
-            if (appApplication.fileIsExist(uploadFile.name)) {
-                // File already exists
-                if (
-                    confirm(
-                        'File "' +
-                        uploadFile.name +
-                        '" already exists! Do you want to replace the new file?'
-                    )
-                ) {
-                    //------------ appApplication.replaceFile(uploadFile.name);
-                    appApplication.itemClicked(null, appApplication.fileIdToDelete, "file");
-                    appApplication.fileTypes = 1;
-                    appApplication.fileIdToDelete = appApplication.selectedIndex;
-                    // replace the file
-                    ajax
-                        .call(
-                            mainPathApi + "FileContent/getviewmodel",
-                            appApplication.fileIdToDelete,
-                            "GET"
-                        )
-                        .success(function (response1) {
-                            if (response1.IsSuccess == true) {
-                                console.log(response1.Item);
-                                ajax.call(mainPathApi + "FileContent/replace", response1.Item, "POST")
-                                    .success(function (response2) {
-                                        if (response2.IsSuccess == true) {
-                                            appApplication.FileItem = response2.Item;
-                                            appApplication.showSuccessIcon();
-                                            $("#save-icon" + index).removeClass("fa-save");
-                                            $("#save-button" + index).removeClass(
-                                                "flashing-button"
-                                            );
-                                            $("#save-icon" + index).addClass("fa-check");
-                                            appApplication.filePickerMainImage.filename =
-                                                appApplication.FileItem.FileName;
-                                            appApplication.filePickerMainImage.fileId =
-                                                response2.Item.Id;
-                                            appApplication.selectedItem.LinkMainImageId =
-                                                appApplication.filePickerMainImage.fileId;
-                                        } else {
-                                            $("#save-icon" + index).removeClass("fa-save");
-                                            $("#save-button" + index).removeClass(
-                                                "flashing-button"
-                                            );
-                                            $("#save-icon" + index).addClass("fa-remove");
-                                        }
-                                    })
-                                    .error(function (data) {
-                                        appApplication.showErrorIcon();
-                                        $("#save-icon" + index).removeClass("fa-save");
-                                        $("#save-button" + index).removeClass("flashing-button");
-                                        $("#save-icon" + index).addClass("fa-remove");
-                                    });
-                                //-----------------------------------
-                            }
-                        })
-                        .error(function (data) {
-                            console.log(data);
-                        });
-                    //--------------------------------
-                } else {
-                    return;
-                }
-            } else {
-                // File does not exists
-                // Save New file
-                ajax
-                    .call(mainPathApi + "FileContent/getviewmodel", "0", "GET")
-                    .success(function (response) {
-                        appApplication.FileItem = response.Item;
-                        appApplication.FileItem.FileName = uploadFile.name;
-                        appApplication.FileItem.uploadName = uploadFile.uploadName;
-                        appApplication.FileItem.Extension = uploadFile.name.split(".").pop();
-                        appApplication.FileItem.FileSrc = uploadFile.name;
-                        appApplication.FileItem.LinkCategoryId = null; //Save the new file in the root
-                        // ------- appApplication.saveNewFile()  ----------------------
-                        var result = 0;
-                        ajax
-                            .call(mainPathApi + "FileContent/add", appApplication.FileItem, "POST")
-                            .success(function (response) {
-                                if (response.IsSuccess) {
-                                    appApplication.FileItem = response.Item;
-                                    appApplication.showSuccessIcon();
-                                    $("#save-icon" + index).removeClass("fa-save");
-                                    $("#save-button" + index).removeClass("flashing-button");
-                                    $("#save-icon" + index).addClass("fa-check");
-                                    appApplication.filePickerMainImage.filename =
-                                        appApplication.FileItem.FileName;
-                                    appApplication.filePickerMainImage.fileId = response.Item.Id;
-                                    appApplication.selectedItem.LinkMainImageId =
-                                        appApplication.filePickerMainImage.fileId;
-                                } else {
-                                    $("#save-icon" + index).removeClass("fa-save");
-                                    $("#save-button" + index).removeClass("flashing-button");
-                                    $("#save-icon" + index).addClass("fa-remove");
-                                }
-                            })
-                            .error(function (data) {
-                                appApplication.showErrorIcon();
-                                $("#save-icon" + index).removeClass("fa-save");
-                                $("#save-button" + index).removeClass("flashing-button");
-                                $("#save-icon" + index).addClass("fa-remove");
-                            });
-                        //-----------------------------------
-                    })
-                    .error(function (data) {
-                        console.log(data);
-                        $("#save-icon" + index).removeClass("fa-save");
-                        $("#save-button" + index).removeClass("flashing-button");
-                        $("#save-icon" + index).addClass("fa-remove");
-                    });
-            }
-        }
-    };
+
     //End of Upload Modal-----------------------------------------
     //Export Report 
     appApplication.exportFile = function () {
@@ -1045,6 +1010,26 @@
             this.defaultDate = date;
         }
     }
+    appApplication.onEnumNotificationTypeChange = function (NotificationType) {
+        switch (NotificationType) {
+            case 1:
+                // memberInfo.showWeekly = false;
+                // memberInfo.showmonthly = false;
+                // memberInfo.showonce = true;
+                // memberInfo.showmonthlyYear = false;
+                // memberInfo.showHourly = false;
+                // memberInfo.showDaily = false;
+                break;
+            case 2:
+                // memberInfo.showWeekly = false;
+                // memberInfo.showmonthly = false;
+                // memberInfo.showonce = false;
+                // memberInfo.showmonthlyYear = false;
+                // memberInfo.showHourly = true;
+                // memberInfo.showDaily = false;
+                break;
+        }
+    };
     appApplication.onScheduleTypeChange = function (scheduleType) {
         switch (scheduleType) {
             case 1:

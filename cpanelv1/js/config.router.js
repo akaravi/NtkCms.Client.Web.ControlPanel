@@ -3248,6 +3248,7 @@
                         ]
                     }
                 })
+            
                 //-----Reservation Module-----
                 .state('index.reservationcontent', {
                     url: "/reservationcontent",
@@ -3677,6 +3678,31 @@
                                     serie: false,
                                     files: [
                                         'cpanelv1/ModuleApplication/ApplicationMemberInfo/ApplicationMemberInfoController.js'
+                                    ]
+                                }]);
+                            }
+                        ]
+                    }
+                })
+                .state('index.applicationintro', {
+                    url: "/applicationintro",
+                    templateUrl: "cpanelv1/ModuleApplication/ApplicationIntro/grid.html",
+                    controller: "applicationIntroController",
+                    controllerAs: "applicationIntro",
+                    data: {
+                        pageTitle: 'راهنما'
+                    },
+                    ncyBreadcrumb: {
+                        label: 'راهنما'
+                    },
+                    resolve: {
+                        deps: [
+                            '$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load([{
+                                    serie: false,
+                                    files: [
+                                        'cpanelv1/ModuleApplication/ApplicationIntro/ApplicationIntroController.js'
                                     ]
                                 }]);
                             }

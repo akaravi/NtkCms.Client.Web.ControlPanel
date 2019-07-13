@@ -21,7 +21,8 @@
         multiSelect: false,
         fileId: null,
         filename: null
-    }
+    };
+
     ticketingTask.showAnswersGrid = false;
 
     ticketingTask.gridOptions = {
@@ -31,7 +32,7 @@
             { name: 'CreatedDate', displayName: 'ساخت', sortable: true, isDate: true, type: 'date', visible: 'true' },
             { name: 'UpdatedDate', displayName: 'ویرایش', sortable: true, isDate: true, type: 'date', visible: 'true' },
             { name: 'Title', displayName: 'سؤال', sortable: true, type: 'string' },
-            { name: 'virtual_TicketType.Title', displayName: 'بخش', sortable: true, type: 'integer', displayForce: true },
+            { name: 'virtual_TicketingDepartemen.Title', displayName: 'بخش', sortable: true, type: 'integer', displayForce: true },
             { name: 'CreatedDate', displayName: 'تاریخ ثبت', sortable: true, isDate: true, type: 'date' },
             { name: 'LinkUserId', displayName: 'کد سیستمی کاربر', sortable: true, type: 'string' },
             { name: 'TicketStatus', displayName: 'وضعیت', sortable: true, type: 'string', template: '<a title="خوانده نشده"><i ng-if="x.TicketStatus == 1" class="fa fa-envelope-o" aria-hidden="true"></i></a><a title="خوانده شده"><i ng-if="x.TicketStatus == 0" class="fa fa-envelope-open-o" aria-hidden="true"></i></a>' },
@@ -61,7 +62,7 @@
             { name: 'CreatedDate', displayName: 'ساخت', sortable: true, isDate: true, type: 'date', visible: 'true' },
             { name: 'UpdatedDate', displayName: 'ویرایش', sortable: true, isDate: true, type: 'date', visible: 'true' },
             { name: 'LinkTicketId', displayName: 'کد سیستمی تیکت', sortable: true, type: 'string' },
-            { name: 'virtual_ticketingTask.Title', displayName: 'عنوان تیکت', sortable: true, type: 'integer', displayForce: true },
+            { name: 'ticketing.Title', displayName: 'عنوان تیکت', sortable: true, type: 'integer', displayForce: true },
             { name: 'CreatedDate', displayName: 'تاریخ ثبت', sortable: true, isDate: true, type: 'string', displayForce: true },
             { name: 'HtmlBody', displayName: 'پاسخ', sortable: true, type: 'string' }
         ],
@@ -132,7 +133,7 @@
         ticketingTask.filePickerFiles.filename = "";
         ticketingTask.filePickerFiles.fileId = null;
         ajax.call(mainPathApi+'TicketingTask/getviewmodel', "0", 'GET').success(function (response) {
-            //rashaErManage.checkAction(response);
+            rashaErManage.checkAction(response);
             console.log(response);
             ticketingTask.selectedItem = response.Item;
             $modal.open({
@@ -179,14 +180,27 @@
         ticketingTask.modalTitle = 'ویرایش';
         ajax.call(mainPathApi+'TicketingAnswer/getviewmodel', ticketingTask.answersGridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
-            ticketingTask.selectedItem = response.Item;
-            ticketingTask.parseFileIds(response.Item.LinkFileIds);
-            ticketingTask.filePickerFiles.filename = null;
-            ticketingTask.filePickerFiles.fileId = null;
-            $modal.open({
-                templateUrl: 'cpanelv1/ModuleTicketing/TicketingAnswer/edit.html',
-                scope: $scope
-            });
+            if (response.IsSuccess) {
+                ticketingTask.selectedItem = response.Item;
+                ticketingTask.parseFileIds(response.Item.LinkFileIds);
+                ticketingTask.filePickerFiles.filename = null;
+                ticketingTask.filePickerFiles.fileId = null;
+                ajax.call(mainPathApi+'TicketingTask/getviewmodel', response.Item.LinkTicketId, 'GET').success(function (responseTask) {
+                    rashaErManage.checkAction(responseTask);
+                    if (responseTask.IsSuccess) {
+                        ticketingTask.selectedItem.virtual_ticketing=responseTask.Item;
+                   
+                    $modal.open({
+                        templateUrl: 'cpanelv1/ModuleTicketing/TicketingTask/editAnswer.html',
+                        scope: $scope
+                    });
+                     }
+                }).error(function (data, errCode, c, d) {
+                    rashaErManage.checkAction(data, errCode);
+                });
+
+
+             }
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
@@ -205,7 +219,7 @@
         ticketingTask.addRequested = true;
         ajax.call(mainPathApi+'TicketingTask/add', ticketingTask.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
-            console.log(response);
+            //console.log(response);
             if (response.IsSuccess) {
                 ticketingTask.ListItems.unshift(response.Item);
                 ticketingTask.gridOptions.fillData(ticketingTask.ListItems);
@@ -320,7 +334,7 @@
         var item = ticketingTask.gridOptions.selectedRow.item;
         ticketingTask.showAnswers(item);
     }
-
+    
     ticketingTask.showAnswers = function (item) {
         if (item) {
             //var id = ticketingTask.gridOptions.selectedRow.item.Id;
@@ -375,7 +389,7 @@
         ticketingTask.gridOptions.columnCheckbox = !ticketingTask.gridOptions.columnCheckbox;
     }
 
-    ticketingTask.openAnswerModal = function () {
+    ticketingTask.openAddAnswerModal = function () {
         if (!ticketingTask.gridOptions.selectedRow.item) {
             rashaErManage.showMessage("لطفاَ یک سؤال انتخاب کنید!");
             return;
@@ -389,11 +403,11 @@
             //rashaErManage.checkAction(response);
             console.log(response);
             ticketingTask.selectedItem = response.Item;
-            ticketingTask.selectedItem.LinkTicketId = ticketingTask.gridOptions.selectedRow.item.Id;
-            ticketingTask.selectedItem.Ticket = { Title: ticketingTask.gridOptions.selectedRow.item.Title, HtmlBody: ticketingTask.gridOptions.selectedRow.item.HtmlBody };
+            //ticketingTask.selectedItem.LinkTicketId = ticketingTask.gridOptions.selectedRow.item.Id;
+            //ticketingTask.selectedItem.Ticket = { Title: ticketingTask.gridOptions.selectedRow.item.Title, HtmlBody: ticketingTask.gridOptions.selectedRow.item.HtmlBody };
             ticketingTask.selectedItem.LinkFileIds = null;
             $modal.open({
-                templateUrl: 'cpanelv1/ModuleTicketing/TicketingAnswer/add.html',
+                templateUrl: 'cpanelv1/ModuleTicketing/TicketingTask/addAnswer.html',
                 scope: $scope
             });
         }).error(function (data, errCode, c, d) {
@@ -411,6 +425,7 @@
         ticketingTask.busyIndicator.isActive = true;
         ticketingTask.selectedItem.LinkFileIds = "";
         ticketingTask.stringfyLinkFileIds();
+        ticketingTask.selectedItem.LinkTicketId    =ticketingTask.gridOptions.selectedRow.item.Id;
         ajax.call(mainPathApi+'TicketingAnswer/add', ticketingTask.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

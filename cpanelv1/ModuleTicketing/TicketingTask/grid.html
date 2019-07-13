@@ -2,10 +2,12 @@
     <!-- <div class="container">-->
     <div class="row">
         <div class="col-md-12">
+                <!-- <button class="btn btn-primary" ng-click="ticketingTask.openAddModal()"><i class="fa fa-plas" aria-hidden="true"></i>&nbsp;{{'ADD'|lowercase|translate}}</button> -->
+
             <button class="btn btn-warning" ng-click="ticketingTask.openEditModal()"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;{{'VIEW'|lowercase|translate}}</button>
             <button class="btn btn-danger" ng-click="ticketingTask.delete()" ng-show="ticketingTask.gridOptions.resultAccess.AccessDeleteRow"><i class="fa fa-remove fontavesome-small"></i>&nbsp; {{'delete'|lowercase|translate}}</button>
             <button class="btn btn-info" ng-click="ticketingTask.assingTo()"><i class="fa fa-send fontavesome-small"></i>&nbsp;{{'Refer_To'|lowercase|translate}}</button>
-            <button class="btn btn-primary" ng-click="ticketingTask.openAnswerModal()"><i class="fa fa-reply fontavesome-small"></i>&nbsp;{{'Respone'|lowercase|translate}}</button>
+            <button class="btn btn-primary" ng-click="ticketingTask.openAddAnswerModal()"><i class="fa fa-reply fontavesome-small"></i>&nbsp;{{'Respone'|lowercase|translate}}</button>
             <button class="btn btn-success" type="button" ng-click="ticketingTask.showAdvancedSearchPanel()">&nbsp;{{'advanced_search'|lowercase|translate}}&nbsp;<i id="filter-btn-icon" class="fa fa-toggle-off" aria-hidden="true"></i></button>
             <button class="btn btn-warning" type="button" ng-click="ticketingTask.openGridConfigModal()" id="gridView-btn"> {{'display_setting'|lowercase|translate}} </button>
             <button class="btn btn-primary" rasha-userrole="cmsSiteController.Report" ng-click="ticketingTask.toggleExportForm()">{{'report'|lowercase|translate}}&nbsp;</button>

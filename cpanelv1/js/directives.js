@@ -817,7 +817,7 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
             }
             config.ViewModel = {};
             config.emptyModel = {};
-
+            
             config.initValue = function () {
                 var defId = config.scope.selectedItem[config.fId];
                 if (!defId)

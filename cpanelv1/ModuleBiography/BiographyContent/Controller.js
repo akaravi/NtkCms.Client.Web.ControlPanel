@@ -945,7 +945,7 @@
         });
     };
     // Open Add New Content Modal
-    biographyContent.addNewContentModel = function () {
+    biographyContent.openAddModel = function () {
       biographyContent.selectedItemModuleRelationShip = [];
       biographyContent.ModuleRelationShip = [];
       if (buttonIsPressed) {
@@ -1710,6 +1710,7 @@
         ["alignment", ["ul", "ol", "paragraph", "lineheight"]],
         ["height", ["height"]],
         ["table", ["table"]],
+        ['insert',['ltr','rtl']],
         ["insert", ["link", "picture", "video", "hr"]],
         ["view", ["fullscreen", "codeview"]],
         ["help", ["help"]]

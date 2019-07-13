@@ -256,7 +256,7 @@ order.LinkExternalModuleCoreCmsUserIdSelector = {
         displayMember: 'Name',
         id: 'Id',
         fId: 'LinkExternalModuleCoreCmsUserId',
-        url: 'CmsUser',
+        url: 'coreuser',
         sortColumn: 'Id',
         sortType: 0,
         filterText: 'Name',

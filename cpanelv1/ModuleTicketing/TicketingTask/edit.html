@@ -4,7 +4,7 @@
             <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="ticketingTask.closeModal()"></i>
             <h3 class="m-t-none m-b"> {{ ticketingTask.modalTitle}}</h3>
             <div class='hr-line-dashed'></div>
-            <form method="get" class="form-horizontal" name="frmnewsContentAdd" novalidate>
+            <form method="get" class="form-horizontal" name="frmticketingTaskEdit" novalidate>
                 <tabset class="tabs-left">
                     <tab heading="{{'necessary_information' |lowercase|translate}}">
                         <!-- Title -->
@@ -19,15 +19,15 @@
                             <label class="col-sm-2 control-label">پیام</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" name="HtmlBody" ng-model="ticketingTask.selectedItem.HtmlBody" style="resize:vertical;height:50px" ng-readonly="true"></textarea>
-                                <div class="m-t-xs" ng-show="frmnewsContentAdd.LinkSiteId.$invalid">
-                                    <small class="text-danger" ng-show="frmnewsContentAdd.LinkSiteId.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
+                                <div class="m-t-xs" ng-show="frmticketingTaskEdit.LinkSiteId.$invalid">
+                                    <small class="text-danger" ng-show="frmticketingTaskEdit.LinkSiteId.$error.required"><i class="fa fa-exclamation-triangle"></i> {{'this_information_is_required'|lowercase|translate}} </small>
                                 </div>
-                                <span style="left: 10px !important;" ng-show="frmnewsContentAdd.LinkSiteId.$valid && frmnewsContentAdd.LinkSiteId.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
-                                <span style="left: 10px !important;" ng-show="(frmnewsContentAdd.LinkSiteId.$invalid && !frmnewsContentAdd.LinkSiteId.$pristine) || frmnewsContentAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                <span style="left: 10px !important;" ng-show="frmticketingTaskEdit.LinkSiteId.$valid && frmticketingTaskEdit.LinkSiteId.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                <span style="left: 10px !important;" ng-show="(frmticketingTaskEdit.LinkSiteId.$invalid && !frmticketingTaskEdit.LinkSiteId.$pristine) || frmticketingTaskEdit.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                             </div>
                         </div>
                         <!-- TicketType -->
-                        <div class="form-group" ng-show="ticketingTask.gridOptions.resultAccess.AccessWatchField.indexOf('LinkTicketTypeId')>-1">
+                        <div class="form-group" ng-show="ticketingTask.gridOptions.resultAccess.AccessWatchField.indexOf('LinkTicketingDepartemenId')>-1">
                             <label class="col-sm-2 control-label">بخش تیکت</label>
                             <div class="col-sm-10">
                                 <input class="form-control" ng-required="true" name="TicketType" ng-model="ticketingTask.selectedItem.virtual_TicketType.Title" ng-readonly="true" />
@@ -62,7 +62,7 @@
                 </tabset>
                 <div class='hr-line-dashed'></div>
                 <div class="form-group">
-                    <button class="btn btn-default" type="button" ng-click="ticketingFaq.closeModal()">{{'cancel'|lowercase|translate}}</button>
+                    <button class="btn btn-default" type="button" ng-click="ticketingTask.closeModal()">{{'cancel'|lowercase|translate}}</button>
                 </div>
             </form>
         </div>

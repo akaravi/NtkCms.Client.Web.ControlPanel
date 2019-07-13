@@ -73,7 +73,7 @@
         displayMember: 'Username',
         id: 'Id',
         fId: 'LinkCmsUserId',
-        url: 'cmsuser',
+        url: 'coreuser',
         sortColumn: 'Id',
         onSelectionChanged: shopInvoiceSale.selectionChangedUser,
         sortType: 0,

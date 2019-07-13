@@ -16,6 +16,13 @@
         fileId: null,
         filename: null
       };
+      applicationIntro.filePickerMainImage = {
+        isActive: true,
+        backElement: "filePickerMainImage",
+        filename: null,
+        fileId: null,
+        multiSelect: false
+    };
 
     var date = moment().format();
     // ticketingAnswer.startDate = {

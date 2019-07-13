@@ -3,16 +3,16 @@
         <div class="col-sm-12 b-r">
             <i class="fa fa-times pull-right" style="cursor:pointer" ng-click="ticketingAnswer.closeModal()"></i>
             <h3 class="m-t-none m-b"> {{ ticketingAnswer.modalTitle}}</h3>
-            <form method="get" class="form-horizontal" name="frmticketingAdd" novalidate ng-submit="ticketingAnswer.addNewAnswer(frmticketingAdd)">
+            <form method="get" class="form-horizontal" name="frmticketingAnswerAdd" novalidate ng-submit="ticketingAnswer.addNewAnswer(frmticketingAnswerAdd)">
                 <tabset class="tabs-left">
                     <tab heading="{{'necessary_information' |lowercase|translate}}">
-                        <!-- LinkticketingId -->
+                        <!-- LinkTicketId -->
                         <div class="form-group">
                                 <div class="hr-line-dashed"></div>
 
                             <label class="col-sm-2 control-label">کد سیستمی تیکت</label>
                             <div class="col-sm-10">
-                                <input class="form-control" name="LinkticketingId" type="number" ng-required="true" ng-model="ticketingAnswer.selectedItem.LinkticketingId" readonly />
+                                <input class="form-control" name="LinkTicketId" type="number" ng-required="true" ng-model="ticketingAnswer.selectedItem.LinkTicketId" readonly />
                             </div>
                         </div>
                         <div class="form-group">
@@ -22,22 +22,22 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">موضوع تیکت</label>
+                            <label class="col-sm-2 control-label">متن تیکت</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" name="ticketingHtmlBody" style="resize:vertical" ng-required="true" ng-model="ticketingAnswer.selectedItem.ticketingAnswer.HtmlBody" readonly></textarea>
                             </div>
                         </div>
                         <div class='hr-line-dashed'></div>
                         <!--HtmlBody-->
-                        <div class="form-group" ng-class="{'has-error' : frmticketingAdd.HtmlBody.$invalid && !frmticketingAdd.HtmlBody.$pristine,'has-success' : frmticketingAdd.HtmlBody.$valid}">
+                        <div class="form-group" ng-class="{'has-error' : frmticketingAnswerAdd.HtmlBody.$invalid && !frmticketingAnswerAdd.HtmlBody.$pristine,'has-success' : frmticketingAnswerAdd.HtmlBody.$valid}">
                             <label class="col-sm-2 control-label">متن پاسخ</label>
                             <div class="col-sm-10">
                                 <div summernote class="summernote" config="ticketingAnswer.summernoteOptions" ng-model="ticketingAnswer.selectedItem.HtmlBody"></div>
-                                <div class="m-t-xs" ng-show="frmticketingAdd.HtmlBody.$invalid">
-                                    <small class="text-danger" ng-show="frmticketingAdd.HtmlBody.$error.required"><i class="fa fa-exclamation-triangle"></i>{{'this_information_is_required'|lowercase|translate}}</small>
+                                <div class="m-t-xs" ng-show="frmticketingAnswerAdd.HtmlBody.$invalid">
+                                    <small class="text-danger" ng-show="frmticketingAnswerAdd.HtmlBody.$error.required"><i class="fa fa-exclamation-triangle"></i>{{'this_information_is_required'|lowercase|translate}}</small>
                                 </div>
-                                <span style="left: 10px !important;" ng-show="frmticketingAdd.HtmlBody.$valid && frmticketingAdd.HtmlBody.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
-                                <span style="left: 10px !important;" ng-show="(frmticketingAdd.HtmlBody.$invalid && !frmticketingAdd.HtmlBody.$pristine) || frmticketingAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                <span style="left: 10px !important;" ng-show="frmticketingAnswerAdd.HtmlBody.$valid && frmticketingAnswerAdd.HtmlBody.$dirty" class="fa fa-check form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
+                                <span style="left: 10px !important;" ng-show="(frmticketingAnswerAdd.HtmlBody.$invalid && !frmticketingAnswerAdd.HtmlBody.$pristine) || frmticketingAnswerAdd.submitted" class="fa fa-exclamation-triangle form-control-feedback animated fadeInLeft color-primary" aria-hidden="true"></span>
                             </div>
                         </div>
                     </tab>

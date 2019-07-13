@@ -86,6 +86,7 @@
             ["alignment", ["ul", "ol", "paragraph", "lineheight"]],
             ["height", ["height"]],
             ["table", ["table"]],
+            ['insert',['ltr','rtl']],
             ["insert", ["link", "picture", "video", "hr"]],
             ["view", ["fullscreen", "codeview"]],
             ["help", ["help"]]

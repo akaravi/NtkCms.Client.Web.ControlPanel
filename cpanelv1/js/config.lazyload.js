@@ -104,6 +104,9 @@
                         //'cpanelv1/js/plugins/summernote/summernote-bs3.css',
                         'cpanelv1/js/plugins/summernote/summernote.min.js',
                         'cpanelv1/js/plugins/summernote/angular-summernote.min.js'
+                        
+
+                        
                     ]
                 },
                 {
