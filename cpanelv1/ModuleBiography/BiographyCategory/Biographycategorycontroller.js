@@ -1,4 +1,7 @@
-﻿app.controller("biographycategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $filter) {
+﻿app.controller("biographycategoryCtrl", 
+["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$filter',
+ function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $filter) 
+ {
     var biographycategory = this;
     biographycategory.categoryBusyIndicator = {
         isActive: true,
@@ -91,6 +94,7 @@
         });
     }
 
+    
 
     biographycategory.EditCategoryModel = function () {
         biographycategory.modalTitle = 'ویرایش';
