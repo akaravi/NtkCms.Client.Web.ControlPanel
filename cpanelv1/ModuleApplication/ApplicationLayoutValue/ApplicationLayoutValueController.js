@@ -90,10 +90,10 @@
             appLayoutValue.addRequested = false;
             if (responseValue.IsSuccess) {
                 appLayoutValue.selectedItem = responseValue.Item;
-                appLayoutValue.ConfigSite = $.parseJSON(appLayoutValue.selectedItem.JsonFormValues);
+                appLayoutValue.selectedItem.ConfigSite = $.parseJSON(appLayoutValue.selectedItem.JsonFormValues);
             } else {
 
-                appLayoutValue.ConfigSite = $.parseJSON(appLayoutValue.gridOptions.selectedRow.item.JsonFormDefaultValue);
+                appLayoutValue.selectedItem.ConfigSite = $.parseJSON(appLayoutValue.gridOptions.selectedRow.item.JsonFormDefaultValue);
             }
             $modal.open({
                 templateUrl: 'cpanelv1/ModuleApplication/applicationlayoutvalue/edit.html',
@@ -119,7 +119,7 @@
         appLayoutValue.busyIndicator.isActive = true;
 
         //start load ApplicationLayoutvalue If Exist
-
+        appLayoutValue.selectedItem.JsonFormValues = $.trim(angular.toJson(appLayoutValue.ConfigSite));
         if (appLayoutValue.selectedItem.Id && appLayoutValue.selectedItem.Id > 0) {
             ajax.call(mainPathApi + 'ApplicationLayoutvalue/Edit', appLayoutValue.selectedItem, 'PUT').success(function (responseValue) {
                 appLayoutValue.busyIndicator.isActive = false;
