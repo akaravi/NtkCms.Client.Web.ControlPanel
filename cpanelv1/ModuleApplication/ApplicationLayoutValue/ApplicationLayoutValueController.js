@@ -90,15 +90,19 @@
             appLayoutValue.addRequested = false;
             if (responseValue.IsSuccess) {
                 appLayoutValue.selectedItem = responseValue.Item;
-                appLayoutValue.selectedItem.ConfigSite = $.parseJSON(appLayoutValue.selectedItem.JsonFormValues);
+                appLayoutValue.ConfigSite = $.parseJSON(appLayoutValue.selectedItem.JsonFormValues);
+                if (appLayoutValue.selectedItem.JsonFormValues === "") {
+                    appLayoutValue.ConfigSite = $.parseJSON(appLayoutValue.gridOptions.selectedRow.item.JsonFormDefaultValue);
+                }
             } else {
 
-                appLayoutValue.selectedItem.ConfigSite = $.parseJSON(appLayoutValue.gridOptions.selectedRow.item.JsonFormDefaultValue);
+                appLayoutValue.ConfigSite = $.parseJSON(appLayoutValue.gridOptions.selectedRow.item.JsonFormDefaultValue);
             }
             $modal.open({
                 templateUrl: 'cpanelv1/ModuleApplication/applicationlayoutvalue/edit.html',
                 scope: $scope
             });
+
 
         }).error(function (data, errCode, c, d) {
             appLayoutValue.busyIndicator.isActive = false;
@@ -117,13 +121,14 @@
             return;
         }
         appLayoutValue.busyIndicator.isActive = true;
-
+        appLayoutValue.addRequested = true;
         //start load ApplicationLayoutvalue If Exist
         appLayoutValue.selectedItem.JsonFormValues = $.trim(angular.toJson(appLayoutValue.ConfigSite));
         if (appLayoutValue.selectedItem.Id && appLayoutValue.selectedItem.Id > 0) {
             ajax.call(mainPathApi + 'ApplicationLayoutvalue/Edit', appLayoutValue.selectedItem, 'PUT').success(function (responseValue) {
                 appLayoutValue.busyIndicator.isActive = false;
                 appLayoutValue.addRequested = false;
+                appLayoutValue.closeModal();
             }).error(function (data, errCode, c, d) {
                 appLayoutValue.busyIndicator.isActive = false;
                 rashaErManage.checkAction(data, errCode);
@@ -134,6 +139,7 @@
             ajax.call(mainPathApi + 'ApplicationLayoutvalue/Add', appLayoutValue.selectedItem, 'POST').success(function (responseValue) {
                 appLayoutValue.busyIndicator.isActive = false;
                 appLayoutValue.addRequested = false;
+                appLayoutValue.closeModal();
             }).error(function (data, errCode, c, d) {
                 appLayoutValue.busyIndicator.isActive = false;
                 rashaErManage.checkAction(data, errCode);
