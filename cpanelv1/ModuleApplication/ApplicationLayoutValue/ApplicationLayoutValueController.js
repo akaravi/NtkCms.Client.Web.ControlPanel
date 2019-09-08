@@ -75,9 +75,9 @@
         var filterDataModel = {};
         filterDataModel.Filters = [];
         filterDataModel.Filters.push({
-            PropertyName: "LinkSourceId",
+            PropertyName: "LinkApplicationId",//"LinkSourceId"
             searchType: 0,
-            IntValue1: parseInt(appLayoutValue.sourceId)
+            IntValue1: parseInt(appLayoutValue.appId)//parseInt(appLayoutValue.sourceId)
         });
         filterDataModel.Filters.push({
             PropertyName: "LinkLayoutId",
@@ -135,7 +135,8 @@
             });
         } else {
             appLayoutValue.selectedItem.LinkLayoutId = appLayoutValue.gridOptions.selectedRow.item.Id;
-            appLayoutValue.selectedItem.LinkSourceId = parseInt(appLayoutValue.sourceId);
+            //appLayoutValue.selectedItem.LinkSourceId = parseInt(appLayoutValue.sourceId);
+            appLayoutValue.selectedItem.LinkApplicationId = parseInt(appLayoutValue.appId);
             ajax.call(mainPathApi + 'ApplicationLayoutvalue/Add', appLayoutValue.selectedItem, 'POST').success(function (responseValue) {
                 appLayoutValue.busyIndicator.isActive = false;
                 appLayoutValue.addRequested = false;
