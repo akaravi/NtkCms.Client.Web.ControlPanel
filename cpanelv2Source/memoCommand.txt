@@ -5,3 +5,6 @@ npm install -g eslint
 npm i -g gulp     نصب تدیل اکسام 6 به 5
 npm install
 npm start
+
+
+yarn install
