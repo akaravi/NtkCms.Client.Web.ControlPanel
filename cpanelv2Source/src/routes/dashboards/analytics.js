@@ -59,7 +59,7 @@ export default class AnalyticsDashboard extends Component {
           <Colxx sm="12" md="6" className="mb-4">
             <Card className="dashboard-filled-line-chart">
               <CardBody>
-                <div className="float-right float-none-xs">
+                <div className="float-left float-none-xs">
                   <div className="d-inline-block">
                     <h5 className="d-inline">
                       <IntlMessages id="dashboards.website-visits" />
@@ -70,7 +70,7 @@ export default class AnalyticsDashboard extends Component {
                   </div>
                 </div>
 
-                <div className="btn-group float-left float-none-xs mt-2">
+                <div className="btn-group float-right float-none-xs mt-2">
                   <UncontrolledDropdown>
                     <DropdownToggle
                       caret
@@ -100,7 +100,7 @@ export default class AnalyticsDashboard extends Component {
           <Colxx sm="12" md="6" className="mb-4">
             <Card className="dashboard-filled-line-chart">
               <CardBody>
-                <div className="float-right float-none-xs">
+                <div className="float-left float-none-xs">
                   <div className="d-inline-block">
                     <h5 className="d-inline">
                       <IntlMessages id="dashboards.conversion-rates" />
@@ -111,7 +111,7 @@ export default class AnalyticsDashboard extends Component {
                   </div>
                 </div>
 
-                <div className="btn-group float-left float-none-xs mt-2">
+                <div className="btn-group float-right float-none-xs mt-2">
                   <UncontrolledDropdown>
                     <DropdownToggle
                       caret
@@ -164,7 +164,7 @@ export default class AnalyticsDashboard extends Component {
                     <div key={index} className="mb-4">
                       <p className="mb-2">
                         {s.title}
-                        <span className="float-left text-muted">
+                        <span className="float-right text-muted">
                           {s.status}/{s.total}
                         </span>
                       </p>

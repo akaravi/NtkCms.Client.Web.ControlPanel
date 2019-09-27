@@ -17,9 +17,9 @@ import Sortable from "react-sortablejs";
 import { mapOrder } from "Util/Utils";
 
 const answerTypes = [
-  { label: "محل نوشتن", value: "1", id: 1 },
-  { label: "چک باکس", value: "2", id: 2 },
-  { label: "رادیو باتن", value: "3", id: 3 }
+  { label: "Text Area", value: "1", id: 1 },
+  { label: "Checkbox", value: "2", id: 2 },
+  { label: "Radiobutton", value: "3", id: 3 }
 ];
 export default class SurveyQuestionBuilder extends React.Component {
   constructor(...params) {
@@ -162,7 +162,7 @@ export default class SurveyQuestionBuilder extends React.Component {
               {this.state.title}
             </div>
           </div>
-          <div className="custom-control custom-checkbox pr-1 align-self-center pl-4">
+          <div className="custom-control custom-checkbox pl-1 align-self-center pr-4">
 
             <Button
               outline
@@ -232,7 +232,7 @@ export default class SurveyQuestionBuilder extends React.Component {
                 <div className="separator mb-4 mt-4" />
 
                 <FormGroup>
-                  <Label>نوع پاسخ</Label>
+                  <Label>نوع جواب</Label>
                   <Select
                     components={{ Input: CustomSelectInput }}
                     className="react-select"
@@ -243,7 +243,7 @@ export default class SurveyQuestionBuilder extends React.Component {
                     options={answerTypes}
                   />
                 </FormGroup>
-                {this.state.answers.length > 0 && <Label>Answers</Label>}
+                {this.state.answers.length > 0 && <Label>جواب</Label>}
 
                 <Sortable
                   className="answers"
@@ -296,8 +296,8 @@ export default class SurveyQuestionBuilder extends React.Component {
                         className="mt-3"
                         onClick={() => this.addAnswer()}
                       >
-                        <i className="simple-icon-plus btn-group-icon" />
-                         افزودن پاسخ
+                        <i className="simple-icon-plus btn-group-icon" /> اضافه کردن
+                        جواب
                       </Button>
                     )}
                 </div>

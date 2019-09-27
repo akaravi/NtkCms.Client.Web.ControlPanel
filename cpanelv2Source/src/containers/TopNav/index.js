@@ -176,7 +176,7 @@ class TopNav extends Component {
       event.initEvent("resize", false, false);
       window.dispatchEvent(event);
     }, 350);
-    this.props.setContainerClassnames(++menuClickCount, containerClassnames);
+    this.props.setContainerClassnames(++menuClickCount, containerClassnames,this.props.selectedMenuHasSubItems);
   }
   mobileMenuButtonClick(e, containerClassnames) {
     e.preventDefault();
@@ -226,7 +226,7 @@ class TopNav extends Component {
           </svg>
         </NavLink>
 
-        <div className="search" data-search-path="/app/layouts/search">
+        <div className="search" data-search-path="/app/pages/search">
           <Input
             name="searchKeyword"
             id="searchKeyword"
@@ -283,50 +283,50 @@ class TopNav extends Component {
               </a>
             </div>
             <div className="position-relative d-none d-sm-inline-block">
-              <UncontrolledDropdown className="dropdown-menu-right">
+              <UncontrolledDropdown className="dropdown-menu-left">
                 <DropdownToggle className="header-icon" color="empty">
                   <i className="simple-icon-grid" />
                 </DropdownToggle>
                 <DropdownMenu
                   className="position-absolute mt-3"
-                  left
+                  right
                   id="iconMenuDropdown"
                 >
                   <NavLink
                     to="/app/dashboards/default"
                     className="icon-menu-item"
                   >
-                    <i className="iconsmind-Shop-4 d-block" />{" "}
+                    <i className="iconsminds-shop-4 d-block" />{" "}
                     <IntlMessages id="menu.dashboards" />
                   </NavLink>
 
                   <NavLink to="/app/ui" className="icon-menu-item">
-                    <i className="iconsmind-Pantone d-block" />{" "}
+                    <i className="iconsminds-pantone d-block" />{" "}
                     <IntlMessages id="menu.ui" />
                   </NavLink>
                   <NavLink to="/app/ui/charts" className="icon-menu-item">
-                    <i className="iconsmind-Bar-Chart d-block" />{" "}
+                    <i className="iconsminds-bar-chart-4 d-block" />{" "}
                     <IntlMessages id="menu.charts" />
                   </NavLink>
                   <NavLink
                     to="/app/applications/chat"
                     className="icon-menu-item"
                   >
-                    <i className="iconsmind-Speach-BubbleDialog d-block" />{" "}
+                    <i className="iconsminds-speach-bubble d-block" />{" "}
                     <IntlMessages id="menu.chat" />
                   </NavLink>
                   <NavLink
                     to="/app/applications/survey"
                     className="icon-menu-item"
                   >
-                    <i className="iconsmind-Formula d-block" />{" "}
+                    <i className="iconsminds-formula d-block" />{" "}
                     <IntlMessages id="menu.survey" />
                   </NavLink>
                   <NavLink
                     to="/app/applications/todo"
                     className="icon-menu-item"
                   >
-                    <i className="iconsmind-Check d-block" />{" "}
+                    <i className="iconsminds-check d-block" />{" "}
                     <IntlMessages id="menu.todo" />
                   </NavLink>
                 </DropdownMenu>
@@ -334,7 +334,7 @@ class TopNav extends Component {
             </div>
 
             <div className="position-relative d-inline-block">
-              <UncontrolledDropdown className="dropdown-menu-right">
+              <UncontrolledDropdown className="dropdown-menu-left">
                 <DropdownToggle
                   className="header-icon notificationButton"
                   color="empty"
@@ -344,7 +344,7 @@ class TopNav extends Component {
                 </DropdownToggle>
                 <DropdownMenu
                   className="position-absolute mt-3 scroll"
-                  left
+                  right
                   id="notificationDropdown"
                 >
                   <PerfectScrollbar
@@ -356,7 +356,7 @@ class TopNav extends Component {
                           key={index}
                           className="d-flex flex-row mb-3 pb-3 border-bottom"
                         >
-                          <a href="/app/layouts/details">
+                          <a href="/app/pages/details">
                             <img
                               src={n.image}
                               alt="Notification"
@@ -364,7 +364,7 @@ class TopNav extends Component {
                             />
                           </a>
                           <div className="pl-3 pr-2">
-                            <a href="/app/layouts/details">
+                            <a href="/app/pages/details">
                               <p className="font-weight-medium mb-1">
                                 {n.message}
                               </p>
@@ -397,14 +397,14 @@ class TopNav extends Component {
           <div className="user d-inline-block">
             <UncontrolledDropdown className="dropdown-menu-right">
               <DropdownToggle className="p-0" color="empty">
-                <span className="name ml-1">فاطمه کاظمی</span>
+                <span className="name ml-1">فاطمه کاظمی زاده</span>
                 <span>
                   <img alt="Profile" src="/assets/img/profile-pic-l.jpg" />
                 </span>
               </DropdownToggle>
               <DropdownMenu className="mt-3" right>
                 <DropdownItem>حساب کاربری</DropdownItem>
-                <DropdownItem>امکانات</DropdownItem>
+                <DropdownItem>ویژه شده</DropdownItem>
                 <DropdownItem>تاریخچه</DropdownItem>
                 <DropdownItem>پشتیبانی</DropdownItem>
                 <DropdownItem divider />
@@ -421,9 +421,9 @@ class TopNav extends Component {
 }
 
 const mapStateToProps = ({ menu, settings }) => {
-  const { containerClassnames, menuClickCount } = menu;
+  const { containerClassnames, menuClickCount,selectedMenuHasSubItems } = menu;
   const { locale } = settings;
-  return { containerClassnames, menuClickCount, locale };
+  return { containerClassnames, menuClickCount, selectedMenuHasSubItems,locale };
 };
 export default injectIntl(connect(
   mapStateToProps,

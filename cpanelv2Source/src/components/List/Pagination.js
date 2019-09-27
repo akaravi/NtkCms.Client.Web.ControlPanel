@@ -50,7 +50,7 @@ class Pagination extends React.Component {
                 className="page-link first"
                 onClick={() => this.onChangePage(1)}
               >
-                <i className="simple-icon-control-end" />
+                <i className="simple-icon-control-start" />
               </NavLink>
             </NavItem>
           )}
@@ -60,7 +60,7 @@ class Pagination extends React.Component {
               className="page-link prev"
               onClick={() => this.onChangePage(currentPage - 1)}
             >
-              <i className="simple-icon-arrow-right" />
+              <i className="simple-icon-arrow-left" />
             </NavLink>
           </NavItem>
           {points.map(i => {
@@ -83,7 +83,7 @@ class Pagination extends React.Component {
               className="page-link next"
               onClick={() => this.onChangePage(currentPage + 1)}
             >
-              <i className="simple-icon-arrow-left" />
+              <i className="simple-icon-arrow-right" />
             </NavLink>
           </NavItem>
           {lastIsActive && (
@@ -92,7 +92,7 @@ class Pagination extends React.Component {
                 className="page-link last"
                 onClick={() => this.onChangePage(totalPage)}
               >
-                <i className="simple-icon-control-start" />
+                <i className="simple-icon-control-end" />
               </NavLink>
             </NavItem>
           )}

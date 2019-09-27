@@ -33,7 +33,6 @@ export default class CarouselUi extends Component {
                 1400: 3
               }}
               loop={false}
-              rtl={true}
             >
               <div className="pr-3 pl-3">
                 <Card className="flex-row">
@@ -43,15 +42,15 @@ export default class CarouselUi extends Component {
                       src="/assets/img/card-thumb-1.jpg"
                       alt="Card cap"
                     />
-                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-right">
-                      NEW
+                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-left">
+                      جدید
                     </span>
                   </div>
 
                   <div className="w-50">
                     <CardBody>
                       <h6 className="mb-4">
-                        کیک نسکافه ای خانگی با تزئین ماکارون
+                        زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی
                       </h6>
 
                       <footer>
@@ -72,15 +71,15 @@ export default class CarouselUi extends Component {
                       src="/assets/img/card-thumb-2.jpg"
                       alt="Card cap"
                     />
-                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-right">
-                      DONE
+                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-left">
+                      تمام شده
                     </span>
                   </div>
 
                   <div className="w-50">
                     <CardBody>
                       <h6 className="mb-4">
-                        کیک عروسی تزئین شده با ماکارون و گل رز
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
                       </h6>
 
                       <footer>
@@ -101,7 +100,7 @@ export default class CarouselUi extends Component {
                       src="/assets/img/card-thumb-3.jpg"
                       alt="Card cap"
                     />
-                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-right">
+                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-left">
                       فرآوری شده
                     </span>
                   </div>
@@ -109,7 +108,7 @@ export default class CarouselUi extends Component {
                   <div className="w-50">
                     <CardBody>
                       <h6 className="mb-4">
-                        چیزکیک با شکلات و خامه عسل
+                        حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد
                       </h6>
 
                       <footer>
@@ -130,15 +129,15 @@ export default class CarouselUi extends Component {
                       src="/assets/img/card-thumb-1.jpg"
                       alt="Card cap"
                     />
-                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-right">
-                      NEW
+                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-left">
+                      جدید
                     </span>
                   </div>
 
                   <div className="w-50">
                     <CardBody>
                       <h6 className="mb-4">
-                        چیزکیک با شکلات و خامه عسل
+                        حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد
                       </h6>
 
                       <footer>
@@ -159,20 +158,20 @@ export default class CarouselUi extends Component {
                       src="/assets/img/card-thumb-3.jpg"
                       alt="Card cap"
                     />
-                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-right">
-                      NEW
+                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-left">
+                      جدید
                     </span>
                   </div>
 
                   <div className="w-50">
                     <CardBody>
                       <h6 className="mb-4">
-                        کیک نسکافه ای خانگی با تزئین ماکارون
+                        زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی
                       </h6>
 
                       <footer>
                         <p className="text-muted text-small mb-0 font-weight-light">
-                          31 فروردین 1397
+                          09.04.2018
                         </p>
                       </footer>
                     </CardBody>
@@ -194,7 +193,6 @@ export default class CarouselUi extends Component {
                 0: 1
               }}
               loop={false}
-              rtl={true}
             >
               <div className="pr-3 pl-3">
                 <Card className="flex-row">
@@ -207,17 +205,17 @@ export default class CarouselUi extends Component {
                   <div className="pl-2 d-flex flex-grow-1 min-width-zero">
                     <CardBody className="align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero">
                       <p className="list-item-heading mb-1 truncate">
-                        چیزکیک با شکلات و خامه عسل
+                        حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد
                       </p>
 
                       <p className="mb-0 text-muted text-small">کاپ کیک</p>
-                      <p className="mb-0 text-muted text-small">28 خرداد 1395</p>
+                      <p className="mb-0 text-muted text-small">09.11.2018</p>
                       <div>
-                        <span className="badge badge-pill badge-primary ml-1">
+                        <span className="badge badge-pill badge-primary mr-1">
                           جدید
                         </span>
                         <span className="badge badge-pill badge-secondary">
-                          درحال پردازش
+                          نگه دارنده
                         </span>
                       </div>
                     </CardBody>
@@ -236,17 +234,17 @@ export default class CarouselUi extends Component {
                   <div className="pl-2 d-flex flex-grow-1 min-width-zero">
                     <CardBody className="align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero">
                       <p className="list-item-heading mb-1 truncate">
-                        کیک نسکافه ای خانگی با تزئین ماکارون
+                        زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی
                       </p>
 
-                      <p className="mb-0 text-muted text-small">Cupcakes</p>
-                      <p className="mb-0 text-muted text-small">31 فروردین 1397</p>
+                      <p className="mb-0 text-muted text-small">کاپ کیک</p>
+                      <p className="mb-0 text-muted text-small">09.04.2018</p>
                       <div>
-                        <span className="badge badge-pill badge-primary ml-1">
+                        <span className="badge badge-pill badge-primary mr-1">
                           جدید
                         </span>
                         <span className="badge badge-pill badge-secondary">
-                          درحال پردازش
+                          نگه دارنده
                         </span>
                       </div>
                     </CardBody>
@@ -272,7 +270,6 @@ export default class CarouselUi extends Component {
               }}
               controls={false}
               loop={false}
-              rtl={true}
             >
               <div className="pr-3 pl-3">
                 <Card>
@@ -282,22 +279,22 @@ export default class CarouselUi extends Component {
                       src="/assets/img/card-thumb-1.jpg"
                       alt="Card"
                     />
-                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-right">
+                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-left">
                       جدید
                     </span>
                     <span className="badge badge-pill badge-secondary position-absolute badge-top-left-2">
-                      ویژه شده
+                      سلامتی
                     </span>
                   </div>
 
                   <CardBody>
                     <h6 className="mb-4">
-                      چیزکیک با شکلات و خامه عسل
+                      حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد
                     </h6>
 
                     <footer>
                       <p className="text-muted text-small mb-0 font-weight-light">
-                        31 فروردین 1397
+                        09.04.2018
                       </p>
                     </footer>
                   </CardBody>
@@ -311,22 +308,22 @@ export default class CarouselUi extends Component {
                       src="/assets/img/card-thumb-2.jpg"
                       alt="Card"
                     />
-                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-right">
+                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-left">
                       جدید
                     </span>
                     <span className="badge badge-pill badge-secondary position-absolute badge-top-left-2">
-                      ویژه شده
+                      سلامتی
                     </span>
                   </div>
 
                   <CardBody>
                     <h6 className="mb-4">
-                      کیک نسکافه ای خانگی با تزئین ماکارون
+                      زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی
                     </h6>
 
                     <footer>
                       <p className="text-muted text-small mb-0 font-weight-light">
-                        31 فروردین 1397
+                        09.04.2018
                       </p>
                     </footer>
                   </CardBody>
@@ -340,22 +337,22 @@ export default class CarouselUi extends Component {
                       src="/assets/img/card-thumb-3.jpg"
                       alt="Card"
                     />
-                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-right">
+                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-left">
                       جدید
                     </span>
                     <span className="badge badge-pill badge-secondary position-absolute badge-top-left-2">
-                      ویژه شده
+                      سلامتی
                     </span>
                   </div>
 
                   <CardBody>
                     <h6 className="mb-4">
-                      کیک عروسی تزئین شده با ماکارون و گل رز
+                      لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
                     </h6>
 
                     <footer>
                       <p className="text-muted text-small mb-0 font-weight-light">
-                        31 فروردین 1397
+                        09.04.2018
                       </p>
                     </footer>
                   </CardBody>
@@ -369,22 +366,22 @@ export default class CarouselUi extends Component {
                       src="/assets/img/card-thumb-4.jpg"
                       alt="Card"
                     />
-                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-right">
+                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-left">
                       جدید
                     </span>
                     <span className="badge badge-pill badge-secondary position-absolute badge-top-left-2">
-                      ویژه شده
+                      سلامتی
                     </span>
                   </div>
 
                   <CardBody>
                     <h6 className="mb-4">
-                      چیزکیک با شکلات و خامه عسل
+                      حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد
                     </h6>
 
                     <footer>
                       <p className="text-muted text-small mb-0 font-weight-light">
-                        31 فروردین 1397
+                        09.04.2018
                       </p>
                     </footer>
                   </CardBody>
@@ -398,22 +395,22 @@ export default class CarouselUi extends Component {
                       src="/assets/img/card-thumb-1.jpg"
                       alt="Card"
                     />
-                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-right">
+                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-left">
                       جدید
                     </span>
                     <span className="badge badge-pill badge-secondary position-absolute badge-top-left-2">
-                      ویژه شده
+                      سلامتی
                     </span>
                   </div>
 
                   <CardBody>
                     <h6 className="mb-4">
-                      کیک عروسی تزئین شده با ماکارون و گل رز
+                      لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
                     </h6>
 
                     <footer>
                       <p className="text-muted text-small mb-0 font-weight-light">
-                        31 فروردین 1397
+                        09.04.2018
                       </p>
                     </footer>
                   </CardBody>
@@ -427,22 +424,22 @@ export default class CarouselUi extends Component {
                       src="/assets/img/card-thumb-2.jpg"
                       alt="Card"
                     />
-                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-right">
+                    <span className="badge badge-pill badge-theme-1 position-absolute badge-top-left">
                       جدید
                     </span>
                     <span className="badge badge-pill badge-secondary position-absolute badge-top-left-2">
-                      ویژه شده
+                      سلامتی
                     </span>
                   </div>
 
                   <CardBody>
                     <h6 className="mb-4">
-                      کیک نسکافه ای خانگی با تزئین ماکارون
+                      زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی
                     </h6>
 
                     <footer>
                       <p className="text-muted text-small mb-0 font-weight-light">
-                        31 فروردین 1397
+                        09.04.2018
                       </p>
                     </footer>
                   </CardBody>

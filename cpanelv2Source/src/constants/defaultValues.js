@@ -4,9 +4,9 @@ export const subHiddenBreakpoint=1440;
 export const menuHiddenBreakpoint = 768;
 export const defaultLocale='fa';
 export const localeOptions=[
-    {id:'en',name:'English'},
-    {id:'es',name:'Español'},
     {id:'fa',name:'فارسی'},
+    {id: 'en',name:'English'},
+    {id:'es',name:'Español'},
 ];
 
 export const firebaseConfig = {
@@ -19,4 +19,5 @@ export const firebaseConfig = {
 };
 
 
-export const searchPath = "/app/layouts/search"
+export const searchPath = "/app/pages/search"
+export const servicePath = "https://api.coloredstrategies.com"

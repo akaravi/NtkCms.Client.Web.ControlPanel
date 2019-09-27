@@ -3,10 +3,12 @@
 /.idea/
 /.idea/*
 tempkey.rsa
+/cpanelv2Source/node_modules
 /cpanelv2Source/node_modules/*
-/BankScript/Gogo-React/node_modules/*
-/BankScript/Gogo-React-RTL/node_modules/*
 /cpanelv2Source/dist
-/BankScript/Gogo-React-RTL/npm-debug.log.1081871002
 /cpanelv2Source/npm-debug.log
 /cpanelv2Source/yarn-error.log
+/BankScript/Gogo-React/node_modules/*
+/BankScript/Gogo-React-RTL/node_modules/*
+/BankScript/Gogo-React-RTL/npm-debug.log.1081871002
+

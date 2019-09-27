@@ -48,7 +48,7 @@ const dataTableColumns = [
     Cell: props => <p className="list-item-heading">{props.value}</p>
   },
   {
-    Header: "فروش ها",
+    Header: "حراجی",
     accessor: "sales",
     Cell: props => <p className="text-muted">{props.value}</p>
   },
@@ -65,9 +65,9 @@ const dataTableColumns = [
 ];
 
 const selectData = [
-  { label: "Cake", value: "cake", key: 0 },
-  { label: "Cupcake", value: "cupcake", key: 1 },
-  { label: "Dessert", value: "dessert", key: 2 }
+  { label: "کیک", value: "cake", key: 0 },
+  { label: "کاپ کیک", value: "cupcake", key: 1 },
+  { label: "دسر", value: "dessert", key: 2 }
 ];
 
 
@@ -109,12 +109,11 @@ export default class ContentDashboard extends Component {
                 }}
                 controls={false}
                 loop={false}
-                rtl={true}
               >
                 <div className="icon-row-item">
                   <Card className="mb-4">
                     <CardBody className="text-center">
-                      <i className="iconsmind-Alarm" />
+                      <i className="iconsminds-clock" />
                       <p className="card-text font-weight-semibold mb-0">
                         <IntlMessages id="dashboards.pending-orders" />
                       </p>
@@ -125,7 +124,7 @@ export default class ContentDashboard extends Component {
                 <div className="icon-row-item">
                   <Card className="mb-4">
                     <CardBody className="text-center">
-                      <i className="iconsmind-Basket-Coins" />
+                      <i className="iconsminds-basket-coins" />
                       <p className="card-text font-weight-semibold mb-0">
                         <IntlMessages id="dashboards.completed-orders" />
                       </p>
@@ -136,7 +135,7 @@ export default class ContentDashboard extends Component {
                 <div className="icon-row-item">
                   <Card className="mb-4">
                     <CardBody className="text-center">
-                      <i className="iconsmind-Arrow-Refresh" />
+                      <i className="iconsminds-arrow-refresh" />
                       <p className="card-text font-weight-semibold mb-0">
                         <IntlMessages id="dashboards.refund-requests" />
                       </p>
@@ -147,7 +146,7 @@ export default class ContentDashboard extends Component {
                 <div className="icon-row-item">
                   <Card className="mb-4">
                     <CardBody className="text-center">
-                      <i className="iconsmind-Mail-Read" />
+                      <i className="iconsminds-mail-read" />
                       <p className="card-text font-weight-semibold mb-0">
                         <IntlMessages id="dashboards.new-comments" />
                       </p>
@@ -247,6 +246,8 @@ export default class ContentDashboard extends Component {
                   data={dataTableData}
                   columns={dataTableColumns}
                   minRows={0}
+                  showPageJump={false}
+                  showPageSizeOptions={false}
                   PaginationComponent={DataTablePagination}
                 />
               </CardBody>
@@ -309,7 +310,7 @@ export default class ContentDashboard extends Component {
                           key={index}
                           className="d-flex flex-row mb-3 pb-3 border-bottom"
                         >
-                          <NavLink to="/app/layouts/details">
+                          <NavLink to="/app/pages/details">
                             <img
                               src={ticket.thumb}
                               alt={ticket.label}
@@ -318,7 +319,7 @@ export default class ContentDashboard extends Component {
                           </NavLink>
 
                           <div className="pl-3 pr-2">
-                            <NavLink to="/app/layouts/details">
+                            <NavLink to="/app/pages/details">
                               <p className="font-weight-medium mb-0 ">
                                 {ticket.label}
                               </p>
@@ -341,7 +342,7 @@ export default class ContentDashboard extends Component {
           <Colxx sm="12" md="6" className="mb-4">
             <Card className="dashboard-filled-line-chart">
               <CardBody>
-                <div className="float-right float-none-xs">
+                <div className="float-left float-none-xs">
                   <div className="d-inline-block">
                     <h5 className="d-inline">
                     <IntlMessages id="dashboards.website-visits" />
@@ -352,7 +353,7 @@ export default class ContentDashboard extends Component {
                   </div>
                 </div>
 
-                <div className="btn-group float-left float-none-xs mt-2">
+                <div className="btn-group float-right float-none-xs mt-2">
                   <UncontrolledDropdown>
                     <DropdownToggle
                       caret
@@ -383,7 +384,7 @@ export default class ContentDashboard extends Component {
           <Colxx sm="12" md="6" className="mb-4">
             <Card className="dashboard-filled-line-chart">
               <CardBody>
-                <div className="float-right float-none-xs">
+                <div className="float-left float-none-xs">
                   <div className="d-inline-block">
                     <h5 className="d-inline">
                     <IntlMessages id="dashboards.conversion-rates" />
@@ -393,7 +394,7 @@ export default class ContentDashboard extends Component {
                     </span>
                   </div>
                 </div>
-                <div className="btn-group float-left float-none-xs mt-2">
+                <div className="btn-group float-right float-none-xs mt-2">
                   <UncontrolledDropdown>
                   <DropdownToggle
                       caret
@@ -426,7 +427,7 @@ export default class ContentDashboard extends Component {
             <Card className="progress-banner">
               <CardBody className="justify-content-between d-flex flex-row align-items-center">
                 <div>
-                  <i className="iconsmind-Alarm mr-2 text-white align-text-bottom d-inline-block" />
+                  <i className="iconsminds-clock mr-2 text-white align-text-bottom d-inline-block" />
                   <div>
                     <p className="lead text-white">5 <IntlMessages id="dashboards.posts" /></p>
                     <p className="text-small text-white">
@@ -448,7 +449,7 @@ export default class ContentDashboard extends Component {
             <Card className="progress-banner">
               <CardBody className="justify-content-between d-flex flex-row align-items-center">
                 <div>
-                  <i className="iconsmind-Male mr-2 text-white align-text-bottom d-inline-block" />
+                  <i className="iconsminds-male mr-2 text-white align-text-bottom d-inline-block" />
                   <div>
                     <p className="lead text-white">4 <IntlMessages id="dashboards.users" /></p>
                     <p className="text-small text-white">
@@ -470,7 +471,7 @@ export default class ContentDashboard extends Component {
             <Card className="progress-banner">
               <CardBody className="justify-content-between d-flex flex-row align-items-center">
                 <div>
-                  <i className="iconsmind-Bell-2 mr-2 text-white align-text-bottom d-inline-block" />
+                  <i className="iconsminds-bell mr-2 text-white align-text-bottom d-inline-block" />
                   <div>
                     <p className="lead text-white">8 <IntlMessages id="dashboards.alerts" /></p>
                     <p className="text-small text-white">

@@ -277,7 +277,7 @@ class TodoApplication extends Component {
                       type="radio"
                       id="exCustomRadio"
                       name="customRadio"
-                      label="COMPLETED"
+                      label="تکمیل شده"
                       checked={this.state.status === "COMPLETED"}
                       onChange={event => {
                         this.setState({
@@ -290,7 +290,7 @@ class TodoApplication extends Component {
                       type="radio"
                       id="exCustomRadio2"
                       name="customRadio2"
-                      label="PENDING"
+                      label="در حال انجام"
                       checked={this.state.status === "PENDING"}
                       onChange={event => {
                         this.setState({
@@ -317,7 +317,7 @@ class TodoApplication extends Component {
                   isOpen={this.state.dropdownSplitOpen}
                   toggle={this.toggleSplit}
                 >
-                  <div className="btn btn-primary pr-4 pl-0 check-button">
+                  <div className="btn btn-primary pr-3 pl-0 check-button">
                     <Label
                       for="checkAll"
                       className="custom-control custom-checkbox mb-0 d-inline-block"
@@ -349,7 +349,7 @@ class TodoApplication extends Component {
                     color="primary"
                     className="dropdown-toggle-split pl-2 pr-2"
                   />
-                  <DropdownMenu left>
+                  <DropdownMenu right>
                     <DropdownItem>
                       <IntlMessages id="todo.action" />
                     </DropdownItem>
@@ -382,7 +382,7 @@ class TodoApplication extends Component {
                       <IntlMessages id="todo.orderby" />
                       {orderColumn ? orderColumn.label : ""}
                     </DropdownToggle>
-                    <DropdownMenu right>
+                    <DropdownMenu>
                       {orderColumns.map((o, index) => {
                         return (
                           <DropdownItem
@@ -443,7 +443,7 @@ class TodoApplication extends Component {
                               </Badge>
                             </div>
                           </CardBody>
-                          <div className="custom-control custom-checkbox pr-1 align-self-center pl-4">
+                          <div className="custom-control custom-checkbox pl-1 align-self-center pr-4">
                             <CustomInput
                               className="itemCheck mb-0"
                               type="checkbox"
@@ -489,7 +489,7 @@ class TodoApplication extends Component {
                   <NavLink to="#" onClick={e => this.addFilter("", "")}>
                     <i className="simple-icon-reload" />
                     <IntlMessages id="todo.all-tasks" />
-                    <span className="float-left">
+                    <span className="float-right">
                       {loading && allTodoItems.length}
                     </span>
                   </NavLink>
@@ -508,7 +508,7 @@ class TodoApplication extends Component {
                   >
                     <i className="simple-icon-refresh" />
                     <IntlMessages id="todo.pending-tasks" />
-                    <span className="float-left">
+                    <span className="float-right">
                       {loading &&
                         todoItems.filter(x => x.status === "PENDING").length}
                     </span>
@@ -528,7 +528,7 @@ class TodoApplication extends Component {
                   >
                     <i className="simple-icon-check" />
                     <IntlMessages id="todo.completed-tasks" />
-                    <span className="float-left">
+                    <span className="float-right">
                       {loading &&
                         todoItems.filter(x => x.status === "COMPLETED").length}
                     </span>

@@ -72,7 +72,7 @@ class ColorSwitcher extends Component {
 		return (
 			<div className={`theme-colors ${this.state.isOpen ? 'shown' : ''}`}>
 				<div className="p-4">
-					<p className="text-muted mb-2">Light Theme</p>
+					<p className="text-muted mb-2">تم روشن</p>
 					<div className="d-flex flex-row justify-content-between mb-4">
 						<a href="#" className={`theme-color theme-color-purple ${selectedColor==='light.purple'?'active':''}`} onClick={e => this.changeThemeColor(e, 'light.purple')}></a>
 						<a href="#" className={`theme-color theme-color-blue ${selectedColor==='light.blue'?'active':''}`} onClick={e => this.changeThemeColor(e, 'light.blue')}></a>
@@ -80,7 +80,7 @@ class ColorSwitcher extends Component {
 						<a href="#" className={`theme-color theme-color-orange ${selectedColor==='light.orange'?'active':''}`} onClick={e => this.changeThemeColor(e, 'light.orange')}></a>
 						<a href="#" className={`theme-color theme-color-red ${selectedColor==='light.red'?'active':''}`} onClick={e => this.changeThemeColor(e, 'light.red')}></a>
 					</div>
-					<p className="text-muted mb-2">Dark Theme</p>
+					<p className="text-muted mb-2">تم تیره</p>
 					<div className="d-flex flex-row justify-content-between">
 						<a href="#" className={`theme-color theme-color-purple ${selectedColor==='dark.purple'?'active':''}`} onClick={e => this.changeThemeColor(e, 'dark.purple')}></a>
 						<a href="#" className={`theme-color theme-color-blue ${selectedColor==='dark.blue'?'active':''}`} onClick={e => this.changeThemeColor(e, 'dark.blue')}></a>

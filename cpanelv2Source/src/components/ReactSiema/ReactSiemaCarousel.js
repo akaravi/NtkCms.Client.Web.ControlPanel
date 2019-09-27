@@ -102,7 +102,6 @@ export default class ReactSiemaCarousel extends React.Component {
               perPage: perPage
             });
           }}
-          rtl={true}
           updateAfterDrag={this.updateAfterDrag}
           {...this.props}
         >
@@ -114,14 +113,14 @@ export default class ReactSiemaCarousel extends React.Component {
               className="left-arrow btn btn-link"
               onClick={() => this.gotoPrev()}
             >
-              <i className="simple-icon-arrow-right" />
+              <i className="simple-icon-arrow-left" />
             </button>
             <div className="slider-dot-container">{this.renderDots()}</div>
             <button
               className="left-arrow btn btn-link"
               onClick={() => this.gotoNext()}
             >
-              <i className="simple-icon-arrow-left" />
+              <i className="simple-icon-arrow-right" />
             </button>
           </div>
         )}

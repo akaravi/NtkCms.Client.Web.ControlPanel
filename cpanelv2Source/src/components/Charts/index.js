@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import ChartComponent, { Chart } from "react-chartjs-2";
-import {addCommas} from "Util/Utils";
+import { addCommas } from "Util/Utils";
 import { ThemeColors } from "Util/ThemeColors";
 
 export const chartTooltip = {
@@ -15,10 +15,25 @@ export const chartTooltip = {
   cornerRadius: 0.15
 };
 
+export const chartTooltipCustom = {
+  ...chartTooltip, callbacks: {
+    label: function (tooltipItem, data) {
+      var label = data.datasets[tooltipItem.datasetIndex].label || '';
+      if (label) {
+        label += ': ';
+      }
+      label += Math.round(tooltipItem.yLabel * 100) / 100;
+      return label + " Test";
+    },
+    title: function (tooltipItem, data) { 
+      return tooltipItem[0].xLabel + " Test";
+    }
+  }
+};
 
 export const centerTextPlugin = {
-  afterDatasetsUpdate: function(chart) {},
-  beforeDraw: function(chart) {
+  afterDatasetsUpdate: function (chart) { },
+  beforeDraw: function (chart) {
     var width = chart.chartArea.right;
     var height = chart.chartArea.bottom;
     var ctx = chart.chart.ctx;
@@ -50,7 +65,7 @@ export const centerTextPlugin = {
     }
 
     ctx.font = "36px Nunito, sans-serif";
-    ctx.fillStyle  = ThemeColors().primaryColor;
+    ctx.fillStyle = ThemeColors().primaryColor;
     ctx.textBaseline = "middle";
 
     var text = activePercentage + "%",
@@ -68,7 +83,7 @@ export const centerTextPlugin = {
 
     ctx.save();
   },
-  beforeEvent: function(chart, event, options) {
+  beforeEvent: function (chart, event, options) {
     var firstPoint = chart.getElementAtEvent(event)[0];
 
     if (firstPoint) {
@@ -83,7 +98,7 @@ export class PolarShadow extends React.Component {
   componentWillMount() {
     Chart.defaults.polarWithShadow = Chart.defaults.polarArea;
     Chart.controllers.polarWithShadow = Chart.controllers.polarArea.extend({
-      draw: function(ease) {
+      draw: function (ease) {
         Chart.controllers.radar.prototype.draw.call(this, ease);
         let ctx = this.chart.chart.ctx;
         ctx.save();
@@ -113,7 +128,7 @@ export class LineShadow extends React.Component {
   componentWillMount() {
     Chart.defaults.lineWithShadow = Chart.defaults.line;
     Chart.controllers.lineWithShadow = Chart.controllers.line.extend({
-      draw: function(ease) {
+      draw: function (ease) {
         Chart.controllers.line.prototype.draw.call(this, ease);
         var ctx = this.chart.ctx;
         ctx.save();
@@ -144,7 +159,7 @@ export class ScatterShadow extends React.Component {
   componentWillMount() {
     Chart.defaults.scatterWithShadow = Chart.defaults.scatter;
     Chart.controllers.scatterWithShadow = Chart.controllers.scatter.extend({
-      draw: function(ease) {
+      draw: function (ease) {
         Chart.controllers.scatter.prototype.draw.call(this, ease);
         let ctx = this.chart.chart.ctx;
         ctx.save();
@@ -174,7 +189,7 @@ export class BarShadow extends React.Component {
   componentWillMount() {
     Chart.defaults.barWithShadow = Chart.defaults.bar;
     Chart.controllers.barWithShadow = Chart.controllers.bar.extend({
-      draw: function(ease) {
+      draw: function (ease) {
         Chart.controllers.bar.prototype.draw.call(this, ease);
         var ctx = this.chart.ctx;
         ctx.save();
@@ -204,7 +219,7 @@ export class RadarShadow extends React.Component {
   componentWillMount() {
     Chart.defaults.radarWithShadow = Chart.defaults.radar;
     Chart.controllers.radarWithShadow = Chart.controllers.radar.extend({
-      draw: function(ease) {
+      draw: function (ease) {
         Chart.controllers.radar.prototype.draw.call(this, ease);
         let ctx = this.chart.chart.ctx;
         ctx.save();
@@ -234,7 +249,7 @@ export class PieShadow extends React.Component {
   componentWillMount() {
     Chart.defaults.pieWithShadow = Chart.defaults.pie;
     Chart.controllers.pieWithShadow = Chart.controllers.pie.extend({
-      draw: function(ease) {
+      draw: function (ease) {
         Chart.controllers.pie.prototype.draw.call(this, ease);
         let ctx = this.chart.chart.ctx;
         ctx.save();
@@ -264,7 +279,7 @@ export class DoughnutShadow extends React.Component {
   componentWillMount() {
     Chart.defaults.doughnutWithShadow = Chart.defaults.doughnut;
     Chart.controllers.doughnutWithShadow = Chart.controllers.doughnut.extend({
-      draw: function(ease) {
+      draw: function (ease) {
         Chart.controllers.doughnut.prototype.draw.call(this, ease);
         let ctx = this.chart.chart.ctx;
         ctx.save();
@@ -303,7 +318,7 @@ export class SmallLineChart extends React.Component {
   componentWillMount() {
     Chart.defaults.lineWithLine = Chart.defaults.line;
     Chart.controllers.lineWithLine = Chart.controllers.line.extend({
-      draw: function(ease) {
+      draw: function (ease) {
         Chart.controllers.line.prototype.draw.call(this, ease);
 
         if (this.chart.tooltip._active && this.chart.tooltip._active.length) {
@@ -377,23 +392,23 @@ export class SmallLineChart extends React.Component {
               tooltips: {
                 intersect: false,
                 enabled: false,
-                custom: function(tooltipModel) {
+                custom: function (tooltipModel) {
                   if (tooltipModel && tooltipModel.dataPoints) {
                     var yLabel = tooltipModel.dataPoints[0].yLabel;
                     var xLabel = tooltipModel.dataPoints[0].xLabel;
                     var label = tooltipModel.body[0].lines[0].split(":")[0];
-                    changeState(addCommas(yLabel) + " تومان", label + "-" + xLabel);
+                    changeState("$" + addCommas(yLabel), label + "-" + xLabel);
                   }
                 }
               }
             }}
             plugins={[
               {
-                afterInit: function(chart, options) {
+                afterInit: function (chart, options) {
                   var yLabel = chart.data.datasets[0].data[0];
                   var xLabel = chart.data.labels[0];
                   var label = chart.data.datasets[0].label;
-                  changeState(addCommas(yLabel) + " تومان", label + "-" + xLabel);
+                  changeState("$" + addCommas(yLabel), label + "-" + xLabel);
                 }
               }
             ]}

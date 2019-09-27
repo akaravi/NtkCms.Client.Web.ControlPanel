@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import IntlMessages from "Util/IntlMessages";
 import { injectIntl} from 'react-intl';
-import DatePicker from "../../components/DatePicker";
 import {
   Row,
   Card,
@@ -40,6 +39,9 @@ import {
   smallChartData4
 } from "Constants/chartConfig";
 
+
+
+
 import BigCalendar from "react-big-calendar";
 import moment from "moment";
 import ReactTable from "react-table";
@@ -63,24 +65,23 @@ import productsData from "Data/products.json";
 import profileStatusData from "Data/dashboard.profile.status.json";
 import cakeData from "Data/dashboard.cakes.json";
 
-import MomentUtils from '@date-io/moment';
-
-
 Chart.defaults.global.plugins.datalabels.display = false;
 
+const localizer = BigCalendar.momentLocalizer(moment) 
+
 const selectData = [
-  { label: "Chocolate", value: "chocolate", key: 0 },
-  { label: "Vanilla", value: "vanilla", key: 1 },
-  { label: "Strawberry", value: "strawberry", key: 2 },
-  { label: "Caramel", value: "caramel", key: 3 },
-  { label: "Cookies and Cream", value: "cookiescream", key: 4 },
-  { label: "Peppermint", value: "peppermint", key: 5 }
+  { label: "شکلات", value: "chocolate", key: 0 },
+  { label: "موز", value: "vanilla", key: 1 },
+  { label: "توت فرنگی", value: "strawberry", key: 2 },
+  { label: "کرم کارامل", value: "caramel", key: 3 },
+  { label: "بستنی", value: "cookiescream", key: 4 },
+  { label: "چایی", value: "peppermint", key: 5 }
 ];
 
 const selectDataType = [
-  { label: "Cake", value: "cake", key: 0 },
-  { label: "Cupcake", value: "cupcake", key: 1 },
-  { label: "Dessert", value: "dessert", key: 2 }
+  { label: "کیک", value: "cake", key: 0 },
+  { label: "کاپ کیک", value: "cupcake", key: 1 },
+  { label: "دسر", value: "dessert", key: 2 }
 ];
 
 const dataTableColumns = [
@@ -90,7 +91,7 @@ const dataTableColumns = [
     Cell: props => <p className="list-item-heading">{props.value}</p>
   },
   {
-    Header: "فروش ها",
+    Header: "حراجی",
     accessor: "sales",
     Cell: props => <p className="text-muted">{props.value}</p>
   },
@@ -136,8 +137,6 @@ class DefaultDashboard extends Component {
     this.setState({ selectedOptionsType });
   };
 
-  selectedDate = Date.now()
-
   render() {
     const {messages} = this.props.intl;
     return (
@@ -163,12 +162,11 @@ class DefaultDashboard extends Component {
                 }}
                 controls={false}
                 loop={false}
-                rtl={false}
               >
                 <div className="icon-row-item">
                   <Card className="mb-4">
                     <CardBody className="text-center">
-                      <i className="iconsmind-Alarm" />
+                      <i className="iconsminds-clock" />
                       <p className="card-text font-weight-semibold mb-0">
                         <IntlMessages id="dashboards.pending-orders" />
                       </p>
@@ -179,7 +177,7 @@ class DefaultDashboard extends Component {
                 <div className="icon-row-item">
                   <Card className="mb-4">
                     <CardBody className="text-center">
-                      <i className="iconsmind-Basket-Coins" />
+                      <i className="iconsminds-basket-coins" />
                       <p className="card-text font-weight-semibold mb-0">
                         <IntlMessages id="dashboards.completed-orders" />
                       </p>
@@ -190,7 +188,7 @@ class DefaultDashboard extends Component {
                 <div className="icon-row-item">
                   <Card className="mb-4">
                     <CardBody className="text-center">
-                      <i className="iconsmind-Arrow-Refresh" />
+                      <i className="iconsminds-arrow-refresh" />
                       <p className="card-text font-weight-semibold mb-0">
                         <IntlMessages id="dashboards.refund-requests" />
                       </p>
@@ -201,7 +199,7 @@ class DefaultDashboard extends Component {
                 <div className="icon-row-item">
                   <Card className="mb-4">
                     <CardBody className="text-center">
-                      <i className="iconsmind-Mail-Read" />
+                      <i className="iconsminds-mail-read" />
                       <p className="card-text font-weight-semibold mb-0">
                         <IntlMessages id="dashboards.new-comments" />
                       </p>
@@ -223,7 +221,7 @@ class DefaultDashboard extends Component {
                       >
                         <i className="simple-icon-refresh" />
                       </DropdownToggle>
-                      <DropdownMenu left>
+                      <DropdownMenu right>
                         <DropdownItem>
                           <IntlMessages id="dashboards.sales" />
                         </DropdownItem>
@@ -268,7 +266,7 @@ class DefaultDashboard extends Component {
                       return (
                         <div key={index} className="d-flex flex-row mb-3">
                           <NavLink
-                            to="/app/layouts/details"
+                            to="/app/pages/details"
                             className="d-block position-relative"
                           >
                             <img
@@ -286,10 +284,10 @@ class DefaultDashboard extends Component {
                             </Badge>
                           </NavLink>
 
-                          <div className="pl-2 pt-2 pr-3 pb-2">
-                            <NavLink to="/app/layouts/details">
+                          <div className="pl-3 pt-2 pr-2 pb-2">
+                            <NavLink to="/app/pages/details">
                               <p className="list-item-heading">{order.name}</p>
-                              <div className="pl-4">
+                              <div className="pr-4">
                                 <p className="text-muted mb-1 text-small">
                                   {order.description}
                                 </p>
@@ -379,7 +377,7 @@ class DefaultDashboard extends Component {
                           key={index}
                           className="d-flex flex-row mb-3 pb-3 border-bottom"
                         >
-                          <NavLink to="/app/layouts/details">
+                          <NavLink to="/app/pages/details">
                             <img
                               src={ticket.thumb}
                               alt={ticket.label}
@@ -388,7 +386,7 @@ class DefaultDashboard extends Component {
                           </NavLink>
 
                           <div className="pl-3 pr-2">
-                            <NavLink to="/app/layouts/details">
+                            <NavLink to="/app/pages/details">
                               <p className="font-weight-medium mb-0 ">
                                 {ticket.label}
                               </p>
@@ -408,38 +406,25 @@ class DefaultDashboard extends Component {
         </Row>
 
         <Row>
-          <Colxx xl="5" lg="12" className="mb-4">
+          <Colxx xl="6" lg="12" className="mb-4">
             <Card>
               <CardBody>
                 <CardTitle>
                   <IntlMessages id="dashboards.calendar" />
                 </CardTitle>
-                <table>
-                  <tbody>
-                  <tr>
-                    <td>
-                      <label className="pl-3">
-                      <IntlMessages id="form-components.date-picker" />
-                      </label>
-                    </td>
-                    <td>
-                        <DatePicker
-                                ref='minDate'
-                                okLabel='تایید'
-                                cancelLabel='لغو' 
-                                
-                                
-                            />
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-                
-
+                <BigCalendar
+                  localizer={localizer}
+                  style={{ minHeight: "500px" }}
+                  events={events}
+                  views={["month"]}
+                  components={{
+                    toolbar: CalendarToolbar
+                  }}
+                />
               </CardBody>
             </Card>
           </Colxx>
-          <Colxx xl="7" lg="12" className="mb-4">
+          <Colxx xl="6" lg="12" className="mb-4">
             <Card className="h-100">
               <CardBody>
                 <CardTitle>
@@ -450,6 +435,8 @@ class DefaultDashboard extends Component {
                   data={dataTableData}
                   columns={dataTableColumns}
                   minRows={0}
+                  showPageJump={false}
+                  showPageSizeOptions={false}
                   PaginationComponent={DataTablePagination}
                 />
               </CardBody>
@@ -469,7 +456,7 @@ class DefaultDashboard extends Component {
                     <div key={index} className="mb-4">
                       <p className="mb-2">
                         {s.title}
-                        <span className="float-left text-muted">
+                        <span className="float-right text-muted">
                           {s.status}/{s.total}
                         </span>
                       </p>
@@ -627,7 +614,7 @@ class DefaultDashboard extends Component {
           <Colxx sm="12" md="6" className="mb-4">
             <Card className="dashboard-filled-line-chart">
               <CardBody>
-                <div className="float-right float-none-xs">
+                <div className="float-left float-none-xs">
                   <div className="d-inline-block">
                     <h5 className="d-inline">
                       <IntlMessages id="dashboards.website-visits" />
@@ -638,7 +625,7 @@ class DefaultDashboard extends Component {
                   </div>
                 </div>
 
-                <div className="btn-group float-left float-none-xs mt-2">
+                <div className="btn-group float-right float-none-xs mt-2">
                   <UncontrolledDropdown>
                     <DropdownToggle
                       caret
@@ -648,7 +635,7 @@ class DefaultDashboard extends Component {
                     >
                       <IntlMessages id="dashboards.this-week" />
                     </DropdownToggle>
-                    <DropdownMenu left>
+                    <DropdownMenu right>
                       <DropdownItem>
                         <IntlMessages id="dashboards.last-week" />
                       </DropdownItem>
@@ -668,7 +655,7 @@ class DefaultDashboard extends Component {
           <Colxx sm="12" md="6" className="mb-4">
             <Card className="dashboard-filled-line-chart">
               <CardBody>
-                <div className="float-right float-none-xs">
+                <div className="float-left float-none-xs">
                   <div className="d-inline-block">
                     <h5 className="d-inline">
                       <IntlMessages id="dashboards.conversion-rates" />
@@ -679,7 +666,7 @@ class DefaultDashboard extends Component {
                   </div>
                 </div>
 
-                <div className="btn-group float-left float-none-xs mt-2">
+                <div className="btn-group float-right float-none-xs mt-2">
                   <UncontrolledDropdown>
                     <DropdownToggle
                       caret
@@ -689,7 +676,7 @@ class DefaultDashboard extends Component {
                     >
                       <IntlMessages id="dashboards.this-week" />
                     </DropdownToggle>
-                    <DropdownMenu left>
+                    <DropdownMenu right>
                       <DropdownItem>
                         <IntlMessages id="dashboards.last-week" />
                       </DropdownItem>
@@ -715,7 +702,7 @@ class DefaultDashboard extends Component {
                 <Card className="progress-banner">
                   <CardBody className="justify-content-between d-flex flex-row align-items-center">
                     <div>
-                      <i className="iconsmind-Alarm mr-2 text-white align-text-bottom d-inline-block" />
+                      <i className="iconsminds-clock mr-2 text-white align-text-bottom d-inline-block" />
                       <div>
                         <p className="lead text-white">
                           5 <IntlMessages id="dashboards.files" />
@@ -741,7 +728,7 @@ class DefaultDashboard extends Component {
                 <Card className="progress-banner">
                   <CardBody className="justify-content-between d-flex flex-row align-items-center">
                     <div>
-                      <i className="iconsmind-Male mr-2 text-white align-text-bottom d-inline-block" />
+                      <i className="iconsminds-male mr-2 text-white align-text-bottom d-inline-block" />
                       <div>
                         <p className="lead text-white">
                           4 <IntlMessages id="dashboards.orders" />
@@ -766,7 +753,7 @@ class DefaultDashboard extends Component {
                 <Card className="progress-banner">
                   <CardBody className="justify-content-between d-flex flex-row align-items-center">
                     <div>
-                      <i className="iconsmind-Bell-2 mr-2 text-white align-text-bottom d-inline-block" />
+                      <i className="iconsminds-bell mr-2 text-white align-text-bottom d-inline-block" />
                       <div>
                         <p className="lead text-white">
                           8 <IntlMessages id="dashboards.alerts" />
@@ -834,7 +821,7 @@ class DefaultDashboard extends Component {
                     <CustomInput
                       type="checkbox"
                       id="exampleCustomCheckbox"
-                      label="این چک باکس را علامت بزنید"
+                      label="این جعبه سفارشی را بررسی کنید"
                     />
                   </FormGroup>
                   <FormGroup className="text-center">
@@ -892,17 +879,16 @@ class DefaultDashboard extends Component {
                   }}
                   controls={false}
                   loop={false}
-                  rtl={true}
                 >
                   <div className="pr-2 pl-2">
                     <img
                       src="/assets/img/carousel-1.jpg"
-                      alt="Cheesecake"
+                      alt="کیک پنیر"
                       className="mb-4"
                     />
                     <h6 className="mb-1">
                       <span className="mr-2">1.</span>
-                      چیز کیک
+                      کیک پنیر
                     </h6>
 
                     <Rating total={5} rating={5} interactive={false} />
@@ -915,11 +901,11 @@ class DefaultDashboard extends Component {
                   <div className="pr-2 pl-2">
                     <img
                       src="/assets/img/carousel-2.jpg"
-                      alt="Cheesecake"
+                      alt="کیک پنیر"
                       className="mb-4"
                     />
                     <h6 className="mb-1">
-                      <span className="ml-4">2.</span>
+                      <span className="mr-2">2.</span>
                       کیک شکلاتی
                     </h6>
 
@@ -932,12 +918,12 @@ class DefaultDashboard extends Component {
                   <div className="pr-2 pl-2">
                     <img
                       src="/assets/img/carousel-3.jpg"
-                      alt="Cheesecake"
+                      alt="کیک پنیر"
                       className="mb-4"
                     />
                     <h6 className="mb-1">
-                      <span className="ml-4">3.</span>
-                      شیرینی فندقی
+                      <span className="mr-2">3.</span>
+                      Cremeschnitte
                     </h6>
 
                     <Rating total={5} rating={4} interactive={false} />

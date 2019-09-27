@@ -25,12 +25,12 @@ export default class BadgesUi extends Component {
                         <Card className="mb-4">
                             <CardBody>
                                 <CardTitle><IntlMessages id="badge.sizes" /></CardTitle>
-                                <h1>نمونه متن سرتیتر <Badge color="secondary">جدید</Badge></h1>
-                                <h2>نمونه متن سرتیتر <Badge color="secondary">جدید</Badge></h2>
-                                <h3>نمونه متن سرتیتر <Badge color="secondary">جدید</Badge></h3>
-                                <h4>نمونه متن سرتیتر <Badge color="secondary">جدید</Badge></h4>
-                                <h5>نمونه متن سرتیتر <Badge color="secondary">جدید</Badge></h5>
-                                <h6>نمونه متن سرتیتر <Badge color="secondary">جدید</Badge></h6>
+                                <h1>مثال تیتر <Badge color="secondary">جدید</Badge></h1>
+                                <h2>مثال تیتر <Badge color="secondary">جدید</Badge></h2>
+                                <h3>مثال تیتر <Badge color="secondary">جدید</Badge></h3>
+                                <h4>مثال تیتر <Badge color="secondary">جدید</Badge></h4>
+                                <h5>مثال تیتر <Badge color="secondary">جدید</Badge></h5>
+                                <h6>مثال تیتر <Badge color="secondary">جدید</Badge></h6>
                             </CardBody>
                         </Card>
 
@@ -125,10 +125,10 @@ export default class BadgesUi extends Component {
                             <CardBody>
                                 <CardTitle><IntlMessages id="badge.counter-badges" /></CardTitle>
                                 <Button color="primary">
-                                    اطلاعیه ها <Badge color="light">4</Badge>
+                                    پیام <Badge color="light">4</Badge>
                                 </Button>{' '}
                                 <Button color="primary" outline>
-                                    اطلاعیه ها <Badge color="secondary">4</Badge>
+                                    پیام <Badge color="secondary">4</Badge>
                                 </Button>
                             </CardBody>
                         </Card>

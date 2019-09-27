@@ -203,7 +203,7 @@ class SurveyListApplication extends Component {
                 <Button
                   color="primary"
                   size="lg"
-                  className="top-right-button ml-1"
+                  className="top-right-button mr-1"
                   onClick={this.toggleModal}
                 >
                   <IntlMessages id="survey.add-new" />
@@ -274,7 +274,7 @@ class SurveyListApplication extends Component {
                       type="radio"
                       id="exCustomRadio"
                       name="customRadio"
-                      label="COMPLETED"
+                      label="تکمیل شده"
                       checked={this.state.status === "COMPLETED"}
                       onChange={event => {
                         this.setState({
@@ -315,7 +315,7 @@ class SurveyListApplication extends Component {
                   isOpen={this.state.dropdownSplitOpen}
                   toggle={this.toggleSplit}
                 >
-                  <div className="btn btn-primary pr-4 pl-0 check-button">
+                  <div className="btn btn-primary pr-3 pl-0 check-button">
                     <Label
                       for="checkAll"
                       className="custom-control custom-checkbox mb-0 d-inline-block"
@@ -345,7 +345,7 @@ class SurveyListApplication extends Component {
                     color="primary"
                     className="dropdown-toggle-split pl-2 pr-2"
                   />
-                  <DropdownMenu left>
+                  <DropdownMenu right>
                     <DropdownItem>
                       <IntlMessages id="survey.delete" />
                     </DropdownItem>
@@ -380,7 +380,7 @@ class SurveyListApplication extends Component {
                       <IntlMessages id="survey.orderby" />
                       {orderColumn ? orderColumn.label : ""}
                     </DropdownToggle>
-                    <DropdownMenu right>
+                    <DropdownMenu>
                       {orderColumns.map((o, index) => {
                         return (
                           <DropdownItem
@@ -440,7 +440,7 @@ class SurveyListApplication extends Component {
                               </Badge>
                             </div>
                           </CardBody>
-                          <div className="custom-control custom-checkbox pr-1 align-self-center pl-4">
+                          <div className="custom-control custom-checkbox pl-1 align-self-center pr-4">
                             <CustomInput
                               className="itemCheck mb-0"
                               type="checkbox"
@@ -473,14 +473,14 @@ class SurveyListApplication extends Component {
             <div className="p-4">
               <p className="text-muted text-small">
                 <IntlMessages id="survey.status" />
-                Status
+                وضعیت
               </p>
               <ul className="list-unstyled mb-5">
                 <NavItem className={classnames({ active: !filter })}>
                   <NavLink to="#" onClick={e => this.addFilter("", "")}>
                     <i className="simple-icon-reload" />
                     <IntlMessages id="survey.all-surveys" />
-                    <span className="float-left">
+                    <span className="float-right">
                       {loading && allSurveyItems.length}
                     </span>
                   </NavLink>
@@ -499,7 +499,7 @@ class SurveyListApplication extends Component {
                   >
                     <i className="simple-icon-refresh" />
                     <IntlMessages id="survey.active-surveys" />
-                    <span className="float-left">
+                    <span className="float-right">
                       {loading &&
                         surveyItems.filter(x => x.status == "ACTIVE").length}
                     </span>
@@ -519,7 +519,7 @@ class SurveyListApplication extends Component {
                   >
                     <i className="simple-icon-check" />
                     <IntlMessages id="survey.completed-surveys" />
-                    <span className="float-left">
+                    <span className="float-right">
                       {loading &&
                         surveyItems.filter(x => x.status == "COMPLETED").length}
                     </span>

@@ -39,14 +39,14 @@ export default class ButtonsUi extends Component {
   handleSuccessButtonClick() {
     return new Promise((success, fail) => {
       setTimeout(() => {
-        success("Everything went right!");
+        success("همه چیز درست است!");
       }, 2000);
     });
   }
   handleFailButtonClick() {
     return new Promise((success, fail) => {
       setTimeout(() => {
-        fail("Something is wrong!");
+        fail("موردی اشتباه است!");
       }, 2000);
     });
   }
@@ -290,13 +290,13 @@ export default class ButtonsUi extends Component {
                     <IntlMessages id="button.toolbar" />
                   </h6>
                   <ButtonToolbar>
-                    <ButtonGroup className="mb-2 ml-1">
+                    <ButtonGroup className="mb-2 mr-1">
                       <Button color="primary">1</Button>
                       <Button color="primary">2</Button>
                       <Button color="primary">3</Button>
                       <Button color="primary">4</Button>
                     </ButtonGroup>
-                    <ButtonGroup className="mb-2 ml-1">
+                    <ButtonGroup className="mb-2 mr-1">
                       <Button color="primary">5</Button>
                       <Button color="primary">6</Button>
                       <Button color="primary">7</Button>
@@ -310,11 +310,11 @@ export default class ButtonsUi extends Component {
                   <h6 className="mb-2">
                     <IntlMessages id="button.sizes" />
                   </h6>
-                  <ButtonGroup size="lg" className="mb-2 ml-1">
+                  <ButtonGroup size="lg" className="mb-2 mr-1">
                     <Button color="primary">1</Button>
                     <Button color="primary">2</Button>
                   </ButtonGroup>
-                  <ButtonGroup className="mb-2 ml-1">
+                  <ButtonGroup className="mb-2 mr-1">
                     <Button color="primary">1</Button>
                     <Button color="primary">2</Button>
                     <Button color="primary">3</Button>

@@ -1,28 +1,28 @@
 {
     "data": [
       {
-        "title": "نظرسنجی طراح",
+        "title": "نظر سنجی طراح",
         "category" : "محل کار",
-        "createDate" : "15 مهر 1392",
+        "createDate" : "22.08.2018",
         "status" : "فعال",
         "label": "فریم جدید",
         "labelColor": "primary",
         "id": 1
       },
       {
-        "title": "نظرسنجی برنامهنویس",
-        "category" : "توسعه",
-        "createDate" : "22 مرداد 1390",
+        "title": "نظرسنجی توسعه دهنده",
+        "category" : "توسعه دهنده",
+        "createDate" : "22.09.2018",
         "status" : "فعال",
         "label": "تحصیلات",
         "labelColor": "secondary",
         "id": 2
       },
       {
-        "title": "نظرسنجی برنامه نویس",
+        "title": "نظر سنجی بک اند",
         "category" : "سخت افزار",
-        "createDate" : "15 مهر 1392",
-        "status" : "تکمیل",
+        "createDate" : "15.09.2018",
+        "status" : "پایان یافته",
         "label": "شخصیت",
         "labelColor": "info",
         "id": 3

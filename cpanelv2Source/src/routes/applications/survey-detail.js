@@ -81,7 +81,7 @@ const ageChartData = {
 const genderChartData = {
   ...doughnutChartConfig,
   data: {
-    labels: ["Male", "Female", "Other"],
+    labels: ["مرد", "زن", "دیگر"],
     datasets: [
       {
         label: "",
@@ -105,10 +105,10 @@ const workChartData = {
   ...doughnutChartConfig,
   data: {
     labels: [
-      "Employed for wages",
-      "Self-employed",
-      "Looking for work",
-      "Retired"
+      "استخدام برای حقوق",
+      "شغل آزاد",
+      "به دنبال کار",
+      "بازنشسته"
     ],
     datasets: [
       {
@@ -134,7 +134,7 @@ const workChartData = {
 const codingChartData = {
   ...doughnutChartConfig,
   data: {
-    labels: ["Python", "JavaScript", "PHP", "Java", "C#"],
+    labels: ["پایتون", "جاوااسکریپت", "PHP", "جاوا", "C#"],
     datasets: [
       {
         label: "",
@@ -252,7 +252,7 @@ const codingChartData = {
                   outline
                   color="primary"
                 />
-                <DropdownMenu left>
+                <DropdownMenu right>
                   <DropdownItem header>
                     <IntlMessages id="survey.delete" />
                   </DropdownItem>
@@ -304,11 +304,11 @@ const codingChartData = {
                   <Colxx xxs="12" lg="4" className="mb-4">
                     <Card className="mb-4">
                       <CardBody>
-                        <p className="list-item-heading mb-4">جمع بندی</p>
+                        <p className="list-item-heading mb-4">خلاصه</p>
                         <p className="text-muted text-small mb-2">نام</p>
                         <p className="mb-3">{survey.title}</p>
 
-                        <p className="text-muted text-small mb-2">توضیحات</p>
+                        <p className="text-muted text-small mb-2">جزئیات</p>
                         <p className="mb-3" dangerouslySetInnerHTML={{ __html: survey.detail }}/>
 
                         <p className="text-muted text-small mb-2">دسته بندی</p>
@@ -350,8 +350,8 @@ const codingChartData = {
                         className="mt-3"
                         onClick={() => this.addQuestion()}
                       >
-                        <i className="simple-icon-plus btn-group-icon" /> 
-                        افزودن سوال
+                        <i className="simple-icon-plus btn-group-icon" /> اضافه کردن
+                        سوال
                       </Button>
                     </div>
                   </Colxx>
@@ -362,10 +362,10 @@ const codingChartData = {
                   <Colxx xxs="12" lg="4">
                     <Card className="mb-4">
                       <CardBody>
-                        <p className="list-item-heading mb-4">Quota</p>
+                        <p className="list-item-heading mb-4">سهم</p>
 
                         <div className="mb-4">
-                          <p className="mb-2">جنیست</p>
+                          <p className="mb-2">جنسیت</p>
 
                           <Progress multi className="mb-3">
                             <Progress bar value="60" />
@@ -380,7 +380,7 @@ const codingChartData = {
                                 </td>
                                 <td className="p-0 pb-1">
                                   <span className="font-weight-medium text-muted text-small">
-                                    105/125 آقا
+                                    105/125 مرد
                                   </span>
                                 </td>
                               </tr>
@@ -390,7 +390,7 @@ const codingChartData = {
                                 </td>
                                 <td className="p-0 pb-1">
                                   <span className="font-weight-medium text-muted text-small">
-                                    90/125 خانم
+                                    90/125 زن
                                   </span>
                                 </td>
                               </tr>
@@ -413,7 +413,7 @@ const codingChartData = {
                                 </td>
                                 <td className="p-0 pb-1">
                                   <span className="font-weight-medium text-muted text-small">
-                                    139/125 دکتری
+                                    139/125 دانشگاه
                                   </span>
                                 </td>
                               </tr>
@@ -481,7 +481,7 @@ const codingChartData = {
                   <Colxx xxs="12" lg="8">
                     <Card className="mb-4">
                       <CardBody>
-                        <CardTitle>شما چندسال دارید؟</CardTitle>
+                        <CardTitle>شما چند سال دارید؟</CardTitle>
                         <div className="chart-container">
                           <DoughnutShadow {...ageChartData} />
                         </div>
@@ -490,7 +490,7 @@ const codingChartData = {
 
                     <Card className="mb-4">
                       <CardBody>
-                        <CardTitle>جنیسیت شما چیست؟</CardTitle>
+                        <CardTitle>جنسیت شما چیست؟</CardTitle>
                         <div className="chart-container">
                           <DoughnutShadow {...genderChartData} />
                         </div>
@@ -499,7 +499,7 @@ const codingChartData = {
 
                     <Card className="mb-4">
                       <CardBody>
-                        <CardTitle>وضعیت شغل شما چگونه است؟</CardTitle>
+                        <CardTitle>وضعیت شغلی شما چیست؟</CardTitle>
                         <div className="chart-container">
                           <DoughnutShadow {...workChartData} />
                         </div>
@@ -509,7 +509,7 @@ const codingChartData = {
                     <Card className="mb-4">
                       <CardBody>
                         <CardTitle>
-                          از چه زبان برنامه نویسی استفاده می کنید؟
+                        چه از زبان برنامه نویسی شمااستفاده می کنید؟
                         </CardTitle>
                         <div className="chart-container">
                           <DoughnutShadow {...codingChartData} />
@@ -536,42 +536,42 @@ const codingChartData = {
                 <li className="active">
                   <NavLink to="#">
                     <i className="simple-icon-refresh" />
-                    نظرسنجی های فعال
-                    <span className="float-left">12</span>
+                    نظر سنجی فعال
+                    <span className="float-right">12</span>
                   </NavLink>
                 </li>
                 <li>
                   <NavLink to="#">
                     <i className="simple-icon-check" />
-                    نظرسنجی های انجام شده
-                    <span className="float-left">24</span>{" "}
+                    نظرسنجی پایان یافته
+                    <span className="float-right">24</span>{" "}
                   </NavLink>
                 </li>
               </ul>
 
-              <p className="text-muted text-small">دسته بندی ها</p>
+              <p className="text-muted text-small">دسته بندی</p>
               <FormGroup className="mb-5">
                 <CustomInput
                   type="checkbox"
                   id="developmentCheck"
-                  label="توسعه"
+                  label="Development"
                   className="mb-2"
                 />
                 <CustomInput
                   type="checkbox"
                   id="workplaceCheck"
                   className="mb-2"
-                  label="محل کار"
+                  label="Workplace"
                 />
                 <CustomInput
                   type="checkbox"
                   id="hardwareCheck"
                   className="mb-2"
-                  label="سخت افزار"
+                  label="Hardware"
                 />
               </FormGroup>
 
-              <p className="text-muted text-small">برچسب ها</p>
+              <p className="text-muted text-small">برچسب</p>
               <div>
                 <NavLink to="#">
                   <Badge className="mb-1" color="outline-primary" pill>

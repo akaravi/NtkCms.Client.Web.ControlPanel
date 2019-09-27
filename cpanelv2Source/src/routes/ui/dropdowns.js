@@ -187,7 +187,7 @@ export default class DropdownsUi extends Component {
                   <IntlMessages id="dropdowns.sizing" />
                 </CardTitle>
                 <ButtonDropdown
-                  className="ml-1 mb-1"
+                  className="mr-1 mb-1"
                   isOpen={this.state.isOpenSizingLg}
                   toggle={this.toggleSizingLg}
                 >
@@ -205,7 +205,7 @@ export default class DropdownsUi extends Component {
                 </ButtonDropdown>
 
                 <ButtonDropdown
-                  className="ml-1 mb-1"
+                  className="mr-1 mb-1"
                   isOpen={this.state.isOpenSizingSm}
                   toggle={this.toggleSizingSm}
                 >
@@ -223,7 +223,7 @@ export default class DropdownsUi extends Component {
                 </ButtonDropdown>
 
                 <ButtonDropdown
-                  className="ml-1 mb-1"
+                  className="mr-1 mb-1"
                   isOpen={this.state.isOpenSizingXs}
                   toggle={this.toggleSizingXs}
                 >
@@ -253,7 +253,7 @@ export default class DropdownsUi extends Component {
                 </CardTitle>
                 <ButtonDropdown
                   direction="up"
-                  className="ml-1 mb-5"
+                  className="mr-1 mb-5"
                   isOpen={this.state.btnDropup}
                   toggle={() => {
                     this.setState({ btnDropup: !this.state.btnDropup });
@@ -274,7 +274,7 @@ export default class DropdownsUi extends Component {
 
                 <ButtonDropdown
                   direction="left"
-                  className="ml-1 mb-5"
+                  className="mr-1 mb-5"
                   isOpen={this.state.btnDropleft}
                   toggle={() => {
                     this.setState({ btnDropleft: !this.state.btnDropleft });
@@ -295,7 +295,7 @@ export default class DropdownsUi extends Component {
 
                 <ButtonDropdown
                   direction="right"
-                  className="ml-1 mb-5"
+                  className="mr-1 mb-5"
                   isOpen={this.state.btnDropright}
                   toggle={() => {
                     this.setState({ btnDropright: !this.state.btnDropright });

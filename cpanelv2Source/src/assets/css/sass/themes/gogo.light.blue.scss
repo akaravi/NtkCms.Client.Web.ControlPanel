@@ -35,17 +35,8 @@ $shadowOpacitiesBottom: 0.04 0.1 0.2 0.22 0.22;
 $logoPath: "/assets/img/logo-black.svg";
 $logoPathMobile: "/assets/img/logo-mobile.svg";
 
-$lpBackgroundHome: "/assets/img/landing-page/home-background-blue.png";
-$lpBackgroundSub: "/assets/img/landing-page/sub-background-blue.png";
-$lpBackgroundFooter: "/assets/img/landing-page/footer-background-blue.png";
-$lpBackgroundEllipsisBottom: "/assets/img/landing-page/white-background-bottom.png";
-$lpBackgroundEllipsisTop: "/assets/img/landing-page/white-background-top.png";
-
-$lpLogoPath: "/assets/img/logo-white.svg";
-$lpLogoPathPinned: "/assets/img/logo-black.svg";
-
 @import "../_mixins.scss";
 @import "../_gogo.style.scss";
-@import "../../rtl.css";
+
 
 

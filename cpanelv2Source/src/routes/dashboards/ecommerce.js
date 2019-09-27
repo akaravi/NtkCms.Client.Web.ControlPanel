@@ -35,7 +35,8 @@ import ticketsData from "Data/tickets.json";
 import productsData from "Data/products.json";
 import cakeData from "Data/dashboard.cakes.json";
 
-BigCalendar.momentLocalizer(moment);
+const localizer = BigCalendar.momentLocalizer(moment) 
+
 
 const recentOrders = productsData.data.slice(0, 6);
 const tickets = ticketsData.data;
@@ -50,7 +51,7 @@ const dataTableColumns = [
     Cell: props => <p className="list-item-heading">{props.value}</p>
   },
   {
-    Header: "فروش ها",
+    Header: "حراجی",
     accessor: "sales",
     Cell: props => <p className="text-muted">{props.value}</p>
   },
@@ -89,11 +90,11 @@ const CustomToolbar = toolbar => {
 
   return (
     <div className="big-calendar-header">
-      <div className="float-right">
+      <div className="float-left">
         <label>{label()}</label>
       </div>
 
-      <div className="float-left">
+      <div className="float-right">
         <div>
           <button
             className="btn btn-primary calendar-today-btn mr-2"
@@ -102,10 +103,10 @@ const CustomToolbar = toolbar => {
             Today
             </button>
           <button className="btn calendar-prev-btn mr-1" onClick={goToBack}>
-            <span className="simple-icon-arrow-right" />
+            <span className="simple-icon-arrow-left" />
           </button>
           <button className="btn calendar-next-btn" onClick={goToNext}>
-            <span className="simple-icon-arrow-left" />
+            <span className="simple-icon-arrow-right" />
           </button>
         </div>
       </div>
@@ -139,12 +140,11 @@ export default class ECommerceDashboard extends Component {
                 }}
                 controls={false}
                 loop={false}
-                rtl={true}
               >
                 <div className="icon-row-item">
                   <Card className="mb-4">
                     <CardBody className="text-center">
-                      <i className="iconsmind-Alarm" />
+                      <i className="iconsminds-clock" />
                       <p className="card-text font-weight-semibold mb-0">
                         <IntlMessages id="dashboards.pending-orders" />
                       </p>
@@ -155,7 +155,7 @@ export default class ECommerceDashboard extends Component {
                 <div className="icon-row-item">
                   <Card className="mb-4">
                     <CardBody className="text-center">
-                      <i className="iconsmind-Basket-Coins" />
+                      <i className="iconsminds-basket-coins" />
                       <p className="card-text font-weight-semibold mb-0">
                         <IntlMessages id="dashboards.completed-orders" />
                       </p>
@@ -166,7 +166,7 @@ export default class ECommerceDashboard extends Component {
                 <div className="icon-row-item">
                   <Card className="mb-4">
                     <CardBody className="text-center">
-                      <i className="iconsmind-Arrow-Refresh" />
+                      <i className="iconsminds-arrow-refresh" />
                       <p className="card-text font-weight-semibold mb-0">
                         <IntlMessages id="dashboards.refund-requests" />
                       </p>
@@ -177,7 +177,7 @@ export default class ECommerceDashboard extends Component {
                 <div className="icon-row-item">
                   <Card className="mb-4">
                     <CardBody className="text-center">
-                      <i className="iconsmind-Mail-Read" />
+                      <i className="iconsminds-mail-read" />
                       <p className="card-text font-weight-semibold mb-0">
                         <IntlMessages id="dashboards.new-comments" />
                       </p>
@@ -244,7 +244,7 @@ export default class ECommerceDashboard extends Component {
                       return (
                         <div key={index} className="d-flex flex-row mb-3">
                           <NavLink
-                            to="/app/layouts/details"
+                            to="/app/pages/details"
                             className="d-block position-relative"
                           >
                             <img
@@ -262,10 +262,10 @@ export default class ECommerceDashboard extends Component {
                             </Badge>
                           </NavLink>
 
-                          <div className="pl-2 pt-2 pr-3 pb-2">
-                            <NavLink to="/app/layouts/details">
+                          <div className="pl-3 pt-2 pr-2 pb-2">
+                            <NavLink to="/app/pages/details">
                               <p className="list-item-heading">{order.name}</p>
-                              <div className="pl-4">
+                              <div className="pr-4">
                                 <p className="text-muted mb-1 text-small">
                                   {order.descrition}
                                 </p>
@@ -356,7 +356,7 @@ export default class ECommerceDashboard extends Component {
                           key={index}
                           className="d-flex flex-row mb-3 pb-3 border-bottom"
                         >
-                          <NavLink to="/app/layouts/details">
+                          <NavLink to="/app/pages/details">
                             <img
                               src={ticket.thumb}
                               alt={ticket.label}
@@ -365,7 +365,7 @@ export default class ECommerceDashboard extends Component {
                           </NavLink>
 
                           <div className="pl-3 pr-2">
-                            <NavLink to="/app/layouts/details">
+                            <NavLink to="/app/pages/details">
                               <p className="font-weight-medium mb-0 ">
                                 {ticket.label}
                               </p>
@@ -393,6 +393,7 @@ export default class ECommerceDashboard extends Component {
                   <IntlMessages id="dashboards.calendar" />
                 </CardTitle>
                 <BigCalendar
+                localizer={localizer}
                   style={{ minHeight: "500px" }}
                   events={events}
                   views={["month"]}
@@ -414,6 +415,8 @@ export default class ECommerceDashboard extends Component {
                   data={dataTableData}
                   columns={dataTableColumns}
                   minRows={0}
+                  showPageJump={false}
+                  showPageSizeOptions={false}
                   PaginationComponent={DataTablePagination}
                 />
               </CardBody>

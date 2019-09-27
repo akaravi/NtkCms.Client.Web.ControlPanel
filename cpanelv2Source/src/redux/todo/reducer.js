@@ -21,11 +21,11 @@ const INIT_STATE = {
 	loading: false,
 	labels: [
 		{ label: "تحصیلات", color: "secondary" },
-		{ label: "فریم ورک جدید", color: "primary" },
-		{ label: "PERSONAL", color: "info" }
+		{ label: "فریم جدید", color: "primary" },
+		{ label: "شخصیت", color: "info" }
 	],
 	orderColumns: [
-		{ column: "title", label: "Title" },
+		{ column: "title", label: "عنوان" },
 		{ column: "category", label: "دسته بندی" },
 		{ column: "status", label: "وضعیت" },
 		{ column: "label", label: "برچسب" },

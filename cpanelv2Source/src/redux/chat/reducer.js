@@ -20,7 +20,8 @@ const INIT_STATE = {
 	loadingContacts: false,
 	loadingConversations: false,
 	currentUser: null,
-	selectedUser: null
+	selectedUser: null,
+	selectedUserId: null
 };
 
 export default (state = INIT_STATE, action) => {
@@ -33,14 +34,18 @@ export default (state = INIT_STATE, action) => {
 			return { ...state, loadingContacts: true, allContacts: action.payload.contacts, contacts: action.payload.contacts, currentUser: action.payload.currentUser };
 
 		case CHAT_GET_CONTACTS_ERROR:
-			return { ...state, loadingContacts: true, error: action.payload };
+			return { ...state, loadingContacts: false, error: action.payload };
 
 
 		case CHAT_GET_CONVERSATIONS:
 			return { ...state, loadingConversations: false };
 
 		case CHAT_GET_CONVERSATIONS_SUCCESS:
-			return { ...state, loadingConversations: true, conversations: action.payload.conversations, selectedUser: state.allContacts.find(x => x.id == action.payload.selectedUser) };
+			return { ...state, 
+				loadingConversations: true, 
+				conversations: action.payload.conversations, 
+				selectedUserId:  action.payload.selectedUser 
+			};
 
 		case CHAT_GET_CONVERSATIONS_ERROR:
 			return { ...state, loadingConversations: false, error: action.payload };

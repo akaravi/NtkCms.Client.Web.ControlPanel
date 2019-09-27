@@ -92,7 +92,7 @@ class InputGroupsUi extends Component {
 
                 <InputGroup>
                   <InputGroupAddon addonType="prepend">
-                    محل نوشتن سفید
+                    With textarea
                   </InputGroupAddon>
                   <Input type="textarea" name="text" />
                 </InputGroup>
@@ -322,7 +322,7 @@ class InputGroupsUi extends Component {
                 </CardTitle>
 
                 <InputGroup className="mb-3">
-                  <InputGroupAddon addonType="prepend">بارگذاری</InputGroupAddon>
+                  <InputGroupAddon addonType="prepend">Upload</InputGroupAddon>
                   <CustomInput
                     type="file"
                     id="exampleCustomFileBrowser1"
@@ -336,7 +336,7 @@ class InputGroupsUi extends Component {
                     id="exampleCustomFileBrowser2"
                     name="customFile"
                   />
-                  <InputGroupAddon addonType="append">بارگذاری</InputGroupAddon>
+                  <InputGroupAddon addonType="append">Upload</InputGroupAddon>
                 </InputGroup>
 
                 <InputGroup className="mb-3">

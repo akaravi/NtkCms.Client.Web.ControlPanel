@@ -29,9 +29,9 @@ export default class SortableUi extends Component {
               <Colxx xxs="6" sm="4" md="3" className="mb-4">
                 <Card>
                   <CardBody className="text-center">
-                    <i className="iconsmind-Alarm" />
+                    <i className="iconsminds-clock" />
                     <p className="card-text font-weight-semibold mb-0">
-                      سفارشات پرداخت شده
+                      کارهای در حال انجام
                     </p>
                     <p className="lead text-center">14</p>
                   </CardBody>
@@ -41,9 +41,9 @@ export default class SortableUi extends Component {
               <Colxx xxs="6" sm="4" md="3" className="mb-4">
                 <Card>
                   <CardBody className="text-center">
-                    <i className="iconsmind-Basket-Coins" />
+                    <i className="iconsminds-basket-coins" />
                     <p className="card-text font-weight-semibold mb-0">
-                      سفارشات تکمیل شده
+                      کارهای انجام شده
                     </p>
                     <p className="lead text-center">32</p>
                   </CardBody>
@@ -52,9 +52,9 @@ export default class SortableUi extends Component {
               <Colxx xxs="6" sm="4" md="3" className="mb-4">
                 <Card>
                   <CardBody className="text-center">
-                    <i className="iconsmind-Arrow-Refresh" />
+                    <i className="iconsminds-arrow-refresh" />
                     <p className="card-text font-weight-semibold mb-0">
-                      درخواست های معلق
+                      درخواست بازپرداخت
                     </p>
                     <p className="lead text-center">74</p>
                   </CardBody>
@@ -63,9 +63,9 @@ export default class SortableUi extends Component {
               <Colxx xxs="6" sm="4" md="3" className="mb-4">
                 <Card>
                   <CardBody className="text-center">
-                    <i className="iconsmind-Mail-Read" />
+                    <i className="iconsminds-mail-read" />
                     <p className="card-text font-weight-semibold mb-0">
-                      نظرات جدید
+                      نظر جدید
                     </p>
                     <p className="lead text-center">25</p>
                   </CardBody>
@@ -85,16 +85,16 @@ export default class SortableUi extends Component {
               <CardBody>
                 <Sortable tag="ul" className="list-unstyled">
                   <li>
-                    <p>1. گزینه اول در لیست</p>
+                    <p>1. کیک</p>
                   </li>
                   <li>
-                    <p>2. گزینه دوم در لیست</p>
+                    <p>2. کیک میوه ای</p>
                   </li>
                   <li>
-                    <p>3. گزینه سوم در لیست</p>
+                    <p>3. کاپ کیک</p>
                   </li>
                   <li>
-                    <p>4. گزینه چهارم در لیست</p>
+                    <p>4. کیک سرد</p>
                   </li>
                 </Sortable>
               </CardBody>
@@ -118,34 +118,34 @@ export default class SortableUi extends Component {
                 >
                   <li>
                     <p>
-                      <span className="badge badge-pill badge-secondary handle ml-1">
+                      <span className="badge badge-pill badge-secondary handle mr-1">
                         <i className="simple-icon-cursor-move" />
                       </span>
-                      <span>گزینه اول لیست درگ دراپی</span>
+                      <span>کیک </span>
                     </p>
                   </li>
                   <li>
                     <p>
-                      <span className="badge badge-pill badge-secondary handle ml-1">
+                      <span className="badge badge-pill badge-secondary handle mr-1">
                       <i className="simple-icon-cursor-move" />
                       </span>
-                      گزینه دوم لیست درگ دراپی
+                      کاپ کیک
                     </p>
                   </li>
                   <li>
                     <p>
-                      <span className="badge badge-pill badge-secondary handle ml-1">
+                      <span className="badge badge-pill badge-secondary handle mr-1">
                       <i className="simple-icon-cursor-move" />
                       </span>
-                      گزینه سوم لیست درگ دراپی
+                      کیک شکلاتی
                     </p>
                   </li>
                   <li>
                     <p>
-                      <span className="badge badge-pill badge-secondary handle ml-1">
+                      <span className="badge badge-pill badge-secondary handle mr-1">
                       <i className="simple-icon-cursor-move" />
                       </span>
-                      گزینه چهارم لیست درگ دراپی
+                      کیک سرد
                     </p>
                   </li>
                 </Sortable>

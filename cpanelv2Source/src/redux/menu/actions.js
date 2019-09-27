@@ -2,8 +2,18 @@ import {
     MENU_SET_CLASSNAMES,
     MENU_CONTAINER_ADD_CLASSNAME,
     MENU_CLICK_MOBILE_MENU,
-    MENU_CHANGE_DEFAULT_CLASSES
+    MENU_CHANGE_DEFAULT_CLASSES,
+    MENU_CHANGE_HAS_SUB_ITEM_STATUS
 } from 'Constants/actionTypes';
+
+export const changeSelectedMenuHasSubItems = (payload) => {
+    return (
+        {
+            type: MENU_CHANGE_HAS_SUB_ITEM_STATUS,
+            payload: payload
+        }
+    )
+}
 
 export const changeDefaultClassnames = (strCurrentClasses) => {
     return (
@@ -40,9 +50,21 @@ export const clickOnMobileMenu = (strCurrentClasses) => {
     )
 }
 
-export const setContainerClassnames = (clickIndex, strCurrentClasses) => {
+export const setContainerClassnames = (clickIndex, strCurrentClasses,selectedMenuHasSubItems) => {
     const currentClasses = strCurrentClasses ? strCurrentClasses.split(' ').filter(x => x != '') : '';
     let nextClasses = '';
+
+    if (!selectedMenuHasSubItems) {
+        if (currentClasses.includes("menu-default") && clickIndex % 4 == 0) {
+          clickIndex=1;
+        }
+        if (currentClasses.includes("menu-sub-hidden") && clickIndex % 4 == 3) {
+          clickIndex=1;
+        }
+      }
+
+
+
     if (clickIndex % 4 == 0) {
         if (currentClasses.includes('menu-default') && currentClasses.includes('menu-sub-hidden')) {
             nextClasses = 'menu-default menu-sub-hidden';

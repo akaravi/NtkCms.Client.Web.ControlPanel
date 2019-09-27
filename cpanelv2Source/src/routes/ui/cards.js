@@ -62,7 +62,7 @@ export default class CardsUi extends Component {
               <Colxx xxs="6" sm="4" md="3" lg="2">
                 <Card className="mb-4">
                   <CardBody className="text-center">
-                    <i className="iconsmind-Alarm" />
+                    <i className="iconsminds-clock" />
                     <p className="card-text font-weight-semibold mb-0"><IntlMessages id="dashboards.pending-orders" /></p>
                     <p className="lead text-center">14</p>
                   </CardBody>
@@ -72,7 +72,7 @@ export default class CardsUi extends Component {
               <Colxx xxs="6" sm="4" md="3" lg="2">
                 <Card className="mb-4">
                   <CardBody className="text-center">
-                    <i className="iconsmind-Basket-Coins" />
+                    <i className="iconsminds-basket-coins" />
                     <p className="card-text font-weight-semibold mb-0"><IntlMessages id="dashboards.completed-orders" /></p>
                     <p className="lead text-center">32</p>
                   </CardBody>
@@ -81,7 +81,7 @@ export default class CardsUi extends Component {
               <Colxx xxs="6" sm="4" md="3" lg="2">
                 <Card className="mb-4">
                   <CardBody className="text-center">
-                    <i className="iconsmind-Arrow-Refresh" />
+                    <i className="iconsminds-arrow-refresh" />
                     <p className="card-text font-weight-semibold mb-0"><IntlMessages id="dashboards.refund-requests" /></p>
                     <p className="lead text-center">74</p>
                   </CardBody>
@@ -90,7 +90,7 @@ export default class CardsUi extends Component {
               <Colxx xxs="6" sm="4" md="3" lg="2">
                 <Card className="mb-4">
                   <CardBody className="text-center">
-                    <i className="iconsmind-Mail-Read" />
+                    <i className="iconsminds-mail-read" />
                     <p className="card-text font-weight-semibold mb-0"><IntlMessages id="dashboards.new-comments" /></p>
                     <p className="lead text-center">25</p>
                   </CardBody>
@@ -105,25 +105,25 @@ export default class CardsUi extends Component {
                     <Card className="mb-4">
                       <div className="position-relative">
                         <CardImg top src="/assets/img/card-thumb-1.jpg" alt="Card image cap" />
-                        <Badge color="primary" pill className="position-absolute badge-top-right">جدید</Badge>
-                        <Badge color="secondary" pill className="position-absolute badge-top-left-2">فرآوری شده</Badge>
+                        <Badge color="primary" pill className="position-absolute badge-top-left">جدید</Badge>
+                        <Badge color="secondary" pill className="position-absolute badge-top-left-2">سلامتی</Badge>
                       </div>
                       <CardBody>
-                        <CardSubtitle className="mb-4">کیک نسکافه ای خانگی با تزئین ماکارون</CardSubtitle>
-                        <CardText className="text-muted text-small mb-0 font-weight-light">13 اردیبهشت 1397</CardText>
+                        <CardSubtitle className="mb-4">زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی</CardSubtitle>
+                        <CardText className="text-muted text-small mb-0 font-weight-light">09.04.2018</CardText>
                       </CardBody>
                     </Card>
                   </Colxx>
                   <Colxx xxs="12" xs="6" lg="4">
                     <Card className="mb-4">
                       <CardBody>
-                        <CardSubtitle className="mb-4">کیک نسکافه ای خانگی با تزئین ماکارون</CardSubtitle>
-                        <CardText className="text-muted text-small mb-0 font-weight-light">13 اردیبهشت 1397</CardText>
+                        <CardSubtitle className="mb-4">زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی</CardSubtitle>
+                        <CardText className="text-muted text-small mb-0 font-weight-light">09.04.2018</CardText>
                       </CardBody>
                       <div className="position-relative">
                         <CardImg bottom src="/assets/img/card-thumb-1.jpg" alt="Card image cap" />
-                        <Badge color="primary" pill className="position-absolute badge-top-right">جدید</Badge>
-                        <Badge color="secondary" pill className="position-absolute badge-top-left-2">فرآوری شده</Badge>
+                        <Badge color="primary" pill className="position-absolute badge-top-left">جدید</Badge>
+                        <Badge color="secondary" pill className="position-absolute badge-top-left-2">سلامتی</Badge>
                       </div>
                     </Card>
                   </Colxx>
@@ -139,7 +139,7 @@ export default class CardsUi extends Component {
                       <CardImg src="/assets/img/card-thumb-1.jpg" alt="Card image cap" />
                       <CardImgOverlay>
                         <CardTitle>کیک میوه ای</CardTitle>
-                        <CardText>این یک کارت گسترده تر با متن زیر است که به عنوان یک منبع طبیعی برای محتوای اضافی به کار می رود.</CardText>
+                        <CardText>این یک کارت گسترده تر با متن پشتیبانی زیر است به عنوان یک منبع طبیعی در محتوای اضافی.</CardText>
                       </CardImgOverlay>
                     </Card>
                   </Colxx>
@@ -160,13 +160,13 @@ export default class CardsUi extends Component {
                           <NavLink to="/app/ui/cards" className="w-40 w-sm-100">
                             <p className="list-item-heading mb-1 truncate">کیک شکلاتی</p>
                           </NavLink>
-                          <p className="mb-1 text-muted text-small w-15 w-sm-100">کیک ها</p>
-                          <p className="mb-1 text-muted text-small w-15 w-sm-100">13 اردیبهشت 1397</p>
+                          <p className="mb-1 text-muted text-small w-15 w-sm-100">کیک</p>
+                          <p className="mb-1 text-muted text-small w-15 w-sm-100">09.04.2018</p>
                           <div className="w-15 w-sm-100">
                             <Badge color="primary" pill >فرآوری شده</Badge>
                           </div>
                         </div>
-                        <div className="custom-control custom-checkbox pr-1 align-self-center pl-4">
+                        <div className="custom-control custom-checkbox pl-1 align-self-center pr-4">
                         <FormGroup>
                             <CustomInput
                               type="checkbox"
@@ -186,15 +186,15 @@ export default class CardsUi extends Component {
                       <div className="pl-2 d-flex flex-grow-1 min-width-zero">
                         <div className="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
                           <NavLink to="/app/ui/cards" className="w-40 w-sm-100">
-                            <p className="list-item-heading mb-1 truncate">چیزکیک</p>
+                            <p className="list-item-heading mb-1 truncate">کیک پنیر</p>
                           </NavLink>
-                          <p className="mb-1 text-muted text-small w-15 w-sm-100">کاپ کیک ها</p>
-                          <p className="mb-1 text-muted text-small w-15 w-sm-100">13 اردیبهشت 1397</p>
+                          <p className="mb-1 text-muted text-small w-15 w-sm-100">کاپ کیک</p>
+                          <p className="mb-1 text-muted text-small w-15 w-sm-100">09.04.2018</p>
                           <div className="w-15 w-sm-100">
-                            <Badge color="secondary" pill >درحال پردازش</Badge>
+                            <Badge color="secondary" pill >نگه دارنده</Badge>
                           </div>
                         </div>
-                        <div className="custom-control custom-checkbox pr-1 align-self-center pl-4">
+                        <div className="custom-control custom-checkbox pl-1 align-self-center pr-4">
                           <FormGroup>
                             <CustomInput
                               type="checkbox"
@@ -244,7 +244,7 @@ export default class CardsUi extends Component {
                           <Row>
                             <Colxx sm="12">
                               <CardBody>
-                                <CardTitle className="mb-4">کیک نسکافه ای خانگی با تزئین ماکارون</CardTitle>
+                                <CardTitle className="mb-4">زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی</CardTitle>
                                 <Button outline size="sm" color="primary">ویرایش</Button>
                               </CardBody>
                             </Colxx>
@@ -254,7 +254,7 @@ export default class CardsUi extends Component {
                           <Row>
                             <Colxx sm="12">
                               <CardBody>
-                                <CardTitle className="mb-4">کیک عروسی تزئین شده با ماکارون و گل رز</CardTitle>
+                                <CardTitle className="mb-4">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</CardTitle>
                                 <Button outline size="sm" color="primary">ویرایش</Button>
                               </CardBody>
                             </Colxx>
@@ -264,7 +264,7 @@ export default class CardsUi extends Component {
                           <Row>
                             <Colxx sm="12">
                               <CardBody>
-                                <CardTitle className="mb-4">چیزکیک با شکلات و خامه عسل</CardTitle>
+                                <CardTitle className="mb-4">حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد</CardTitle>
                                 <Button outline size="sm" color="primary">ویرایش</Button>
                               </CardBody>
                             </Colxx>
@@ -299,7 +299,7 @@ export default class CardsUi extends Component {
                           <Row>
                             <Colxx sm="12">
                               <CardBody>
-                                <CardTitle className="mb-4">کیک نسکافه ای خانگی با تزئین ماکارون</CardTitle>
+                                <CardTitle className="mb-4">زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی</CardTitle>
                                 <Button outline size="sm" color="primary">ویرایش</Button>
                               </CardBody>
                             </Colxx>
@@ -309,7 +309,7 @@ export default class CardsUi extends Component {
                           <Row>
                             <Colxx sm="12">
                               <CardBody>
-                                <CardTitle className="mb-4">کیک عروسی تزئین شده با ماکارون و گل رز</CardTitle>
+                                <CardTitle className="mb-4">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</CardTitle>
                                 <Button outline size="sm" color="primary">ویرایش</Button>
                               </CardBody>
                             </Colxx>
@@ -319,7 +319,7 @@ export default class CardsUi extends Component {
                           <Row>
                             <Colxx sm="12">
                               <CardBody>
-                                <CardTitle className="mb-4">چیزکیک با شکلات و خامه عسل</CardTitle>
+                                <CardTitle className="mb-4">حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد</CardTitle>
                                 <Button outline size="sm" color="primary">ویرایش</Button>
                               </CardBody>
                             </Colxx>
@@ -345,9 +345,9 @@ export default class CardsUi extends Component {
                         <div className="text-center">
                           <CardImg top src="/assets/img/profile-pic-l.jpg" alt="Card image cap" className="img-thumbnail border-0 rounded-circle mb-4 list-thumbnail" />
                           <NavLink to="/app/ui/cards">
-                            <CardSubtitle className="mb-1">فاطمه کاظمی زاده</CardSubtitle>
+                            <CardSubtitle className="mb-1">سارا طاهری</CardSubtitle>
                           </NavLink>
-                          <CardText className="text-muted text-small mb-4">برنامه نویس وبسایت</CardText>
+                          <CardText className="text-muted text-small mb-4">مدیر اجرایی</CardText>
                           <Button outline size="sm" color="primary">ویرایش</Button>
                         </div>
                       </CardBody>
@@ -363,9 +363,9 @@ export default class CardsUi extends Component {
                         <CardBody className=" pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero">
                           <div className="min-width-zero">
                             <NavLink to="/app/ui/cards">
-                              <CardSubtitle className="truncate mb-1">فاطمه کاظمی زاده</CardSubtitle>
+                              <CardSubtitle className="truncate mb-1">زهرا احمدی</CardSubtitle>
                             </NavLink>
-                            <CardText className="text-muted text-small mb-2">برنامه نویس وبسایت</CardText>
+                            <CardText className="text-muted text-small mb-2">مدیر اجرایی</CardText>
                             <Button outline size="xs" color="primary">ویرایش</Button>
                           </div>
                         </CardBody>
@@ -374,15 +374,15 @@ export default class CardsUi extends Component {
 
                     <Card className="d-flex flex-row mb-4">
                       <NavLink to="/app/ui/cards" className="d-flex">
-                        <ThumbnailLetters rounded text="فاطمه کاظمی زاده" className="m-4" />
+                        <ThumbnailLetters rounded text="Sarah Kortney" className="m-4" />
                       </NavLink>
                       <div className=" d-flex flex-grow-1 min-width-zero">
                         <CardBody className=" pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero">
                           <div className="min-width-zero">
                             <NavLink to="/app/ui/cards">
-                              <CardSubtitle className="truncate mb-1">فاطمه کاظمی زاده</CardSubtitle>
+                              <CardSubtitle className="truncate mb-1">زیبا حسنی</CardSubtitle>
                             </NavLink>
-                            <CardText className="text-muted text-small mb-2">برنامه نویس وبسایت</CardText>
+                            <CardText className="text-muted text-small mb-2">مدیر اجرایی</CardText>
                             <Button outline size="xs" color="primary">ویرایش</Button>
                           </div>
                         </CardBody>
@@ -400,9 +400,9 @@ export default class CardsUi extends Component {
                         <CardBody className=" pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero">
                           <div className="min-width-zero">
                             <NavLink to="/app/ui/cards">
-                              <CardSubtitle className="truncate mb-1">فاطمه کاظمی زاده</CardSubtitle>
+                              <CardSubtitle className="truncate mb-1">نفس خرسند</CardSubtitle>
                             </NavLink>
-                            <CardText className="text-muted text-small mb-2">برنامه نویس وبسایت</CardText>
+                            <CardText className="text-muted text-small mb-2">مدیر اجرایی</CardText>
                           </div>
                         </CardBody>
                       </div>
@@ -410,15 +410,15 @@ export default class CardsUi extends Component {
 
                     <Card className="d-flex flex-row mb-4">
                       <NavLink to="/app/ui/cards" className="d-flex">
-                        <ThumbnailLetters rounded small text="فاطمه کاظمی زاده" className="m-4"  />
+                        <ThumbnailLetters rounded small text="Sarah Kortney" className="m-4"  />
                       </NavLink>
                       <div className=" d-flex flex-grow-1 min-width-zero">
                         <CardBody className=" pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero">
                           <div className="min-width-zero">
                             <NavLink to="/app/ui/cards">
-                              <CardSubtitle className="truncate mb-1">فاطمه کاظمی زاده</CardSubtitle>
+                              <CardSubtitle className="truncate mb-1">حسن محمدی</CardSubtitle>
                             </NavLink>
-                            <CardText className="text-muted text-small mb-2">برنامه نویس وبسایت</CardText>
+                            <CardText className="text-muted text-small mb-2">مدیر اجرایی</CardText>
                           </div>
                         </CardBody>
                       </div>

@@ -11,7 +11,7 @@ const sliderHandle = props => {
     return (
       <Fragment key={index}>
         <div className="rc-slider-tooltip" style={positionStyle}>
-          {value+" تومان"}
+          {"$"+value}
         </div>
         <Slider.Handle value={value} offset={offset} {...restProps} />
       </Fragment>

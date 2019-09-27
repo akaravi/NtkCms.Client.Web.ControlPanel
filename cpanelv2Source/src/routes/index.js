@@ -5,7 +5,7 @@ import TopNav from 'Containers/TopNav'
 import Sidebar from 'Containers/Sidebar';
 
 import dashboards from './dashboards';
-import layouts from './layouts';
+import pages from './pages';
 import applications from './applications';
 import ui from './ui';
 
@@ -23,7 +23,7 @@ class MainApp extends Component {
 						<Switch>
 							<Route path={`${match.url}/applications`} component={applications} />
 							<Route path={`${match.url}/dashboards`} component={dashboards} />
-							<Route path={`${match.url}/layouts`} component={layouts} />
+							<Route path={`${match.url}/pages`} component={pages} />
 							<Route path={`${match.url}/ui`} component={ui} />
 							<Redirect to="/error" />
 						</Switch>

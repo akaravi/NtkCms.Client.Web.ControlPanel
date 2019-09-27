@@ -25,11 +25,11 @@ export const CalendarToolbar = toolbar => {
   
     return (
       <div className="big-calendar-header">
-        <div className="float-right">
+        <div className="float-left">
           <label>{label()}</label>
         </div>
   
-        <div className="float-left">
+        <div className="float-right">
           <div>
             <button
               className="btn btn-primary calendar-today-btn mr-2"
@@ -38,10 +38,10 @@ export const CalendarToolbar = toolbar => {
               Today
             </button>
             <button className="btn calendar-prev-btn mr-1" onClick={goToBack}>
-              <span className="simple-icon-arrow-right" />
+              <span className="simple-icon-arrow-left" />
             </button>
             <button className="btn calendar-next-btn" onClick={goToNext}>
-              <span className="simple-icon-arrow-left" />
+              <span className="simple-icon-arrow-right" />
             </button>
           </div>
         </div>

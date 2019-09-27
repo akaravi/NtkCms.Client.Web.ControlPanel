@@ -1,5 +1,6 @@
 
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
+import { auth } from '../../firebase';
 import {
     LOGIN_USER,
     REGISTER_USER,
@@ -11,11 +12,8 @@ import {
     registerUserSuccess
 } from './actions';
 
-let loginPromise = new Promise(function(resolve, reject) {
-    resolve({user:{uid:1}})
-  });
 const loginWithEmailPasswordAsync = async (email, password) =>
-    await loginPromise
+    await auth.signInWithEmailAndPassword(email, password)
         .then(authUser => authUser)
         .catch(error => error);
 
@@ -39,11 +37,9 @@ function* loginWithEmailPassword({ payload }) {
         console.log('login error : ', error)
     }
 }
-let registerPromise = new Promise(function(resolve, reject) {
-    resolve({user:{uid:1}})
-  });
+
 const registerWithEmailPasswordAsync = async (email, password) =>
-    await registerPromise
+    await auth.createUserWithEmailAndPassword(email, password)
         .then(authUser => authUser)
         .catch(error => error);
 

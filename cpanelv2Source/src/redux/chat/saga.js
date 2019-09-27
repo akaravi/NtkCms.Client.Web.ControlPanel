@@ -37,7 +37,7 @@ const loadContactsAsync = async () => {
 		return await new Promise((success, fail) => {
 			setTimeout(() => {
 				success({ contacts, currentUser });
-			}, 1000);
+			}, 2000);
 		})
 			.then(response => response)
 			.catch(error => error);

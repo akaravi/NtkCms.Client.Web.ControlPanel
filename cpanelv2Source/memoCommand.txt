@@ -1,0 +1,7 @@
+https://gogo-react-docs.coloredstrategies.com/docs/gettingstarted/introduction
+
+npm install -g create-react-app
+npm install -g eslint
+npm i -g gulp     نصب تدیل اکسام 6 به 5
+npm install
+npm start

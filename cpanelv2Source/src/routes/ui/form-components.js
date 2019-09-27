@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { injectIntl} from 'react-intl';
+import { injectIntl } from 'react-intl';
 import { Colxx, Separator } from "Components/CustomBootstrap";
 import BreadcrumbContainer from "Components/BreadcrumbContainer";
 import IntlMessages from "Util/IntlMessages";
@@ -22,34 +22,54 @@ import Switch from "rc-switch";
 import ReactAutosuggest from "Components/ReactAutosuggest";
 import Rating from "Components/Rating";
 import { SliderTooltip, RangeTooltip } from "Components/SliderTooltip";
-import FineUploaderTraditional from "fine-uploader-wrappers";
-import Gallery from "react-fine-uploader";
+import DropzoneComponent from 'react-dropzone-component';
 
 import "react-tagsinput/react-tagsinput.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "rc-switch/assets/index.css";
 import "rc-slider/assets/index.css";
 import "react-rater/lib/react-rater.css";
-import "react-fine-uploader/gallery/gallery.css";
+import "react-rater/lib/react-rater.css";
+import "dropzone/dist/min/dropzone.min.css";
 
-const uploader = new FineUploaderTraditional({
-  options: {
-    chunking: {
-      enabled: false
-    },
-    deleteFile: {
-      enabled: true,
-      endpoint: "/uploads"
-    },
-    request: {
-      endpoint: "/uploads"
-    }
-  }
-});
+var ReactDOMServer = require('react-dom/server');
+
+var dropzoneComponentConfig = {
+  postUrl: 'https://httpbin.org/post',
+};
+
+var dropzoneConfig = {
+  thumbnailHeight: 160,
+  maxFilesize: 2,
+  previewTemplate: ReactDOMServer.renderToStaticMarkup(
+    <div className="dz-preview dz-file-preview mb-3">
+      <div className="d-flex flex-row ">
+        <div className="p-0 w-30 position-relative">
+          <div className="dz-error-mark"><span><i></i>  </span></div>
+          <div className="dz-success-mark"><span><i></i></span></div>
+          <div className="preview-container">
+            <img data-dz-thumbnail className="img-thumbnail border-0" />
+            <i className="simple-icon-doc preview-icon"></i>
+          </div>
+        </div>
+        <div className="pl-3 pt-2 pr-2 pb-1 w-70 dz-details position-relative">
+          <div> <span data-dz-name /> </div>
+          <div className="text-primary text-extra-small" data-dz-size />
+          <div className="dz-progress"><span className="dz-upload" data-dz-uploadprogress></span></div>
+          <div className="dz-error-message"><span data-dz-errormessage></span></div>
+        </div>
+      </div>
+      <a href="#" className="remove" data-dz-remove> <i className="glyph-icon simple-icon-trash"></i> </a>
+    </div>
+  ),
+  headers: { "My-Awesome-Header": "header value" }
+};
+
+
 
 const cakeData = [
   {
-    name: "کیک سنگ مرمر"
+    name: "کیک شیرین"
   },
   {
     name: "کیک میوه ای"
@@ -58,65 +78,65 @@ const cakeData = [
     name: "کیک شکلاتی"
   },
   {
+    name: "کیک ترش"
+  },
+  {
+    name: "کیک سرد"
+  },
+  {
+    name: "کیک پرتغالی"
+  },
+  {
+    name: "کیک موزی"
+  },
+  {
+    name: "کیک پرتغالی"
+  },
+  {
     name: "پن کیک"
   },
   {
-    name: "کیک فرانسوی"
-  },
-  {
-    name: "شیرینی نارگیلی"
-  },
-  {
-    name: "نون خامه ای"
+    name: "کیک کوچک"
   },
   {
     name: "کیک توت فرنگی"
   },
   {
-    name: "شیرینی پارکین"
-  },
-  {
-    name: "کیک کوکی"
-  },
-  {
-    name: "چیزکیک"
-  },
-  {
     name: "سوفله"
   },
   {
-    name: "کیک وانیل پرتقال"
+    name: "کیک شاه توت"
   },
   {
-    name: "چای سبز"
+    name: "چایی سبز"
   },
   {
-    name: "شیرینی قهوه"
+    name: "قهوه"
   },
   {
-    name: "کیک خامه شکلات"
+    name: "کیک میوه ای"
   },
   {
-    name: "شیرینی نسکافه ای"
+    name: "کیک شکلاتی"
   },
   {
-    name: "وانیل بستنی"
+    name: "کاپ کیک"
   },
   {
-    name: "چیزکیک"
+    name: "کیک پنیر"
   },
   {
-    name: "شیرینی گندمی"
+    name: "کیک موزی"
   }
 ];
 
 const SELECT_DATA = [
-  { label: "کیک شکلاتی", value: "chocolate", key: 0 },
-  { label: "کیک وانیلی", value: "vanilla", key: 1 },
-  { label: "کیک هویج", value: "strawberry", key: 2 },
-  { label: "کیک کارامل", value: "caramel", key: 3 },
-  { label: "کوکی و کرم کاکائو", value: "cookiescream", key: 4 },
-  { label: "کیک گردویی", value: "peppermint", key: 5 }
+  { label: "شکلات", value: "chocolate", key: 0 },
+  { label: "موز", value: "vanilla", key: 1 },
+  { label: "توت فرنگی", value: "strawberry", key: 2 },
+  { label: "کرم کارامل", value: "caramel", key: 3 },
+  { label: "ژله", value: "cookiescream", key: 4 },
+  { label: "دسر", value: "peppermint", key: 5 }
 ];
 
 class FormsUi extends Component {
@@ -197,7 +217,7 @@ class FormsUi extends Component {
   }
 
   render() {
-    const {messages} = this.props.intl;
+    const { messages } = this.props.intl;
     return (
       <Fragment>
         <Row>
@@ -226,17 +246,17 @@ class FormsUi extends Component {
                       <CustomInput
                         type="checkbox"
                         id="exCustomCheckbox"
-                        label="Check this custom checkbox"
+                        label="این جعبه را بررسی کنید"
                       />
                       <CustomInput
                         type="checkbox"
                         id="exCustomCheckbox2"
-                        label="Or this one"
+                        label="یا این یکی"
                       />
                       <CustomInput
                         type="checkbox"
                         id="exCustomCheckbox3"
-                        label="But not this disabled one"
+                        label="اما این یکی نیست"
                         disabled
                       />
                     </div>
@@ -250,18 +270,18 @@ class FormsUi extends Component {
                         type="radio"
                         id="exCustomRadio"
                         name="customRadio"
-                        label="Select this custom radio"
+                        label="این دکمه را انتخاب کنید"
                       />
                       <CustomInput
                         type="radio"
                         id="exCustomRadio2"
                         name="customRadio"
-                        label="Or this one"
+                        label="یا این یکی را"
                       />
                       <CustomInput
                         type="radio"
                         id="exCustomRadio3"
-                        label="But not this disabled one"
+                        label="اما این یکی نیست"
                         disabled
                       />
                     </div>
@@ -274,13 +294,13 @@ class FormsUi extends Component {
                       <CustomInput
                         type="checkbox"
                         id="exCustomInline"
-                        label="An inline custom input"
+                        label="یک ورودی سفارشی درون خطی"
                         inline
                       />
                       <CustomInput
                         type="checkbox"
                         id="exCustomInline2"
-                        label="and another one"
+                        label="و یکی دیگر"
                         inline
                       />
                     </div>
@@ -346,7 +366,7 @@ class FormsUi extends Component {
                     <ReactAutosuggest
                       placeholder={messages["form-components.type-a-cake"]}
                       data={cakeData}
-                      onChange={value => {}}
+                      onChange={value => { }}
                     />
                   </Colxx>
                 </Row>
@@ -438,18 +458,11 @@ class FormsUi extends Component {
             <Card>
               <CardBody>
                 <CardTitle>
-                  <IntlMessages id="form-components.fine-uploader" />
+                  <IntlMessages id="form-components.dropzone" />
                 </CardTitle>
-                <Gallery
-                  animationsDisabled={true}
-                  uploader={uploader}
-                  deleteButton-children={<span>Delete</span>}
-                  fileInput-children={<span />}
-                >
-                  <span className="react-fine-uploader-gallery-dropzone-content">
-                    <IntlMessages id="form-components.drop-files-here" />
-                  </span>
-                </Gallery>
+
+                <DropzoneComponent config={dropzoneComponentConfig} djsConfig={dropzoneConfig} />
+
               </CardBody>
             </Card>
           </Colxx>
@@ -590,7 +603,7 @@ class FormsUi extends Component {
                     <label>
                       <IntlMessages id="form-components.interactive" />
                     </label>
-                    <Rating total={5} rating={0} onRate={rating => {}} />
+                    <Rating total={5} rating={0} onRate={rating => { }} />
                   </Colxx>
                   <Colxx xxs="12" sm="6">
                     <label>

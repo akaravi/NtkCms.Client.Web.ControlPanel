@@ -6,7 +6,6 @@ import todoApp from './todo/reducer';
 import chatApp from './chat/reducer';
 import surveyListApp from './surveyList/reducer';
 import surveyDetailApp from './surveyDetail/reducer';
-import landingPage from './landingPage/reducer';
 
 const reducers = combineReducers({
   menu,
@@ -15,8 +14,7 @@ const reducers = combineReducers({
   todoApp,
   chatApp,
   surveyListApp,
-  surveyDetailApp,
-  landingPage
+  surveyDetailApp
 });
 
 export default reducers;

@@ -315,12 +315,12 @@ export default class NavigationUi extends Component {
                 <Pagination aria-label="Page navigation example">
                   <PaginationItem>
                     <PaginationLink className="first" href="#">
-                      <i className="simple-icon-control-end" />
+                      <i className="simple-icon-control-start" />
                     </PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
                     <PaginationLink className="prev" href="#">
-                      <i className="simple-icon-arrow-right" />
+                      <i className="simple-icon-arrow-left" />
                     </PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
@@ -334,12 +334,12 @@ export default class NavigationUi extends Component {
                   </PaginationItem>
                   <PaginationItem>
                     <PaginationLink className="next" href="#">
-                      <i className="simple-icon-arrow-left" />
+                      <i className="simple-icon-arrow-right" />
                     </PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
                     <PaginationLink className="last" href="#">
-                      <i className="simple-icon-control-start" />
+                      <i className="simple-icon-control-end" />
                     </PaginationLink>
                   </PaginationItem>
                 </Pagination>
@@ -361,12 +361,12 @@ export default class NavigationUi extends Component {
                 <Pagination size="lg" aria-label="Page navigation example">
                   <PaginationItem>
                     <PaginationLink className="first" href="#">
-                      <i className="simple-icon-control-end" />
+                      <i className="simple-icon-control-start" />
                     </PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
                     <PaginationLink className="prev" href="#">
-                      <i className="simple-icon-arrow-right" />
+                      <i className="simple-icon-arrow-left" />
                     </PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
@@ -380,12 +380,12 @@ export default class NavigationUi extends Component {
                   </PaginationItem>
                   <PaginationItem>
                     <PaginationLink className="next" href="#">
-                      <i className="simple-icon-arrow-left" />
+                      <i className="simple-icon-arrow-right" />
                     </PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
                     <PaginationLink className="last" href="#">
-                      <i className="simple-icon-control-start" />
+                      <i className="simple-icon-control-end" />
                     </PaginationLink>
                   </PaginationItem>
                 </Pagination>
@@ -396,12 +396,12 @@ export default class NavigationUi extends Component {
                 <Pagination size="sm" aria-label="Page navigation example">
                   <PaginationItem>
                     <PaginationLink className="first" href="#">
-                      <i className="simple-icon-control-end" />
+                      <i className="simple-icon-control-start" />
                     </PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
                     <PaginationLink className="prev" href="#">
-                      <i className="simple-icon-arrow-right" />
+                      <i className="simple-icon-arrow-left" />
                     </PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
@@ -415,12 +415,12 @@ export default class NavigationUi extends Component {
                   </PaginationItem>
                   <PaginationItem>
                     <PaginationLink className="next" href="#">
-                      <i className="simple-icon-arrow-left" />
+                      <i className="simple-icon-arrow-right" />
                     </PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
                     <PaginationLink className="last" href="#">
-                      <i className="simple-icon-control-start" />
+                      <i className="simple-icon-control-end" />
                     </PaginationLink>
                   </PaginationItem>
                 </Pagination>
@@ -446,12 +446,12 @@ export default class NavigationUi extends Component {
                 >
                   <PaginationItem>
                     <PaginationLink className="first" href="#">
-                      <i className="simple-icon-control-end" />
+                      <i className="simple-icon-control-start" />
                     </PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
                     <PaginationLink className="prev" href="#">
-                      <i className="simple-icon-arrow-rught" />
+                      <i className="simple-icon-arrow-left" />
                     </PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
@@ -465,12 +465,12 @@ export default class NavigationUi extends Component {
                   </PaginationItem>
                   <PaginationItem>
                     <PaginationLink className="next" href="#">
-                      <i className="simple-icon-arrow-left" />
+                      <i className="simple-icon-arrow-right" />
                     </PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
                     <PaginationLink className="last" href="#">
-                      <i className="simple-icon-control-start" />
+                      <i className="simple-icon-control-end" />
                     </PaginationLink>
                   </PaginationItem>
                 </Pagination>
@@ -481,56 +481,16 @@ export default class NavigationUi extends Component {
                 <Pagination
                   size="sm"
                   aria-label="Page navigation example"
-                  listClassName="justify-content-start"
-                >
-                  <PaginationItem>
-                    <PaginationLink className="first" href="#">
-                      <i className="simple-icon-control-end" />
-                    </PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink className="prev" href="#">
-                      <i className="simple-icon-arrow-right" />
-                    </PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink href="#">1</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem active>
-                    <PaginationLink href="#">2</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem disabled>
-                    <PaginationLink href="#">3</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink className="next" href="#">
-                      <i className="simple-icon-arrow-left" />
-                    </PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink className="last" href="#">
-                      <i className="simple-icon-control-start" />
-                    </PaginationLink>
-                  </PaginationItem>
-                </Pagination>
-
-
-                <h6 className="mb-3">
-                  <IntlMessages id="nav.left" />
-                </h6>
-                <Pagination
-                  size="sm"
-                  aria-label="Page navigation example"
                   listClassName="justify-content-end"
                 >
                   <PaginationItem>
                     <PaginationLink className="first" href="#">
-                      <i className="simple-icon-control-end" />
+                      <i className="simple-icon-control-start" />
                     </PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
                     <PaginationLink className="prev" href="#">
-                      <i className="simple-icon-arrow-right" />
+                      <i className="simple-icon-arrow-left" />
                     </PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
@@ -544,17 +504,15 @@ export default class NavigationUi extends Component {
                   </PaginationItem>
                   <PaginationItem>
                     <PaginationLink className="next" href="#">
-                      <i className="simple-icon-arrow-left" />
+                      <i className="simple-icon-arrow-right" />
                     </PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
                     <PaginationLink className="last" href="#">
-                      <i className="simple-icon-control-start" />
+                      <i className="simple-icon-control-end" />
                     </PaginationLink>
                   </PaginationItem>
                 </Pagination>
-
-
               </CardBody>
             </Card>
           </Colxx>
@@ -569,22 +527,22 @@ export default class NavigationUi extends Component {
                 </CardTitle>
 
                 <Breadcrumb>
-                  <BreadcrumbItem active>صفحه اصلی</BreadcrumbItem>
+                  <BreadcrumbItem active>خانه</BreadcrumbItem>
                 </Breadcrumb>
                 <Breadcrumb>
                   <BreadcrumbItem>
-                    <a href="#">صفحه اصلی</a>
+                    <a href="#">خانه</a>
                   </BreadcrumbItem>
                   <BreadcrumbItem active>کتابخانه</BreadcrumbItem>
                 </Breadcrumb>
                 <Breadcrumb>
                   <BreadcrumbItem>
-                    <a href="#">صفحه اصلی</a>
+                    <a href="#">خانه</a>
                   </BreadcrumbItem>
                   <BreadcrumbItem>
                     <a href="#">کتابخانه</a>
                   </BreadcrumbItem>
-                  <BreadcrumbItem active>داده ها</BreadcrumbItem>
+                  <BreadcrumbItem active>داده</BreadcrumbItem>
                 </Breadcrumb>
               </CardBody>
             </Card>

@@ -58,6 +58,13 @@ class ChatApplication extends Component {
   }
 
   componentDidUpdate() {
+    if(this.props.chatApp.loadingConversations &&
+       this.props.chatApp.loadingContacts &&
+       this.props.chatApp.selectedUser==null)
+    {
+      this.props.changeConversation(this.props.chatApp.selectedUserId);
+    }
+
     if (this._scrollBarRef) {
       this._scrollBarRef._ps.element.scrollTop = this._scrollBarRef._ps.contentHeight;
     }
@@ -197,7 +204,7 @@ class ChatApplication extends Component {
                                 <img
                                   alt={sender.name}
                                   src={sender.thumb}
-                                  className="img-thumbnail border-0 rounded-circle ml-3 list-thumbnail align-self-center xsmall"
+                                  className="img-thumbnail border-0 rounded-circle mr-3 list-thumbnail align-self-center xsmall"
                                 />
                                 <div className=" d-flex flex-grow-1 min-width-zero">
                                   <div className="m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero">
@@ -236,13 +243,13 @@ class ChatApplication extends Component {
               <Button
                 outline
                 color={"primary"}
-                className="icon-button large mr-1"
+                className="icon-button large ml-1"
               >
                 <i className="simple-icon-paper-clip" />
               </Button>
 
-              <Button color={"primary"} className="icon-button large mr-1" onClick={() => this.handleSendButtonClick()}>
-                <i className="simple-icon-arrow-left" />
+              <Button color={"primary"} className="icon-button large ml-1" onClick={() => this.handleSendButtonClick()}>
+                <i className="simple-icon-arrow-right" />
               </Button>
             </div>
           </div>
@@ -313,7 +320,7 @@ class ChatApplication extends Component {
                             <img
                               alt={otherUser.name}
                               src={otherUser.thumb}
-                              className="img-thumbnail border-0 rounded-circle ml-3 list-thumbnail align-self-center xsmall"
+                              className="img-thumbnail border-0 rounded-circle mr-3 list-thumbnail align-self-center xsmall"
                             />
                             <div className="d-flex flex-grow-1 min-width-zero">
                               <div className="pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero">
@@ -348,7 +355,7 @@ class ChatApplication extends Component {
                             <img
                               alt={item.name}
                               src={item.thumb}
-                              className="img-thumbnail border-0 rounded-circle ml-3 list-thumbnail align-self-center xsmall"
+                              className="img-thumbnail border-0 rounded-circle mr-3 list-thumbnail align-self-center xsmall"
                             />
                             <div className="d-flex flex-grow-1 min-width-zero">
                               <div className="m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero">

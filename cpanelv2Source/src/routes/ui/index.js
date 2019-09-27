@@ -10,8 +10,9 @@ import charts from './charts';
 import collapse from './collapse';
 import dropdowns from './dropdowns';
 import editors from './editors';
-import forms from './forms';
+import formLayouts from './form-layouts';
 import formComponents from './form-components';
+import formValidations from './form-validations';
 import icons from './icons';
 import inputGroups from './input-groups';
 import jumbotron from './jumbotron';
@@ -19,6 +20,8 @@ import modal from './modal';
 import navigation from './navigation';
 import popoverTooltip from './popover-tooltip';
 import sortable from './sortable';
+import tables from './tables';
+import maps from './maps';
 
 
 export default class Ui extends Component {
@@ -40,8 +43,9 @@ export default class Ui extends Component {
                 <Route path={`${match.url}/collapse`} component={collapse} />
                 <Route path={`${match.url}/dropdowns`} component={dropdowns} />
                 <Route path={`${match.url}/editors`} component={editors} />
-                <Route path={`${match.url}/forms`} component={forms} />
+                <Route path={`${match.url}/form-layouts`} component={formLayouts} />
                 <Route path={`${match.url}/form-components`} component={formComponents} />
+                <Route path={`${match.url}/form-validations`} component={formValidations} />
                 <Route path={`${match.url}/icons`} component={icons} />
                 <Route path={`${match.url}/input-groups`} component={inputGroups} />
                 <Route path={`${match.url}/jumbotron`} component={jumbotron} />
@@ -49,6 +53,8 @@ export default class Ui extends Component {
                 <Route path={`${match.url}/navigation`} component={navigation} />
                 <Route path={`${match.url}/popover-tooltip`} component={popoverTooltip} />
                 <Route path={`${match.url}/sortable`} component={sortable} />
+                <Route path={`${match.url}/tables`} component={tables} />
+                <Route path={`${match.url}/maps`} component={maps} />
                 <Redirect to="/error" />
 
             </Switch>

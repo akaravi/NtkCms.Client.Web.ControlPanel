@@ -35,7 +35,7 @@ export const fillChartConfig = {
         },
         font: {
           weight: "bold",
-          size: 10,
+          size: 10
         },
         formatter: Math.round
       }
@@ -47,7 +47,6 @@ export const fillChartConfig = {
       yAxes: [
         {
           ticks: {
-            fontFamily: 'iransans-light',
             min: 0
           },
           display: false
@@ -56,7 +55,6 @@ export const fillChartConfig = {
       xAxes: [
         {
           ticks: {
-            fontFamily: 'iransans-light',
             min: 0
           },
           display: false
@@ -65,10 +63,10 @@ export const fillChartConfig = {
     }
   },
   data: {
-    labels: ["شنبه", "1شنبه", "2شنبه", "3شنبه", "4شنبه", "5شنبه", "جمعه"],
+    labels: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"],
     datasets: [
       {
-        label: "تاریخ",
+        label: "Data",
         borderColor: colors.themeColor1,
         pointBorderColor: colors.themeColor1,
         pointBackgroundColor: colors.themeColor1,
@@ -109,7 +107,6 @@ export const visitChartConfig = {
             drawBorder: false
           },
           ticks: {
-            fontFamily: 'iransans-light',
             beginAtZero: true,
             stepSize: 5,
             min: 50,
@@ -122,16 +119,13 @@ export const visitChartConfig = {
         {
           gridLines: {
             display: false
-          },
-          ticks: {
-            fontFamily: 'iransans-light'
           }
         }
       ]
     }
   },
   data: {
-    labels: ["شنبه", "1شنبه", "2شنبه", "3شنبه", "4شنبه", "5شنبه", "جمعه"],
+    labels: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"],
     datasets: [
       {
         label: "",
@@ -173,7 +167,6 @@ export const conversionChartConfig = {
             drawBorder: false
           },
           ticks: {
-            fontFamily: 'iransans-light',
             beginAtZero: true,
             stepSize: 5,
             min: 50,
@@ -186,16 +179,13 @@ export const conversionChartConfig = {
         {
           gridLines: {
             display: false
-          },
-          ticks:{
-            fontFamily: 'iransans-light'
           }
         }
       ]
     }
   },
   data: {
-    labels: ["شنبه", "1شنبه", "2شنبه", "3شنبه", "4شنبه", "5شنبه", "جمعه"],
+    labels: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"],
     datasets: [
       {
         label: "",
@@ -240,7 +230,6 @@ export const conversionChartConfig = {
               drawBorder: false
             },
             ticks: {
-              fontFamily: 'iransans-light',
               beginAtZero: true,
               stepSize: 5,
               min: 50,
@@ -253,16 +242,13 @@ export const conversionChartConfig = {
           {
             gridLines: {
               display: false
-            },
-            ticks: {
-              fontFamily: 'iransans-light',
             }
           }
         ]
       }
     },
     data: {
-      labels: ["شنبه", "1شنبه", "2شنبه", "3شنبه", "4شنبه", "5شنبه", "جمعه"],
+      labels: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"],
       datasets: [
         {
           label: "",
@@ -287,8 +273,7 @@ export const conversionChartConfig = {
       labels: {
         padding: 30,
         usePointStyle: true,
-        fontSize: 12,
-        fontFamily: 'iransans-light'
+        fontSize: 12
       }
     },
     options: {
@@ -296,7 +281,6 @@ export const conversionChartConfig = {
       maintainAspectRatio: false,
       scale: {
         ticks: {
-          fontFamily: 'iransans-light',
           display: false
         }
       },
@@ -308,7 +292,7 @@ export const conversionChartConfig = {
       tooltips: chartTooltip
     },
     data: {
-      labels: ["کیک ها", "دسرها", "کاپ کیک ها"],
+      labels: ["کیک", "دسر", "کاپ کیک"],
       datasets: [
         {
           data: [80, 90, 70],
@@ -330,10 +314,10 @@ export const conversionChartConfig = {
   
   export const smallChartData1 = {
     data: {
-      labels: ["شنبه", "1شنبه", "2شنبه", "3شنبه", "4شنبه", "5شنبه", "جمعه"],
+      labels: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"],
       datasets: [
         {
-          label: "تمام سفارشات",
+          label: "کل سفارشات",
           borderColor: colors.themeColor1,
           pointBorderColor: colors.themeColor1,
           pointHoverBackgroundColor: colors.themeColor1,
@@ -355,10 +339,10 @@ export const conversionChartConfig = {
   
   export const smallChartData2 = {
     data: {
-      labels: ["شنبه", "1شنبه", "2شنبه", "3شنبه", "4شنبه", "5شنبه", "جمعه"],
+      labels: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"],
       datasets: [
         {
-          label: "پرداخت نشده",
+          label: "سفارشات در حال انتظار",
           borderColor: colors.themeColor1,
           pointBorderColor: colors.themeColor1,
           pointHoverBackgroundColor: colors.themeColor1,
@@ -380,10 +364,10 @@ export const conversionChartConfig = {
   
   export const smallChartData3 = {
     data: {
-      labels: ["شنبه", "1شنبه", "2شنبه", "3شنبه", "4شنبه", "5شنبه", "جمعه"],
+      labels: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"],
       datasets: [
         {
-          label: "تمام سفارشات",
+          label: "کل سفارشات",
           borderColor: colors.themeColor1,
           pointBorderColor: colors.themeColor1,
           pointHoverBackgroundColor: colors.themeColor1,
@@ -405,10 +389,10 @@ export const conversionChartConfig = {
   
   export const smallChartData4 = {
     data: {
-      labels: ["شنبه", "1شنبه", "2شنبه", "3شنبه", "4شنبه", "5شنبه", "جمعه"],
+      labels: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"],
       datasets: [
         {
-          label: "تمام سفارشات",
+          label: "کل سفارشات",
           borderColor: colors.themeColor1,
           pointBorderColor: colors.themeColor1,
           pointHoverBackgroundColor: colors.themeColor1,
@@ -435,8 +419,7 @@ export const doughnutChartConfig = {
       labels: {
         padding: 30,
         usePointStyle: true,
-        fontSize: 12,
-        fontFamily: 'iransans-light'
+        fontSize: 12
       }
     },
     options: {
@@ -454,10 +437,9 @@ export const doughnutChartConfig = {
       tooltips: chartTooltip
     },
     data: {
-      labels: ["کیک ها", "کاپ کیک ها", "دسرها"],
+      labels: ["کیک", "کاپ کیک", "دسر"],
       datasets: [
         {
-          defaultFontFamily: 'iransans-light',
           label: "",
           borderColor: [colors.themeColor3, colors.themeColor2, colors.themeColor1],
           backgroundColor: [colors.themeColor3_10, colors.themeColor2_10, colors.themeColor1_10],
@@ -475,8 +457,7 @@ export const doughnutChartConfig = {
       labels: {
         padding: 30,
         usePointStyle: true,
-        fontSize: 12,
-        fontFamily: 'iransans-light'
+        fontSize: 12
       }
     },
     options: {
@@ -484,7 +465,6 @@ export const doughnutChartConfig = {
       maintainAspectRatio: false,
       scale: {
         ticks: {
-          fontFamily: 'iransans-light',
           display: false
         }
       },
@@ -509,7 +489,7 @@ export const doughnutChartConfig = {
           data: [68, 80, 95]
         }
       ],
-      labels: ["کیک ها", "دسرها", "کاپ کیک ها"]
+      labels: ["کیک", "دسر", "کاپ کیک"]
     }
   };
   
@@ -521,8 +501,7 @@ export const barChartConfig = {
     labels: {
       padding: 30,
       usePointStyle: true,
-      fontSize: 12,
-      fontFamily: 'iransans-light'
+      fontSize: 12
     }
   },
   options: {
@@ -538,7 +517,6 @@ export const barChartConfig = {
             drawBorder: false
           },
           ticks: {
-            fontFamily: 'iransans-light',
             beginAtZero: true,
             stepSize: 100,
             min: 300,
@@ -551,9 +529,6 @@ export const barChartConfig = {
         {
           gridLines: {
             display: false
-          },
-          ticks: {
-            fontFamily: 'iransans-light'
           }
         }
       ]
@@ -564,14 +539,14 @@ export const barChartConfig = {
     labels: ["مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"],
     datasets: [
       {
-        label: "کیک ها",
+        label: "کیک",
         borderColor: colors.themeColor1,
         backgroundColor: colors.themeColor1_10,
         data: [456, 479, 324, 569, 702, 600],
         borderWidth: 2
       },
       {
-        label: "دسرها",
+        label: "دسر",
         borderColor: colors.themeColor2,
         backgroundColor: colors.themeColor2_10,
         data: [364, 504, 605, 400, 345, 320],
@@ -589,8 +564,7 @@ export const scatterChartConfig = {
     labels: {
       padding: 30,
       usePointStyle: true,
-      fontSize: 12,
-      fontFamily: 'iransans-light'
+      fontSize: 12
     }
   },
   options: {
@@ -606,7 +580,6 @@ export const scatterChartConfig = {
             drawBorder: false
           },
           ticks: {
-            fontFamily: 'iransans-light',
             beginAtZero: true,
             stepSize: 20,
             min: -80,
@@ -621,9 +594,6 @@ export const scatterChartConfig = {
             display: true,
             lineWidth: 1,
             color: "rgba(0,0,0,0.1)"
-          },
-          ticks: {
-            fontFamily: 'iransans-light'
           }
         }
       ]
@@ -634,7 +604,7 @@ export const scatterChartConfig = {
     datasets: [
       {
         borderWidth: 2,
-        label: "کیک ها",
+        label: "کیک",
         borderColor: colors.themeColor1,
         backgroundColor: colors.themeColor1_10,
         data: [
@@ -649,7 +619,7 @@ export const scatterChartConfig = {
       },
       {
         borderWidth: 2,
-        label: "دسرها",
+        label: "دسر",
         borderColor: colors.themeColor2,
         backgroundColor: colors.themeColor2_10,
         data: [
@@ -688,7 +658,6 @@ export const areaChartConfig = {
             drawBorder: false
           },
           ticks: {
-            fontFamily: 'iransans-light',
             beginAtZero: true,
             stepSize: 5,
             min: 50,
@@ -701,14 +670,13 @@ export const areaChartConfig = {
         {
           gridLines: {
             display: false
-          },
-          fontFamily: 'iransans-light'
+          }
         }
       ]
     }
   },
   data: {
-    labels: ["شنبه", "1شنبه", "2شنبه", "3شنبه", "4شنبه", "5شنبه", "جمعه"],
+    labels: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"],
     datasets: [
       {
         label: "",
@@ -736,8 +704,7 @@ export const pieChartConfig = {
     labels: {
       padding: 30,
       usePointStyle: true,
-      fontSize: 12,
-      fontFamily: 'iransans-light'
+      fontSize: 12
     }
   },
   options: {
@@ -754,7 +721,7 @@ export const pieChartConfig = {
     tooltips: chartTooltip
   },
   data: {
-    labels: ["کیک ها", "کاپ کیک ها", "دسرها"],
+    labels: ["کیک", "کاپ کیک", "دسر"],
     datasets: [
       {
         label: "",
@@ -769,8 +736,7 @@ export const pieChartConfig = {
           colors.themeColor3_10
         ],
         borderWidth: 2,
-        data: [15, 25, 20],
-        fontFamily: 'iransans-light'
+        data: [15, 25, 20]
       }
     ]
   }

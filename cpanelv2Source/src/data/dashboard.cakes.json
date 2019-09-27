@@ -1,79 +1,79 @@
 {
     "data": [
       {
-        "title": "کیک سنگ مرمر",
-        "link": "/app/layouts/details"
+        "title": "کیک شیرین",
+        "link": "/app/pages/details"
       },
       {
         "title": "کیک میوه ای",
-        "link": "/app/layouts/details"
+        "link": "/app/pages/details"
       },
       {
         "title": "کیک شکلاتی",
-        "link": "/app/layouts/details"
+        "link": "/app/pages/details"
+      }, {
+        "title": "کیک ترش",
+        "link": "/app/pages/details"
+      }, {
+        "title": "چایی",
+        "link": "/app/pages/details"
+      }, {
+        "title": "کیک شکلاتی",
+        "link": "/app/pages/details"
+      }, {
+        "title": "کیک پنیر",
+        "link": "/app/pages/details"
+      }, {
+        "title": "کیک پرتغالی",
+        "link": "/app/pages/details"
       }, {
         "title": "پن کیک",
-        "link": "/app/layouts/details"
-      }, {
-        "title": "کیک فرانسوی",
-        "link": "/app/layouts/details"
-      }, {
-        "title": "کیک پای",
-        "link": "/app/layouts/details"
-      }, {
-        "title": "پای سیب",
-        "link": "/app/layouts/details"
+        "link": "/app/pages/details"
       }, {
         "title": "کیک توت فرنگی",
-        "link": "/app/layouts/details"
+        "link": "/app/pages/details"
       }, {
-        "title": "کیک نارگیلی",
-        "link": "/app/layouts/details"
+        "title": "سوفله",
+        "link": "/app/pages/details"
       }, {
-        "title": "چیزکیک",
-        "link": "/app/layouts/details"
-      }, {
-        "title": "کیک هویج",
-        "link": "/app/layouts/details"
-      }, {
-        "title": "پای توت فرنگی",
-        "link": "/app/layouts/details"
-      }, {
-        "title": "کیک وانیل پرتقال",
-        "link": "/app/layouts/details"
-      }, {
-        "title": " چای سبز",
-        "link": "/app/layouts/details"
-      }, {
-        "title": "کیک ناپلئونی",
-        "link": "/app/layouts/details"
-      }, {
-        "title": "کیک کارامل",
-        "link": "/app/layouts/details"
-      }, {
-        "title": "کیک هویج",
-        "link": "/app/layouts/details"
-      }, {
-        "title": "شیرینی کشمشی",
-        "link": "/app/layouts/details"
-      }, {
-        "title": "شیرینی برنجی",
-        "link": "/app/layouts/details"
-      }, {
-        "title": "شیرینی فرانسوی",
-        "link": "/app/layouts/details"
-      }, {
-        "title": "کیک میوه ای",
-        "link": "/app/layouts/details"
+        "title": "کیک پرتغالی",
+        "link": "/app/pages/details"
       }, {
         "title": "کیک شکلاتی",
-        "link": "/app/layouts/details"
+        "link": "/app/pages/details"
       }, {
-        "title": "پن کیک",
-        "link": "/app/layouts/details"
+        "title": "چایی سبز",
+        "link": "/app/pages/details"
       }, {
-        "title": "کیک وانیل پرتقال",
-        "link": "/app/layouts/details"
+        "title": "قهوه",
+        "link": "/app/pages/details"
+      }, {
+        "title": "آبمیوه",
+        "link": "/app/pages/details"
+      }, {
+        "title": "کیک میوه ای",
+        "link": "/app/pages/details"
+      }, {
+        "title": "کیک موزی",
+        "link": "/app/pages/details"
+      }, {
+        "title": "کیک پنیر",
+        "link": "/app/pages/details"
+      }, {
+        "title": "چایی",
+        "link": "/app/pages/details"
+      }, {
+        "title": "کیک میوه ای",
+        "link": "/app/pages/details"
+      }, {
+        "title": "کیک شکلاتی",
+        "link": "/app/pages/details"
+      }, {
+        "title": "کیک ترش",
+        "link": "/app/pages/details"
+      }, {
+        "title": "قهوه",
+        "link": "/app/pages/details"
       }
     ]
   }
