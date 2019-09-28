@@ -138,7 +138,7 @@
         if (!themName || themName.length == 0)
             return;
         //var urlTemplate = 'HtmlBuilder/?id=' + item.Id;// + '&theme=' + themName;
-        var urlTemplate = '/HtmlBuilder/home/index/' + item.Id;
+        var urlTemplate = mainPath+'HtmlBuilder/home/index/' + item.Id;
         localStorage.setItem("pageItem", $.trim(angular.toJson(item)));
         var win = window.open(urlTemplate, '_blank');
         win.focus();
