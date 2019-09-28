@@ -8,3 +8,5 @@ npm start
 
 
 yarn install
+
+npm i -D react react-dom
