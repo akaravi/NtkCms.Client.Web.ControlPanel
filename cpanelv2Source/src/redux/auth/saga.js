@@ -1,6 +1,7 @@
 
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 import { auth } from '../../firebase';
+import axios from 'axios';
 import {
     LOGIN_USER,
     REGISTER_USER,
@@ -12,11 +13,21 @@ import {
     registerUserSuccess
 } from './actions';
 
-const loginWithEmailPasswordAsync = async (email, password) =>
-    await auth.signInWithEmailAndPassword(email, password)
-        .then(authUser => authUser)
-        .catch(error => error);
+const loginWithEmailPasswordAsync = async (email, password) => {
+    await axios.post(`https://oco.ir/api/CoreUser/userlogin/`, {
+        username: email,
+        pwd: password,
+        lang: 'fa'
+    })
+      .then(authUser => authUser)
+      .catch(error => error);
+}
 
+const loginWithEmailPasswordAsync_Old = async (email, password) =>
+await auth.signInWithEmailAndPassword(email, password)
+    .then(authUser => authUser)
+    .catch(error => error);
+    
 
 
 function* loginWithEmailPassword({ payload }) {
@@ -24,6 +35,7 @@ function* loginWithEmailPassword({ payload }) {
     const { history } = payload;
     try {
         const loginUser = yield call(loginWithEmailPasswordAsync, email, password);
+        console.log(loginUser)
         if (!loginUser.message) {
             localStorage.setItem('user_id', loginUser.user.uid);
             yield put(loginUserSuccess(loginUser));

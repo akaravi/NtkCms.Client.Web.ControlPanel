@@ -1,7 +1,7 @@
 {
-  "name": "gogo-react",
+  "name": "NTKCms",
   "version": "3.1.0",
-  "description": "Gogo - React Bootstrap 4 Admin Dashboard Template",
+  "description": "NTK Cms React Gogo 3.1.0- React Bootstrap 4 Admin Dashboard Template",
   "scripts": {
     "start": "webpack-dev-server --inline --history-api-fallback --progress --config webpack/dev.js",
     "build": "webpack --config webpack/prod.js"
