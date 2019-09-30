@@ -143,7 +143,12 @@
         var referrer = (document.referrer) ? encodeURIComponent(document.referrer.substr(document.referrer.indexOf('://')+1)) : '';
         var location  = (document.location) ? encodeURIComponent(window.location.href.substring(window.location.protocol.length)) : '';
         po.src = '//chat.ntk.ir/index.php/chat/getstatus/(click)/internal/(position)/bottom_left/(ma)/br/(check_operator_messages)/true/(top)/350/(units)/pixels/(leaveamessage)/true/(department)/2/(theme)/1?r='+referrer+'&l='+location;
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        try {
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);    
+        } catch (error) {
+            
+        }
+        
     })();
     </script>
 </body>
