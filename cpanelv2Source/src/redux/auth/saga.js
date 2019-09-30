@@ -1,6 +1,13 @@
-
-import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
-import { auth } from '../../firebase';
+import {
+    all,
+    call,
+    fork,
+    put,
+    takeEvery
+} from 'redux-saga/effects';
+import {
+    auth
+} from '../../firebase';
 import axios from 'axios';
 import {
     LOGIN_USER,
@@ -14,25 +21,58 @@ import {
 } from './actions';
 
 const loginWithEmailPasswordAsync = async (email, password) => {
-    await axios.post(`https://oco.ir/api/CoreUser/userlogin/`, {
-        username: email,
-        pwd: password,
-        lang: 'fa'
-    })
-      .then(authUser => authUser)
-      .catch(error => error);
+    alert("email: " + email + " paswword: " + password);
+    await axios.post(`http://oco.ir/api/CoreUser/userlogin`, {
+            username: email,
+            pwd: password,
+            lang: 'fa'
+        })
+        .then(
+            //authUser => authUser
+            response => {
+                alert("response: " + JSON.stringify(response));
+                alert("Item: " + JSON.stringify(response.data.Item));
+
+
+alert("response.IsSuccess: " + response.data.IsSuccess);
+                if (response.data.IsSuccess) {
+                    alert("1");
+                    authUser = response.Item;
+                    alert("11");
+                } else {
+                    alert("2");
+                    error = response.ErrorMessage;
+                    alert("22");
+                }
+                alert("authUser:" +JSON.stringify( response));
+            }
+        )
+        .catch(
+            //error => error
+            error => {
+
+                alert("error: " + error);
+            }
+        );
 }
 
 const loginWithEmailPasswordAsync_Old = async (email, password) =>
-await auth.signInWithEmailAndPassword(email, password)
+    await auth.signInWithEmailAndPassword(email, password)
     .then(authUser => authUser)
     .catch(error => error);
-    
 
 
-function* loginWithEmailPassword({ payload }) {
-    const { email, password } = payload.user;
-    const { history } = payload;
+
+function* loginWithEmailPassword({
+    payload
+}) {
+    const {
+        email,
+        password
+    } = payload.user;
+    const {
+        history
+    } = payload;
     try {
         const loginUser = yield call(loginWithEmailPasswordAsync, email, password);
         console.log(loginUser)
@@ -52,12 +92,19 @@ function* loginWithEmailPassword({ payload }) {
 
 const registerWithEmailPasswordAsync = async (email, password) =>
     await auth.createUserWithEmailAndPassword(email, password)
-        .then(authUser => authUser)
-        .catch(error => error);
+    .then(authUser => authUser)
+    .catch(error => error);
 
-function* registerWithEmailPassword({ payload }) {
-    const { email, password } = payload.user;
-    const { history } = payload
+function* registerWithEmailPassword({
+    payload
+}) {
+    const {
+        email,
+        password
+    } = payload.user;
+    const {
+        history
+    } = payload
     try {
         const registerUser = yield call(registerWithEmailPasswordAsync, email, password);
         if (!registerUser.message) {
@@ -81,13 +128,16 @@ const logoutAsync = async (history) => {
     history.push('/')
 }
 
-function* logout({payload}) {
-    const { history } = payload
+function* logout({
+    payload
+}) {
+    const {
+        history
+    } = payload
     try {
-        yield call(logoutAsync,history);
+        yield call(logoutAsync, history);
         localStorage.removeItem('user_id');
-    } catch (error) {
-    }
+    } catch (error) {}
 }
 
 
