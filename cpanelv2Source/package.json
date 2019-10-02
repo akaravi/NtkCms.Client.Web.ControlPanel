@@ -1,5 +1,5 @@
 {
-  "name": "NTKCms",
+  "name": "ntkcms",
   "version": "3.1.0",
   "description": "NTK Cms React Gogo 3.1.0- React Bootstrap 4 Admin Dashboard Template",
   "scripts": {
@@ -7,7 +7,7 @@
     "build": "webpack --config webpack/prod.js"
   },
   "keywords": [
-    "reactjs"
+    "reactjs" 
   ],
   "author": "Colored Strategies",
   "license": "ISC",

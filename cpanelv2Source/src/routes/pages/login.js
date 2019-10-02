@@ -2,9 +2,7 @@ import React, { Component, Fragment } from "react";
 import IntlMessages from "Util/IntlMessages";
 import { Row, Card, CardTitle, Form, Label, Input, Button } from "reactstrap";
 import { NavLink } from "react-router-dom";
-
 import { Colxx } from "Components/CustomBootstrap";
-
 import { connect } from "react-redux";
 import { loginUser } from "Redux/actions";
 
@@ -17,6 +15,12 @@ class LoginLayout extends Component {
       email: "demo@demo.com",
       password: "demo"
     };
+
+  }
+  //handleChange = e => this.setState({ [e.target.name]: e.target.value })
+  handleChange( e){
+    //alert("[e.target.name]: e.target.value =>"+ e.target.name +" : "+ e.target.value);
+     this.setState({ [e.target.name]: e.target.value });
   }
   onUserLogin() {
     if (this.state.email !== "" && this.state.password !== "") {
@@ -60,15 +64,12 @@ class LoginLayout extends Component {
                     </CardTitle>
                     <Form>
                       <Label className="form-group has-float-label mb-4">
-                        <Input type="email" defaultValue={this.state.email} />
+                        <Input type="email" defaultValue={this.state.email} name="email" onChange={this.handleChange.bind(this)} />
                         <IntlMessages id="user.email" />
                       </Label>
                       <Label className="form-group has-float-label mb-4">
-                        <Input type="password" />
-                        <IntlMessages
-                          id="user.password"
-                          defaultValue={this.state.password}
-                        />
+                        <Input type="password" defaultValue={this.state.password} name="password" onChange={this.handleChange.bind(this)}/>
+                        <IntlMessages id="user.password" />
                       </Label>
                       <div className="d-flex justify-content-between align-items-center">
                         <NavLink to={`/forgot-password`}>

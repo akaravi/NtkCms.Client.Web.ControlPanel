@@ -31,20 +31,11 @@ const loginWithEmailPasswordAsync = async (email, password) => {
             //authUser => authUser
             response => {
                 alert("response: " + JSON.stringify(response));
-                alert("Item: " + JSON.stringify(response.data.Item));
-
-
-alert("response.IsSuccess: " + response.data.IsSuccess);
                 if (response.data.IsSuccess) {
-                    alert("1");
-                    authUser = response.Item;
-                    alert("11");
+                    return response.data.Item;
                 } else {
-                    alert("2");
-                    error = response.ErrorMessage;
-                    alert("22");
+                    error = response.data.ErrorMessage;
                 }
-                alert("authUser:" +JSON.stringify( response));
             }
         )
         .catch(
