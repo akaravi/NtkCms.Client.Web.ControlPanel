@@ -30,20 +30,23 @@ const loginWithEmailPasswordAsync = async (email, password) => {
         .then(
             //authUser => authUser
             response => {
-                alert("response: " + JSON.stringify(response));
+                alert("console.log");
+                console.log(response);
                 if (response.data.IsSuccess) {
-                    return response.data.Item;
+                  return{  
+                      user:response.data.Item,
+                     loading :false
+                  }
                 } else {
                     error = response.data.ErrorMessage;
                 }
             }
         )
         .catch(
-            //error => error
-            error => {
-
-                alert("error: " + error);
-            }
+            error => error
+            // error => {
+            //     alert("error: " + error);
+            // }
         );
 }
 
