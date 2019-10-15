@@ -10,3 +10,6 @@ npm start
 yarn install
 
 npm i -D react react-dom
+=================================
+./ngrok authtoken 7YZQCSg7Ju4wdJFF6fYQn_3dSPGANCPkBYnsowwQ7Ro
+./ngrok http -host-header=rewrite localhost:3005

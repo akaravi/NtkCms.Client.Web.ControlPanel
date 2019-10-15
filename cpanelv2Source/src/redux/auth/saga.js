@@ -19,35 +19,35 @@ import {
     loginUserSuccess,
     registerUserSuccess
 } from './actions';
+import {
+    cmsServerConfig
+} from 'Constants/defaultValues';
 
 const loginWithEmailPasswordAsync = async (email, password) => {
-    alert("email: " + email + " paswword: " + password);
-    await axios.post(`http://oco.ir/api/CoreUser/userlogin`, {
-            username: email,
-            pwd: password,
-            lang: 'fa'
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'JWT fefege...'
+    };
+    const postData = {
+        username: email,
+        pwd: password,
+        lang: 'fa'
+    };
+    return await axios.post(cmsServerConfig.mainPath + `/api/CoreUser/userlogin`, postData, {
+            headers: headers
         })
         .then(
-            //authUser => authUser
             response => {
-                alert("console.log");
-                console.log(response);
-                if (response.data.IsSuccess) {
-                  return{  
-                      user:response.data.Item,
-                     loading :false
-                  }
-                } else {
-                    error = response.data.ErrorMessage;
-                }
+                return response.data;
             }
         )
         .catch(
-            error => error
-            // error => {
-            //     alert("error: " + error);
-            // }
+            error => {
+                return error;
+            }
+
         );
+
 }
 
 const loginWithEmailPasswordAsync_Old = async (email, password) =>
@@ -68,10 +68,17 @@ function* loginWithEmailPassword({
         history
     } = payload;
     try {
+        alert("email: " + email + " password: " + password);
         const loginUser = yield call(loginWithEmailPasswordAsync, email, password);
-        console.log(loginUser)
-        if (!loginUser.message) {
-            localStorage.setItem('user_id', loginUser.user.uid);
+        console.log("loginUser1");
+        console.log(loginUser);
+        console.log("loginUser2");
+
+        if (loginUser.IsSuccess) {
+            localStorage.setItem('user_id', loginUser.Item);
+            localStorage.setItem('UserTicketToken', loginUser.UserTicketToken);
+
+
             yield put(loginUserSuccess(loginUser));
             history.push('/');
         } else {
