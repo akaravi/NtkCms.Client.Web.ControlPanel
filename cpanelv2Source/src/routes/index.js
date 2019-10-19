@@ -3,6 +3,7 @@ import { Route, withRouter, Switch, Redirect } from 'react-router-dom';
 
 import TopNav from 'Containers/TopNav'
 import Sidebar from 'Containers/Sidebar';
+import BottomNav from 'Containers/BottomNav';
 
 import dashboards from './dashboards';
 import pages from './pages';
@@ -20,6 +21,7 @@ class MainApp extends Component {
 		const { match, containerClassnames} = this.props;
 		return (
 			<div id="app-container" className={containerClassnames}>
+				
 				<TopNav history={this.props.history} />
 				<Sidebar/>
 				<main>
@@ -36,6 +38,7 @@ class MainApp extends Component {
 						</Switch>
 					</div>
 				</main>
+				<BottomNav/>
 			</div>
 		);
 	}

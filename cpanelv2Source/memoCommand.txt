@@ -13,3 +13,12 @@ npm i -D react react-dom
 =================================
 ./ngrok authtoken 7YZQCSg7Ju4wdJFF6fYQn_3dSPGANCPkBYnsowwQ7Ro
 ./ngrok http -host-header=rewrite localhost:3005
+
+
+
+==============================
+Accept: application/json, text/plain, */*
+Authorization: FeOfscu3X7z6XaGvbeQuQb8FpDZNyLyXCqhqshwW2kg+23F5valkGVuvfzTjfPXhenQ2wttmj00VJq4lPawjXx74FUZb9XnmE/6nvXvfUU2b4gQwqGhcr1w0l79Mzy9zmIGn4vSJzKj2SRxwW7YrdExtiVtdFc35kTYJQ+uyKBe6WQCTRBClbF9+xiBQcvWjRrex6v0QCPog5RQUn0dIzoHKY5+DiUEd+CF4376XVPBWHeBJH8cylT0ukZ6K0mrOVzi86choi3pH/ZlEgrkrSEwjm2iOGQNwwWZN+fUBxCehgrBPIqFlQr5ZXy35SFUB5T9Ouo09GtDiXWfcU+I1Jh+WUgqcEOFfUk/DeRKCJpz2YFYlNAdIt07nXdcNZpv76Gc/pDzk3ndEHy9z+LV0Mjcdz0DzAl1FKoxkmi7dBJhM0r33sXhDhgcTweE9HV2A4Vg0mG/mgQrAz8UuClzTNlsPcqGuHRYrrbbyYd3GQOV15zVXXTS76QfQ5ZF5JPAUUOnYFxjqp0Fi88E/JK1m0qIDSIQutAeLXxJ2QSzZzZgv+wS4ChJIsQbIvv1uZy/p5aeeP1MYiOOzYgpbrMDPRfmSmH5V6DYHltPD1RLzpg6RDy+/TprHGZxq4JBKd7ReeIRZk9wRM83oN0N/pNGUtyJObAxI0m0hdMV+Kk7NMCO/NDJJ9px8zdPIFoLxeZpnn98gMTZQCFsiZplvnvI5WzPYH94sDknDVL9i4JZexZ+R1F1lBn1rwLR6glJXA7RolszZKLQi7VlZeDqH1fK4xjtKgZg4NkR15NSjhHTevKQtcxHLkbHzqjowJWdBiMqYaIivCmGvlGjgQ0Zz0TfTNbt26xWlqBKL1vWywqFwshPlSjaVQmvBtnQlk1yf1kCz
+Content-Type: application/json
+Origin: http://localhost:3005
+Referer: http://localhost:3005/app/core/CoreSiteActlist

@@ -18,7 +18,8 @@ import {
   setContainerClassnames,
   clickOnMobileMenu,
   logoutUser,
-  changeLocale
+  changeLocale,
+  getCoreUserActSelectCurrentSite
 } from "Redux/actions";
 
 import { menuHiddenBreakpoint, searchPath,localeOptions } from "Constants/defaultValues";
@@ -38,13 +39,27 @@ class TopNav extends Component {
     this.removeEventsSearch = this.removeEventsSearch.bind(this);
     this.state = {
       isInFullScreen: false,
-      searchKeyword: ""
+      searchKeyword: "",
+      selectSite:"",
+      searchSite: [{
+        Title: "aaaa",
+        Id: 1
+      }, {
+        Title: "bbbbb",
+        Id: 2
+      }]
     };
+    
   }
   
   handleChangeLocale = locale => {
     this.props.changeLocale(locale);
   };
+  handleChangeSite = siteId => {
+    alert("siteId:" + siteId);
+    this.props.getCoreUserActSelectCurrentSite(this.state);
+  };
+
   isInFullScreen = () => {
     return (
       (document.fullscreenElement && document.fullscreenElement !== null) ||
@@ -255,6 +270,31 @@ class TopNav extends Component {
             </DropdownToggle>
             <DropdownMenu className="mt-3" right>
             {
+            this.state.searchSite.map((l)=>{
+                return(
+                  <DropdownItem onClick={() => this.handleChangeSite(l.Id)} key={l.Id}>
+                  {l.Title}
+                </DropdownItem>
+                )
+              })
+            }
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        </div>
+
+
+        <div className="d-inline-block">
+          <UncontrolledDropdown className="mr-2">
+            <DropdownToggle
+              caret
+              color="light"
+              size="sm"
+              className="language-button"
+            >
+              <span className="name">{this.props.locale.toUpperCase()}</span>
+            </DropdownToggle>
+            <DropdownMenu className="mt-3" right>
+            {
               localeOptions.map((l)=>{
                 return(
                   <DropdownItem onClick={() => this.handleChangeLocale(l.id)} key={l.id}>
@@ -423,9 +463,11 @@ class TopNav extends Component {
 const mapStateToProps = ({ menu, settings }) => {
   const { containerClassnames, menuClickCount,selectedMenuHasSubItems } = menu;
   const { locale } = settings;
+  
+ //getCoreUserActSelectCurrentSite
   return { containerClassnames, menuClickCount, selectedMenuHasSubItems,locale };
 };
 export default injectIntl(connect(
   mapStateToProps,
-  { setContainerClassnames, clickOnMobileMenu, logoutUser, changeLocale }
+  { setContainerClassnames, clickOnMobileMenu, logoutUser, changeLocale,getCoreUserActSelectCurrentSite }
 )(TopNav));
