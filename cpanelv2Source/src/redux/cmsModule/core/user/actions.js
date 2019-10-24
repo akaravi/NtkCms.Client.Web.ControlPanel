@@ -15,13 +15,13 @@ import {
 
 
 export const getCoreUserActSelectCurrentSite = (payload) => {
-    alert("getCoreUserActSelectCurrentSite  new");
 
     return ({
         type: CORE_USER_ACT_SELECTCURRENTSITE,
         payload:payload
     });
 }
+
 export const getCoreUserActSelectCurrentSiteSuccess = (errorExption) => ({
     type: CORE_USER_ACT_SELECTCURRENTSITE_SUCCESS,
     payload: errorExption

@@ -60,6 +60,7 @@ const loginWithEmailPasswordAsync_Old = async (email, password) =>
 function* loginWithEmailPassword({
     payload
 }) {
+    alert("saga loginWithEmailPassword Start");
     const {
         email,
         password

@@ -6,6 +6,9 @@ import todoApp from './todo/reducer';
 import chatApp from './chat/reducer';
 import surveyListApp from './surveyList/reducer';
 import surveyDetailApp from './surveyDetail/reducer';
+import coreSite from './cmsModule/core/site/reducer';
+import coreUser from './cmsModule/core/user/reducer';
+
 
 const reducers = combineReducers({
   menu,
@@ -14,7 +17,11 @@ const reducers = combineReducers({
   todoApp,
   chatApp,
   surveyListApp,
-  surveyDetailApp
+  surveyDetailApp,
+
+  coreSite,
+  coreUser
+
 });
 
 export default reducers;

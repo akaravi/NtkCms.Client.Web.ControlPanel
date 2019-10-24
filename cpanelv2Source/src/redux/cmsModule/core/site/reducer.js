@@ -1,14 +1,13 @@
 import {
+	CORE_SITE_ACT_GETALL,
 	CORE_SITE_ACT_GETALL_SUCCESS,
 	CORE_SITE_ACT_GETALL_ERROR,
+
+	CORE_SITE_ACT_GETONE,
 	CORE_SITE_ACT_GETONE_SUCCESS,
 	CORE_SITE_ACT_GETONE_ERROR
 
-	// ,SURVEY_GET_DETAILS,
-	// SURVEY_GET_DETAILS_SUCCESS,
-	// SURVEY_GET_DETAILS_ERROR,
-	// SURVEY_DELETE_QUESTION,
-	// SURVEY_SAVE
+
 } from 'Constants/actionTypes';
 
 const INIT_STATE = {
@@ -49,14 +48,7 @@ export default (state = INIT_STATE, action) => {
 				...state, loading: true, error: action.payload
 			};
 
-			// case SURVEY_DELETE_QUESTION:
-			// return { ...state,loading:false};
-
-			// case SURVEY_SAVE:
-			// return { ...state,loading:true,survey: action.payload};
-
-
-
+		
 		default:
 			return {
 				...state

@@ -101,7 +101,7 @@ const getCoreUserActGetAllRequestAsync = async (filterModel) => {
 function* getCoreUserActSelectCurrentSite({
     payload
 }) {
-	alert("getCoreUserActSelectCurrentSite  oooooook")
+	alert("saga getCoreUserActSelectCurrentSite  Start")
 	try {
 		const response = yield call(getCoreUserActSelectCurrentSiteRequestAsync);
 		yield put(getCoreUserActSelectCurrentSiteSuccess(response));

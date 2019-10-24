@@ -14,18 +14,15 @@ import {
 } from 'Constants/actionTypes';
 
 const INIT_STATE = {
-	survey: null,
-	loading: false
+	user: localStorage.getItem('user_id'),
+    loading: false
 };
 
 export default (state = INIT_STATE, action) => {
 	switch (action.type) {
 	
 		case CORE_USER_ACT_SELECTCURRENTSITE:
-			return {
-				...state, loading: false
-			};
-
+			return { ...state, loading: true };
 		case CORE_USER_ACT_SELECTCURRENTSITE_SUCCESS:
 			return {
 				...state, loading: true, errorExption: action.payload
