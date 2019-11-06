@@ -22,7 +22,7 @@ export default class DataTablePagination extends Component {
     this.changePageSize = this.changePageSize.bind(this);
     this.renderPageJump = this.renderPageJump.bind(this);
 
-    console.log(props);
+    
     this.state = {
       page: props.page,
       pageSize: this.props.defaultPageSize

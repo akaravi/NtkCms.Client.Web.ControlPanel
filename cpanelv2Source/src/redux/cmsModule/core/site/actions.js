@@ -7,14 +7,13 @@ import {
     CORE_SITE_ACT_GETONE_ERROR
 } from 'Constants/actionTypes';
 
-
 export const getCoreSiteActGetAll = (filterModel) => ({
     type: CORE_SITE_ACT_GETALL,
     payload: filterModel
 });
-export const getCoreSiteActGetAllSuccess = (errorExption) => ({
+export const getCoreSiteActGetAllSuccess = (searchSite) => ({
     type: CORE_SITE_ACT_GETALL_SUCCESS,
-    payload: errorExption
+    payload: {searchSite}
 });
 
 export const getCoreSiteActGetAllError = (error) => ({
@@ -37,22 +36,3 @@ export const getCoreSiteActGetOneError = (error) => ({
     payload: error
 });
 
-
-
-
-
-
-// export const getSurveyDetail = () => ({
-//     type: SURVEY_GET_DETAILS
-// });
-
-
-// export const deleteSurveyQuestion = (questionId,survey) => ({
-//     type: SURVEY_DELETE_QUESTION,
-//     payload: {questionId,survey}
-// });
-
-// export const saveSurvey = (survey) => ({
-//     type: SURVEY_SAVE,
-//     payload: survey
-// });

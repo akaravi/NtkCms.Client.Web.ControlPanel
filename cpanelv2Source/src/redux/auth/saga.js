@@ -71,14 +71,9 @@ function* loginWithEmailPassword({
     try {
         alert("email: " + email + " password: " + password);
         const loginUser = yield call(loginWithEmailPasswordAsync, email, password);
-        console.log("loginUser1");
-        console.log(loginUser);
-        console.log("loginUser2");
-
         if (loginUser.IsSuccess) {
             localStorage.setItem('user_id', loginUser.Item);
             localStorage.setItem('userGlobaltoken', loginUser.UserTicketToken);
-
 
             yield put(loginUserSuccess(loginUser));
             history.push('/');

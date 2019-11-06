@@ -16,8 +16,7 @@ import {
 	getCoreUserActGetAllError,
 
 	getCoreUserActGetOneSuccess,
-	getCoreUserActGetOneError,
-	saveSurvey
+    getCoreUserActGetOneError
 } from './actions';
 import {
     cmsServerConfig
@@ -98,7 +97,7 @@ const getCoreUserActGetAllRequestAsync = async (filterModel) => {
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 
-function* getCoreUserActSelectCurrentSite({
+function* sagaCoreUserActSelectCurrentSite({
     payload
 }) {
 	alert("saga getCoreUserActSelectCurrentSite  Start")
@@ -111,7 +110,7 @@ function* getCoreUserActSelectCurrentSite({
 }
 
 
-function* getCoreUserActGetAll() {
+function* sagaCoreUserActGetAll() {
 	try {
 		const response = yield call(getCoreUserActGetAllRequestAsync);
 		yield put(getCoreUserActGetAllSuccess(response));
@@ -120,7 +119,7 @@ function* getCoreUserActGetAll() {
 	}
 }
 
-function* getCoreUserActGetOne() {
+function* sagaCoreUserActGetOne() {
 	try {
 		const response = yield call(getCoreUserActGetOneRequestAsync);
 		yield put(getCoreUserActGetOneSuccess(response));
@@ -134,14 +133,14 @@ function* getCoreUserActGetOne() {
   Allows concurrent fetches of user.
 */
 export function* watchCoreUserActSelectCurrentSite() {
-	yield takeEvery(CORE_USER_ACT_SELECTCURRENTSITE, getCoreUserActSelectCurrentSite);
+	yield takeEvery(CORE_USER_ACT_SELECTCURRENTSITE, sagaCoreUserActSelectCurrentSite);
 }
 
 export function* watchCoreUserActGetAll() {
-	yield takeEvery(CORE_USER_ACT_GETALL, getCoreUserActGetAll);
+	yield takeEvery(CORE_USER_ACT_GETALL, sagaCoreUserActGetAll);
 }
 export function* watchCoreUserActGetOne() {
-	yield takeEvery(CORE_USER_ACT_GETONE, getCoreUserActGetOne);
+	yield takeEvery(CORE_USER_ACT_GETONE, sagaCoreUserActGetOne);
 }
 
 export default function* rootSaga() {

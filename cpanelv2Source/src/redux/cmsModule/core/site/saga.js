@@ -5,10 +5,6 @@ import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 import {
 	CORE_SITE_ACT_GETALL,
 	CORE_SITE_ACT_GETONE
-
-	,SURVEY_GET_DETAILS,
-	SURVEY_DELETE_QUESTION,
-	SURVEY_SAVE
 } from 'Constants/actionTypes';
 
 import {
@@ -17,8 +13,7 @@ import {
 	getCoreSiteActGetAllError,
 
 	getCoreSiteActGetOneSuccess,
-	getCoreSiteActGetOneError,
-	saveSurvey
+	getCoreSiteActGetOneError
 } from './actions';
 import {
     cmsServerConfig
@@ -81,16 +76,19 @@ const getCoreSiteActGetAllRequestAsync = async (filterModel) => {
 	
 }
 
-
-function* getCoreSiteActGetAll() {
+function* sagaGetCoreSiteActGetAll() {
+	
 	try {
-		const response = yield call(getCoreSiteActGetAllRequestAsync);
-		yield put(getCoreSiteActGetAllSuccess(response));
+        const response = yield call(getCoreSiteActGetAllRequestAsync);
+        console.log("sagaGetCoreSiteActGetAll:");
+        console.log(response);
+
+		yield put(getCoreSiteActGetAllSuccess(response.ListItems));
 	} catch (error) {
 		yield put(getCoreSiteActGetAllError(error));
 	}
 }
-function* getCoreSiteActGetOne() {
+function* sagaGetCoreSiteActGetOne() {
 	try {
 		const response = yield call(getCoreSiteActGetOneRequestAsync);
 		yield put(getCoreSiteActGetOneSuccess(response));
@@ -99,31 +97,16 @@ function* getCoreSiteActGetOne() {
 	}
 }
 
-// function* deleteQuestion({ payload }) {
-// 	try {
-// 		const { questionId, survey } = payload;
-// 		const response = yield call(deleteQuestionRequest, questionId, survey);
-// 		yield put(saveSurvey(response));
-// 	} catch (error) {
-// 		yield put(getSurveyDetailError(error));
-// 	}
-// }
-
 
 
 export function* watchCoreSiteActGetAll() {
 	
-	yield takeEvery(CORE_SITE_ACT_GETALL, getCoreSiteActGetAll);
+	yield takeEvery(CORE_SITE_ACT_GETALL, sagaGetCoreSiteActGetAll);
 	
 }
 export function* watchCoreSiteActGetOne() {
-	yield takeEvery(CORE_SITE_ACT_GETONE, getCoreSiteActGetOne);
+	yield takeEvery(CORE_SITE_ACT_GETONE, sagaGetCoreSiteActGetOne);
 }
-
-// export function* watchDeleteQuestion() {
-// 	yield takeEvery(SURVEY_DELETE_QUESTION, deleteQuestion);
-// }
-
 
 
 export default function* rootSaga() {

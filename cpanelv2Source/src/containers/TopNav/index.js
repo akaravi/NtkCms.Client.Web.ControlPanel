@@ -19,7 +19,9 @@ import {
   clickOnMobileMenu,
   logoutUser,
   changeLocale,
-  getCoreUserActSelectCurrentSite
+  getCoreUserActSelectCurrentSite,
+  getCoreSiteActGetAll,
+  getCoreSiteActFastGetAll
 } from "Redux/actions";
 
 import { menuHiddenBreakpoint, searchPath,localeOptions } from "Constants/defaultValues";
@@ -41,23 +43,27 @@ class TopNav extends Component {
       isInFullScreen: false,
       searchKeyword: "",
       selectSite:"",
-      searchSite: [{
-        Title: "aaaa",
-        Id: 1
-      }, {
-        Title: "bbbbb",
-        Id: 2
-      }]
+      searchSite: [{Title:"ook",Id:1},{Title:"ook2",Id:2}]//
     };
-    
+    //this.props.getCoreSiteActGetAll(this.state);
+    //var oreSiteActGetAll=this.props.getCoreSiteActFastGetAll(this.state);
+    //console.log("index getCoreSiteActGetAll:");
+    //console.log(oreSiteActGetAll);
+    // if(oreSiteActGetAll&&oreSiteActGetAll.IsSuccess)
+    // {
+    //   this.searchSite=oreSiteActGetAll.ListItems;
+    // }
   }
   
   handleChangeLocale = locale => {
     this.props.changeLocale(locale);
   };
   handleChangeSite = siteId => {
-    alert("siteId:" + siteId);
-    this.props.getCoreUserActSelectCurrentSite(this.state);
+    //var oreSiteActGetAll=this.props.getCoreSiteActGetAll(this.state);
+    //console.log("index getCoreSiteActGetAll:");
+    //console.log(oreSiteActGetAll);
+    //this.props.getCoreUserActSelectCurrentSite(this.state);
+    console.log(this.props.searchSite);
   };
 
   isInFullScreen = () => {
@@ -464,10 +470,9 @@ const mapStateToProps = ({ menu, settings }) => {
   const { containerClassnames, menuClickCount,selectedMenuHasSubItems } = menu;
   const { locale } = settings;
   
- //getCoreUserActSelectCurrentSite
   return { containerClassnames, menuClickCount, selectedMenuHasSubItems,locale };
 };
 export default injectIntl(connect(
   mapStateToProps,
-  { setContainerClassnames, clickOnMobileMenu, logoutUser, changeLocale,getCoreUserActSelectCurrentSite }
+  { setContainerClassnames, clickOnMobileMenu, logoutUser, changeLocale,getCoreUserActSelectCurrentSite,getCoreSiteActGetAll,getCoreSiteActFastGetAll }
 )(TopNav));
