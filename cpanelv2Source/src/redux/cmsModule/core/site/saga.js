@@ -82,7 +82,6 @@ function* sagaGetCoreSiteActGetAll() {
         const response = yield call(getCoreSiteActGetAllRequestAsync);
         console.log("sagaGetCoreSiteActGetAll:");
         console.log(response);
-
 		yield put(getCoreSiteActGetAllSuccess(response.ListItems));
 	} catch (error) {
 		yield put(getCoreSiteActGetAllError(error));

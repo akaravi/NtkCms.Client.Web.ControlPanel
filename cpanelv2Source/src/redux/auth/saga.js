@@ -32,6 +32,7 @@ const loginWithEmailPasswordAsync = async (email, password) => {
         username: email,
         pwd: password,
         lang: 'fa'
+
     };
     return await axios.post(cmsServerConfig.mainPath + `/api/CoreUser/userlogin`, postData, {
             headers: headers
@@ -73,6 +74,7 @@ function* loginWithEmailPassword({
         const loginUser = yield call(loginWithEmailPasswordAsync, email, password);
         if (loginUser.IsSuccess) {
             localStorage.setItem('user_id', loginUser.Item);
+            localStorage.setItem('user', loginUser.Item);
             localStorage.setItem('userGlobaltoken', loginUser.UserTicketToken);
 
             yield put(loginUserSuccess(loginUser));

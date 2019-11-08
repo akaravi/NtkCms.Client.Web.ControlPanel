@@ -9,7 +9,7 @@ import {
   Button
 } from "reactstrap";
 import IntlMessages from "Util/IntlMessages";
-
+import CompCoreSiteSearchSite from "Components/cmsModule/Core/site/CompCoreSiteSearchSite"
 import PerfectScrollbar from "react-perfect-scrollbar";
 
 import { NavLink } from "react-router-dom";
@@ -42,9 +42,20 @@ class TopNav extends Component {
     this.state = {
       isInFullScreen: false,
       searchKeyword: "",
-      selectSite:"",
-      searchSite: [{Title:"ook",Id:1},{Title:"ook2",Id:2}]//
+      selectSite:"سایت انتخاب کنید",
+      searchSite: []//
     };
+
+if(localStorage.getItem('user'))
+{
+  this.setState({user: localStorage.getItem('user')});
+}
+
+if(localStorage.getItem('site'))
+{
+  this.setState({site: localStorage.getItem('site')});
+}
+    this.props.getCoreSiteActGetAll(this.state);
     //this.props.getCoreSiteActGetAll(this.state);
     //var oreSiteActGetAll=this.props.getCoreSiteActFastGetAll(this.state);
     //console.log("index getCoreSiteActGetAll:");
@@ -62,7 +73,7 @@ class TopNav extends Component {
     //var oreSiteActGetAll=this.props.getCoreSiteActGetAll(this.state);
     //console.log("index getCoreSiteActGetAll:");
     //console.log(oreSiteActGetAll);
-    //this.props.getCoreUserActSelectCurrentSite(this.state);
+    this.props.getCoreUserActSelectCurrentSite(this.state);
     console.log(this.props.searchSite);
   };
 
@@ -263,32 +274,8 @@ class TopNav extends Component {
             <i className="simple-icon-magnifier" />
           </span>
         </div>
-
-        <div className="d-inline-block">
-          <UncontrolledDropdown className="mr-2">
-            <DropdownToggle
-              caret
-              color="light"
-              size="sm"
-              className="language-button"
-            >
-              <span className="name">{this.props.locale.toUpperCase()}</span>
-            </DropdownToggle>
-            <DropdownMenu className="mt-3" right>
-            {
-            this.state.searchSite.map((l)=>{
-                return(
-                  <DropdownItem onClick={() => this.handleChangeSite(l.Id)} key={l.Id}>
-                  {l.Title}
-                </DropdownItem>
-                )
-              })
-            }
-            </DropdownMenu>
-          </UncontrolledDropdown>
-        </div>
-
-
+         <CompCoreSiteSearchSite  />
+   
         <div className="d-inline-block">
           <UncontrolledDropdown className="mr-2">
             <DropdownToggle
