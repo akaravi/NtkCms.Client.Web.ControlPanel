@@ -5,9 +5,9 @@ import {
     put,
     takeEvery
 } from 'redux-saga/effects';
-import {
-    auth
-} from '../../firebase';
+// import {
+//     auth
+// } from '../../firebase';
 import axios from 'axios';
 import {
     LOGIN_USER,
@@ -51,10 +51,10 @@ const loginWithEmailPasswordAsync = async (email, password) => {
 
 }
 
-const loginWithEmailPasswordAsync_Old = async (email, password) =>
-    await auth.signInWithEmailAndPassword(email, password)
-    .then(authUser => authUser)
-    .catch(error => error);
+// const loginWithEmailPasswordAsync_Old = async (email, password) =>
+//     await auth.signInWithEmailAndPassword(email, password)
+//     .then(authUser => authUser)
+//     .catch(error => error);
 
 
 
@@ -105,15 +105,15 @@ function* registerWithEmailPassword({
         history
     } = payload
     try {
-        const registerUser = yield call(registerWithEmailPasswordAsync, email, password);
-        if (!registerUser.message) {
-            localStorage.setItem('user_id', registerUser.user.uid);
-            yield put(registerUserSuccess(registerUser));
-            history.push('/')
-        } else {
-            // catch throw
-            console.log('register failed :', registerUser.message)
-        }
+        // const registerUser = yield call(registerWithEmailPasswordAsync, email, password);
+        // if (!registerUser.message) {
+        //     localStorage.setItem('user_id', registerUser.user.uid);
+        //     yield put(registerUserSuccess(registerUser));
+        //     history.push('/')
+        // } else {
+        //     // catch throw
+        //     console.log('register failed :', registerUser.message)
+        // }
     } catch (error) {
         // catch throw
         console.log('register error : ', error)
@@ -123,7 +123,7 @@ function* registerWithEmailPassword({
 
 
 const logoutAsync = async (history) => {
-    await auth.signOut().then(authUser => authUser).catch(error => error);
+    //await auth.signOut().then(authUser => authUser).catch(error => error);
     history.push('/')
 }
 

@@ -2,7 +2,7 @@
 color options : 
 	 'light.purple'		'dark.purple'
 	 'light.blue'		  'dark.blue'
-	 'light.green'		'dark.green'
+	 'light.green'		'dark.green'npm start
 	 'light.orange'		'dark.orange'
 	 'light.red'		  'dark.red'
 */
