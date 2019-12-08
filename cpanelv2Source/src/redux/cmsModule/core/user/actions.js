@@ -14,11 +14,11 @@ import {
 
 
 
-export const getCoreUserActSelectCurrentSite = (payload) => {
+export const getCoreUserActSelectCurrentSite = (id) => {
 
     return ({
         type: CORE_USER_ACT_SELECTCURRENTSITE,
-        payload:payload
+        id:id
     });
 }
 

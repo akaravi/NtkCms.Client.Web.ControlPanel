@@ -24,13 +24,15 @@ import {
 
 // import surveyDetailData from 'Data/survey.detail.json';
 
-const getCoreUserActSelectCurrentSiteRequestAsync = async () => {
+const getCoreUserActSelectCurrentSiteRequestAsync = async (id) => {
 	const headers = {
 		'Content-Type': 'application/json',
         'Authorization': localStorage.getItem('userGlobaltoken') 
     };
-  
-    return await axios.post(cmsServerConfig.mainPath + `/api/CoreUser/SelectCurrentSite/`, {
+    const postData = {
+        id:id
+    };
+    return await axios.post(cmsServerConfig.mainPath + `/api/CoreUser/SelectCurrentSite/`,postData, {
             headers: headers
         })
         .then(
@@ -98,11 +100,11 @@ const getCoreUserActGetAllRequestAsync = async (filterModel) => {
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 
 function* sagaCoreUserActSelectCurrentSite({
-    payload
+    id
 }) {
 	alert("saga getCoreUserActSelectCurrentSite  Start")
 	try {
-		const response = yield call(getCoreUserActSelectCurrentSiteRequestAsync);
+		const response = yield call(getCoreUserActSelectCurrentSiteRequestAsync,id);
 		yield put(getCoreUserActSelectCurrentSiteSuccess(response));
 	} catch (error) {
 		yield put(getCoreUserActSelectCurrentSiteError(error));
