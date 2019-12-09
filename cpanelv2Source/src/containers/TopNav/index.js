@@ -10,6 +10,8 @@ import {
 } from "reactstrap";
 import IntlMessages from "Util/IntlMessages";
 import CompCoreSiteSearchSite from "Components/cmsModule/Core/site/CompCoreSiteSearchSite"
+import CompCoreSiteSelectedInfo from "Components/cmsModule/Core/site/CompCoreSiteSelectedInfo"
+
 import PerfectScrollbar from "react-perfect-scrollbar";
 
 import { NavLink } from "react-router-dom";
@@ -275,6 +277,7 @@ if(localStorage.getItem('site'))
           </span>
         </div>
          <CompCoreSiteSearchSite  />
+         <CompCoreSiteSelectedInfo />
    
         <div className="d-inline-block">
           <UncontrolledDropdown className="mr-2">
