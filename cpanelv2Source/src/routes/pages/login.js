@@ -100,9 +100,4 @@ const mapStateToProps = ({ authUser }) => {
   return { user, loading };
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    loginUser
-  }
-)(LoginLayout);
+export default connect( mapStateToProps,  {    loginUser  })(LoginLayout);

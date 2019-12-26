@@ -11,9 +11,9 @@ export const getCoreSiteActGetAll = (filterModel) => ({
     type: CORE_SITE_ACT_GETALL,
     payload: filterModel
 });
-export const getCoreSiteActGetAllSuccess = (searchSite) => ({
+export const getCoreSiteActGetAllSuccess = (errorExpetion) => ({
     type: CORE_SITE_ACT_GETALL_SUCCESS,
-    payload: {searchSite}
+    payload: {errorExpetion}
 });
 
 export const getCoreSiteActGetAllError = (error) => ({

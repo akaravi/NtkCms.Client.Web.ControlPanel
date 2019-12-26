@@ -46,7 +46,7 @@ const getCoreSiteActGetOneRequestAsync = async (Id) => {
 }
 
 const getCoreSiteActGetAllRequestAsync = async (filterModel) => {
-	const headers = {
+    const headers = {
         'Content-Type': 'application/json',
         'Authorization': localStorage.getItem('userGlobaltoken') 
     };
@@ -61,12 +61,12 @@ const getCoreSiteActGetAllRequestAsync = async (filterModel) => {
                 return response.data;
             }
         )
-        .catch(
-            error => {
-                return error;
-            }
+        // .catch(
+        //     error => {
+        //         return error;
+        //     }
 
-        );
+        // );
 		// survey.questions = survey.questions.filter(x => x.id != quesitonId);
 		// return await new Promise((success, fail) => {
 		// 	success(survey);
@@ -77,7 +77,6 @@ const getCoreSiteActGetAllRequestAsync = async (filterModel) => {
 }
 
 function* sagaGetCoreSiteActGetAll() {
-	
 	try {
         const response = yield call(getCoreSiteActGetAllRequestAsync);
         console.log("sagaGetCoreSiteActGetAll:");
