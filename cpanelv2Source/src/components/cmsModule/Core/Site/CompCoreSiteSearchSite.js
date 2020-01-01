@@ -1,8 +1,4 @@
 import React, {  Component} from 'react';
-import ReactDOM from 'react-dom';
-import { injectIntl} from 'react-intl';
-import {  connect} from "react-redux";
-
 import {
   UncontrolledDropdown,
   DropdownItem,
@@ -15,31 +11,41 @@ import axios from 'axios';
 import {
   cmsServerConfig
 } from 'Constants/defaultValues';
+// import ReactDOM from 'react-dom';
+// import { injectIntl} from 'react-intl';
+// import {  connect} from "react-redux";
 import {
-  getCoreUserActSelectCurrentSite,
-  getCoreSiteActGetAll,
-  getCoreSiteActFastGetAll
+  getCoreUserActSelectCurrentSite
 } from "Redux/actions";
+
 class CompCoreSiteSearchSite extends Component {
   constructor(props) {
-    super();
-
+    super(props);
     this.state = {
-
       selectSite: "سایت انتخاب کنید",
       searchSite: [] //
     };
-
-
-
   }
   componentDidMount() {
-    var errorExption=this.props.getCoreSiteActGetAll(this.state);
-    console.log("errorExption");
-    //payload
-    console.log(errorExption);
-  
-
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('userGlobaltoken') 
+  };
+  const postData = {  };
+        axios.post(cmsServerConfig.mainPath + `/api/CoreSite/Getall`, postData, {
+          headers: headers
+      })
+      .then(
+          response => {
+            this.setState({
+              searchSite:  response.data.ListItems
+            });
+            
+          }
+      )
+      .catch(
+          error => {
+          });
   }
   
   handleChangeSite = siteId => {
@@ -81,14 +87,14 @@ class CompCoreSiteSearchSite extends Component {
     );
   }
 }
-const mapStateToProps = ({  authUser,  settings}) => {
-  const {    user  } = authUser;
-  const {    locale  } = settings;
-  return {    user,    locale  };
-};
-export default injectIntl(connect(
-    mapStateToProps,
-    {getCoreUserActSelectCurrentSite,getCoreSiteActGetAll,getCoreSiteActFastGetAll }
-  )(CompCoreSiteSearchSite));
-
+// const mapStateToProps = ({  authUser,  settings}) => {
+//   const {    user  } = authUser;
+//   const {    locale  } = settings;
+//   return {    user,    locale  };
+// };
+// export default injectIntl(connect(
+//     mapStateToProps,
+//     {getCoreUserActSelectCurrentSite,getCoreSiteActGetAll,getCoreSiteActFastGetAll }
+//   )(CompCoreSiteSearchSite));
+export default CompCoreSiteSearchSite;
 // export default connect(mapStateToProps, {})(CompCoreSiteSearchSite);
