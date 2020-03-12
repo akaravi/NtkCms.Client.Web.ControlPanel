@@ -131,6 +131,7 @@
     }
   
     cmsPageDesign.goTohtmlbuilder = function (item) {
+        var token=localStorage.getItem("userGlobaltoken");
         item.rowOption = null;
         item.virtual_CmsModulePageDependency = null;
         item.virtual_CmsSite = null;
@@ -138,7 +139,8 @@
         if (!themName || themName.length == 0)
             return;
         //var urlTemplate = 'HtmlBuilder/?id=' + item.Id;// + '&theme=' + themName;
-        var urlTemplate = mainPath+'HtmlBuilder/home/index/' + item.Id;
+        //var urlTemplate = mainPath+'HtmlBuilder/home/index/' + item.Id+'?token='+token;
+        var urlTemplate = mainPath+'HtmlBuilder/home/token/' + item.Id+'?token='+encodeURIComponent(token);
         localStorage.setItem("pageItem", $.trim(angular.toJson(item)));
         var win = window.open(urlTemplate, '_blank');
         win.focus();

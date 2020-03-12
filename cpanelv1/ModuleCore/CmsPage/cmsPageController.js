@@ -44,7 +44,9 @@
     }
 
     cmsPagegrd.goTohtmlbuilder = function (item) {
-        var urlTemplate = 'HtmlBuilder/?id=' + item.Id;//+ '&theme=' + PageTemplateTitle(item.LinkPageTemplateId);
+        var token=localStorage.getItem("userGlobaltoken");
+        //var urlTemplate = 'HtmlBuilder/?id=' + item.Id+ '&token=' + token;
+        var urlTemplate = 'HtmlBuilder2/token/?id=' + item.Id+ '&token=' + token;
         localStorage.setItem("pageItem", $.trim(angular.toJson(item)));
         var win = window.open(urlTemplate, '_blank');
         win.focus();
