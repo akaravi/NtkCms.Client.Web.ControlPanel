@@ -1,7 +1,7 @@
-var mainPathServer = "http://oco.ir/";
+var mainPathServer = "https://oco.ir/";
 var mainPath = "/";
-mainPath = "http://oco.ir/";
-mainPath = "http://localhost:1032/";
+mainPath = "https://oco.ir/";
+//mainPath = "http://localhost:2391/";
 
 var mainPathCmsFiles = "cpanelv1/images/";
 var mainPathApi = mainPath + "api/";
