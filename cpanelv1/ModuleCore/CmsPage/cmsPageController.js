@@ -16,19 +16,19 @@
     if (itemRecordStatus != undefined) cmsPagegrd.itemRecordStatus = itemRecordStatus;
 
     cmsPagegrd.init = function () {
-        ajax.call(mainPathApi+"CorePage/GetAllEnumAction", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"WebDesignerMainPage/GetAllEnumAction", {}, 'POST').success(function (response) {
             cmsPagegrd.Action = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(mainPathApi+'CorePageTemplate/getall', {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPageTemplate/getall', {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPagegrd.cmsPageTemplatesListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
         cmsPagegrd.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"CoreModulePageDependency/getall", cmsPagegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response2) {
+        ajax.call(mainPathApi+"WebDesignerMainPageDependency/getall", cmsPagegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response2) {
             rashaErManage.checkAction(response2);
             cmsPagegrd.ListItems = response2.ListItems;
             cmsPagegrd.gridOptions.fillData(cmsPagegrd.ListItems, response2.resultAccess);
@@ -52,7 +52,7 @@
         win.focus();
     }
     cmsPagegrd.goTohtmlbuilderRender = function (item) {
-        var urlTemplate = '/RenderViewPage/' + item.Id;
+        var urlTemplate = '/page/' + item.Id;
         localStorage.setItem("pageItem", $.trim(angular.toJson(item)));
         var win = window.open(urlTemplate, '_blank');
         win.focus();
@@ -70,7 +70,7 @@
         if (frm.$invalid)
             return;
         cmsPagegrd.UtilityToolsInfo = "در حال بررسی ....";
-        ajax.call(mainPathApi+'CorePage/UtilityTools', cmsPagegrd.selectedItemTools, 'Post').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/UtilityTools', cmsPagegrd.selectedItemTools, 'Post').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPagegrd.UtilityToolsInfo = response.ErrorMessage;
         }).error(function (data2, errCode2, c2, d2) {
@@ -84,7 +84,7 @@
 
     cmsPagegrd.openAddModal = function () {
         cmsPagegrd.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'CorePage/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/getviewmodel', '0', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPagegrd.selectedItem = response.Item;
 
@@ -109,7 +109,7 @@
             return;
         cmsPagegrd.addRequested = true;
         cmsPagegrd.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CorePage/add', cmsPagegrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/add', cmsPagegrd.selectedItem, 'POST').success(function (response) {
             cmsPagegrd.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -128,7 +128,7 @@
             return;
         cmsPagegrd.addRequested = true;
         if (frm.$name == "frmCmsPageAdd") {   // Functions was called from add modal
-            ajax.call(mainPathApi+'CorePage/add', cmsPagegrd.selectedItem, 'POST').success(function (response) {
+            ajax.call(mainPathApi+'WebDesignerMainPage/add', cmsPagegrd.selectedItem, 'POST').success(function (response) {
                 cmsPagegrd.addRequested = false;
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
@@ -144,7 +144,7 @@
             });
         }
         else {  // Functions was called from edit modal
-            ajax.call(mainPathApi+'CorePage/edit', cmsPagegrd.selectedItem, 'PUT').success(function (response) {
+            ajax.call(mainPathApi+'WebDesignerMainPage/edit', cmsPagegrd.selectedItem, 'PUT').success(function (response) {
                 cmsPagegrd.addRequested = false;
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
@@ -168,7 +168,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'CorePage/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/getviewmodel', item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPagegrd.selectedItem = response.Item;
             cmsPagegrd.selectedItem.LinkModuleId = null;
@@ -189,7 +189,7 @@
             return;
         cmsPagegrd.busyIndicator.isActive = true;
         cmsPagegrd.addRequested = true;
-        ajax.call(mainPathApi+'CorePage/edit', cmsPagegrd.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/edit', cmsPagegrd.selectedItem, 'PUT').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsPagegrd.addRequested = false;
@@ -226,10 +226,10 @@
         cmsPagegrd.busyIndicator.isActive = true;
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                ajax.call(mainPathApi+'CorePage/getviewmodel', item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'WebDesignerMainPage/getviewmodel', item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsPagegrd.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'CorePage/delete', cmsPagegrd.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'WebDesignerMainPage/delete', cmsPagegrd.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsPagegrd.replaceItem(cmsPagegrd.selectedItemForDelete.Id);
@@ -286,7 +286,7 @@
         cmsPagegrd.advancedSearchData.engine.Filters = null;
         cmsPagegrd.advancedSearchData.engine.Filters = [];
         cmsPagegrd.advancedSearchData.engine.Filters.push(Filter_value);
-        ajax.call(mainPathApi+'CoreModulePageDependency/getall', cmsPagegrd.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPageDependency/getall', cmsPagegrd.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             cmsPagegrd.PageDependenciesListItems = response.ListItems;
             // خودبخود فراخوانی نمی شود LoadModuleOfDependency اگر ماژول انتخاب شده فقط یک وابستگی داشته باشد تابع 
@@ -301,7 +301,7 @@
     cmsPagegrd.LoadModuleOfDependency = function (pageDependencyId) {
         if (pageDependencyId != null) {
             cmsPagegrd.selectedItem.selectedModule = null;
-            ajax.call(mainPathApi+'CoreModulePageDependency/getviewmodel', pageDependencyId, 'GET').success(function (response1) {
+            ajax.call(mainPathApi+'WebDesignerMainPageDependency/getviewmodel', pageDependencyId, 'GET').success(function (response1) {
                 if (response1.IsSuccess) {
                     ajax.call(mainPathApi+'CoreModule/getviewmodel', response1.Item.LinkModuleId, 'GET').success(function (response2) {
                         rashaErManage.checkAction(response2);
@@ -331,7 +331,7 @@
 
     //Get TotalRowCount
     cmsPagegrd.getCount = function () {
-        ajax.call(mainPathApi+"CoreModulePageDependency/count", cmsPagegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"WebDesignerMainPageDependency/count", cmsPagegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPagegrd.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {
@@ -343,7 +343,7 @@
     cmsPagegrd.exportFile = function () {
         cmsPagegrd.gridOptions.advancedSearchData.engine.ExportFile = cmsPagegrd.ExportFileClass;
         cmsPagegrd.addRequested = true;
-        ajax.call(mainPathApi+'CoreModulePageDependency/exportfile', cmsPagegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPageDependency/exportfile', cmsPagegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             cmsPagegrd.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

@@ -67,7 +67,7 @@
         //#help# یافتن صفحه های مادر
         if (cmsPageDesign.classActioName != null && cmsPageDesign.classActioName.toLowerCase().indexOf("withembeddedchild") >= 0) {
             var engine = { Filters: [{ PropertyName: "ClassActionName", SearchType: 0, StringValue1: "CoreMainTemplateWithEmbeddedChild" }] };
-            ajax.call(mainPathApi+'CoreModulePageDependency/getAll', engine, 'POST').success(function (response) {
+            ajax.call(mainPathApi+'WebDesignerMainPageDependency/getAll', engine, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 cmsPageDesign.dependencyId = response.ListItems[0].Id;
                 cmsPageDesign.onloadmydata();
@@ -80,19 +80,19 @@
         //#help# صفحه بر اساس نیازمندی
 
         //GetAll MasterPages
-        var filterMasterPage = { Filters: [] };
-        filterMasterPage.Filters.push({ PropertyName: "PageAbilityType", SearchType: 0, EnumValue1: "Master" });
-        if (!angular.isDefined(cmsPageDesign.masterPageListItems))
-            ajax.call(mainPathApi+'CorePage/getall', filterMasterPage, 'POST').success(function (response) {
-                rashaErManage.checkAction(response);
-                if (response != null) {
-                    cmsPageDesign.masterPageListItems = response.ListItems;
-                }
-            }).error(function (data, errCode, c, d) {
-                rashaErManage.checkAction(data, errCode);
-            });
+        // var filterMasterPage = { Filters: [] };
+        // filterMasterPage.Filters.push({ PropertyName: "PageAbilityType", SearchType: 0, EnumValue1: "Master" });
+        // if (!angular.isDefined(cmsPageDesign.masterPageListItems))
+        //     ajax.call(mainPathApi+'WebDesignerMainPage/getall', filterMasterPage, 'POST').success(function (response) {
+        //         rashaErManage.checkAction(response);
+        //         if (response != null) {
+        //             cmsPageDesign.masterPageListItems = response.ListItems;
+        //         }
+        //     }).error(function (data, errCode, c, d) {
+        //         rashaErManage.checkAction(data, errCode);
+        //     });
         if (!angular.isDefined(cmsPageDesign.cmsPageTemplatesListItems))
-            ajax.call(mainPathApi+'CorePageTemplate/getallAvailable', {}, 'POST').success(function (response) {
+            ajax.call(mainPathApi+'WebDesignerMainPageTemplate/getallAvailable', {}, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 cmsPageDesign.cmsPageTemplatesListItems = response.ListItems;
             }).error(function (data, errCode, c, d) {
@@ -100,7 +100,7 @@
             });
 
         if (!angular.isDefined(cmsPageDesign.pageAbilityTypeEnum))
-            ajax.call(mainPathApi+'CorePage/getenumpagetype', {}, 'POST').success(function (response) {
+            ajax.call(mainPathApi+'WebDesignerMainPage/getenumpagetype', {}, 'POST').success(function (response) {
                 cmsPageDesign.pageAbilityTypeEnum = response.ListItems;
             }).error(function (data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
@@ -111,7 +111,7 @@
     cmsPageDesign.onloadmydata = function () {
         cmsPageDesign.gridOptions.advancedSearchData.engine.Filters.push({ PropertyName: "LinkPageDependencyId", IntValue1: cmsPageDesign.dependencyId, SearchType: 0 }); // Filter pages with LinkPageDependencyId
         cmsPageDesign.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CorePage/getallwithalias', cmsPageDesign.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/getall', cmsPageDesign.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageDesign.gridOptions.resultAccess = response.resultAccess;
             cmsPageDesign.ListItems = response.ListItems;
@@ -135,12 +135,12 @@
         item.rowOption = null;
         item.virtual_CmsModulePageDependency = null;
         item.virtual_CmsSite = null;
-        var themName = pageTemplateTitle(item.LinkPageTemplateId);
+        var themName = pageTemplateTitle(item.LinkPageTemplateGuId);
         if (!themName || themName.length == 0)
             return;
         //var urlTemplate = 'HtmlBuilder/?id=' + item.Id;// + '&theme=' + themName;
         //var urlTemplate = mainPath+'HtmlBuilder/home/index/' + item.Id+'?token='+token;
-        var urlTemplate = mainPath+'HtmlBuilder/home/token/' + item.Id+'?token='+encodeURIComponent(token);
+        var urlTemplate = '/HtmlBuilder/home/token/' + item.Id+'?token='+encodeURIComponent(token);
         localStorage.setItem("pageItem", $.trim(angular.toJson(item)));
         var win = window.open(urlTemplate, '_blank');
         win.focus();
@@ -150,18 +150,18 @@
         item.rowOption = null;
         item.virtual_CmsModulePageDependency = null;
         item.virtual_CmsSite = null;
-        var urlTemplate = '/RenderViewPage/' + item.Id;
+        var urlTemplate = '/page/' + item.Id;
         localStorage.setItem("pageItem", $.trim(angular.toJson(item)));
         var win = window.open(urlTemplate, '_blank');
         win.focus();
     }
 
     cmsPageDesign.enableMainPage = function (item) {
-        ajax.call(mainPathApi+'CorePage/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/getviewmodel', item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageDesign.selectedItem = response.Item;
             cmsPageDesign.selectedItem.PageDependencyIsDefualtPage = (response.Item.PageDependencyIsDefualtPage == true) ? false : true;
-            ajax.call(mainPathApi+'CorePage/edit', cmsPageDesign.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(mainPathApi+'WebDesignerMainPage/edit', cmsPageDesign.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     var index = cmsPageDesign.pageList.indexOf(item);
@@ -182,7 +182,7 @@
     cmsPageDesign.openAddModal = function () {
         cmsPageDesign.modalTitle = 'اضافه';
         cmsPageDesign.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CorePage/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/getviewmodel', '0', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageDesign.selectedItem = response.Item;
             cmsPageDesign.selectedItem.LinkPageDependencyId = cmsPageDesign.dependencyId;
@@ -217,7 +217,7 @@
                 else
                     cmsPageDesign.selectedItem.Keyword += ',' + item.text;
             });
-        ajax.call(mainPathApi+'CorePage/add', cmsPageDesign.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/add', cmsPageDesign.selectedItem, 'POST').success(function (response) {
             cmsPageDesign.addRequested = false;
             cmsPageDesign.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -236,7 +236,7 @@
             return;
         cmsPageDesign.addRequested = true;
         if (frm.$name == "frmCmsPageAdd") {   // Functions was called from add modal
-            ajax.call(mainPathApi+'CorePage/add', cmsPageDesign.selectedItem, 'POST').success(function (response) {
+            ajax.call(mainPathApi+'WebDesignerMainPage/add', cmsPageDesign.selectedItem, 'POST').success(function (response) {
                 cmsPageDesign.addRequested = false;
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
@@ -252,7 +252,7 @@
             });
         }
         else {  // Functions was called from edit modal
-            ajax.call(mainPathApi+'CorePage/edit', cmsPageDesign.selectedItem, 'PUT').success(function (response) {
+            ajax.call(mainPathApi+'WebDesignerMainPage/edit', cmsPageDesign.selectedItem, 'PUT').success(function (response) {
                 cmsPageDesign.addRequested = false;
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
@@ -276,7 +276,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'CorePage/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/getviewmodel', item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageDesign.selectedItem = response.Item;
             cmsPageDesign.filePickerFavIcon.filename = null;
@@ -324,7 +324,7 @@
             else
                 cmsPageDesign.selectedItem.Keyword += ',' + item.text;
         });
-        ajax.call(mainPathApi+'CorePage/edit', cmsPageDesign.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/edit', cmsPageDesign.selectedItem, 'PUT').success(function (response) {
             cmsPageDesign.busyIndicator.isActive = false;
             cmsPageDesign.addRequested = false;
             if (response.IsSuccess) {
@@ -361,10 +361,10 @@
             if (isConfirmed) {
                 cmsPageDesign.busyIndicator.isActive = true;
                 cmsPageDesign.addRequested = true;
-                ajax.call(mainPathApi+'CorePage/getviewmodel', item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'WebDesignerMainPage/getviewmodel', item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsPageDesign.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'CorePage/delete', cmsPageDesign.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'WebDesignerMainPage/delete', cmsPageDesign.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsPageDesign.replaceItem(cmsPageDesign.selectedItemForDelete.Id);
@@ -383,10 +383,10 @@
 
 
 
-    pageTemplateTitle = function (PageTemplateId) {
-        if (cmsPageDesign.cmsPageTemplatesListItems != undefined && PageTemplateId > 0)
+    pageTemplateTitle = function (PageTemplateGuId) {
+        if (cmsPageDesign.cmsPageTemplatesListItems != undefined )
             for (var i = 0; i < cmsPageDesign.cmsPageTemplatesListItems.length; i++) {
-                if (cmsPageDesign.cmsPageTemplatesListItems[i].Id === PageTemplateId)
+                if (cmsPageDesign.cmsPageTemplatesListItems[i].Id === PageTemplateGuId)
                     return cmsPageDesign.cmsPageTemplatesListItems[i].Folder;
             }
         rashaErManage.showMessage($filter('translatentk')('Template_specifications_not_found'));
@@ -394,7 +394,7 @@
     }
 
     cmsPageDesign.saveFromAdmin = function (item) {
-        ajax.call(mainPathApi+'CorePage/SetDefaultAdminValuePage', item.Id, 'GET').success(function (res) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/SetDefaultAdminValuePage', item.Id, 'GET').success(function (res) {
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
                 rashaErManage.showMessage($filter('translatentk')('Saving_successfully'));
@@ -440,7 +440,7 @@
         cmsPageDesign.LargeImageSelectPage = {};
         cmsPageDesign.addRequested = true;
         cmsPageDesign.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CorePage/GetAllDefaultPagesBySiteCategory', { pageId: cmsPageDesign.selectedItem.Id, LinkSiteCategoryId: categoryId, LinkPageDependencyId: cmsPageDesign.dependencyId }, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/GetAllDefaultPagesBySiteCategory', { pageId: cmsPageDesign.selectedItem.Id, LinkSiteCategoryId: categoryId, LinkPageDependencyId: cmsPageDesign.dependencyId }, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsPageDesign.cmsDefaultPageListItems = response.ListItems;
@@ -477,7 +477,7 @@
         cmsPageDesign.addRequested = true;
         cmsPageDesign.busyIndicator.isActive = true;
         var model = { id: cmsPageDesign.selectedItem.Id, ver: "1", jsonValue: cmsPageDesign.LargeImageSelectPage.JsonValue };
-        ajax.call(mainPathApi+'CorePage/EditHtml', model, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/EditHtml', model, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsPageDesign.closeModal();
@@ -740,7 +740,7 @@
     //End #fastUpload
     //Get TotalRowCount
     cmsPageDesign.getCount = function () {
-        ajax.call(mainPathApi+"CorePage/count", cmsPageDesign.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"WebDesignerMainPage/count", cmsPageDesign.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageDesign.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

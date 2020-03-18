@@ -307,7 +307,7 @@
     }
     //Get TotalRowCount
     cmsModuleSitegrd.getCount = function () {
-        ajax.call(mainPathApi+"CorePage/count", cmsModuleSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"WebDesignerMainPage/count", cmsModuleSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModuleSitegrd.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

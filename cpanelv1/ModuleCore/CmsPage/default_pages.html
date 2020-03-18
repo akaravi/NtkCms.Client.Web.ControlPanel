@@ -78,13 +78,13 @@
                             </div>
                             <div style="position: fixed;top: 346px;">
                                 <br />
-                                <a class="btn btn-primary" style="width: 402px;" ng-disabled="!(cmsPageDesign.LargeImageSelect.Id > 0)" target="_blank" href="/RenderViewPage/{{ cmsPageDesign.LargeImageSelect.Id}}/{{ cmsPageDesign.LargeImageSelect.LinkSiteId}}">پیش نمایش سایت اصلی</a>
+                                <a class="btn btn-primary" style="width: 402px;" ng-disabled="!(cmsPageDesign.LargeImageSelect.Id > 0)" target="_blank" href="/page/{{ cmsPageDesign.LargeImageSelect.Id}}/{{ cmsPageDesign.LargeImageSelect.LinkSiteId}}">پیش نمایش سایت اصلی</a>
                                 <br />
-                                <a class="btn btn-primary" style="width: 402px;" ng-disabled="cmsPageDesign.LargeImageSelect.LinkCmsPageId == null" target="_blank" href="/RenderViewPage/{{ cmsPageDesign.LargeImageSelect.Id}}/{{ cmsPageDesign.LargeImageSelect.LinkSiteId}}/?RenderViewPageByMaster=false"> پیش نمایش سایت اصلی بدون صفحه مادر</a>
+                                <a class="btn btn-primary" style="width: 402px;" ng-disabled="cmsPageDesign.LargeImageSelect.LinkCmsPageId == null" target="_blank" href="/page/{{ cmsPageDesign.LargeImageSelect.Id}}/{{ cmsPageDesign.LargeImageSelect.LinkSiteId}}/?pageByMaster=false"> پیش نمایش سایت اصلی بدون صفحه مادر</a>
                                 <br />
-                                <a class="btn btn-primary" style="width: 402px;" ng-disabled="!(cmsPageDesign.LargeImageSelect.Id > 0)" target="_blank" href="/RenderViewPage/{{ cmsPageDesign.LargeImageSelect.Id}}/{{ tokenInfo.Item.virtual_CmsSite.Id}}/{{ cmsPageDesign.LinkParentId}}">پیش نمایش سایت </a>
+                                <a class="btn btn-primary" style="width: 402px;" ng-disabled="!(cmsPageDesign.LargeImageSelect.Id > 0)" target="_blank" href="/page/{{ cmsPageDesign.LargeImageSelect.Id}}/{{ tokenInfo.Item.virtual_CmsSite.Id}}/{{ cmsPageDesign.LinkParentId}}">پیش نمایش سایت </a>
                                 <br />
-                                <a class="btn btn-primary" style="width: 402px;" ng-disabled="cmsPageDesign.selectedItem.LinkCmsPageId == null" target="_blank" href="/RenderViewPage/{{ cmsPageDesign.LargeImageSelect.Id}}/{{ tokenInfo.Item.virtual_CmsSite.Id}}/?RenderViewPageByMaster=false"> پیش نمایش سایت  بدون صفحه مادر</a>
+                                <a class="btn btn-primary" style="width: 402px;" ng-disabled="cmsPageDesign.selectedItem.LinkCmsPageId == null" target="_blank" href="/page/{{ cmsPageDesign.LargeImageSelect.Id}}/{{ tokenInfo.Item.virtual_CmsSite.Id}}/?pageByMaster=false"> پیش نمایش سایت  بدون صفحه مادر</a>
                             </div>
                             <div class="form-group" style="position: fixed;top: 515px;">
                                 <button class="btn btn-primary" ng-disabled="cmsPageDesign.addRequested" type="submit">{{'save'|lowercase|translate}}</button>

@@ -17,12 +17,12 @@ export const localeOptions = [{
     },
 ];
 export const cmsServerConfig = {
-    mainPathServer: "http://oco.ir",
+    mainPathServer: "https://oco.ir",
     mainPathServer2: "http://6aa9d578.ngrok.io",
     mainPathServer1:"http://localhost:1032",
     mainPath1: "/",
     mainPath2: "http://6aa9d578.ngrok.io",
-    mainPath: "http://oco.ir",
+    mainPath: "https://oco.ir",
     mainPath1: "http://localhost:1032",
 
     mainPathCmsFiles: "cpanelv1/images/",
