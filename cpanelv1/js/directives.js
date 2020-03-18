@@ -4329,7 +4329,7 @@ function rashaAddMenu($compile, ajax, rashaErManage) {
 
             var listItems = {};
             scope.menuItem = "x";
-            ajax.call(mainPathApi + "CoreSiteMenu/getall", "", 'POST').success(function (response) {
+            ajax.call(mainPathApi + "WebDesignerMainMenu/getall", "", 'POST').success(function (response) {
                 scope.menuDrop = response.ListItems;
                 listItems = scope.menuDrop;
             }).error(function (data, errCode, c, d) {
@@ -4379,7 +4379,7 @@ function rashaAddMenu($compile, ajax, rashaErManage) {
 
                     scope.menuDrop[objectId].JsonValues = JSON.stringify(scope.data);
 
-                    ajax.call(mainPathApi + 'CoreSiteMenu/edit', scope.menuDrop[objectId], 'PUT').success(function (response) {
+                    ajax.call(mainPathApi + 'WebDesignerMainMenu/edit', scope.menuDrop[objectId], 'PUT').success(function (response) {
                         rashaErManage.checkAction(response);
                         if (response.IsSuccess) {
                             //console.log("Add Succseeded!");
