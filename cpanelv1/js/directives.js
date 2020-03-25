@@ -1170,7 +1170,7 @@ function rashaGrid($compile, $rootScope, ajax) {
             if (config.totalcolumns > 0)
                 config.percentWidth = 100 / config.totalcolumns;
             angular.forEach(config.columns, function (item, key) {
-                item.srcThumbnail = '{{infoDomainAddress}}imageThumbnails/{{x.' + item.name + '}}?Authorization=' + encodeURIComponent(localStorage.getItem('userGlobaltoken'));
+                item.srcThumbnail = '{{infoDomainAddress}}imageThumbnails/{{x.' + item.name + '}}?MvcAuthorization=' + encodeURIComponent(localStorage.getItem('userGlobaltoken'));
                 if (!item.visible)
                     item.visible = true;
                 if (!item.sortable)
@@ -6092,7 +6092,7 @@ function rashaThumbnail($compile, rashaErManage) {
             if (!imageId || imageId.length == 0)
                 return;
 
-            var srcThumbnail = '{{infoDomainAddress}}imageThumbnails/' + imageId + '?Authorization=' + encodeURIComponent(localStorage.getItem('userGlobaltoken'));
+            var srcThumbnail = '{{infoDomainAddress}}imageThumbnails/' + imageId + '?MvcAuthorization=' + encodeURIComponent(localStorage.getItem('userGlobaltoken'));
 
             var template = '<img style="width:' + config.width + 'px;height:' + config.height + 'px" src="' + srcThumbnail + '" >';
 
