@@ -88,14 +88,13 @@
         ajax.call(mainPathApi + 'ApplicationLayoutvalue/getone', filterDataModel, 'POST').success(function (responseValue) {
             appLayoutValue.busyIndicator.isActive = false;
             appLayoutValue.addRequested = false;
+            appLayoutValue.selectedItem = responseValue.Item;
             if (responseValue.IsSuccess) {
-                appLayoutValue.selectedItem = responseValue.Item;
                 appLayoutValue.ConfigSite = $.parseJSON(appLayoutValue.selectedItem.JsonFormValues);
                 if (appLayoutValue.selectedItem.JsonFormValues === "") {
                     appLayoutValue.ConfigSite = $.parseJSON(appLayoutValue.gridOptions.selectedRow.item.JsonFormDefaultValue);
                 }
             } else {
-
                 appLayoutValue.ConfigSite = $.parseJSON(appLayoutValue.gridOptions.selectedRow.item.JsonFormDefaultValue);
             }
             $modal.open({

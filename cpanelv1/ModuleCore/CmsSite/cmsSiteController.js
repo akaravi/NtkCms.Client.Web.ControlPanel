@@ -8,6 +8,8 @@
     if (itemRecordStatus != undefined) cmsSitegrd.itemRecordStatus = itemRecordStatus;
 
     var LinkCreatedBySiteId = 0;
+    cmsSitegrd.selectedItem = {};
+    cmsSitegrd.selectedItem.ExpireDate = date;
 
     cmsSitegrd.busyIndicator = {
         isActive: true,
@@ -67,9 +69,7 @@
         }
     }
 
-    //var date = moment().format();
-    //cmsSitegrd.selectedItem = { AccountingFormCreatedDate: date, AccountingFormUpdatedDate: date };
-
+  
     cmsSitegrd.AccountingFormCreatedDateDatePickerConfig = {
         defaultDate: date,
         setTime: function (date) {
@@ -84,10 +84,8 @@
         }
     }
     var date = moment().format();
+    
 
-    cmsSitegrd.ExpireDate = {
-        defaultDate: date,
-    }
     //#tagsInput -----
     cmsSitegrd.onTagAdded = function (tag) {
         if (!angular.isDefined(tag.id)) { //Check if this a new or a existing tag (existing tags comprise with an id)
@@ -349,11 +347,12 @@
         ajax.call(mainPathApi + 'CoreSite/getviewmodel', cmsSitegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSitegrd.selectedItem = response.Item;
+            if(!cmsSitegrd.selectedItem.ExpireDate)
+                cmsSitegrd.selectedItem.ExpireDate=moment().add(1, "months").format();
             //Clear FavIcon file picker
             cmsSitegrd.filePickerFavIcon.filename = null;
             cmsSitegrd.filePickerFavIcon.fileId = null;
             //Set DatPickers 
-            cmsSitegrd.ExpireDate.defaultDate = cmsSitegrd.selectedItem.ExpireDate;
             cmsSitegrd.AccountingFormCreatedDateDatePickerConfig.defaultDate = cmsSitegrd.selectedItem.AccountingFormCreatedDate;
             cmsSitegrd.AccountingFormUpdatedDateDatePickerConfig.defaultDate = cmsSitegrd.selectedItem.AccountingFormUpdatedDate;
             //Set FavIcon
@@ -721,18 +720,10 @@
                 } else {
                     item.AccessBuyMonth = 2;
                 }
-                var expireDateDatePickerConfig = {
-                    defaultDate: date,
-                    setTime: function (date) {
-                        this.defaultDate = date;
-                    }
-                }
-                //Assing each DatePicker to each Module and set each DatePicker date to now
-                expireDateDatePickerConfig.setTime(moment().add(item.AccessBuyMonth, "months").format());
+                
                 item.ModuleSiteExpireDate = moment().add(item.AccessBuyMonth, "months").format();
             });
             cmsSitegrd.selectedItem = {};
-            //cmsSitegrd.selectedItem.ExpireDate = now;
 
             var engine = {};
             engine.Filters = [];
@@ -743,10 +734,7 @@
             // });
             ajax.call(mainPathApi + "CoreModuleSite/GetAll/" + siteId, engine, 'POST').success(function (response) {
                 cmsSitegrd.busyIndicator.isActive = false;
-                // for (var j = 0; j < response.ListItems.length; j++) {
-                //     if (!response.ListItems[j].ExpireDate)
-                //         response.ListItems[j].ExpireDate = null;
-                // }
+              
                 cmsSitegrd.CmsModuleSite = angular.extend(cmsSitegrd.CmsModuleSite, response.ListItems);
                 cmsSitegrd.CmsModuleSiteDb = angular.extend(cmsSitegrd.CmsModuleSiteDb, response.ListItems);
                 cmsSitegrd.cmsModulesSiteresultAccess = response.resultAccess;
@@ -760,15 +748,12 @@
                             cmsSitegrd.cmsModulesListItems[i].CmsModuleSiteRecordStatus = cmsSitegrd.CmsModuleSiteDb[j].RecordStatus;
                             cmsSitegrd.cmsModulesListItems[i].RenewDate = cmsSitegrd.CmsModuleSiteDb[j].RenewDate;
                             if (cmsSitegrd.CmsModuleSiteDb[j].ExpireDate) {
-                                cmsSitegrd.cmsModulesListItems[i].ModuleSiteExpireDate=cmsSitegrd.CmsModuleSiteDb[j].ExpireDate;//.setTime(cmsSitegrd.CmsModuleSiteDb[j].ExpireDate);
+                                cmsSitegrd.cmsModulesListItems[i].ModuleSiteExpireDate=cmsSitegrd.CmsModuleSiteDb[j].ExpireDate;
                             } else {
                                 cmsSitegrd.CmsModuleSiteDb[j].ExpireDate = moment().add(cmsSitegrd.cmsModulesListItems[i].AccessBuyMonth, "months").format()
                                 cmsSitegrd.CmsModuleSiteDb[j].Edited = true;
                             }
-                            // if (cmsSitegrd.cmsModulesListItems[i].ModuleSiteExpireDate=moment().add(item.AccessBuyMonth, "months").format().defaultDate <= moment().format())
-                            //     cmsSitegrd.cmsModulesListItems[i].hasExpired = true;
-                                // if (cmsSitegrd.cmsModulesListItems[i].ModuleSiteExpireDate<)
-                                // cmsSitegrd.cmsModulesListItems[i].hasExpired = true;
+                         
                             if (cmsSitegrd.cmsModulesListItems[i].CmsModuleSiteRecordStatus == 1 && !cmsSitegrd.cmsModulesListItems[i].hasExpired) //if CmsModuleSite RecordSatus is Available
                                 cmsSitegrd.cmsModulesListItems[i].Checked = true;
                         }

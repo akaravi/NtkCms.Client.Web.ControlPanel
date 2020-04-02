@@ -99,7 +99,12 @@
                             <div class="form-group" ng-show="cmsSitegrd.gridOptions.resultAccess.AccessEditField.indexOf('ExpireDate')>-1">
                                 <label class="col-sm-4 control-label">ExpireDate</label>
                                 <div class="col-sm-8">
-                                    <div rasha-date-picker="cmsSitegrd.ExpireDate" ng-model="cmsSitegrd.selectedItem.ExpireDate"></div><input type="hidden" ng-model="cmsSitegrd.ExpireDate" />
+                                    <adm-dtp ng-model='ExpireDate' ng-model-db="cmsSitegrd.selectedItem.ExpireDate"
+                                    full-data='ExpireDate_detail'  options='{calType: "jalali",format: "YYYY/MM/DD", zIndex:10000}'
+                                    ng-show="cmsSitegrd.gridOptions.resultAccess.AccessEditField.indexOf('ExpireDate')>-1"></adm-dtp>
+
+                                    <!-- <div rasha-date-picker="cmsSitegrd.ExpireDate" ng-model="cmsSitegrd.selectedItem.ExpireDate"></div> -->
+                                    <!-- <input type="hidden" ng-model="cmsSitegrd.selectedItem.ExpireDate" /> -->
                                 </div>
                             </div>
                             <!--<div class='hr-line-dashed'></div>

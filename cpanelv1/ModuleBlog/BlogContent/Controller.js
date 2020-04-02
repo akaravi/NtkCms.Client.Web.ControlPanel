@@ -95,16 +95,7 @@
     }
     var date = moment().format();
     blogContent.selectedItem.ExpireDate = date;
-    // blogContent.datePickerConfig = {
-    //   defaultDate: date
-    // };
-
-    // blogContent.FromDate = {
-    //   defaultDate: date
-    // };
-    // blogContent.ExpireDate = {
-    //   defaultDate: date
-    // };
+  
     //#help/ سلکتور دسته بندی در ویرایش محتوا
     blogContent.LinkCategoryIdSelector = {
       displayMember: "Title",
@@ -1133,8 +1124,6 @@
           blogContent.selectedItem = response1.Item;
 
 
-          // blogContent.FromDate.defaultDate = blogContent.selectedItem.FromDate;
-          // blogContent.ExpireDate.defaultDate = blogContent.selectedItem.ExpireDate;
           blogContent.filePickerMainImage.filename = null;
           blogContent.filePickerMainImage.fileId = null;
           blogContent.filePickerFilePodcast.filename = null;
