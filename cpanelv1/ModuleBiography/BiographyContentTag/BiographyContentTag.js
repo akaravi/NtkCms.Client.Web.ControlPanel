@@ -6,7 +6,7 @@
     }
     biographyContentTag.init = function () {
         biographyContentTag.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"biographyContenttag/getall", biographyContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"biographyContenttag/getall", biographyContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             biographyContentTag.busyIndicator.isActive = false;
 
@@ -23,7 +23,7 @@
     biographyContentTag.addRequested = false;
     biographyContentTag.openAddModal = function () {
         biographyContentTag.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyContenttag/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'biographyContenttag/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             biographyContentTag.selectedItem = response.Item;
             $modal.open({
@@ -44,7 +44,7 @@
         biographyContentTag.addRequested = true;
         biographyContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyContenttag/add', biographyContentTag.selectedItem , 'POST').success(function (response) {
+        ajax.call(mainPathApi+'biographyContenttag/add', biographyContentTag.selectedItem , 'POST').success(function (response) {
             biographyContentTag.addRequested = false;
             biographyContentTag.busyIndicator.isActive = false;
 
@@ -69,7 +69,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyContenttag/getviewmodel',  biographyContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(mainPathApi+'biographyContenttag/getviewmodel',  biographyContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             biographyContentTag.selectedItem = response.Item;
             $modal.open({
@@ -89,7 +89,7 @@
         }
         biographyContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyContenttag/edit',  biographyContentTag.selectedItem , 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'biographyContenttag/edit',  biographyContentTag.selectedItem , 'PUT').success(function (response) {
             biographyContentTag.addRequested = true;
             rashaErManage.checkAction(response);
             biographyContentTag.busyIndicator.isActive = false;
@@ -134,11 +134,11 @@
             if (isConfirmed) {
                 biographyContentTag.busyIndicator.isActive = true;
                 console.log(biographyContentTag.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'biographyContenttag/getviewmodel',  biographyContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(mainPathApi+'biographyContenttag/getviewmodel',  biographyContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     biographyContentTag.selectedItemForDelete = response.Item;
                     console.log(biographyContentTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'biographyContenttag/delete',  biographyContentTag.selectedItemForDelete , 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'biographyContenttag/delete',  biographyContentTag.selectedItemForDelete , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         biographyContentTag.busyIndicator.isActive = false;
 

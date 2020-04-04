@@ -14,14 +14,14 @@
     var buttonIsPressed = false; // برای جلوگیری از فشرده شدن چندباره دکمه ها
     cmsLocation.init = function () {
         cmsLocation.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreLocation/getall", cmsLocation.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreLocation/getall", cmsLocation.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             cmsLocation.ListItems = response.ListItems;
             cmsLocation.gridOptions.fillData(cmsLocation.ListItems, response.resultAccess);
             cmsLocation.gridOptions.currentPageNumber = response.CurrentPageNumber;
             cmsLocation.gridOptions.totalRowCount = response.TotalRowCount;
             cmsLocation.gridOptions.rowPerPage = response.RowPerPage;
             cmsLocation.gridOptions.maxSize = 5;
-            ajax.call(cmsServerConfig.configApiServerPath+"CoreLocation/getalllocationtype", {}, 'POST').success(function (response) {
+            ajax.call(mainPathApi+"CoreLocation/getalllocationtype", {}, 'POST').success(function (response) {
                 cmsLocation.locationTypeListItems = response.ListItems;
                 //Filter LocationType
                 $.each(cmsLocation.ListItems, function (index, location) {
@@ -45,7 +45,7 @@
         if (buttonIsPressed) { return };
         cmsLocation.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreLocation/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(mainPathApi+'CoreLocation/getviewmodel', '0', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsLocation.selectedItem = response.Item;
@@ -61,7 +61,7 @@
         if (frm.$invalid)
             return;
         cmsLocation.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreLocation/add', cmsLocation.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'CoreLocation/add', cmsLocation.selectedItem, 'POST').success(function (response) {
             cmsLocation.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -84,7 +84,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreLocation/getviewmodel', cmsLocation.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'CoreLocation/getviewmodel', cmsLocation.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsLocation.selectedItem = response.Item;
@@ -105,7 +105,7 @@
             rashaErManage.showMessage($filter('translatentk')('Email_Format_Is_Not_Correct'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreLocation/edit', cmsLocation.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'CoreLocation/edit', cmsLocation.selectedItem, 'PUT').success(function (response) {
             cmsLocation.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -147,12 +147,12 @@
             if (isConfirmed) {
                 console.log(cmsLocation.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreLocation/getviewmodel', cmsLocation.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'CoreLocation/getviewmodel', cmsLocation.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     cmsLocation.selectedItemForDelete = response.Item;
                     console.log(cmsLocation.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreLocation/delete', cmsLocation.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'CoreLocation/delete', cmsLocation.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsLocation.replaceItem(cmsLocation.selectedItemForDelete.Id);
@@ -214,7 +214,7 @@
     cmsLocation.exportFile = function () {
         cmsLocation.addRequested = true;
         cmsLocation.gridOptions.advancedSearchData.engine.ExportFile = cmsLocation.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'Corelocation/exportfile', cmsLocation.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'Corelocation/exportfile', cmsLocation.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 $window.open(response.LinkFile, '_blank');
@@ -256,7 +256,7 @@
     }
     //Get TotalRowCount
     cmsLocation.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreLocation/count", cmsLocation.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreLocation/count", cmsLocation.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsLocation.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

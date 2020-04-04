@@ -59,7 +59,7 @@
         engine.Filters.push(filterModel);
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+"linkManagementAccounting/getall", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"linkManagementAccounting/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementAccounting.busyIndicator.isActive = false;
             linkManagementAccounting.ListItems = response.ListItems;
@@ -74,7 +74,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         //linkManagementAccounting.busyIndicator.isActive = true;
-        //ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/getall', {}, 'POST').success(function (response) {
+        //ajax.call(mainPathApi+'linkManagementAccounting/getall', {}, 'POST').success(function (response) {
         //    linkManagementAccounting.ContentList = response.ListItems;
         //    linkManagementAccounting.busyIndicator.isActive = false;
         //});
@@ -85,7 +85,7 @@
     linkManagementAccounting.addRequested = false;
     linkManagementAccounting.openAddModal = function () {
         linkManagementAccounting.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'linkManagementAccounting/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementAccounting.busyIndicator.isActive = false;
             linkManagementAccounting.selectedItem = response.Item;
@@ -106,7 +106,7 @@
         }
         linkManagementAccounting.busyIndicator.isActive = true;
         linkManagementAccounting.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/add', linkManagementAccounting.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'linkManagementAccounting/add', linkManagementAccounting.selectedItem, 'POST').success(function (response) {
             linkManagementAccounting.addRequested = false;
             linkManagementAccounting.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -133,7 +133,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/getviewmodel', linkManagementAccounting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'linkManagementAccounting/getviewmodel', linkManagementAccounting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementAccounting.selectedItem = response.Item;
             linkManagementAccounting.BeginDate.defaultDate = linkManagementAccounting.selectedItem.BeginDate;
@@ -154,7 +154,7 @@
             return;
         }
         linkManagementAccounting.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/edit', linkManagementAccounting.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'linkManagementAccounting/edit', linkManagementAccounting.selectedItem, 'PUT').success(function (response) {
             linkManagementAccounting.addRequested = true;
             rashaErManage.checkAction(response);
             linkManagementAccounting.busyIndicator.isActive = false;
@@ -197,9 +197,9 @@
             if (isConfirmed) {
                 linkManagementAccounting.busyIndicator.isActive = true;
                 console.log(linkManagementAccounting.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/getviewmodel', linkManagementAccounting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'linkManagementAccounting/getviewmodel', linkManagementAccounting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     linkManagementAccounting.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/delete', linkManagementAccounting.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'linkManagementAccounting/delete', linkManagementAccounting.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         linkManagementAccounting.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -316,7 +316,7 @@
     linkManagementAccounting.exportFile = function () {
         linkManagementAccounting.addRequested = true;
         linkManagementAccounting.gridOptions.advancedSearchData.engine.ExportFile = linkManagementAccounting.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/exportfile', linkManagementAccounting.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'linkManagementAccounting/exportfile', linkManagementAccounting.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             linkManagementAccounting.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -359,7 +359,7 @@
     }
     //Get TotalRowCount
     linkManagementAccounting.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"linkManagementAccounting/count", linkManagementAccounting.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"linkManagementAccounting/count", linkManagementAccounting.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             linkManagementAccounting.addRequested = false;
             rashaErManage.checkAction(response);
             linkManagementAccounting.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

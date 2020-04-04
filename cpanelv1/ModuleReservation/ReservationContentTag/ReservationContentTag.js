@@ -6,7 +6,7 @@
     }
     reservationContentTag.init = function () {
         reservationContentTag.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"reservationContenttag/getall", reservationContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"reservationContenttag/getall", reservationContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             reservationContentTag.busyIndicator.isActive = false;
 
@@ -23,7 +23,7 @@
     reservationContentTag.addRequested = false;
     reservationContentTag.openAddModal = function () {
         reservationContentTag.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationContenttag/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'reservationContenttag/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             reservationContentTag.selectedItem = response.Item;
             $modal.open({
@@ -45,7 +45,7 @@
         reservationContentTag.addRequested = true;
         reservationContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationContenttag/add', reservationContentTag.selectedItem , 'POST').success(function (response) {
+        ajax.call(mainPathApi+'reservationContenttag/add', reservationContentTag.selectedItem , 'POST').success(function (response) {
             reservationContentTag.addRequested = false;
             reservationContentTag.busyIndicator.isActive = false;
 
@@ -70,7 +70,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationContenttag/getviewmodel',  reservationContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(mainPathApi+'reservationContenttag/getviewmodel',  reservationContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             reservationContentTag.selectedItem = response.Item;
             $modal.open({
@@ -90,7 +90,7 @@
         }
         reservationContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationContenttag/edit',  reservationContentTag.selectedItem , 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'reservationContenttag/edit',  reservationContentTag.selectedItem , 'PUT').success(function (response) {
             reservationContentTag.addRequested = true;
             rashaErManage.checkAction(response);
             reservationContentTag.busyIndicator.isActive = false;
@@ -135,11 +135,11 @@
             if (isConfirmed) {
                 reservationContentTag.busyIndicator.isActive = true;
                 console.log(reservationContentTag.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'reservationContenttag/getviewmodel',  reservationContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(mainPathApi+'reservationContenttag/getviewmodel',  reservationContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     reservationContentTag.selectedItemForDelete = response.Item;
                     console.log(reservationContentTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'reservationContenttag/delete',  reservationContentTag.selectedItemForDelete , 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'reservationContenttag/delete',  reservationContentTag.selectedItemForDelete , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         reservationContentTag.busyIndicator.isActive = false;
 
@@ -226,7 +226,7 @@
     reservationContentTag.exportFile = function () {
         reservationContentTag.addRequested = true;
         reservationContentTag.gridOptions.advancedSearchData.engine.ExportFile = reservationContentTag.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationContentTag/exportfile', reservationContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'reservationContentTag/exportfile', reservationContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             reservationContentTag.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -269,7 +269,7 @@
     }
     //Get TotalRowCount
     reservationContentTag.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"reservationContentTag/count", reservationContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"reservationContentTag/count", reservationContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             reservationContentTag.addRequested = false;
             rashaErManage.checkAction(response);
             reservationContentTag.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

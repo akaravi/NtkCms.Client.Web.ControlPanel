@@ -25,18 +25,18 @@
     }
     botConfigCtrl.init = function () {
         botConfigCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/getAllScheduleCronType", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"TaskSchedulerSchedule/getAllScheduleCronType", {}, 'POST').success(function (response) {
             botConfigCtrl.ScheduleCronType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/getAllDayOfWeek", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"TaskSchedulerSchedule/getAllDayOfWeek", {}, 'POST').success(function (response) {
             botConfigCtrl.weekdays = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"apitelegrambotconfig/getall", botConfigCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"apitelegrambotconfig/getall", botConfigCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             botConfigCtrl.busyIndicator.isActive = false;
             botConfigCtrl.ListItems = response.ListItems;
@@ -56,7 +56,7 @@
         });
         var filterParentMenus = { Filters: [{ PropertyName: "LinkParentId", SearchType: 0, IntValueForceNullSearch: true }] };
         botConfigCtrl.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"universalmenumenuitem/getall", filterParentMenus, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"universalmenumenuitem/getall", filterParentMenus, 'POST').success(function (response) {
             botConfigCtrl.addRequested = false;
             rashaErManage.checkAction(response);
             botConfigCtrl.UninversalMenus = response.ListItems;
@@ -65,7 +65,7 @@
         });
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+"membergroup/getall", '', 'POST').success(function (response) {
+        ajax.call(mainPathApi+"membergroup/getall", '', 'POST').success(function (response) {
             if (response.ListItems.length < 1)
                 botConfigCtrl.memberGroupListItems = [{ Id: 0, Title: "گروهی وجود ندارد" }];
             else
@@ -82,7 +82,7 @@
         if (buttonIsPressed) return;
         botConfigCtrl.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegramBotConfig/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             botConfigCtrl.busyIndicator.isActive = false;
@@ -108,7 +108,7 @@
         }
         botConfigCtrl.busyIndicator.isActive = true;
         botConfigCtrl.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/add', botConfigCtrl.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegramBotConfig/add', botConfigCtrl.selectedItem, 'POST').success(function (response) {
             botConfigCtrl.addRequested = false;
             botConfigCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -132,7 +132,7 @@
             return;
         }
         botConfigCtrl.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/getviewmodel', botConfigCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegramBotConfig/getviewmodel', botConfigCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             botConfigCtrl.addRequested = false;
             rashaErManage.checkAction(response);
             botConfigCtrl.selectedItem = response.Item;
@@ -157,7 +157,7 @@
         if (!botConfigCtrl.selectUniversalMenuOnUndetectableKey)
             botConfigCtrl.selectedItem.LinkUniversalMenuIdOnUndetectableKey = null;
         botConfigCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/edit', botConfigCtrl.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegramBotConfig/edit', botConfigCtrl.selectedItem, 'PUT').success(function (response) {
             botConfigCtrl.addRequested = true;
             rashaErManage.checkAction(response);
             botConfigCtrl.busyIndicator.isActive = false;
@@ -201,11 +201,11 @@
             if (isConfirmed) {
                 botConfigCtrl.busyIndicator.isActive = true;
                 console.log(botConfigCtrl.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/getviewmodel', botConfigCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'ApiTelegramBotConfig/getviewmodel', botConfigCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     botConfigCtrl.selectedItemForDelete = response.Item;
                     console.log(botConfigCtrl.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/delete', botConfigCtrl.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'ApiTelegramBotConfig/delete', botConfigCtrl.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         botConfigCtrl.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -302,14 +302,14 @@
 
     botConfigCtrl.openGetInfoModal = function (selectedIndex, selectedId) {
         botConfigCtrl.modalTitle = 'بررسی';
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/getmeasync', selectedId, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+'ApiTelegramBotConfig/getmeasync', selectedId, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             botConfigCtrl.busyIndicator.isActive = false;
             botConfigCtrl.selectedItem = response1.Item;
             botConfigCtrl.ErrorMessage = response1.ErrorMessage;
             botConfigCtrl.IsSuccess = response1.IsSuccess;
             if (response1.IsSuccess) {
-                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/getviewmodel', selectedId, 'GET').success(function (response2) {
+                ajax.call(mainPathApi+'ApiTelegramBotConfig/getviewmodel', selectedId, 'GET').success(function (response2) {
                     rashaErManage.checkAction(response2);
                     botConfigCtrl.selectedBotConfig = response2.Item;
                     $modal.open({
@@ -319,7 +319,7 @@
                     if (botConfigCtrl.selectedItem.first_name != botConfigCtrl.gridOptions.data[selectedIndex].Title || botConfigCtrl.gridOptions.data[selectedIndex].Username != botConfigCtrl.selectedItem.username) {
                         botConfigCtrl.selectedBotConfig.Title = botConfigCtrl.selectedItem.first_name;
                         botConfigCtrl.selectedBotConfig.Username = botConfigCtrl.selectedItem.username;
-                        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/edit', botConfigCtrl.selectedBotConfig, 'PUT').success(function (response2) { //ذخیره مشخصات ربات 
+                        ajax.call(mainPathApi+'ApiTelegramBotConfig/edit', botConfigCtrl.selectedBotConfig, 'PUT').success(function (response2) { //ذخیره مشخصات ربات 
                             if (response2.IsSuccess) {
                                 botConfigCtrl.gridOptions.data[selectedIndex].Title = botConfigCtrl.selectedItem.first_name;
                                 botConfigCtrl.gridOptions.data[selectedIndex].Username = botConfigCtrl.selectedItem.username;
@@ -342,10 +342,10 @@
 
     //Test (delete this code later)
     botConfigCtrl.qrCode = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/getviewmodel', 1, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegramBotConfig/getviewmodel', 1, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             botConfigCtrl.selectedItem = response.Item;
-            ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/SetQRCodeImage', botConfigCtrl.selectedItem, 'POST').success(function (response) {
+            ajax.call(mainPathApi+'ApiTelegramBotConfig/SetQRCodeImage', botConfigCtrl.selectedItem, 'POST').success(function (response) {
                 rashaErManage.showMessage(response.ErrorMessage);
                 console.log(response);
             }).error(function (data, errCode, c, d) {
@@ -358,7 +358,7 @@
     }
 
     botConfigCtrl.setWebhook = function (data) {
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/SetWebhookAsync', botConfigCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegramBotConfig/SetWebhookAsync', botConfigCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.showMessage(response.ErrorMessage);
             botConfigCtrl.replaceItem(botConfigCtrl.gridOptions.selectedRow.item.Id, botConfigCtrl.gridOptions.selectedRow.item);
             botConfigCtrl.gridOptions.fillData(botConfigCtrl.ListItems);
@@ -369,7 +369,7 @@
         });
     }
     botConfigCtrl.setWebhookEmpty = function (data) {
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/SetWebhookAsyncEmpty', botConfigCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegramBotConfig/SetWebhookAsyncEmpty', botConfigCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.showMessage(response.ErrorMessage);
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
@@ -377,7 +377,7 @@
         });
     }
     botConfigCtrl.GetUpdatesAsyncLast = function (data) {
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/GetUpdatesAsyncLast', botConfigCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegramBotConfig/GetUpdatesAsyncLast', botConfigCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.showMessage(response.ErrorMessage);
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
@@ -385,7 +385,7 @@
         });
     }
     botConfigCtrl.GetUpdatesAsync = function (data) {
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/GetUpdatesAsync', botConfigCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegramBotConfig/GetUpdatesAsync', botConfigCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.showMessage(response.ErrorMessage);
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
@@ -464,7 +464,7 @@
         }
         if (botConfigCtrl.selectedItem.MessageType == 2 || botConfigCtrl.selectedItem.MessageType == 3 || botConfigCtrl.selectedItem.MessageType == 4 || botConfigCtrl.selectedItem.MessageType == 6 || botConfigCtrl.selectedItem.MessageType == 7)
             botConfigCtrl.selectedItem.LinkFileId = botConfigCtrl.selectedNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/SendMessage', botConfigCtrl.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegramBotConfig/SendMessage', botConfigCtrl.selectedItem, 'POST').success(function (response) {
             botConfigCtrl.busyIndicator.isActive = false;
             botConfigCtrl.addRequested = false;
             botConfigCtrl.sendButtonText = "ارسال";
@@ -568,7 +568,7 @@
             type: "Post",
             async: false,
             data: JSON.stringify(FilterModel),
-            url: cmsServerConfig.configApiServerPath+"FileCategory/getall",
+            url: mainPathApi+"FileCategory/getall",
             contentType: "application/json",
             headers: { "Authorization": $rootScope.tokenInfo.UserTicketToken },
             success: function (response1) {
@@ -578,7 +578,7 @@
                     type: "Post",
                     async: false,
                     data: JSON.stringify(FilterModel),
-                    url: cmsServerConfig.configApiServerPath+"FileContent/getall",
+                    url: mainPathApi+"FileContent/getall",
                     contentType: "application/json",
                     headers: { "Authorization": $rootScope.tokenInfo.UserTicketToken },
                     success: function (request2) {
@@ -693,7 +693,7 @@
     botConfigCtrl.exportFile = function () {
         botConfigCtrl.gridOptions.advancedSearchData.engine.ExportFile = botConfigCtrl.ExportFileClass;
         botConfigCtrl.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/exportfile', botConfigCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegramBotConfig/exportfile', botConfigCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             botConfigCtrl.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -736,7 +736,7 @@
     }
     //Get TotalRowCount
     botConfigCtrl.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramBotConfig/count", botConfigCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"ApiTelegramBotConfig/count", botConfigCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             botConfigCtrl.addRequested = false;
             rashaErManage.checkAction(response);
             botConfigCtrl.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

@@ -31,7 +31,7 @@
     var thisTableFieldICollection = 'CmsCpMainMenuCmsUserGroup';
 
 
-    ajax.call(cmsServerConfig.configApiServerPath+"CoreUserGroup/getall", {}, 'POST').success(function (response) {
+    ajax.call(mainPathApi+"CoreUserGroup/getall", {}, 'POST').success(function (response) {
         cmsCpMainMenugrd.menueGroups = response.ListItems;
     }).error(function (data, errCode, c, d) {
         console.log(data);
@@ -88,7 +88,7 @@
 
 
     cmsCpMainMenugrd.moduleList = {};
-    ajax.call(cmsServerConfig.configApiServerPath+'CoreModule/getall', {}, 'POST').success(function (response) {
+    ajax.call(mainPathApi+'CoreModule/getall', {}, 'POST').success(function (response) {
         cmsCpMainMenugrd.moduleList = response.ListItems;
     });
 
@@ -122,12 +122,12 @@
     cmsCpMainMenugrd.init = function () {
         cmsCpMainMenugrd.addRequested = true;
         cmsCpMainMenugrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreCpMainMenu/getAllMenuPlaceType", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreCpMainMenu/getAllMenuPlaceType", {}, 'POST').success(function (response) {
             cmsCpMainMenugrd.MenuPlaceType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreCpMainMenu/getAllMenu", cmsCpMainMenugrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreCpMainMenu/getAllMenu", cmsCpMainMenugrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             cmsCpMainMenugrd.treeConfig.Items = response.ListItems;
             rashaErManage.checkAction(response);
             cmsCpMainMenugrd.ListItems = response.ListItems;
@@ -174,7 +174,7 @@
             SearchType: 0
         }
         cmsCpMainMenugrd.gridOptions.advancedSearchData.engine.Filters.push(s);
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreCpMainMenu/GetAll", cmsCpMainMenugrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreCpMainMenu/GetAll", cmsCpMainMenugrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsCpMainMenugrd.busyIndicator.isActive = false;
             cmsCpMainMenugrd.ListItems = response.ListItems;
@@ -198,13 +198,13 @@
          var node = cmsCpMainMenugrd.treeConfig.currentNode;
          
             
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/getall', {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'CoreCpMainMenu/getall', {}, 'POST').success(function (response) {
             // To define an array otherwise cmsCpMainMenugrd.selectedItem[thisTableFieldICollection] will be detected as an object
             cmsCpMainMenugrd.selectedItem[thisTableFieldICollection] = [];
             cmsCpMainMenugrd.ListParentItems = response.ListItems;
             cmsCpMainMenugrd.busyIndicator.isActive = false;
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(mainPathApi+'CoreCpMainMenu/getviewmodel', '0', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsCpMainMenugrd.selectedItem = response.Item;
             if (node != null) 
@@ -232,7 +232,7 @@
         cmsCpMainMenugrd.addRequested = true;
         if (cmsCpMainMenugrd.selectedItem.isDependencyModule == false || cmsCpMainMenugrd.selectedItem.isDependencyModule == undefined)
             cmsCpMainMenugrd.selectedItem.LinkModuleId = null;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/add', cmsCpMainMenugrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'CoreCpMainMenu/add', cmsCpMainMenugrd.selectedItem, 'POST').success(function (response) {
             cmsCpMainMenugrd.busyIndicator.isActive = false;
             cmsCpMainMenugrd.addRequested = false;
             rashaErManage.checkAction(response);
@@ -279,7 +279,7 @@
         }
         cmsCpMainMenugrd.CmsUserGroup_Id = [];
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/getviewmodel', cmsCpMainMenugrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'CoreCpMainMenu/getviewmodel', cmsCpMainMenugrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsCpMainMenugrd.selectedItem = response.Item;
@@ -297,7 +297,7 @@
         if (frm.$invalid)
             return;
         cmsCpMainMenugrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/edit', cmsCpMainMenugrd.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'CoreCpMainMenu/edit', cmsCpMainMenugrd.selectedItem, 'PUT').success(function (response) {
             cmsCpMainMenugrd.addRequested = false;
             cmsCpMainMenugrd.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -346,12 +346,12 @@
                 console.log(cmsCpMainMenugrd.gridOptions.selectedRow.item);
                 cmsCpMainMenugrd.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/getviewmodel', cmsCpMainMenugrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'CoreCpMainMenu/getviewmodel', cmsCpMainMenugrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     cmsCpMainMenugrd.selectedItemForDelete = response.Item;
                     console.log(cmsCpMainMenugrd.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/delete', cmsCpMainMenugrd.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'CoreCpMainMenu/delete', cmsCpMainMenugrd.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsCpMainMenugrd.replaceItem(cmsCpMainMenugrd.selectedItemForDelete.Id);
@@ -378,7 +378,7 @@
     cmsCpMainMenugrd.searchData = function () {
         cmsCpMainMenugrd.addRequested = true;
         cmsCpMainMenugrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreCpMainMenu/getAll", cmsCpMainMenugrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreCpMainMenu/getAll", cmsCpMainMenugrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsCpMainMenugrd.responseListItems = response.ListItems;
             cmsCpMainMenugrd.gridOptions.fillData(cmsCpMainMenugrd.responseListItems);
@@ -462,19 +462,19 @@
             return;
         }
         cmsCpMainMenugrd.gridBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/getviewmodel', item.Id, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+'CoreCpMainMenu/getviewmodel', item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             cmsCpMainMenugrd.selectedItem = response1.Item;
             var temp = response1.Item.ShowInMenuOrder;
             cmsCpMainMenugrd.selectedItem.ShowInMenuOrder = cmsCpMainMenugrd.gridOptions.data[index - 1].ShowInMenuOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/edit', cmsCpMainMenugrd.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(mainPathApi+'CoreCpMainMenu/edit', cmsCpMainMenugrd.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/getviewmodel', cmsCpMainMenugrd.gridOptions.data[index - 1].Id, 'GET').success(function (response3) {
+                    ajax.call(mainPathApi+'CoreCpMainMenu/getviewmodel', cmsCpMainMenugrd.gridOptions.data[index - 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         cmsCpMainMenugrd.selectedItem = response3.Item;
                         cmsCpMainMenugrd.selectedItem.ShowInMenuOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/edit', cmsCpMainMenugrd.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(mainPathApi+'CoreCpMainMenu/edit', cmsCpMainMenugrd.selectedItem, 'PUT').success(function (response4) {
                             cmsCpMainMenugrd.gridBusyIndicator.isActive = false;
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
@@ -520,19 +520,19 @@
             return;
         }
         cmsCpMainMenugrd.gridBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/getviewmodel', item.Id, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+'CoreCpMainMenu/getviewmodel', item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             cmsCpMainMenugrd.selectedItem = response1.Item;
             var temp = response1.Item.ShowInMenuOrder;
             cmsCpMainMenugrd.selectedItem.ShowInMenuOrder = cmsCpMainMenugrd.gridOptions.data[index + 1].ShowInMenuOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/edit', cmsCpMainMenugrd.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(mainPathApi+'CoreCpMainMenu/edit', cmsCpMainMenugrd.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/getviewmodel', cmsCpMainMenugrd.gridOptions.data[index + 1].Id, 'GET').success(function (response3) {
+                    ajax.call(mainPathApi+'CoreCpMainMenu/getviewmodel', cmsCpMainMenugrd.gridOptions.data[index + 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         cmsCpMainMenugrd.selectedItem = response3.Item;
                         cmsCpMainMenugrd.selectedItem.ShowInMenuOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/edit', cmsCpMainMenugrd.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(mainPathApi+'CoreCpMainMenu/edit', cmsCpMainMenugrd.selectedItem, 'PUT').success(function (response4) {
                             rashaErManage.checkAction(response4);
                             cmsCpMainMenugrd.gridBusyIndicator.isActive = false;
                             if (response4.IsSuccess) {

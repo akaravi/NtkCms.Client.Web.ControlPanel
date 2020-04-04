@@ -1,14 +1,12 @@
+var mainPathServer = "https://oco.ir/";
+var mainPath = "/";
+mainPath = "https://oco.ir/";
+mainPath = "http://localhost:2391/";
 
-var cmsServerConfig = {
-    configApiServerPath: "https://apicms.ir/api/",
-    configMvcServerPath: "https://oco.ir",
-    configCpanelImages: "/cpanelv1/images/",
-    configPathFileByIdAndName:"https://oco.ir/files/",
-    configRouteThumbnails:"https://oco.ir/imageThumbnails/",
-    nnnnnnnnnnn:"https://apicms.ir/api/files/",
-    configRouteUploadFileContent:"https://oco.ir/api/FileContent/upload/",
-};
-
+var mainPathCmsFiles = "cpanelv1/images/";
+var mainPathApi = mainPath + "api/";
+var mainPathRouteUploadFiles = mainPathServer + "files/";
+var mainPathApiUpload = mainPathServer + "api/FileContent/upload/";
 //tools
 var filterByDifference = function (array1, array2, compareField) {
     var onlyInA = differenceInFirstArray(array1, array2, compareField);

@@ -103,7 +103,7 @@
         }
 
         articleShareServerCategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"ArticleShareMainAdminSetting/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"ArticleShareMainAdminSetting/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
             articleShareServerCategory.treeConfig.Items = response.ListItems;
             articleShareServerCategory.categoryBusyIndicator.isActive = false;
         }).error(function (data, errCode, c, d) {
@@ -113,7 +113,7 @@
         });
 
         articleShareServerCategory.contentBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"articleShareServerCategory/getall", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"articleShareServerCategory/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             articleShareServerCategory.ListItems = response.ListItems;
             articleShareServerCategory.gridOptions.fillData(articleShareServerCategory.ListItems, response.resultAccess); // Sending Access as an argument
@@ -136,7 +136,7 @@
         if (buttonIsPressed) { return };
         articleShareServerCategory.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ArticleShareMainAdminSetting/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ArticleShareMainAdminSetting/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             articleShareServerCategory.selectedItem = response.Item;
@@ -149,10 +149,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 articleShareServerCategory.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkShareMainAdminSettingId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(articleShareServerCategory.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModuleArticle/ArticleShareMainAdminSetting/add.html',
@@ -182,7 +182,7 @@
 
         articleShareServerCategory.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ArticleShareMainAdminSetting/getviewmodel', articleShareServerCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ArticleShareMainAdminSetting/getviewmodel', articleShareServerCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             articleShareServerCategory.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -199,10 +199,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 articleShareServerCategory.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkShareMainAdminSettingId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(articleShareServerCategory.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (articleShareServerCategory.selectedItem.LinkMainImageId > 0)
@@ -235,7 +235,7 @@
         articleShareServerCategory.selectedItem.LinkParentId = null;
         if (articleShareServerCategory.treeConfig.currentNode != null)
             articleShareServerCategory.selectedItem.LinkParentId = articleShareServerCategory.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'ArticleShareMainAdminSetting/add', articleShareServerCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'ArticleShareMainAdminSetting/add', articleShareServerCategory.selectedItem, 'POST').success(function (response) {
             articleShareServerCategory.addRequested = false;
             rashaErManage.checkAction(response);
             //console.log(response);
@@ -263,7 +263,7 @@
         }
         articleShareServerCategory.categoryBusyIndicator.isActive = true;
         articleShareServerCategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ArticleShareMainAdminSetting/edit', articleShareServerCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'ArticleShareMainAdminSetting/edit', articleShareServerCategory.selectedItem, 'PUT').success(function (response) {
             //articleShareServerCategory.showbusy = false;
             articleShareServerCategory.treeConfig.showbusy = false;
             articleShareServerCategory.addRequested = false;
@@ -294,12 +294,12 @@
                 articleShareServerCategory.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'ArticleShareMainAdminSetting/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'ArticleShareMainAdminSetting/getviewmodel', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     articleShareServerCategory.selectedItemForDelete = response.Item;
                     console.log(articleShareServerCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ArticleShareMainAdminSetting/delete', articleShareServerCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'ArticleShareMainAdminSetting/delete', articleShareServerCategory.selectedItemForDelete, 'DELETE').success(function (res) {
                         articleShareServerCategory.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //articleShareServerCategory.replaceCategoryItem(articleShareServerCategory.treeConfig.Items, node.Id);
@@ -349,7 +349,7 @@
             }
             articleShareServerCategory.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
-        ajax.call(cmsServerConfig.configApiServerPath+"articleShareServerCategory/getall", articleShareServerCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"articleShareServerCategory/getall", articleShareServerCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             articleShareServerCategory.contentBusyIndicator.isActive = false;
             articleShareServerCategory.ListItems = response.ListItems;
@@ -376,7 +376,7 @@
         articleShareServerCategory.addRequested = false;
         articleShareServerCategory.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'articleShareServerCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'articleShareServerCategory/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             //console.log(response);
             rashaErManage.checkAction(response);
@@ -402,7 +402,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'articleShareServerCategory/getviewmodel', articleShareServerCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+'articleShareServerCategory/getviewmodel', articleShareServerCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             articleShareServerCategory.selectedItem = response1.Item;
@@ -429,7 +429,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_The_Article_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'articleShareServerCategory/add', articleShareServerCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'articleShareServerCategory/add', articleShareServerCategory.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             articleShareServerCategory.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -462,7 +462,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_The_Article_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'articleShareServerCategory/edit', articleShareServerCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'articleShareServerCategory/edit', articleShareServerCategory.selectedItem, 'PUT').success(function (response) {
             articleShareServerCategory.categoryBusyIndicator.isActive = false;
             articleShareServerCategory.addRequested = false;
             articleShareServerCategory.treeConfig.showbusy = false;
@@ -496,14 +496,14 @@
                 articleShareServerCategory.showbusy = true;
                 articleShareServerCategory.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"articleShareServerCategory/getviewmodel", articleShareServerCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(mainPathApi+"articleShareServerCategory/getviewmodel", articleShareServerCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     articleShareServerCategory.showbusy = false;
                     articleShareServerCategory.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     articleShareServerCategory.selectedItemForDelete = response.Item;
                     console.log(articleShareServerCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"articleShareServerCategory/delete", articleShareServerCategory.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(mainPathApi+"articleShareServerCategory/delete", articleShareServerCategory.selectedItemForDelete, "DELETE").success(function (res) {
                         articleShareServerCategory.categoryBusyIndicator.isActive = false;
                         articleShareServerCategory.treeConfig.showbusy = false;
                         articleShareServerCategory.showIsBusy = false;
@@ -550,7 +550,7 @@
    
     articleShareServerCategory.searchData = function () {
         articleShareServerCategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"articleShareServerCategory/getall", articleShareServerCategory.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(mainPathApi+"articleShareServerCategory/getall", articleShareServerCategory.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             articleShareServerCategory.categoryBusyIndicator.isActive = false;
             articleShareServerCategory.ListItems = response.ListItems;
@@ -642,7 +642,7 @@
     articleShareServerCategory.exportFile = function () {
         articleShareServerCategory.addRequested = true;
         articleShareServerCategory.gridOptions.advancedSearchData.engine.ExportFile = articleShareServerCategory.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'articleShareServerCategory/exportfile', articleShareServerCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'articleShareServerCategory/exportfile', articleShareServerCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             articleShareServerCategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -685,7 +685,7 @@
     }
     //Get TotalRowCount
     articleShareServerCategory.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"articleShareServerCategory/count", articleShareServerCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"articleShareServerCategory/count", articleShareServerCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             articleShareServerCategory.addRequested = false;
             rashaErManage.checkAction(response);
             articleShareServerCategory.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -698,7 +698,7 @@
     articleShareServerCategory.showCategoryImage = function (mainImageId) {
         if (mainImageId == 0 || mainImageId == null)
             return;
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/PreviewImage", { id: mainImageId, name: '' }, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"FileContent/PreviewImage", { id: mainImageId, name: '' }, 'POST').success(function (response) {
             articleShareServerCategory.selectedItem.MainImageSrc = response;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
@@ -730,11 +730,11 @@
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -755,9 +755,9 @@
             return;
         }
         articleShareServerCategory.selectedItem.LinkMainImageId = node.Id;
-        articleShareServerCategory.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            articleShareServerCategory.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
+        articleShareServerCategory.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
+        ajax.call(mainPathApi+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            articleShareServerCategory.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });

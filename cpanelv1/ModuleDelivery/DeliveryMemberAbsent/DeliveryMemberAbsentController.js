@@ -53,7 +53,7 @@
             console.log(error);
         }
         
-        ajax.call(cmsServerConfig.configApiServerPath+"DeliveryMemberAbsent/getall", deliveryMemberAbsent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"DeliveryMemberAbsent/getall", deliveryMemberAbsent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryMemberAbsent.busyIndicator.isActive = false;
             deliveryMemberAbsent.ListItems = response.ListItems;
@@ -88,7 +88,7 @@
     deliveryMemberAbsent.addRequested = false;
     deliveryMemberAbsent.openAddModal = function () {
         deliveryMemberAbsent.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberAbsent/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'DeliveryMemberAbsent/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryMemberAbsent.busyIndicator.isActive = false;
             deliveryMemberAbsent.selectedItem = response.Item;
@@ -121,7 +121,7 @@
         //deliveryMemberAbsent.selectedItem.BeginDateTime = deliveryMemberAbsent.BeginDateTime;
         //deliveryMemberAbsent.selectedItem.EndDateTime = deliveryMemberAbsent.EndDateTime;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberAbsent/add', deliveryMemberAbsent.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'DeliveryMemberAbsent/add', deliveryMemberAbsent.selectedItem, 'POST').success(function (response) {
             deliveryMemberAbsent.addRequested = false;
             deliveryMemberAbsent.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -148,7 +148,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberAbsent/getviewmodel', deliveryMemberAbsent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'DeliveryMemberAbsent/getviewmodel', deliveryMemberAbsent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryMemberAbsent.selectedItem = response.Item;
             deliveryMemberAbsent.BeginDate.defaultDate = deliveryMemberAbsent.selectedItem.BeginDate;
@@ -174,7 +174,7 @@
             return;
         }
         deliveryMemberAbsent.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberAbsent/edit', deliveryMemberAbsent.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'DeliveryMemberAbsent/edit', deliveryMemberAbsent.selectedItem, 'PUT').success(function (response) {
             deliveryMemberAbsent.addRequested = true;
             rashaErManage.checkAction(response);
             deliveryMemberAbsent.busyIndicator.isActive = false;
@@ -220,11 +220,11 @@
             if (isConfirmed) {
                 deliveryMemberAbsent.busyIndicator.isActive = true;
                 console.log(deliveryMemberAbsent.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberAbsent/getviewmodel', deliveryMemberAbsent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'DeliveryMemberAbsent/getviewmodel', deliveryMemberAbsent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     deliveryMemberAbsent.selectedItemForDelete = response.Item;
                     console.log(deliveryMemberAbsent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberAbsent/delete', deliveryMemberAbsent.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'DeliveryMemberAbsent/delete', deliveryMemberAbsent.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         deliveryMemberAbsent.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -389,7 +389,7 @@
     deliveryMemberAbsent.exportFile = function () {
         deliveryMemberAbsent.addRequested = true;
         deliveryMemberAbsent.gridOptions.advancedSearchData.engine.ExportFile = deliveryMemberAbsent.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberAbsent/exportfile', deliveryMemberAbsent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'DeliveryMemberAbsent/exportfile', deliveryMemberAbsent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             deliveryMemberAbsent.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -432,7 +432,7 @@
     }
     //Get TotalRowCount
     deliveryMemberAbsent.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"DeliveryMemberAbsent/count", deliveryMemberAbsent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"DeliveryMemberAbsent/count", deliveryMemberAbsent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             deliveryMemberAbsent.addRequested = false;
             rashaErManage.checkAction(response);
             deliveryMemberAbsent.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

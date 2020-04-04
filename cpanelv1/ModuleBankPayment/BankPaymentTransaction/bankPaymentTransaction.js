@@ -17,7 +17,7 @@
         //    return;
         //}
         if (transc.selectedPrivateSiteConfig.Id == null || transc.selectedPrivateSiteConfig.Id == 0) transc.selectedPrivateSiteConfig.Id = '0';
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/getviewmodel', transc.selectedPrivateSiteConfig.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'bankpaymentprivatesiteconfig/getviewmodel', transc.selectedPrivateSiteConfig.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             transc.selectedPrivateSiteConfig = response.Item;
@@ -31,7 +31,7 @@
         filterModel = { PropertyName: "Id", SearchType: 0, IntValue1: transc.selectedTransactionId.Id };
         if (transc.selectedTransactionId.Id >0)
             transc.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
-        ajax.call(cmsServerConfig.configApiServerPath+"BankPaymentTransaction/getall", transc.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"BankPaymentTransaction/getall", transc.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             transc.ListItems = response.ListItems;
             transc.gridOptions.fillData(transc.ListItems, response.resultAccess);
@@ -53,7 +53,7 @@
         if (buttonIsPressed) { return };
         transc.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransaction/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(mainPathApi+'bankpaymenttransaction/getviewmodel', '0', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             transc.selectedItem = response.Item;
@@ -84,12 +84,12 @@
         }
         transc.addRequested = true;
         transc.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/add', transc.selectedItem, 'POST').success(function (response1) {
+        ajax.call(mainPathApi+'BankPaymentTransaction/add', transc.selectedItem, 'POST').success(function (response1) {
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/getviewmodel', response1.Item.LinkSiteId, 'GET').success(function (response2) {
+                ajax.call(mainPathApi+'CoreSite/getviewmodel', response1.Item.LinkSiteId, 'GET').success(function (response2) {
                     response1.Item.virtual_CmsSite = { Title: response2.Item.Title };
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/getviewmodel', response1.Item.LinkUserId, 'GET').success(function (response3) {
+                    ajax.call(mainPathApi+'CoreUser/getviewmodel', response1.Item.LinkUserId, 'GET').success(function (response3) {
                         response1.Item.virtual_CmsUser = { Username: response3.Item.Username };
                         transc.ListItems.unshift(response1.Item);
                         transc.gridOptions.myfilterText(transc.ListItems, "LinkUserGroupId", transc.cmsUserGroups, "Title", "LinkUserGroupTitle");
@@ -119,7 +119,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/getviewmodel', transc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'BankPaymentTransaction/getviewmodel', transc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             transc.selectedItem = response.Item;
@@ -149,7 +149,7 @@
             }
         }
         transc.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/edit', transc.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'BankPaymentTransaction/edit', transc.selectedItem, 'PUT').success(function (response) {
             transc.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -187,12 +187,12 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/getviewmodel', transc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'BankPaymentTransaction/getviewmodel', transc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
 
                     rashaErManage.checkAction(response);
                     transc.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/delete', transc.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'BankPaymentTransaction/delete', transc.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             transc.replaceItem(transc.selectedItemForDelete.Id);
@@ -282,7 +282,7 @@
         filterModel.Filters.push({ PropertyName: "LinkTransactionId", IntValue1: item.Id, SearchType: 0 });
         transc.addRequested = true;
         //transc.optionsBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"BankPaymentTransactionLog/getall", filterModel, "POST").success(function (response) {
+        ajax.call(mainPathApi+"BankPaymentTransactionLog/getall", filterModel, "POST").success(function (response) {
             transc.addRequested = false;
             //transc.optionsBusyIndicator.isActice = false;
             rashaErManage.checkAction(response);
@@ -303,7 +303,7 @@
     transc.exportFile = function () {
         transc.addRequested = true;
         transc.gridOptions.advancedSearchData.engine.ExportFile = transc.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/exportfile', transc.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'bankpaymentprivatesiteconfig/exportfile', transc.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             transc.addRequested = false;
             rashaErManage.checkAction(response);
             transc.reportDownloadLink = response.LinkFile;
@@ -345,7 +345,7 @@
     }
     //Get TotalRowCount
     transc.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"BankPaymentTransaction/count", transc.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"BankPaymentTransaction/count", transc.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             transc.addRequested = false;
             rashaErManage.checkAction(response);
             transc.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -360,7 +360,7 @@
     }
 
     transc.retryTrans = function (selectedId) {
-        ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/TransactionCheck', selectedId, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'BankPaymentTransaction/TransactionCheck', selectedId, 'GET').success(function (response) {
             transc.addRequested = false;
             rashaErManage.checkAction(response);
             transc.reportDownloadLink = response.LinkFile;

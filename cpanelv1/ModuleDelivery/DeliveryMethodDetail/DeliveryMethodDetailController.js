@@ -50,7 +50,7 @@
             console.log(error);
         }
         
-        ajax.call(cmsServerConfig.configApiServerPath+"DeliveryMethodDetail/getall", deliveryMethodDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"DeliveryMethodDetail/getall", deliveryMethodDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryMethodDetail.busyIndicator.isActive = false;
             deliveryMethodDetail.ListItems = response.ListItems;
@@ -85,7 +85,7 @@
     deliveryMethodDetail.addRequested = false;
     deliveryMethodDetail.openAddModal = function () {
         deliveryMethodDetail.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMethodDetail/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'DeliveryMethodDetail/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryMethodDetail.busyIndicator.isActive = false;
             deliveryMethodDetail.selectedItem = response.Item;
@@ -118,7 +118,7 @@
         //deliveryMethodDetail.selectedItem.StartDateTime = deliveryMethodDetail.StartDateTime;
         //deliveryMethodDetail.selectedItem.EndDateTime = deliveryMethodDetail.EndDateTime;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMethodDetail/add', deliveryMethodDetail.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'DeliveryMethodDetail/add', deliveryMethodDetail.selectedItem, 'POST').success(function (response) {
             deliveryMethodDetail.addRequested = false;
             deliveryMethodDetail.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -145,7 +145,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMethodDetail/getviewmodel', deliveryMethodDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'DeliveryMethodDetail/getviewmodel', deliveryMethodDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryMethodDetail.selectedItem = response.Item;
             deliveryMethodDetail.EstimateTime.defaultDate = deliveryMethodDetail.selectedItem.EstimateTime;
@@ -171,7 +171,7 @@
             return;
         }
         deliveryMethodDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMethodDetail/edit', deliveryMethodDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'DeliveryMethodDetail/edit', deliveryMethodDetail.selectedItem, 'PUT').success(function (response) {
             deliveryMethodDetail.addRequested = true;
             rashaErManage.checkAction(response);
             deliveryMethodDetail.busyIndicator.isActive = false;
@@ -217,11 +217,11 @@
             if (isConfirmed) {
                 deliveryMethodDetail.busyIndicator.isActive = true;
                 console.log(deliveryMethodDetail.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMethodDetail/getviewmodel', deliveryMethodDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'DeliveryMethodDetail/getviewmodel', deliveryMethodDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     deliveryMethodDetail.selectedItemForDelete = response.Item;
                     console.log(deliveryMethodDetail.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMethodDetail/delete', deliveryMethodDetail.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'DeliveryMethodDetail/delete', deliveryMethodDetail.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         deliveryMethodDetail.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -404,7 +404,7 @@
     deliveryMethodDetail.exportFile = function () {
         deliveryMethodDetail.addRequested = true;
         deliveryMethodDetail.gridOptions.advancedSearchData.engine.ExportFile = deliveryMethodDetail.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMethodDetail/exportfile', deliveryMethodDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'DeliveryMethodDetail/exportfile', deliveryMethodDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             deliveryMethodDetail.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -447,7 +447,7 @@
     }
     //Get TotalRowCount
     deliveryMethodDetail.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"DeliveryMethodDetail/count", deliveryMethodDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"DeliveryMethodDetail/count", deliveryMethodDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             deliveryMethodDetail.addRequested = false;
             rashaErManage.checkAction(response);
             deliveryMethodDetail.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

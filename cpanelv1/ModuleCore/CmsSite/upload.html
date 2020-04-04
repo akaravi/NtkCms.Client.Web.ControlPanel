@@ -9,7 +9,7 @@
                         <h5><i class="fa fa-cloud-upload fa"></i>&nbsp;&nbsp; {{'UPLOAD_FILE'|lowercase|translate}}</h5>
                     </div>
                     <div class="panel-body">
-                        <div class="webix_view webix_control webix_el_segmented webix_fmanager_modes" view_id="$segmented1" style="float: left; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 100%; height: auto;" flow-init="{target: cmsSitegrd.RouteUploadFileContent}"
+                        <div class="webix_view webix_control webix_el_segmented webix_fmanager_modes" view_id="$segmented1" style="float: left; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 100%; height: auto;" flow-init="{target: cmsSitegrd.mainPathApiUpload}"
                              flow-files-submitted="$flow.upload()"
                              flow-name="cmsSitegrd.flow"
                              flow-file-success="$file.msg = $message">

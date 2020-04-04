@@ -35,7 +35,7 @@
     if (itemRecordStatus != undefined) cmsModulegrd.itemRecordStatus = itemRecordStatus;
     cmsModulegrd.init = function () {
         cmsModulegrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreModule/getall", cmsModulegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreModule/getall", cmsModulegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulegrd.ListItems = response.ListItems;
             cmsModulegrd.gridOptions.fillData(cmsModulegrd.ListItems, response.resultAccess);
@@ -53,7 +53,7 @@
     cmsModulegrd.addRequested = false;
     cmsModulegrd.openAddModal = function () {
         cmsModulegrd.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(mainPathApi+'coremodule/getviewmodel', '0', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulegrd.selectedItem = response.Item;
             $modal.open({
@@ -68,7 +68,7 @@
     cmsModulegrd.autoAdd = function () {
         cmsModulegrd.addRequested = true;
         cmsModulegrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/AutoAdd', '', 'POST').success(function (response) {
+        ajax.call(mainPathApi+'coremodule/AutoAdd', '', 'POST').success(function (response) {
             cmsModulegrd.addRequested = false;
             cmsModulegrd.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -83,7 +83,7 @@
             return;
         cmsModulegrd.addRequested = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/add', cmsModulegrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'coremodule/add', cmsModulegrd.selectedItem, 'POST').success(function (response) {
             buttonIsPressed = false;
             cmsModulegrd.addRequested = false;
             rashaErManage.checkAction(response);
@@ -107,7 +107,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/getviewmodel', cmsModulegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'coremodule/getviewmodel', cmsModulegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -127,7 +127,7 @@
         if (frm.$invalid)
             return;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/edit', cmsModulegrd.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'coremodule/edit', cmsModulegrd.selectedItem, 'PUT').success(function (response) {
             cmsModulegrd.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -170,11 +170,11 @@
             if (isConfirmed) {
                 console.log(cmsModulegrd.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'coremodule/getviewmodel', cmsModulegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'coremodule/getviewmodel', cmsModulegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     cmsModulegrd.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'coremodule/delete', cmsModulegrd.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'coremodule/delete', cmsModulegrd.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsModulegrd.replaceItem(cmsModulegrd.selectedItemForDelete.Id);
@@ -259,7 +259,7 @@
 
     cmsModulegrd.SiteAccessDefaultLoad = function () {
         cmsModulegrd.contentBusyConfig.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + cmsModulegrd.ModuleConfigSelected.ClassName + "Configuration/SiteAccessDefault", '', 'GET').success(function (response) {
+        ajax.call(mainPathApi + cmsModulegrd.ModuleConfigSelected.ClassName + "Configuration/SiteAccessDefault", '', 'GET').success(function (response) {
             if (response.IsSuccess) {
                 cmsModulegrd.Item.SiteAccessDefault = response.Item;
             } else {
@@ -281,7 +281,7 @@
         }
         cmsModulegrd.contentBusyConfig.isActive = true;
         cmsModulegrd.buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + cmsModulegrd.ModuleConfigSelected.ClassName + 'Configuration/SiteAccessDefault', cmsModulegrd.Item.SiteAccessDefault, 'POST').success(function (response) {
+        ajax.call(mainPathApi + cmsModulegrd.ModuleConfigSelected.ClassName + 'Configuration/SiteAccessDefault', cmsModulegrd.Item.SiteAccessDefault, 'POST').success(function (response) {
             cmsModulegrd.buttonIsPressed = false;
             cmsModulegrd.contentBusyConfig.isActive = false;
             rashaErManage.showMessage("تغییرات با موفقیت انجام شد");
@@ -296,7 +296,7 @@
     cmsModulegrd.AdminMainLoad = function () {
 
         cmsModulegrd.contentBusyConfig.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + cmsModulegrd.ModuleConfigSelected.ClassName + "Configuration/AdminMain", '', 'GET').success(function (response) {
+        ajax.call(mainPathApi + cmsModulegrd.ModuleConfigSelected.ClassName + "Configuration/AdminMain", '', 'GET').success(function (response) {
             if (response.IsSuccess) {
                 cmsModulegrd.Item.AdminMain = response.Item;
             } else {
@@ -318,7 +318,7 @@
         }
         cmsModulegrd.contentBusyConfig.isActive = true;
         cmsModulegrd.buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + cmsModulegrd.ModuleConfigSelected.ClassName + 'Configuration/AdminMain', cmsModulegrd.Item.AdminMain, 'POST').success(function (response) {
+        ajax.call(mainPathApi + cmsModulegrd.ModuleConfigSelected.ClassName + 'Configuration/AdminMain', cmsModulegrd.Item.AdminMain, 'POST').success(function (response) {
             cmsModulegrd.buttonIsPressed = false;
             cmsModulegrd.contentBusyConfig.isActive = false;
             rashaErManage.showMessage("تغییرات با موفقیت انجام شد");
@@ -332,7 +332,7 @@
 
     cmsModulegrd.SiteDefaultLoad = function () {
         cmsModulegrd.contentBusyConfig.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + cmsModulegrd.ModuleConfigSelected.ClassName + "Configuration/SiteDefault", '', 'GET').success(function (response) {
+        ajax.call(mainPathApi + cmsModulegrd.ModuleConfigSelected.ClassName + "Configuration/SiteDefault", '', 'GET').success(function (response) {
             if (response.IsSuccess) {
                 cmsModulegrd.Item.SiteDefault = response.Item;
             } else {
@@ -354,7 +354,7 @@
         }
         cmsModulegrd.contentBusyConfig.isActive = true;
         cmsModulegrd.buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + cmsModulegrd.ModuleConfigSelected.ClassName + 'Configuration/SiteDefault', cmsModulegrd.Item.SiteDefault, 'POST').success(function (response) {
+        ajax.call(mainPathApi + cmsModulegrd.ModuleConfigSelected.ClassName + 'Configuration/SiteDefault', cmsModulegrd.Item.SiteDefault, 'POST').success(function (response) {
             cmsModulegrd.buttonIsPressed = false;
             cmsModulegrd.contentBusyConfig.isActive = false;
             rashaErManage.showMessage("تغییرات با موفقیت انجام شد");
@@ -371,7 +371,7 @@
 
     cmsModulegrd.scrollToFormBuilder = function (item) {
         cmsModulegrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MobilecmsModulegrd/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'MobilecmsModulegrd/getviewmodel', item.Id, 'GET').success(function (response) {
             cmsModulegrd.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsModulegrd.selectedItem = response.Item;
@@ -400,7 +400,7 @@
         var model = { Filters: [] };
         model.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: parseInt(cmsModulegrd.selectedItem.Id) });
         cmsModulegrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/GetOneWithModuleConfig', model, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'coremodule/GetOneWithModuleConfig', model, 'POST').success(function (response) {
             cmsModulegrd.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -452,7 +452,7 @@
         var model = { Filters: [] };
         model.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: parseInt(item.Id) });
         cmsModulegrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/GetOneWithModuleConfig', model, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'coremodule/GetOneWithModuleConfig', model, 'POST').success(function (response) {
             cmsModulegrd.busyIndicator.isActive = false;
             cmsModulegrd.selectedLayoutValue = response.Item;
 
@@ -493,7 +493,7 @@
         cmsModulegrd.busyIndicator.isActive = true;
         var model = { Filters: [] };
         model.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: parseInt(item.Id) });
-        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/GetOneWithModuleConfig', model, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'coremodule/GetOneWithModuleConfig', model, 'POST').success(function (response) {
             cmsModulegrd.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsModulegrd.selectedItem = response.Item;
@@ -524,14 +524,14 @@
         var model = { Filters: [] };
         model.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: parseInt(cmsModulegrd.selectedItem.Id) });
         cmsModulegrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/GetOneWithModuleConfig', model, 'POST').success(function (response1) {
+        ajax.call(mainPathApi+'coremodule/GetOneWithModuleConfig', model, 'POST').success(function (response1) {
             cmsModulegrd.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             cmsModulegrd.selectedItem = response1.Item;
             // $builder.forms['default'] -> get the form in Json format
             cmsModulegrd.selectedItem[cmsModulegrd.formName] = $.trim(angular.toJson($builder.forms['default']));
             cmsModulegrd.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'coremodule/edit', cmsModulegrd.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(mainPathApi+'coremodule/edit', cmsModulegrd.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     cmsModulegrd.closeModal();
@@ -552,11 +552,11 @@
         model.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: parseInt(cmsModulegrd.gridOptions.selectedRow.item.Id) });
         cmsModulegrd.busyIndicator.isActive = true;
         cmsModulegrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/GetOneWithModuleConfig', model, 'POST').success(function (response1) {
+        ajax.call(mainPathApi+'coremodule/GetOneWithModuleConfig', model, 'POST').success(function (response1) {
             rashaErManage.checkAction(response1);
             cmsModulegrd.selectedItem = response1.Item;
             cmsModulegrd.selectedItem[cmsModulegrd.fieldName] = $.trim(angular.toJson(cmsModulegrd.submitValue));
-            ajax.call(cmsServerConfig.configApiServerPath+'coremodule/edit', cmsModulegrd.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(mainPathApi+'coremodule/edit', cmsModulegrd.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     cmsModulegrd.closeModal();
@@ -577,7 +577,7 @@
     cmsModulegrd.exportFile = function () {
         cmsModulegrd.addRequested = true;
         cmsModulegrd.gridOptions.advancedSearchData.engine.ExportFile = cmsModulegrd.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/exportfile', cmsModulegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'coremodule/exportfile', cmsModulegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 $window.open(response.LinkFile, '_blank');
@@ -619,7 +619,7 @@
     }
     //Get TotalRowCount
     cmsModulegrd.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreModule/count", cmsModulegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreModule/count", cmsModulegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulegrd.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

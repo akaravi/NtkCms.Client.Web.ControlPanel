@@ -31,7 +31,7 @@
         //    console.log(error)
         //}
 
-        ajax.call(cmsServerConfig.configApiServerPath+"chartComment/getall", chartComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"chartComment/getall", chartComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartComment.busyIndicator.isActive = false;
             chartComment.ListItems = response.ListItems;
@@ -47,7 +47,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         //chartComment.busyIndicator.isActive = true;
-        //ajax.call(cmsServerConfig.configApiServerPath+'chartComment/getall', {}, 'POST').success(function (response) {
+        //ajax.call(mainPathApi+'chartComment/getall', {}, 'POST').success(function (response) {
         //    chartComment.CommentList = response.ListItems;
         //    chartComment.busyIndicator.isActive = false;
         //});
@@ -60,7 +60,7 @@
     chartComment.addRequested = false;
     chartComment.openAddModal = function () {
         chartComment.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'chartComment/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'chartComment/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             chartComment.busyIndicator.isActive = false;
             chartComment.selectedItem = response.Item;
@@ -85,7 +85,7 @@
         }
         chartComment.busyIndicator.isActive = true;
         chartComment.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'chartComment/add', chartComment.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'chartComment/add', chartComment.selectedItem, 'POST').success(function (response) {
             chartComment.addRequested = false;
             chartComment.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -112,7 +112,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'chartComment/getviewmodel', chartComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'chartComment/getviewmodel', chartComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             chartComment.selectedItem = response.Item;
             $modal.open({
@@ -132,7 +132,7 @@
             return;
         }
         chartComment.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'chartComment/edit', chartComment.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'chartComment/edit', chartComment.selectedItem, 'PUT').success(function (response) {
             chartComment.addRequested = true;
             rashaErManage.checkAction(response);
             chartComment.busyIndicator.isActive = false;
@@ -174,11 +174,11 @@
             if (isConfirmed) {
                 chartComment.busyIndicator.isActive = true;
                 console.log(chartComment.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'chartComment/getviewmodel', chartComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'chartComment/getviewmodel', chartComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     chartComment.selectedItemForDelete = response.Item;
                     console.log(chartComment.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'chartComment/delete', chartComment.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'chartComment/delete', chartComment.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         chartComment.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -303,7 +303,7 @@
     chartComment.exportFile = function () {
         chartComment.gridOptions.advancedSearchData.engine.ExportFile = chartComment.ExportFileClass;
         chartComment.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'chartComment/exportfile', chartComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'chartComment/exportfile', chartComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             chartComment.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -346,7 +346,7 @@
     }
     //Get TotalRowCount
     chartComment.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"chartComment/count", chartComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"chartComment/count", chartComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             chartComment.addRequested = false;
             rashaErManage.checkAction(response);
             chartComment.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

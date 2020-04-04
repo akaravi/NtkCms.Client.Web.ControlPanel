@@ -24,12 +24,12 @@
     }
 
     marketingPosition.init=function() {
-        ajax.call(cmsServerConfig.configApiServerPath+"MarketingCustomerSetting/getall", {}, 'POST').success(function (response1) {
+        ajax.call(mainPathApi+"MarketingCustomerSetting/getall", {}, 'POST').success(function (response1) {
             marketingPosition.CustomerList = response1.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"MarketingCustomerSettingPosition/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"MarketingCustomerSettingPosition/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
 
             marketingPosition.positionListConfig.items.push({
                 Id: -1,
@@ -89,7 +89,7 @@
     $scope.OpenSettingPosition=function(positionId) {
         
         marketingPosition.init();
-        ajax.call(cmsServerConfig.configApiServerPath+"MarketingCustomerSettingPosition/getviewmodel", positionId, 'GET').success(function (response) {
+        ajax.call(mainPathApi+"MarketingCustomerSettingPosition/getviewmodel", positionId, 'GET').success(function (response) {
             
             marketingPosition.positionItem=response.Item;
            $modal.open({
@@ -100,7 +100,7 @@
     }
    $scope.selectCustomer=function(customerId)
     {
-        ajax.call(cmsServerConfig.configApiServerPath+"MarketingCustomer/getviewmodel", customerId, 'GET').success(function (response) {
+        ajax.call(mainPathApi+"MarketingCustomer/getviewmodel", customerId, 'GET').success(function (response) {
             marketingPosition.positionList=response.Item;
            $modal.open({
                 templateUrl: 'cpanelv1/ModuleMarketing/MarketingCustomerSettingPosition/selectCustomer.html',

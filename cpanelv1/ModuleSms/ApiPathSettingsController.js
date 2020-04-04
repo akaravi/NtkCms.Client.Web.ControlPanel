@@ -8,14 +8,14 @@
             apiSetting.goBack();
         apiSetting.selectedItem = $rootScope.selectedPath;
 
-        ajax.call(cmsServerConfig.configApiServerPath+"ApiPathCompany/getall", "", 'POST').success(function (response) {
+        ajax.call(mainPathApi+"ApiPathCompany/getall", "", 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             apiSetting.CompanyListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"ApiPath/getall", "", 'POST').success(function (response) {
+        ajax.call(mainPathApi+"ApiPath/getall", "", 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             apiSetting.PathListItems = response.ListItems;
             for (i = 1; i < apiSetting.sederList.length; i++) {
@@ -42,7 +42,7 @@
     }
 
     apiSetting.addNewRow = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+'apipath/add', apiSetting.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'apipath/add', apiSetting.selectedItem, 'POST').success(function (response) {
             apiSetting.addRequested = false;
             rashaErManage.checkAction(response);
             apiSetting.goBack();
@@ -54,7 +54,7 @@
 
     apiSetting.editRow = function () {
         apiSetting.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'apipath/edit', apiSetting.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'apipath/edit', apiSetting.selectedItem, 'PUT').success(function (response) {
             apiSetting.addRequested = false;
             rashaErManage.checkAction(response);
             apiSetting.goBack();

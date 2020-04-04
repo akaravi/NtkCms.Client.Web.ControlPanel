@@ -6,7 +6,7 @@
     }
     shopContentTag.init = function () {
         shopContentTag.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"shopContenttag/getall", shopContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"shopContenttag/getall", shopContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopContentTag.busyIndicator.isActive = false;
 
@@ -23,7 +23,7 @@
     shopContentTag.addRequested = false;
     shopContentTag.openAddModal = function () {
         shopContentTag.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'shopContenttag/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'shopContenttag/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopContentTag.selectedItem = response.Item;
             $modal.open({
@@ -44,7 +44,7 @@
         shopContentTag.addRequested = true;
         shopContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'shopContenttag/add', shopContentTag.selectedItem , 'POST').success(function (response) {
+        ajax.call(mainPathApi+'shopContenttag/add', shopContentTag.selectedItem , 'POST').success(function (response) {
             shopContentTag.addRequested = false;
             shopContentTag.busyIndicator.isActive = false;
 
@@ -69,7 +69,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'shopContenttag/getviewmodel',  shopContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(mainPathApi+'shopContenttag/getviewmodel',  shopContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopContentTag.selectedItem = response.Item;
             $modal.open({
@@ -89,7 +89,7 @@
         }
         shopContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'shopContenttag/edit',  shopContentTag.selectedItem , 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'shopContenttag/edit',  shopContentTag.selectedItem , 'PUT').success(function (response) {
             shopContentTag.addRequested = true;
             rashaErManage.checkAction(response);
             shopContentTag.busyIndicator.isActive = false;
@@ -134,11 +134,11 @@
             if (isConfirmed) {
                 shopContentTag.busyIndicator.isActive = true;
                 console.log(shopContentTag.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'shopContenttag/getviewmodel',  shopContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(mainPathApi+'shopContenttag/getviewmodel',  shopContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     shopContentTag.selectedItemForDelete = response.Item;
                     console.log(shopContentTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'shopContenttag/delete',  shopContentTag.selectedItemForDelete , 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'shopContenttag/delete',  shopContentTag.selectedItemForDelete , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         shopContentTag.busyIndicator.isActive = false;
 

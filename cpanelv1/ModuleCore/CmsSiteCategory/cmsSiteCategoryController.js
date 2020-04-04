@@ -5,7 +5,7 @@
     if (itemRecordStatus != undefined) cmsSiteCategorygrd.itemRecordStatus = itemRecordStatus;
 
     cmsSiteCategorygrd.init = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreSiteCategory/getall", cmsSiteCategorygrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreSiteCategory/getall", cmsSiteCategorygrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteCategorygrd.ListItems = response.ListItems;
             cmsSiteCategorygrd.gridOptions.fillData(cmsSiteCategorygrd.ListItems , response.resultAccess);
@@ -21,7 +21,7 @@
     cmsSiteCategorygrd.addRequested = false;
     cmsSiteCategorygrd.openAddModal = function () {
         cmsSiteCategorygrd.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategory/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(mainPathApi+'CoreSiteCategory/getviewmodel', '0', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteCategorygrd.selectedItem = response.Item;
             $modal.open({
@@ -38,7 +38,7 @@
             return;
 
         cmsSiteCategorygrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategory/add', cmsSiteCategorygrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'CoreSiteCategory/add', cmsSiteCategorygrd.selectedItem, 'POST').success(function (response) {
             cmsSiteCategorygrd.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -59,7 +59,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategory/getviewmodel', cmsSiteCategorygrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'CoreSiteCategory/getviewmodel', cmsSiteCategorygrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteCategorygrd.selectedItem = response.Item;
             $modal.open({
@@ -75,7 +75,7 @@
         if (frm.$invalid)
             return;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategory/edit', cmsSiteCategorygrd.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'CoreSiteCategory/edit', cmsSiteCategorygrd.selectedItem, 'PUT').success(function (response) {
             cmsSiteCategorygrd.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -114,10 +114,10 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategory/getviewmodel', cmsSiteCategorygrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'CoreSiteCategory/getviewmodel', cmsSiteCategorygrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsSiteCategorygrd.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategory/delete', cmsSiteCategorygrd.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'CoreSiteCategory/delete', cmsSiteCategorygrd.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsSiteCategorygrd.replaceItem(cmsSiteCategorygrd.selectedItemForDelete.Id);

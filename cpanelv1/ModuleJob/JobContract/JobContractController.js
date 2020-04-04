@@ -24,7 +24,7 @@
             console.log(error);
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+"jobcontracttype/getall", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"jobcontracttype/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobContract.contractTypes = response.ListItems;
 
@@ -33,14 +33,14 @@
             rashaErManage.checkAction(data, errCode);
         });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"jobContracttype/getall", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"jobContracttype/getall", {}, 'POST').success(function (response) {
             jobContract.propertyTypeListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             jobContract.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"jobcontract/getall", jobContract.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"jobcontract/getall", jobContract.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobContract.busyIndicator.isActive = false;
             jobContract.ListItems = response.ListItems;
@@ -69,7 +69,7 @@
 
         jobContract.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcontract/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'jobcontract/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -95,7 +95,7 @@
         }
         jobContract.busyIndicator.isActive = true;
         jobContract.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcontract/add', jobContract.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'jobcontract/add', jobContract.selectedItem, 'POST').success(function (response) {
             jobContract.addRequested = false;
             jobContract.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -124,7 +124,7 @@
         }
 
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcontract/getviewmodel', jobContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'jobcontract/getviewmodel', jobContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -148,7 +148,7 @@
             return;
         }
         jobContract.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcontract/edit', jobContract.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'jobcontract/edit', jobContract.selectedItem, 'PUT').success(function (response) {
             jobContract.addRequested = true;
             rashaErManage.checkAction(response);
             jobContract.busyIndicator.isActive = false;
@@ -197,11 +197,11 @@
                 jobContract.busyIndicator.isActive = true;
                 console.log(jobContract.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'jobcontract/getviewmodel', jobContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'jobcontract/getviewmodel', jobContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     jobContract.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'jobcontract/delete', jobContract.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'jobcontract/delete', jobContract.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         jobContract.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -355,7 +355,7 @@
         var engine = {};
         engine.Filters = [];
         engine.Filters.push(filterValue);
-        ajax.call(cmsServerConfig.configApiServerPath+"jobContractDetail/GetAll", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"jobContractDetail/GetAll", engine, 'POST').success(function (response) {
             jobContract.propertyDetailsListItems = response.ListItems;
 
             $.each(jobContract.propertyDetailsListItems, function (index, item) {
@@ -377,7 +377,7 @@
     jobContract.exportFile = function () {
         jobContract.addRequested = true;
         jobContract.gridOptions.advancedSearchData.engine.ExportFile = jobContract.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'JobContract/exportfile', jobContract.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'JobContract/exportfile', jobContract.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 jobContract.exportDownloadLink = window.location.origin + response.LinkFile;
@@ -420,7 +420,7 @@
     }
     //Get TotalRowCount
     jobContract.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"JobContract/count", jobContract.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"JobContract/count", jobContract.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobContract.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

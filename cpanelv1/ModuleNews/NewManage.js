@@ -14,7 +14,7 @@
         newsManageCtrl.treeBusyIndicator = true;
         console.log("ok");
        
-        ajax.call(cmsServerConfig.configApiServerPath+"NewsCategory/getall", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"NewsCategory/getall", {}, 'POST').success(function (response) {
             newsManageCtrl.treeConfig.Items = response.ListItems;
             console.log(response.ListItems);
             newsManageCtrl.treeBusyIndicator = false;

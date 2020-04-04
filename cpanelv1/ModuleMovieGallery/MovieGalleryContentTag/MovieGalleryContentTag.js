@@ -6,7 +6,7 @@
     }
     mvGalleryContentTag.init = function () {
         mvGalleryContentTag.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"MovieGalleryContentTag/getall", mvGalleryContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"MovieGalleryContentTag/getall", mvGalleryContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             mvGalleryContentTag.busyIndicator.isActive = false;
 
@@ -23,7 +23,7 @@
     mvGalleryContentTag.addRequested = false;
     mvGalleryContentTag.openAddModal = function () {
         mvGalleryContentTag.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryContentTag/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'MovieGalleryContentTag/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mvGalleryContentTag.selectedItem = response.Item;
             $modal.open({
@@ -45,7 +45,7 @@
         mvGalleryContentTag.addRequested = true;
         mvGalleryContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryContentTag/add', mvGalleryContentTag.selectedItem , 'POST').success(function (response) {
+        ajax.call(mainPathApi+'MovieGalleryContentTag/add', mvGalleryContentTag.selectedItem , 'POST').success(function (response) {
             mvGalleryContentTag.addRequested = false;
             mvGalleryContentTag.busyIndicator.isActive = false;
 
@@ -70,7 +70,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryContentTag/getviewmodel',  mvGalleryContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(mainPathApi+'MovieGalleryContentTag/getviewmodel',  mvGalleryContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mvGalleryContentTag.selectedItem = response.Item;
             $modal.open({
@@ -90,7 +90,7 @@
         }
         mvGalleryContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryContentTag/edit',  mvGalleryContentTag.selectedItem , 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'MovieGalleryContentTag/edit',  mvGalleryContentTag.selectedItem , 'PUT').success(function (response) {
             mvGalleryContentTag.addRequested = true;
             rashaErManage.checkAction(response);
             mvGalleryContentTag.busyIndicator.isActive = false;
@@ -135,11 +135,11 @@
             if (isConfirmed) {
                 mvGalleryContentTag.busyIndicator.isActive = true;
                 console.log(mvGalleryContentTag.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryContentTag/getviewmodel',  mvGalleryContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(mainPathApi+'MovieGalleryContentTag/getviewmodel',  mvGalleryContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     mvGalleryContentTag.selectedItemForDelete = response.Item;
                     console.log(mvGalleryContentTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryContentTag/delete',  mvGalleryContentTag.selectedItemForDelete , 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'MovieGalleryContentTag/delete',  mvGalleryContentTag.selectedItemForDelete , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         mvGalleryContentTag.busyIndicator.isActive = false;
 
@@ -226,7 +226,7 @@
     mvGalleryContentTag.exportFile = function () {
         mvGalleryContentTag.addRequested = true;
         mvGalleryContentTag.gridOptions.advancedSearchData.engine.ExportFile = mvGalleryContentTag.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryContentTag/exportfile', mvGalleryContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'MovieGalleryContentTag/exportfile', mvGalleryContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             mvGalleryContentTag.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -269,7 +269,7 @@
     }
     //Get TotalRowCount
     mvGalleryContentTag.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"MovieGalleryContentTag/count", mvGalleryContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"MovieGalleryContentTag/count", mvGalleryContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             mvGalleryContentTag.addRequested = false;
             rashaErManage.checkAction(response);
             mvGalleryContentTag.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

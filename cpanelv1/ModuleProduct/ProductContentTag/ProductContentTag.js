@@ -6,7 +6,7 @@
     }
     productContentTag.init = function () {
         productContentTag.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"ProductContenttag/getall", productContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"ProductContenttag/getall", productContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             productContentTag.busyIndicator.isActive = false;
             productContentTag.ListItems = response.ListItems;
@@ -22,7 +22,7 @@
     productContentTag.addRequested = false;
     productContentTag.openAddModal = function () {
         productContentTag.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ProductContenttag/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ProductContenttag/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             productContentTag.selectedItem = response.Item;
             $modal.open({
@@ -44,7 +44,7 @@
         productContentTag.addRequested = true;
         productContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ProductContenttag/add', productContentTag.selectedItem , 'POST').success(function (response) {
+        ajax.call(mainPathApi+'ProductContenttag/add', productContentTag.selectedItem , 'POST').success(function (response) {
             productContentTag.addRequested = false;
             productContentTag.busyIndicator.isActive = false;
 
@@ -69,7 +69,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'ProductContenttag/getviewmodel',  productContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ProductContenttag/getviewmodel',  productContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             productContentTag.selectedItem = response.Item;
             $modal.open({
@@ -89,7 +89,7 @@
         }
         productContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ProductContenttag/edit',  productContentTag.selectedItem , 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'ProductContenttag/edit',  productContentTag.selectedItem , 'PUT').success(function (response) {
             productContentTag.addRequested = true;
             rashaErManage.checkAction(response);
             productContentTag.busyIndicator.isActive = false;
@@ -134,11 +134,11 @@
             if (isConfirmed) {
                 productContentTag.busyIndicator.isActive = true;
                 console.log(productContentTag.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ProductContenttag/getviewmodel',  productContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(mainPathApi+'ProductContenttag/getviewmodel',  productContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     productContentTag.selectedItemForDelete = response.Item;
                     console.log(productContentTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ProductContenttag/delete',  productContentTag.selectedItemForDelete , 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'ProductContenttag/delete',  productContentTag.selectedItemForDelete , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         productContentTag.busyIndicator.isActive = false;
 

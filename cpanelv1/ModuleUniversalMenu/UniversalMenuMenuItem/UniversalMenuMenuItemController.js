@@ -1,6 +1,6 @@
 ﻿app.controller("menuItemGridController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$timeout', '$builder', '$rootScope', '$state', '$window', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $timeout, $builder, $state, $window, $filter) {
     var menuItemCtrl = this;
-    menuItemCtrl.RouteUploadFileContent = cmsServerConfig.configRouteUploadFileContent;
+    menuItemCtrl.mainPathApiUpload = mainPathApiUpload;
     //todo:کار این این دو خط معلوم نبود
     //if ($scope.UserAccessAdminAllowToAllData)
     //    $state.go("index.main");
@@ -25,7 +25,7 @@
 
     menuItemCtrl.showSavePriorityOrderBtn = false;
 
-    ajax.call(cmsServerConfig.configApiServerPath+"universalmenuprocesses/getall", {}, 'POST').success(function (response) {
+    ajax.call(mainPathApi+"universalmenuprocesses/getall", {}, 'POST').success(function (response) {
         menuItemCtrl.processesListItems = response.ListItems;
     }).error(function (data, errCode, c, d) {
         console.log(data);
@@ -84,7 +84,7 @@
         menuItemCtrl.addRequested = true;
         menuItemCtrl.busyIndicator.isActive = true;
         menuItemCtrl.gridOptions.rowPerPage=1000;
-        ajax.call(cmsServerConfig.configApiServerPath+"UniversalMenuMenuItem/GetAllMenu", {RowPerPage: 1000}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"UniversalMenuMenuItem/GetAllMenu", {RowPerPage: 1000}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             // Populate TreeConfig with all the Menu
             sortChildren(response.ListItems);
@@ -104,7 +104,7 @@
             console.log(data);
         });
         // Get all MemberGroups to popluate the list
-        ajax.call(cmsServerConfig.configApiServerPath+"MemberGroup/GetAll", {RowPerPage: 200}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"MemberGroup/GetAll", {RowPerPage: 200}, 'POST').success(function (response) {
             menuItemCtrl.groupsListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -203,7 +203,7 @@
         }
         menuItemCtrl.gridOptions.advancedSearchData.engine.Filters.rowPerPage=1000;
         menuItemCtrl.gridOptions.advancedSearchData.engine.Filters.push(s);
-        ajax.call(cmsServerConfig.configApiServerPath+"UniversalMenuMenuItem/GetAll", menuItemCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"UniversalMenuMenuItem/GetAll", menuItemCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             menuItemCtrl.busyIndicator.isActive = false;
             menuItemCtrl.ListItems = response.ListItems;
@@ -228,7 +228,7 @@
         menuItemCtrl.addRequested = false;
         menuItemCtrl.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuitem/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'UniversalMenumenuitem/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             menuItemCtrl.selectedItem = response.Item;
@@ -257,7 +257,7 @@
         // Clear the "New Process" form and populate CmsModules
         menuItemCtrl.clearProcessForm();
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuItem/getviewmodel', menuItemCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'UniversalMenumenuItem/getviewmodel', menuItemCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             menuItemCtrl.selectedItem = response.Item;
@@ -286,7 +286,7 @@
             //Set ScheduleSettings panel show or hide
             if (menuItemCtrl.selectedItem.LinkTaskSchedulerId != null && menuItemCtrl.scheduleListItems == undefined && menuItemCtrl.selectedItem.LinkTaskSchedulerId>0) {
                 menuItemCtrl.isLoading = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/getall', {RowPerPage: 1000}, "POST").success(function (response) {
+                ajax.call(mainPathApi+'TaskSchedulerSchedule/getall', {RowPerPage: 1000}, "POST").success(function (response) {
                     menuItemCtrl.isLoading = false;
                     menuItemCtrl.scheduleListItems = response.ListItems;
                 }).error(function (data, errCode, c, d) {
@@ -310,7 +310,7 @@
         //Concat whilte list and black list group ids
         menuItemCtrl.selectedItem.AccessWhiteListGroup = getWhilteList();
         menuItemCtrl.selectedItem.AccessBlackListGroup = getBlackList();
-        ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuitem/add', menuItemCtrl.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'UniversalMenumenuitem/add', menuItemCtrl.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 menuItemCtrl.ListItems.push(response.Item);
@@ -350,7 +350,7 @@
 
         menuItemCtrl.addRequested = true;
         menuItemCtrl.editProcess(false);
-        ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuitem/edit', menuItemCtrl.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'UniversalMenumenuitem/edit', menuItemCtrl.selectedItem, 'PUT').success(function (response) {
             menuItemCtrl.addRequested = false;
             menuItemCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -379,13 +379,13 @@
             if (isConfirmed) {
                 menuItemCtrl.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"UniversalMenumenuitem/getviewmodel", menuItemCtrl.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(mainPathApi+"UniversalMenumenuitem/getviewmodel", menuItemCtrl.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     menuItemCtrl.busyIndicator.isActive = false;
                     rashaErManage.checkAction(response);
                     menuItemCtrl.selectedItemForDelete = response.Item;
                     menuItemCtrl.busyIndicator.isActive = true;
-                    ajax.call(cmsServerConfig.configApiServerPath+"UniversalMenumenuitem/delete", menuItemCtrl.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(mainPathApi+"UniversalMenumenuitem/delete", menuItemCtrl.selectedItemForDelete, "DELETE").success(function (res) {
                         menuItemCtrl.busyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
@@ -431,7 +431,7 @@
     menuItemCtrl.searchData = function () {
         menuItemCtrl.addRequested = true;
         menuItemCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"universalmenumenuItem/getAll", menuItemCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"universalmenumenuItem/getAll", menuItemCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             // Populate TreeConfig with all the Menu
             menuItemCtrl.responseListItems = response.ListItems;
@@ -446,7 +446,7 @@
             console.log(data);
         });
         // Get all MemberGroups to popluate the list
-        ajax.call(cmsServerConfig.configApiServerPath+"MemberGroup/GetAll", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"MemberGroup/GetAll", engine, 'POST').success(function (response) {
             menuItemCtrl.groupsListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(response);
@@ -535,19 +535,19 @@
             return;
         }
         menuItemCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuItem/getviewmodel', item.Id, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+'UniversalMenumenuItem/getviewmodel', item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             menuItemCtrl.selectedItem = response1.Item;
             var temp = response1.Item.ShowInMenuOrder;
             menuItemCtrl.selectedItem.ShowInMenuOrder = menuItemCtrl.ListItems[index - 1].ShowInMenuOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuitem/edit', menuItemCtrl.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(mainPathApi+'UniversalMenumenuitem/edit', menuItemCtrl.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuItem/getviewmodel', menuItemCtrl.ListItems[index - 1].Id, 'GET').success(function (response3) {
+                    ajax.call(mainPathApi+'UniversalMenumenuItem/getviewmodel', menuItemCtrl.ListItems[index - 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         menuItemCtrl.selectedItem = response3.Item;
                         menuItemCtrl.selectedItem.ShowInMenuOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuitem/edit', menuItemCtrl.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(mainPathApi+'UniversalMenumenuitem/edit', menuItemCtrl.selectedItem, 'PUT').success(function (response4) {
                             menuItemCtrl.busyIndicator.isActive = false;
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
@@ -589,19 +589,19 @@
             return;
         }
         menuItemCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuItem/getviewmodel', item.Id, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+'UniversalMenumenuItem/getviewmodel', item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             menuItemCtrl.selectedItem = response1.Item;
             var temp = response1.Item.ShowInMenuOrder;
             menuItemCtrl.selectedItem.ShowInMenuOrder = menuItemCtrl.ListItems[index + 1].ShowInMenuOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuitem/edit', menuItemCtrl.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(mainPathApi+'UniversalMenumenuitem/edit', menuItemCtrl.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuItem/getviewmodel', menuItemCtrl.ListItems[index + 1].Id, 'GET').success(function (response3) {
+                    ajax.call(mainPathApi+'UniversalMenumenuItem/getviewmodel', menuItemCtrl.ListItems[index + 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         menuItemCtrl.selectedItem = response3.Item;
                         menuItemCtrl.selectedItem.ShowInMenuOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuitem/edit', menuItemCtrl.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(mainPathApi+'UniversalMenumenuitem/edit', menuItemCtrl.selectedItem, 'PUT').success(function (response4) {
                             rashaErManage.checkAction(response4);
                             menuItemCtrl.busyIndicator.isActive = false;
                             if (response4.IsSuccess) {
@@ -688,7 +688,7 @@
         engine.SortColumn = "Title";
         engine.SortType = 1;
         menuItemCtrl.loadingCmsModuleProcess = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/getall', engine, "POST").success(function (response) {
+        ajax.call(mainPathApi+'CoreModuleProcess/getall', engine, "POST").success(function (response) {
             menuItemCtrl.loadingCmsModuleProcess = false;
             rashaErManage.checkAction(response);
             menuItemCtrl.cmsModulesProcessesListItems = response.ListItems;
@@ -723,7 +723,7 @@
         engine.SortColumn = "Title";
         engine.SortType = 1;
         menuItemCtrl.loadingCmsModuleProcessCustomize = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/getall', engine, "POST").success(function (response) {
+        ajax.call(mainPathApi+'CoreModuleProcessCustomize/getall', engine, "POST").success(function (response) {
             menuItemCtrl.loadingCmsModuleProcessCustomize = false;
             rashaErManage.checkAction(response);
             menuItemCtrl.cmsModulesProcessesCustomizeListItems = response.ListItems;
@@ -757,7 +757,7 @@
                     });
                 if( menuItemCtrl.cmsModulesProcessesCustomizeListItems[i].LinkProcessCustomizeDependenceBeforRunId !=null)
                 {
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/getviewmodel', menuItemCtrl.cmsModulesProcessesCustomizeListItems[i].LinkProcessCustomizeDependenceBeforRunId, "GET").success(function (response) {
+                    ajax.call(mainPathApi+'CoreModuleProcessCustomize/getviewmodel', menuItemCtrl.cmsModulesProcessesCustomizeListItems[i].LinkProcessCustomizeDependenceBeforRunId, "GET").success(function (response) {
                         rashaErManage.checkAction(response);
                         menuItemCtrl.newProcess.Description="برای استفاده از این فرایند به فرایند "+ response.Item.Title +" نیاز دارید"  ;
                     }).error(function (data, errCode, c, d) {
@@ -821,7 +821,7 @@
 
         // GetAll Modules to populate Module combobox for new Process form in add modal
         menuItemCtrl.loadingCmsModule = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreModule/getall", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreModule/getall", {}, 'POST').success(function (response) {
             menuItemCtrl.loadingCmsModule = false;
             rashaErManage.checkAction(response);
             menuItemCtrl.cmsModulesListItems = response.ListItems;
@@ -868,7 +868,7 @@
 
         // GetAll Modules to populate Module combobox for new Process form in add modal
         menuItemCtrl.loadingCmsModule = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreModule/getall", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreModule/getall", {}, 'POST').success(function (response) {
             menuItemCtrl.loadingCmsModule = false;
             rashaErManage.checkAction(response);
             menuItemCtrl.cmsModulesListItems = response.ListItems;
@@ -898,7 +898,7 @@
         engine.RowPerPage = 1010;
         engine.SortColumn = "Title";
         engine.SortType = 1;
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreModule/getall", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreModule/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             menuItemCtrl.cmsModulesListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
@@ -923,7 +923,7 @@
         engine.SortType = 1;
         
         menuItemCtrl.loadingCmsModuleProcess = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/getall', engine, "POST").success(function (response) {
+        ajax.call(mainPathApi+'CoreModuleProcess/getall', engine, "POST").success(function (response) {
             menuItemCtrl.loadingCmsModuleProcess = false;
             rashaErManage.checkAction(response);
             menuItemCtrl.cmsModulesProcessesListItems = response.ListItems;
@@ -946,7 +946,7 @@
                 engine.RowPerPage = 1000;
                 engine.Filters.push(filterValue);
                 menuItemCtrl.loadingCmsModuleProcessCustomize = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/getall', engine, "POST").success(function (response) {
+                ajax.call(mainPathApi+'CoreModuleProcessCustomize/getall', engine, "POST").success(function (response) {
                     menuItemCtrl.loadingCmsModuleProcessCustomize = false;
                     rashaErManage.checkAction(response);
                     menuItemCtrl.cmsModulesProcessesCustomizeListItems = response.ListItems;
@@ -1026,7 +1026,7 @@
         engine.SortColumn = "Title";
         engine.SortType = 1;
         menuItemCtrl.loadingCmsModuleProcess = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/getall', engine, "POST").success(function (response) {
+        ajax.call(mainPathApi+'CoreModuleProcess/getall', engine, "POST").success(function (response) {
             menuItemCtrl.loadingCmsModuleProcess = false;
             rashaErManage.checkAction(response);
             menuItemCtrl.cmsModulesProcessesListItems = response.ListItems;
@@ -1049,7 +1049,7 @@
                 engine.Filters.push(filterValue);
 
                 menuItemCtrl.loadingCmsModuleProcessCustomize = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/getall', engine, "POST").success(function (response) {
+                ajax.call(mainPathApi+'CoreModuleProcessCustomize/getall', engine, "POST").success(function (response) {
                     menuItemCtrl.loadingCmsModuleProcessCustomize = false;
                     rashaErManage.checkAction(response);
                     menuItemCtrl.cmsModulesProcessesCustomizeListItems = response.ListItems;
@@ -1295,7 +1295,7 @@
     menuItemCtrl.toggleScheduleSettings = function (id) {
         if ($('#' + id).is(":visible") == false && menuItemCtrl.scheduleListItems == undefined) {
             menuItemCtrl.isLoading = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/getall', {}, "POST").success(function (response) {
+            ajax.call(mainPathApi+'TaskSchedulerSchedule/getall', {}, "POST").success(function (response) {
                 menuItemCtrl.isLoading = false;
                 menuItemCtrl.scheduleListItems = response.ListItems;
             }).error(function (data, errCode, c, d) {
@@ -1308,7 +1308,7 @@
     menuItemCtrl.exportFile = function () {
         menuItemCtrl.addRequested = true;
         menuItemCtrl.gridOptions.advancedSearchData.engine.ExportFile = menuItemCtrl.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'UniversalMenumenuItem/exportfile', menuItemCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'UniversalMenumenuItem/exportfile', menuItemCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             menuItemCtrl.addRequested = false;
             rashaErManage.checkAction(response);
             menuItemCtrl.reportDownloadLink = response.LinkFile;
@@ -1351,7 +1351,7 @@
     }
     //Get TotalRowCount
     menuItemCtrl.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"UniversalMenumenuItem/count", menuItemCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"UniversalMenumenuItem/count", menuItemCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             menuItemCtrl.addRequested = false;
             rashaErManage.checkAction(response);
             menuItemCtrl.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

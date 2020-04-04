@@ -1,6 +1,6 @@
 ﻿app.controller("estatePropertyController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$window', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $window, $filter) {
     var estateProperty = this;
-    estateProperty.RouteUploadFileContent = cmsServerConfig.configRouteUploadFileContent;
+    estateProperty.mainPathApiUpload = mainPathApiUpload;
     estateProperty.busyIndicator = {
         isActive: true,
         message: "در حال بار گذاری ..."
@@ -59,7 +59,7 @@
 
     estateProperty.init = function () {
         estateProperty.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"estateproperty/getAllwithalias", estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"estateproperty/getAllwithalias", estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             estateProperty.ListItems = response.ListItems;
             estateProperty.gridOptions.fillData(estateProperty.ListItems, response.resultAccess);
@@ -73,14 +73,14 @@
             estateProperty.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"estatepropertytype/getAll", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"estatepropertytype/getAll", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             estateProperty.propertyTypeListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             estateProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreLocation/GetAllProvinces", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreLocation/GetAllProvinces", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             estateProperty.provinceCmsLocatinoListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
@@ -113,7 +113,7 @@
         estateProperty.filePickerFiles.filename = "";
         estateProperty.filePickerFiles.fileId = null;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'estateproperty/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             estateProperty.busyIndicator.isActive = false;
@@ -144,11 +144,11 @@
         estateProperty.addRequested = true;
         var valueItem = {};
         estateProperty.valueItems = [];
-        ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/add', estateProperty.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'estateproperty/add', estateProperty.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 estateProperty.closeModal();
-                ajax.call(cmsServerConfig.configApiServerPath+"estatepropertydetailvalue/getviewmodel", '0', 'GET').success(function (response1) {
+                ajax.call(mainPathApi+"estatepropertydetailvalue/getviewmodel", '0', 'GET').success(function (response1) {
                     rashaErManage.checkAction(response1);
                     for (var i = 0; i < estateProperty.propertyDetailsListItems.length; i++) {
                         valueItem = $.extend(true, {}, response1.Item);
@@ -183,7 +183,7 @@
                             valueItem.Value = estateProperty.propertyDetailsListItems[i].value;
                         estateProperty.valueItems.push(valueItem);
                     }
-                    ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailValue/AddBatch', estateProperty.valueItems, 'POST').success(function (response2) {
+                    ajax.call(mainPathApi+'EstatePropertyDetailValue/AddBatch', estateProperty.valueItems, 'POST').success(function (response2) {
                         rashaErManage.checkAction(response2);
                         if (response2.IsSuccess) {
                             estateProperty.ListItems.unshift(response.Item);
@@ -226,7 +226,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/getviewmodel', parseInt(estateProperty.gridOptions.selectedRow.item.Id), 'GET').success(function (response) {
+        ajax.call(mainPathApi+'estateproperty/getviewmodel', parseInt(estateProperty.gridOptions.selectedRow.item.Id), 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             estateProperty.selectedItem = response.Item;
@@ -239,7 +239,7 @@
             estateProperty.filePickerMainImage.filename = null;
             estateProperty.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null && response.Item.LinkMainImageId > 0) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(response.Item.LinkMainImageId), 'GET').success(function (response2) {
+                ajax.call(mainPathApi+'FileContent/getviewmodel', parseInt(response.Item.LinkMainImageId), 'GET').success(function (response2) {
                     if (response2.IsSuccess && response2.Item.Id > 9) {
                         estateProperty.filePickerMainImage.filename = response2.Item.FileName;
                         estateProperty.filePickerMainImage.fileId = response2.Item.Id;
@@ -270,7 +270,7 @@
         // Edit Property: Title, Description, LinkPropertyTypeId
         estateProperty.busyIndicator.isActive = true;
         estateProperty.selectedItem.LinkExtraImageIds = stringfyLinkFileIds(estateProperty.attachedFiles);
-        ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/edit', estateProperty.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'estateproperty/edit', estateProperty.selectedItem, 'PUT').success(function (response) {
             estateProperty.addRequested = true;
             rashaErManage.checkAction(response);
             estateProperty.busyIndicator.isActive = false;
@@ -298,7 +298,7 @@
             var engine = {};
             engine.Filters = [];
             engine.Filters.push(filterValue);
-            ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailValue/deleteList', engine, 'DELETE').success(function (response) {
+            ajax.call(mainPathApi+'EstatePropertyDetailValue/deleteList', engine, 'DELETE').success(function (response) {
                 rashaErManage.checkAction(response);
                 console.log(response.Item);
             }).error(function (data, errCode, c, d) {
@@ -306,7 +306,7 @@
                 estateProperty.busyIndicator.isActive = false;
 
             });
-            ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailValue/AddBatch', estateProperty.selectedItem.LinkPropertyId, 'POST').success(function (response) {
+            ajax.call(mainPathApi+'EstatePropertyDetailValue/AddBatch', estateProperty.selectedItem.LinkPropertyId, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 console.log(response.Item);
             }).error(function (data, errCode, c, d) {
@@ -357,7 +357,7 @@
             }
             // ---------------------------------- End of Set Values to Edit --------------------------------------
             estateProperty.addRequested = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailValue/EditBatch', estateProperty.propertyDetailValuesListItems, 'PUT').success(function (response) {
+            ajax.call(mainPathApi+'EstatePropertyDetailValue/EditBatch', estateProperty.propertyDetailValuesListItems, 'PUT').success(function (response) {
                 rashaErManage.checkAction(response);
                 estateProperty.busyIndicator.isActive = false;
                 if (response.IsSuccess) {
@@ -398,11 +398,11 @@
             if (isConfirmed) {
                 estateProperty.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/getviewmodel', estateProperty.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'estateproperty/getviewmodel', estateProperty.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     estateProperty.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'estateproperty/delete', estateProperty.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'estateproperty/delete', estateProperty.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         estateProperty.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -519,7 +519,7 @@
         };
         engine.Filters = [];
         engine.Filters.push(filterValue);
-        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetail/GetAll", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"EstatePropertyDetail/GetAll", engine, 'POST').success(function (response) {
             estateProperty.propertyDetailsListItems = response.ListItems;
 
             $.each(estateProperty.propertyDetailsListItems, function (index, item) {
@@ -575,7 +575,7 @@
         };
         engine1.Filters = [];
         engine1.Filters.push(filterValue1);
-        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetail/GetAll", engine1, 'POST').success(function (response1) {
+        ajax.call(mainPathApi+"EstatePropertyDetail/GetAll", engine1, 'POST').success(function (response1) {
             estateProperty.propertyDetailsListItems = response1.ListItems;
             //---------- Load Values ---------------------------------------
             var filterValue2 = {
@@ -585,7 +585,7 @@
             }
             var engine2 = { Filters: [] };
             engine2.Filters.push(filterValue2);
-            ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyDetailValue/GetAll", engine2, 'POST').success(function (response) {
+            ajax.call(mainPathApi+"EstatePropertyDetailValue/GetAll", engine2, 'POST').success(function (response) {
                 $.each(estateProperty.propertyDetailsListItems, function (index, item) {
                     item.value = null;
                     // Add groups to its list
@@ -718,7 +718,7 @@
 
     estateProperty.contractsList = [];
     estateProperty.openAddContractModal = function (propertyId, propertyTitle) {
-        ajax.call(cmsServerConfig.configApiServerPath+"estatecontracttype/getall", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"estatecontracttype/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             estateProperty.busyIndicator.isActive = false;
             estateProperty.contractTypeListItems = response.ListItems;
@@ -727,7 +727,7 @@
             estateProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'EstateContract/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'EstateContract/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 estateProperty.selectedItem = response.Item;
@@ -737,7 +737,7 @@
                 };
                 model.Filters = [];
                 model.Filters.push({ PropertyName: "LinkPropertyId", IntValue1: parseInt(propertyId), SearchType: 0 });
-                ajax.call(cmsServerConfig.configApiServerPath+'EstateContract/getall', model, 'POST').success(function (response) {
+                ajax.call(mainPathApi+'EstateContract/getall', model, 'POST').success(function (response) {
                     rashaErManage.checkAction(response);
                     estateProperty.contractsList = response.ListItems;
                     estateProperty.contractsListresultAccess = response.resultAccess;
@@ -772,7 +772,7 @@
         }
         estateProperty.addRequested = true;
         estateProperty.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'EstateContract/add', estateProperty.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'EstateContract/add', estateProperty.selectedItem, 'POST').success(function (response) {
             estateProperty.addRequested = false;
             estateProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -826,7 +826,7 @@
 
     estateProperty.editContract = function (index) {
         estateProperty.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'EstateContract/edit', estateProperty.contractsList[index], 'PUT').success(function (res) {
+        ajax.call(mainPathApi+'EstateContract/edit', estateProperty.contractsList[index], 'PUT').success(function (res) {
             estateProperty.addRequested = false;
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
@@ -841,7 +841,7 @@
 
     estateProperty.deleteContract = function (index) {
         estateProperty.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'EstateContract/delete', estateProperty.contractsList[index], 'DELETE').success(function (res) {
+        ajax.call(mainPathApi+'EstateContract/delete', estateProperty.contractsList[index], 'DELETE').success(function (res) {
             estateProperty.addRequested = false;
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
@@ -859,7 +859,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(mainPathApi+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             estateProperty.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -898,7 +898,7 @@
 
         estateProperty.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
             estateProperty.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -937,14 +937,14 @@
         estateProperty.fileIdToDelete = estateProperty.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", estateProperty.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+"FileContent/getviewmodel", estateProperty.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(mainPathApi+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
                     estateProperty.remove(estateProperty.FileList, estateProperty.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 estateProperty.FileItem = response3.Item;
                                 estateProperty.FileItem.FileName = name;
@@ -973,7 +973,7 @@
     }
     //save new file
     estateProperty.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", estateProperty.FileItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"FileContent/add", estateProperty.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 estateProperty.FileItem = response.Item;
                 estateProperty.showSuccessIcon();
@@ -1047,14 +1047,14 @@
                     // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                mainPathApi+"FileContent/getviewmodel",
                 estateProperty.fileIdToDelete,
                 "GET"
               )
               .success(function(response1) {
                 if (response1.IsSuccess == true) {
                   console.log(response1.Item);
-                  ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
+                  ajax.call(mainPathApi+"FileContent/replace", response1.Item, "POST")
                     .success(function(response2) {
                       if (response2.IsSuccess == true) {
                         estateProperty.FileItem = response2.Item;
@@ -1097,7 +1097,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
                     estateProperty.FileItem = response.Item;
                     estateProperty.FileItem.FileName = uploadFile.name;
                     estateProperty.FileItem.uploadName = uploadFile.uploadName;
@@ -1106,7 +1106,7 @@
                     estateProperty.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- estateProperty.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", estateProperty.FileItem, 'POST').success(function (response) {
+                    ajax.call(mainPathApi+"FileContent/add", estateProperty.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             estateProperty.FileItem = response.Item;
                             estateProperty.showSuccessIcon();
@@ -1145,7 +1145,7 @@
     estateProperty.exportFile = function () {
         estateProperty.addRequested = true;
         estateProperty.gridOptions.advancedSearchData.engine.ExportFile = estateProperty.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'EstateProperty/exportfile', estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'EstateProperty/exportfile', estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             estateProperty.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -1188,7 +1188,7 @@
     }
     //Get TotalRowCount
     estateProperty.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"EstateProperty/count", estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"EstateProperty/count", estateProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             estateProperty.addRequested = false;
             rashaErManage.checkAction(response);
             estateProperty.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -1207,7 +1207,7 @@
     estateProperty.onRecordStatusChange = function (record) {
         //estateProperty.busyIndicator.isActive = true;
         //var filterstatus = { Filters: [{ PropertyName: "RecordStatus", SearchType: 0, IntValue1: record }] };
-        //ajax.call(cmsServerConfig.configApiServerPath+"estateproperty/getAllwithalias", filterstatus, 'POST').success(function (response) {
+        //ajax.call(mainPathApi+"estateproperty/getAllwithalias", filterstatus, 'POST').success(function (response) {
         //    rashaErManage.checkAction(response);
         //    estateProperty.ListItems = response.ListItems;
         //    estateProperty.gridOptions.fillData(estateProperty.ListItems, response.resultAccess);

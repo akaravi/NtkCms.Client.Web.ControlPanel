@@ -15,7 +15,7 @@
             console.log(error);
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+"inputLogCtrl/getall", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"inputLogCtrl/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             inputLogCtrl.busyIndicator.isActive = false;
             inputLogCtrl.ListItems = response.ListItems;
@@ -31,7 +31,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         //inputLogCtrl.busyIndicator.isActive = true;
-        //ajax.call(cmsServerConfig.configApiServerPath+'articleContent/getall', {}, 'POST').success(function (response) {
+        //ajax.call(mainPathApi+'articleContent/getall', {}, 'POST').success(function (response) {
         //    inputLogCtrl.CommentList = response.ListItems;
         //    inputLogCtrl.busyIndicator.isActive = false;
         //});
@@ -41,7 +41,7 @@
     inputLogCtrl.addRequested = false;
     inputLogCtrl.openAddModal = function () {
         inputLogCtrl.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'inputLogCtrl/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             inputLogCtrl.busyIndicator.isActive = false;
             inputLogCtrl.selectedItem = response.Item;
@@ -66,7 +66,7 @@
         }
         inputLogCtrl.busyIndicator.isActive = true;
         inputLogCtrl.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/add', inputLogCtrl.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'inputLogCtrl/add', inputLogCtrl.selectedItem, 'POST').success(function (response) {
             inputLogCtrl.addRequested = false;
             inputLogCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -90,7 +90,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/getviewmodel', inputLogCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'inputLogCtrl/getviewmodel', inputLogCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             inputLogCtrl.selectedItem = response.Item;
             $modal.open({
@@ -110,7 +110,7 @@
             return;
         }
         inputLogCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/edit', inputLogCtrl.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'inputLogCtrl/edit', inputLogCtrl.selectedItem, 'PUT').success(function (response) {
             inputLogCtrl.addRequested = true;
             rashaErManage.checkAction(response);
             inputLogCtrl.busyIndicator.isActive = false;
@@ -152,10 +152,10 @@
             if (isConfirmed) {
                 inputLogCtrl.busyIndicator.isActive = true;
                 console.log(inputLogCtrl.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/getviewmodel', inputLogCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'inputLogCtrl/getviewmodel', inputLogCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     inputLogCtrl.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/delete', inputLogCtrl.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'inputLogCtrl/delete', inputLogCtrl.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         inputLogCtrl.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

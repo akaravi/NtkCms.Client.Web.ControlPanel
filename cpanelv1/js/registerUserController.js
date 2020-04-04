@@ -27,7 +27,7 @@
     register.addRequested = true;
 
     register.init = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/getAntiForgeryToken', {}, 'POST').success(function (res) {
+        ajax.call(mainPathApi+'CoreUser/getAntiForgeryToken', {}, 'POST').success(function (res) {
             register.sendSmsActivationCodeBusyIndicator.isActive = false;
             if (res) {
                 console.log(res);
@@ -49,12 +49,12 @@
         if (param.$valid) {
             if (register.selectedItem.Username.substring(0, 2) == "09") {
                 register.sendSmsActivationCodeBusyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/GetActivationCode", { userName: register.selectedItem.Username }, "post").success(function (response) {
+                ajax.call(mainPathApi+"CoreUser/GetActivationCode", { userName: register.selectedItem.Username }, "post").success(function (response) {
                     register.sendSmsActivationCodeBusyIndicator.isActive = false;
                     if (response.IsSuccess == true) {
                         notify({ message: 'کد فعالسازی برای شما ارسال شد', classes: 'alert-success', templateUrl: template });
                         register.sendSmsActivationCodeBusyIndicator.isActive = true;
-                        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/getviewmodel',  0 , 'POST').success(function (res) {
+                        ajax.call(mainPathApi+'CoreUser/getviewmodel',  0 , 'POST').success(function (res) {
                             register.sendSmsActivationCodeBusyIndicator.isActive = false;
                             if (res.IsSuccess) {
                                 var userName = register.selectedItem.Username;
@@ -85,7 +85,7 @@
         if (param.$valid) {
             var ds = register.selectedItem;
             register.verifyActivationCodeBusyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/VerifyActivationCode", { username: register.selectedItem.Username, activecode: register.selectedItem.ActiveCode }, "POST").success(function (response) {
+            ajax.call(mainPathApi+"CoreUser/VerifyActivationCode", { username: register.selectedItem.Username, activecode: register.selectedItem.ActiveCode }, "POST").success(function (response) {
                 register.verifyActivationCodeBusyIndicator.isActive = false;
                 if (response.IsSuccess == true) {
                     $state.go("user_wizard.step_three");
@@ -107,7 +107,7 @@
         if (param.$valid) {
             var ds = register.selectedItem;
             register.setPasswordBusyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/add", ds , "POST").success(function (response) {
+            ajax.call(mainPathApi+"CoreUser/add", ds , "POST").success(function (response) {
                 register.setPasswordBusyIndicator.isActive = false;
                 if (response.IsSuccess == true) {
                     register.selectedItem.Id = response.Item.Id;
@@ -129,7 +129,7 @@
     register.updateProfile = function (param) {
         if (param.$valid) {
             var ds = register.selectedItem;
-            ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/edit",  ds , "PUT").success(function (response) {
+            ajax.call(mainPathApi+"CoreUser/edit",  ds , "PUT").success(function (response) {
                 register.updateProfileBusyIndicator.isActive = false;
                 if (response.IsSuccess == true) {                    
                     notify({ message: 'حساب کاربری شما با موفقیت ویرایش شد شد', classes: 'alert-success', templateUrl: template });                    

@@ -67,7 +67,7 @@
 
     //init Function
     shopService.init = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"ShopProductService/getall", shopService.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"ShopProductService/getall", shopService.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopService.ListItems = response.ListItems;
             shopService.gridOptions.fillData(shopService.ListItems, response.resultAccess); // Sending Access as an argument
@@ -92,7 +92,7 @@
         shopService.addRequested = false;
         shopService.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductService/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ShopProductService/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopService.selectedItem = response.Item;
@@ -115,7 +115,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductService/getviewmodel', shopService.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ShopProductService/getviewmodel', shopService.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopService.selectedItem = response.Item;
@@ -137,7 +137,7 @@
         }
         shopService.busyIndicator.isActive = true;
         shopService.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductService/add', shopService.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'ShopProductService/add', shopService.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopService.busyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -169,7 +169,7 @@
         //    else
         //        shopService.selectedItem.Keyword += ',' + item.text;
         //});
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductService/edit', shopService.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'ShopProductService/edit', shopService.selectedItem, 'PUT').success(function (response) {
             shopService.busyIndicator.isActive = false;
             shopService.addRequested = false;
             shopService.showIsBusy = false;
@@ -200,13 +200,13 @@
                 shopService.showbusy = true;
                 shopService.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"ShopProductService/getviewmodel", shopService.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(mainPathApi+"ShopProductService/getviewmodel", shopService.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     shopService.showbusy = false;
                     shopService.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     shopService.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"ShopProductService/delete", shopService.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(mainPathApi+"ShopProductService/delete", shopService.selectedItemForDelete, "DELETE").success(function (res) {
                         shopService.busyIndicator.isActive = false;
                         shopService.showIsBusy = false;
                         rashaErManage.checkAction(res);
@@ -244,7 +244,7 @@
     shopService.summernoteText = '<h3>Hello Jonathan! </h3>dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industrys</strong> standard dummy text ever since the 1500s,when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronictypesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with<br /><br />';
     shopService.searchData = function () {
         shopService.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"ShopProductService/getall", shopService.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(mainPathApi+"ShopProductService/getall", shopService.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             shopService.busyIndicator.isActive = false;
             shopService.ListItems = response.ListItems;
@@ -308,7 +308,7 @@
     shopService.exportFile = function () {
         shopService.addRequested = true;
         shopService.gridOptions.advancedSearchData.engine.ExportFile = shopService.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductService/exportfile', shopService.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'ShopProductService/exportfile', shopService.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 shopService.exportDownloadLink = window.location.origin + response.LinkFile;
@@ -352,7 +352,7 @@
     }
     //Get TotalRowCount
     shopService.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"ShopProductService/count", shopService.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"ShopProductService/count", shopService.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopService.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

@@ -8,7 +8,7 @@
 
     pollingcategory.init = function () {
         pollingcategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"pollingcategory/getall", { RowPerPage:1000}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"pollingcategory/getall", { RowPerPage:1000}, 'POST').success(function (response) {
           
             rashaErManage.checkAction(response);
             pollingcategory.ListItems = response.ListItems;
@@ -33,7 +33,7 @@
 
         pollingcategory.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'pollingcategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'pollingcategory/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             pollingcategory.selectedItem = response.Item;
@@ -47,10 +47,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 pollingContent.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(pollingContent.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModulePolling/pollingCategory/add.html',
@@ -81,7 +81,7 @@
         }
         pollingcategory.categoryBusyIndicator.isActive = true;
         pollingcategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'pollingcategory/add',  pollingcategory.selectedItem , 'POST').success(function (response) {
+        ajax.call(mainPathApi+'pollingcategory/add',  pollingcategory.selectedItem , 'POST').success(function (response) {
             pollingcategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -105,7 +105,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'pollingcategory/getviewmodel', pollingcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(mainPathApi+'pollingcategory/getviewmodel', pollingcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             pollingcategory.selectedItem = response.Item;
@@ -121,10 +121,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 pollingcategory.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(pollingcategory.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (pollingcategory.selectedItem.LinkMainImageId > 0)
@@ -156,7 +156,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'pollingcategory/', pollingcategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'pollingcategory/', pollingcategory.selectedItem, 'PUT').success(function (response) {
             pollingcategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -181,7 +181,7 @@
             return;
         }
         pollingcategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'PollingCategory/edit/', pollingcategory.selectedItem , 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'PollingCategory/edit/', pollingcategory.selectedItem , 'PUT').success(function (response) {
             pollingcategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -230,12 +230,12 @@
             if (isConfirmed) {
                 console.log(pollingcategory.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'pollingcategory/getviewmodel',  pollingcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(mainPathApi+'pollingcategory/getviewmodel',  pollingcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     pollingcategory.selectedItemForDelete = response.Item;
                     console.log(pollingcategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'pollingcategory/delete', pollingcategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'pollingcategory/delete', pollingcategory.selectedItemForDelete, 'DELETE').success(function (res) {
                         pollingcategory.categoryBusyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
@@ -373,11 +373,11 @@
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -398,9 +398,9 @@
             return;
         }
         pollingContent.selectedItem.LinkMainImageId = node.Id;
-        pollingContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            pollingContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
+        pollingContent.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
+        ajax.call(mainPathApi+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            pollingContent.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });

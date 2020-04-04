@@ -416,7 +416,7 @@ function sideNavigation($timeout) {
 $.ajax({
     type: "POST",
     async: false,
-    url: cmsServerConfig.configApiServerPath + "EnumStatus/GetEnumRecordStatus",
+    url: mainPathApi + "EnumStatus/GetEnumRecordStatus",
     contentType: "application/json",
     success: function (response) {
         itemRecordStatus = response.ListItems;
@@ -627,7 +627,7 @@ function rashaGlobaltoken(ajax) {
     return {
         restrict: 'A',
         link: function (scope, element) {
-            ajax.call(cmsServerConfig.configApiServerPath + 'user/getglobaltoken', '', 'POST').success(function (response) {
+            ajax.call(mainPathApi + 'user/getglobaltoken', '', 'POST').success(function (response) {
                 localStorage.setItem('userGlobaltoken', response);
                 //console.log('ready');
             }).error(function (a, b, c, d) {
@@ -830,7 +830,7 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
                     id: defId
                 };
 
-                ajax.call(cmsServerConfig.configApiServerPath + config.url + '/getviewmodel', defId, 'GET')
+                ajax.call(mainPathApi + config.url + '/getviewmodel', defId, 'GET')
                     .success(function (response) {
                         // Create a ViewModel with null values
                         config.ViewModel = response.Item;
@@ -923,7 +923,7 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
                     }
                 }
 
-                ajax.call(cmsServerConfig.configApiServerPath + config.url + '/' + data.Action, data, 'POST')
+                ajax.call(mainPathApi + config.url + '/' + data.Action, data, 'POST')
                     .success(function (response) {
                         config.isDisabledSearch = false;
                         rashaErManage.checkAction(response);
@@ -1170,7 +1170,7 @@ function rashaGrid($compile, $rootScope, ajax) {
             if (config.totalcolumns > 0)
                 config.percentWidth = 100 / config.totalcolumns;
             angular.forEach(config.columns, function (item, key) {
-                item.srcThumbnail = cmsServerConfig.configRouteThumbnails+'/{{x.' + item.name + '}}?MvcAuthorization=' + encodeURIComponent(localStorage.getItem('userGlobaltoken'));
+                item.srcThumbnail = '{{infoDomainAddress}}imageThumbnails/{{x.' + item.name + '}}?MvcAuthorization=' + encodeURIComponent(localStorage.getItem('userGlobaltoken'));
                 if (!item.visible)
                     item.visible = true;
                 if (!item.sortable)
@@ -2310,7 +2310,7 @@ function ajax($http, $state) {
         $.ajax({
             type: "POST",
             data: data,
-            url: cmsServerConfig.configApiServerPath + "CoreUser/UserClearToken",
+            url: mainPathApi + "CoreUser/UserClearToken",
             contentType: "application/json; charset=utf-8",
             //Send header authorization in request
             beforeSend: function (request) {
@@ -2837,7 +2837,7 @@ function rashaErrorLog($log, $injector) {
             //    type: "POST",
             //    data: JSON.stringify(model),
             //    async: false,
-            //    url: cmsServerConfig.configApiServerPath + "ErrorApi",
+            //    url: mainPathApi + "ErrorApi",
             //    contentType: "application/json",
             //    success: function (response) {
             //        console.log("Error was saved manually!", response);
@@ -2933,12 +2933,12 @@ function customPopover(ajax, $timeout, $parse) {
             });
             //#help# برای بستن
             scope.content = function () {
-                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/getviewmodel', attrs.popoverId, 'GET').success(function (response) {
-                    $("#image" + attrs.popoverId).attr("src", cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName);
+                ajax.call(mainPathApi + 'FileContent/getviewmodel', attrs.popoverId, 'GET').success(function (response) {
+                    $("#image" + attrs.popoverId).attr("src", mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName);
                 }).error(function (data, errCode, c, d) {
                     console.log(data);
                 });
-                return '<img id="image' + attrs.popoverId + '" src=cmsServerConfig.configCpanelImages+"loader.gif"  width="' + attrs.width + '" height="' + attrs.height + '"/>';
+                return '<img id="image' + attrs.popoverId + '" src=mainPathCmsFiles+"loader.gif"  width="' + attrs.width + '" height="' + attrs.height + '"/>';
             };
             $(el).popover({
                 trigger: 'click',
@@ -3357,7 +3357,7 @@ function rashaFilePickerB($compile, ajax, $http) {
             };
             //getCategory For Picture
             config.init = function () {
-                ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getall", {
+                ajax.call(mainPathApi + "FileCategory/getall", {
                     RowPerPage: 150
                 }, 'POST').success(function (response) {
                     config.categoryList = response.ListItems;
@@ -3375,7 +3375,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                 if (angular.isDefined(config.extension) && config.extension != "") {
                     extensions = config.extension.split(",");
                 }
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", id, 'POST').success(function (response) {
+                ajax.call(mainPathApi + "FileContent/GetFilesFromCategory", id, 'POST').success(function (response) {
                     config.FileList = [];
                     angular.forEach(response.ListItems, function (value1, key1) {
                         if (extensions.length > 0)
@@ -3677,7 +3677,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                     '<h5><i class="fa fa-cloud-upload fa"></i>&nbsp;&nbsp; آپلود فایل :</h5>' +
                     '</div>' +
                     '<div class="panel-body">' +
-                    '<div class="webix_view webix_control webix_el_segmented webix_fmanager_modes" view_id="$segmented1" style="float: left; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 100%; height: auto;" flow-init="{target: \'' + cmsServerConfig.configRouteUploadFileContent + '\'}"' +
+                    '<div class="webix_view webix_control webix_el_segmented webix_fmanager_modes" view_id="$segmented1" style="float: left; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 100%; height: auto;" flow-init="{target: \'' + mainPathApiUpload + '\'}"' +
                     'flow-files-submitted="$flow.upload()"' +
                     'flow-name="??config??.flow"' +
                     'flow-file-success="$file.msg = $message">' +
@@ -3794,14 +3794,14 @@ function rashaFilePickerB($compile, ajax, $http) {
                             config.fileTypes = 1;
                             fileIdToDelete = config.selectedIndex;
                             // Delete the file
-                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", fileIdToDelete, 'GET').success(function (response1) {
+                            ajax.call(mainPathApi + "FileContent/getviewmodel", fileIdToDelete, 'GET').success(function (response1) {
                                 if (response1.IsSuccess == true) {
                                     //console.log(response1.Item);
-                                    ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                                    ajax.call(mainPathApi + 'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
                                         remove(config.FileList, fileIdToDelete);
                                         if (response2.IsSuccess == true) {
                                             // Save New file
-                                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                                            ajax.call(mainPathApi + "FileContent/getviewmodel", "0", 'GET').success(function (response3) {
                                                 if (response3.IsSuccess == true) {
                                                     FileItem = response3.Item;
                                                     FileItem.FileName = name;
@@ -3810,7 +3810,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                                                     FileItem.LinkCategoryId = config.thisCategory;
                                                     // ------- fdm.saveNewFile()  ----------------------
                                                     var result = 0;
-                                                    ajax.call(cmsServerConfig.configApiServerPath + "FileContent/add", FileItem, 'POST').success(function (response) {
+                                                    ajax.call(mainPathApi + "FileContent/add", FileItem, 'POST').success(function (response) {
                                                         if (response.IsSuccess) {
                                                             FileItem = response.Item;
                                                             showSuccessIcon();
@@ -3869,7 +3869,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                         }
                     } else { // File does not exists
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                        ajax.call(mainPathApi + "FileContent/getviewmodel", "0", 'GET').success(function (response) {
                             FileItem = response.Item;
                             FileItem.FileName = name;
                             FileItem.Extension = name.split('.').pop();
@@ -3877,7 +3877,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                             FileItem.LinkCategoryId = config.thisCategory;
                             // ------- fdm.saveNewFile()  ----------------------
                             var result = 0;
-                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/add", FileItem, 'POST').success(function (response) {
+                            ajax.call(mainPathApi + "FileContent/add", FileItem, 'POST').success(function (response) {
 
                                 if (response.IsSuccess) {
                                     FileItem = response.Item;
@@ -4032,7 +4032,7 @@ function rashaUpload($compile, ajax, $http) {
                     '<h5><i class="fa fa-cloud-upload fa"></i>&nbsp;&nbsp;آپلود</h5>' +
                     '</div>' +
                     '<div class="panel-body">' +
-                    '<div class="webix_view webix_control webix_el_segmented webix_fmanager_modes" view_id="$segmented1" style="float: left; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 100%; height: auto;" flow-init="{target: \'' + cmsServerConfig.configRouteUploadFileContent + '\'}"' +
+                    '<div class="webix_view webix_control webix_el_segmented webix_fmanager_modes" view_id="$segmented1" style="float: left; display: inline-block; vertical-align: top; border-width: 0px; margin-top: 5px; margin-left: 7px; width: 100%; height: auto;" flow-init="{target: \'' + mainPathApiUpload + '\'}"' +
                     'flow-files-submitted="$flow.upload()"' +
                     'flow-name="??config??.flow"' +
                     'flow-file-success="$file.msg = $message">' +
@@ -4077,7 +4077,7 @@ function rashaUpload($compile, ajax, $http) {
 
                 vehicleProperty.FileList = [];
                 //get list of file from category id
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+                ajax.call(mainPathApi + "FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
                     vehicleProperty.FileList = response.ListItems;
                 }).error(function (data) {
                     console.log(data);
@@ -4116,14 +4116,14 @@ function rashaUpload($compile, ajax, $http) {
                 config.fileIdToDelete = config.selectedIndex;
 
                 // Delete the file
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", config.fileIdToDelete, 'GET').success(function (response1) {
+                ajax.call(mainPathApi + "FileContent/getviewmodel", config.fileIdToDelete, 'GET').success(function (response1) {
                     if (response1.IsSuccess == true) {
                         //console.log(response1.Item);
-                        ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                        ajax.call(mainPathApi + 'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
                             config.remove(config.FileList, config.fileIdToDelete);
                             if (response2.IsSuccess == true) {
                                 // Save New file
-                                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                                ajax.call(mainPathApi + "FileContent/getviewmodel", "0", 'GET').success(function (response3) {
                                     if (response3.IsSuccess == true) {
                                         config.FileItem = response3.Item;
                                         config.FileItem.FileName = name;
@@ -4150,7 +4150,7 @@ function rashaUpload($compile, ajax, $http) {
             }
             //save new file
             config.saveNewFile = function () {
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/add", config.FileItem, 'POST').success(function (response) {
+                ajax.call(mainPathApi + "FileContent/add", config.FileItem, 'POST').success(function (response) {
                     if (response.IsSuccess) {
                         config.FileItem = response.Item;
                         config.showSuccessIcon();
@@ -4221,14 +4221,14 @@ function rashaUpload($compile, ajax, $http) {
                             // replace the file
                             ajax
                                 .call(
-                                    cmsServerConfig.configApiServerPath + "FileContent/getviewmodel",
+                                    mainPathApi + "FileContent/getviewmodel",
                                     config.fileIdToDelete,
                                     "GET"
                                 )
                                 .success(function (response1) {
                                     if (response1.IsSuccess == true) {
                                         //console.log(response1.Item);
-                                        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/replace", response1.Item, "POST")
+                                        ajax.call(mainPathApi + "FileContent/replace", response1.Item, "POST")
                                             .success(function (response2) {
                                                 if (response2.IsSuccess == true) {
                                                     config.FileItem = response2.Item;
@@ -4270,7 +4270,7 @@ function rashaUpload($compile, ajax, $http) {
                         }
                     } else { // File does not exists
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                        ajax.call(mainPathApi + "FileContent/getviewmodel", "0", 'GET').success(function (response) {
                             config.FileItem = response.Item;
                             config.FileItem.FileName = name;
                             config.FileItem.Extension = name.split('.').pop();
@@ -4278,7 +4278,7 @@ function rashaUpload($compile, ajax, $http) {
                             config.FileItem.LinkCategoryId = null; //Save the new file in the root
                             // ------- config.saveNewFile()  ----------------------
                             var result = 0;
-                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/add", config.FileItem, 'POST').success(function (response) {
+                            ajax.call(mainPathApi + "FileContent/add", config.FileItem, 'POST').success(function (response) {
                                 if (response.IsSuccess) {
                                     config.FileItem = response.Item;
                                     config.showSuccessIcon();
@@ -4329,7 +4329,7 @@ function rashaAddMenu($compile, ajax, rashaErManage) {
 
             var listItems = {};
             scope.menuItem = "x";
-            ajax.call(cmsServerConfig.configApiServerPath + "WebDesignerMainMenu/getall", "", 'POST').success(function (response) {
+            ajax.call(mainPathApi + "WebDesignerMainMenu/getall", "", 'POST').success(function (response) {
                 scope.menuDrop = response.ListItems;
                 listItems = scope.menuDrop;
             }).error(function (data, errCode, c, d) {
@@ -4379,7 +4379,7 @@ function rashaAddMenu($compile, ajax, rashaErManage) {
 
                     scope.menuDrop[objectId].JsonValues = JSON.stringify(scope.data);
 
-                    ajax.call(cmsServerConfig.configApiServerPath + 'WebDesignerMainMenu/edit', scope.menuDrop[objectId], 'PUT').success(function (response) {
+                    ajax.call(mainPathApi + 'WebDesignerMainMenu/edit', scope.menuDrop[objectId], 'PUT').success(function (response) {
                         rashaErManage.checkAction(response);
                         if (response.IsSuccess) {
                             //console.log("Add Succseeded!");
@@ -5027,12 +5027,12 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                 if (config.folderFileSelected[0].isFolder)
                     isFolder = true;
                 var prompMessage = "آیا می خواهید این فایل را حذف کنید؟";
-                var urlViewModel = cmsServerConfig.configApiServerPath + 'FileContent/getviewmodel';
-                var urlDelete = cmsServerConfig.configApiServerPath + 'FileContent/delete';
+                var urlViewModel = mainPathApi + 'FileContent/getviewmodel';
+                var urlDelete = mainPathApi + 'FileContent/delete';
                 if (isFolder) {
                     prompMessage = "آیا می خواهید این پوشه و تمامی محتوایات آن حذف شود؟";
-                    urlViewModel = cmsServerConfig.configApiServerPath + 'FileCategory/getviewmodel';
-                    urlDelete = cmsServerConfig.configApiServerPath + 'FileCategory/delete';
+                    urlViewModel = mainPathApi + 'FileCategory/getviewmodel';
+                    urlDelete = mainPathApi + 'FileCategory/delete';
                 }
                 rashaErManage.showYesNo("اخطار!!!", prompMessage, function (isConfirmed) {
                     if (isConfirmed) {
@@ -5110,7 +5110,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
 
 
                 config.BusyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getall", filterModel, 'Post').success(function (response) {
+                ajax.call(mainPathApi + "FileCategory/getall", filterModel, 'Post').success(function (response) {
                     config.categoryList = [];
                     config.FileList = []
                     if (id != undefined) {
@@ -5221,7 +5221,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                         IntValue1: categoryid
                     });
 
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetAll", engine, 'POST').success(function (response) {
+                ajax.call(mainPathApi + "FileContent/GetAll", engine, 'POST').success(function (response) {
                     if (categoryid == null || categoryid == undefined)
                         config.FileList = response.ListItems;
                     else {
@@ -5405,7 +5405,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                     model.FileIds.push(config.selectedFilesToCopyCut[i].file.Id);
                 }
                 config.BusyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/CopyCutFile", model, 'POST').success(function (response) {
+                ajax.call(mainPathApi + "FileContent/CopyCutFile", model, 'POST').success(function (response) {
                     if (!response.IsSuccess)
                         rashaErManage.showMessage(response.ErrorMessage);
                     config.BusyIndicator.isActive = false;
@@ -5493,11 +5493,11 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                     return;
                 }
                 var newName = fileFolder.newTitle;
-                var urlViewModel = cmsServerConfig.configApiServerPath + 'FileCategory/getviewmodel';
-                var urlEdit = cmsServerConfig.configApiServerPath + 'FileCategory/edit';
+                var urlViewModel = mainPathApi + 'FileCategory/getviewmodel';
+                var urlEdit = mainPathApi + 'FileCategory/edit';
                 if (!fileFolder.isFolder) {
-                    urlViewModel = cmsServerConfig.configApiServerPath + 'FileContent/getviewmodel';
-                    urlEdit = cmsServerConfig.configApiServerPath + 'FileContent/edit';
+                    urlViewModel = mainPathApi + 'FileContent/getviewmodel';
+                    urlEdit = mainPathApi + 'FileContent/edit';
                     newName = newName + "." + fileFolder.extension;
                 }
                 if (config.fileExstsWithName(newName)) {
@@ -5571,23 +5571,23 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
 
                 if (config.fileText == undefined)
                     config.fileText = '';
-                config.fileSrc = cmsServerConfig.configPathFileByIdAndName + file.Id + '/' + file.Title;
+                config.fileSrc = 'http://oco.ir/files/' + file.Id + '/' + file.Title;
                 config.fileTitle = file.Title;
 
                 if (file.isImage)
                     temp = "Image";
                 if (file.isVideo) {
-                    config.fileSrc = cmsServerConfig.configPathFileByIdAndName + file.Id + '/' + file.Title;
+                    config.fileSrc = '/files/' + file.Id + '/' + file.Title;
                     config.fileTitle = file.Title;
                     temp = "Video";
                 }
                 if (file.isText || file.isHtml) {
-                    config.fileSrc = cmsServerConfig.configPathFileByIdAndName+ file.Id + '/' + file.Title;
+                    config.fileSrc = '/files/' + file.Id + '/' + file.Title;
                     config.fileTitle = file.Title;
                     temp = "Text";
                 }
                 if (file.isVoice) {
-                    config.fileSrc =cmsServerConfig.configPathFileByIdAndName + file.Id + '/' + file.Title;
+                    config.fileSrc = '/files/' + file.Id + '/' + file.Title;
                     config.fileTitle = file.Title;
                     temp = "Voice";
                 }
@@ -5603,7 +5603,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                             str = str.replace('??atr??', atr);
 
                         if (file.isText || file.isHtml) {
-                            $http.get(cmsServerConfig.configPathFileByIdAndName + file.Id + '/' + file.Title).then(function (responseText) {
+                            $http.get('/files/' + file.Id + '/' + file.Title).then(function (responseText) {
                                 if (responseText.status == 200) {
                                     config.fileText = responseText.data;
                                     config.modalStack = $modal.open({
@@ -5665,12 +5665,12 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
 
             config.makeNewFolder = function () {
                 var folderName = config.getNextFolderName();
-                ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(mainPathApi + "FileCategory/getviewmodel", "0", 'GET').success(function (response) {
                     if (response.IsSuccess) {
                         //config.BusyIndicator.isActive=true;
                         response.Item.Title = folderName;
                         response.Item.LinkParentId = config.lastCategoryId;
-                        ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/add", response.Item, 'Post').success(function (response2) {
+                        ajax.call(mainPathApi + "FileCategory/add", response.Item, 'Post').success(function (response2) {
                             if (response2.IsSuccess == true) {
                                 //config.BusyIndicator.isActive=false;
                                 config.lastnewFolderInserted = response2.Item;
@@ -6092,7 +6092,7 @@ function rashaThumbnail($compile, rashaErManage) {
             if (!imageId || imageId.length == 0)
                 return;
 
-            var srcThumbnail = cmsServerConfig.configRouteThumbnails + imageId + '?MvcAuthorization=' + encodeURIComponent(localStorage.getItem('userGlobaltoken'));
+            var srcThumbnail = '{{infoDomainAddress}}imageThumbnails/' + imageId + '?MvcAuthorization=' + encodeURIComponent(localStorage.getItem('userGlobaltoken'));
 
             var template = '<img style="width:' + config.width + 'px;height:' + config.height + 'px" src="' + srcThumbnail + '" >';
 

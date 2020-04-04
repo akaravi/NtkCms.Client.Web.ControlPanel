@@ -10,7 +10,7 @@
 
     estatePropertyFavorite.init = function () {
         estatePropertyFavorite.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"estatePropertyFavorite/getall", estatePropertyFavorite.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"estatePropertyFavorite/getall", estatePropertyFavorite.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             estatePropertyFavorite.busyIndicator.isActive = false;
             estatePropertyFavorite.ListItems = response.ListItems;
@@ -32,7 +32,7 @@
     estatePropertyFavorite.addRequested = false;
     estatePropertyFavorite.openAddModal = function () {
         estatePropertyFavorite.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyFavorite/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'estatePropertyFavorite/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             estatePropertyFavorite.busyIndicator.isActive = false;
             estatePropertyFavorite.selectedItem = response.Item;
@@ -56,7 +56,7 @@
         }
         estatePropertyFavorite.busyIndicator.isActive = true;
         estatePropertyFavorite.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyFavorite/add', estatePropertyFavorite.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'estatePropertyFavorite/add', estatePropertyFavorite.selectedItem, 'POST').success(function (response) {
             estatePropertyFavorite.addRequested = false;
             estatePropertyFavorite.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -78,7 +78,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyFavorite/getviewmodel', estatePropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'estatePropertyFavorite/getviewmodel', estatePropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             estatePropertyFavorite.selectedItem = response.Item;
             $modal.open({
@@ -98,7 +98,7 @@
             return;
         }
         estatePropertyFavorite.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyFavorite/edit', estatePropertyFavorite.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'estatePropertyFavorite/edit', estatePropertyFavorite.selectedItem, 'PUT').success(function (response) {
             estatePropertyFavorite.addRequested = true;
             rashaErManage.checkAction(response);
             estatePropertyFavorite.busyIndicator.isActive = false;
@@ -140,11 +140,11 @@
             if (isConfirmed) {
                 estatePropertyFavorite.busyIndicator.isActive = true;
                 console.log(estatePropertyFavorite.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyFavorite/getviewmodel', estatePropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'EstatePropertyFavorite/getviewmodel', estatePropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     estatePropertyFavorite.selectedItemForDelete = response.Item;
                     console.log(estatePropertyFavorite.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyFavorite/delete', estatePropertyFavorite.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'EstatePropertyFavorite/delete', estatePropertyFavorite.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         estatePropertyFavorite.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -239,7 +239,7 @@
     estatePropertyFavorite.exportFile = function () {
         estatePropertyFavorite.addRequested = true;
         estatePropertyFavorite.gridOptions.advancedSearchData.engine.ExportFile = estatePropertyFavorite.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyFavorite/exportfile', estatePropertyFavorite.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'EstatePropertyFavorite/exportfile', estatePropertyFavorite.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             estatePropertyFavorite.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -282,7 +282,7 @@
     }
     //Get TotalRowCount
     estatePropertyFavorite.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"EstatePropertyFavorite/count", estatePropertyFavorite.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"EstatePropertyFavorite/count", estatePropertyFavorite.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             estatePropertyFavorite.addRequested = false;
             rashaErManage.checkAction(response);
             estatePropertyFavorite.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

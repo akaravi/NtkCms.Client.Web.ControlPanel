@@ -33,7 +33,7 @@
             console.log(error)
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+"newsComment/getall", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"newsComment/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             newsComment.busyIndicator.isActive = false;
             newsComment.ListItems = response.ListItems;
@@ -48,7 +48,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         //newsComment.busyIndicator.isActive = true;
-        //ajax.call(cmsServerConfig.configApiServerPath+'NewsContent/getall', {}, 'POST').success(function (response) {
+        //ajax.call(mainPathApi+'NewsContent/getall', {}, 'POST').success(function (response) {
         //    newsComment.ContentList = response.ListItems;
         //    newsComment.busyIndicator.isActive = false;
         //});
@@ -60,7 +60,7 @@
     newsComment.addRequested = false;
     newsComment.openAddModal = function () {
         newsComment.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'newsComment/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'newsComment/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             newsComment.busyIndicator.isActive = false;
             newsComment.selectedItem = response.Item;
@@ -81,7 +81,7 @@
         }
         newsComment.busyIndicator.isActive = true;
         newsComment.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'newsComment/add', newsComment.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'newsComment/add', newsComment.selectedItem, 'POST').success(function (response) {
             newsComment.addRequested = false;
             newsComment.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -108,7 +108,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'newsComment/getviewmodel', newsComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'newsComment/getviewmodel', newsComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             newsComment.selectedItem = response.Item;
             $modal.open({
@@ -131,7 +131,7 @@
             return;
         }
         newsComment.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'newsComment/edit', newsComment.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'newsComment/edit', newsComment.selectedItem, 'PUT').success(function (response) {
             newsComment.addRequested = true;
             rashaErManage.checkAction(response);
             newsComment.busyIndicator.isActive = false;
@@ -174,11 +174,11 @@
             if (isConfirmed) {
                 newsComment.busyIndicator.isActive = true;
                 console.log(newsComment.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'newsComment/getviewmodel', newsComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'newsComment/getviewmodel', newsComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     //rashaErManage.checkAction(response);
                     newsComment.selectedItemForDelete = response.Item;
                     console.log(newsComment.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'newsComment/delete', newsComment.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'newsComment/delete', newsComment.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         newsComment.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -288,7 +288,7 @@
     newsComment.exportFile = function () {
         newsComment.addRequested = true;
         newsComment.gridOptions.advancedSearchData.engine.ExportFile = newsComment.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'newsComment/exportfile', newsComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'newsComment/exportfile', newsComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             newsComment.addRequested = false;
             rashaErManage.checkAction(response);
             newsComment.reportDownloadLink = response.LinkFile;
@@ -330,7 +330,7 @@
     }
     //Get TotalRowCount
     newsComment.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"newsComment/count", newsComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"newsComment/count", newsComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             newsComment.addRequested = false;
             rashaErManage.checkAction(response);
             newsComment.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

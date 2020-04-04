@@ -22,7 +22,7 @@
 
     
 
-    ajax.call(cmsServerConfig.configApiServerPath+"MemberGroup/getall", {}, 'POST').success(function (response) {
+    ajax.call(mainPathApi+"MemberGroup/getall", {}, 'POST').success(function (response) {
         discountGroup.memberGroups = response.ListItems;
     }).error(function (data, errCode, c, d) {
         console.log(data);
@@ -74,7 +74,7 @@
         } catch (error) {
             console.log(error);
         }
-        ajax.call(cmsServerConfig.configApiServerPath+"DiscountGroup/getall", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"DiscountGroup/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             discountGroup.busyIndicator.isActive = false;
             discountGroup.ListItems = response.ListItems;
@@ -95,7 +95,7 @@
     discountGroup.addRequested = false;
     discountGroup.openAddModal = function () {
         discountGroup.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'DiscountGroup/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountGroup.busyIndicator.isActive = false;
             discountGroup.selectedItem = response.Item;
@@ -119,7 +119,7 @@
         }
         discountGroup.busyIndicator.isActive = true;
         discountGroup.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/add', discountGroup.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'DiscountGroup/add', discountGroup.selectedItem, 'POST').success(function (response) {
             discountGroup.addRequested = false;
             discountGroup.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -145,7 +145,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/getviewmodel', discountGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'DiscountGroup/getviewmodel', discountGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountGroup.selectedItem = response.Item;
             if (discountGroup
@@ -169,7 +169,7 @@
             return;
         }
         discountGroup.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/edit', discountGroup.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'DiscountGroup/edit', discountGroup.selectedItem, 'PUT').success(function (response) {
             discountGroup.addRequested = true;
             rashaErManage.checkAction(response);
             discountGroup.busyIndicator.isActive = false;
@@ -210,11 +210,11 @@
             if (isConfirmed) {
                 discountGroup.busyIndicator.isActive = true;
                 
-                ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/getviewmodel', discountGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'DiscountGroup/getviewmodel', discountGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     discountGroup.selectedItemForDelete = response.Item;
                     
-                    ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/delete', discountGroup.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'DiscountGroup/delete', discountGroup.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         discountGroup.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -235,7 +235,7 @@
 
     discountGroup.searchData = function () {
         discountGroup.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"discountGroup/getall", discountGroup.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(mainPathApi+"discountGroup/getall", discountGroup.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             discountGroup.categoryBusyIndicator.isActive = false;
             discountGroup.ListItems = response.ListItems;
@@ -317,7 +317,7 @@
     discountGroup.exportFile = function () {
         discountGroup.addRequested = true;
         discountGroup.gridOptions.advancedSearchData.engine.ExportFile = discountGroup.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/exportfile', discountGroup.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'DiscountGroup/exportfile', discountGroup.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             discountGroup.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -360,7 +360,7 @@
     }
     //Get TotalRowCount
     discountGroup.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"DiscountGroup/count", discountGroup.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"DiscountGroup/count", discountGroup.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             discountGroup.addRequested = false;
             rashaErManage.checkAction(response);
             discountGroup.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

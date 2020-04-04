@@ -12,11 +12,11 @@
         }
 
         // Get UserAccessControllerTypes Enum
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreUserGroup/getenum", engine, 'POST').success(function (response1) {
+        ajax.call(mainPathApi+"CoreUserGroup/getenum", engine, 'POST').success(function (response1) {
             cmsUserGroupgrd.UserAccessControllerTypes = response1;
 
             // Get ListItems to fillData
-            ajax.call(cmsServerConfig.configApiServerPath+"CoreUserGroup/getall", engine, 'POST').success(function (response2) {
+            ajax.call(mainPathApi+"CoreUserGroup/getall", engine, 'POST').success(function (response2) {
                 cmsUserGroupgrd.ListItems = response2.ListItems;
                 if (cmsUserGroupgrd.ListItems != undefined && cmsUserGroupgrd.ListItems != null) {
                     cmsUserGroupgrd.setUserTypeTitleDescriptioninGrid();
@@ -39,7 +39,7 @@
     cmsUserGroupgrd.addRequested = false;
     cmsUserGroupgrd.openAddModal = function () {
         cmsUserGroupgrd.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(mainPathApi+'CoreUserGroup/getviewmodel', '0', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsUserGroupgrd.selectedItem = response.Item;
             $modal.open({
@@ -56,7 +56,7 @@
             return;
 
         cmsUserGroupgrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/add', cmsUserGroupgrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'CoreUserGroup/add', cmsUserGroupgrd.selectedItem, 'POST').success(function (response) {
             cmsUserGroupgrd.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -78,7 +78,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/getviewmodel', cmsUserGroupgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'CoreUserGroup/getviewmodel', cmsUserGroupgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsUserGroupgrd.selectedItem = response.Item;
             $modal.open({
@@ -94,7 +94,7 @@
         if (frm.$invalid)
             return;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/edit', cmsUserGroupgrd.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'CoreUserGroup/edit', cmsUserGroupgrd.selectedItem, 'PUT').success(function (response) {
             cmsUserGroupgrd.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -135,11 +135,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(cmsUserGroupgrd.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/getviewmodel', cmsUserGroupgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'CoreUserGroup/getviewmodel', cmsUserGroupgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsUserGroupgrd.selectedItemForDelete = response.Item;
                     console.log(cmsUserGroupgrd.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/delete', cmsUserGroupgrd.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'CoreUserGroup/delete', cmsUserGroupgrd.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsUserGroupgrd.replaceItem(cmsUserGroupgrd.selectedItemForDelete.Id);
@@ -210,7 +210,7 @@
     cmsUserGroupgrd.exportFile = function () {
         cmsUserGroupgrd.addRequested = true;
         cmsUserGroupgrd.gridOptions.advancedSearchData.engine.ExportFile = cmsUserGroupgrd.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/exportfile', cmsUserGroupgrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'CoreUserGroup/exportfile', cmsUserGroupgrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             cmsUserGroupgrd.addRequested = false;
             rashaErManage.checkAction(response);
             cmsUserGroupgrd.reportDownloadLink = response.LinkFile;
@@ -252,7 +252,7 @@
     }
     //Get TotalRowCount
     cmsUserGroupgrd.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreUserGroup/count", cmsUserGroupgrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreUserGroup/count", cmsUserGroupgrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             cmsUserGroupgrd.addRequested = false;
             rashaErManage.checkAction(response);
             cmsUserGroupgrd.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

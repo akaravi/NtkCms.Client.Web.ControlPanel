@@ -2,7 +2,7 @@
     var api = this;
 
     api.init = function() {
-        ajax.call(cmsServerConfig.configApiServerPath+"apipath/getall", api.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"apipath/getall", api.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             api.ListItems = response.ListItems;
             api.gridOptions.fillData(api.ListItems);
@@ -16,7 +16,7 @@
 
 
     api.addNew = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+'apipath/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'apipath/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             $rootScope.selectedPath = response.Item;
             $rootScope.action = "add";
@@ -32,7 +32,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         };
-        ajax.call(cmsServerConfig.configApiServerPath+'apipath/getviewmodel', api.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(mainPathApi+'apipath/getviewmodel', api.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             $rootScope.selectedPath = response.Item;
             $rootScope.action = "edit";
@@ -52,11 +52,11 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
-                ajax.call(cmsServerConfig.configApiServerPath+'apipath/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'apipath/getviewmodel', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     api.selectedItemForDelete = response.Item;
                     console.log(api.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'apipath/delete', api.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'apipath/delete', api.selectedItemForDelete, 'DELETE').success(function (res) {
                         console.log(res);
                         if (res.IsSuccess) {
                             console.log("Deleted Succesfully !");

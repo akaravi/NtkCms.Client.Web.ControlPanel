@@ -18,7 +18,7 @@
     taskScheduleProcessValue.init = function () {
         taskScheduleProcessValue.busyIndicator.isActive = true;
         taskScheduleProcessValue.gridOptions.advancedSearchData.engine.Filters.push({ PropertyName: "LinkSourceId", searchType: 0, IntValue1: parseInt(taskScheduleProcessValue.sourceId) });
-        ajax.call(cmsServerConfig.configApiServerPath+"taskschedulerProcess/getall", taskScheduleProcessValue.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"taskschedulerProcess/getall", taskScheduleProcessValue.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             taskScheduleProcessValue.busyIndicator.isActive = false;
             taskScheduleProcessValue.ListItems = response.ListItems;
@@ -39,7 +39,7 @@
         taskScheduleProcessValue.busyIndicator.isActive = true;
         taskScheduleProcessValue.addRequested = true;
         taskScheduleProcessValue.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcessvalue/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'taskschedulerProcessvalue/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             taskScheduleProcessValue.selectedItem = response.Item;
             taskScheduleProcessValue.busyIndicator.isActive = false;
@@ -63,7 +63,7 @@
         }
         taskScheduleProcessValue.busyIndicator.isActive = true;
         taskScheduleProcessValue.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcessvalue/add', taskScheduleProcessValue.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'taskschedulerProcessvalue/add', taskScheduleProcessValue.selectedItem, 'POST').success(function (response) {
             taskScheduleProcessValue.addRequested = false;
             taskScheduleProcessValue.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -86,7 +86,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcessvalue/getviewmodel', taskScheduleProcessValue.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'taskschedulerProcessvalue/getviewmodel', taskScheduleProcessValue.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             taskScheduleProcessValue.selectedItem = response.Item;
             $modal.open({
@@ -106,7 +106,7 @@
             return;
         }
         taskScheduleProcessValue.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcessvalue/edit', taskScheduleProcessValue.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'taskschedulerProcessvalue/edit', taskScheduleProcessValue.selectedItem, 'PUT').success(function (response) {
             taskScheduleProcessValue.addRequested = true;
             rashaErManage.checkAction(response);
             taskScheduleProcessValue.busyIndicator.isActive = false;
@@ -147,10 +147,10 @@
             if (isConfirmed) {
                 taskScheduleProcessValue.busyIndicator.isActive = true;
                 console.log(taskScheduleProcessValue.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcessvalue/getviewmodel', taskScheduleProcessValue.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'taskschedulerProcessvalue/getviewmodel', taskScheduleProcessValue.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     taskScheduleProcessValue.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcessvalue/delete', taskScheduleProcessValue.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'taskschedulerProcessvalue/delete', taskScheduleProcessValue.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         taskScheduleProcessValue.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -234,12 +234,12 @@
         var filterDataModel = { PropertyName: "Id", searchType: 0, IntValue1: taskScheduleProcessValue.ProcessId };
         var filterModel = { Filters: [] };
         filterModel.Filters.push(filterDataModel);
-        ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcess/getviewmodel', ProcessId, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+'taskschedulerProcess/getviewmodel', ProcessId, 'GET').success(function (response1) {
             var engine = {};
             engine.Filters = [];
             engine.Filters.push({ PropertyName: "LinkProcessId", searchType: 0, IntValue1: ProcessId });
             engine.Filters.push({ PropertyName: "LinkApplicationId", searchType: 0, IntValue1: taskScheduleProcessValue.appId });
-            ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcessvalue/getone', engine, 'POST').success(function (response2) {
+            ajax.call(mainPathApi+'taskschedulerProcessvalue/getone', engine, 'POST').success(function (response2) {
 
                 taskScheduleProcessValue.JsonFormDefaultValue = response1.Item.JsonFormDefaultValue;
                 taskScheduleProcessValue.formJson = $builder.forms['default'];
@@ -297,7 +297,7 @@
         taskScheduleProcessValue.busyIndicator.isActive = true;
         taskScheduleProcessValue.addRequested = true;
         taskScheduleProcessValue.selectedItem.JsonFormValues = $.trim(angular.toJson(taskScheduleProcessValue.submitValue));
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessValue/' + taskScheduleProcessValue.updateMode, taskScheduleProcessValue.selectedItem, updateMethod).success(function (response) {
+        ajax.call(mainPathApi+'TaskSchedulerProcessValue/' + taskScheduleProcessValue.updateMode, taskScheduleProcessValue.selectedItem, updateMethod).success(function (response) {
             rashaErManage.checkAction(response);
             taskScheduleProcessValue.busyIndicator.isActive = false;
             taskScheduleProcessValue.addRequested = false;

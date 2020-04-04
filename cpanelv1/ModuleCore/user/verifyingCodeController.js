@@ -8,7 +8,7 @@
 
     verifyCodeCtrl.getCode = function () {
         verifyCodeCtrl.isBusy = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/getActivationCode", { 'userName':verifyCodeCtrl.userName,'code': verifyCodeCtrl.code }, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreUser/getActivationCode", { 'userName':verifyCodeCtrl.userName,'code': verifyCodeCtrl.code }, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             verifyCodeCtrl.isBusy = false;
             if (response.IsSuccess && response.Item) {

@@ -11,7 +11,7 @@
 
     jobPropertyType.init = function () {
         jobPropertyType.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"jobpropertytype/getall", jobPropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"jobpropertytype/getall", jobPropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobPropertyType.busyIndicator.isActive = false;
             jobPropertyType.ListItems = response.ListItems;
@@ -33,7 +33,7 @@
     jobPropertyType.addRequested = false;
     jobPropertyType.openAddModal = function () {
         jobPropertyType.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'jobpropertytype/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'jobpropertytype/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             jobPropertyType.busyIndicator.isActive = false;
             jobPropertyType.selectedItem = response.Item;
@@ -57,7 +57,7 @@
         }
         jobPropertyType.busyIndicator.isActive = true;
         jobPropertyType.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobpropertytype/add', jobPropertyType.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'jobpropertytype/add', jobPropertyType.selectedItem, 'POST').success(function (response) {
             jobPropertyType.addRequested = false;
             jobPropertyType.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -79,7 +79,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'jobpropertytype/getviewmodel', jobPropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'jobpropertytype/getviewmodel', jobPropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             jobPropertyType.selectedItem = response.Item;
             $modal.open({
@@ -99,7 +99,7 @@
             return;
         }
         jobPropertyType.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobpropertytype/edit', jobPropertyType.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'jobpropertytype/edit', jobPropertyType.selectedItem, 'PUT').success(function (response) {
             jobPropertyType.addRequested = true;
             rashaErManage.checkAction(response);
             jobPropertyType.busyIndicator.isActive = false;
@@ -141,11 +141,11 @@
             if (isConfirmed) {
                 jobPropertyType.busyIndicator.isActive = true;
                 console.log(jobPropertyType.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'jobpropertytype/getviewmodel', jobPropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'jobpropertytype/getviewmodel', jobPropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     jobPropertyType.selectedItemForDelete = response.Item;
                     console.log(jobPropertyType.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'jobpropertytype/delete', jobPropertyType.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'jobpropertytype/delete', jobPropertyType.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         jobPropertyType.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -239,7 +239,7 @@
     jobPropertyType.exportFile = function () {
         jobPropertyType.addRequested = true;
         jobPropertyType.gridOptions.advancedSearchData.engine.ExportFile = jobPropertyType.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobPropertyType/exportfile', jobPropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'jobPropertyType/exportfile', jobPropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 jobPropertyType.exportDownloadLink = window.location.origin + response.LinkFile;
@@ -282,7 +282,7 @@
     }
     //Get TotalRowCount
     jobPropertyType.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"jobPropertyType/count", jobPropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"jobPropertyType/count", jobPropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobPropertyType.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

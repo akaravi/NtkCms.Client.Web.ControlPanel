@@ -112,18 +112,18 @@ memberPropertyDetail.LinkCategoryIdSelector = {
     //init Function
     memberPropertyDetail.init = function () {
         memberPropertyDetail.categorybusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"MemberPropertyDetail/getAllUiDesignType", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"MemberPropertyDetail/getAllUiDesignType", {}, 'POST').success(function (response) {
             memberPropertyDetail.UiDesignType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"MemberPropertyDetail/GetInputDataTypeEnum", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"MemberPropertyDetail/GetInputDataTypeEnum", {}, 'POST').success(function (response) {
             memberPropertyDetail.inputDataTypeArray = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"MemberPropertyDetail/GetInputDataTypeEnum", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"MemberPropertyDetail/GetInputDataTypeEnum", {}, 'POST').success(function (response) {
             memberPropertyDetail.inputTypeArray = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -143,7 +143,7 @@ memberPropertyDetail.LinkCategoryIdSelector = {
         memberPropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue);
 
         memberPropertyDetail.groupResultAccess = null;
-        ajax.call(cmsServerConfig.configApiServerPath+"MemberPropertyDetailGroup/getall", memberPropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"MemberPropertyDetailGroup/getall", memberPropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             memberPropertyDetail.memberPropertyDetailGroupListItems = response.ListItems;
             memberPropertyDetail.treeConfig.Items = response.ListItems;
             memberPropertyDetail.groupResultAccess = response.resultAccess;
@@ -151,7 +151,7 @@ memberPropertyDetail.LinkCategoryIdSelector = {
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"MemberPropertyType/getall", memberPropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"MemberPropertyType/getall", memberPropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             memberPropertyDetail.propertyTypeListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -162,7 +162,7 @@ memberPropertyDetail.LinkCategoryIdSelector = {
     memberPropertyDetail.openAddCategoryModal = function () {
         memberPropertyDetail.addRequested = false;
         memberPropertyDetail.modalTitle = "ایجاد گروه جدید";
-        ajax.call(cmsServerConfig.configApiServerPath+'MemberPropertyDetailGroup/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'MemberPropertyDetailGroup/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             memberPropertyDetail.selectedItem = response.Item;
             $modal.open({
@@ -185,7 +185,7 @@ memberPropertyDetail.LinkCategoryIdSelector = {
         memberPropertyDetail.addRequested = true;
         memberPropertyDetail.selectedItem.LinkPropertyTypeId = memberPropertyDetail.propertyTypeId;
         memberPropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
-        ajax.call(cmsServerConfig.configApiServerPath+'MemberPropertyDetailGroup/add', memberPropertyDetail.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'MemberPropertyDetailGroup/add', memberPropertyDetail.selectedItem, 'POST').success(function (response) {
             memberPropertyDetail.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -208,7 +208,7 @@ memberPropertyDetail.LinkCategoryIdSelector = {
             rashaErManage.showMessage("لطفاَ یک دسته جهت ویرایش انتخاب کنید");
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'MemberPropertyDetailGroup/getviewmodel', memberPropertyDetail.treeConfig.currentNode.Id, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+'MemberPropertyDetailGroup/getviewmodel', memberPropertyDetail.treeConfig.currentNode.Id, 'GET').success(function (response1) {
             memberPropertyDetail.showbusy = false;
             rashaErManage.checkAction(response1);
             memberPropertyDetail.selectedItem = response1.Item;
@@ -230,7 +230,7 @@ memberPropertyDetail.LinkCategoryIdSelector = {
         }
         memberPropertyDetail.categorybusyIndicator.isActive = true;
         memberPropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
-        ajax.call(cmsServerConfig.configApiServerPath+'MemberPropertyDetailGroup/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'MemberPropertyDetailGroup/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response) {
             memberPropertyDetail.addRequested = true;
             memberPropertyDetail.treeConfig.showbusy = false;
             memberPropertyDetail.showIsBusy = false;
@@ -258,10 +258,10 @@ memberPropertyDetail.LinkCategoryIdSelector = {
             rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
                 if (isConfirmed) {
                     memberPropertyDetail.categorybusyIndicator.isActive = true;
-                    ajax.call(cmsServerConfig.configApiServerPath+'MemberPropertyDetailGroup/getviewmodel', node.Id, 'GET').success(function (response) {
+                    ajax.call(mainPathApi+'MemberPropertyDetailGroup/getviewmodel', node.Id, 'GET').success(function (response) {
                         rashaErManage.checkAction(response);
                         memberPropertyDetail.selectedItemForDelete = response.Item;
-                        ajax.call(cmsServerConfig.configApiServerPath+'MemberPropertyDetailGroup/delete', memberPropertyDetail.selectedItemForDelete, 'DELETE').success(function (res) {
+                        ajax.call(mainPathApi+'MemberPropertyDetailGroup/delete', memberPropertyDetail.selectedItemForDelete, 'DELETE').success(function (res) {
 
                             if (res.IsSuccess) {
                                 memberPropertyDetail.gridOptions.advancedSearchData.engine.Filters = null;
@@ -325,7 +325,7 @@ memberPropertyDetail.LinkCategoryIdSelector = {
         }
         memberPropertyDetail.gridOptions.advancedSearchData.engine.Filters.push(filterValue2);
 
-        ajax.call(cmsServerConfig.configApiServerPath+"memberPropertyDetail/getall", memberPropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"memberPropertyDetail/getall", memberPropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             memberPropertyDetail.busyIndicator.isActive = false;
             memberPropertyDetail.ListItems = response.ListItems;
@@ -352,7 +352,7 @@ memberPropertyDetail.LinkCategoryIdSelector = {
         memberPropertyDetail.FieldName = "";
         memberPropertyDetail.addRequested = false;
         memberPropertyDetail.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyDetail/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'memberPropertyDetail/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             memberPropertyDetail.selectedItem = response.Item;
             memberPropertyDetail.selectedItem.LinkPropertyDetailGroupId = node.Id;
@@ -383,7 +383,7 @@ memberPropertyDetail.LinkCategoryIdSelector = {
         memberPropertyDetail.selectedItem.DefaultValue.nameValue = memberPropertyDetail.attachedFields;
         memberPropertyDetail.selectedItem.JsonDefaultValue = $.trim(angular.toJson(memberPropertyDetail.selectedItem.DefaultValue));
         memberPropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
-        ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyDetail/add', memberPropertyDetail.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'memberPropertyDetail/add', memberPropertyDetail.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 // filter text
@@ -418,7 +418,7 @@ memberPropertyDetail.LinkCategoryIdSelector = {
             return;
         }
         memberPropertyDetail.FieldName = "";
-        ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyDetail/getviewmodel', memberPropertyDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+'memberPropertyDetail/getviewmodel', memberPropertyDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             memberPropertyDetail.selectedItem = response1.Item;
 
@@ -452,7 +452,7 @@ memberPropertyDetail.LinkCategoryIdSelector = {
         memberPropertyDetail.selectedItem.JsonDefaultValue = $.trim(angular.toJson(memberPropertyDetail.selectedItem.DefaultValue));
         memberPropertyDetail.selectedItem.IconFont = $("#iconFont").val(); //Save selected icon name in the model
         memberPropertyDetail.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyDetail/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'memberPropertyDetail/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response) {
             // memberPropertyDetail.addRequested = false;
             memberPropertyDetail.treeConfig.showbusy = false;
             memberPropertyDetail.showIsBusy = false;
@@ -487,12 +487,12 @@ memberPropertyDetail.LinkCategoryIdSelector = {
             if (isConfirmed) {
                 memberPropertyDetail.showbusy = true;
                 memberPropertyDetail.showIsBusy = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"memberPropertyDetail/getviewmodel", memberPropertyDetail.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(mainPathApi+"memberPropertyDetail/getviewmodel", memberPropertyDetail.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     memberPropertyDetail.showbusy = false;
                     memberPropertyDetail.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     memberPropertyDetail.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"memberPropertyDetail/delete", memberPropertyDetail.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(mainPathApi+"memberPropertyDetail/delete", memberPropertyDetail.selectedItemForDelete, "DELETE").success(function (res) {
                         memberPropertyDetail.treeConfig.showbusy = false;
                         memberPropertyDetail.showIsBusy = false;
                         rashaErManage.checkAction(res);
@@ -604,7 +604,7 @@ memberPropertyDetail.LinkCategoryIdSelector = {
             memberPropertyDetail.attachedFields[memberPropertyDetail.selectedIndex] = FieldName;
             memberPropertyDetail.selectedItem.DefaultValue.nameValue = memberPropertyDetail.attachedFields;
             memberPropertyDetail.selectedItem.JsonDefaultValue = $.trim(angular.toJson(memberPropertyDetail.selectedItem.DefaultValue));
-            ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyDetail/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response) {
+            ajax.call(mainPathApi+'memberPropertyDetail/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response) {
                 rashaErManage.checkAction(response);
                 memberPropertyDetail.disableUpdate();
                 $("#FieldName").val("");
@@ -664,19 +664,19 @@ memberPropertyDetail.LinkCategoryIdSelector = {
             return;
         }
         memberPropertyDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MemberPropertyDetail/getviewmodel', item.Id, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+'MemberPropertyDetail/getviewmodel', item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             memberPropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             memberPropertyDetail.selectedItem.ShowInFormOrder = memberPropertyDetail.ListItems[index + 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'MemberPropertyDetail/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(mainPathApi+'MemberPropertyDetail/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath+'MemberPropertyDetail/getviewmodel', memberPropertyDetail.ListItems[index + 1].Id, 'GET').success(function (response3) {
+                    ajax.call(mainPathApi+'MemberPropertyDetail/getviewmodel', memberPropertyDetail.ListItems[index + 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         memberPropertyDetail.selectedItem = response3.Item;
                         memberPropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'MemberPropertyDetail/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(mainPathApi+'MemberPropertyDetail/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 // Swap two item in the grid list without requesting a GetAll
@@ -706,19 +706,19 @@ memberPropertyDetail.LinkCategoryIdSelector = {
             return;
         }
         memberPropertyDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MemberPropertyDetail/getviewmodel', item.Id, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+'MemberPropertyDetail/getviewmodel', item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             memberPropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             memberPropertyDetail.selectedItem.ShowInFormOrder = memberPropertyDetail.ListItems[index - 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'MemberPropertyDetail/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(mainPathApi+'MemberPropertyDetail/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath+'MemberPropertyDetail/getviewmodel', memberPropertyDetail.ListItems[index - 1].Id, 'GET').success(function (response3) {
+                    ajax.call(mainPathApi+'MemberPropertyDetail/getviewmodel', memberPropertyDetail.ListItems[index - 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         memberPropertyDetail.selectedItem = response3.Item;
                         memberPropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'MemberPropertyDetail/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(mainPathApi+'MemberPropertyDetail/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 // جابجا کردن مکان دو آیتم در آرایه
@@ -758,19 +758,19 @@ memberPropertyDetail.LinkCategoryIdSelector = {
             return;
         }
         memberPropertyDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyDetailGroup/getviewmodel', item.Id, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+'memberPropertyDetailGroup/getviewmodel', item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             memberPropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             memberPropertyDetail.selectedItem.ShowInFormOrder = memberPropertyDetail.treeConfig.Items[index + 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyDetailGroup/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(mainPathApi+'memberPropertyDetailGroup/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyDetailGroup/getviewmodel', memberPropertyDetail.treeConfig.Items[index + 1].Id, 'GET').success(function (response3) {
+                    ajax.call(mainPathApi+'memberPropertyDetailGroup/getviewmodel', memberPropertyDetail.treeConfig.Items[index + 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         memberPropertyDetail.selectedItem = response3.Item;
                         memberPropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyDetailGroup/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(mainPathApi+'memberPropertyDetailGroup/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 memberPropertyDetail.treeConfig.Items[index + 1] = response4.Item;
@@ -808,19 +808,19 @@ memberPropertyDetail.LinkCategoryIdSelector = {
             return;
         }
         memberPropertyDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyDetailGroup/getviewmodel', item.Id, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+'memberPropertyDetailGroup/getviewmodel', item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             memberPropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
             memberPropertyDetail.selectedItem.ShowInFormOrder = memberPropertyDetail.treeConfig.Items[index - 1].ShowInFormOrder;
-            ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyDetailGroup/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(mainPathApi+'memberPropertyDetailGroup/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyDetailGroup/getviewmodel', memberPropertyDetail.treeConfig.Items[index - 1].Id, 'GET').success(function (response3) {
+                    ajax.call(mainPathApi+'memberPropertyDetailGroup/getviewmodel', memberPropertyDetail.treeConfig.Items[index - 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         memberPropertyDetail.selectedItem = response3.Item;
                         memberPropertyDetail.selectedItem.ShowInFormOrder = temp;
-                        ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyDetailGroup/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response4) {
+                        ajax.call(mainPathApi+'memberPropertyDetailGroup/edit', memberPropertyDetail.selectedItem, 'PUT').success(function (response4) {
                             rashaErManage.checkAction(response4);
                             if (response4.IsSuccess) {
                                 memberPropertyDetail.treeConfig.Items[index - 1] = response4.Item;
@@ -885,7 +885,7 @@ memberPropertyDetail.LinkCategoryIdSelector = {
         engine.Filters = [];
         engine.Filters.push(filterValue);
 
-        ajax.call(cmsServerConfig.configApiServerPath+"MemberPropertyDetailGroup/getall", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"MemberPropertyDetailGroup/getall", engine, 'POST').success(function (response) {
             memberPropertyDetail.memberPropertyDetailGroupListItems = response.ListItems;
             memberPropertyDetail.treeConfig.Items = response.ListItems;
             memberPropertyDetail.categorybusyIndicator.isActive = false;
@@ -935,7 +935,7 @@ memberPropertyDetail.LinkCategoryIdSelector = {
     memberPropertyDetail.exportFile = function () {
         memberPropertyDetail.addRequested = true;
         memberPropertyDetail.gridOptions.advancedSearchData.engine.ExportFile = memberPropertyDetail.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyDetail/exportfile', memberPropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'memberPropertyDetail/exportfile', memberPropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             memberPropertyDetail.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -978,7 +978,7 @@ memberPropertyDetail.LinkCategoryIdSelector = {
     }
     //Get TotalRowCount
     memberPropertyDetail.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"memberPropertyDetail/count", memberPropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"memberPropertyDetail/count", memberPropertyDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             memberPropertyDetail.addRequested = false;
             rashaErManage.checkAction(response);
             memberPropertyDetail.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

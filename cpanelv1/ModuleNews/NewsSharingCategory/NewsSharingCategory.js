@@ -20,7 +20,7 @@
         } catch (error) {
             console.log(error);
         }
-        ajax.call(cmsServerConfig.configApiServerPath+"newssharingcategory/getall", newssharingcategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"newssharingcategory/getall", newssharingcategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             newssharingcategory.categoryBusyIndicator.isActive = false;
             newssharingcategory.ListItems = response.ListItems;
@@ -33,10 +33,10 @@
             newssharingcategory.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'NewsCategory/getall', {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'NewsCategory/getall', {}, 'POST').success(function (response) {
             newssharingcategory.CategoryTargetList = response.ListItems;
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'NewsShareSettingCategory/PostGetAllOtherSite', {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'NewsShareSettingCategory/PostGetAllOtherSite', {}, 'POST').success(function (response) {
             newssharingcategory.SettingCategoryList = response.ListItems;
             newssharingcategory.categoryBusyIndicator.isActive = false;
         });
@@ -44,7 +44,7 @@
     newssharingcategory.addRequested = false;
     newssharingcategory.openAddModal = function () {
         newssharingcategory.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'newssharingcategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'newssharingcategory/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             newssharingcategory.selectedItem = response.Item;
             $modal.open({
@@ -65,7 +65,7 @@
 
         newssharingcategory.addRequested = true;
         newssharingcategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'newssharingcategory/add',  newssharingcategory.selectedItem , 'POST').success(function (response) {
+        ajax.call(mainPathApi+'newssharingcategory/add',  newssharingcategory.selectedItem , 'POST').success(function (response) {
             newssharingcategory.addRequested = false;
             rashaErManage.checkAction(response);
             newssharingcategory.categoryBusyIndicator.isActive = false;
@@ -87,7 +87,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'newssharingcategory/getviewmodel',  newssharingcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(mainPathApi+'newssharingcategory/getviewmodel',  newssharingcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             newssharingcategory.selectedItem = response.Item;
             $modal.open({
@@ -106,7 +106,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'newssharingcategory/edit',  newssharingcategory.selectedItem , 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'newssharingcategory/edit',  newssharingcategory.selectedItem , 'PUT').success(function (response) {
             newssharingcategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -146,11 +146,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(newssharingcategory.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'newssharingcategory/getviewmodel', newssharingcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(mainPathApi+'newssharingcategory/getviewmodel', newssharingcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     newssharingcategory.selectedItemForDelete = response.Item;
                     console.log(newssharingcategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'newssharingcategory/delete',  newssharingcategory.selectedItemForDelete , 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'newssharingcategory/delete',  newssharingcategory.selectedItemForDelete , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             newssharingcategory.replaceItem(newssharingcategory.selectedItemForDelete.Id);
@@ -236,7 +236,7 @@
     newssharingcategory.exportFile = function () {
         newssharingcategory.addRequested = true;
         newssharingcategory.gridOptions.advancedSearchData.engine.ExportFile = newssharingcategory.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'newssharingcategory/exportfile', newssharingcategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'newssharingcategory/exportfile', newssharingcategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             newssharingcategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -279,7 +279,7 @@
     }
     //Get TotalRowCount
     newssharingcategory.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"newssharingcategory/count", newssharingcategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"newssharingcategory/count", newssharingcategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             newssharingcategory.addRequested = false;
             rashaErManage.checkAction(response);
             newssharingcategory.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

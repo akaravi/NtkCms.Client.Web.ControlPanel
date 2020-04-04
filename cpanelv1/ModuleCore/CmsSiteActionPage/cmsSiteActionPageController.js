@@ -2,7 +2,7 @@
     var cmsSiteActionPagegrd = this;
     if (itemRecordStatus != undefined) cmsSiteActionPagegrd.itemRecordStatus = itemRecordStatus;
     cmsSiteActionPagegrd.init = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"coreSiteActionPage/getall", cmsSiteActionPagegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"coreSiteActionPage/getall", cmsSiteActionPagegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteActionPagegrd.ListItems = response.ListItems;
             cmsSiteActionPagegrd.gridOptions.fillData(cmsSiteActionPagegrd.ListItems,response.resultAccess);
@@ -18,7 +18,7 @@
     cmsSiteActionPagegrd.addRequested = false;
     cmsSiteActionPagegrd.openAddModal = function () {
         cmsSiteActionPagegrd.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(mainPathApi+'cmsSiteActionPage/getviewmodel', '0', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteActionPagegrd.selectedItem = response.Item;
             $modal.open({
@@ -35,7 +35,7 @@
             return;
 
         cmsSiteActionPagegrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/add',  cmsSiteActionPagegrd.selectedItem , 'POST').success(function (response) {
+        ajax.call(mainPathApi+'cmsSiteActionPage/add',  cmsSiteActionPagegrd.selectedItem , 'POST').success(function (response) {
             cmsSiteActionPagegrd.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -56,7 +56,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/getviewmodel',  cmsSiteActionPagegrd.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(mainPathApi+'cmsSiteActionPage/getviewmodel',  cmsSiteActionPagegrd.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteActionPagegrd.selectedItem = response.Item;
             $modal.open({
@@ -72,7 +72,7 @@
 	if (frm.$invalid)
             return;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/edit', cmsSiteActionPagegrd.selectedItem , 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'cmsSiteActionPage/edit', cmsSiteActionPagegrd.selectedItem , 'PUT').success(function (response) {
             cmsSiteActionPagegrd.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -111,10 +111,10 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/getviewmodel', cmsSiteActionPagegrd.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(mainPathApi+'cmsSiteActionPage/getviewmodel', cmsSiteActionPagegrd.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsSiteActionPagegrd.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'cmsSiteActionPage/delete', cmsSiteActionPagegrd.selectedItemForDelete , 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'cmsSiteActionPage/delete', cmsSiteActionPagegrd.selectedItemForDelete , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsSiteActionPagegrd.replaceItem(cmsSiteActionPagegrd.selectedItemForDelete.Id);

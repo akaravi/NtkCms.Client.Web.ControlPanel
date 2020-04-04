@@ -9,7 +9,7 @@
 
     dbCategory.init = function () {
         dbCategory.cbusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"dbCategory/getall", { RowPerPage:1000}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"dbCategory/getall", { RowPerPage:1000}, 'POST').success(function (response) {
           
             rashaErManage.checkAction(response);
             dbCategory.ListItems = response.ListItems;
@@ -30,7 +30,7 @@
     dbCategory.addRequested = false;
     dbCategory.openAddModal = function () {
         dbCategory.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'dbCategory/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             dbCategory.selectedItem = response.Item;
             $modal.open({
@@ -50,7 +50,7 @@
         }
         dbCategory.busyIndicator.isActive = true;
         dbCategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/add',  dbCategory.selectedItem , 'POST').success(function (response) {
+        ajax.call(mainPathApi+'dbCategory/add',  dbCategory.selectedItem , 'POST').success(function (response) {
             dbCategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -73,7 +73,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/getviewmodel', dbCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(mainPathApi+'dbCategory/getviewmodel', dbCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             dbCategory.selectedItem = response.Item;
             $modal.open({
@@ -92,7 +92,7 @@
             return;
         }
         dbCategory.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/', dbCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'dbCategory/', dbCategory.selectedItem, 'PUT').success(function (response) {
             dbCategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -118,7 +118,7 @@
             return;
         }
         dbCategory.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/edit/', dbCategory.selectedItem , 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'dbCategory/edit/', dbCategory.selectedItem , 'PUT').success(function (response) {
             dbCategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -164,11 +164,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(dbCategory.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/getviewmodel',  dbCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(mainPathApi+'dbCategory/getviewmodel',  dbCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     dbCategory.selectedItemForDelete = response.Item;
                     console.log(dbCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/delete', dbCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'dbCategory/delete', dbCategory.selectedItemForDelete, 'DELETE').success(function (res) {
                         dbCategory.busyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {

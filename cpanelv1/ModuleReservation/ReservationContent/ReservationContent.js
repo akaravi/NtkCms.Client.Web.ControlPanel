@@ -28,7 +28,7 @@
         $rootScope
     ) {
         var reservationContent = this;
-        reservationContent.RouteUploadFileContent = cmsServerConfig.configRouteUploadFileContent;
+        reservationContent.mainPathApiUpload = mainPathApiUpload;
         var edititem = false;
         //For Grid Options
         reservationContent.gridOptions = {};
@@ -371,7 +371,7 @@
 
             reservationContent.categoryBusyIndicator.isActive = true;
             ajax
-                .call(cmsServerConfig.configApiServerPath + "reservationCategory/getall", { RowPerPage: 1000 }, "POST")
+                .call(mainPathApi + "reservationCategory/getall", { RowPerPage: 1000 }, "POST")
                 .success(function (response) {
                     reservationContent.treeConfig.Items = response.ListItems;
                     reservationContent.categoryBusyIndicator.isActive = false;
@@ -384,7 +384,7 @@
                 reservationContent.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
             reservationContent.contentBusyIndicator.isActive = true;
             ajax
-                .call(cmsServerConfig.configApiServerPath + "reservationContent/getall", reservationContent.gridOptions.advancedSearchData.engine, "POST")
+                .call(mainPathApi + "reservationContent/getall", reservationContent.gridOptions.advancedSearchData.engine, "POST")
                 .success(function (response) {
                     rashaErManage.checkAction(response);
                     reservationContent.ListItems = response.ListItems;
@@ -405,7 +405,7 @@
                     reservationContent.contentBusyIndicator.isActive = false;
                 });
             ajax
-                .call(cmsServerConfig.configApiServerPath + "reservationTag/getviewmodel", "0", "GET")
+                .call(mainPathApi + "reservationTag/getviewmodel", "0", "GET")
                 .success(function (response) {
                     //Get a ViewModel for reservationTag
                     reservationContent.ModuleTag = response.Item;
@@ -414,7 +414,7 @@
                     console.log(data);
                 });
             ajax
-                .call(cmsServerConfig.configApiServerPath + "reservationContentTag/getviewmodel", "0", "GET")
+                .call(mainPathApi + "reservationContentTag/getviewmodel", "0", "GET")
                 .success(function (response) {
                     //Get a ViewModel for reservationContentTag
                     reservationContent.ModuleContentTag = response.Item;
@@ -439,7 +439,7 @@
             engine.Filters = null;
             engine.Filters = [];
             engine.Filters.push(filterValue);
-            ajax.call(cmsServerConfig.configApiServerPath+"reservationcomment/getall", engine, 'POST').success(function (response) {
+            ajax.call(mainPathApi+"reservationcomment/getall", engine, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 reservationContent.ListCommentItems = response.ListItems;
                 reservationContent.gridContentOptions.fillData(reservationContent.ListCommentItems, response.resultAccess); // Sending Access as an argument
@@ -471,7 +471,7 @@
                 rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
                 return;
             }
-            ajax.call(cmsServerConfig.configApiServerPath+'reservationContent/getviewmodel', reservationContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+            ajax.call(mainPathApi+'reservationContent/getviewmodel', reservationContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
                 rashaErManage.checkAction(response1);
                 reservationContent.selectedItem = response1.Item;
                 $modal.open({
@@ -492,7 +492,7 @@
             reservationContent.addRequested = false;
             buttonIsPressed = true;
             ajax
-                .call(cmsServerConfig.configApiServerPath + "reservationCategory/getviewmodel", "0", "GET")
+                .call(mainPathApi + "reservationCategory/getviewmodel", "0", "GET")
                 .success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
@@ -510,7 +510,7 @@
                     };
                     ajax
                         .call(
-                            cmsServerConfig.configApiServerPath+"FileCategory/getAll",
+                            mainPathApi+"FileCategory/getAll",
                             filterModelParentRootFolders,
                             "POST"
                         )
@@ -529,7 +529,7 @@
                             };
                             ajax
                                 .call(
-                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory",
+                                    mainPathApi+"FileContent/GetFilesFromCategory",
                                     filterModelRootFiles,
                                     "POST"
                                 )
@@ -574,7 +574,7 @@
             buttonIsPressed = true;
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"reservationCategory/getviewmodel",
+                    mainPathApi+"reservationCategory/getviewmodel",
                     reservationContent.treeConfig.currentNode.Id,
                     "GET"
                 )
@@ -599,7 +599,7 @@
                     };
                     ajax
                         .call(
-                            cmsServerConfig.configApiServerPath+"FileCategory/getAll",
+                            mainPathApi+"FileCategory/getAll",
                             filterModelParentRootFolders,
                             "POST"
                         )
@@ -618,7 +618,7 @@
                             };
                             ajax
                                 .call(
-                                    cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory",
+                                    mainPathApi+"FileContent/GetFilesFromCategory",
                                     filterModelRootFiles,
                                     "POST"
                                 )
@@ -663,7 +663,7 @@
                 reservationContent.selectedItem.LinkParentId =
                     reservationContent.treeConfig.currentNode.Id;
             ajax
-                .call(cmsServerConfig.configApiServerPath + "reservationCategory/add", reservationContent.selectedItem, "POST")
+                .call(mainPathApi + "reservationCategory/add", reservationContent.selectedItem, "POST")
                 .success(function (response) {
                     reservationContent.addRequested = false;
                     rashaErManage.checkAction(response);
@@ -689,7 +689,7 @@
             reservationContent.categoryBusyIndicator.isActive = true;
             reservationContent.addRequested = true;
             ajax
-                .call(cmsServerConfig.configApiServerPath + "reservationCategory/edit", reservationContent.selectedItem, "PUT")
+                .call(mainPathApi + "reservationCategory/edit", reservationContent.selectedItem, "PUT")
                 .success(function (response) {
                     //reservationContent.showbusy = false;
                     reservationContent.treeConfig.showbusy = false;
@@ -727,7 +727,7 @@
                         // console.log(node.gridOptions.selectedRow.item);
                         buttonIsPressed = true;
                         ajax
-                            .call(cmsServerConfig.configApiServerPath + "reservationCategory/getviewmodel", node.Id, "GET")
+                            .call(mainPathApi + "reservationCategory/getviewmodel", node.Id, "GET")
                             .success(function (response) {
                                 buttonIsPressed = false;
                                 rashaErManage.checkAction(response);
@@ -735,7 +735,7 @@
                                 console.log(reservationContent.selectedItemForDelete);
                                 ajax
                                     .call(
-                                        cmsServerConfig.configApiServerPath+"reservationCategory/delete",
+                                        mainPathApi+"reservationCategory/delete",
                                         reservationContent.selectedItemForDelete,
                                         "DELETE"
                                     )
@@ -796,7 +796,7 @@
             }
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"reservationContent/getall",
+                    mainPathApi+"reservationContent/getall",
                     reservationContent.gridOptions.advancedSearchData.engine,
                     "POST"
                 )
@@ -844,7 +844,7 @@
             //reservationContent.modalTitle = ($filter('translatentk')('Add_Content'));
             buttonIsPressed = true;
             ajax
-                .call(cmsServerConfig.configApiServerPath + "reservationContent/getviewmodel", "0", "GET")
+                .call(mainPathApi + "reservationContent/getviewmodel", "0", "GET")
                 .success(function (response) {
                     buttonIsPressed = false;
                     console.log(response);
@@ -981,7 +981,7 @@
             buttonIsPressed = true;
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"reservationContent/getviewmodel",
+                    mainPathApi+"reservationContent/getviewmodel",
                     reservationContent.gridOptions.selectedRow.item.Id,
                     "GET"
                 )
@@ -1000,7 +1000,7 @@
                     if (response1.Item.LinkMainImageId != null) {
                         ajax
                             .call(
-                                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                                mainPathApi+"FileContent/getviewmodel",
                                 response1.Item.LinkMainImageId,
                                 "GET"
                             )
@@ -1015,7 +1015,7 @@
                             });
                     }
                     if (response1.Item.LinkFilePodcastId != null) {
-                        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response1.Item.LinkFilePodcastId, 'GET').success(function (response2) {
+                        ajax.call(mainPathApi+'FileContent/getviewmodel', response1.Item.LinkFilePodcastId, 'GET').success(function (response2) {
                             reservationContent.filePickerFilePodcast.filename = response2.Item.FileName;
                             reservationContent.filePickerFilePodcast.fileId = response2.Item.Id
                         }).error(function (data, errCode, c, d) {
@@ -1087,7 +1087,7 @@
                     item.Destination = [];
                 });
             ajax
-                .call(cmsServerConfig.configApiServerPath + "reservationContent/add", apiSelectedItem, "POST")
+                .call(mainPathApi + "reservationContent/add", apiSelectedItem, "POST")
                 .success(function (response) {
                     rashaErManage.checkAction(response);
                     reservationContent.categoryBusyIndicator.isActive = false;
@@ -1109,7 +1109,7 @@
                         });
                         ajax
                             .call(
-                                cmsServerConfig.configApiServerPath+"reservationContentTag/addbatch",
+                                mainPathApi+"reservationContentTag/addbatch",
                                 reservationContent.selectedItem.ContentTags,
                                 "POST"
                             )
@@ -1165,7 +1165,7 @@
                     item.Destination = [];
                 });
             ajax
-                .call(cmsServerConfig.configApiServerPath + "reservationContent/edit", apiSelectedItem, "PUT")
+                .call(mainPathApi + "reservationContent/edit", apiSelectedItem, "PUT")
                 .success(function (response) {
                     reservationContent.categoryBusyIndicator.isActive = false;
                     reservationContent.addRequested = false;
@@ -1208,7 +1208,7 @@
                         buttonIsPressed = true;
                         ajax
                             .call(
-                                cmsServerConfig.configApiServerPath+"reservationContent/getviewmodel",
+                                mainPathApi+"reservationContent/getviewmodel",
                                 reservationContent.gridOptions.selectedRow.item.Id,
                                 "GET"
                             )
@@ -1221,7 +1221,7 @@
                                 console.log(reservationContent.selectedItemForDelete);
                                 ajax
                                     .call(
-                                        cmsServerConfig.configApiServerPath+"reservationContent/delete",
+                                        mainPathApi+"reservationContent/delete",
                                         reservationContent.selectedItemForDelete,
                                         "DELETE"
                                     )
@@ -1263,7 +1263,7 @@
             }
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"reservationContent/getviewmodel",
+                    mainPathApi+"reservationContent/getviewmodel",
                     reservationContent.gridOptions.selectedRow.item.Id,
                     "GET"
                 )
@@ -1274,7 +1274,7 @@
                         ? false
                         : true;
                     ajax
-                        .call(cmsServerConfig.configApiServerPath + "reservationContent/edit", reservationContent.selectedItem, "PUT")
+                        .call(mainPathApi + "reservationContent/edit", reservationContent.selectedItem, "PUT")
                         .success(function (response2) {
                             rashaErManage.checkAction(response2);
                             if (response2.IsSuccess) {
@@ -1305,7 +1305,7 @@
 
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"reservationContent/getviewmodel",
+                    mainPathApi+"reservationContent/getviewmodel",
                     reservationContent.gridOptions.selectedRow.item.Id,
                     "GET"
                 )
@@ -1316,7 +1316,7 @@
                         ? false
                         : true;
                     ajax
-                        .call(cmsServerConfig.configApiServerPath + "reservationContent/edit", reservationContent.selectedItem, "PUT")
+                        .call(mainPathApi + "reservationContent/edit", reservationContent.selectedItem, "PUT")
                         .success(function (response2) {
                             reservationContent.categoryBusyIndicator.isActive = true;
                             rashaErManage.checkAction(response2);
@@ -1391,7 +1391,7 @@
             reservationContent.categoryBusyIndicator.isActive = true;
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"reservationContent/getall",
+                    mainPathApi+"reservationContent/getall",
                     reservationContent.gridOptions.advancedSearchData.engine,
                     "POST"
                 )
@@ -1450,7 +1450,7 @@
                         reservationContent.showIsBusy = true;
                         ajax
                             .call(
-                                cmsServerConfig.configApiServerPath+"reservationContent/getviewmodel",
+                                mainPathApi+"reservationContent/getviewmodel",
                                 reservationContent.gridOptions.selectedRow.item.Id,
                                 "GET"
                             )
@@ -1462,7 +1462,7 @@
                                 console.log(reservationContent.selectedItemForDelete);
                                 ajax
                                     .call(
-                                        cmsServerConfig.configApiServerPath+"reservationContent/delete",
+                                        mainPathApi+"reservationContent/delete",
                                         reservationContent.selectedItemForDelete,
                                         "DELETE"
                                     )
@@ -1650,7 +1650,7 @@
         reservationContent.deleteAttachedfieldName = function (index) {
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"reservationContent/delete",
+                    mainPathApi+"reservationContent/delete",
                     reservationContent.contractsList[index],
                     "DELETE"
                 )
@@ -1674,7 +1674,7 @@
                     if (item == parseInt(item, 10)) {
                         // Check if item is an integer
                         ajax
-                            .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", parseInt(item), "GET")
+                            .call(mainPathApi + "FileContent/getviewmodel", parseInt(item), "GET")
                             .success(function (response) {
                                 if (response.IsSuccess) {
                                     reservationContent.attachedFiles.push({
@@ -1716,7 +1716,7 @@
             reservationContent.FileList = [];
             //get list of file from category id
             ajax
-                .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", null, "POST")
+                .call(mainPathApi + "FileContent/GetFilesFromCategory", null, "POST")
                 .success(function (response) {
                     reservationContent.FileList = response.ListItems;
                 })
@@ -1734,7 +1734,7 @@
 
             reservationContent.FileList = [];
             //get list of file from category id
-            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+            ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
                 reservationContent.FileList = response.ListItems;
             }).error(function (data) {
                 console.log(data);
@@ -1774,12 +1774,12 @@
 
             // Delete the file
             ajax
-                .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", reservationContent.fileIdToDelete, "GET")
+                .call(mainPathApi + "FileContent/getviewmodel", reservationContent.fileIdToDelete, "GET")
                 .success(function (response1) {
                     if (response1.IsSuccess == true) {
                         console.log(response1.Item);
                         ajax
-                            .call(cmsServerConfig.configApiServerPath + "FileContent/delete", response1.Item, "DELETE")
+                            .call(mainPathApi + "FileContent/delete", response1.Item, "DELETE")
                             .success(function (response2) {
                                 reservationContent.remove(
                                     reservationContent.FileList,
@@ -1788,7 +1788,7 @@
                                 if (response2.IsSuccess == true) {
                                     // Save New file
                                     ajax
-                                        .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", "GET")
+                                        .call(mainPathApi + "FileContent/getviewmodel", "0", "GET")
                                         .success(function (response3) {
                                             if (response3.IsSuccess == true) {
                                                 reservationContent.FileItem = response3.Item;
@@ -1825,7 +1825,7 @@
         //save new file
         reservationContent.saveNewFile = function () {
             ajax
-                .call(cmsServerConfig.configApiServerPath + "FileContent/add", reservationContent.FileItem, "POST")
+                .call(mainPathApi + "FileContent/add", reservationContent.FileItem, "POST")
                 .success(function (response) {
                     if (response.IsSuccess) {
                         reservationContent.FileItem = response.Item;
@@ -1894,14 +1894,14 @@
                         // replace the file
                         ajax
                             .call(
-                                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                                mainPathApi+"FileContent/getviewmodel",
                                 reservationContent.fileIdToDelete,
                                 "GET"
                             )
                             .success(function (response1) {
                                 if (response1.IsSuccess == true) {
                                     console.log(response1.Item);
-                                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
+                                    ajax.call(mainPathApi+"FileContent/replace", response1.Item, "POST")
                                         .success(function (response2) {
                                             if (response2.IsSuccess == true) {
                                                 reservationContent.FileItem = response2.Item;
@@ -1944,7 +1944,7 @@
                 }
                 else { // File does not exists
                     // Save New file
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                    ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
                         reservationContent.FileItem = response.Item;
                         reservationContent.FileItem.FileName = uploadFile.name;
                         reservationContent.FileItem.uploadName = uploadFile.uploadName;
@@ -1953,7 +1953,7 @@
                         reservationContent.FileItem.LinkCategoryId = null;  //Save the new file in the root
                         // ------- reservationContent.saveNewFile()  ----------------------
                         var result = 0;
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", reservationContent.FileItem, 'POST').success(function (response) {
+                        ajax.call(mainPathApi+"FileContent/add", reservationContent.FileItem, 'POST').success(function (response) {
                             if (response.IsSuccess) {
                                 reservationContent.FileItem = response.Item;
                                 reservationContent.showSuccessIcon();
@@ -2006,14 +2006,14 @@
                         // replace the file
                         ajax
                             .call(
-                                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                                mainPathApi+"FileContent/getviewmodel",
                                 reservationContent.fileIdToDelete,
                                 "GET"
                             )
                             .success(function (response1) {
                                 if (response1.IsSuccess == true) {
                                     console.log(response1.Item);
-                                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
+                                    ajax.call(mainPathApi+"FileContent/replace", response1.Item, "POST")
                                         .success(function (response2) {
                                             if (response2.IsSuccess == true) {
                                                 reservationContent.FileItem = response2.Item;
@@ -2057,7 +2057,7 @@
                     // File does not exists
                     // Save New file
                     ajax
-                        .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", "GET")
+                        .call(mainPathApi + "FileContent/getviewmodel", "0", "GET")
                         .success(function (response) {
                             reservationContent.FileItem = response.Item;
                             reservationContent.FileItem.FileName = uploadFile.name;
@@ -2068,7 +2068,7 @@
                             // ------- reservationContent.saveNewFile()  ----------------------
                             var result = 0;
                             ajax
-                                .call(cmsServerConfig.configApiServerPath + "FileContent/add", reservationContent.FileItem, "POST")
+                                .call(mainPathApi + "FileContent/add", reservationContent.FileItem, "POST")
                                 .success(function (response) {
                                     if (response.IsSuccess) {
                                         reservationContent.FileItem = response.Item;
@@ -2113,7 +2113,7 @@
                 reservationContent.ExportFileClass;
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"reservationContent/exportfile",
+                    mainPathApi+"reservationContent/exportfile",
                     reservationContent.gridOptions.advancedSearchData.engine,
                     "POST"
                 )
@@ -2169,7 +2169,7 @@
         };
         //Get TotalRowCount
         reservationContent.getCount = function () {
-            ajax.call(cmsServerConfig.configApiServerPath+"reservationContent/count", reservationContent.gridOptions.advancedSearchData.engine, "POST")
+            ajax.call(mainPathApi+"reservationContent/count", reservationContent.gridOptions.advancedSearchData.engine, "POST")
                 .success(function (response) {
                     reservationContent.addRequested = false;
                     rashaErManage.checkAction(response);
@@ -2184,7 +2184,7 @@
         reservationContent.showCategoryImage = function (mainImageId) {
             if (mainImageId == 0 || mainImageId == null) return;
             ajax
-                .call(cmsServerConfig.configApiServerPath + "FileContent/PreviewImage", { id: mainImageId, name: "" }, "POST")
+                .call(mainPathApi + "FileContent/PreviewImage", { id: mainImageId, name: "" }, "POST")
                 .success(function (response) {
                     reservationContent.selectedItem.MainImageSrc = response;
                 })
@@ -2221,13 +2221,13 @@
                     IntValue1: node.Id
                 });
                 ajax
-                    .call(cmsServerConfig.configApiServerPath + "FileCategory/GetAll", filterModel, "POST")
+                    .call(mainPathApi + "FileCategory/GetAll", filterModel, "POST")
                     .success(function (response1) {
                         angular.forEach(response1.ListItems, function (value, key) {
                             node.Children.push(value);
                         });
                         ajax
-                            .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", node.Id, "POST")
+                            .call(mainPathApi + "FileContent/GetFilesFromCategory", node.Id, "POST")
                             .success(function (response2) {
                                 angular.forEach(response2.ListItems, function (value, key) {
                                     node.Children.push(value);
@@ -2251,12 +2251,12 @@
                 return;
             }
             reservationContent.selectedItem.LinkMainImageId = node.Id;
-            reservationContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
+            reservationContent.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
             ajax
-                .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", node.Id, "GET")
+                .call(mainPathApi + "FileContent/getviewmodel", node.Id, "GET")
                 .success(function (response) {
                     reservationContent.selectedItem.previewImageSrc =
-                        cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
+                        mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
                 })
                 .error(function (data, errCode, c, d) {
                     console.log(data);

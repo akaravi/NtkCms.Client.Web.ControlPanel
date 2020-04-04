@@ -10,7 +10,7 @@
             console.log(error);
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+"ModulesRelationshipContent/getall", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"ModulesRelationshipContent/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
         angular.forEach( response.ListItems, function (item, key) {
                 item.isChecked=false
@@ -51,11 +51,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(modulesRelationship.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ModulesRelationshipContent/getviewmodel', modulesRelationship.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'ModulesRelationshipContent/getviewmodel', modulesRelationship.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     modulesRelationship.selectedItemForDelete = response.Item;
                     console.log(modulesRelationship.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ModulesRelationshipContent/delete', modulesRelationship.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'ModulesRelationshipContent/delete', modulesRelationship.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             modulesRelationship.replaceItem(modulesRelationship.selectedItemForDelete.Id);
@@ -122,7 +122,7 @@
     modulesRelationship.exportFile = function () {
         modulesRelationship.addRequested = true;
         modulesRelationship.gridOptions.advancedSearchData.engine.ExportFile = modulesRelationship.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'ModulesRelationshipContent/exportfile', modulesRelationship.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'ModulesRelationshipContent/exportfile', modulesRelationship.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             modulesRelationship.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -165,7 +165,7 @@
     }
     //Get TotalRowCount
     modulesRelationship.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"ModulesRelationshipContent/count", modulesRelationship.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"ModulesRelationshipContent/count", modulesRelationship.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             modulesRelationship.addRequested = false;
             rashaErManage.checkAction(response);
             modulesRelationship.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

@@ -46,7 +46,7 @@
                 if ($rootScope.tokenInfo == undefined || $rootScope.tokenInfo == null || $rootScope.tokenInfo.UserTicketToken == undefined) {
                     //#help# فقط توکن داریم و از سرور درخواست دریاف اطلاعات می کنیم
                     topNavBar.busyIndicator.isActive = true;
-                    ajax.call(cmsServerConfig.configApiServerPath + "CoreUser/SelectCurrentSite/", {}, "POST").success(function (response) {
+                    ajax.call(mainPathApi + "CoreUser/SelectCurrentSite/", {}, "POST").success(function (response) {
                         rashaErManage.checkAction(response);
                         $rootScope.tokenInfo = response;
 
@@ -93,7 +93,7 @@
                     };
                     rashaErManage.showMessage("درخواست برای سرور ارسال شد.");
                     topNavBar.busyIndicator.isActive = true;
-                    ajax.call(cmsServerConfig.configApiServerPath + "CoreUser/SelectCurrentSite/", {
+                    ajax.call(mainPathApi + "CoreUser/SelectCurrentSite/", {
                             NewUserid: NewUserid,
                             id: NewSiteid,
                             UserAccessAdminAllowToAllData: $rootScope.tokenInfo.UserAccessAdminAllowToProfessionalData,
@@ -155,7 +155,7 @@
                 if (!Silent)
                     rashaErManage.showMessage("دستور تغییر دسترسی به سرور ارسال گردید..");
                 topNavBar.busyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath + "CoreUser/SelectCurrentSite/", {
+                ajax.call(mainPathApi + "CoreUser/SelectCurrentSite/", {
                         id: SelectedCurrentSiteId,
                         UserAccessAdminAllowToAllData: oderShowAllDataStatus,
                         UserAccessAdminAllowToProfessionalData: oderShowProfessionalDataStatus,
@@ -207,7 +207,7 @@
             }
             //ngautocomplete
             topNavBar.inputSiteChanged = function (input) {
-                ajax.call(cmsServerConfig.configApiServerPath + "CoreSite/search_new", {
+                ajax.call(mainPathApi + "CoreSite/search_new", {
                     key: input
                 }, 'POST').success(function (response) {
                     rashaErManage.checkAction(response);
@@ -245,7 +245,7 @@
                         ClauseType: 1
                     });
                 }
-                ajax.call(cmsServerConfig.configApiServerPath + "CoreSite/search", engine, 'POST').success(function (response) {
+                ajax.call(mainPathApi + "CoreSite/search", engine, 'POST').success(function (response) {
                     rashaErManage.checkAction(response);
                     topNavBar.cmsSitesListItems = response.ListItems;
                 }).error(function (data, errCode, c, d) {
@@ -254,9 +254,9 @@
             }
 
             topNavBar.setDiskSpaceInfo = function () {
-                ajax.call(cmsServerConfig.configApiServerPath + "FileConfiguration/SiteAccess/"+$rootScope.tokenInfo.Item.virtual_CmsSite.Id, "", "GET").success(function (responseSiteAccess) {
+                ajax.call(mainPathApi + "FileConfiguration/SiteAccess/"+$rootScope.tokenInfo.Item.virtual_CmsSite.Id, "", "GET").success(function (responseSiteAccess) {
                     rashaErManage.checkAction(responseSiteAccess);
-                    ajax.call(cmsServerConfig.configApiServerPath + "FileConfiguration/SiteStorage/"+$rootScope.tokenInfo.Item.virtual_CmsSite.Id, "", "GET").success(function (responseSiteStorage) {
+                    ajax.call(mainPathApi + "FileConfiguration/SiteStorage/"+$rootScope.tokenInfo.Item.virtual_CmsSite.Id, "", "GET").success(function (responseSiteStorage) {
                         try {
                             rashaErManage.checkAction(responseSiteStorage);
                             $rootScope.totalSite = responseSiteAccess.Item.AllCateSizeUploadMB;
@@ -344,7 +344,7 @@
                 if (engine.Filters.length > 0) {
                     //#help# یافت شد
                     topNavBar.busyIndicator.isActive = true;
-                    ajax.call(cmsServerConfig.configApiServerPath + "CoreGuide/getall", engine, 'POST').success(function (response) {
+                    ajax.call(mainPathApi + "CoreGuide/getall", engine, 'POST').success(function (response) {
                         rashaErManage.checkAction(response);
                         var introSteps = [];
                         if (response.IsSuccess) {

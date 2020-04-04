@@ -57,14 +57,14 @@
         ajax.logOut();
     }
     navCtrl.init = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/getAllwithalias', navCtrl.engine, 'POST').success(function (response1) {
+        ajax.call(mainPathApi+'CoreSite/getAllwithalias', navCtrl.engine, 'POST').success(function (response1) {
             rashaErManage.checkAction(response1);
             navCtrl.ownerSite = response1.ListItems;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
         //MenuRight
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/GetAllMenu', navCtrl.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'CoreCpMainMenu/GetAllMenu', navCtrl.engine, 'POST').success(function (response) {
             if (response.ListItems.length === 0) return; //fix bug in menu
             rashaErManage.checkAction(response);
 
@@ -156,7 +156,7 @@
         if (currentSite == undefined || currentSite == 'undefined')
             currentSite = $rootScope.tokenInfo.Item.virtual_CmsSite.Id;
         //rashaErManage.showMessage("دستور تغییر دسترسی به سرور ارسال گردید...");
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/SelectCurrentSite/", { id: currentSite }, "POST").success(function (response) {
+        ajax.call(mainPathApi+"CoreUser/SelectCurrentSite/", { id: currentSite }, "POST").success(function (response) {
             localStorage.setItem("userGlobaltoken", response.UserTicketToken);
             //rashaErManage.showMessage("دسترسی جدید اعمال گردید");
             $rootScope.tokenInfo = response;

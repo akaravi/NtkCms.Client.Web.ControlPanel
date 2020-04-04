@@ -24,7 +24,7 @@
     frm.signupForm = function (formName) {
 
         console.log(frm.selectedItem);
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/add', frm.selectedItem , 'POST').success(function (response) {
+        ajax.call(mainPathApi+'CoreSite/add', frm.selectedItem , 'POST').success(function (response) {
             
         }).error(function (data, errCode, c, d) {
             

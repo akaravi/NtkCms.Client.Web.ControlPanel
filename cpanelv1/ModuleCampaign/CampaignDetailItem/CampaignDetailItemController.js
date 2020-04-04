@@ -22,7 +22,7 @@
 
     
 
-    ajax.call(cmsServerConfig.configApiServerPath+"MemberGroup/getall", {}, 'POST').success(function (response) {
+    ajax.call(mainPathApi+"MemberGroup/getall", {}, 'POST').success(function (response) {
         campaignDetailItem.memberGroups = response.ListItems;
     }).error(function (data, errCode, c, d) {
         console.log(data);
@@ -74,7 +74,7 @@
         } catch (error) {
             console.log(error);
         }
-        ajax.call(cmsServerConfig.configApiServerPath+"campaignDetailItem/getall", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"campaignDetailItem/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetailItem.busyIndicator.isActive = false;
             campaignDetailItem.ListItems = response.ListItems;
@@ -95,7 +95,7 @@
     campaignDetailItem.addRequested = false;
     campaignDetailItem.openAddModal = function () {
         campaignDetailItem.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailItem/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'campaignDetailItem/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetailItem.busyIndicator.isActive = false;
             campaignDetailItem.selectedItem = response.Item;
@@ -119,7 +119,7 @@
         }
         campaignDetailItem.busyIndicator.isActive = true;
         campaignDetailItem.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailItem/add', campaignDetailItem.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'campaignDetailItem/add', campaignDetailItem.selectedItem, 'POST').success(function (response) {
             campaignDetailItem.addRequested = false;
             campaignDetailItem.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -145,7 +145,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailItem/getviewmodel', campaignDetailItem.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'campaignDetailItem/getviewmodel', campaignDetailItem.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetailItem.selectedItem = response.Item;
             if (campaignDetailItem
@@ -169,7 +169,7 @@
             return;
         }
         campaignDetailItem.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailItem/edit', campaignDetailItem.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'campaignDetailItem/edit', campaignDetailItem.selectedItem, 'PUT').success(function (response) {
             campaignDetailItem.addRequested = true;
             rashaErManage.checkAction(response);
             campaignDetailItem.busyIndicator.isActive = false;
@@ -210,11 +210,11 @@
             if (isConfirmed) {
                 campaignDetailItem.busyIndicator.isActive = true;
                 console.log(campaignDetailItem.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailItem/getviewmodel', campaignDetailItem.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'campaignDetailItem/getviewmodel', campaignDetailItem.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     campaignDetailItem.selectedItemForDelete = response.Item;
                     console.log(campaignDetailItem.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailItem/delete', campaignDetailItem.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'campaignDetailItem/delete', campaignDetailItem.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         campaignDetailItem.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -235,7 +235,7 @@
 
     campaignDetailItem.searchData = function () {
         campaignDetailItem.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"campaignDetailItem/getall", campaignDetailItem.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(mainPathApi+"campaignDetailItem/getall", campaignDetailItem.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetailItem.categoryBusyIndicator.isActive = false;
             campaignDetailItem.ListItems = response.ListItems;
@@ -357,7 +357,7 @@
     campaignDetailItem.exportFile = function () {
         campaignDetailItem.addRequested = true;
         campaignDetailItem.gridOptions.advancedSearchData.engine.ExportFile = campaignDetailItem.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailItem/exportfile', campaignDetailItem.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'campaignDetailItem/exportfile', campaignDetailItem.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             campaignDetailItem.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -400,7 +400,7 @@
     }
     //Get TotalRowCount
     campaignDetailItem.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"campaignDetailItem/count", campaignDetailItem.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"campaignDetailItem/count", campaignDetailItem.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             campaignDetailItem.addRequested = false;
             rashaErManage.checkAction(response);
             campaignDetailItem.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

@@ -131,7 +131,7 @@
         }
 
         movieGalleryShareReciverCategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"MovieGalleryShareMainAdminSetting/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"MovieGalleryShareMainAdminSetting/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
             movieGalleryShareReciverCategory.treeConfig.Items = response.ListItems;
             movieGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
         }).error(function (data, errCode, c, d) {
@@ -141,7 +141,7 @@
         });
 
         movieGalleryShareReciverCategory.contentBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"movieGalleryShareReciverCategory/getall", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"movieGalleryShareReciverCategory/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             movieGalleryShareReciverCategory.ListItems = response.ListItems;
             movieGalleryShareReciverCategory.gridOptions.fillData(movieGalleryShareReciverCategory.ListItems, response.resultAccess); // Sending Access as an argument
@@ -164,7 +164,7 @@
         if (buttonIsPressed) { return };
         movieGalleryShareReciverCategory.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryShareMainAdminSetting/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'MovieGalleryShareMainAdminSetting/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             movieGalleryShareReciverCategory.selectedItem = response.Item;
@@ -177,10 +177,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 movieGalleryShareReciverCategory.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "ShareServerCategory.LinkShareMainAdminSettingId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(movieGalleryShareReciverCategory.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModuleMovieGallery/MovieGalleryShareMainAdminSetting/add.html',
@@ -210,7 +210,7 @@
 
         movieGalleryShareReciverCategory.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryShareMainAdminSetting/getviewmodel', movieGalleryShareReciverCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'MovieGalleryShareMainAdminSetting/getviewmodel', movieGalleryShareReciverCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             movieGalleryShareReciverCategory.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -227,10 +227,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 movieGalleryShareReciverCategory.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "ShareServerCategory.LinkShareMainAdminSettingId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(movieGalleryShareReciverCategory.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (movieGalleryShareReciverCategory.selectedItem.LinkMainImageId > 0)
@@ -263,7 +263,7 @@
         movieGalleryShareReciverCategory.selectedItem.LinkParentId = null;
         if (movieGalleryShareReciverCategory.treeConfig.currentNode != null)
             movieGalleryShareReciverCategory.selectedItem.LinkParentId = movieGalleryShareReciverCategory.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryShareMainAdminSetting/add', movieGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'MovieGalleryShareMainAdminSetting/add', movieGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
             movieGalleryShareReciverCategory.addRequested = false;
             rashaErManage.checkAction(response);
             //console.log(response);
@@ -291,7 +291,7 @@
         }
         movieGalleryShareReciverCategory.categoryBusyIndicator.isActive = true;
         movieGalleryShareReciverCategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryShareMainAdminSetting/edit', movieGalleryShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'MovieGalleryShareMainAdminSetting/edit', movieGalleryShareReciverCategory.selectedItem, 'PUT').success(function (response) {
             //movieGalleryShareReciverCategory.showbusy = false;
             movieGalleryShareReciverCategory.treeConfig.showbusy = false;
             movieGalleryShareReciverCategory.addRequested = false;
@@ -322,12 +322,12 @@
                 movieGalleryShareReciverCategory.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryShareMainAdminSetting/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'MovieGalleryShareMainAdminSetting/getviewmodel', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     movieGalleryShareReciverCategory.selectedItemForDelete = response.Item;
                     console.log(movieGalleryShareReciverCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryShareMainAdminSetting/delete', movieGalleryShareReciverCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'MovieGalleryShareMainAdminSetting/delete', movieGalleryShareReciverCategory.selectedItemForDelete, 'DELETE').success(function (res) {
                         movieGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //movieGalleryShareReciverCategory.replaceCategoryItem(movieGalleryShareReciverCategory.treeConfig.Items, node.Id);
@@ -377,7 +377,7 @@
             }
             movieGalleryShareReciverCategory.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
-        ajax.call(cmsServerConfig.configApiServerPath+"movieGalleryShareReciverCategory/getall", movieGalleryShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"movieGalleryShareReciverCategory/getall", movieGalleryShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             movieGalleryShareReciverCategory.contentBusyIndicator.isActive = false;
             movieGalleryShareReciverCategory.ListItems = response.ListItems;
@@ -404,7 +404,7 @@
         movieGalleryShareReciverCategory.addRequested = false;
         movieGalleryShareReciverCategory.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryShareReciverCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'movieGalleryShareReciverCategory/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             //console.log(response);
             rashaErManage.checkAction(response);
@@ -430,7 +430,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryShareReciverCategory/getviewmodel', movieGalleryShareReciverCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+'movieGalleryShareReciverCategory/getviewmodel', movieGalleryShareReciverCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             movieGalleryShareReciverCategory.selectedItem = response1.Item;
@@ -457,7 +457,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Subscription_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryShareReciverCategory/add', movieGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'movieGalleryShareReciverCategory/add', movieGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             movieGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -491,7 +491,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Subscription_Please_Select_The_Category'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryShareReciverCategory/edit', movieGalleryShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'movieGalleryShareReciverCategory/edit', movieGalleryShareReciverCategory.selectedItem, 'PUT').success(function (response) {
             movieGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
             movieGalleryShareReciverCategory.addRequested = false;
             movieGalleryShareReciverCategory.treeConfig.showbusy = false;
@@ -525,14 +525,14 @@
                 movieGalleryShareReciverCategory.showbusy = true;
                 movieGalleryShareReciverCategory.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"movieGalleryShareReciverCategory/getviewmodel", movieGalleryShareReciverCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(mainPathApi+"movieGalleryShareReciverCategory/getviewmodel", movieGalleryShareReciverCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     movieGalleryShareReciverCategory.showbusy = false;
                     movieGalleryShareReciverCategory.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     movieGalleryShareReciverCategory.selectedItemForDelete = response.Item;
                     console.log(movieGalleryShareReciverCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"movieGalleryShareReciverCategory/delete", movieGalleryShareReciverCategory.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(mainPathApi+"movieGalleryShareReciverCategory/delete", movieGalleryShareReciverCategory.selectedItemForDelete, "DELETE").success(function (res) {
                         movieGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
                         movieGalleryShareReciverCategory.treeConfig.showbusy = false;
                         movieGalleryShareReciverCategory.showIsBusy = false;
@@ -579,7 +579,7 @@
 
     movieGalleryShareReciverCategory.searchData = function () {
         movieGalleryShareReciverCategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"movieGalleryShareReciverCategory/getall", movieGalleryShareReciverCategory.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(mainPathApi+"movieGalleryShareReciverCategory/getall", movieGalleryShareReciverCategory.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             movieGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
             movieGalleryShareReciverCategory.ListItems = response.ListItems;
@@ -671,7 +671,7 @@
     movieGalleryShareReciverCategory.exportFile = function () {
         movieGalleryShareReciverCategory.addRequested = true;
         movieGalleryShareReciverCategory.gridOptions.advancedSearchData.engine.ExportFile = movieGalleryShareReciverCategory.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryShareReciverCategory/exportfile', movieGalleryShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'movieGalleryShareReciverCategory/exportfile', movieGalleryShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             movieGalleryShareReciverCategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -714,7 +714,7 @@
     }
     //Get TotalRowCount
     movieGalleryShareReciverCategory.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"movieGalleryShareReciverCategory/count", movieGalleryShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"movieGalleryShareReciverCategory/count", movieGalleryShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             movieGalleryShareReciverCategory.addRequested = false;
             rashaErManage.checkAction(response);
             movieGalleryShareReciverCategory.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -727,7 +727,7 @@
     movieGalleryShareReciverCategory.showCategoryImage = function (mainImageId) {
         if (mainImageId == 0 || mainImageId == null)
             return;
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/PreviewImage", { id: mainImageId, name: '' }, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"FileContent/PreviewImage", { id: mainImageId, name: '' }, 'POST').success(function (response) {
             movieGalleryShareReciverCategory.selectedItem.MainImageSrc = response;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
@@ -759,11 +759,11 @@
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -784,9 +784,9 @@
             return;
         }
         movieGalleryShareReciverCategory.selectedItem.LinkMainImageId = node.Id;
-        movieGalleryShareReciverCategory.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            movieGalleryShareReciverCategory.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
+        movieGalleryShareReciverCategory.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
+        ajax.call(mainPathApi+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            movieGalleryShareReciverCategory.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });

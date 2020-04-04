@@ -58,7 +58,7 @@
 
     advertisementProperty.init = function () {
         advertisementProperty.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"advertisementproperty/getAllwithalias", advertisementProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"advertisementproperty/getAllwithalias", advertisementProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementProperty.ListItems = response.ListItems;
             advertisementProperty.gridOptions.fillData(advertisementProperty.ListItems, response.resultAccess);
@@ -72,14 +72,14 @@
             advertisementProperty.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"advertisementpropertytype/getAll", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"advertisementpropertytype/getAll", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementProperty.propertyTypeListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             advertisementProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreLocation/GetAllProvinces", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreLocation/GetAllProvinces", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementProperty.provinceCmsLocatinoListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
@@ -112,7 +112,7 @@
         advertisementProperty.filePickerFiles.filename = "";
         advertisementProperty.filePickerFiles.fileId = null;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementproperty/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'advertisementproperty/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             advertisementProperty.busyIndicator.isActive = false;
@@ -143,11 +143,11 @@
         advertisementProperty.addRequested = true;
         var valueItem = {};
         advertisementProperty.valueItems = [];
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementproperty/add', advertisementProperty.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'advertisementproperty/add', advertisementProperty.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 advertisementProperty.closeModal();
-                ajax.call(cmsServerConfig.configApiServerPath+"advertisementpropertydetailvalue/getviewmodel", '0', 'GET').success(function (response1) {
+                ajax.call(mainPathApi+"advertisementpropertydetailvalue/getviewmodel", '0', 'GET').success(function (response1) {
                     rashaErManage.checkAction(response1);
                     for (var i = 0; i < advertisementProperty.propertyDetailsListItems.length; i++) {
                         valueItem = $.extend(true, {}, response1.Item);
@@ -182,7 +182,7 @@
                             valueItem.Value = advertisementProperty.propertyDetailsListItems[i].value;
                         advertisementProperty.valueItems.push(valueItem);
                     }
-                    ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetailValue/AddBatch', advertisementProperty.valueItems, 'POST').success(function (response2) {
+                    ajax.call(mainPathApi+'AdvertisementPropertyDetailValue/AddBatch', advertisementProperty.valueItems, 'POST').success(function (response2) {
                         rashaErManage.checkAction(response2);
                         if (response2.IsSuccess) {
                             advertisementProperty.ListItems.unshift(response.Item);
@@ -225,7 +225,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementproperty/getviewmodel', parseInt(advertisementProperty.gridOptions.selectedRow.item.Id), 'GET').success(function (response) {
+        ajax.call(mainPathApi+'advertisementproperty/getviewmodel', parseInt(advertisementProperty.gridOptions.selectedRow.item.Id), 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             advertisementProperty.selectedItem = response.Item;
@@ -238,7 +238,7 @@
             advertisementProperty.filePickerMainImage.filename = null;
             advertisementProperty.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null && response.Item.LinkMainImageId > 0) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(response.Item.LinkMainImageId), 'GET').success(function (response2) {
+                ajax.call(mainPathApi+'FileContent/getviewmodel', parseInt(response.Item.LinkMainImageId), 'GET').success(function (response2) {
                     if (response2.IsSuccess && response2.Item.Id > 9) {
                         advertisementProperty.filePickerMainImage.filename = response2.Item.FileName;
                         advertisementProperty.filePickerMainImage.fileId = response2.Item.Id;
@@ -269,7 +269,7 @@
         // Edit Property: Title, Description, LinkPropertyTypeId
         advertisementProperty.busyIndicator.isActive = true;
         advertisementProperty.selectedItem.LinkExtraImageIds = stringfyLinkFileIds(advertisementProperty.attachedFiles);
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementproperty/edit', advertisementProperty.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'advertisementproperty/edit', advertisementProperty.selectedItem, 'PUT').success(function (response) {
             advertisementProperty.addRequested = true;
             rashaErManage.checkAction(response);
             advertisementProperty.busyIndicator.isActive = false;
@@ -297,7 +297,7 @@
             var engine = {};
             engine.Filters = [];
             engine.Filters.push(filterValue);
-            ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetailValue/deleteList', engine, 'DELETE').success(function (response) {
+            ajax.call(mainPathApi+'AdvertisementPropertyDetailValue/deleteList', engine, 'DELETE').success(function (response) {
                 rashaErManage.checkAction(response);
                 console.log(response.Item);
             }).error(function (data, errCode, c, d) {
@@ -305,7 +305,7 @@
                 advertisementProperty.busyIndicator.isActive = false;
 
             });
-            ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetailValue/AddBatch', advertisementProperty.selectedItem.LinkPropertyId, 'POST').success(function (response) {
+            ajax.call(mainPathApi+'AdvertisementPropertyDetailValue/AddBatch', advertisementProperty.selectedItem.LinkPropertyId, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 console.log(response.Item);
             }).error(function (data, errCode, c, d) {
@@ -356,7 +356,7 @@
             }
             // ---------------------------------- End of Set Values to Edit --------------------------------------
             advertisementProperty.addRequested = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetailValue/EditBatch', advertisementProperty.propertyDetailValuesListItems, 'PUT').success(function (response) {
+            ajax.call(mainPathApi+'AdvertisementPropertyDetailValue/EditBatch', advertisementProperty.propertyDetailValuesListItems, 'PUT').success(function (response) {
                 rashaErManage.checkAction(response);
                 advertisementProperty.busyIndicator.isActive = false;
                 if (response.IsSuccess) {
@@ -397,11 +397,11 @@
             if (isConfirmed) {
                 advertisementProperty.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'advertisementproperty/getviewmodel', advertisementProperty.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'advertisementproperty/getviewmodel', advertisementProperty.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     advertisementProperty.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'advertisementproperty/delete', advertisementProperty.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'advertisementproperty/delete', advertisementProperty.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         advertisementProperty.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -518,7 +518,7 @@
         };
         engine.Filters = [];
         engine.Filters.push(filterValue);
-        ajax.call(cmsServerConfig.configApiServerPath+"AdvertisementPropertyDetail/GetAll", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"AdvertisementPropertyDetail/GetAll", engine, 'POST').success(function (response) {
             advertisementProperty.propertyDetailsListItems = response.ListItems;
 
             $.each(advertisementProperty.propertyDetailsListItems, function (index, item) {
@@ -574,7 +574,7 @@
         };
         engine1.Filters = [];
         engine1.Filters.push(filterValue1);
-        ajax.call(cmsServerConfig.configApiServerPath+"AdvertisementPropertyDetail/GetAll", engine1, 'POST').success(function (response1) {
+        ajax.call(mainPathApi+"AdvertisementPropertyDetail/GetAll", engine1, 'POST').success(function (response1) {
             advertisementProperty.propertyDetailsListItems = response1.ListItems;
             //---------- Load Values ---------------------------------------
             var filterValue2 = {
@@ -584,7 +584,7 @@
             }
             var engine2 = { Filters: [] };
             engine2.Filters.push(filterValue2);
-            ajax.call(cmsServerConfig.configApiServerPath+"AdvertisementPropertyDetailValue/GetAll", engine2, 'POST').success(function (response) {
+            ajax.call(mainPathApi+"AdvertisementPropertyDetailValue/GetAll", engine2, 'POST').success(function (response) {
                 $.each(advertisementProperty.propertyDetailsListItems, function (index, item) {
                     item.value = null;
                     // Add groups to its list
@@ -717,7 +717,7 @@
 
     advertisementProperty.contractsList = [];
     advertisementProperty.openAddContractModal = function (propertyId, propertyTitle) {
-        ajax.call(cmsServerConfig.configApiServerPath+"advertisementcontracttype/getall", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"advertisementcontracttype/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementProperty.busyIndicator.isActive = false;
             advertisementProperty.contractTypeListItems = response.ListItems;
@@ -726,7 +726,7 @@
             advertisementProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementContract/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'AdvertisementContract/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 advertisementProperty.selectedItem = response.Item;
@@ -736,7 +736,7 @@
                 };
                 model.Filters = [];
                 model.Filters.push({ PropertyName: "LinkPropertyId", IntValue1: parseInt(propertyId), SearchType: 0 });
-                ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementContract/getall', model, 'POST').success(function (response) {
+                ajax.call(mainPathApi+'AdvertisementContract/getall', model, 'POST').success(function (response) {
                     rashaErManage.checkAction(response);
                     advertisementProperty.contractsList = response.ListItems;
                     advertisementProperty.contractsListresultAccess = response.resultAccess;
@@ -771,7 +771,7 @@
         }
         advertisementProperty.addRequested = true;
         advertisementProperty.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementContract/add', advertisementProperty.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'AdvertisementContract/add', advertisementProperty.selectedItem, 'POST').success(function (response) {
             advertisementProperty.addRequested = false;
             advertisementProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -825,7 +825,7 @@
 
     advertisementProperty.editContract = function (index) {
         advertisementProperty.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementContract/edit', advertisementProperty.contractsList[index], 'PUT').success(function (res) {
+        ajax.call(mainPathApi+'AdvertisementContract/edit', advertisementProperty.contractsList[index], 'PUT').success(function (res) {
             advertisementProperty.addRequested = false;
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
@@ -840,7 +840,7 @@
 
     advertisementProperty.deleteContract = function (index) {
         advertisementProperty.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementContract/delete', advertisementProperty.contractsList[index], 'DELETE').success(function (res) {
+        ajax.call(mainPathApi+'AdvertisementContract/delete', advertisementProperty.contractsList[index], 'DELETE').success(function (res) {
             advertisementProperty.addRequested = false;
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
@@ -858,7 +858,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(mainPathApi+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             advertisementProperty.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -897,7 +897,7 @@
 
         advertisementProperty.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
             advertisementProperty.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -936,14 +936,14 @@
         advertisementProperty.fileIdToDelete = advertisementProperty.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", advertisementProperty.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+"FileContent/getviewmodel", advertisementProperty.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(mainPathApi+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
                     advertisementProperty.remove(advertisementProperty.FileList, advertisementProperty.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 advertisementProperty.FileItem = response3.Item;
                                 advertisementProperty.FileItem.FileName = name;
@@ -972,7 +972,7 @@
     }
     //save new file
     advertisementProperty.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", advertisementProperty.FileItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"FileContent/add", advertisementProperty.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 advertisementProperty.FileItem = response.Item;
                 advertisementProperty.showSuccessIcon();
@@ -1046,14 +1046,14 @@
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                mainPathApi+"FileContent/getviewmodel",
                 advertisementProperty.fileIdToDelete,
                 "GET"
               )
               .success(function(response1) {
                 if (response1.IsSuccess == true) {
                   console.log(response1.Item);
-                  ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
+                  ajax.call(mainPathApi+"FileContent/replace", response1.Item, "POST")
                     .success(function(response2) {
                       if (response2.IsSuccess == true) {
                         advertisementProperty.FileItem = response2.Item;
@@ -1096,7 +1096,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
                     advertisementProperty.FileItem = response.Item;
                     advertisementProperty.FileItem.FileName = uploadFile.name;
                     advertisementProperty.FileItem.uploadName = uploadFile.uploadName;
@@ -1105,7 +1105,7 @@
                     advertisementProperty.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- advertisementProperty.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", advertisementProperty.FileItem, 'POST').success(function (response) {
+                    ajax.call(mainPathApi+"FileContent/add", advertisementProperty.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             advertisementProperty.FileItem = response.Item;
                             advertisementProperty.showSuccessIcon();
@@ -1144,7 +1144,7 @@
     advertisementProperty.exportFile = function () {
         advertisementProperty.addRequested = true;
         advertisementProperty.gridOptions.advancedSearchData.engine.ExportFile = advertisementProperty.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementProperty/exportfile', advertisementProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'AdvertisementProperty/exportfile', advertisementProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             advertisementProperty.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -1187,7 +1187,7 @@
     }
     //Get TotalRowCount
     advertisementProperty.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"AdvertisementProperty/count", advertisementProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"AdvertisementProperty/count", advertisementProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             advertisementProperty.addRequested = false;
             rashaErManage.checkAction(response);
             advertisementProperty.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -1206,7 +1206,7 @@
     advertisementProperty.onRecordStatusChange = function (record) {
         //advertisementProperty.busyIndicator.isActive = true;
         //var filterstatus = { Filters: [{ PropertyName: "RecordStatus", SearchType: 0, IntValue1: record }] };
-        //ajax.call(cmsServerConfig.configApiServerPath+"advertisementproperty/getAllwithalias", filterstatus, 'POST').success(function (response) {
+        //ajax.call(mainPathApi+"advertisementproperty/getAllwithalias", filterstatus, 'POST').success(function (response) {
         //    rashaErManage.checkAction(response);
         //    advertisementProperty.ListItems = response.ListItems;
         //    advertisementProperty.gridOptions.fillData(advertisementProperty.ListItems, response.resultAccess);

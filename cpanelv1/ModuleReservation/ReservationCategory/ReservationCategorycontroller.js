@@ -7,7 +7,7 @@
     if (itemRecordStatus != undefined) reservationcategory.itemRecordStatus = itemRecordStatus;
     reservationcategory.init = function () {
         reservationcategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"reservationcategory/getall", { RowPerPage:1000}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"reservationcategory/getall", { RowPerPage:1000}, 'POST').success(function (response) {
 
             rashaErManage.checkAction(response);
             reservationcategory.ListItems = response.ListItems;
@@ -29,7 +29,7 @@
     reservationcategory.addRequested = false;
     reservationcategory.openAddModal = function () {
         reservationcategory.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationcategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'reservationcategory/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             reservationcategory.selectedItem = response.Item;
             //Set dataForTheTree
@@ -42,10 +42,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 reservationContent.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(reservationContent.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/Modulereservation/reservationCategory/add.html',
@@ -71,7 +71,7 @@
         }
         reservationcategory.categoryBusyIndicator.isActive = true;
         reservationcategory.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationcategory/add', reservationcategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'reservationcategory/add', reservationcategory.selectedItem, 'POST').success(function (response) {
             reservationcategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -93,7 +93,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationcategory/getviewmodel', reservationcategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'reservationcategory/getviewmodel', reservationcategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             reservationcategory.selectedItem = response.Item;
             //Set dataForTheTree
@@ -108,10 +108,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 reservationcategory.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(reservationcategory.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (reservationcategory.selectedItem.LinkMainImageId > 0)
@@ -138,7 +138,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationcategory/', reservationcategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'reservationcategory/', reservationcategory.selectedItem, 'PUT').success(function (response) {
             reservationcategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -163,7 +163,7 @@
             return;
         }
         reservationcategory.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationCategory/edit/', reservationcategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'reservationCategory/edit/', reservationcategory.selectedItem, 'PUT').success(function (response) {
             reservationcategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -209,11 +209,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(reservationcategory.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'reservationcategory/getviewmodel', reservationcategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'reservationcategory/getviewmodel', reservationcategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     reservationcategory.selectedItemForDelete = response.Item;
                     console.log(reservationcategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'reservationcategory/delete', reservationcategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'reservationcategory/delete', reservationcategory.selectedItemForDelete, 'DELETE').success(function (res) {
                         reservationcategory.categoryBusyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
@@ -341,11 +341,11 @@
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -366,9 +366,9 @@
             return;
         }
         reservationContent.selectedItem.LinkMainImageId = node.Id;
-        reservationContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            reservationContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
+        reservationContent.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
+        ajax.call(mainPathApi+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            reservationContent.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });

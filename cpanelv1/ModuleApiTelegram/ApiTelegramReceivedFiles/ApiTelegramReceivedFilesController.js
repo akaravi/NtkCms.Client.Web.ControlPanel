@@ -9,7 +9,7 @@
 
     receivedFiles.init = function () {
         receivedFiles.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramreceivedFiles/getall", receivedFiles.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"ApiTelegramreceivedFiles/getall", receivedFiles.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             receivedFiles.busyIndicator.isActive = false;
             receivedFiles.ListItems = response.ListItems;
@@ -30,7 +30,7 @@
     receivedFiles.addRequested = false;
     receivedFiles.openAddModal = function () {
         receivedFiles.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramreceivedFiles/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegramreceivedFiles/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             receivedFiles.busyIndicator.isActive = false;
             receivedFiles.selectedItem = response.Item;
@@ -53,7 +53,7 @@
         }
         receivedFiles.busyIndicator.isActive = true;
         receivedFiles.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramreceivedFiles/add', receivedFiles.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegramreceivedFiles/add', receivedFiles.selectedItem, 'POST').success(function (response) {
             receivedFiles.addRequested = false;
             receivedFiles.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -77,7 +77,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramreceivedFiles/getviewmodel', receivedFiles.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegramreceivedFiles/getviewmodel', receivedFiles.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             receivedFiles.selectedItem = response.Item;
             $modal.open({
@@ -98,7 +98,7 @@
             return;
         }
         receivedFiles.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramReceivedFiles/edit', receivedFiles.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegramReceivedFiles/edit', receivedFiles.selectedItem, 'PUT').success(function (response) {
             receivedFiles.addRequested = true;
             rashaErManage.checkAction(response);
             receivedFiles.busyIndicator.isActive = false;
@@ -140,10 +140,10 @@
             if (isConfirmed) {
                 receivedFiles.busyIndicator.isActive = true;
                 console.log(receivedFiles.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramReceivedFiles/getviewmodel', receivedFiles.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'ApiTelegramReceivedFiles/getviewmodel', receivedFiles.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     receivedFiles.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramReceivedFiles/delete', receivedFiles.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'ApiTelegramReceivedFiles/delete', receivedFiles.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         receivedFiles.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -234,7 +234,7 @@
     receivedFiles.openSendMessageToSender = function (item) {
         receivedFiles.modalTitle = "ارسال پیام";
         receivedFiles.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramReceivedFiles/GetViewModel', item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegramReceivedFiles/GetViewModel', item.Id, 'GET').success(function (response) {
             receivedFiles.selectedItem = response.Item;
             $modal.open({
                 templateUrl: 'cpanelv1/ModuleApiTelegram/ApiTelegramReceivedFiles/sendMessageModal.html',
@@ -251,7 +251,7 @@
     receivedFiles.exportFile = function () {
         receivedFiles.gridOptions.advancedSearchData.engine.ExportFile = receivedFiles.ExportFileClass;
         receivedFiles.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramReceivedFiles/exportfile', receivedFiles.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegramReceivedFiles/exportfile', receivedFiles.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             receivedFiles.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -295,7 +295,7 @@
     }
     //Get TotalRowCount
     receivedFiles.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramReceivedFiles/count", receivedFiles.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"ApiTelegramReceivedFiles/count", receivedFiles.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             receivedFiles.addRequested = false;
             rashaErManage.checkAction(response);
             receivedFiles.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

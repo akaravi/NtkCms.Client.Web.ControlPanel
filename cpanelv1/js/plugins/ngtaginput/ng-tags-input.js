@@ -627,7 +627,7 @@
                             type: 'Post',
                             async: false,
                             data: JSON.stringify({ text: query }),
-                            url: cmsServerConfig.configApiServerPath + options.module + '/searchtag',   //فرستاده می شود attr با option نام ماژول مورد جستجو به صورت یک
+                            url: mainPathApi + options.module + '/searchtag',   //فرستاده می شود attr با option نام ماژول مورد جستجو به صورت یک
                             contentType: 'application/json',
                             headers: { 'Authorization': localStorage.getItem('userGlobaltoken') },
                             success: function (response) {

@@ -27,7 +27,7 @@
 
     processCtrl.init = function () {
         processCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"UniversalMenuProcesses/getall", processCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"UniversalMenuProcesses/getall", processCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             processCtrl.ListItems = response.ListItems;
             processCtrl.busyIndicator.isActive = false;
@@ -44,7 +44,7 @@
         });
 
         // Get All CmsModules
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreModule/getall", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreModule/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             processCtrl.cmsModulesListItems = response.ListItems;
             processCtrl.busyIndicator.isActive = false;
@@ -54,7 +54,7 @@
         });
 
         // Get ViewModel of CmsModuleProcess
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'CoreModuleProcess/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             processCtrl.cmsModuleProcess = response.Item;
 
@@ -82,7 +82,7 @@
         processCtrl.valueSubmit = null;
         $builder.removeAllFormObject('default');   // Clear the form builder from previous values
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'universalmenuProcesses/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             processCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -107,7 +107,7 @@
         processCtrl.busyIndicator.isActive = true;
         processCtrl.addRequested = true;
         processCtrl.selectedItem.ProcessCustomizationInputValue = $.trim(angular.toJson(processCtrl.valueSubmit));
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/add', processCtrl.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'universalmenuProcesses/add', processCtrl.selectedItem, 'POST').success(function (response) {
             processCtrl.addRequested = false;
             processCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -133,7 +133,7 @@
         }
 
         processCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/getviewmodel', processCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'universalmenuProcesses/getviewmodel', processCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             processCtrl.addRequested = false;
             processCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -184,7 +184,7 @@
             return;
         }
         processCtrl.selectedItem.ProcessCustomizationInputValue = $.trim(angular.toJson(processCtrl.valueSubmit));
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/edit', processCtrl.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'universalmenuProcesses/edit', processCtrl.selectedItem, 'PUT').success(function (response) {
             processCtrl.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -227,10 +227,10 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(processCtrl.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/getviewmodel', processCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'universalmenuProcesses/getviewmodel', processCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     processCtrl.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/delete', processCtrl.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'universalmenuProcesses/delete', processCtrl.selectedItemForDelete, 'DELETE').success(function (res) {
                         processCtrl.busyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
@@ -310,7 +310,7 @@
         processCtrl.advancedSearchData.engine.RowPerPage = 200;
         processCtrl.isLoading = true;                 // غیرفعال کردن منوی کشویی بعدی
         processCtrl.isWaiting = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/getall', processCtrl.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(mainPathApi+'CoreModuleProcess/getall', processCtrl.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             processCtrl.cmsModulesProcessesListItems = response.ListItems;
             processCtrl.isLoading = false;          // فعال کردن منوی کشویی بعدی
@@ -344,7 +344,7 @@
         processCtrl.advancedSearchData.engine.Filters = [];
         processCtrl.advancedSearchData.engine.Filters.push(filterValue);
         processCtrl.isWaiting = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/getall', processCtrl.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(mainPathApi+'CoreModuleProcessCustomize/getall', processCtrl.advancedSearchData.engine, "POST").success(function (response) {
             processCtrl.isWaiting = false;
             rashaErManage.checkAction(response);
             processCtrl.cmsModulesProcessesCustomizeListItems = response.ListItems;
@@ -385,10 +385,10 @@
 
     processCtrl.LoadUniversalMenuProcessOfModuleProcessCustomize = function (LinkModuleProcessCustomizeId) {
         // Get CmsModuleProcessCustomize
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/GetViewModel', LinkModuleProcessCustomizeId, "GET").success(function (response1) {
+        ajax.call(mainPathApi+'CoreModuleProcessCustomize/GetViewModel', LinkModuleProcessCustomizeId, "GET").success(function (response1) {
             processCtrl.selectedItem.LinkModuleProcessCustomizeId = response1.Item.Id;
             // Get CmsModuleProcess 
-            ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/GetViewModel', response1.Item.LinkModuleProcessId, "GET").success(function (response2) {
+            ajax.call(mainPathApi+'CoreModuleProcess/GetViewModel', response1.Item.LinkModuleProcessId, "GET").success(function (response2) {
                 //rashaErManage.checkAction(response);
                 processCtrl.selectedItem.LinkModuleProcessId = response2.Item.Id;
                 for (var i = 0; i < processCtrl.cmsModulesListItems.length; i++) {
@@ -406,7 +406,7 @@
                         processCtrl.advancedSearchData.engine.Filters = null;
                         processCtrl.advancedSearchData.engine.Filters = [];
                         processCtrl.advancedSearchData.engine.Filters.push(filterValue);
-                        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/getall', processCtrl.advancedSearchData.engine, "POST").success(function (response) {
+                        ajax.call(mainPathApi+'CoreModuleProcessCustomize/getall', processCtrl.advancedSearchData.engine, "POST").success(function (response) {
                             rashaErManage.checkAction(response);
                             processCtrl.isWaiting = false;
                             processCtrl.cmsModulesProcessesCustomizeListItems = response.ListItems;
@@ -456,7 +456,7 @@
     processCtrl.openCustomizeInputValueModal = function (item) {
 
         processCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'universalmenuProcesses/getviewmodel', item.Id, 'GET').success(function (response) {
             processCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             processCtrl.selectedItem = response.Item;
@@ -495,14 +495,14 @@
 
     processCtrl.submitValues = function (item) {
         processCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/getviewmodel', processCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'universalmenuProcesses/getviewmodel', processCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             processCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             processCtrl.selectedItem = response.Item;
             processCtrl.selectedItem.LinkModuleId = null;
             processCtrl.selectedItem.LinkModuleProcessId = null;
             processCtrl.selectedItem.ProcessCustomizationInputValue = $.trim(angular.toJson(processCtrl.valueSubmit));
-            ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/', processCtrl.selectedItem, 'PUT').success(function (response) {
+            ajax.call(mainPathApi+'universalmenuProcesses/', processCtrl.selectedItem, 'PUT').success(function (response) {
                 processCtrl.addRequested = true;
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
@@ -554,7 +554,7 @@
     processCtrl.exportFile = function () {
         processCtrl.addRequested = true;
         processCtrl.gridOptions.advancedSearchData.engine.ExportFile = processCtrl.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/exportfile', processCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'universalmenuProcesses/exportfile', processCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             processCtrl.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -596,7 +596,7 @@
     }
     //Get TotalRowCount
     processCtrl.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"universalmenuProcesses/count", processCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"universalmenuProcesses/count", processCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             processCtrl.addRequested = false;
             rashaErManage.checkAction(response);
             processCtrl.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

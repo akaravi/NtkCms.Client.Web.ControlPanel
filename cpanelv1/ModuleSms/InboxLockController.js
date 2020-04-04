@@ -1,7 +1,7 @@
 ﻿app.controller("inboxLockCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $filter) {
     var inboxLock = this;
     inboxLock.init = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"smsInboxLock/getall", inboxLock.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"smsInboxLock/getall", inboxLock.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             inboxLock.ListItems = response.ListItems;
             inboxLock.gridOptions.fillData(inboxLock.ListItems);
@@ -17,7 +17,7 @@
     inboxLock.addRequested = false;
     inboxLock.openAddModal = function () {
         inboxLock.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'inboxLock/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'inboxLock/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             inboxLock.selectedItem = response.Item;
             $modal.open({
@@ -36,7 +36,7 @@
             return;
         }
         inboxLock.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'inboxLock/add', inboxLock.selectedItem , 'POST').success(function (response) {
+        ajax.call(mainPathApi+'inboxLock/add', inboxLock.selectedItem , 'POST').success(function (response) {
             inboxLock.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -56,7 +56,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'inboxLock/getviewmodel', inboxLock.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(mainPathApi+'inboxLock/getviewmodel', inboxLock.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             inboxLock.selectedItem = response.Item;
             $modal.open({
@@ -74,7 +74,7 @@
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'inboxLock/edit',  inboxLock.selectedItem , 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'inboxLock/edit',  inboxLock.selectedItem , 'PUT').success(function (response) {
             inboxLock.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -97,7 +97,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'inboxLock/edit', inboxLock.selectedItem , 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'inboxLock/edit', inboxLock.selectedItem , 'PUT').success(function (response) {
             inboxLock.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -135,11 +135,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(inboxLock.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'inboxLock/getviewmodel', inboxLock.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(mainPathApi+'inboxLock/getviewmodel', inboxLock.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     inboxLock.selectedItemForDelete = response.Item;
                     console.log(inboxLock.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'inboxLock/delete', inboxLock.selectedItemForDelete , 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'inboxLock/delete', inboxLock.selectedItemForDelete , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             inboxLock.replaceItem(inboxLock.selectedItemForDelete.Id);

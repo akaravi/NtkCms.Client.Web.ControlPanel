@@ -23,7 +23,7 @@
             console.log(error);
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+"estatecontracttype/getall", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"estatecontracttype/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             estateContract.contractTypes = response.ListItems;
 
@@ -32,14 +32,14 @@
             rashaErManage.checkAction(data, errCode);
         });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"estateContracttype/getall", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"estateContracttype/getall", {}, 'POST').success(function (response) {
             estateContract.propertyTypeListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             estateContract.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"estatecontract/getall", estateContract.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"estatecontract/getall", estateContract.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             estateContract.busyIndicator.isActive = false;
             estateContract.ListItems = response.ListItems;
@@ -68,7 +68,7 @@
 
         estateContract.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'estatecontract/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -94,7 +94,7 @@
         }
         estateContract.busyIndicator.isActive = true;
         estateContract.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/add', estateContract.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'estatecontract/add', estateContract.selectedItem, 'POST').success(function (response) {
             estateContract.addRequested = false;
             estateContract.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -123,7 +123,7 @@
         }
 
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/getviewmodel', estateContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'estatecontract/getviewmodel', estateContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -147,7 +147,7 @@
             return;
         }
         estateContract.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/edit', estateContract.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'estatecontract/edit', estateContract.selectedItem, 'PUT').success(function (response) {
             estateContract.addRequested = true;
             rashaErManage.checkAction(response);
             estateContract.busyIndicator.isActive = false;
@@ -196,11 +196,11 @@
                 estateContract.busyIndicator.isActive = true;
                 console.log(estateContract.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/getviewmodel', estateContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'estatecontract/getviewmodel', estateContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     estateContract.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/delete', estateContract.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'estatecontract/delete', estateContract.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         estateContract.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -354,7 +354,7 @@
         var engine = {};
         engine.Filters = [];
         engine.Filters.push(filterValue);
-        ajax.call(cmsServerConfig.configApiServerPath+"estateContractDetail/GetAll", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"estateContractDetail/GetAll", engine, 'POST').success(function (response) {
             estateContract.propertyDetailsListItems = response.ListItems;
 
             $.each(estateContract.propertyDetailsListItems, function (index, item) {
@@ -376,7 +376,7 @@
     cmsSitegrd.exportFile = function () {
         cmsSitegrd.addRequested = true;
         cmsSitegrd.gridOptions.advancedSearchData.engine.ExportFile = cmsSitegrd.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'EstateContract/exportfile', cmsSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'EstateContract/exportfile', cmsSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsSitegrd.exportDownloadLink = window.location.origin + response.LinkFile;
@@ -419,7 +419,7 @@
     }
     //Get TotalRowCount
     cmsSitegrd.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"EstateContract/count", cmsSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"EstateContract/count", cmsSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSitegrd.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

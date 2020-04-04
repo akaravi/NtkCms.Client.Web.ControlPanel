@@ -67,7 +67,7 @@
         //#help# یافتن صفحه های مادر
         if (cmsPageDesign.classActioName != null && cmsPageDesign.classActioName.toLowerCase().indexOf("withembeddedchild") >= 0) {
             var engine = { Filters: [{ PropertyName: "ClassActionName", SearchType: 0, StringValue1: "CoreMainTemplateWithEmbeddedChild" }] };
-            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/getAll', engine, 'POST').success(function (response) {
+            ajax.call(mainPathApi+'WebDesignerMainPageDependency/getAll', engine, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 cmsPageDesign.dependencyId = response.ListItems[0].Id;
                 cmsPageDesign.onloadmydata();
@@ -83,7 +83,7 @@
         // var filterMasterPage = { Filters: [] };
         // filterMasterPage.Filters.push({ PropertyName: "PageAbilityType", SearchType: 0, EnumValue1: "Master" });
         // if (!angular.isDefined(cmsPageDesign.masterPageListItems))
-        //     ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getall', filterMasterPage, 'POST').success(function (response) {
+        //     ajax.call(mainPathApi+'WebDesignerMainPage/getall', filterMasterPage, 'POST').success(function (response) {
         //         rashaErManage.checkAction(response);
         //         if (response != null) {
         //             cmsPageDesign.masterPageListItems = response.ListItems;
@@ -92,7 +92,7 @@
         //         rashaErManage.checkAction(data, errCode);
         //     });
         if (!angular.isDefined(cmsPageDesign.cmsPageTemplatesListItems))
-            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/getallAvailable', {}, 'POST').success(function (response) {
+            ajax.call(mainPathApi+'WebDesignerMainPageTemplate/getallAvailable', {}, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 cmsPageDesign.cmsPageTemplatesListItems = response.ListItems;
             }).error(function (data, errCode, c, d) {
@@ -100,7 +100,7 @@
             });
 
         if (!angular.isDefined(cmsPageDesign.pageAbilityTypeEnum))
-            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getenumpagetype', {}, 'POST').success(function (response) {
+            ajax.call(mainPathApi+'WebDesignerMainPage/getenumpagetype', {}, 'POST').success(function (response) {
                 cmsPageDesign.pageAbilityTypeEnum = response.ListItems;
             }).error(function (data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
@@ -111,7 +111,7 @@
     cmsPageDesign.onloadmydata = function () {
         cmsPageDesign.gridOptions.advancedSearchData.engine.Filters.push({ PropertyName: "LinkPageDependencyId", IntValue1: cmsPageDesign.dependencyId, SearchType: 0 }); // Filter pages with LinkPageDependencyId
         cmsPageDesign.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getall', cmsPageDesign.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/getall', cmsPageDesign.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageDesign.gridOptions.resultAccess = response.resultAccess;
             cmsPageDesign.ListItems = response.ListItems;
@@ -139,7 +139,7 @@
         if (!themName || themName.length == 0)
             return;
         //var urlTemplate = 'HtmlBuilder/?id=' + item.Id;// + '&theme=' + themName;
-        //var urlTemplate = configMvcServerPath+'HtmlBuilder/home/index/' + item.Id+'?token='+token;
+        //var urlTemplate = mainPath+'HtmlBuilder/home/index/' + item.Id+'?token='+token;
         var urlTemplate = '/HtmlBuilder/home/token/' + item.Id+'?token='+encodeURIComponent(token);
         localStorage.setItem("pageItem", $.trim(angular.toJson(item)));
         var win = window.open(urlTemplate, '_blank');
@@ -157,11 +157,11 @@
     }
 
     cmsPageDesign.enableMainPage = function (item) {
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/getviewmodel', item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageDesign.selectedItem = response.Item;
             cmsPageDesign.selectedItem.PageDependencyIsDefualtPage = (response.Item.PageDependencyIsDefualtPage == true) ? false : true;
-            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/edit', cmsPageDesign.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(mainPathApi+'WebDesignerMainPage/edit', cmsPageDesign.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     var index = cmsPageDesign.pageList.indexOf(item);
@@ -182,7 +182,7 @@
     cmsPageDesign.openAddModal = function () {
         cmsPageDesign.modalTitle = 'اضافه';
         cmsPageDesign.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/getviewmodel', '0', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageDesign.selectedItem = response.Item;
             cmsPageDesign.selectedItem.LinkPageDependencyId = cmsPageDesign.dependencyId;
@@ -217,7 +217,7 @@
                 else
                     cmsPageDesign.selectedItem.Keyword += ',' + item.text;
             });
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/add', cmsPageDesign.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/add', cmsPageDesign.selectedItem, 'POST').success(function (response) {
             cmsPageDesign.addRequested = false;
             cmsPageDesign.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -236,7 +236,7 @@
             return;
         cmsPageDesign.addRequested = true;
         if (frm.$name == "frmCmsPageAdd") {   // Functions was called from add modal
-            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/add', cmsPageDesign.selectedItem, 'POST').success(function (response) {
+            ajax.call(mainPathApi+'WebDesignerMainPage/add', cmsPageDesign.selectedItem, 'POST').success(function (response) {
                 cmsPageDesign.addRequested = false;
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
@@ -252,7 +252,7 @@
             });
         }
         else {  // Functions was called from edit modal
-            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/edit', cmsPageDesign.selectedItem, 'PUT').success(function (response) {
+            ajax.call(mainPathApi+'WebDesignerMainPage/edit', cmsPageDesign.selectedItem, 'PUT').success(function (response) {
                 cmsPageDesign.addRequested = false;
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
@@ -276,14 +276,14 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/getviewmodel', item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageDesign.selectedItem = response.Item;
             cmsPageDesign.filePickerFavIcon.filename = null;
             cmsPageDesign.filePickerFavIcon.fileId = null;
             //Set FavIcon
             if (response.Item.LinkFavIconId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response.Item.LinkFavIconId, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'FileContent/getviewmodel', response.Item.LinkFavIconId, 'GET').success(function (response) {
                     cmsPageDesign.filePickerFavIcon.filename = response.Item.FileName;
                     cmsPageDesign.filePickerFavIcon.fileId = response.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -324,7 +324,7 @@
             else
                 cmsPageDesign.selectedItem.Keyword += ',' + item.text;
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/edit', cmsPageDesign.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/edit', cmsPageDesign.selectedItem, 'PUT').success(function (response) {
             cmsPageDesign.busyIndicator.isActive = false;
             cmsPageDesign.addRequested = false;
             if (response.IsSuccess) {
@@ -361,10 +361,10 @@
             if (isConfirmed) {
                 cmsPageDesign.busyIndicator.isActive = true;
                 cmsPageDesign.addRequested = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getviewmodel', item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'WebDesignerMainPage/getviewmodel', item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsPageDesign.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/delete', cmsPageDesign.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'WebDesignerMainPage/delete', cmsPageDesign.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsPageDesign.replaceItem(cmsPageDesign.selectedItemForDelete.Id);
@@ -394,7 +394,7 @@
     }
 
     cmsPageDesign.saveFromAdmin = function (item) {
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/SetDefaultAdminValuePage', item.Id, 'GET').success(function (res) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/SetDefaultAdminValuePage', item.Id, 'GET').success(function (res) {
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
                 rashaErManage.showMessage($filter('translatentk')('Saving_successfully'));
@@ -416,7 +416,7 @@
 
         //#help#لیست انواع سایتها
         if (cmsPageDesign.cmsSiteCategoryListItems == undefined || cmsPageDesign.cmsSiteCategoryListItems.length == 0) {
-            ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategory/getall', {}, 'POST').success(function (response1) {
+            ajax.call(mainPathApi+'CoreSiteCategory/getall', {}, 'POST').success(function (response1) {
                 cmsPageDesign.busyIndicator.isActive = false;
                 cmsPageDesign.addRequested = false;
                 cmsPageDesign.cmsSiteCategoryListItems = response1.ListItems;
@@ -440,7 +440,7 @@
         cmsPageDesign.LargeImageSelectPage = {};
         cmsPageDesign.addRequested = true;
         cmsPageDesign.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/GetAllDefaultPagesBySiteCategory', { pageId: cmsPageDesign.selectedItem.Id, LinkSiteCategoryId: categoryId, LinkPageDependencyId: cmsPageDesign.dependencyId }, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/GetAllDefaultPagesBySiteCategory', { pageId: cmsPageDesign.selectedItem.Id, LinkSiteCategoryId: categoryId, LinkPageDependencyId: cmsPageDesign.dependencyId }, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsPageDesign.cmsDefaultPageListItems = response.ListItems;
@@ -477,7 +477,7 @@
         cmsPageDesign.addRequested = true;
         cmsPageDesign.busyIndicator.isActive = true;
         var model = { id: cmsPageDesign.selectedItem.Id, ver: "1", jsonValue: cmsPageDesign.LargeImageSelectPage.JsonValue };
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/EditHtml', model, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'WebDesignerMainPage/EditHtml', model, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsPageDesign.closeModal();
@@ -510,7 +510,7 @@
 
         cmsPageDesign.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
             cmsPageDesign.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -550,13 +550,13 @@
         cmsPageDesign.fileIdToDelete = cmsPageDesign.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", cmsPageDesign.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+"FileContent/getviewmodel", cmsPageDesign.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(mainPathApi+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 cmsPageDesign.FileItem = response3.Item;
                                 cmsPageDesign.FileItem.FileName = name;
@@ -586,7 +586,7 @@
 
     //save new file
     cmsPageDesign.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", cmsPageDesign.FileItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"FileContent/add", cmsPageDesign.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 cmsPageDesign.FileItem = response.Item;
                 return 1;
@@ -647,14 +647,14 @@
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                mainPathApi+"FileContent/getviewmodel",
                 cmsPageDesign.fileIdToDelete,
                 "GET"
               )
               .success(function(response1) {
                 if (response1.IsSuccess == true) {
                   console.log(response1.Item);
-                  ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
+                  ajax.call(mainPathApi+"FileContent/replace", response1.Item, "POST")
                     .success(function(response2) {
                       if (response2.IsSuccess == true) {
                         cmsPageDesign.FileItem = response2.Item;
@@ -697,7 +697,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
                     cmsPageDesign.FileItem = response.Item;
                     cmsPageDesign.FileItem.FileName = uploadFile.name;
                     cmsPageDesign.FileItem.uploadName = uploadFile.uploadName;
@@ -706,7 +706,7 @@
                     cmsPageDesign.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- cmsPageDesign.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", cmsPageDesign.FileItem, 'POST').success(function (response) {
+                    ajax.call(mainPathApi+"FileContent/add", cmsPageDesign.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             cmsPageDesign.FileItem = response.Item;
                             $("#save-icon" + index).removeClass("fa-save");
@@ -740,7 +740,7 @@
     //End #fastUpload
     //Get TotalRowCount
     cmsPageDesign.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"WebDesignerMainPage/count", cmsPageDesign.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"WebDesignerMainPage/count", cmsPageDesign.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageDesign.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

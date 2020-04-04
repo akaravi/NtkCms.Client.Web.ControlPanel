@@ -157,14 +157,14 @@
     //init Function
     productTag.init = function () {
         productTag.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"productCategorytag/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"productCategorytag/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
             productTag.treeConfig.Items = response.ListItems;
             productTag.treeConfig.Items = response.ListItems;
             productTag.categoryBusyIndicator.isActive = false;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"producttag/getall", productTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"producttag/getall", productTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             productTag.ListItems = response.ListItems;
             productTag.gridOptions.fillData(productTag.ListItems, response.resultAccess); // Sending Access as an argument
@@ -187,7 +187,7 @@
     // Open Add Category Modal 
     productTag.addNewCategoryModel = function () {
         productTag.addRequested = false;
-        ajax.call(cmsServerConfig.configApiServerPath+'productCategorytag/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'productCategorytag/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             productTag.selectedItem = response.Item;
             //Set dataForTheTree
@@ -199,10 +199,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 productTag.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(productTag.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/Moduleproduct/productCategorytag/add.html',
@@ -233,7 +233,7 @@
 
         productTag.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'productCategorytag/getviewmodel', productTag.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'productCategorytag/getviewmodel', productTag.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             productTag.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -250,10 +250,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 productTag.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryTagId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(productTag.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (productTag.selectedItem.LinkMainImageId > 0)
@@ -287,7 +287,7 @@
         if (productTag.treeConfig.currentNode != null)
             productTag.selectedItem.LinkParentId = productTag.treeConfig.currentNode.Id;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'productCategorytag/add', productTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'productCategorytag/add', productTag.selectedItem, 'POST').success(function (response) {
             buttonIsPressed = false;
             productTag.addRequested = false;
             rashaErManage.checkAction(response);
@@ -315,7 +315,7 @@
             return;
         }
         productTag.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'productCategorytag/edit', productTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'productCategorytag/edit', productTag.selectedItem, 'PUT').success(function (response) {
             productTag.addRequested = true;
             //productTag.showbusy = false;
             productTag.treeConfig.showbusy = false;
@@ -346,10 +346,10 @@
             if (isConfirmed) {
                 productTag.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'productCategorytag/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'productCategorytag/getviewmodel', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     productTag.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'productCategorytag/delete', productTag.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'productCategorytag/delete', productTag.selectedItemForDelete, 'DELETE').success(function (res) {
                         productTag.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             productTag.gridOptions.advancedSearchData.engine.Filters = null;
@@ -399,7 +399,7 @@
             }
             productTag.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
-        ajax.call(cmsServerConfig.configApiServerPath+"producttag/getall", productTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"producttag/getall", productTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             productTag.contentBusyIndicator.isActive = false;
             productTag.ListItems = response.ListItems;
@@ -418,7 +418,7 @@
 
         productTag.addRequested = false;
         productTag.modalTitle = 'اضافه کردن محتوای جدید';
-        ajax.call(cmsServerConfig.configApiServerPath+'producttag/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'producttag/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             productTag.selectedItem = response.Item;
             productTag.selectedItem.LinkCategoryTagId = productTag.CategoryTagId;
@@ -442,7 +442,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'producttag/getviewmodel', productTag.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+'producttag/getviewmodel', productTag.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             productTag.selectedItem = response1.Item;
@@ -467,7 +467,7 @@
         productTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'producttag/add', productTag.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'producttag/add', productTag.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             productTag.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -494,7 +494,7 @@
         productTag.addRequested = true;
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'producttag/edit', productTag.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'producttag/edit', productTag.selectedItem, 'PUT').success(function (response) {
             productTag.categoryBusyIndicator.isActive = false;
             productTag.addRequested = false;
             productTag.treeConfig.showbusy = false;
@@ -525,13 +525,13 @@
                 console.log(productTag.gridOptions.selectedRow.item);
                 productTag.showbusy = true;
                 productTag.showIsBusy = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"producttag/getviewmodel", productTag.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(mainPathApi+"producttag/getviewmodel", productTag.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     productTag.showbusy = false;
                     productTag.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     productTag.selectedItemForDelete = response.Item;
                     console.log(productTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"producttag/delete", productTag.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(mainPathApi+"producttag/delete", productTag.selectedItemForDelete, "DELETE").success(function (res) {
                         productTag.categoryBusyIndicator.isActive = false;
                         productTag.treeConfig.showbusy = false;
                         productTag.showIsBusy = false;
@@ -572,7 +572,7 @@
 
     productTag.searchData = function () {
         productTag.contentBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"producttsg/getall", productTag.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(mainPathApi+"producttsg/getall", productTag.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             productTag.contentBusyIndicator.isActive = false;
             productTag.ListItems = response.ListItems;
@@ -721,7 +721,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(mainPathApi+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             productTag.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -759,7 +759,7 @@
 
         productTag.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
             productTag.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -798,14 +798,14 @@
         productTag.fileIdToDelete = productTag.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", productTag.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+"FileContent/getviewmodel", productTag.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(mainPathApi+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
                     productTag.remove(productTag.FileList, productTag.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 productTag.FileItem = response3.Item;
                                 productTag.FileItem.FileName = name;
@@ -834,7 +834,7 @@
     }
     //save new file
     productTag.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", productTag.FileItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"FileContent/add", productTag.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 productTag.FileItem = response.Item;
                 productTag.showSuccessIcon();
@@ -908,14 +908,14 @@
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                mainPathApi+"FileContent/getviewmodel",
                 productTag.fileIdToDelete,
                 "GET"
               )
               .success(function(response1) {
                 if (response1.IsSuccess == true) {
                   console.log(response1.Item);
-                  ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
+                  ajax.call(mainPathApi+"FileContent/replace", response1.Item, "POST")
                     .success(function(response2) {
                       if (response2.IsSuccess == true) {
                         productTag.FileItem = response2.Item;
@@ -958,7 +958,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
                     productTag.FileItem = response.Item;
                     productTag.FileItem.FileName = uploadFile.name;
                     productTag.FileItem.uploadName = uploadFile.uploadName;
@@ -967,7 +967,7 @@
                     productTag.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- productTag.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", productTag.FileItem, 'POST').success(function (response) {
+                    ajax.call(mainPathApi+"FileContent/add", productTag.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             productTag.FileItem = response.Item;
                             productTag.showSuccessIcon();
@@ -1006,7 +1006,7 @@
     productTag.exportFile = function () {
         productTag.gridOptions.advancedSearchData.engine.ExportFile = productTag.ExportFileClass;
         productTag.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'producttag/exportfile', productTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'producttag/exportfile', productTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             productTag.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -1050,7 +1050,7 @@
     }
     //Get TotalRowCount
     productTag.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"producttag/count", productTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"producttag/count", productTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             productTag.addRequested = false;
             rashaErManage.checkAction(response);
             productTag.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -1084,11 +1084,11 @@
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -1109,9 +1109,9 @@
             return;
         }
         productTag.selectedItem.LinkMainImageId = node.Id;
-        productTag.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            productTag.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
+        productTag.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
+        ajax.call(mainPathApi+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            productTag.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });

@@ -6,7 +6,7 @@
     }
     mscGalleryContentTag.init = function () {
         mscGalleryContentTag.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"MusicGalleryContentTag/getall", mscGalleryContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"MusicGalleryContentTag/getall", mscGalleryContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             mscGalleryContentTag.busyIndicator.isActive = false;
 
@@ -23,7 +23,7 @@
     mscGalleryContentTag.addRequested = false;
     mscGalleryContentTag.openAddModal = function () {
         mscGalleryContentTag.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryContentTag/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'MusicGalleryContentTag/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mscGalleryContentTag.selectedItem = response.Item;
             $modal.open({
@@ -45,7 +45,7 @@
         mscGalleryContentTag.addRequested = true;
         mscGalleryContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryContentTag/add', mscGalleryContentTag.selectedItem , 'POST').success(function (response) {
+        ajax.call(mainPathApi+'MusicGalleryContentTag/add', mscGalleryContentTag.selectedItem , 'POST').success(function (response) {
             mscGalleryContentTag.addRequested = false;
             mscGalleryContentTag.busyIndicator.isActive = false;
 
@@ -70,7 +70,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryContentTag/getviewmodel',  mscGalleryContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(mainPathApi+'MusicGalleryContentTag/getviewmodel',  mscGalleryContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mscGalleryContentTag.selectedItem = response.Item;
             $modal.open({
@@ -90,7 +90,7 @@
         }
         mscGalleryContentTag.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryContentTag/edit',  mscGalleryContentTag.selectedItem , 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'MusicGalleryContentTag/edit',  mscGalleryContentTag.selectedItem , 'PUT').success(function (response) {
             mscGalleryContentTag.addRequested = true;
             rashaErManage.checkAction(response);
             mscGalleryContentTag.busyIndicator.isActive = false;
@@ -135,11 +135,11 @@
             if (isConfirmed) {
                 mscGalleryContentTag.busyIndicator.isActive = true;
                 console.log(mscGalleryContentTag.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryContentTag/getviewmodel',  mscGalleryContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(mainPathApi+'MusicGalleryContentTag/getviewmodel',  mscGalleryContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     mscGalleryContentTag.selectedItemForDelete = response.Item;
                     console.log(mscGalleryContentTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryContentTag/delete',  mscGalleryContentTag.selectedItemForDelete , 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'MusicGalleryContentTag/delete',  mscGalleryContentTag.selectedItemForDelete , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         mscGalleryContentTag.busyIndicator.isActive = false;
 
@@ -226,7 +226,7 @@
     mscGalleryContentTag.exportFile = function () {
         mscGalleryContentTag.addRequested = true;
         mscGalleryContentTag.gridOptions.advancedSearchData.engine.ExportFile = mscGalleryContentTag.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryContentTag/exportfile', mscGalleryContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'MusicGalleryContentTag/exportfile', mscGalleryContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             mscGalleryContentTag.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -269,7 +269,7 @@
     }
     //Get TotalRowCount
     mscGalleryContentTag.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"MusicGalleryContentTag/count", mscGalleryContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"MusicGalleryContentTag/count", mscGalleryContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             mscGalleryContentTag.addRequested = false;
             rashaErManage.checkAction(response);
             mscGalleryContentTag.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

@@ -1,7 +1,7 @@
 ﻿app.controller("outBoxCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $filter) {
     var outBox = this;
     outBox.init = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"Smsoutbox/getall", outBox.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"Smsoutbox/getall", outBox.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             outBox.ListItems = response.ListItems;
             outBox.gridOptions.fillData(outBox.ListItems);
@@ -17,7 +17,7 @@
     outBox.addRequested = false;
     outBox.openAddModal = function () {
         outBox.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'outBox/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'outBox/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             outBox.selectedItem = response.Item;
             $modal.open({
@@ -35,7 +35,7 @@
             return;
         }
         outBox.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'outBox/add',  outBox.selectedItem , 'POST').success(function (response) {
+        ajax.call(mainPathApi+'outBox/add',  outBox.selectedItem , 'POST').success(function (response) {
             outBox.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -55,7 +55,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'outBox/getviewmodel', outBox.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(mainPathApi+'outBox/getviewmodel', outBox.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             outBox.selectedItem = response.Item;
             $modal.open({
@@ -74,7 +74,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'outBox/edit',  outBox.selectedItem , 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'outBox/edit',  outBox.selectedItem , 'PUT').success(function (response) {
             outBox.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -96,7 +96,7 @@
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'outBox/edit',  outBox.selectedItem , 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'outBox/edit',  outBox.selectedItem , 'PUT').success(function (response) {
             outBox.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -133,11 +133,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(outBox.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'outBox/getviewmodel',outBox.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(mainPathApi+'outBox/getviewmodel',outBox.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     outBox.selectedItemForDelete = response.Item;
                     console.log(outBox.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'outBox/delete',  outBox.selectedItemForDelete , 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'outBox/delete',  outBox.selectedItemForDelete , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             outBox.replaceItem(outBox.selectedItemForDelete.Id);

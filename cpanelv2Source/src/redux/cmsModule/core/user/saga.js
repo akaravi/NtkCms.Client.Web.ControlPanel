@@ -32,7 +32,7 @@ const getCoreUserActSelectCurrentSiteRequestAsync = async (id) => {
     const postData = {
         id:id
     };
-    return await axios.post(cmsServerConfig.configMvcServerPath + `/api/CoreUser/SelectCurrentSite/`,postData, {
+    return await axios.post(cmsServerConfig.mainPath + `/api/CoreUser/SelectCurrentSite/`,postData, {
             headers: headers
         })
         .then(
@@ -56,7 +56,7 @@ const getCoreUserActGetOneRequestAsync = async (Id) => {
         'Authorization': localStorage.getItem('userGlobaltoken') 
     };
   
-    return await axios.get(cmsServerConfig.configMvcServerPath + `/api/CoreUser/GetOne/`+Id, {
+    return await axios.get(cmsServerConfig.mainPath + `/api/CoreUser/GetOne/`+Id, {
             headers: headers
         })
         .then(
@@ -81,7 +81,7 @@ const getCoreUserActGetAllRequestAsync = async (filterModel) => {
     const postData = {
         
     };
-    return await axios.post(cmsServerConfig.configMvcServerPath + `/api/CoreUser/Getall`, postData, {
+    return await axios.post(cmsServerConfig.mainPath + `/api/CoreUser/Getall`, postData, {
             headers: headers
         })
         .then(

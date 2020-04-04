@@ -75,22 +75,22 @@
     };
     task.init = function () {
         task.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerTask/getAllActionType", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"TaskSchedulerTask/getAllActionType", {}, 'POST').success(function (response) {
             task.ActionType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/getAllScheduleCronType", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"TaskSchedulerSchedule/getAllScheduleCronType", {}, 'POST').success(function (response) {
             task.ScheduleCronType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/getAllDayOfWeek", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"TaskSchedulerSchedule/getAllDayOfWeek", {}, 'POST').success(function (response) {
             task.weekdays = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerTask/getall", task.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"TaskSchedulerTask/getall", task.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             task.ListItems = response.ListItems;
             task.busyIndicator.isActive = false;
@@ -107,7 +107,7 @@
         });
 
         // Get All CmsModules
-        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerProcessCategory/getall", '', 'POST').success(function (response) {
+        ajax.call(mainPathApi+"TaskSchedulerProcessCategory/getall", '', 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             task.ProcessCategoryListItems = response.ListItems;
             task.busyIndicator.isActive = false;
@@ -117,7 +117,7 @@
         });
 
         // Get ViewModel of CmsModuleProcess
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'CoreModuleProcess/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             task.cmsModuleProcess = response.Item;
 
@@ -146,7 +146,7 @@
         task.valueSubmit = null;
         $builder.removeAllFormObject('default');   // Clear the form builder from previous values
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'TaskSchedulerTask/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             task.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -217,7 +217,7 @@ task.moveSelectedAndEdit = function(from, to, calculatePrice) {
       if (from == "Content") {
 
             task.newProcess.JsonFormAdminSiteValues=$.trim(angular.toJson(task.valueSubmit));
-            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessValue/edit', task.newProcess, "PUT").success(function (response1) {
+            ajax.call(mainPathApi+'TaskSchedulerProcessValue/edit', task.newProcess, "PUT").success(function (response1) {
                 task.editProcessvalue = response1.Item.Id;
                 $builder.removeAllFormObject('default');
                $scope.modalInstance.close();
@@ -262,7 +262,7 @@ task.moveSelectedAndEdit = function(from, to, calculatePrice) {
     };
  task.moveSelectedschedule = function(LinkSchedulesId) {
 
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/getviewmodel',LinkSchedulesId, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'TaskSchedulerSchedule/getviewmodel',LinkSchedulesId, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             for (var i = 0; i < task.selectedItem.TaskSchedulerSchedules.length; i++) {
                 if (task.selectedItem.TaskSchedulerSchedules[i].Id==response.Item.Id) {
@@ -313,7 +313,7 @@ task.moveSelectedAndEdit = function(from, to, calculatePrice) {
         task.addRequested = true;
         task.selectedItem.ProcessCustomizationInputValue = $.trim(angular.toJson(task.valueSubmit));
         
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/add', task.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'TaskSchedulerTask/add', task.selectedItem, 'POST').success(function (response) {
             task.addRequested = false;
             task.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -338,7 +338,7 @@ task.moveSelectedAndEdit = function(from, to, calculatePrice) {
             return;
         }
         task.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/getviewmodel', task.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'TaskSchedulerTask/getviewmodel', task.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             task.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             task.selectedItem = response.Item;
@@ -365,7 +365,7 @@ task.moveSelectedAndEdit = function(from, to, calculatePrice) {
             return;
         }
         task.selectedItem.ProcessCustomizationInputValue = $.trim(angular.toJson(task.valueSubmit));
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/edit', task.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'TaskSchedulerTask/edit', task.selectedItem, 'PUT').success(function (response) {
             task.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -409,10 +409,10 @@ task.moveSelectedAndEdit = function(from, to, calculatePrice) {
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(task.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/getviewmodel', task.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'TaskSchedulerTask/getviewmodel', task.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     task.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/delete', task.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'TaskSchedulerTask/delete', task.selectedItemForDelete, 'DELETE').success(function (res) {
                         task.busyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
@@ -473,7 +473,7 @@ task.moveSelectedAndEdit = function(from, to, calculatePrice) {
     }
 task.RunTaskNow=function(TaskId)
     {
-        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerTask/RunNow", TaskId, 'GET').success(function (response) {
+        ajax.call(mainPathApi+"TaskSchedulerTask/RunNow", TaskId, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
            
         }).error(function (data, errCode, c, d) {
@@ -492,7 +492,7 @@ task.RunTaskNow=function(TaskId)
         task.advancedSearchData.engine.Filters = null;
         task.advancedSearchData.engine.Filters = [];
         task.advancedSearchData.engine.Filters.push(filterValue);
-        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerTaskLog/getall", task.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"TaskSchedulerTaskLog/getall", task.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             task.ListItems = response.ListItems;
             task.gridOptionsTaskLog.fillData(task.ListItems, response.resultAccess); // Sending Access as an argument
@@ -548,7 +548,7 @@ task.RunTaskNow=function(TaskId)
         task.advancedSearchData.engine.RowPerPage = 200;
         task.isLoading = true;                 // غیرفعال کردن منوی کشویی بعدی
         task.isWaiting = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/getall', task.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(mainPathApi+'TaskSchedulerProcess/getall', task.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             task.cmsModulesProcessesListItems = response.ListItems;
             task.isLoading = false;          // فعال کردن منوی کشویی بعدی
@@ -582,7 +582,7 @@ task.RunTaskNow=function(TaskId)
         task.advancedSearchData.engine.Filters = [];
         task.advancedSearchData.engine.Filters.push(filterValue);
         task.isWaiting = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/getall', task.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(mainPathApi+'TaskSchedulerProcess/getall', task.advancedSearchData.engine, "POST").success(function (response) {
             task.isWaiting = false;
             rashaErManage.checkAction(response);
             task.cmsModulesProcessesCustomizeListItems = response.ListItems;
@@ -623,7 +623,7 @@ task.RunTaskNow=function(TaskId)
     task.LoadUniversalMenuProcessOfModuleProcessCustomize = function (LinkProcessId) {
         $builder.removeAllFormObject('default');
         // Get Process
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetViewModel', LinkProcessId, "GET").success(function (response1) {
+        ajax.call(mainPathApi+'TaskSchedulerProcess/GetViewModel', LinkProcessId, "GET").success(function (response1) {
             task.selectedItem.LinkProcessId = response1.Item.Id;
             // Get CmsModuleProcess 
            
@@ -661,7 +661,7 @@ task.RunTaskNow=function(TaskId)
     task.openCustomizeInputValueModal = function (item) {
 
         task.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'TaskSchedulerTask/getviewmodel', item.Id, 'GET').success(function (response) {
             task.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             task.selectedItem = response.Item;
@@ -700,14 +700,14 @@ task.RunTaskNow=function(TaskId)
 
     task.submitValues = function (item) {
         task.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/getviewmodel', task.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'TaskSchedulerTask/getviewmodel', task.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             task.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             task.selectedItem = response.Item;
             task.selectedItem.LinkProcessCategoryId = null;
             task.selectedItem.LinkModuleProcessId = null;
             task.selectedItem.ProcessCustomizationInputValue = $.trim(angular.toJson(task.valueSubmit));
-            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/', task.selectedItem, 'PUT').success(function (response) {
+            ajax.call(mainPathApi+'TaskSchedulerTask/', task.selectedItem, 'PUT').success(function (response) {
                 task.addRequested = true;
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
@@ -780,7 +780,7 @@ function loadselectedProcess(process) {
                 engine.Filters.push(filterValue);
 
                 //task.loadingCmsModuleProcessCustomize = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetViewModel', task.newProcess.LinkProcessId, "GET").success(function (response) {
+                ajax.call(mainPathApi+'TaskSchedulerProcess/GetViewModel', task.newProcess.LinkProcessId, "GET").success(function (response) {
                     //task.loadingCmsModuleProcessCustomize = false;
                     rashaErManage.checkAction(response);
                     task.cmsModulesProcessesCustomizeListItems = response.Item;
@@ -969,7 +969,7 @@ function loadselectedProcess(process) {
     task.exportFile = function () {
         task.addRequested = true;
         task.gridOptions.advancedSearchData.engine.ExportFile = task.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/exportfile', task.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'TaskSchedulerTask/exportfile', task.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             task.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -1011,7 +1011,7 @@ function loadselectedProcess(process) {
     }
     //Get TotalRowCount
     task.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerTask/count", task.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"TaskSchedulerTask/count", task.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             task.addRequested = false;
             rashaErManage.checkAction(response);
             task.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

@@ -18,7 +18,7 @@
 
     shopProcessCategory.init = function () {
         shopProcessCategory.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"ShopProcessCategory/getall", shopProcessCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"ShopProcessCategory/getall", shopProcessCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopProcessCategory.busyIndicator.isActive = false;
             shopProcessCategory.ListItems = response.ListItems;
@@ -43,7 +43,7 @@
  //     shopProcessCategory.filePickerMainImage.fileId = null;
  //     shopProcessCategory.modalTitle = 'اضافه';
  //     buttonIsPressed = true;
- //     ajax.call(cmsServerConfig.configApiServerPath+'ShopProcessCategory/getviewmodel', "0", 'GET').success(function (response) {
+ //     ajax.call(mainPathApi+'ShopProcessCategory/getviewmodel', "0", 'GET').success(function (response) {
  //         buttonIsPressed = false;
  //         rashaErManage.checkAction(response);
  //         shopProcessCategory.busyIndicator.isActive = false;
@@ -69,7 +69,7 @@
 //       }
 //       shopProcessCategory.busyIndicator.isActive = true;
 //       shopProcessCategory.addRequested = true;
-//       ajax.call(cmsServerConfig.configApiServerPath+'ShopProcessCategory/add', shopProcessCategory.selectedItem, 'POST').success(function (response) {
+//       ajax.call(mainPathApi+'ShopProcessCategory/add', shopProcessCategory.selectedItem, 'POST').success(function (response) {
 //           shopProcessCategory.addRequested = false;
 //           shopProcessCategory.busyIndicator.isActive = false;
 //           rashaErManage.checkAction(response);
@@ -86,7 +86,7 @@
 //   }
 
     shopProcessCategory.autoAdd = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcessCategory/autoadd', '', 'POST').success(function (response) {
+        ajax.call(mainPathApi+'ShopProcessCategory/autoadd', '', 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopProcessCategory.init();
         }).error(function (data, errCode, c, d) {
@@ -102,7 +102,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcessCategory/getviewmodel', shopProcessCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ShopProcessCategory/getviewmodel', shopProcessCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopProcessCategory.selectedItem = response.Item;
@@ -111,7 +111,7 @@
          if (response.Item.LinkMainImageId != null) {
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                mainPathApi+"FileContent/getviewmodel",
                 response.Item.LinkMainImageId,
                 "GET"
               )
@@ -145,7 +145,7 @@
         }
         shopProcessCategory.addRequested = true;
         shopProcessCategory.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcessCategory/edit', shopProcessCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'ShopProcessCategory/edit', shopProcessCategory.selectedItem, 'PUT').success(function (response) {
             rashaErManage.checkAction(response);
             shopProcessCategory.busyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -186,11 +186,11 @@
             if (isConfirmed) {
                 shopProcessCategory.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'ShopProcessCategory/getviewmodel', shopProcessCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'ShopProcessCategory/getviewmodel', shopProcessCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopProcessCategory.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'ShopProcessCategory/delete', shopProcessCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'ShopProcessCategory/delete', shopProcessCategory.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         shopProcessCategory.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -279,7 +279,7 @@
         shopProcessCategory.addRequested = true;
         shopProcessCategory.busyIndicator.isActive = true;
         shopProcessCategory.selectedItem[shopProcessCategory.selectedConfig] = $.trim(angular.toJson(shopProcessCategory.submitValue));
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcessCategory/edit', shopProcessCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'ShopProcessCategory/edit', shopProcessCategory.selectedItem, 'PUT').success(function (response) {
             rashaErManage.checkAction(response);
             shopProcessCategory.addRequested = false;
             shopProcessCategory.busyIndicator.isActive = false;
@@ -312,14 +312,14 @@
              // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                mainPathApi+"FileContent/getviewmodel",
                 shopProcessCategory.fileIdToDelete,
                 "GET"
               )
               .success(function(response1) {
                 if (response1.IsSuccess == true) {
                   console.log(response1.Item);
-                  ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
+                  ajax.call(mainPathApi+"FileContent/replace", response1.Item, "POST")
                     .success(function(response2) {
                       if (response2.IsSuccess == true) {
                         shopProcessCategory.FileItem = response2.Item;
@@ -363,7 +363,7 @@
           // File does not exists
           // Save New file
           ajax
-            .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", "GET")
+            .call(mainPathApi + "FileContent/getviewmodel", "0", "GET")
             .success(function(response) {
               shopProcessCategory.FileItem = response.Item;
                 shopProcessCategory.FileItem.FileName = uploadFile.name;
@@ -374,7 +374,7 @@
               // ------- shopProcessCategory.saveNewFile()  ----------------------
               var result = 0;
               ajax
-                .call(cmsServerConfig.configApiServerPath + "FileContent/add", shopProcessCategory.FileItem, "POST")
+                .call(mainPathApi + "FileContent/add", shopProcessCategory.FileItem, "POST")
                 .success(function(response) {
                   if (response.IsSuccess) {
                     shopProcessCategory.FileItem = response.Item;

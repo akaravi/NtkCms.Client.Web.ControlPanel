@@ -32,7 +32,7 @@
             console.log(error)
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+"ServiceComment/getall", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"ServiceComment/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             ServiceComment.busyIndicator.isActive = false;
             ServiceComment.ListItems = response.ListItems;
@@ -47,7 +47,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         //ServiceComment.busyIndicator.isActive = true;
-        //ajax.call(cmsServerConfig.configApiServerPath+'ServiceContent/getall', {}, 'POST').success(function (response) {
+        //ajax.call(mainPathApi+'ServiceContent/getall', {}, 'POST').success(function (response) {
         //    ServiceComment.ContentList = response.ListItems;
         //    ServiceComment.busyIndicator.isActive = false;
         //});
@@ -59,7 +59,7 @@
     ServiceComment.addRequested = false;
     ServiceComment.openAddModal = function () {
         ServiceComment.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ServiceComment/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ServiceComment/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             ServiceComment.busyIndicator.isActive = false;
             ServiceComment.selectedItem = response.Item;
@@ -80,7 +80,7 @@
         }
         ServiceComment.busyIndicator.isActive = true;
         ServiceComment.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ServiceComment/add', ServiceComment.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'ServiceComment/add', ServiceComment.selectedItem, 'POST').success(function (response) {
             ServiceComment.addRequested = false;
             ServiceComment.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -108,7 +108,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ServiceComment/getviewmodel', ServiceComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ServiceComment/getviewmodel', ServiceComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             ServiceComment.selectedItem = response.Item;
             $modal.open({
@@ -127,7 +127,7 @@
             return;
         }
         ServiceComment.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ServiceComment/edit', ServiceComment.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'ServiceComment/edit', ServiceComment.selectedItem, 'PUT').success(function (response) {
             ServiceComment.addRequested = true;
             rashaErManage.checkAction(response);
             ServiceComment.busyIndicator.isActive = false;
@@ -170,11 +170,11 @@
             if (isConfirmed) {
                 ServiceComment.busyIndicator.isActive = true;
                 console.log(ServiceComment.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ServiceComment/getviewmodel', ServiceComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'ServiceComment/getviewmodel', ServiceComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     //rashaErManage.checkAction(response);
                     ServiceComment.selectedItemForDelete = response.Item;
                     console.log(ServiceComment.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ServiceComment/delete', ServiceComment.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'ServiceComment/delete', ServiceComment.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         ServiceComment.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

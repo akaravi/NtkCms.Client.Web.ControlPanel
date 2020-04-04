@@ -1,7 +1,7 @@
 ﻿app.controller("inboxCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $filter) {
     var inbox = this;
     inbox.init = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"smsinbox/getall", inbox.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"smsinbox/getall", inbox.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             inbox.ListItems = response.ListItems;
             inbox.gridOptions.fillData(inbox.ListItems);
@@ -19,7 +19,7 @@
     inbox.addRequested = false;
     inbox.openAddModal = function () {
         inbox.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'smsinbox/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'smsinbox/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             inbox.selectedItem = response.Item;
             $modal.open({
@@ -39,7 +39,7 @@
         }
 
         inbox.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'smsinbox/add', inbox.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'smsinbox/add', inbox.selectedItem, 'POST').success(function (response) {
             inbox.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -60,7 +60,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'smsinbox/getviewmodel', inbox.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'smsinbox/getviewmodel', inbox.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             inbox.selectedItem = response.Item;
             $modal.open({
@@ -79,7 +79,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'smsinbox/edit', inbox.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'smsinbox/edit', inbox.selectedItem, 'PUT').success(function (response) {
             inbox.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -104,7 +104,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'smsinbox/edit', inbox.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'smsinbox/edit', inbox.selectedItem, 'PUT').success(function (response) {
             inbox.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -147,11 +147,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(inbox.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'smsinbox/getviewmodel', inbox.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'smsinbox/getviewmodel', inbox.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     inbox.selectedItemForDelete = response.Item;
                     console.log(inbox.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'smsinbox/delete', inbox.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'smsinbox/delete', inbox.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             inbox.replaceItem(inbox.selectedItemForDelete.Id);

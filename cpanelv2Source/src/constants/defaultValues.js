@@ -17,15 +17,18 @@ export const localeOptions = [{
     },
 ];
 export const cmsServerConfig = {
-    configApiServerPath: "https://apicms.ir/api/",
-    configMvcServerPath: "https://oco.ir",
-    configCpanelImages: "/cpanelv1/images/",
-    configPathFileByIdAndName:"https://oco.ir/files/",
-    configRouteThumbnails:"https://oco.ir/imageThumbnails/",
-    nnnnnnnnnnn:"https://apicms.ir/api/files/",
-    configRouteUploadFileContent:"https://oco.ir/api/FileContent/upload/",
+    mainPathServer: "https://oco.ir",
+    mainPathServer2: "http://6aa9d578.ngrok.io",
+    mainPathServer1:"http://localhost:1032",
+    mainPath1: "/",
+    mainPath2: "http://6aa9d578.ngrok.io",
+    mainPath: "https://oco.ir",
+    mainPath1: "http://localhost:1032",
 
-
+    mainPathCmsFiles: "cpanelv1/images/",
+    //mainPathApi : mainPath + "api/",
+    //mainPathRouteUploadFiles : this.mainPathServer + "files/",
+    //mainPathApiUpload : this.mainPathServer + "api/FileContent/upload/"
 
 };
 export const cmsCilentConfig = {

@@ -14,7 +14,7 @@
 
     jobCertificate.init = function () {
         jobCertificate.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"jobcertificate/getall", jobCertificate.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"jobcertificate/getall", jobCertificate.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobCertificate.busyIndicator.isActive = false;
             jobCertificate.ListItems = response.ListItems;
@@ -39,7 +39,7 @@
 
         jobCertificate.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcertificate/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'jobcertificate/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -65,7 +65,7 @@
         }
         jobCertificate.busyIndicator.isActive = true;
         jobCertificate.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcertificate/add', jobCertificate.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'jobcertificate/add', jobCertificate.selectedItem, 'POST').success(function (response) {
             jobCertificate.addRequested = false;
             jobCertificate.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -92,7 +92,7 @@
         }
 
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcertificate/getviewmodel', jobCertificate.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'jobcertificate/getviewmodel', jobCertificate.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -116,7 +116,7 @@
             return;
         }
         jobCertificate.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcertificate/edit', jobCertificate.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'jobcertificate/edit', jobCertificate.selectedItem, 'PUT').success(function (response) {
             jobCertificate.addRequested = true;
             rashaErManage.checkAction(response);
             jobCertificate.busyIndicator.isActive = false;
@@ -160,11 +160,11 @@
                 jobCertificate.busyIndicator.isActive = true;
                 console.log(jobCertificate.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'jobcertificate/getviewmodel', jobCertificate.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'jobcertificate/getviewmodel', jobCertificate.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     jobCertificate.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'jobcertificate/delete', jobCertificate.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'jobcertificate/delete', jobCertificate.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         jobCertificate.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -292,7 +292,7 @@
         var engine = {};
         engine.Filters = [];
         engine.Filters.push(filterValue);
-        ajax.call(cmsServerConfig.configApiServerPath+"jobCertificateDetail/GetAll", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"jobCertificateDetail/GetAll", engine, 'POST').success(function (response) {
             jobCertificate.propertyDetailsListItems = response.ListItems;
 
             $.each(jobCertificate.propertyDetailsListItems, function (index, item) {
@@ -314,7 +314,7 @@
     jobCertificate.exportFile = function () {
         jobCertificate.addRequested = true;
         jobCertificate.gridOptions.advancedSearchData.engine.ExportFile = jobCertificate.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'JobCertificate/exportfile', jobCertificate.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'JobCertificate/exportfile', jobCertificate.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 jobCertificate.exportDownloadLink = window.location.origin + response.LinkFile;
@@ -357,7 +357,7 @@
     }
     //Get TotalRowCount
     jobCertificate.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"JobCertificate/count", jobCertificate.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"JobCertificate/count", jobCertificate.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobCertificate.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

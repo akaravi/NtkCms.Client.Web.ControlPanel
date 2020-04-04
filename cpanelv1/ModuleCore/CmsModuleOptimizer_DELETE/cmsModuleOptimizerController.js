@@ -6,7 +6,7 @@
     cmsModuleOptimizer.init = function () {
         
 
-        ajax.call(cmsServerConfig.configApiServerPath+"coreModuleOptimizer/getall", cmsModuleOptimizer.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"coreModuleOptimizer/getall", cmsModuleOptimizer.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModuleOptimizer.ListItems = response.ListItems;
             cmsModuleOptimizer.gridOptions.fillData(cmsModuleOptimizer.ListItems, response.resultAccess);
@@ -25,7 +25,7 @@
 
         cmsModuleOptimizer.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(mainPathApi+'cmsModuleOptimizer/getviewmodel', '0', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsModuleOptimizer.selectedItem = response.Item;
@@ -38,7 +38,7 @@
         });
     };
     cmsModuleOptimizer.autoAdd = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/AutoAdd', '', 'POST').success(function (response) {
+        ajax.call(mainPathApi+'cmsModuleOptimizer/AutoAdd', '', 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModuleOptimizer.init();
         }).error(function (data, errCode, c, d) {
@@ -50,7 +50,7 @@
             return;
 
         cmsModuleOptimizer.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/add', cmsModuleOptimizer.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'cmsModuleOptimizer/add', cmsModuleOptimizer.selectedItem, 'POST').success(function (response) {
             // cmsModuleOptimizer.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -74,7 +74,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/getviewmodel', cmsModuleOptimizer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'cmsModuleOptimizer/getviewmodel', cmsModuleOptimizer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsModuleOptimizer.selectedItem = response.Item;
@@ -91,7 +91,7 @@
         if (frm.$invalid)
             return;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/edit', cmsModuleOptimizer.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'cmsModuleOptimizer/edit', cmsModuleOptimizer.selectedItem, 'PUT').success(function (response) {
             cmsModuleOptimizer.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -134,12 +134,12 @@
             if (isConfirmed) {
                 console.log(cmsModuleOptimizer.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/getviewmodel', cmsModuleOptimizer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'cmsModuleOptimizer/getviewmodel', cmsModuleOptimizer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
 
                     rashaErManage.checkAction(response);
                     cmsModuleOptimizer.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/delete', cmsModuleOptimizer.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'cmsModuleOptimizer/delete', cmsModuleOptimizer.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsModuleOptimizer.replaceItem(cmsModuleOptimizer.selectedItemForDelete.Id);

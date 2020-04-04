@@ -21,7 +21,7 @@
     var buttonIsPressed = false; // برای جلوگیری از فشرده شدن چندباره دکمه ها
 
 
-    ajax.call(cmsServerConfig.configApiServerPath+"MemberGroup/getall", {}, 'POST').success(function (response) {
+    ajax.call(mainPathApi+"MemberGroup/getall", {}, 'POST').success(function (response) {
         memberInfo.memberGroups = response.ListItems;
     }).error(function (data, errCode, c, d) {
         console.log(data);
@@ -107,7 +107,7 @@
     };
     memberInfo.init = function () {
         memberInfo.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramMemberInfo/getall", memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"ApiTelegramMemberInfo/getall", memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             memberInfo.busyIndicator.isActive = false;
             memberInfo.ListItems = response.ListItems;
@@ -128,7 +128,7 @@
     memberInfo.addRequested = false;
     memberInfo.openAddModal = function () {
         memberInfo.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegrammemberInfo/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             memberInfo.busyIndicator.isActive = false;
             memberInfo.selectedItem = response.Item;
@@ -152,7 +152,7 @@
         }
         memberInfo.busyIndicator.isActive = true;
         memberInfo.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/add', memberInfo.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegrammemberInfo/add', memberInfo.selectedItem, 'POST').success(function (response) {
             memberInfo.addRequested = false;
             memberInfo.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -176,7 +176,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/getviewmodel', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegrammemberInfo/getviewmodel', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             memberInfo.selectedItem = response.Item;
             if (memberInfo
@@ -200,7 +200,7 @@
             return;
         }
         memberInfo.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/edit', memberInfo.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegrammemberInfo/edit', memberInfo.selectedItem, 'PUT').success(function (response) {
             memberInfo.addRequested = true;
             rashaErManage.checkAction(response);
             memberInfo.busyIndicator.isActive = false;
@@ -241,11 +241,11 @@
             if (isConfirmed) {
                 memberInfo.busyIndicator.isActive = true;
                 console.log(memberInfo.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/getviewmodel', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'ApiTelegrammemberInfo/getviewmodel', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     memberInfo.selectedItemForDelete = response.Item;
                     console.log(memberInfo.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/delete', memberInfo.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'ApiTelegrammemberInfo/delete', memberInfo.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         memberInfo.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -338,7 +338,7 @@
         engine.SortColumn = "ChatId";
         engine.SortType = 0;
         engine.RowPerPage = 1000000;
-        ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramLogInput/getone", engine, "POST").success(function (response) { //Get Telegram user info from input logs
+        ajax.call(mainPathApi+"ApiTelegramLogInput/getone", engine, "POST").success(function (response) { //Get Telegram user info from input logs
             memberInfo.addRequested = false;
             memberInfo.busyIndicator.isActive = false;
             memberInfo.selectedLogInput = response.Item;
@@ -346,7 +346,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         if (!angular.isDefined(memberInfo.memberGroups))
-            ajax.call(cmsServerConfig.configApiServerPath+"MemberGroup/getall", {}, 'POST').success(function (response3) {  //Get MemberGroups to set and assign members to groups
+            ajax.call(mainPathApi+"MemberGroup/getall", {}, 'POST').success(function (response3) {  //Get MemberGroups to set and assign members to groups
                 memberInfo.memberGroups = response3.ListItems;
             }).error(function (data, errCode, c, d) {
                 console.log(data);
@@ -362,10 +362,10 @@
         }
         memberInfo.addRequested = true;
         memberInfo.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramMemberInfo/getviewmodel", selectedId, "GET").success(function (response) {
+        ajax.call(mainPathApi+"ApiTelegramMemberInfo/getviewmodel", selectedId, "GET").success(function (response) {
             memberInfo.selectedItem = response.Item;
             memberInfo.selectedItem.LinkMemberId = memberId;
-            ajax.call(cmsServerConfig.configApiServerPath+"MemberUser/getviewmodel", memberId, "GET").success(function (response) {
+            ajax.call(mainPathApi+"MemberUser/getviewmodel", memberId, "GET").success(function (response) {
                 memberInfo.selectedMemberUser = response.Item;
                 memberInfo.addRequested = false;
                 memberInfo.busyIndicator.isActive = false;
@@ -386,11 +386,11 @@
         if (memberInfo.addNewMemberUser == "1") {
             memberInfo.addRequested = true;
             memberInfo.busyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'memberuser/add', memberInfo.selectedMemberUser, 'POST').success(function (response1) {
+            ajax.call(mainPathApi+'memberuser/add', memberInfo.selectedMemberUser, 'POST').success(function (response1) {
                 rashaErManage.checkAction(response1);
                 if (response1.IsSuccess) {
                     memberInfo.selectedItem.LinkMemberId = response1.Item.Id;
-                    ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/edit', memberInfo.selectedItem, 'PUT').success(function (response2) {
+                    ajax.call(mainPathApi+'ApiTelegrammemberInfo/edit', memberInfo.selectedItem, 'PUT').success(function (response2) {
                         rashaErManage.checkAction(response2);
                         memberInfo.addRequested = false;
                         memberInfo.busyIndicator.isActive = false;
@@ -413,7 +413,7 @@
             memberInfo.addRequested = true;
             memberInfo.busyIndicator.isActive = true;
             //memberInfo.selectedItem.LinkMemberId = selected.originalObject.Id; //Delete MemberUser
-            ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/edit', memberInfo.selectedItem, 'PUT').success(function (response) {
+            ajax.call(mainPathApi+'ApiTelegrammemberInfo/edit', memberInfo.selectedItem, 'PUT').success(function (response) {
                 rashaErManage.checkAction(response);
                 memberInfo.addRequested = false;
                 memberInfo.busyIndicator.isActive = false;
@@ -429,7 +429,7 @@
     memberInfo.editMemberUserGroup = function (frm) {
         memberInfo.addRequested = true;
         memberInfo.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/edit', memberInfo.selectedMemberUser, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'MemberUser/edit', memberInfo.selectedMemberUser, 'PUT').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 memberInfo.addRequested = false;
@@ -445,7 +445,7 @@
         memberInfo.addRequested = true;
         memberInfo.busyIndicator.isActive = true;
         memberInfo.selectedItem.LinkMemberId = null;//Delete MemberUser
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/edit', memberInfo.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegrammemberInfo/edit', memberInfo.selectedItem, 'PUT').success(function (response) {
             rashaErManage.checkAction(response);
             memberInfo.addRequested = false;
             memberInfo.busyIndicator.isActive = false;
@@ -463,7 +463,7 @@
             memberInfo.selectedItem.LinkMemberId = 'loading';
             memberInfo.selectedMemberUser = null;
             memberInfo.addRequested = true;
-            ajax.call(cmsServerConfig.configApiServerPath+"MemberUser/getviewmodel", selected.originalObject.Id, "GET").success(function (response) {
+            ajax.call(mainPathApi+"MemberUser/getviewmodel", selected.originalObject.Id, "GET").success(function (response) {
                 memberInfo.addRequested = false;
                 rashaErManage.checkAction(response);
                 memberInfo.selectedItem.LinkMemberId = selected.originalObject.Id;
@@ -482,7 +482,7 @@
         var engine = { Filters: [] };
         engine.Filters.push({ PropertyName: "FirstName", SearchType: 5, StringValue1: input, ClauseType: 1 });
         engine.Filters.push({ PropertyName: "LastName", SearchType: 5, StringValue1: input, ClauseType: 1 });
-        ajax.call(cmsServerConfig.configApiServerPath+"memberuser/search", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"memberuser/search", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             memberInfo.memberUserListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
@@ -493,7 +493,7 @@
     memberInfo.exportFile = function () {
         memberInfo.addRequested = true;
         memberInfo.gridOptions.advancedSearchData.engine.ExportFile = memberInfo.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramMemberInfo/exportfile', memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'ApiTelegramMemberInfo/exportfile', memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             memberInfo.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -536,7 +536,7 @@
     }
     //Get TotalRowCount
     memberInfo.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegrammemberInfo/count", memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"ApiTelegrammemberInfo/count", memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             memberInfo.addRequested = false;
             rashaErManage.checkAction(response);
             memberInfo.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

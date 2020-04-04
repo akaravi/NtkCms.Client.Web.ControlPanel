@@ -24,7 +24,7 @@
     domainAlias.init = function () {
         domainAlias.addRequested = true;
         domainAlias.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreSiteDomainAlias/getall", domainAlias.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreSiteDomainAlias/getall", domainAlias.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             domainAlias.ListItems = response.ListItems;
             domainAlias.TotalRowCount = response.TotalRowCount;
@@ -48,7 +48,7 @@
     domainAlias.openAddModal = function () {
         domainAlias.modalTitle = 'اضافه';
         domainAlias.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteDomainAlias/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'CoreSiteDomainAlias/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             domainAlias.selectedItem = response.Item;
             domainAlias.addRequested = false;
@@ -66,7 +66,7 @@
             return;
         domainAlias.busyIndicator.isActive = true;
         domainAlias.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteDomainAlias/add', domainAlias.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'CoreSiteDomainAlias/add', domainAlias.selectedItem, 'POST').success(function (response) {
             domainAlias.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -87,7 +87,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteDomainAlias/getviewmodel', domainAlias.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'CoreSiteDomainAlias/getviewmodel', domainAlias.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             domainAlias.selectedItem = response.Item;
             $modal.open({
@@ -104,7 +104,7 @@
         if (frm.$invalid)
             return;
         domainAlias.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteDomainAlias/edit', domainAlias.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'CoreSiteDomainAlias/edit', domainAlias.selectedItem, 'PUT').success(function (response) {
             domainAlias.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -142,10 +142,10 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteDomainAlias/getviewmodel', domainAlias.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'CoreSiteDomainAlias/getviewmodel', domainAlias.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     domainAlias.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteDomainAlias/delete', domainAlias.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'CoreSiteDomainAlias/delete', domainAlias.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             domainAlias.replaceItem(domainAlias.selectedItemForDelete.Id);
@@ -202,7 +202,7 @@
     domainAlias.exportFile = function () {
         domainAlias.addRequested = true;
         domainAlias.gridOptions.advancedSearchData.engine.ExportFile = domainAlias.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteDomainAlias/exportfile', domainAlias.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'CoreSiteDomainAlias/exportfile', domainAlias.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 domainAlias.exportDownloadLink = window.location.origin + response.LinkFile;
@@ -245,7 +245,7 @@
     }
     //Get TotalRowCount
     domainAlias.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreSiteDomainAlias/count", domainAlias.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreSiteDomainAlias/count", domainAlias.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             domainAlias.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

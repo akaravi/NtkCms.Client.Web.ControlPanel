@@ -2,7 +2,7 @@
     var apiCompany = this;
 
     apiCompany.init = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"ApiPathCompany/getall", apiCompany.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"ApiPathCompany/getall", apiCompany.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             apiCompany.ListItems = response.ListItems;
             apiCompany.gridOptions.fillData(apiCompany.ListItems);
@@ -16,7 +16,7 @@
     apiCompany.addNewModel = function(){
         apiCompany.addRequested = false;
         apiCompany.modalTitle = "ایجاد کمپانی جدید";
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiPathCompany/getviewmodel',  0 , 'GET').success(function (response) {
+        ajax.call(mainPathApi+'ApiPathCompany/getviewmodel',  0 , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             apiCompany.selectedItem = response.Item;
             $modal.open({
@@ -34,7 +34,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'apiPathCompany/getviewmodel', apiCompany.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(mainPathApi+'apiPathCompany/getviewmodel', apiCompany.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             apiCompany.selectedItem = response.Item;
             $modal.open({
@@ -50,7 +50,7 @@
 
     apiCompany.editRow = function () {
         apiCompany.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'apiPathCompany/edit',  apiCompany.selectedItem , 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'apiPathCompany/edit',  apiCompany.selectedItem , 'PUT').success(function (response) {
             apiCompany.addRequested = false;
             rashaErManage.checkAction(response);
             apiCompany.closeModal();
@@ -61,7 +61,7 @@
         });
     }; 
     apiCompany.addNewRow = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+'apiPathCompany/add', apiCompany.selectedItem , 'POST').success(function (response) {
+        ajax.call(mainPathApi+'apiPathCompany/add', apiCompany.selectedItem , 'POST').success(function (response) {
             apiCompany.addRequested = false;
             apiCompany.closeModal();
             apiCompany.init();
@@ -83,11 +83,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
                 // console.log(node.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'apiPathCompany/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'apiPathCompany/getviewmodel', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     apiCompany.selectedItemForDelete = response.Item;
                     console.log(apiCompany.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'apiPathCompany/delete', apiCompany.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'apiPathCompany/delete', apiCompany.selectedItemForDelete, 'DELETE').success(function (res) {
                         console.log(res);
                         if (res.IsSuccess) {
                             console.log("Deleted Succesfully !");

@@ -19,7 +19,7 @@
     var buttonIsPressed = false; // برای جلوگیری از فشرده شدن چندباره دکمه ها
 
 
-    ajax.call(cmsServerConfig.configApiServerPath+"MemberGroup/getall", {}, 'POST').success(function (response) {
+    ajax.call(mainPathApi+"MemberGroup/getall", {}, 'POST').success(function (response) {
         discountOfferDetail.memberGroups = response.ListItems;
     }).error(function (data, errCode, c, d) {
         console.log(data);
@@ -71,7 +71,7 @@
         } catch (error) {
             console.log(error);
         }
-        ajax.call(cmsServerConfig.configApiServerPath+"DiscountOfferDetail/getall", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"DiscountOfferDetail/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             discountOfferDetail.busyIndicator.isActive = false;
             discountOfferDetail.ListItems = response.ListItems;
@@ -87,14 +87,14 @@
         });
     }
     if (!angular.isDefined(discountOfferDetail.CategoryListItems))
-        ajax.call(cmsServerConfig.configApiServerPath+"DiscountGroup/getall", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"DiscountGroup/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             discountOfferDetail.CategoryListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
             });
     if (!angular.isDefined(discountOfferDetail.CategoryListItemsOffer))
-        ajax.call(cmsServerConfig.configApiServerPath+"DiscountOffer/getall", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"DiscountOffer/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             discountOfferDetail.CategoryListItemsOffer = response.ListItems;
         }).error(function (data, errCode, c, d) {
@@ -105,7 +105,7 @@
     discountOfferDetail.addRequested = false;
     discountOfferDetail.openAddModal = function () {
         discountOfferDetail.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferDetail/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'DiscountOfferDetail/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountOfferDetail.busyIndicator.isActive = false;
             discountOfferDetail.selectedItem = response.Item;
@@ -133,7 +133,7 @@
         }
         discountOfferDetail.busyIndicator.isActive = true;
         discountOfferDetail.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferDetail/add', discountOfferDetail.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'DiscountOfferDetail/add', discountOfferDetail.selectedItem, 'POST').success(function (response) {
             discountOfferDetail.addRequested = false;
             discountOfferDetail.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -215,7 +215,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferDetail/getviewmodel', discountOfferDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'DiscountOfferDetail/getviewmodel', discountOfferDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountOfferDetail.selectedItem = response.Item;
             if (discountOfferDetail
@@ -239,7 +239,7 @@
             return;
         }
         discountOfferDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferDetail/edit', discountOfferDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'DiscountOfferDetail/edit', discountOfferDetail.selectedItem, 'PUT').success(function (response) {
             discountOfferDetail.addRequested = true;
             rashaErManage.checkAction(response);
             discountOfferDetail.busyIndicator.isActive = false;
@@ -279,10 +279,10 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 discountOfferDetail.busyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferDetail/getviewmodel', discountOfferDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'DiscountOfferDetail/getviewmodel', discountOfferDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     discountOfferDetail.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferDetail/delete', discountOfferDetail.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'DiscountOfferDetail/delete', discountOfferDetail.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         discountOfferDetail.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -303,7 +303,7 @@
 
     discountOfferDetail.searchData = function () {
         discountOfferDetail.categoryBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"discountOfferDetail/getall", discountOfferDetail.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(mainPathApi+"discountOfferDetail/getall", discountOfferDetail.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             discountOfferDetail.categoryBusyIndicator.isActive = false;
             discountOfferDetail.ListItems = response.ListItems;
@@ -394,7 +394,7 @@
     //    engine.SortColumn = "ChatId";
     //    engine.SortType = 0;
     //    engine.RowPerPage = 1000000;
-    //    ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramLogInput/getone", engine, "POST").success(function (response) { //Get Telegram user info from input logs
+    //    ajax.call(mainPathApi+"ApiTelegramLogInput/getone", engine, "POST").success(function (response) { //Get Telegram user info from input logs
     //        discountOfferDetail.addRequested = false;
     //        discountOfferDetail.busyIndicator.isActive = false;
     //        discountOfferDetail.selectedLogInput = response.Item;
@@ -402,7 +402,7 @@
     //        rashaErManage.checkAction(data, errCode);
     //    });
     //    if (!angular.isDefined(discountOfferDetail.memberGroups))
-    //        ajax.call(cmsServerConfig.configApiServerPath+"MemberGroup/getall", {}, 'POST').success(function (response3) {  //Get MemberGroups to set and assign members to groups
+    //        ajax.call(mainPathApi+"MemberGroup/getall", {}, 'POST').success(function (response3) {  //Get MemberGroups to set and assign members to groups
     //            discountOfferDetail.memberGroups = response3.ListItems;
     //        }).error(function (data, errCode, c, d) {
     //            console.log(data);
@@ -418,10 +418,10 @@
     //    }
     //    discountOfferDetail.addRequested = true;
     //    discountOfferDetail.busyIndicator.isActive = true;
-    //    ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramMemberInfo/getviewmodel", selectedId, "GET").success(function (response) {
+    //    ajax.call(mainPathApi+"ApiTelegramMemberInfo/getviewmodel", selectedId, "GET").success(function (response) {
     //        discountOfferDetail.selectedItem = response.Item;
     //        discountOfferDetail.selectedItem.LinkMemberId = memberId;
-    //        ajax.call(cmsServerConfig.configApiServerPath+"MemberUser/getviewmodel", memberId, "GET").success(function (response) {
+    //        ajax.call(mainPathApi+"MemberUser/getviewmodel", memberId, "GET").success(function (response) {
     //            discountOfferDetail.selectedMemberUser = response.Item;
     //            discountOfferDetail.addRequested = false;
     //            discountOfferDetail.busyIndicator.isActive = false;
@@ -442,11 +442,11 @@
     //    if (discountOfferDetail.addNewMemberUser == "1") {
     //        discountOfferDetail.addRequested = true;
     //        discountOfferDetail.busyIndicator.isActive = true;
-    //        ajax.call(cmsServerConfig.configApiServerPath+'memberuser/add', discountOfferDetail.selectedMemberUser, 'POST').success(function (response1) {
+    //        ajax.call(mainPathApi+'memberuser/add', discountOfferDetail.selectedMemberUser, 'POST').success(function (response1) {
     //            rashaErManage.checkAction(response1);
     //            if (response1.IsSuccess) {
     //                discountOfferDetail.selectedItem.LinkMemberId = response1.Item.Id;
-    //                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramdiscountOfferDetail/edit', discountOfferDetail.selectedItem, 'PUT').success(function (response2) {
+    //                ajax.call(mainPathApi+'ApiTelegramdiscountOfferDetail/edit', discountOfferDetail.selectedItem, 'PUT').success(function (response2) {
     //                    rashaErManage.checkAction(response2);
     //                    discountOfferDetail.addRequested = false;
     //                    discountOfferDetail.busyIndicator.isActive = false;
@@ -469,7 +469,7 @@
     //        discountOfferDetail.addRequested = true;
     //        discountOfferDetail.busyIndicator.isActive = true;
     //        //discountOfferDetail.selectedItem.LinkMemberId = selected.originalObject.Id; //Delete MemberUser
-    //        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramdiscountOfferDetail/edit', discountOfferDetail.selectedItem, 'PUT').success(function (response) {
+    //        ajax.call(mainPathApi+'ApiTelegramdiscountOfferDetail/edit', discountOfferDetail.selectedItem, 'PUT').success(function (response) {
     //            rashaErManage.checkAction(response);
     //            discountOfferDetail.addRequested = false;
     //            discountOfferDetail.busyIndicator.isActive = false;
@@ -485,7 +485,7 @@
     //discountOfferDetail.editMemberUserGroup = function (frm) {
     //    discountOfferDetail.addRequested = true;
     //    discountOfferDetail.busyIndicator.isActive = true;
-    //    ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/edit', discountOfferDetail.selectedMemberUser, 'PUT').success(function (response) {
+    //    ajax.call(mainPathApi+'MemberUser/edit', discountOfferDetail.selectedMemberUser, 'PUT').success(function (response) {
     //        rashaErManage.checkAction(response);
     //        if (response.IsSuccess) {
     //            discountOfferDetail.addRequested = false;
@@ -501,7 +501,7 @@
     //    discountOfferDetail.addRequested = true;
     //    discountOfferDetail.busyIndicator.isActive = true;
     //    discountOfferDetail.selectedItem.LinkMemberId = null;//Delete MemberUser
-    //    ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramdiscountOfferDetail/edit', discountOfferDetail.selectedItem, 'PUT').success(function (response) {
+    //    ajax.call(mainPathApi+'ApiTelegramdiscountOfferDetail/edit', discountOfferDetail.selectedItem, 'PUT').success(function (response) {
     //        rashaErManage.checkAction(response);
     //        discountOfferDetail.addRequested = false;
     //        discountOfferDetail.busyIndicator.isActive = false;
@@ -519,7 +519,7 @@
     //        discountOfferDetail.selectedItem.LinkMemberId = 'loading';
     //        discountOfferDetail.selectedMemberUser = null;
     //        discountOfferDetail.addRequested = true;
-    //        ajax.call(cmsServerConfig.configApiServerPath+"MemberUser/getviewmodel", selected.originalObject.Id, "GET").success(function (response) {
+    //        ajax.call(mainPathApi+"MemberUser/getviewmodel", selected.originalObject.Id, "GET").success(function (response) {
     //            discountOfferDetail.addRequested = false;
     //            rashaErManage.checkAction(response);
     //            discountOfferDetail.selectedItem.LinkMemberId = selected.originalObject.Id;
@@ -538,7 +538,7 @@
     //    var engine = { Filters: [] };
     //    engine.Filters.push({ PropertyName: "FirstName", SearchType: 5, StringValue1: input, ClauseType: 1 });
     //    engine.Filters.push({ PropertyName: "LastName", SearchType: 5, StringValue1: input, ClauseType: 1 });
-    //    ajax.call(cmsServerConfig.configApiServerPath+"memberuser/search", engine, 'POST').success(function (response) {
+    //    ajax.call(mainPathApi+"memberuser/search", engine, 'POST').success(function (response) {
     //        rashaErManage.checkAction(response);
     //        discountOfferDetail.memberUserListItems = response.ListItems;
     //    }).error(function (data, errCode, c, d) {
@@ -549,7 +549,7 @@
     discountOfferDetail.exportFile = function (frm) {
         discountOfferDetail.addRequested = true;
         discountOfferDetail.gridOptions.advancedSearchData.engine.ExportFile = discountOfferDetail.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferDetail/exportfile', discountOfferDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'DiscountOfferDetail/exportfile', discountOfferDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             discountOfferDetail.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -592,7 +592,7 @@
     }
     //Get TotalRowCount
     discountOfferDetail.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"DiscountOfferDetail/count", discountOfferDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"DiscountOfferDetail/count", discountOfferDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             discountOfferDetail.addRequested = false;
             rashaErManage.checkAction(response);
             discountOfferDetail.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

@@ -1,7 +1,7 @@
 ﻿app.controller("outBoxDetailBulkLockCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $filter) {
     var outBoxDetailBulkLock = this;
     outBoxDetailBulkLock.init = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"outBoxDetailBulkLock/getall", outBoxDetailBulkLock.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"outBoxDetailBulkLock/getall", outBoxDetailBulkLock.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             outBoxDetailBulkLock.ListItems = response.ListItems;
             outBoxDetailBulkLock.gridOptions.fillData(outBoxDetailBulkLock.ListItems);
@@ -17,7 +17,7 @@
     outBoxDetailBulkLock.addRequested = false;
     outBoxDetailBulkLock.openAddModal = function () {
         outBoxDetailBulkLock.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'outBoxDetailBulkLock/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             outBoxDetailBulkLock.selectedItem = response.Item;
             $modal.open({
@@ -35,7 +35,7 @@
             return;
         }
         outBoxDetailBulkLock.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/add', outBoxDetailBulkLock.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'outBoxDetailBulkLock/add', outBoxDetailBulkLock.selectedItem, 'POST').success(function (response) {
             outBoxDetailBulkLock.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -55,7 +55,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/getviewmodel', outBoxDetailBulkLock.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'outBoxDetailBulkLock/getviewmodel', outBoxDetailBulkLock.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             outBoxDetailBulkLock.selectedItem = response.Item;
             $modal.open({
@@ -73,7 +73,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/edit', outBoxDetailBulkLock.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'outBoxDetailBulkLock/edit', outBoxDetailBulkLock.selectedItem, 'PUT').success(function (response) {
             outBoxDetailBulkLock.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -95,7 +95,7 @@
             rashaErManage.showMessage($filter('translatentk')('form_values_full_have_not_been_entered'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/edit', outBoxDetailBulkLock.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'outBoxDetailBulkLock/edit', outBoxDetailBulkLock.selectedItem, 'PUT').success(function (response) {
             outBoxDetailBulkLock.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -132,11 +132,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(outBoxDetailBulkLock.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/getviewmodel', outBoxDetailBulkLock.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'outBoxDetailBulkLock/getviewmodel', outBoxDetailBulkLock.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     outBoxDetailBulkLock.selectedItemForDelete = response.Item;
                     console.log(outBoxDetailBulkLock.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/delete', outBoxDetailBulkLock.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'outBoxDetailBulkLock/delete', outBoxDetailBulkLock.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             outBoxDetailBulkLock.replaceItem(outBoxDetailBulkLock.selectedItemForDelete.Id);

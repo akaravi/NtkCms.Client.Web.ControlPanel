@@ -144,9 +144,9 @@
 
 if($rootScope.tokenInfo)
 {
-        ajax.call(cmsServerConfig.configApiServerPath + "FileConfiguration/SiteAccess/"+$rootScope.tokenInfo.Item.virtual_CmsSite.Id, "", "GET").success(function (responseSiteAccess) {
+        ajax.call(mainPathApi + "FileConfiguration/SiteAccess/"+$rootScope.tokenInfo.Item.virtual_CmsSite.Id, "", "GET").success(function (responseSiteAccess) {
             rashaErManage.checkAction(responseSiteAccess);
-            ajax.call(cmsServerConfig.configApiServerPath + "FileConfiguration/SiteStorage/"+$rootScope.tokenInfo.Item.virtual_CmsSite.Id, "", "GET").success(function (responseSiteStorage) {
+            ajax.call(mainPathApi + "FileConfiguration/SiteStorage/"+$rootScope.tokenInfo.Item.virtual_CmsSite.Id, "", "GET").success(function (responseSiteStorage) {
                 try {
                     rashaErManage.checkAction(responseSiteStorage);
                     dashb.totalSite = responseSiteAccess.Item.AllCateSizeUploadMB;
@@ -169,17 +169,17 @@ if($rootScope.tokenInfo)
 
       
 
-        ajax.call(cmsServerConfig.configApiServerPath + "articlecontent/count", {}, "POST").success(function (response1) {
+        ajax.call(mainPathApi + "articlecontent/count", {}, "POST").success(function (response1) {
             dashb.articleContentCount = response1.TotalRowCount
-            ajax.call(cmsServerConfig.configApiServerPath + "newscontent/count", {}, "POST").success(function (response2) {
+            ajax.call(mainPathApi + "newscontent/count", {}, "POST").success(function (response2) {
                 dashb.newsContentCount = response2.TotalRowCount
-                ajax.call(cmsServerConfig.configApiServerPath + "CoreSite/count", {}, "POST").success(function (response3) {
+                ajax.call(mainPathApi + "CoreSite/count", {}, "POST").success(function (response3) {
                     rashaErManage.checkAction(response3);
                     dashb.cmsSiteCount = response3.TotalRowCount;
-                    ajax.call(cmsServerConfig.configApiServerPath + "CoreUser/count", {}, "POST").success(function (response4) {
+                    ajax.call(mainPathApi + "CoreUser/count", {}, "POST").success(function (response4) {
                         rashaErManage.checkAction(response4);
                         dashb.cmsUserCount = response4.TotalRowCount;
-                        ajax.call(cmsServerConfig.configApiServerPath + "applicationapp/count", {}, "POST").success(function (response5) {
+                        ajax.call(mainPathApi + "applicationapp/count", {}, "POST").success(function (response5) {
                             rashaErManage.checkAction(response5);
                             dashb.applicationCount = response5.TotalRowCount;
                         }).error(function (data, errCode, c, d) {
@@ -194,7 +194,7 @@ if($rootScope.tokenInfo)
             }).error(function (data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
             });
-            ajax.call(cmsServerConfig.configApiServerPath + "memberUser/count", {}, "POST").success(function (response6) {
+            ajax.call(mainPathApi + "memberUser/count", {}, "POST").success(function (response6) {
                 rashaErManage.checkAction(response6);
                 dashb.memberCount = response6.TotalRowCount;
             }).error(function (data, errCode, c, d) {
@@ -207,7 +207,7 @@ if($rootScope.tokenInfo)
                     SearchType: 0,
                 }]
             };
-            ajax.call(cmsServerConfig.configApiServerPath + "TicketingTask/count", filterModelTicket, "POST").success(function (response7) {
+            ajax.call(mainPathApi + "TicketingTask/count", filterModelTicket, "POST").success(function (response7) {
                 rashaErManage.checkAction(response7);
                 dashb.ticketCount = response7.TotalRowCount;
             }).error(function (data, errCode, c, d) {
@@ -220,7 +220,7 @@ if($rootScope.tokenInfo)
                     SearchType: 0,
                 }]
             };
-            ajax.call(cmsServerConfig.configApiServerPath + "shopinvoicesale/count", filterModelShop, "POST").success(function (response8) {
+            ajax.call(mainPathApi + "shopinvoicesale/count", filterModelShop, "POST").success(function (response8) {
                 rashaErManage.checkAction(response8);
                 dashb.shopinvoicesaleCount = response8.TotalRowCount;
             }).error(function (data, errCode, c, d) {
@@ -233,7 +233,7 @@ if($rootScope.tokenInfo)
                     SearchType: 0,
                 }]
             };
-            ajax.call(cmsServerConfig.configApiServerPath + "chartContent/count", filterModelChart, "POST").success(function (response9) {
+            ajax.call(mainPathApi + "chartContent/count", filterModelChart, "POST").success(function (response9) {
                 rashaErManage.checkAction(response9);
                 dashb.chartContentCount = response9.TotalRowCount;
             }).error(function (data, errCode, c, d) {
@@ -255,7 +255,7 @@ if($rootScope.tokenInfo)
                 }],
                 rowPerPage: 10
             };
-            /*ajax.call(cmsServerConfig.configApiServerPath+"CoreTokenUser/getall", filterModelTicket, "POST").success(function (response7) {
+            /*ajax.call(mainPathApi+"CoreTokenUser/getall", filterModelTicket, "POST").success(function (response7) {
                 rashaErManage.checkAction(response7);
                 dashb.onlineUsersCount = response7.TotalRowCount;
                 dashb.UserTicketList=response7.ListItems;

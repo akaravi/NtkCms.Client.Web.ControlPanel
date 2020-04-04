@@ -44,7 +44,7 @@
             console.log(error)
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+"TicketingAnswer/getall", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"TicketingAnswer/getall", engine, 'POST').success(function (response) {
             console.log(response.ListItems);
             ticketingAnswer.ListItems = response.ListItems;
             ticketingAnswer.gridOptions.fillData(response.ListItems);
@@ -58,7 +58,7 @@
     }
 
     ticketingAnswer.getType = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"ticketingDepartemen/getall", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"ticketingDepartemen/getall", {}, 'POST').success(function (response) {
             console.log("asd");
             console.log(response.ListItems);
             ticketingAnswer.TypeList = response.ListItems;
@@ -69,7 +69,7 @@
 
     ticketingAnswer.addNewModel = function () {
 
-        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'TicketingAnswer/getviewmodel', "0", 'GET').success(function (response) {
             //rashaErManage.checkAction(response);
             console.log(response);
             ticketingAnswer.selectedItem = response.Item;
@@ -93,7 +93,7 @@
             return;
         }
         ticketingAnswer.modalTitle = 'ویرایش';
-        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/getviewmodel', ticketingAnswer.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(mainPathApi+'TicketingAnswer/getviewmodel', ticketingAnswer.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             ticketingAnswer.selectedItem = response.Item;
             $modal.open({
@@ -114,7 +114,7 @@
         ticketingAnswer.selectedItem.LinkCmsPageId = 1;
         console.log((ticketingAnswer.selectedItem));
         ticketingAnswer.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/add',  ticketingAnswer.selectedItem , 'POST').success(function (response) {
+        ajax.call(mainPathApi+'TicketingAnswer/add',  ticketingAnswer.selectedItem , 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             console.log(response);
             if (response.IsSuccess) {
@@ -138,7 +138,7 @@
             return;
         }
         ticketingAnswer.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/edit',  ticketingAnswer.selectedItem , 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'TicketingAnswer/edit',  ticketingAnswer.selectedItem , 'PUT').success(function (response) {
             ticketingAnswer.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -161,12 +161,12 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(ticketingAnswer.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/getviewmodel', ticketingAnswer.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(mainPathApi+'TicketingAnswer/getviewmodel', ticketingAnswer.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
 
                     rashaErManage.checkAction(response);
                     ticketingAnswer.selectedItemForDelete = response.Item;
                     console.log(ticketingAnswer.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/delete', ticketingAnswer.selectedItemForDelete , 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'TicketingAnswer/delete', ticketingAnswer.selectedItemForDelete , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             ticketingAnswer.replaceItem(ticketingAnswer.selectedItemForDelete.Id);

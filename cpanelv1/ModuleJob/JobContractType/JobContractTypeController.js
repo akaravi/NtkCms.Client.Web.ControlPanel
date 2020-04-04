@@ -20,7 +20,7 @@
             console.log(error);
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+"jobcontracttype/getall", jobContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"jobcontracttype/getall", jobContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobContractType.busyIndicator.isActive = false;
             jobContractType.ListItems = response.ListItems;
@@ -45,7 +45,7 @@
     jobContractType.addRequested = false;
     jobContractType.openAddModal = function () {
         jobContractType.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcontracttype/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'jobcontracttype/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             jobContractType.busyIndicator.isActive = false;
             jobContractType.selectedItem = response.Item;
@@ -70,7 +70,7 @@
         }
         jobContractType.busyIndicator.isActive = true;
         jobContractType.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcontracttype/add', jobContractType.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'jobcontracttype/add', jobContractType.selectedItem, 'POST').success(function (response) {
             jobContractType.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -93,7 +93,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcontracttype/getviewmodel', jobContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'jobcontracttype/getviewmodel', jobContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             jobContractType.selectedItem = response.Item;
             $modal.open({
@@ -114,7 +114,7 @@
             return;
         }
         jobContractType.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobcontracttype/edit', jobContractType.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'jobcontracttype/edit', jobContractType.selectedItem, 'PUT').success(function (response) {
             jobContractType.addRequested = true;
             rashaErManage.checkAction(response);
             jobContractType.busyIndicator.isActive = false;
@@ -158,11 +158,11 @@
             if (isConfirmed) {
                 jobContractType.busyIndicator.isActive = true;
                 console.log(jobContractType.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'jobcontracttype/getviewmodel', jobContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'jobcontracttype/getviewmodel', jobContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     jobContractType.selectedItemForDelete = response.Item;
                     console.log(jobContractType.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'jobcontracttype/delete', jobContractType.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'jobcontracttype/delete', jobContractType.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         jobContractType.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -254,7 +254,7 @@
     jobContractType.exportFile = function () {
         jobContractType.addRequested = true;
         jobContractType.gridOptions.advancedSearchData.engine.ExportFile = jobContractType.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobContractType/exportfile', jobContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'jobContractType/exportfile', jobContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 jobContractType.exportDownloadLink = window.location.origin + response.LinkFile;
@@ -297,7 +297,7 @@
     }
     //Get TotalRowCount
     jobContractType.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"jobContractType/count", jobContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"jobContractType/count", jobContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobContractType.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

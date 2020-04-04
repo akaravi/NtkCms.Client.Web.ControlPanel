@@ -24,7 +24,7 @@
        
         emailapipathcompany.busyIndicator.isActive = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+"emailapipathcompany/getall", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"emailapipathcompany/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             emailapipathcompany.ListItems = response.ListItems;
             emailapipathcompany.gridOptions.fillData(emailapipathcompany.ListItems, response.resultAccess);
@@ -46,7 +46,7 @@
         if (buttonIsPressed) { return };
         emailapipathcompany.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathcompany/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(mainPathApi+'emailapipathcompany/getviewmodel', '0', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailapipathcompany.selectedItem = response.Item;
@@ -67,7 +67,7 @@
 
         emailapipathcompany.addRequested = true;
         emailapipathcompany.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathcompany/add', emailapipathcompany.selectedItem, 'POST').success(function (response1) {
+        ajax.call(mainPathApi+'emailapipathcompany/add', emailapipathcompany.selectedItem, 'POST').success(function (response1) {
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {
                 emailapipathcompany.ListItems.unshift(response1.Item);
@@ -89,7 +89,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathcompany/getviewmodel', emailapipathcompany.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'emailapipathcompany/getviewmodel', emailapipathcompany.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailapipathcompany.selectedItem = response.Item;
@@ -110,7 +110,7 @@
             return;
         }
         emailapipathcompany.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathcompany/edit', emailapipathcompany.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'emailapipathcompany/edit', emailapipathcompany.selectedItem, 'PUT').success(function (response) {
             emailapipathcompany.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -148,12 +148,12 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'emailapipathcompany/getviewmodel', emailapipathcompany.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'emailapipathcompany/getviewmodel', emailapipathcompany.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
 
                     rashaErManage.checkAction(response);
                     emailapipathcompany.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'emailapipathcompany/delete', emailapipathcompany.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'emailapipathcompany/delete', emailapipathcompany.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             emailapipathcompany.replaceItem(emailapipathcompany.selectedItemForDelete.Id);
@@ -261,7 +261,7 @@
     emailapipathcompany.exportFile = function () {
         emailapipathcompany.addRequested = true;
         emailapipathcompany.gridOptions.advancedSearchData.engine.ExportFile = emailapipathcompany.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/exportfile', emailapipathcompany.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'emailprivatesiteconfig/exportfile', emailapipathcompany.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             emailapipathcompany.addRequested = false;
             rashaErManage.checkAction(response);
             emailapipathcompany.reportDownloadLink = response.LinkFile;
@@ -303,7 +303,7 @@
     }
     //Get TotalRowCount
     emailapipathcompany.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"emailapipathcompany/count", emailapipathcompany.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"emailapipathcompany/count", emailapipathcompany.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             emailapipathcompany.addRequested = false;
             rashaErManage.checkAction(response);
             emailapipathcompany.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -318,7 +318,7 @@
     }
 
     emailapipathcompany.retryTrans = function (selectedId) {
-        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathcompany/processflowCheck', selectedId, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'emailapipathcompany/processflowCheck', selectedId, 'GET').success(function (response) {
             emailapipathcompany.addRequested = false;
             rashaErManage.checkAction(response);
             emailapipathcompany.reportDownloadLink = response.LinkFile;

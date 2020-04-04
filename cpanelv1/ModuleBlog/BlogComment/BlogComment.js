@@ -37,7 +37,7 @@
         //    console.log(error)
         //}
 
-        ajax.call(cmsServerConfig.configApiServerPath+"blogComment/getall", blogComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"blogComment/getall", blogComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             blogComment.busyIndicator.isActive = false;
             blogComment.ListItems = response.ListItems;
@@ -53,7 +53,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         //blogComment.busyIndicator.isActive = true;
-        //ajax.call(cmsServerConfig.configApiServerPath+'blogComment/getall', {}, 'POST').success(function (response) {
+        //ajax.call(mainPathApi+'blogComment/getall', {}, 'POST').success(function (response) {
         //    blogComment.CommentList = response.ListItems;
         //    blogComment.busyIndicator.isActive = false;
         //});
@@ -66,7 +66,7 @@
     blogComment.addRequested = false;
     blogComment.openAddModal = function () {
         blogComment.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'blogComment/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'blogComment/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             blogComment.busyIndicator.isActive = false;
             blogComment.selectedItem = response.Item;
@@ -91,7 +91,7 @@
         }
         blogComment.busyIndicator.isActive = true;
         blogComment.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'blogComment/add', blogComment.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'blogComment/add', blogComment.selectedItem, 'POST').success(function (response) {
             blogComment.addRequested = false;
             blogComment.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -117,7 +117,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'blogComment/getviewmodel', blogComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'blogComment/getviewmodel', blogComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             blogComment.selectedItem = response.Item;
             $modal.open({
@@ -137,7 +137,7 @@
             return;
         }
         blogComment.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'blogComment/edit', blogComment.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'blogComment/edit', blogComment.selectedItem, 'PUT').success(function (response) {
             blogComment.addRequested = true;
             rashaErManage.checkAction(response);
             blogComment.busyIndicator.isActive = false;
@@ -179,11 +179,11 @@
             if (isConfirmed) {
                 blogComment.busyIndicator.isActive = true;
                 console.log(blogComment.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'blogComment/getviewmodel', blogComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'blogComment/getviewmodel', blogComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     blogComment.selectedItemForDelete = response.Item;
                     console.log(blogComment.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'blogComment/delete', blogComment.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'blogComment/delete', blogComment.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         blogComment.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -308,7 +308,7 @@
     blogComment.exportFile = function () {
         blogComment.gridOptions.advancedSearchData.engine.ExportFile = blogComment.ExportFileClass;
         blogComment.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'blogComment/exportfile', blogComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'blogComment/exportfile', blogComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             blogComment.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -351,7 +351,7 @@
     }
     //Get TotalRowCount
     blogComment.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"blogComment/count", blogComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"blogComment/count", blogComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             blogComment.addRequested = false;
             rashaErManage.checkAction(response);
             blogComment.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

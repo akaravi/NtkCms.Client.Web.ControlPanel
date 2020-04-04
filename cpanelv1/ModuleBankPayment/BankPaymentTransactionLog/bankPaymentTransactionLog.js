@@ -12,7 +12,7 @@
     trancsLog.init = function () {
         trancsLog.busyIndicator.isActive = true;
         trancsLog.gridOptions.advancedSearchData.engine.RowPerPage = 20;
-        ajax.call(cmsServerConfig.configApiServerPath+"bankpaymenttransactionlog/getall", trancsLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"bankpaymenttransactionlog/getall", trancsLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             trancsLog.ListItems = response.ListItems;
             trancsLog.gridOptions.fillData(trancsLog.ListItems, response.resultAccess);
@@ -34,7 +34,7 @@
         if (buttonIsPressed) { return };
         trancsLog.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransactionlog/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(mainPathApi+'bankpaymenttransactionlog/getviewmodel', '0', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             trancsLog.selectedItem = response.Item;
@@ -55,7 +55,7 @@
         }
         trancsLog.addRequested = true;
         trancsLog.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'transactionlog/add', trancsLog.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'transactionlog/add', trancsLog.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 trancsLog.ListItems.unshift(response.Item);
@@ -79,7 +79,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransactionlog/getviewmodel', trancsLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'bankpaymenttransactionlog/getviewmodel', trancsLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             trancsLog.selectedItem = response.Item;
@@ -99,7 +99,7 @@
             return;
         }
         trancsLog.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransactionlog/edit', trancsLog.selectedItem, 'PUT').success(function (response1) {
+        ajax.call(mainPathApi+'bankpaymenttransactionlog/edit', trancsLog.selectedItem, 'PUT').success(function (response1) {
             trancsLog.addRequested = true;
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {
@@ -140,11 +140,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransactionlog/getviewmodel', trancsLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'bankpaymenttransactionlog/getviewmodel', trancsLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     trancsLog.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransactionlog/delete', trancsLog.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'bankpaymenttransactionlog/delete', trancsLog.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             trancsLog.replaceItem(trancsLog.selectedItemForDelete.Id);
@@ -200,7 +200,7 @@
     trancsLog.exportFile = function () {
         trancsLog.addRequested = true;
         trancsLog.gridOptions.advancedSearchData.engine.ExportFile = trancsLog.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransactionlog/exportfile', trancsLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'bankpaymenttransactionlog/exportfile', trancsLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             trancsLog.addRequested = false;
             rashaErManage.checkAction(response);
             trancsLog.reportDownloadLink = response.LinkFile;
@@ -242,7 +242,7 @@
     }
     //Get TotalRowCount
     trancsLog.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"bankpaymenttransactionlog/count", trancsLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"bankpaymenttransactionlog/count", trancsLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             trancsLog.addRequested = false;
             rashaErManage.checkAction(response);
             trancsLog.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

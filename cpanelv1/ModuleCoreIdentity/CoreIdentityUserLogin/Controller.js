@@ -10,7 +10,7 @@
             console.log(error);
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+"coreIdentityUserLogin/getall", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"coreIdentityUserLogin/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
         angular.forEach( response.ListItems, function (item, key) {
                 item.isChecked=false
@@ -50,7 +50,7 @@ coreIdentityUserLogin.deleteAllRow = function () {
         IntValue1: 0,
       });
       ajax
-        .call(cmsServerConfig.configApiServerPath + "coreIdentityUserLogin/getall", filterModelparam, "POST")
+        .call(mainPathApi + "coreIdentityUserLogin/getall", filterModelparam, "POST")
         .success(function(response1) {
             coreIdentityUserLogin.ListItems=response1.ListItems;
             angular.forEach( coreIdentityUserLogin.ListItems, function (item, key) {
@@ -79,7 +79,7 @@ coreIdentityUserLogin.listforDel=listforDel;
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(coreIdentityUserLogin.gridOptions.selectedRow.item);
-                    ajax.call(cmsServerConfig.configApiServerPath+'coreIdentityUserLogin/DeleteList',coreIdentityUserLogin.listforDel , 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'coreIdentityUserLogin/DeleteList',coreIdentityUserLogin.listforDel , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             //coreIdentityUserLogin.replaceItem(coreIdentityUserLogin.selectedItemForDelete.Id);
@@ -103,11 +103,11 @@ coreIdentityUserLogin.listforDel=listforDel;
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(coreIdentityUserLogin.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'coreIdentityUserLogin/getviewmodel', coreIdentityUserLogin.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'coreIdentityUserLogin/getviewmodel', coreIdentityUserLogin.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     coreIdentityUserLogin.selectedItemForDelete = response.Item;
                     console.log(coreIdentityUserLogin.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'coreIdentityUserLogin/delete', coreIdentityUserLogin.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'coreIdentityUserLogin/delete', coreIdentityUserLogin.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             coreIdentityUserLogin.replaceItem(coreIdentityUserLogin.selectedItemForDelete.Id);
@@ -176,7 +176,7 @@ coreIdentityUserLogin.listforDel=listforDel;
     coreIdentityUserLogin.exportFile = function () {
         coreIdentityUserLogin.addRequested = true;
         coreIdentityUserLogin.gridOptions.advancedSearchData.engine.ExportFile = coreIdentityUserLogin.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'coreIdentityUserLogin/exportfile', coreIdentityUserLogin.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'coreIdentityUserLogin/exportfile', coreIdentityUserLogin.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             coreIdentityUserLogin.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -219,7 +219,7 @@ coreIdentityUserLogin.listforDel=listforDel;
     }
     //Get TotalRowCount
     coreIdentityUserLogin.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"coreIdentityUserLogin/count", coreIdentityUserLogin.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"coreIdentityUserLogin/count", coreIdentityUserLogin.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             coreIdentityUserLogin.addRequested = false;
             rashaErManage.checkAction(response);
             coreIdentityUserLogin.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

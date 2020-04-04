@@ -171,7 +171,7 @@
                         <i ng-if="x.isExcel" class="fa fa-file-excel-o fa-4x" style="color:darkblue;position:absolute;left:25px;top:10px" ng-dblclick="??atr??.openFile(x)"  ></i>
                         <i ng-if="x.isWord" class="fa fa-file-word-o fa-4x" style="color:green;position:absolute;left:25px;top:10px" ng-dblclick="??atr??.openFile(x)"  ></i>
                         <div ng-if="x.isImage || x.isVideo" class="folderfileimage" ng-dblclick="??atr??.openFile(x)">
-                            <img style="width:92px;max-height:78px;height:auto;margin:1px 1px" src="{{cmsServerConfig.configRouteThumbnails}}/{{x.Id}}?MvcAuthorization={{??atr??.Token}}"  />
+                            <img style="width:92px;max-height:78px;height:auto;margin:1px 1px" src="http://oco.ir/imageThumbnails/{{x.Id}}?MvcAuthorization={{??atr??.Token}}"  />
                         </div>
 
                         <h5 style="position:absolute;left:2px;top:80px;right:2px;bottom:2px;overflow:hidden;text-align:center">{{x.Title}}</h5>

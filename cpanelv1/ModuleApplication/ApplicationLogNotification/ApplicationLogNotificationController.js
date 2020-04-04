@@ -12,7 +12,7 @@
 
     logNotification.init = function () {
         logNotification.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"ApplicationlogNotification/getall", logNotification.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"ApplicationlogNotification/getall", logNotification.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             logNotification.busyIndicator.isActive = false;
             logNotification.ListItems = response.ListItems;
@@ -126,7 +126,7 @@
     logNotification.exportFile = function () {
         logNotification.addRequested = true;
         logNotification.gridOptions.advancedSearchData.engine.ExportFile = logNotification.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApplicationlogNotification/exportfile', logNotification.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'ApplicationlogNotification/exportfile', logNotification.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             logNotification.addRequested = false;
             rashaErManage.checkAction(response);
             logNotification.reportDownloadLink = response.LinkFile;
@@ -168,7 +168,7 @@
     }
     //Get TotalRowCount
     logNotification.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"ApplicationlogNotification/count", logNotification.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"ApplicationlogNotification/count", logNotification.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             logNotification.addRequested = false;
             rashaErManage.checkAction(response);
             logNotification.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

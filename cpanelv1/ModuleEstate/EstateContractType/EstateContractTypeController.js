@@ -20,7 +20,7 @@
             console.log(error);
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+"estatecontracttype/getall", estateContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"estatecontracttype/getall", estateContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             estateContractType.busyIndicator.isActive = false;
             estateContractType.ListItems = response.ListItems;
@@ -45,7 +45,7 @@
     estateContractType.addRequested = false;
     estateContractType.openAddModal = function () {
         estateContractType.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'estatecontracttype/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             estateContractType.busyIndicator.isActive = false;
             estateContractType.selectedItem = response.Item;
@@ -70,7 +70,7 @@
         }
         estateContractType.busyIndicator.isActive = true;
         estateContractType.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/add', estateContractType.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'estatecontracttype/add', estateContractType.selectedItem, 'POST').success(function (response) {
             estateContractType.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -93,7 +93,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/getviewmodel', estateContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'estatecontracttype/getviewmodel', estateContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             estateContractType.selectedItem = response.Item;
             $modal.open({
@@ -114,7 +114,7 @@
             return;
         }
         estateContractType.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/edit', estateContractType.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'estatecontracttype/edit', estateContractType.selectedItem, 'PUT').success(function (response) {
             estateContractType.addRequested = true;
             rashaErManage.checkAction(response);
             estateContractType.busyIndicator.isActive = false;
@@ -158,11 +158,11 @@
             if (isConfirmed) {
                 estateContractType.busyIndicator.isActive = true;
                 console.log(estateContractType.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/getviewmodel', estateContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'estatecontracttype/getviewmodel', estateContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     estateContractType.selectedItemForDelete = response.Item;
                     console.log(estateContractType.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/delete', estateContractType.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'estatecontracttype/delete', estateContractType.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         estateContractType.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -269,7 +269,7 @@
     estateContractType.exportFile = function () {
         estateContractType.addRequested = true;
         estateContractType.gridOptions.advancedSearchData.engine.ExportFile = estateContractType.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'estateContractType/exportfile', estateContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'estateContractType/exportfile', estateContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             estateContractType.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -312,7 +312,7 @@
     }
     //Get TotalRowCount
     estateContractType.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"estateContractType/count", estateContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"estateContractType/count", estateContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             estateContractType.addRequested = false;
             rashaErManage.checkAction(response);
             estateContractType.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

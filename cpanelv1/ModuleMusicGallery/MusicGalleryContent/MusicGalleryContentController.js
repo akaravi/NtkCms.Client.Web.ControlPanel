@@ -72,7 +72,7 @@
 
     mscGallery.init = function () {
         mscGallery.treeBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"MusicGalleryCategory/getall", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"MusicGalleryCategory/getall", {}, 'POST').success(function (response) {
             mscGallery.treeConfig.Items = response.ListItems;
             mscGallery.treeBusyIndicator.isActive = false;
         }).error(function (data, errCode, c, d) {
@@ -81,7 +81,7 @@
         filterModel = { PropertyName: "ContentTags",PropertyAnyName:"LinkTagId", SearchType: 0, IntValue1: mscGallery.selectedContentId.Id };
         if (mscGallery.selectedContentId.Id >0)
             mscGallery.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
-        ajax.call(cmsServerConfig.configApiServerPath+"MusicGalleryContent/getall", mscGallery.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"MusicGalleryContent/getall", mscGallery.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             mscGallery.ListItems = response.ListItems;
             mscGallery.fetchImageURLs(mscGallery.ListItems);
@@ -96,7 +96,7 @@
         angular.forEach(listItems, function (value, key) {
             modelList.push({ id: value.LinkMainImageId, name: null });
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/PreviewThumbnailImages", modelList, "POST").success(function (response2) {
+        ajax.call(mainPathApi+"FileContent/PreviewThumbnailImages", modelList, "POST").success(function (response2) {
             rashaErManage.checkAction(response2);
             angular.forEach(listItems, function (value1, key1) {
                 var keepGoing = true;
@@ -115,7 +115,7 @@
 
     mscGallery.openUpload = function () {
         mscGallery.modalTitle = "آپلود فایل";
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGallery/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'MusicGallery/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mscGallery.selectedItem = response.Item;
             $modal.open({
@@ -219,7 +219,7 @@ mscGallery.LinkCategoryIdSelector = {
 
     mscGallery.openNewFolder = function () {
         mscGallery.modalTitle = "ایجاد شاخه جدید";
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'MusicGalleryCategory/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mscGallery.selectedItem = response.Item;
             $modal.open({
@@ -233,7 +233,7 @@ mscGallery.LinkCategoryIdSelector = {
     }
 
     mscGallery.getGalleriesByCategory = function (id) {
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGallery/getviewmodel', id, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'MusicGallery/getviewmodel', id, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             mscGallery.selectedItems = response.Items;
             $modal.open({
@@ -261,7 +261,7 @@ mscGallery.LinkCategoryIdSelector = {
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGallerycontent/getviewmodel', mscGallery.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+'MusicGallerycontent/getviewmodel', mscGallery.selectedRow.item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             mscGallery.selectedItem = response1.Item;
             $modal.open({
@@ -280,7 +280,7 @@ mscGallery.LinkCategoryIdSelector = {
             return;
         }
         mscGallery.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGallerycontent/add', mscGallery.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'MusicGallerycontent/add', mscGallery.selectedItem, 'POST').success(function (response) {
             mscGallery.addRequested = false;
             rashaErManage.checkAction(response);
             mscGallery.treeBusyIndicator.isActive = false;
@@ -299,7 +299,7 @@ mscGallery.LinkCategoryIdSelector = {
                         mscGallery.selectedItem.ContentTags.push(newObject);
                     }
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+'MusicGallerycontentTag/addbatch', mscGallery.selectedItem.ContentTags, 'POST').success(function (response) {
+                ajax.call(mainPathApi+'MusicGallerycontentTag/addbatch', mscGallery.selectedItem.ContentTags, 'POST').success(function (response) {
                     console.log(response);
                 }).error(function (data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
@@ -341,7 +341,7 @@ mscGallery.LinkCategoryIdSelector = {
             newObject.LinkContentId = mscGallery.selectedItem.Id;
             mscGallery.selectedItem.ContentTags.push(newObject);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGallerycontent/edit', mscGallery.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'MusicGallerycontent/edit', mscGallery.selectedItem, 'PUT').success(function (response) {
             mscGallery.treeBusyIndicator.isActive = false;
             mscGallery.addRequested = false;
             rashaErManage.checkAction(response);
@@ -375,7 +375,7 @@ mscGallery.LinkCategoryIdSelector = {
         if (mscGallery.addRequested) { return };
         mscGallery.addRequested = true;
         mscGallery.treeBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'MusicGalleryCategory/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mscGallery.addRequested = false;
             mscGallery.treeBusyIndicator.isActive = false;
@@ -389,10 +389,10 @@ mscGallery.LinkCategoryIdSelector = {
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 mscGallery.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(mscGallery.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModuleMusicGallery/MusicGalleryCategory/add.html',
@@ -426,7 +426,7 @@ mscGallery.LinkCategoryIdSelector = {
             return;
         }
         mscGallery.treeBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryCategory/getviewmodel', mscGallery.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'MusicGalleryCategory/getviewmodel', mscGallery.treeConfig.currentNode.Id, 'GET').success(function (response) {
             mscGallery.addRequested = false;
             mscGallery.treeBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -443,10 +443,10 @@ mscGallery.LinkCategoryIdSelector = {
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 mscGallery.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(mscGallery.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (mscGallery.selectedItem.LinkMainImageId > 0)
@@ -482,7 +482,7 @@ mscGallery.LinkCategoryIdSelector = {
         mscGallery.selectedItem.LinkCategorytId = null;
         if (mscGallery.treeConfig.currentNode != null)
             mscGallery.selectedItem.LinkParentId = mscGallery.treeConfig.currentNode.Id;
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryCategory/add', mscGallery.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'MusicGalleryCategory/add', mscGallery.selectedItem, 'POST').success(function (response) {
             mscGallery.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -506,7 +506,7 @@ mscGallery.LinkCategoryIdSelector = {
             return;
         }
         mscGallery.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetFilesFromCategory', mscGallery.selectedItem.FolderId, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'FileContent/GetFilesFromCategory', mscGallery.selectedItem.FolderId, 'POST').success(function (response) {
             mscGallery.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -517,7 +517,7 @@ mscGallery.LinkCategoryIdSelector = {
                         mscGallery.selectedItem.LinkFileId = value.Id;
                         mscGallery.selectedItem.Title = value.FileName;
                         mscGallery.selectedItem.LinkCategoryId = node.Id;
-                        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryContent/add', mscGallery.selectedItem, 'POST').success(function (response) {
+                        ajax.call(mainPathApi+'MusicGalleryContent/add', mscGallery.selectedItem, 'POST').success(function (response) {
                             rashaErManage.checkAction(response);
                             value.addIsSuccess = null;
                             if (response.IsSuccess) {
@@ -553,7 +553,7 @@ mscGallery.LinkCategoryIdSelector = {
             return;
         }
         mscGallery.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryCategory/edit', mscGallery.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'MusicGalleryCategory/edit', mscGallery.selectedItem, 'PUT').success(function (response) {
             mscGallery.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -579,12 +579,12 @@ mscGallery.LinkCategoryIdSelector = {
                 mscGallery.treeBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryCategory/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'MusicGalleryCategory/getviewmodel', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     mscGallery.selectedItemForDelete = response.Item;
                     console.log(mscGallery.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryCategory/delete', mscGallery.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'MusicGalleryCategory/delete', mscGallery.selectedItemForDelete, 'DELETE').success(function (res) {
                         mscGallery.treeBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //mscGallery.replaceCategoryItem(mscGallery.treeConfig.Items, node.Id);
@@ -624,10 +624,10 @@ mscGallery.LinkCategoryIdSelector = {
             }]
         };
 
-        ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModelParentRootFolders, 'POST').success(function (response1) {
+        ajax.call(mainPathApi+"FileCategory/GetAll", filterModelParentRootFolders, 'POST').success(function (response1) {
             mscGallery.dataForTheTree = response1.ListItems;
             var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) {
+            ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) {
                 //mscGallery.dataForTheTree.concat(response2.ListItems);
                 Array.prototype.push.apply(mscGallery.dataForTheTree, response2.ListItems);
                 $modal.open({
@@ -641,7 +641,7 @@ mscGallery.LinkCategoryIdSelector = {
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryContent/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(mainPathApi+'MusicGalleryContent/getviewmodel', '0', 'GET').success(function (response) {
             mscGallery.selectedItem = response.Item;
             mscGallery.selectedItem.FolderId = null;
         }).error(function (data, errCode, c, d) {
@@ -659,7 +659,7 @@ mscGallery.LinkCategoryIdSelector = {
             return;
         }
         mscGallery.modalTitle = 'ویرایش';
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryContent/getviewmodel', mscGallery.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'MusicGalleryContent/getviewmodel', mscGallery.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mscGallery.selectedItem = response.Item;
             mscGallery.startDate.defaultDate = mscGallery.selectedItem.FromDate;
@@ -700,7 +700,7 @@ mscGallery.LinkCategoryIdSelector = {
                     var filterDataModel = { PropertyName: "Id", SearchType: 0, IntValue1: value.Id, ClauseType: 1 };
                     deleteFilterModel.Filters.push(filterDataModel);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"musicgallerycontent/DeleteFilterModel", deleteFilterModel, "DELETE").success(function (res) {
+                ajax.call(mainPathApi+"musicgallerycontent/DeleteFilterModel", deleteFilterModel, "DELETE").success(function (res) {
                     rashaErManage.checkAction(res);
                     if (res.IsSuccess) {
                         mscGallery.gridOptions.reGetAll();
@@ -733,7 +733,7 @@ mscGallery.LinkCategoryIdSelector = {
         }
         mscGallery.gridOptions.advancedSearchData.engine.Filters.push(s);
         mscGallery.treeBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"MusicGalleryContent/getall", mscGallery.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"MusicGalleryContent/getall", mscGallery.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             mscGallery.treeBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             mscGallery.ListItems = response.ListItems;
@@ -764,7 +764,7 @@ mscGallery.LinkCategoryIdSelector = {
         mscGallery.filePicker.filename = "";
         mscGallery.filePicker.fileId = null;
         mscGallery.modalTitle = 'اضافه کردن محتوای جدید';
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGallerycontent/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'MusicGallerycontent/getviewmodel', "0", 'GET').success(function (response) {
             mscGallery.addRequested = false;
             mscGallery.treeBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -892,11 +892,11 @@ mscGallery.LinkCategoryIdSelector = {
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -937,7 +937,7 @@ mscGallery.LinkCategoryIdSelector = {
     mscGallery.exportFile = function () {
         mscGallery.addRequested = true;
         mscGallery.gridOptions.advancedSearchData.engine.ExportFile = mscGallery.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryContent/exportfile', mscGallery.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'MusicGalleryContent/exportfile', mscGallery.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             mscGallery.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -980,7 +980,7 @@ mscGallery.LinkCategoryIdSelector = {
     }
     //Get TotalRowCount
     mscGallery.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"MusicGalleryContent/count", mscGallery.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"MusicGalleryContent/count", mscGallery.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             mscGallery.addRequested = false;
             rashaErManage.checkAction(response);
             mscGallery.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -1120,11 +1120,11 @@ mscGallery.LinkCategoryIdSelector = {
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -1145,9 +1145,9 @@ mscGallery.LinkCategoryIdSelector = {
             return;
         }
         mscGallery.selectedItem.LinkMainImageId = node.Id;
-        mscGallery.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            mscGallery.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
+        mscGallery.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
+        ajax.call(mainPathApi+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            mscGallery.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });

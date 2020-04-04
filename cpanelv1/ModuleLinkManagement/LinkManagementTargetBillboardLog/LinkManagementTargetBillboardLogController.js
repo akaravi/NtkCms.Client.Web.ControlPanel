@@ -62,7 +62,7 @@
         if (linkManagementTargetBillboardLog.selectedContentId.BillBoardPatternId > 0)
             linkManagementTargetBillboardLog.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
 
-        ajax.call(cmsServerConfig.configApiServerPath+"linkManagementTargetBillboardLog/getall", linkManagementTargetBillboardLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"linkManagementTargetBillboardLog/getall", linkManagementTargetBillboardLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementTargetBillboardLog.busyIndicator.isActive = false;
             linkManagementTargetBillboardLog.ListItems = response.ListItems;
@@ -77,7 +77,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         //linkManagementTargetBillboardLog.busyIndicator.isActive = true;
-        //ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetBillboardLog/getall', {}, 'POST').success(function (response) {
+        //ajax.call(mainPathApi+'linkManagementTargetBillboardLog/getall', {}, 'POST').success(function (response) {
         //    linkManagementTargetBillboardLog.ContentList = response.ListItems;
         //    linkManagementTargetBillboardLog.busyIndicator.isActive = false;
         //});
@@ -97,7 +97,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetBillboardLog/getviewmodel', ContentLogId, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'linkManagementTargetBillboardLog/getviewmodel', ContentLogId, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementTargetBillboardLog.selectedItem = response.Item;
             linkManagementTargetBillboardLog.VisitDate.defaultDate = linkManagementTargetBillboardLog.selectedItem.VisitDate;
@@ -240,7 +240,7 @@
     linkManagementTargetBillboardLog.exportFile = function () {
         linkManagementTargetBillboardLog.addRequested = true;
         linkManagementTargetBillboardLog.gridOptions.advancedSearchData.engine.ExportFile = linkManagementTargetBillboardLog.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetBillboardLog/exportfile', linkManagementTargetBillboardLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'linkManagementTargetBillboardLog/exportfile', linkManagementTargetBillboardLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             linkManagementTargetBillboardLog.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -283,7 +283,7 @@
     }
     //Get TotalRowCount
     linkManagementTargetBillboardLog.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"linkManagementTargetBillboardLog/count", linkManagementTargetBillboardLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"linkManagementTargetBillboardLog/count", linkManagementTargetBillboardLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             linkManagementTargetBillboardLog.addRequested = false;
             rashaErManage.checkAction(response);
             linkManagementTargetBillboardLog.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

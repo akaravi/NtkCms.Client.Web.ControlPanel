@@ -32,7 +32,7 @@
             console.log(error)
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+"biographyComment/getall", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"biographyComment/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             biographyComment.busyIndicator.isActive = false;
             biographyComment.ListItems = response.ListItems;
@@ -47,7 +47,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         //biographyComment.busyIndicator.isActive = true;
-        //ajax.call(cmsServerConfig.configApiServerPath+'biographyComment/getall', {}, 'POST').success(function (response) {
+        //ajax.call(mainPathApi+'biographyComment/getall', {}, 'POST').success(function (response) {
         //    biographyComment.ContentList = response.ListItems;
         //    biographyComment.busyIndicator.isActive = false;
         //});
@@ -58,7 +58,7 @@
     biographyComment.addRequested = false;
     biographyComment.openAddModal = function () {
         biographyComment.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyComment/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'biographyComment/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             biographyComment.busyIndicator.isActive = false;
             biographyComment.selectedItem = response.Item;
@@ -79,7 +79,7 @@
         }
         biographyComment.busyIndicator.isActive = true;
         biographyComment.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyComment/add', biographyComment.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'biographyComment/add', biographyComment.selectedItem, 'POST').success(function (response) {
             biographyComment.addRequested = false;
             biographyComment.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -106,7 +106,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyComment/getviewmodel', biographyComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'biographyComment/getviewmodel', biographyComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             biographyComment.selectedItem = response.Item;
             $modal.open({
@@ -125,7 +125,7 @@
             return;
         }
         biographyComment.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyComment/edit', biographyComment.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'biographyComment/edit', biographyComment.selectedItem, 'PUT').success(function (response) {
             biographyComment.addRequested = true;
             rashaErManage.checkAction(response);
             biographyComment.busyIndicator.isActive = false;
@@ -168,11 +168,11 @@
             if (isConfirmed) {
                 biographyComment.busyIndicator.isActive = true;
                 console.log(biographyComment.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'biographyComment/getviewmodel', biographyComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'biographyComment/getviewmodel', biographyComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     //rashaErManage.checkAction(response);
                     biographyComment.selectedItemForDelete = response.Item;
                     console.log(biographyComment.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'biographyComment/delete', biographyComment.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'biographyComment/delete', biographyComment.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         biographyComment.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -286,7 +286,7 @@
     biographyComment.exportFile = function () {
         biographyComment.gridOptions.advancedSearchData.engine.ExportFile = biographyComment.ExportFileClass;
         biographyComment.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyComment/exportfile', biographyComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'biographyComment/exportfile', biographyComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             biographyComment.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -330,7 +330,7 @@
     }
     //Get TotalRowCount
     biographyComment.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"biographyComment/count", biographyComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"biographyComment/count", biographyComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             biographyComment.addRequested = false;
             rashaErManage.checkAction(response);
             biographyComment.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

@@ -17,21 +17,21 @@
             console.log(error)
         }
         //Set combobox items
-        ajax.call(cmsServerConfig.configApiServerPath+"UniversalMenuPlatform/GetEnum", engine, 'POST').success(function (response1) {
+        ajax.call(mainPathApi+"UniversalMenuPlatform/GetEnum", engine, 'POST').success(function (response1) {
             platformCtrl.platformTypeArray = response1;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
 
         //set menu items
-        ajax.call(cmsServerConfig.configApiServerPath+"universalmenumenuitem/getall", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"universalmenumenuitem/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             platformCtrl.UninversalMenus = response.ListItems;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"universalmenuplatform/getall", engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"universalmenuplatform/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             platformCtrl.busyIndicator.isActive = false;
             platformCtrl.ListItems = response.ListItems;
@@ -50,7 +50,7 @@
         });
         //platformCtrl.loadRecordStatusEnum();
         //platformCtrl.busyIndicator.isActive = true;
-        //ajax.call(cmsServerConfig.configApiServerPath+'biographyContent/getall', {}, 'POST').success(function (response) {
+        //ajax.call(mainPathApi+'biographyContent/getall', {}, 'POST').success(function (response) {
         //    platformCtrl.CommentList = response.ListItems;
         //    platformCtrl.busyIndicator.isActive = false;
         //});
@@ -63,7 +63,7 @@
     platformCtrl.addRequested = false;
     platformCtrl.openAddModal = function () {
         platformCtrl.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(mainPathApi+'universalmenuplatform/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             platformCtrl.busyIndicator.isActive = false;
             platformCtrl.selectedItem = response.Item;
@@ -84,7 +84,7 @@
         }
         platformCtrl.busyIndicator.isActive = true;
         platformCtrl.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/add', platformCtrl.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'universalmenuplatform/add', platformCtrl.selectedItem, 'POST').success(function (response) {
             platformCtrl.addRequested = false;
             platformCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -117,7 +117,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/getviewmodel', platformCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'universalmenuplatform/getviewmodel', platformCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             platformCtrl.selectedItem = response.Item;
             $modal.open({
@@ -138,7 +138,7 @@
         }
 
         platformCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/edit', platformCtrl.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'universalmenuplatform/edit', platformCtrl.selectedItem, 'PUT').success(function (response) {
             platformCtrl.addRequested = true;
             rashaErManage.checkAction(response);
             platformCtrl.busyIndicator.isActive = false;
@@ -188,10 +188,10 @@
             if (isConfirmed) {
                 platformCtrl.busyIndicator.isActive = true;
                 console.log(platformCtrl.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/getviewmodel', platformCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'universalmenuplatform/getviewmodel', platformCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     platformCtrl.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/delete', platformCtrl.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'universalmenuplatform/delete', platformCtrl.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         platformCtrl.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

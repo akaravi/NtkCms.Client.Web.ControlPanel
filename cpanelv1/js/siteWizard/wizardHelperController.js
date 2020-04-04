@@ -10,7 +10,7 @@
     wizHelperController.loginRequest = false;
     wizHelperController.login = function () {
         wizHelperController.loginRequest = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/userlogin", { 'username': wizHelperController.usernameData, 'pwd': wizHelperController.passwordData }, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreUser/userlogin", { 'username': wizHelperController.usernameData, 'pwd': wizHelperController.passwordData }, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             wizHelperController.loginRequest = false;
             if (response.IsSuccess && response.Item) {

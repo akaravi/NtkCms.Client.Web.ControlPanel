@@ -28,13 +28,13 @@
 
     coreIdentityUser.init = function () {
 
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/getAllGender", {}, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreUser/getAllGender", {}, 'POST').success(function (response) {
             coreIdentityUser.Gender = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
 
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreIdentityUser/getall", coreIdentityUser.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreIdentityUser/getall", coreIdentityUser.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             coreIdentityUser.ListItems = response.ListItems;
             coreIdentityUser.gridOptions.fillData(coreIdentityUser.ListItems, response.resultAccess);
@@ -58,7 +58,7 @@
         coreIdentityUser.filePickerFiles.filename = "";
         coreIdentityUser.filePickerFiles.fileId = null;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreIdentityUser/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(mainPathApi+'CoreIdentityUser/getviewmodel', '0', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             coreIdentityUser.selectedItem = response.Item;
@@ -84,7 +84,7 @@
         coreIdentityUser.selectedItem.LinkFileIds = "";
         coreIdentityUser.stringfyLinkFileIds();
         coreIdentityUser.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreIdentityUser/add', coreIdentityUser.selectedItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'CoreIdentityUser/add', coreIdentityUser.selectedItem, 'POST').success(function (response) {
             coreIdentityUser.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -107,7 +107,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreIdentityUser/getviewmodel', coreIdentityUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(mainPathApi+'CoreIdentityUser/getviewmodel', coreIdentityUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             coreIdentityUser.selectedItem = response.Item;
@@ -116,7 +116,7 @@
             coreIdentityUser.filePickerMainImage.filename = null;
             coreIdentityUser.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(mainPathApi+'FileContent/getviewmodel', response.Item.LinkMainImageId, 'GET').success(function (response2) {
                     coreIdentityUser.filePickerMainImage.filename = response2.Item.FileName;
                     coreIdentityUser.filePickerMainImage.fileId = response2.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -146,7 +146,7 @@
         //Save attached file ids into coreIdentityUser.selectedItem.LinkFileIds
         coreIdentityUser.selectedItem.LinkFileIds = "";
         coreIdentityUser.stringfyLinkFileIds();
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreIdentityUser/edit', coreIdentityUser.selectedItem, 'PUT').success(function (response) {
+        ajax.call(mainPathApi+'CoreIdentityUser/edit', coreIdentityUser.selectedItem, 'PUT').success(function (response) {
             buttonIsPressed = false;
             coreIdentityUser.addRequested = false;
             rashaErManage.checkAction(response);
@@ -188,12 +188,12 @@
                 console.log(coreIdentityUser.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
                 coreIdentityUser.addRequested = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreIdentityUser/getviewmodel', coreIdentityUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(mainPathApi+'CoreIdentityUser/getviewmodel', coreIdentityUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     coreIdentityUser.selectedItemForDelete = response.Item;
                     console.log(coreIdentityUser.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreIdentityUser/delete', coreIdentityUser.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(mainPathApi+'CoreIdentityUser/delete', coreIdentityUser.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         coreIdentityUser.addRequested = false;
                         if (res.IsSuccess) {
@@ -290,7 +290,7 @@
 
         //if (!Silent)
         //    rashaErManage.showMessage("دستور تغییر دسترسی به سرور ارسال گردید..");
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreIdentityUser/SelectCurrentSite/", { NewUserid: SelectedUserId, UserAccessAdminAllowToAllData: oderShowAllDataStatus, UserAccessAdminAllowToProfessionalData: oderShowProfessionalDataStatus, userLanguage: $rootScope.tokenInfo.UserLanguage }, "POST").success(function (response) {
+        ajax.call(mainPathApi+"CoreIdentityUser/SelectCurrentSite/", { NewUserid: SelectedUserId, UserAccessAdminAllowToAllData: oderShowAllDataStatus, UserAccessAdminAllowToProfessionalData: oderShowProfessionalDataStatus, userLanguage: $rootScope.tokenInfo.UserLanguage }, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             $rootScope.tokenInfo = response;
 
@@ -395,7 +395,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(mainPathApi+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             coreIdentityUser.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -433,7 +433,7 @@
 
         coreIdentityUser.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
             coreIdentityUser.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -472,14 +472,14 @@
         coreIdentityUser.fileIdToDelete = coreIdentityUser.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", coreIdentityUser.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(mainPathApi+"FileContent/getviewmodel", coreIdentityUser.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(mainPathApi+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
                     coreIdentityUser.remove(coreIdentityUser.FileList, coreIdentityUser.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 coreIdentityUser.FileItem = response3.Item;
                                 coreIdentityUser.FileItem.FileName = name;
@@ -508,7 +508,7 @@
     }
     //save new file
     coreIdentityUser.saveNewFile = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", coreIdentityUser.FileItem, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"FileContent/add", coreIdentityUser.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 coreIdentityUser.FileItem = response.Item;
                 coreIdentityUser.showSuccessIcon();
@@ -582,14 +582,14 @@
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                mainPathApi+"FileContent/getviewmodel",
                 coreIdentityUser.fileIdToDelete,
                 "GET"
               )
               .success(function(response1) {
                 if (response1.IsSuccess == true) {
                   console.log(response1.Item);
-                  ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
+                  ajax.call(mainPathApi+"FileContent/replace", response1.Item, "POST")
                     .success(function(response2) {
                       if (response2.IsSuccess == true) {
                         coreIdentityUser.FileItem = response2.Item;
@@ -632,7 +632,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
                     coreIdentityUser.FileItem = response.Item;
                     coreIdentityUser.FileItem.FileName = uploadFile.name;
                     coreIdentityUser.FileItem.uploadName = uploadFile.uploadName;
@@ -641,7 +641,7 @@
                     coreIdentityUser.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- coreIdentityUser.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", coreIdentityUser.FileItem, 'POST').success(function (response) {
+                    ajax.call(mainPathApi+"FileContent/add", coreIdentityUser.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             coreIdentityUser.FileItem = response.Item;
                             coreIdentityUser.showSuccessIcon();
@@ -681,7 +681,7 @@
     coreIdentityUser.exportFile = function () {
         coreIdentityUser.addRequested = true;
         coreIdentityUser.gridOptions.advancedSearchData.engine.ExportFile = coreIdentityUser.ExportFileClass;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreIdentityUser/exportfile', coreIdentityUser.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+'CoreIdentityUser/exportfile', coreIdentityUser.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             coreIdentityUser.addRequested = false;
             rashaErManage.checkAction(response);
             coreIdentityUser.reportDownloadLink = response.LinkFile;
@@ -723,7 +723,7 @@
     }
     //Get TotalRowCount
     coreIdentityUser.getCount = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreIdentityUser/count", coreIdentityUser.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(mainPathApi+"CoreIdentityUser/count", coreIdentityUser.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             coreIdentityUser.addRequested = false;
             rashaErManage.checkAction(response);
             coreIdentityUser.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
