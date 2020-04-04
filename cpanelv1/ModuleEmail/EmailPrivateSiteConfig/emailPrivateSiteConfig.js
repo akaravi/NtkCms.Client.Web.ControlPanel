@@ -82,7 +82,7 @@
                 IntValue1: emailPrivateSiteConfig.selectedPublicConfig.Id
             }]
         };
-        ajax.call(mainPathApi+'emailpublicconfig/getonewithjsonformatter', engine, 'POST').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailpublicconfig/getonewithjsonformatter', engine, 'POST').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailPrivateSiteConfig.selectedPublicConfig = response.Item;
@@ -97,7 +97,7 @@
             IntValue1: emailPrivateSiteConfig.selectedPublicConfig.Id
         };
         emailPrivateSiteConfig.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
-        ajax.call(mainPathApi+"emailprivatesiteconfig/getall", emailPrivateSiteConfig.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"emailprivatesiteconfig/getall", emailPrivateSiteConfig.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             emailPrivateSiteConfig.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             emailPrivateSiteConfig.ListItems = response.ListItems;
@@ -111,7 +111,7 @@
             emailPrivateSiteConfig.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(mainPathApi+"emailPrivateSiteConfig/getall", {}, 'POST').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"emailPrivateSiteConfig/getall", {}, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             emailPrivateSiteConfig.emailPrivateSiteConfigListItems = response.ListItems;
         }).error(function(data, errCode, c, d) {
@@ -140,7 +140,7 @@
         emailPrivateSiteConfig.defaultValue = {};
 
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'emailprivatesiteconfig/getviewmodel', '0', 'GET').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/getviewmodel', '0', 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailPrivateSiteConfig.selectedItem = response.Item;
@@ -267,7 +267,7 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
         $.each(apiSelectedItem.ApiPathSuperSeder, function(index, item) {
           item.SuperSeder = [];
         });
-        ajax.call(mainPathApi+'emailprivatesiteconfig/add', apiSelectedItem, 'POST').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/add', apiSelectedItem, 'POST').success(function(response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 emailPrivateSiteConfig.ListItems.unshift(response.Item);
@@ -304,7 +304,7 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
 
         buttonIsPressed = true;
         emailPrivateSiteConfig.addRequested = true;
-        ajax.call(mainPathApi+'emailprivatesiteconfig/getonewithjsonformatter', engine, 'POST').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/getonewithjsonformatter', engine, 'POST').success(function(response) {
             buttonIsPressed = false;
             emailPrivateSiteConfig.addRequested = false;
             rashaErManage.checkAction(response);
@@ -377,7 +377,7 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
         $.each(apiSelectedItem.ApiPathSuperSeder, function(index, item) {
           item.SuperSeder = [];
         });
-        ajax.call(mainPathApi+'emailprivatesiteconfig/edit', apiSelectedItem, 'PUT').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/edit', apiSelectedItem, 'PUT').success(function(response) {
             emailPrivateSiteConfig.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -420,11 +420,11 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'emailprivatesiteconfig/getviewmodel', emailPrivateSiteConfig.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/getviewmodel', emailPrivateSiteConfig.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     emailPrivateSiteConfig.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'emailprivatesiteconfig/delete', emailPrivateSiteConfig.selectedItemForDelete, 'DELETE').success(function(res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/delete', emailPrivateSiteConfig.selectedItemForDelete, 'DELETE').success(function(res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             emailPrivateSiteConfig.replaceItem(emailPrivateSiteConfig.selectedItemForDelete.Id);
@@ -524,7 +524,7 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
     emailPrivateSiteConfig.exportFile = function() {
         emailPrivateSiteConfig.addRequested = true;
         emailPrivateSiteConfig.gridOptions.advancedSearchData.engine.ExportFile = emailPrivateSiteConfig.ExportFileClass;
-        ajax.call(mainPathApi+'CoreSite/exportfile', emailPrivateSiteConfig.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/exportfile', emailPrivateSiteConfig.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             emailPrivateSiteConfig.addRequested = false;
             rashaErManage.checkAction(response);
             emailPrivateSiteConfig.reportDownloadLink = response.LinkFile;
@@ -594,7 +594,7 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
     }
     //Get TotalRowCount
     emailPrivateSiteConfig.getCount = function() {
-        ajax.call(mainPathApi+"CoreSite/count", emailPrivateSiteConfig.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreSite/count", emailPrivateSiteConfig.gridOptions.advancedSearchData.engine, 'POST').success(function(response) {
             emailPrivateSiteConfig.addRequested = false;
             rashaErManage.checkAction(response);
             emailPrivateSiteConfig.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -614,7 +614,7 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
             }]
         };
         emailPrivateSiteConfig.addRequested = true;
-        ajax.call(mainPathApi+"emailPrivateSiteConfig/getonewithjsonformatter", engine, 'POST').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"emailPrivateSiteConfig/getonewithjsonformatter", engine, 'POST').success(function(response) {
             emailPrivateSiteConfig.addRequested = false;
             if (response.IsSuccess) {
                 emailPrivateSiteConfig.selectedItem = response.Item;
@@ -715,7 +715,7 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
     };
     emailPrivateSiteConfig.testEmail = function() {
         //emailPrivateSiteConfig.addRequested = true;
-        ajax.call(mainPathApi+"emailprivatesiteconfig/testemail", emailPrivateSiteConfig.EmailSendMakerClass, 'POST').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"emailprivatesiteconfig/testemail", emailPrivateSiteConfig.EmailSendMakerClass, 'POST').success(function(response) {
             emailPrivateSiteConfig.addRequested = false;
             emailPrivateSiteConfig.testPayValue = response;
             emailPrivateSiteConfig.EmailSendMakerClass.RedirectWebUrl = response.RedirectWebUrl;
@@ -729,7 +729,7 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
         emailPrivateSiteConfig.addRequested = true;
         emailPrivateSiteConfig.busyIndicator.isActive = true;
         emailPrivateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(emailPrivateSiteConfig.submitValue));
-        ajax.call(mainPathApi+'emailPrivateSiteConfig/edit', emailPrivateSiteConfig.selectedItem, 'PUT').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailPrivateSiteConfig/edit', emailPrivateSiteConfig.selectedItem, 'PUT').success(function(response) {
             emailPrivateSiteConfig.addRequested = true;
             emailPrivateSiteConfig.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);

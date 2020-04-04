@@ -10,7 +10,7 @@
 
     vehiclePropertyFavorite.init = function () {
         vehiclePropertyFavorite.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"vehiclePropertyFavorite/getall", vehiclePropertyFavorite.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"vehiclePropertyFavorite/getall", vehiclePropertyFavorite.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             vehiclePropertyFavorite.busyIndicator.isActive = false;
             vehiclePropertyFavorite.ListItems = response.ListItems;
@@ -32,7 +32,7 @@
     vehiclePropertyFavorite.addRequested = false;
     vehiclePropertyFavorite.openAddModal = function () {
         vehiclePropertyFavorite.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'vehiclePropertyFavorite/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyFavorite/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             vehiclePropertyFavorite.busyIndicator.isActive = false;
             vehiclePropertyFavorite.selectedItem = response.Item;
@@ -56,7 +56,7 @@
         }
         vehiclePropertyFavorite.busyIndicator.isActive = true;
         vehiclePropertyFavorite.addRequested = true;
-        ajax.call(mainPathApi+'vehiclePropertyFavorite/add', vehiclePropertyFavorite.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyFavorite/add', vehiclePropertyFavorite.selectedItem, 'POST').success(function (response) {
             vehiclePropertyFavorite.addRequested = false;
             vehiclePropertyFavorite.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -78,7 +78,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'vehiclePropertyFavorite/getviewmodel', vehiclePropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyFavorite/getviewmodel', vehiclePropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             vehiclePropertyFavorite.selectedItem = response.Item;
             $modal.open({
@@ -98,7 +98,7 @@
             return;
         }
         vehiclePropertyFavorite.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'vehiclePropertyFavorite/edit', vehiclePropertyFavorite.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyFavorite/edit', vehiclePropertyFavorite.selectedItem, 'PUT').success(function (response) {
             vehiclePropertyFavorite.addRequested = true;
             rashaErManage.checkAction(response);
             vehiclePropertyFavorite.busyIndicator.isActive = false;
@@ -140,11 +140,11 @@
             if (isConfirmed) {
                 vehiclePropertyFavorite.busyIndicator.isActive = true;
                 console.log(vehiclePropertyFavorite.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'VehiclePropertyFavorite/getviewmodel', vehiclePropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyFavorite/getviewmodel', vehiclePropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     vehiclePropertyFavorite.selectedItemForDelete = response.Item;
                     console.log(vehiclePropertyFavorite.selectedItemForDelete);
-                    ajax.call(mainPathApi+'VehiclePropertyFavorite/delete', vehiclePropertyFavorite.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyFavorite/delete', vehiclePropertyFavorite.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         vehiclePropertyFavorite.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

@@ -33,7 +33,7 @@
             console.log(error)
         }
 
-        ajax.call(mainPathApi+"shopProductFileSerial/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopProductFileSerial/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopProductFileSerial.busyIndicator.isActive = false;
             shopProductFileSerial.ListItems = response.ListItems;
@@ -48,7 +48,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         //shopProductFileSerial.busyIndicator.isActive = true;
-        //ajax.call(mainPathApi+'ShopContent/getall', {}, 'POST').success(function (response) {
+        //ajax.call(cmsServerConfig.configApiServerPath+'ShopContent/getall', {}, 'POST').success(function (response) {
         //    shopProductFileSerial.ContentList = response.ListItems;
         //    shopProductFileSerial.busyIndicator.isActive = false;
         //});
@@ -60,7 +60,7 @@
     shopProductFileSerial.addRequested = false;
     shopProductFileSerial.openAddModal = function () {
         shopProductFileSerial.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'shopProductFileSerial/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopProductFileSerial/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopProductFileSerial.busyIndicator.isActive = false;
             shopProductFileSerial.selectedItem = response.Item;
@@ -81,7 +81,7 @@
         }
         shopProductFileSerial.busyIndicator.isActive = true;
         shopProductFileSerial.addRequested = true;
-        ajax.call(mainPathApi+'shopProductFileSerial/add', shopProductFileSerial.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopProductFileSerial/add', shopProductFileSerial.selectedItem, 'POST').success(function (response) {
             shopProductFileSerial.addRequested = false;
             shopProductFileSerial.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -108,7 +108,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'shopProductFileSerial/getviewmodel', shopProductFileSerial.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopProductFileSerial/getviewmodel', shopProductFileSerial.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopProductFileSerial.selectedItem = response.Item;
             $modal.open({
@@ -127,7 +127,7 @@
             return;
         }
         shopProductFileSerial.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'shopProductFileSerial/edit', shopProductFileSerial.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopProductFileSerial/edit', shopProductFileSerial.selectedItem, 'PUT').success(function (response) {
             shopProductFileSerial.addRequested = true;
             rashaErManage.checkAction(response);
             shopProductFileSerial.busyIndicator.isActive = false;
@@ -170,11 +170,11 @@
             if (isConfirmed) {
                 shopProductFileSerial.busyIndicator.isActive = true;
                 console.log(shopProductFileSerial.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'shopProductFileSerial/getviewmodel', shopProductFileSerial.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'shopProductFileSerial/getviewmodel', shopProductFileSerial.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     //rashaErManage.checkAction(response);
                     shopProductFileSerial.selectedItemForDelete = response.Item;
                     console.log(shopProductFileSerial.selectedItemForDelete);
-                    ajax.call(mainPathApi+'shopProductFileSerial/delete', shopProductFileSerial.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'shopProductFileSerial/delete', shopProductFileSerial.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         shopProductFileSerial.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -283,7 +283,7 @@
     shopProductFileSerial.exportFile = function () {
         shopProductFileSerial.addRequested = true;
         shopProductFileSerial.gridOptions.advancedSearchData.engine.ExportFile = shopProductFileSerial.ExportFileClass;
-        ajax.call(mainPathApi+'shopProductFileSerial/exportfile', shopProductFileSerial.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopProductFileSerial/exportfile', shopProductFileSerial.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             shopProductFileSerial.addRequested = false;
             rashaErManage.checkAction(response);
             shopProductFileSerial.reportDownloadLink = response.LinkFile;
@@ -325,7 +325,7 @@
     }
     //Get TotalRowCount
     shopProductFileSerial.getCount = function () {
-        ajax.call(mainPathApi+"shopProductFileSerial/count", shopProductFileSerial.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopProductFileSerial/count", shopProductFileSerial.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             shopProductFileSerial.addRequested = false;
             rashaErManage.checkAction(response);
             shopProductFileSerial.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

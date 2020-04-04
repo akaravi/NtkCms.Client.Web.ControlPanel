@@ -39,14 +39,14 @@
                 IntValue1: appLayout.selectedSourceId
             });
         }
-        ajax.call(mainPathApi + "applicationLayout/getall", appLayout.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "applicationLayout/getall", appLayout.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             appLayout.busyIndicator.isActive = false;
             appLayout.ListItems = response.ListItems;
 
 
 
-            ajax.call(mainPathApi + "applicationsource/getall", {}, 'POST').success(function (responseSource) {
+            ajax.call(cmsServerConfig.configApiServerPath + "applicationsource/getall", {}, 'POST').success(function (responseSource) {
                 rashaErManage.checkAction(responseSource);
                 appLayout.busyIndicator.isActive = false;
                 appLayout.sourceListItems = responseSource.ListItems;
@@ -79,7 +79,7 @@
 
     appLayout.autoAdd = function () {
         appLayout.busyIndicator.isActive = true;
-        ajax.call(mainPathApi + 'ApplicationLayout/autoadd', {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayout/autoadd', {
             LinkSourceId: appLayout.selectedSourceId
         }, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
@@ -102,7 +102,7 @@
         }
         appLayout.busyIndicator.isActive = true;
         appLayout.addRequested = true;
-        ajax.call(mainPathApi + 'ApplicationLayout/getviewmodel', appLayout.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayout/getviewmodel', appLayout.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             appLayout.selectedItem = response.Item;
 
@@ -120,7 +120,7 @@
             appLayout.filePickerMainImage.filename = null;
             appLayout.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null) {
-                ajax.call(mainPathApi + "FileContent/getviewmodel", response.Item.LinkMainImageId, "GET")
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", response.Item.LinkMainImageId, "GET")
                     .success(function (response2) {
                         buttonIsPressed = false;
                         appLayout.filePickerMainImage.filename = response2.Item.FileName;
@@ -142,7 +142,7 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi + "FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 appLayout.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = {
                     Filters: [{
@@ -152,7 +152,7 @@
                         IntValueForceNullSearch: true
                     }]
                 };
-                ajax.call(mainPathApi + "FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(appLayout.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (appLayout.selectedItem.LinkModuleFilePreviewImageId > 0)
@@ -186,7 +186,7 @@
 
         appLayout.selectedItem.JsonFormAdminSystemValue = $.trim(angular.toJson(appLayout.ConfigAdmin));
         appLayout.selectedItem.JsonFormDefaultValue = $.trim(angular.toJson(appLayout.ConfigSite));
-        ajax.call(mainPathApi + 'ApplicationLayout/edit', appLayout.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayout/edit', appLayout.selectedItem, 'PUT').success(function (response) {
             appLayout.addRequested = true;
             rashaErManage.checkAction(response);
             appLayout.busyIndicator.isActive = false;
@@ -230,10 +230,10 @@
             if (isConfirmed) {
                 appLayout.busyIndicator.isActive = true;
                 console.log(appLayout.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi + 'ApplicationLayout/getviewmodel', appLayout.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayout/getviewmodel', appLayout.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     appLayout.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi + 'ApplicationLayout/delete', appLayout.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayout/delete', appLayout.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         appLayout.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -383,11 +383,11 @@
                 SearchType: 0,
                 IntValue1: node.Id
             });
-            ajax.call(mainPathApi + "FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(mainPathApi + "FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -408,9 +408,9 @@
             return;
         }
         appLayout.selectedItem.LinkModuleFilePreviewImageId = node.Id;
-        appLayout.selectedItem.previewImageSrc = mainPathCmsFiles + "loader.gif";
-        ajax.call(mainPathApi + "FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            appLayout.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
+        appLayout.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages + "loader.gif";
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            appLayout.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
@@ -435,14 +435,14 @@
                     // replace the file
                     ajax
                         .call(
-                            mainPathApi + "FileContent/getviewmodel",
+                            cmsServerConfig.configApiServerPath + "FileContent/getviewmodel",
                             appLayout.fileIdToDelete,
                             "GET"
                         )
                         .success(function (response1) {
                             if (response1.IsSuccess == true) {
                                 console.log(response1.Item);
-                                ajax.call(mainPathApi + "FileContent/replace", response1.Item, "POST")
+                                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/replace", response1.Item, "POST")
                                     .success(function (response2) {
                                         if (response2.IsSuccess == true) {
                                             appLayout.FileItem = response2.Item;
@@ -486,7 +486,7 @@
                 // File does not exists
                 // Save New file
                 ajax
-                    .call(mainPathApi + "FileContent/getviewmodel", "0", "GET")
+                    .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", "GET")
                     .success(function (response) {
                         appLayout.FileItem = response.Item;
                         appLayout.FileItem.FileName = uploadFile.name;
@@ -497,7 +497,7 @@
                         // ------- appLayout.saveNewFile()  ----------------------
                         var result = 0;
                         ajax
-                            .call(mainPathApi + "FileContent/add", appLayout.FileItem, "POST")
+                            .call(cmsServerConfig.configApiServerPath + "FileContent/add", appLayout.FileItem, "POST")
                             .success(function (response) {
                                 if (response.IsSuccess) {
                                     appLayout.FileItem = response.Item;

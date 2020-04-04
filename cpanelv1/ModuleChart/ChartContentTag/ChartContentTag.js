@@ -6,7 +6,7 @@
     }
     chartContentTag.init = function () {
         chartContentTag.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"ChartContentTag/getall", chartContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ChartContentTag/getall", chartContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartContentTag.busyIndicator.isActive = false;
 
@@ -23,7 +23,7 @@
     chartContentTag.addRequested = false;
     chartContentTag.openAddModal = function () {
         chartContentTag.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'ChartContentTag/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             chartContentTag.selectedItem = response.Item;
             $modal.open({
@@ -45,7 +45,7 @@
         chartContentTag.addRequested = true;
         chartContentTag.busyIndicator.isActive = true;
 
-        ajax.call(mainPathApi+'ChartContentTag/add', chartContentTag.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/add', chartContentTag.selectedItem , 'POST').success(function (response) {
             chartContentTag.addRequested = false;
             chartContentTag.busyIndicator.isActive = false;
 
@@ -70,7 +70,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'ChartContentTag/getviewmodel',  chartContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/getviewmodel',  chartContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             chartContentTag.selectedItem = response.Item;
             $modal.open({
@@ -90,7 +90,7 @@
         }
         chartContentTag.busyIndicator.isActive = true;
 
-        ajax.call(mainPathApi+'ChartContentTag/edit',  chartContentTag.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/edit',  chartContentTag.selectedItem , 'PUT').success(function (response) {
             chartContentTag.addRequested = true;
             rashaErManage.checkAction(response);
             chartContentTag.busyIndicator.isActive = false;
@@ -135,11 +135,11 @@
             if (isConfirmed) {
                 chartContentTag.busyIndicator.isActive = true;
                 console.log(chartContentTag.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'ChartContentTag/getviewmodel',  chartContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/getviewmodel',  chartContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     chartContentTag.selectedItemForDelete = response.Item;
                     console.log(chartContentTag.selectedItemForDelete);
-                    ajax.call(mainPathApi+'ChartContentTag/delete',  chartContentTag.selectedItemForDelete , 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/delete',  chartContentTag.selectedItemForDelete , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         chartContentTag.busyIndicator.isActive = false;
 
@@ -226,7 +226,7 @@
     chartContentTag.exportFile = function () {
         chartContentTag.addRequested = true;
         chartContentTag.gridOptions.advancedSearchData.engine.ExportFile = chartContentTag.ExportFileClass;
-        ajax.call(mainPathApi+'ChartContentTag/exportfile', chartContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/exportfile', chartContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             chartContentTag.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -269,7 +269,7 @@
     }
     //Get TotalRowCount
     chartContentTag.getCount = function () {
-        ajax.call(mainPathApi+"ChartContentTag/count", chartContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ChartContentTag/count", chartContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             chartContentTag.addRequested = false;
             rashaErManage.checkAction(response);
             chartContentTag.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

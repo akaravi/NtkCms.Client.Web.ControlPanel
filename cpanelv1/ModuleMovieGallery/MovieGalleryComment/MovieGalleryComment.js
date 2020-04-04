@@ -32,7 +32,7 @@
             console.log(error)
         }
 
-        ajax.call(mainPathApi+"MovieGalleryComment/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"MovieGalleryComment/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             mvGalleryComment.busyIndicator.isActive = false;
             mvGalleryComment.ListItems = response.ListItems;
@@ -47,7 +47,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         //mvGalleryComment.busyIndicator.isActive = true;
-        //ajax.call(mainPathApi+'MovieGalleryComment/getall', {}, 'POST').success(function (response) {
+        //ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/getall', {}, 'POST').success(function (response) {
         //    mvGalleryComment.ContentList = response.ListItems;
         //    mvGalleryComment.busyIndicator.isActive = false;
         //});
@@ -58,7 +58,7 @@
     mvGalleryComment.addRequested = false;
     mvGalleryComment.openAddModal = function () {
         mvGalleryComment.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'MovieGalleryComment/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mvGalleryComment.busyIndicator.isActive = false;
             mvGalleryComment.selectedItem = response.Item;
@@ -79,7 +79,7 @@
         }
         mvGalleryComment.busyIndicator.isActive = true;
         mvGalleryComment.addRequested = true;
-        ajax.call(mainPathApi+'MovieGalleryComment/add', mvGalleryComment.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/add', mvGalleryComment.selectedItem, 'POST').success(function (response) {
             mvGalleryComment.addRequested = false;
             mvGalleryComment.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -106,7 +106,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'MovieGalleryComment/getviewmodel', mvGalleryComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/getviewmodel', mvGalleryComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mvGalleryComment.selectedItem = response.Item;
             $modal.open({
@@ -125,7 +125,7 @@
             return;
         }
         mvGalleryComment.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'MovieGalleryComment/edit', mvGalleryComment.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/edit', mvGalleryComment.selectedItem, 'PUT').success(function (response) {
             mvGalleryComment.addRequested = true;
             rashaErManage.checkAction(response);
             mvGalleryComment.busyIndicator.isActive = false;
@@ -168,11 +168,11 @@
             if (isConfirmed) {
                 mvGalleryComment.busyIndicator.isActive = true;
                 console.log(mvGalleryComment.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'MovieGalleryComment/getviewmodel', mvGalleryComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/getviewmodel', mvGalleryComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     //rashaErManage.checkAction(response);
                     mvGalleryComment.selectedItemForDelete = response.Item;
                     console.log(mvGalleryComment.selectedItemForDelete);
-                    ajax.call(mainPathApi+'MovieGalleryComment/delete', mvGalleryComment.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/delete', mvGalleryComment.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         mvGalleryComment.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -286,7 +286,7 @@
     mvGalleryComment.exportFile = function () {
         mvGalleryComment.gridOptions.advancedSearchData.engine.ExportFile = mvGalleryComment.ExportFileClass;
         mvGalleryComment.addRequested = true;
-        ajax.call(mainPathApi+'MovieGalleryComment/exportfile', mvGalleryComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/exportfile', mvGalleryComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             mvGalleryComment.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -330,7 +330,7 @@
     }
     //Get TotalRowCount
     mvGalleryComment.getCount = function () {
-        ajax.call(mainPathApi+"MovieGalleryComment/count", mvGalleryComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"MovieGalleryComment/count", mvGalleryComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             mvGalleryComment.addRequested = false;
             rashaErManage.checkAction(response);
             mvGalleryComment.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

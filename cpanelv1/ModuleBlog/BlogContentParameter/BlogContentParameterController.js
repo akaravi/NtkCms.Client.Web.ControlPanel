@@ -22,7 +22,7 @@
 
     
 
-    ajax.call(mainPathApi+"MemberGroup/getall", {}, 'POST').success(function (response) {
+    ajax.call(cmsServerConfig.configApiServerPath+"MemberGroup/getall", {}, 'POST').success(function (response) {
         blogContentParameter.memberGroups = response.ListItems;
     }).error(function (data, errCode, c, d) {
         console.log(data);
@@ -74,7 +74,7 @@
         } catch (error) {
             console.log(error);
         }
-        ajax.call(mainPathApi+"blogContentParameter/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"blogContentParameter/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             blogContentParameter.busyIndicator.isActive = false;
             blogContentParameter.ListItems = response.ListItems;
@@ -95,7 +95,7 @@
     blogContentParameter.addRequested = false;
     blogContentParameter.openAddModal = function () {
         blogContentParameter.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'blogContentParameter/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameter/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             blogContentParameter.busyIndicator.isActive = false;
             blogContentParameter.selectedItem = response.Item;
@@ -116,7 +116,7 @@
             return;
         blogContentParameter.busyIndicator.isActive = true;
         blogContentParameter.addRequested = true;
-        ajax.call(mainPathApi+'blogContentParameter/add', blogContentParameter.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameter/add', blogContentParameter.selectedItem, 'POST').success(function (response) {
             blogContentParameter.addRequested = false;
             blogContentParameter.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -142,7 +142,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'blogContentParameter/getviewmodel', blogContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameter/getviewmodel', blogContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             blogContentParameter.selectedItem = response.Item;
             if (blogContentParameter
@@ -163,7 +163,7 @@
         if (frm.$invalid)
             return;
         blogContentParameter.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'blogContentParameter/edit', blogContentParameter.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameter/edit', blogContentParameter.selectedItem, 'PUT').success(function (response) {
             blogContentParameter.addRequested = true;
             rashaErManage.checkAction(response);
             blogContentParameter.busyIndicator.isActive = false;
@@ -203,10 +203,10 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 blogContentParameter.busyIndicator.isActive = true;
-                ajax.call(mainPathApi+'blogContentParameter/getviewmodel', blogContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameter/getviewmodel', blogContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     blogContentParameter.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'blogContentParameter/delete', blogContentParameter.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameter/delete', blogContentParameter.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         blogContentParameter.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -227,7 +227,7 @@
 
     blogContentParameter.searchData = function () {
         blogContentParameter.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"blogContentParameter/getall", blogContentParameter.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"blogContentParameter/getall", blogContentParameter.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             blogContentParameter.categoryBusyIndicator.isActive = false;
             blogContentParameter.ListItems = response.ListItems;
@@ -362,7 +362,7 @@
     blogContentParameter.exportFile = function () {
         blogContentParameter.addRequested = true;
         blogContentParameter.gridOptions.advancedSearchData.engine.ExportFile = blogContentParameter.ExportFileClass;
-        ajax.call(mainPathApi+'blogContentParameter/exportfile', blogContentParameter.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameter/exportfile', blogContentParameter.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             blogContentParameter.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -405,7 +405,7 @@
     }
     //Get TotalRowCount
     blogContentParameter.getCount = function () {
-        ajax.call(mainPathApi+"blogContentParameter/count", blogContentParameter.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"blogContentParameter/count", blogContentParameter.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             blogContentParameter.addRequested = false;
             rashaErManage.checkAction(response);
             blogContentParameter.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

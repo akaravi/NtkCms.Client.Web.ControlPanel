@@ -33,7 +33,7 @@
             console.log(error)
         }
 
-        ajax.call(mainPathApi+"linkManagementMember/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"linkManagementMember/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementMember.busyIndicator.isActive = false;
             linkManagementMember.ListItems = response.ListItems;
@@ -48,7 +48,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         //linkManagementMember.busyIndicator.isActive = true;
-        //ajax.call(mainPathApi+'linkManagementMember/getall', {}, 'POST').success(function (response) {
+        //ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/getall', {}, 'POST').success(function (response) {
         //    linkManagementMember.ContentList = response.ListItems;
         //    linkManagementMember.busyIndicator.isActive = false;
         //});
@@ -59,7 +59,7 @@
     linkManagementMember.addRequested = false;
     linkManagementMember.openAddModal = function () {
         linkManagementMember.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'linkManagementMember/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementMember.busyIndicator.isActive = false;
             linkManagementMember.selectedItem = response.Item;
@@ -80,7 +80,7 @@
         }
         linkManagementMember.busyIndicator.isActive = true;
         linkManagementMember.addRequested = true;
-        ajax.call(mainPathApi+'linkManagementMember/add', linkManagementMember.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/add', linkManagementMember.selectedItem, 'POST').success(function (response) {
             linkManagementMember.addRequested = false;
             linkManagementMember.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -107,7 +107,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'linkManagementMember/getviewmodel', linkManagementMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/getviewmodel', linkManagementMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementMember.selectedItem = response.Item;
             $modal.open({
@@ -126,7 +126,7 @@
             return;
         }
         linkManagementMember.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'linkManagementMember/edit', linkManagementMember.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/edit', linkManagementMember.selectedItem, 'PUT').success(function (response) {
             linkManagementMember.addRequested = true;
             rashaErManage.checkAction(response);
             linkManagementMember.busyIndicator.isActive = false;
@@ -169,9 +169,9 @@
             if (isConfirmed) {
                 linkManagementMember.busyIndicator.isActive = true;
                 console.log(linkManagementMember.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'linkManagementMember/getviewmodel', linkManagementMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/getviewmodel', linkManagementMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     linkManagementMember.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'linkManagementMember/delete', linkManagementMember.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/delete', linkManagementMember.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         linkManagementMember.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -300,7 +300,7 @@
     linkManagementMember.exportFile = function () {
         linkManagementMember.addRequested = true;
         linkManagementMember.gridOptions.advancedSearchData.engine.ExportFile = linkManagementMember.ExportFileClass;
-        ajax.call(mainPathApi+'linkManagementMember/exportfile', linkManagementMember.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/exportfile', linkManagementMember.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             linkManagementMember.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -343,7 +343,7 @@
     }
     //Get TotalRowCount
     linkManagementMember.getCount = function () {
-        ajax.call(mainPathApi+"linkManagementMember/count", linkManagementMember.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"linkManagementMember/count", linkManagementMember.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             linkManagementMember.addRequested = false;
             rashaErManage.checkAction(response);
             linkManagementMember.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

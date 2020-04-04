@@ -8,7 +8,7 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
     if (itemRecordStatus != undefined) Servicecategory.itemRecordStatus = itemRecordStatus;
     Servicecategory.init = function () {
         Servicecategory.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"Servicecategory/getall", { RowPerPage:1000}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"Servicecategory/getall", { RowPerPage:1000}, 'POST').success(function (response) {
           
             rashaErManage.checkAction(response);
             Servicecategory.ListItems = response.ListItems;
@@ -30,7 +30,7 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
     Servicecategory.addRequested = false;
     Servicecategory.openAddModal = function () {
         Servicecategory.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'Servicecategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             Servicecategory.selectedItem = response.Item;
             //Set dataForTheTree
@@ -43,10 +43,10 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 serviceContent.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(serviceContent.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModuleService/ServiceCategory/add.html',
@@ -77,7 +77,7 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
         }
         Servicecategory.categoryBusyIndicator.isActive = true;
         Servicecategory.addRequested = true;
-        ajax.call(mainPathApi+'Servicecategory/add',  Servicecategory.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/add',  Servicecategory.selectedItem , 'POST').success(function (response) {
             Servicecategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -99,7 +99,7 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'Servicecategory/getviewmodel', Servicecategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/getviewmodel', Servicecategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             Servicecategory.selectedItem = response.Item;
             //Set dataForTheTree
@@ -114,10 +114,10 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 Servicecategory.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(Servicecategory.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (Servicecategory.selectedItem.LinkMainImageId > 0)
@@ -149,7 +149,7 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
             return;
         }
 
-        ajax.call(mainPathApi+'Servicecategory/', Servicecategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/', Servicecategory.selectedItem, 'PUT').success(function (response) {
             Servicecategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -174,7 +174,7 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
             return;
         }
         Servicecategory.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+'ServiceCategory/edit/', Servicecategory.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ServiceCategory/edit/', Servicecategory.selectedItem , 'PUT').success(function (response) {
             Servicecategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -220,11 +220,11 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(Servicecategory.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'Servicecategory/getviewmodel',  Servicecategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/getviewmodel',  Servicecategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     Servicecategory.selectedItemForDelete = response.Item;
                     console.log(Servicecategory.selectedItemForDelete);
-                    ajax.call(mainPathApi+'Servicecategory/delete', Servicecategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/delete', Servicecategory.selectedItemForDelete, 'DELETE').success(function (res) {
                         Servicecategory.categoryBusyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
@@ -362,11 +362,11 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -387,9 +387,9 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
             return;
         }
         serviceContent.selectedItem.LinkMainImageId = node.Id;
-        serviceContent.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
-        ajax.call(mainPathApi+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            serviceContent.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
+        serviceContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            serviceContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });

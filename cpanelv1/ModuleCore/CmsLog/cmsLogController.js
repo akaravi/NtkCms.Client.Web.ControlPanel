@@ -10,7 +10,7 @@
             console.log(error);
         }
 
-        ajax.call(mainPathApi+"CoreLogError/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreLogError/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
         angular.forEach( response.ListItems, function (item, key) {
                 item.isChecked=false
@@ -50,7 +50,7 @@ cmsLog.deleteAllRow = function () {
         IntValue1: 0,
       });
       ajax
-        .call(mainPathApi + "CoreLogError/getall", filterModelparam, "POST")
+        .call(cmsServerConfig.configApiServerPath + "CoreLogError/getall", filterModelparam, "POST")
         .success(function(response1) {
             cmsLog.ListItems=response1.ListItems;
             angular.forEach( cmsLog.ListItems, function (item, key) {
@@ -79,7 +79,7 @@ cmsLog.listforDel=listforDel;
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(cmsLog.gridOptions.selectedRow.item);
-                    ajax.call(mainPathApi+'CoreLogError/DeleteList',cmsLog.listforDel , 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreLogError/DeleteList',cmsLog.listforDel , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             //cmsLog.replaceItem(cmsLog.selectedItemForDelete.Id);
@@ -103,11 +103,11 @@ cmsLog.listforDel=listforDel;
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(cmsLog.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'CoreLogError/getviewmodel', cmsLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreLogError/getviewmodel', cmsLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsLog.selectedItemForDelete = response.Item;
                     console.log(cmsLog.selectedItemForDelete);
-                    ajax.call(mainPathApi+'CoreLogError/delete', cmsLog.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreLogError/delete', cmsLog.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsLog.replaceItem(cmsLog.selectedItemForDelete.Id);
@@ -176,7 +176,7 @@ cmsLog.listforDel=listforDel;
     cmsLog.exportFile = function () {
         cmsLog.addRequested = true;
         cmsLog.gridOptions.advancedSearchData.engine.ExportFile = cmsLog.ExportFileClass;
-        ajax.call(mainPathApi+'CoreLogError/exportfile', cmsLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreLogError/exportfile', cmsLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             cmsLog.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -219,7 +219,7 @@ cmsLog.listforDel=listforDel;
     }
     //Get TotalRowCount
     cmsLog.getCount = function () {
-        ajax.call(mainPathApi+"CoreLogError/count", cmsLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreLogError/count", cmsLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             cmsLog.addRequested = false;
             rashaErManage.checkAction(response);
             cmsLog.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

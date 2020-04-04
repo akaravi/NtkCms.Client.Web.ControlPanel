@@ -13,7 +13,7 @@
     publicConfig.init = function () {
         publicConfig.busyIndicator.isActive = true;
         publicConfig.gridOptions.advancedSearchData.engine.RowPerPage = 20;
-        ajax.call(mainPathApi+"bankpaymentpublicconfig/getall", publicConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"bankpaymentpublicconfig/getall", publicConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             publicConfig.ListItems = response.ListItems;
             publicConfig.gridOptions.fillData(publicConfig.ListItems, response.resultAccess);
@@ -35,7 +35,7 @@
 
     publicConfig.autoAdd = function () {
         publicConfig.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'bankpaymentpublicconfig/autoadd', { LinkSourceId: publicConfig.selectedSourceId }, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentpublicconfig/autoadd', { LinkSourceId: publicConfig.selectedSourceId }, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             publicConfig.busyIndicator.isActive = false;
             publicConfig.init();
@@ -59,7 +59,7 @@
 
         publicConfig.addRequested = true;
         publicConfig.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'bankpaymentpublicconfig/getonewithjsonformatter', engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentpublicconfig/getonewithjsonformatter', engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             publicConfig.selectedItem = response.Item;
 
@@ -114,10 +114,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/GetAll", filterModelParentRootFolders, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModelParentRootFolders, 'POST').success(function (response1) {
                 publicConfig.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) {
                     Array.prototype.push.apply(publicConfig.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (publicConfig.selectedItem.LinkModuleFileLogoId > 0)
@@ -150,7 +150,7 @@
 
         publicConfig.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(publicConfig.submitValue));
 
-        ajax.call(mainPathApi+'bankpaymentpublicconfig/edit', publicConfig.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentpublicconfig/edit', publicConfig.selectedItem, 'PUT').success(function (response) {
             publicConfig.addRequested = false;
             publicConfig.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -190,11 +190,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'bankpaymentpublicconfig/getviewmodel', publicConfig.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentpublicconfig/getviewmodel', publicConfig.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     publicConfig.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'bankpaymentpublicconfig/delete', publicConfig.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentpublicconfig/delete', publicConfig.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             publicConfig.replaceItem(publicConfig.selectedItemForDelete.Id);
@@ -279,7 +279,7 @@
     publicConfig.exportFile = function () {
         publicConfig.addRequested = true;
         publicConfig.gridOptions.advancedSearchData.engine.ExportFile = publicConfig.ExportFileClass;
-        ajax.call(mainPathApi+'bankpaymentpublicconfig/exportfile', publicConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentpublicconfig/exportfile', publicConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             publicConfig.addRequested = false;
             rashaErManage.checkAction(response);
             publicConfig.reportDownloadLink = response.LinkFile;
@@ -322,7 +322,7 @@
     //Get TotalRowCount
     publicConfig.getCount = function () {
         publicConfig.addRequested = true;
-        ajax.call(mainPathApi+"BankPaymentPublicConfig/count", publicConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"BankPaymentPublicConfig/count", publicConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             publicConfig.addRequested = false;
             rashaErManage.checkAction(response);
             publicConfig.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -337,7 +337,7 @@
     //    $builder.removeAllFormObject('default');
     //    var engine = { Filters: [{ PropertyName: "Id", IntValue1: selectedId }] };
     //    publicConfig.addRequested = true;
-    //    ajax.call(mainPathApi+"BankPaymentPublicConfig/getonewithjsonformatter", engine, 'POST').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+"BankPaymentPublicConfig/getonewithjsonformatter", engine, 'POST').success(function (response) {
     //        publicConfig.addRequested = false;
     //        if (response.IsSuccess) {
     //            publicConfig.selectedItem = response.Item;
@@ -398,7 +398,7 @@
         publicConfig.busyIndicator.isActive = true;
         publicConfig.addRequested = true;
         publicConfig.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(publicConfig.submitValue));
-        ajax.call(mainPathApi+'bankpaymentpublicconfig/edit', publicConfig.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentpublicconfig/edit', publicConfig.selectedItem, 'PUT').success(function (response) {
             rashaErManage.checkAction(response);
             publicConfig.busyIndicator.isActive = false;
             publicConfig.addRequested = false;
@@ -432,11 +432,11 @@
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -456,9 +456,9 @@
             return;
         }
         publicConfig.selectedItem.LinkModuleFileLogoId = node.Id;
-        publicConfig.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
-        ajax.call(mainPathApi+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            publicConfig.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
+        publicConfig.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            publicConfig.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });

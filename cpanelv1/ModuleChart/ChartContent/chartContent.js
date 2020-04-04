@@ -2,7 +2,7 @@
  ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$timeout', '$window','$stateParams', '$filter',
   function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $timeout, $window,$stateParams, $filter) {
     var chartContent = this;
-    chartContent.mainPathApiUpload = mainPathApiUpload;
+    chartContent.RouteUploadFileContent = cmsServerConfig.configRouteUploadFileContent;
   var edititem = false;
     //For Grid Options
     chartContent.gridOptions = {};
@@ -270,7 +270,7 @@
     //init Function
     chartContent.init = function () {
         chartContent.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"ChartCategory/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ChartCategory/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
             chartContent.categoryBusyIndicator.isActive = false;
             chartContent.treeConfig.Items = response.ListItems;
         }).error(function (data, errCode, c, d) {
@@ -280,7 +280,7 @@
         if (chartContent.selectedContentId.Id >0)
             chartContent.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
         chartContent.contentBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"chartContent/getall", chartContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"chartContent/getall", chartContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartContent.ListItems = response.ListItems;
             console.log(response.ListItems);
@@ -294,17 +294,17 @@
             rashaErManage.checkAction(data, errCode);
             chartContent.contentBusyIndicator.isActive = false;
         });
-        ajax.call(mainPathApi+"chartTag/getviewmodel", "0", 'GET').success(function (response) {    //Get a ViewModel for BiographyTag
+        ajax.call(cmsServerConfig.configApiServerPath+"chartTag/getviewmodel", "0", 'GET').success(function (response) {    //Get a ViewModel for BiographyTag
             chartContent.ModuleTag = response.Item;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(mainPathApi+"chartContentTag/getviewmodel", "0", 'GET').success(function (response) { //Get a ViewModel for chartContentTag
+        ajax.call(cmsServerConfig.configApiServerPath+"chartContentTag/getviewmodel", "0", 'GET').success(function (response) { //Get a ViewModel for chartContentTag
             chartContent.ModuleContentTag = response.Item;
         }).error(function (data, errCode, c, d) {
             console.log(data);
             });
-        ajax.call(mainPathApi+"CoreLocation/GetAllProvinces", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreLocation/GetAllProvinces", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartContent.provinceCmsLocatinoListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
@@ -328,7 +328,7 @@
             chartContent.gridContentOptions.advancedSearchData.engine.Filters.push(Filter_value1);
 
 
-            ajax.call(mainPathApi+'chartComment/getall', engine, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'chartComment/getall', engine, 'POST').success(function (response) {
                 chartContent.listComments = response.ListItems;
                 //chartContent.gridOptions.resultAccess = response.resultAccess; // دسترسی ها نمایش
                 chartContent.gridContentOptions.fillData(chartContent.listComments, response.resultAccess);
@@ -365,7 +365,7 @@
             engine2.Filters.push(Filter_value);
 
 
-            ajax.call(mainPathApi+'chartcontentevent/getall', engine2, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'chartcontentevent/getall', engine2, 'POST').success(function (response) {
                 chartContent.listEvents = response.ListItems;
                 //chartContent.gridOptions.resultAccess = response.resultAccess; // دسترسی ها نمایش
                 chartContent.gridContentEventOptions.fillData(chartContent.listEvents, response.resultAccess);
@@ -390,7 +390,7 @@
     // Open Add Category Modal 
     chartContent.addNewCategoryModel = function () {
         chartContent.addRequested = true;
-        ajax.call(mainPathApi+'ChartCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartCategory/getviewmodel', "0", 'GET').success(function (response) {
             chartContent.addRequested = false;
             rashaErManage.checkAction(response);
             chartContent.selectedItem = response.Item;
@@ -403,10 +403,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 chartContent.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(chartContent.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModuleChart/ChartCategory/add.html',
@@ -437,7 +437,7 @@
             return;
         }
         chartContent.addRequested = true;
-        ajax.call(mainPathApi+'ChartCategory/getviewmodel', chartContent.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartCategory/getviewmodel', chartContent.treeConfig.currentNode.Id, 'GET').success(function (response) {
             chartContent.addRequested = false;
             rashaErManage.checkAction(response);
             chartContent.selectedItem = response.Item;
@@ -454,10 +454,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 chartContent.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(chartContent.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (chartContent.selectedItem.LinkMainImageId > 0)
@@ -495,7 +495,7 @@
         if (chartContent.treeConfig.currentNode != null)
             chartContent.selectedItem.LinkParentId = chartContent.treeConfig.currentNode.Id;
         chartContent.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+'chartcategory/add', chartContent.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartcategory/add', chartContent.selectedItem, 'POST').success(function (response) {
             chartContent.addRequested = false;
             rashaErManage.checkAction(response);
             console.log(response);
@@ -522,7 +522,7 @@
             return;
         }
         chartContent.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+'ChartCategory/edit', chartContent.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartCategory/edit', chartContent.selectedItem, 'PUT').success(function (response) {
             chartContent.addRequested = true;
             //chartContent.showbusy = false;
             chartContent.treeConfig.showbusy = false;
@@ -555,12 +555,12 @@
                 chartContent.contentBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'chartcategory/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'chartcategory/getviewmodel', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     chartContent.selectedItemForDelete = response.Item;
                     console.log(chartContent.selectedItemForDelete);
-                    ajax.call(mainPathApi+'chartcategory/delete', chartContent.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'chartcategory/delete', chartContent.selectedItemForDelete, 'DELETE').success(function (res) {
                         chartContent.contentBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //chartContent.replaceCategoryItem(chartContent.treeConfig.Items, node.Id);
@@ -614,7 +614,7 @@
             }
             chartContent.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
-        ajax.call(mainPathApi+"chartcontent/getall", chartContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"chartcontent/getall", chartContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartContent.contentBusyIndicator.isActive = false;
             chartContent.ListItems = response.ListItems;
@@ -635,7 +635,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'chartcontent/getviewmodel', chartContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartcontent/getviewmodel', chartContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             chartContent.selectedItem = response1.Item;
             $modal.open({
@@ -669,7 +669,7 @@
         chartContent.modalTitle = 'اضافه کردن محتوای جدید';
         addNewContentModel = true;
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'chartcontent/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartcontent/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             addNewContentModel = false;
             console.log(response);
@@ -700,7 +700,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'chartContent/getviewmodel', chartContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartContent/getviewmodel', chartContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             chartContent.selectedItem = response1.Item;
@@ -716,7 +716,7 @@
             chartContent.filePickerFilePodcast.fileId = null;
             if (response1.Item.LinkMainImageId != null) {
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'FileContent/getviewmodel', response1.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response1.Item.LinkMainImageId, 'GET').success(function (response2) {
                     buttonIsPressed = false;
                     chartContent.filePickerMainImage.filename = response2.Item.FileName;
                     chartContent.filePickerMainImage.fileId = response2.Item.Id
@@ -725,7 +725,7 @@
                 });
             }
             if (response1.Item.LinkFilePodcastId != null) {
-                ajax.call(mainPathApi+'FileContent/getviewmodel', response1.Item.LinkFilePodcastId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response1.Item.LinkFilePodcastId, 'GET').success(function (response2) {
                     chartContent.filePickerFilePodcast.filename = response2.Item.FileName;
                     chartContent.filePickerFilePodcast.fileId = response2.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -790,7 +790,7 @@
                 item.Destination = [];
             });
 
-        ajax.call(mainPathApi+'chartContent/add', apiSelectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartContent/add', apiSelectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartContent.contentBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -807,7 +807,7 @@
                         chartContent.selectedItem.ContentTags.push(newObject);
                     }
                 });
-                ajax.call(mainPathApi+'chartContentTag/addbatch', chartContent.selectedItem.ContentTags, 'POST').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'chartContentTag/addbatch', chartContent.selectedItem.ContentTags, 'POST').success(function (response) {
                     console.log(response);
                 }).error(function (data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
@@ -864,7 +864,7 @@
                 item.Destination = [];
             });
 
-        ajax.call(mainPathApi+'chartContent/edit', apiSelectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartContent/edit', apiSelectedItem, 'PUT').success(function (response) {
             chartContent.contentBusyIndicator.isActive = false;
             chartContent.addRequested = false;
             chartContent.treeConfig.showbusy = false;
@@ -898,14 +898,14 @@
                 chartContent.showbusy = true;
                 chartContent.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+"chartContent/getviewmodel", chartContent.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"chartContent/getviewmodel", chartContent.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     chartContent.showbusy = false;
                     chartContent.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     chartContent.selectedItemForDelete = response.Item;
                     console.log(chartContent.selectedItemForDelete);
-                    ajax.call(mainPathApi+"chartContent/delete", chartContent.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"chartContent/delete", chartContent.selectedItemForDelete, "DELETE").success(function (res) {
                         chartContent.contentBusyIndicator.isActive = false;
                         chartContent.treeConfig.showbusy = false;
                         chartContent.showIsBusy = false;
@@ -1043,11 +1043,11 @@
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(mainPathApi+'chartContent/getviewmodel', chartContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartContent/getviewmodel', chartContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             chartContent.selectedItem = response.Item;
             chartContent.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
-            ajax.call(mainPathApi+'chartContent/edit', chartContent.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'chartContent/edit', chartContent.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     var index = chartContent.ListItems.indexOf(chartContent.gridOptions.selectedRow.item);
@@ -1069,11 +1069,11 @@
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(mainPathApi+'chartContent/getviewmodel', chartContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartContent/getviewmodel', chartContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             chartContent.selectedItem = response.Item;
             chartContent.selectedItem.IsArchive = (response.Item.IsArchive == true) ? false : true;
-            ajax.call(mainPathApi+'chartContent/edit', chartContent.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'chartContent/edit', chartContent.selectedItem, 'PUT').success(function (response2) {
                 chartContent.contentBusyIndicator.isActive = true;
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
@@ -1109,7 +1109,7 @@
     chartContent.summernoteText = '<h3>Hello Jonathan! </h3>dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industrys</strong> standard dummy text ever since the 1500s,when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronictypesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with<br /><br />';
     chartContent.searchData = function () {
         chartContent.contentBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"chartContent/getall", chartContent.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"chartContent/getall", chartContent.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             chartContent.contentBusyIndicator.isActive = false;
             chartContent.ListItems = response.ListItems;
@@ -1156,13 +1156,13 @@
                 console.log("Item to be deleted: ", chartContent.gridOptions.selectedRow.item);
                 chartContent.showbusy = true;
                 chartContent.showIsBusy = true;
-                ajax.call(mainPathApi+'chartContent/getviewmodel', chartContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'chartContent/getviewmodel', chartContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     chartContent.showbusy = false;
                     chartContent.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     chartContent.selectedItemForDelete = response.Item;
                     console.log(chartContent.selectedItemForDelete);
-                    ajax.call(mainPathApi+'chartContent/delete', chartContent.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'chartContent/delete', chartContent.selectedItemForDelete, 'DELETE').success(function (res) {
                         chartContent.treeConfig.showbusy = false;
                         chartContent.showIsBusy = false;
                         rashaErManage.checkAction(res);
@@ -1207,13 +1207,13 @@
                 console.log("Item to be deleted: ", chartContent.gridOptions.selectedRow.item);
                 chartContent.showbusy = true;
                 chartContent.showIsBusy = true;
-                ajax.call(mainPathApi+'chartContent/getviewmodel', chartContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'chartContent/getviewmodel', chartContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     chartContent.showbusy = false;
                     chartContent.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     chartContent.selectedItemForDelete = response.Item;
                     console.log(chartContent.selectedItemForDelete);
-                    ajax.call(mainPathApi+'chartContent/delete', chartContent.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'chartContent/delete', chartContent.selectedItemForDelete, 'DELETE').success(function (res) {
                         chartContent.treeConfig.showbusy = false;
                         chartContent.showIsBusy = false;
                         rashaErManage.checkAction(res);
@@ -1385,7 +1385,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(mainPathApi+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             chartContent.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -1423,7 +1423,7 @@
 
         chartContent.FileList = [];
         //get list of file from category id
-        ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
             chartContent.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -1440,7 +1440,7 @@
 
         chartContent.FileList = [];
         //get list of file from category id
-        ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
             chartContent.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -1478,14 +1478,14 @@
         chartContent.fileIdToDelete = chartContent.selectedIndex;
 
         // Delete the file
-        ajax.call(mainPathApi+"FileContent/getviewmodel", chartContent.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", chartContent.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(mainPathApi+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
                     chartContent.remove(chartContent.FileList, chartContent.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 chartContent.FileItem = response3.Item;
                                 chartContent.FileItem.FileName = name;
@@ -1514,7 +1514,7 @@
     }
     //save new file
     chartContent.saveNewFile = function () {
-        ajax.call(mainPathApi+"FileContent/add", chartContent.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", chartContent.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 chartContent.FileItem = response.Item;
                 chartContent.showSuccessIcon();
@@ -1592,14 +1592,14 @@
                      // replace the file
             ajax
               .call(
-                mainPathApi+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
                 chartContent.fileIdToDelete,
                 "GET"
               )
               .success(function(response1) {
                 if (response1.IsSuccess == true) {
                   console.log(response1.Item);
-                  ajax.call(mainPathApi+"FileContent/replace", response1.Item, "POST")
+                  ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
                     .success(function(response2) {
                       if (response2.IsSuccess == true) {
                         chartContent.FileItem = response2.Item;
@@ -1642,7 +1642,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
                     chartContent.FileItem = response.Item;
                     chartContent.FileItem.FileName = uploadFile.name;
                     chartContent.FileItem.uploadName = uploadFile.uploadName;
@@ -1651,7 +1651,7 @@
                     chartContent.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- chartContent.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(mainPathApi+"FileContent/add", chartContent.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", chartContent.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             chartContent.FileItem = response.Item;
                             chartContent.showSuccessIcon();
@@ -1697,14 +1697,14 @@
  // replace the file
             ajax
               .call(
-                mainPathApi+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
                 chartContent.fileIdToDelete,
                 "GET"
               )
               .success(function(response1) {
                 if (response1.IsSuccess == true) {
                   console.log(response1.Item);
-                  ajax.call(mainPathApi+"FileContent/replace", response1.Item, "POST")
+                  ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
                     .success(function(response2) {
                       if (response2.IsSuccess == true) {
                         chartContent.FileItem = response2.Item;
@@ -1747,7 +1747,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
                     chartContent.FileItem = response.Item;
                     chartContent.FileItem.FileName = uploadFile.name;
                     chartContent.FileItem.uploadName = uploadFile.uploadName;
@@ -1756,7 +1756,7 @@
                     chartContent.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- chartContent.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(mainPathApi+"FileContent/add", chartContent.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", chartContent.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             chartContent.FileItem = response.Item;
                             chartContent.showSuccessIcon();
@@ -1795,7 +1795,7 @@
     chartContent.exportFile = function () {
         chartContent.gridOptions.advancedSearchData.engine.ExportFile = chartContent.ExportFileClass;
         chartContent.addRequested = true;
-        ajax.call(mainPathApi+'ChartContent/exportfile', chartContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartContent/exportfile', chartContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             chartContent.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -1838,7 +1838,7 @@
     }
     //Get TotalRowCount
     chartContent.getCount = function () {
-        ajax.call(mainPathApi+"ChartContent/count", chartContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ChartContent/count", chartContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             chartContent.addRequested = false;
             rashaErManage.checkAction(response);
             chartContent.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -1872,11 +1872,11 @@
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -1897,9 +1897,9 @@
             return;
         }
         chartContent.selectedItem.LinkMainImageId = node.Id;
-        chartContent.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
-        ajax.call(mainPathApi+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            chartContent.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
+        chartContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            chartContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });

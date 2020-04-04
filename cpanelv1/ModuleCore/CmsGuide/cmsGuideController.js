@@ -1,7 +1,7 @@
 ﻿app.controller("cmsGuideController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $filter) {
 
     var cmsGuide = this;
-    cmsGuide.mainPathApiUpload = mainPathApiUpload;
+    cmsGuide.RouteUploadFileContent = cmsServerConfig.configRouteUploadFileContent;
     cmsGuide.busyIndicator = {
         isActive: false,
         message: "در حال بار گذاری ..."
@@ -40,7 +40,7 @@
     var thisTableFieldICollection = 'CmsGuideCmsUserGroup';
 
 
-    ajax.call(mainPathApi+"CoreUserGroup/getall", {}, 'POST').success(function (response) {
+    ajax.call(cmsServerConfig.configApiServerPath+"CoreUserGroup/getall", {}, 'POST').success(function (response) {
         cmsGuide.menueGroups = response.ListItems;
     }).error(function (data, errCode, c, d) {
         console.log(data);
@@ -97,7 +97,7 @@
 
 
     cmsGuide.moduleList = {};
-    ajax.call(mainPathApi+'CoreModule/getall', {}, 'POST').success(function (response) {
+    ajax.call(cmsServerConfig.configApiServerPath+'CoreModule/getall', {}, 'POST').success(function (response) {
         cmsGuide.moduleList = response.ListItems;
     });
 
@@ -130,7 +130,7 @@
         cmsGuide.addRequested = true;
         cmsGuide.busyIndicator.isActive = true;
         
-        ajax.call(mainPathApi+"CoreGuide/GetAll", cmsGuide.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreGuide/GetAll", cmsGuide.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             cmsGuide.treeConfig.Items = response.ListItems;
             rashaErManage.checkAction(response);
             cmsGuide.ListItems = response.ListItems;
@@ -177,7 +177,7 @@
             SearchType: 0
         }
         cmsGuide.gridOptions.advancedSearchData.engine.Filters.push(s);
-        ajax.call(mainPathApi+"CoreGuide/GetAll", cmsGuide.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreGuide/GetAll", cmsGuide.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsGuide.busyIndicator.isActive = false;
             cmsGuide.ListItems = response.ListItems;
@@ -232,13 +232,13 @@
         cmsGuide.filePickerFiles.filename = "";
         cmsGuide.filePickerFiles.fileId = null;
         cmsGuide.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'CoreGuide/getall', {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreGuide/getall', {}, 'POST').success(function (response) {
             // To define an array otherwise cmsGuide.selectedItem[thisTableFieldICollection] will be detected as an object
             cmsGuide.selectedItem[thisTableFieldICollection] = [];
             cmsGuide.ListParentItems = response.ListItems;
             cmsGuide.busyIndicator.isActive = false;
         });
-        ajax.call(mainPathApi+'CoreGuide/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreGuide/getviewmodel', '0', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsGuide.selectedItem = response.Item;
             if(cmsGuide.treeConfig !=null && cmsGuide.treeConfig != undefined && cmsGuide.treeConfig.currentNode !=null && cmsGuide.treeConfig.currentNode !=undefined)
@@ -265,7 +265,7 @@
         cmsGuide.addRequested = true;
         if (cmsGuide.selectedItem.isDependencyModule == false || cmsGuide.selectedItem.isDependencyModule == undefined)
             cmsGuide.selectedItem.LinkModuleId = null;
-        ajax.call(mainPathApi+'CoreGuide/add', cmsGuide.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreGuide/add', cmsGuide.selectedItem, 'POST').success(function (response) {
             cmsGuide.busyIndicator.isActive = false;
             cmsGuide.addRequested = false;
             rashaErManage.checkAction(response);
@@ -315,7 +315,7 @@
         }
         cmsGuide.CmsUserGroup_Id = [];
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'CoreGuide/getviewmodel', cmsGuide.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreGuide/getviewmodel', cmsGuide.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsGuide.selectedItem = response.Item;
@@ -339,7 +339,7 @@
         cmsGuide.addRequested = true;
       cmsGuide.selectedItem.LinkFileIds = "";
       cmsGuide.stringfyLinkFileIds();
-        ajax.call(mainPathApi+'CoreGuide/edit', cmsGuide.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreGuide/edit', cmsGuide.selectedItem, 'PUT').success(function (response) {
             cmsGuide.addRequested = false;
             cmsGuide.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -388,12 +388,12 @@
                 console.log(cmsGuide.gridOptions.selectedRow.item);
                 cmsGuide.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'CoreGuide/getviewmodel', cmsGuide.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreGuide/getviewmodel', cmsGuide.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     cmsGuide.selectedItemForDelete = response.Item;
                     console.log(cmsGuide.selectedItemForDelete);
-                    ajax.call(mainPathApi+'CoreGuide/delete', cmsGuide.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreGuide/delete', cmsGuide.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsGuide.replaceItem(cmsGuide.selectedItemForDelete.Id);
@@ -420,7 +420,7 @@
     cmsGuide.searchData = function () {
         cmsGuide.addRequested = true;
         cmsGuide.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"CoreGuide/getAll", cmsGuide.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreGuide/getAll", cmsGuide.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsGuide.responseListItems = response.ListItems;
             cmsGuide.gridOptions.fillData(cmsGuide.responseListItems);
@@ -511,7 +511,7 @@
     cmsGuide.deleteAttachedfieldName = function(index) {
       ajax
         .call(
-          mainPathApi+"CoreGuide/delete",
+          cmsServerConfig.configApiServerPath+"CoreGuide/delete",
           cmsGuide.contractsList[index],
           "DELETE"
         )
@@ -536,7 +536,7 @@
           if (item == parseInt(item, 10)) {
             // Check if item is an integer
             ajax
-              .call(mainPathApi + "FileContent/getviewmodel", parseInt(item), "GET")
+              .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", parseInt(item), "GET")
               .success(function(response) {
                 if (response.IsSuccess) {
                   cmsGuide.attachedFiles.push({

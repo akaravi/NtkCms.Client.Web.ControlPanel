@@ -18,7 +18,7 @@
 
     taskSchedulerProcessCategory.init = function () {
         taskSchedulerProcessCategory.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"TaskSchedulerProcessCategory/getall", taskSchedulerProcessCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerProcessCategory/getall", taskSchedulerProcessCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             taskSchedulerProcessCategory.busyIndicator.isActive = false;
             taskSchedulerProcessCategory.ListItems = response.ListItems;
@@ -43,7 +43,7 @@
  //     taskSchedulerProcessCategory.filePickerMainImage.fileId = null;
  //     taskSchedulerProcessCategory.modalTitle = 'اضافه';
  //     buttonIsPressed = true;
- //     ajax.call(mainPathApi+'TaskSchedulerProcessCategory/getviewmodel', "0", 'GET').success(function (response) {
+ //     ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/getviewmodel', "0", 'GET').success(function (response) {
  //         buttonIsPressed = false;
  //         rashaErManage.checkAction(response);
  //         taskSchedulerProcessCategory.busyIndicator.isActive = false;
@@ -69,7 +69,7 @@
 //       }
 //       taskSchedulerProcessCategory.busyIndicator.isActive = true;
 //       taskSchedulerProcessCategory.addRequested = true;
-//       ajax.call(mainPathApi+'TaskSchedulerProcessCategory/add', taskSchedulerProcessCategory.selectedItem, 'POST').success(function (response) {
+//       ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/add', taskSchedulerProcessCategory.selectedItem, 'POST').success(function (response) {
 //           taskSchedulerProcessCategory.addRequested = false;
 //           taskSchedulerProcessCategory.busyIndicator.isActive = false;
 //           rashaErManage.checkAction(response);
@@ -86,7 +86,7 @@
 //   }
 
     taskSchedulerProcessCategory.autoAdd = function () {
-        ajax.call(mainPathApi+'TaskSchedulerProcessCategory/autoadd', '', 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/autoadd', '', 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             taskSchedulerProcessCategory.init();
         }).error(function (data, errCode, c, d) {
@@ -102,7 +102,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'TaskSchedulerProcessCategory/getviewmodel', taskSchedulerProcessCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/getviewmodel', taskSchedulerProcessCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             taskSchedulerProcessCategory.selectedItem = response.Item;
@@ -111,7 +111,7 @@
          if (response.Item.LinkMainImageId != null) {
             ajax
               .call(
-                mainPathApi+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
                 response.Item.LinkMainImageId,
                 "GET"
               )
@@ -145,7 +145,7 @@
         }
         taskSchedulerProcessCategory.addRequested = true;
         taskSchedulerProcessCategory.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'TaskSchedulerProcessCategory/edit', taskSchedulerProcessCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/edit', taskSchedulerProcessCategory.selectedItem, 'PUT').success(function (response) {
             rashaErManage.checkAction(response);
             taskSchedulerProcessCategory.busyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -186,11 +186,11 @@
             if (isConfirmed) {
                 taskSchedulerProcessCategory.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'TaskSchedulerProcessCategory/getviewmodel', taskSchedulerProcessCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/getviewmodel', taskSchedulerProcessCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     taskSchedulerProcessCategory.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'TaskSchedulerProcessCategory/delete', taskSchedulerProcessCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/delete', taskSchedulerProcessCategory.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         taskSchedulerProcessCategory.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -279,7 +279,7 @@
         taskSchedulerProcessCategory.addRequested = true;
         taskSchedulerProcessCategory.busyIndicator.isActive = true;
         taskSchedulerProcessCategory.selectedItem[taskSchedulerProcessCategory.selectedConfig] = $.trim(angular.toJson(taskSchedulerProcessCategory.submitValue));
-        ajax.call(mainPathApi+'TaskSchedulerProcessCategory/edit', taskSchedulerProcessCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcessCategory/edit', taskSchedulerProcessCategory.selectedItem, 'PUT').success(function (response) {
             rashaErManage.checkAction(response);
             taskSchedulerProcessCategory.addRequested = false;
             taskSchedulerProcessCategory.busyIndicator.isActive = false;
@@ -312,14 +312,14 @@
              // replace the file
             ajax
               .call(
-                mainPathApi+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
                 taskSchedulerProcessCategory.fileIdToDelete,
                 "GET"
               )
               .success(function(response1) {
                 if (response1.IsSuccess == true) {
                   console.log(response1.Item);
-                  ajax.call(mainPathApi+"FileContent/replace", response1.Item, "POST")
+                  ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
                     .success(function(response2) {
                       if (response2.IsSuccess == true) {
                         taskSchedulerProcessCategory.FileItem = response2.Item;
@@ -363,7 +363,7 @@
           // File does not exists
           // Save New file
           ajax
-            .call(mainPathApi + "FileContent/getviewmodel", "0", "GET")
+            .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", "GET")
             .success(function(response) {
               taskSchedulerProcessCategory.FileItem = response.Item;
                 taskSchedulerProcessCategory.FileItem.FileName = uploadFile.name;
@@ -374,7 +374,7 @@
               // ------- taskSchedulerProcessCategory.saveNewFile()  ----------------------
               var result = 0;
               ajax
-                .call(mainPathApi + "FileContent/add", taskSchedulerProcessCategory.FileItem, "POST")
+                .call(cmsServerConfig.configApiServerPath + "FileContent/add", taskSchedulerProcessCategory.FileItem, "POST")
                 .success(function(response) {
                   if (response.IsSuccess) {
                     taskSchedulerProcessCategory.FileItem = response.Item;

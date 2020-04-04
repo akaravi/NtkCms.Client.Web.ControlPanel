@@ -36,7 +36,7 @@
 
     ticketingFaq.init = function () {
         ticketingFaq.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"ticketingFaq/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ticketingFaq/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             ticketingFaq.ListItems = response.ListItems;
             ticketingFaq.gridOptions.fillData(response.ListItems, response.resultAccess);
@@ -45,7 +45,7 @@
             console.log(data);
             ticketingFaq.busyIndicator.isActive = false;
         });
-        ajax.call(mainPathApi+"ticketingDepartemen/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ticketingDepartemen/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             ticketingFaq.ticketTypeListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
@@ -56,7 +56,7 @@
 
     ticketingFaq.openAddModal = function () {
         ticketingFaq.modalTitle = "اضافه";
-        ajax.call(mainPathApi+'ticketingFaq/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/getviewmodel', "0", 'GET').success(function (response) {
             ticketingFaq.selectedItem = response.Item;
             ticketingFaq.selectedItem.ActionDate = date;
             $modal.open({
@@ -74,7 +74,7 @@
             return;
         }
         ticketingFaq.modalTitle = 'ویرایش';
-        ajax.call(mainPathApi+'ticketingFaq/getviewmodel', ticketingFaq.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/getviewmodel', ticketingFaq.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             ticketingFaq.selectedItem = response.Item;
             $modal.open({
@@ -94,7 +94,7 @@
         }
 
         ticketingFaq.addRequested = true;
-        ajax.call(mainPathApi+'ticketingFaq/add', ticketingFaq.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/add', ticketingFaq.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
 
             if (response.IsSuccess) {
@@ -117,7 +117,7 @@
             return;
         }
         ticketingFaq.addRequested = true;
-        ajax.call(mainPathApi+'ticketingFaq/edit', ticketingFaq.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/edit', ticketingFaq.selectedItem, 'PUT').success(function (response) {
             ticketingFaq.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -138,10 +138,10 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                ajax.call(mainPathApi+'ticketingFaq/getviewmodel', ticketingFaq.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/getviewmodel', ticketingFaq.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     ticketingFaq.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'ticketingFaq/delete', ticketingFaq.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/delete', ticketingFaq.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             ticketingFaq.replaceItem(ticketingFaq.selectedItemForDelete.Id);
@@ -214,7 +214,7 @@
     ticketingFaq.exportFile = function () {
         ticketingFaq.addRequested = true;
         ticketingFaq.gridOptions.advancedSearchData.engine.ExportFile = ticketingFaq.ExportFileClass;
-        ajax.call(mainPathApi+'ticketingFaq/exportfile', ticketingFaq.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/exportfile', ticketingFaq.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             ticketingFaq.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -257,7 +257,7 @@
     }
     //Get TotalRowCount
     ticketingFaq.getCount = function () {
-        ajax.call(mainPathApi+"ticketingFaq/count", ticketingFaq.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ticketingFaq/count", ticketingFaq.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             ticketingFaq.addRequested = false;
             rashaErManage.checkAction(response);
             ticketingFaq.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

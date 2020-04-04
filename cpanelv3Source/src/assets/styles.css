@@ -1,0 +1,17 @@
+
+@font-face {
+  font-family: "IRANSansFaNum";
+  src: url("fonts/eot/IRANSansWeb(FaNum).eot");
+  src: url("fonts/woff/IRANSansWeb(FaNum).woff") format("woff"),url("fonts/woff2/IRANSansWeb(FaNum).woff2") format("woff2");
+  font-weight: normal;
+}
+
+
+nb-card-body {
+  justify-content: center;
+}
+
+
+.nb-theme-default nb-card .icon.status-purple{
+  background-image: linear-gradient(to right,#a550d3,#ef2aff);
+}

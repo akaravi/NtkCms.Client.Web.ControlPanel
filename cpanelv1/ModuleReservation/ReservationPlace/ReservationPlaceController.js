@@ -54,7 +54,7 @@
             console.log(error);
         }
 
-        ajax.call(mainPathApi+"Reservationplace/getall", place.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"Reservationplace/getall", place.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             place.busyIndicator.isActive = false;
             place.ListItems = response.ListItems;
@@ -85,7 +85,7 @@
         place.filePickerMainImage.filename = "";
         place.filePickerMainImage.fileId = null;
         place.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'Reservationplace/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             place.busyIndicator.isActive = false;
             place.selectedItem = response.Item;
@@ -107,7 +107,7 @@
         //    return;
         place.busyIndicator.isActive = true;
         place.addRequested = true;
-        ajax.call(mainPathApi+'Reservationplace/add', place.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/add', place.selectedItem, 'POST').success(function (response) {
             place.addRequested = false;
             place.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -132,13 +132,13 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'Reservationplace/getviewmodel', place.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/getviewmodel', place.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             place.selectedItem = response.Item;
             place.filePickerMainImage.filename = null;
             place.filePickerMainImage.fileId = null;
             if (response.Item.LinkBackgroundImageId != null) {
-                ajax.call(mainPathApi+'FileContent/getviewmodel', response.Item.LinkBackgroundImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response.Item.LinkBackgroundImageId, 'GET').success(function (response2) {
                     place.filePickerMainImage.filename = response2.Item.FileName;
                     place.filePickerMainImage.fileId = response2.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -165,7 +165,7 @@
         //place.busyIndicator.isActive = true;
         place.addRequested = true;
         place.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'Reservationplace/edit', place.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/edit', place.selectedItem, 'PUT').success(function (response) {
             place.addRequested = true;
             rashaErManage.checkAction(response);
             place.busyIndicator.isActive = false;
@@ -207,11 +207,11 @@
             if (isConfirmed) {
                 place.busyIndicator.isActive = true;
                 console.log(place.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'Reservationplace/getviewmodel', place.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/getviewmodel', place.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     place.selectedItemForDelete = response.Item;
                     console.log(place.selectedItemForDelete);
-                    ajax.call(mainPathApi+'Reservationplace/delete', place.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/delete', place.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         place.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -274,13 +274,13 @@
     //open Design modal
     place.DesignPlace = function (item) {
         //place.ntkDragg.readFromDb(item.PlaceDetail, "divcontainer", "divcontainerdelete", "divcontainerSurce", event);
-        ajax.call(mainPathApi+'Reservationplace/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/getviewmodel', item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             place.selectedItem = response.Item;
             place.filePickerMainImage.filename = null;
             place.filePickerMainImage.fileId = null;
             if (response.Item.LinkBackgroundImageId != null) {
-                ajax.call(mainPathApi+'FileContent/getviewmodel', response.Item.LinkBackgroundImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response.Item.LinkBackgroundImageId, 'GET').success(function (response2) {
                     place.filePickerMainImage.filename = response2.Item.FileName;
                     place.filePickerMainImage.fileId = response2.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -291,7 +291,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         place.myStyles = {
-            'background-image': 'url("' + $rootScope.infoDomainAddress + 'imageThumbnails/' + item.LinkBackgroundImageId + '")',
+            'background-image': 'url("' + $rootScope.cmsServerConfig.configRouteThumbnails + item.LinkBackgroundImageId + '")',
             'width': item.ImageWidth + 'px',
             'height': item.ImageHeight + 'px',
             'margin-top': '10%'
@@ -302,7 +302,7 @@
 
         // place.selectedItem.JsonPlaceValue = JSON.stringify(place.ntkDragg.valueGet());
 
-        ajax.call(mainPathApi+'Reservationplace/edit', place.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/edit', place.selectedItem, 'PUT').success(function (response) {
             place.addRequested = true;
             rashaErManage.checkAction(response);
             place.busyIndicator.isActive = false;
@@ -389,7 +389,7 @@
 
         place.FileList = [];
         //get list of file from category id
-        ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
             place.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -429,14 +429,14 @@
         place.fileIdToDelete = place.selectedIndex;
 
         // Delete the file
-        ajax.call(mainPathApi+"FileContent/getviewmodel", place.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", place.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(mainPathApi+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
                     place.remove(place.FileList, place.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 place.FileItem = response3.Item;
                                 place.FileItem.FileName = name;
@@ -465,7 +465,7 @@
     }
     //save new file
     place.saveNewFile = function () {
-        ajax.call(mainPathApi+"FileContent/add", place.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", place.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 place.FileItem = response.Item;
                 place.showSuccessIcon();
@@ -538,14 +538,14 @@
                     // replace the file
                     ajax
                       .call(
-                        mainPathApi+"FileContent/getviewmodel",
+                        cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
                         place.fileIdToDelete,
                         "GET"
                       )
                       .success(function (response1) {
                           if (response1.IsSuccess == true) {
                               console.log(response1.Item);
-                              ajax.call(mainPathApi+"FileContent/replace", response1.Item, "POST")
+                              ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
                                 .success(function (response2) {
                                     if (response2.IsSuccess == true) {
                                         place.FileItem = response2.Item;
@@ -588,7 +588,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
                     place.FileItem = response.Item;
                     place.FileItem.FileName = uploadFile.name;
                     place.FileItem.uploadName = uploadFile.uploadName;
@@ -597,7 +597,7 @@
                     place.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- place.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(mainPathApi+"FileContent/add", place.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", place.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             place.FileItem = response.Item;
                             place.showSuccessIcon();
@@ -635,7 +635,7 @@
     place.exportFile = function () {
         place.addRequested = true;
         place.gridOptions.advancedSearchData.engine.ExportFile = place.ExportFileClass;
-        ajax.call(mainPathApi+'Reservationplace/exportfile', place.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/exportfile', place.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             place.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -678,7 +678,7 @@
     }
     //Get TotalRowCount
     place.getCount = function () {
-        ajax.call(mainPathApi+"Reservationplace/count", place.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"Reservationplace/count", place.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             place.addRequested = false;
             rashaErManage.checkAction(response);
             place.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

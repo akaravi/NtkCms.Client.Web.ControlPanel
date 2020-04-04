@@ -39,12 +39,12 @@
         }*/
     /*[treecontrol].tree-boot li.tree-collapsed i.tree-branch-head {
         padding: 1px 10px;
-        background: url(mainPathCmsFiles+"folder.png") no-repeat;
+        background: url(cmsServerConfig.configCpanelImages+"folder.png") no-repeat;
         background-size: cover;
     }*/
     /*[treecontrol].tree-boot li.tree-leaf i.tree-leaf-head {
         padding: 1px 10px;
-        background: url(mainPathCmsFiles+"file_music.png") no-repeat;
+        background: url(cmsServerConfig.configCpanelImages+"file_music.png") no-repeat;
     }*/
 </style>
 <div class="modal-body">
@@ -79,11 +79,11 @@
                 <div class="form-group">
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         <div class="list-group">
-                            <a ng-repeat="x in mscGallery.filesFromFolder" class="list-group-item list-group-item-action">{{x.FileName}}&nbsp;<img ng-if="x.addIsSuccess" src=mainPathCmsFiles+"sign_check.png" style="height:25px;" /><img ng-if="x.addIsSuccess==false" src=mainPathCmsFiles+"error.png" style="height:25px;" /><img ng-if="x.addIsSuccess==null" src="cpanelv1/images/loading.png" style="height:25px;" /></a>
+                            <a ng-repeat="x in mscGallery.filesFromFolder" class="list-group-item list-group-item-action">{{x.FileName}}&nbsp;<img ng-if="x.addIsSuccess" src=cmsServerConfig.configCpanelImages+"sign_check.png" style="height:25px;" /><img ng-if="x.addIsSuccess==false" src=cmsServerConfig.configCpanelImages+"error.png" style="height:25px;" /><img ng-if="x.addIsSuccess==null" src="cpanelv1/images/loading.png" style="height:25px;" /></a>
                             <!--<a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                            <a href="#" class="list-group-item list-group-item-action">Morbi leo risus&nbsp;<img src=mainPathCmsFiles+"sign_check.png" /></a>
-                            <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac&nbsp;<img src=mainPathCmsFiles+"sign_check.png" /></a>
-                            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros&nbsp;<img src=mainPathCmsFiles+"sign_check.png" /></a>-->
+                            <a href="#" class="list-group-item list-group-item-action">Morbi leo risus&nbsp;<img src=cmsServerConfig.configCpanelImages+"sign_check.png" /></a>
+                            <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac&nbsp;<img src=cmsServerConfig.configCpanelImages+"sign_check.png" /></a>
+                            <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros&nbsp;<img src=cmsServerConfig.configCpanelImages+"sign_check.png" /></a>-->
                         </div>
                     </div>
                 </div>

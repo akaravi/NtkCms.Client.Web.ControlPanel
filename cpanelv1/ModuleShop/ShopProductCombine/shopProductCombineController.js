@@ -67,7 +67,7 @@
 
     //init Function
     shopCombine.init = function () {
-        ajax.call(mainPathApi+"ShopProductCombine/getall", shopCombine.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ShopProductCombine/getall", shopCombine.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopCombine.ListItems = response.ListItems;
             shopCombine.gridOptions.fillData(shopCombine.ListItems, response.resultAccess); // Sending Access as an argument
@@ -81,7 +81,7 @@
             shopCombine.busyIndicator.isActive = false;
         });
 
-        ajax.call(mainPathApi+"ShopProductItem/search", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ShopProductItem/search", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopCombine.itemListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
@@ -99,7 +99,7 @@
         shopCombine.addRequested = false;
         shopCombine.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'ShopProductCombine/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductCombine/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopCombine.selectedItem = response.Item;
@@ -122,7 +122,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'ShopProductCombine/getviewmodel', shopCombine.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductCombine/getviewmodel', shopCombine.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopCombine.selectedItem = response.Item;
@@ -137,7 +137,7 @@
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
-        //ajax.call(mainPathApi+'ShopProductItemCombine/getviewmodel', '0', 'GET').success(function (response) {
+        //ajax.call(cmsServerConfig.configApiServerPath+'ShopProductItemCombine/getviewmodel', '0', 'GET').success(function (response) {
         //    rashaErManage.checkAction(response);
         //    if (response.IsSuccess) {
         //        shopCombine.shopProductItemCombineToadd = response.Item;
@@ -156,7 +156,7 @@
         }
         shopCombine.addRequested = true;
         shopCombine.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'ShopProductCombine/add', shopCombine.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductCombine/add', shopCombine.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopCombine.addRequested = false;
             shopCombine.busyIndicator.isActive = false;
@@ -171,7 +171,7 @@
                 }
                 shopCombine.addRequested = true;
                 shopCombine.busyIndicator.isActive = true;
-                ajax.call(mainPathApi+'ShopProductCombine/addbatch', shopCombine.selectedItem.ProductItemCombines, 'POST').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ShopProductCombine/addbatch', shopCombine.selectedItem.ProductItemCombines, 'POST').success(function (response) {
                     rashaErManage.checkAction(response);
                     shopCombine.addRequested = false;
                     shopCombine.busyIndicator.isActive = false;
@@ -202,7 +202,7 @@
         }
         shopCombine.busyIndicator.isActive = true;
         shopCombine.addRequested = true;
-        ajax.call(mainPathApi+'ShopProductCombine/edit', shopCombine.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductCombine/edit', shopCombine.selectedItem, 'PUT').success(function (response) {
             shopCombine.busyIndicator.isActive = false;
             shopCombine.addRequested = false;
             shopCombine.showIsBusy = false;
@@ -233,13 +233,13 @@
                 shopCombine.showbusy = true;
                 shopCombine.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+"ShopProductCombine/getviewmodel", shopCombine.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"ShopProductCombine/getviewmodel", shopCombine.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     shopCombine.showbusy = false;
                     shopCombine.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     shopCombine.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+"ShopProductCombine/delete", shopCombine.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"ShopProductCombine/delete", shopCombine.selectedItemForDelete, "DELETE").success(function (res) {
                         shopCombine.busyIndicator.isActive = false;
                         shopCombine.showIsBusy = false;
                         rashaErManage.checkAction(res);
@@ -322,7 +322,7 @@
 
     shopCombine.openItemsModal = function (selectedId) {
         shopCombine.itemsList = [];
-        ajax.call(mainPathApi+'ShopProductCombine/getviewmodel', selectedId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductCombine/getviewmodel', selectedId, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 shopCombine.selectedItem = response.Item;
@@ -379,7 +379,7 @@
         }
         shopCombine.selectedItem.LinkProductCombineId = shopCombine.selectedItem.Id;
         shopCombine.selectedItem.Id = 0;
-        ajax.call(mainPathApi+'ShopProductItemCombine/add', shopCombine.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductItemCombine/add', shopCombine.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 shopCombine.selectedItem.ProductItemCombines.push({ LinkProductItemId: shopCombine.selectedItem.LinkProductItemId, LinkProductItemTitle: shopCombine.selectedItem.LinkProductItemTitle });
@@ -405,7 +405,7 @@
         var filterModel = { Filters: [] };
         filterModel.Filters.push({ PropertyName: "LinkProductItemId", SearchType: 0, IntValue1: shopCombine.itemsList[index].Id });
         filterModel.Filters.push({ PropertyName: "LinkProductCombineId", SearchType: 0, IntValue1: shopCombine.selectedItem.LinkProductCombineId });
-        ajax.call(mainPathApi+'ShopProductItemCombine/DeleteFilterModel', filterModel, 'DELETE').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductItemCombine/DeleteFilterModel', filterModel, 'DELETE').success(function (res) {
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
                 shopCombine.itemsList.splice(index, 1);
@@ -430,7 +430,7 @@
     shopCombine.exportFile = function () {
         shopCombine.addRequested = true;
         shopCombine.gridOptions.advancedSearchData.engine.ExportFile = shopCombine.ExportFileClass;
-        ajax.call(mainPathApi+'ShopProductCombine/exportfile', shopCombine.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductCombine/exportfile', shopCombine.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 shopCombine.exportDownloadLink = window.location.origin + response.LinkFile;
@@ -474,7 +474,7 @@
     }
     //Get TotalRowCount
     shopCombine.getCount = function () {
-        ajax.call(mainPathApi+"ShopProductCombine/count", shopCombine.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ShopProductCombine/count", shopCombine.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopCombine.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

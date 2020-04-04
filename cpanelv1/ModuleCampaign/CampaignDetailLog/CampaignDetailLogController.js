@@ -54,7 +54,7 @@
 
     
 
-    ajax.call(mainPathApi+"MemberGroup/getall", {}, 'POST').success(function (response) {
+    ajax.call(cmsServerConfig.configApiServerPath+"MemberGroup/getall", {}, 'POST').success(function (response) {
         campaignDetailLog.memberGroups = response.ListItems;
     }).error(function (data, errCode, c, d) {
         console.log(data);
@@ -106,7 +106,7 @@
         } catch (error) {
             console.log(error);
         }
-        ajax.call(mainPathApi+"campaignDetailLog/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"campaignDetailLog/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetailLog.busyIndicator.isActive = false;
             campaignDetailLog.ListItems = response.ListItems;
@@ -133,7 +133,7 @@
     campaignDetailLog.addRequested = false;
     campaignDetailLog.openAddModal = function () {
         campaignDetailLog.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'campaignDetailLog/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetailLog.busyIndicator.isActive = false;
             campaignDetailLog.selectedItem = response.Item;
@@ -161,7 +161,7 @@
         //Save attached file ids into campaignDetailLog.selectedItem.LinkFileIds
         campaignDetailLog.selectedItem.LinkFileIds = "";
         campaignDetailLog.stringfyLinkFileIds();
-        ajax.call(mainPathApi+'campaignDetailLog/add', campaignDetailLog.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/add', campaignDetailLog.selectedItem, 'POST').success(function (response) {
             campaignDetailLog.addRequested = false;
             campaignDetailLog.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -187,7 +187,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'campaignDetailLog/getviewmodel', campaignDetailLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/getviewmodel', campaignDetailLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetailLog.selectedItem = response.Item;
             campaignDetailLog.filePickerMainImage.filename = null;
@@ -219,7 +219,7 @@
         //Save attached file ids into campaignDetailLog.selectedItem.LinkFileIds
         campaignDetailLog.selectedItem.LinkFileIds = "";
         campaignDetailLog.stringfyLinkFileIds();
-        ajax.call(mainPathApi+'campaignDetailLog/edit', campaignDetailLog.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/edit', campaignDetailLog.selectedItem, 'PUT').success(function (response) {
             campaignDetailLog.addRequested = true;
             rashaErManage.checkAction(response);
             campaignDetailLog.busyIndicator.isActive = false;
@@ -260,11 +260,11 @@
             if (isConfirmed) {
                 campaignDetailLog.busyIndicator.isActive = true;
                 console.log(campaignDetailLog.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'campaignDetailLog/getviewmodel', campaignDetailLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/getviewmodel', campaignDetailLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     campaignDetailLog.selectedItemForDelete = response.Item;
                     console.log(campaignDetailLog.selectedItemForDelete);
-                    ajax.call(mainPathApi+'campaignDetailLog/delete', campaignDetailLog.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/delete', campaignDetailLog.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         campaignDetailLog.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -285,7 +285,7 @@
 
     campaignDetailLog.searchData = function () {
         campaignDetailLog.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"campaignDetailLog/getall", campaignDetailLog.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"campaignDetailLog/getall", campaignDetailLog.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetailLog.categoryBusyIndicator.isActive = false;
             campaignDetailLog.ListItems = response.ListItems;
@@ -488,7 +488,7 @@
     }
 
     campaignDetailLog.deleteAttachedfieldName = function (index) {
-        ajax.call(mainPathApi+'campaignDetailLog/delete', campaignDetailLog.contractsList[index], 'DELETE').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/delete', campaignDetailLog.contractsList[index], 'DELETE').success(function (res) {
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
                 campaignDetailLog.contractsList.splice(index, 1);
@@ -505,7 +505,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(mainPathApi+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             campaignDetailLog.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -543,7 +543,7 @@
 
         campaignDetailLog.FileList = [];
         //get list of file from category id
-        ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
             campaignDetailLog.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -582,14 +582,14 @@
         campaignDetailLog.fileIdToDelete = campaignDetailLog.selectedIndex;
 
         // Delete the file
-        ajax.call(mainPathApi+"FileContent/getviewmodel", campaignDetailLog.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", campaignDetailLog.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(mainPathApi+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
                     campaignDetailLog.remove(campaignDetailLog.FileList, campaignDetailLog.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 campaignDetailLog.FileItem = response3.Item;
                                 campaignDetailLog.FileItem.FileName = name;
@@ -618,7 +618,7 @@
     }
     //save new file
     campaignDetailLog.saveNewFile = function () {
-        ajax.call(mainPathApi+"FileContent/add", campaignDetailLog.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", campaignDetailLog.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 campaignDetailLog.FileItem = response.Item;
                 campaignDetailLog.showSuccessIcon();
@@ -691,14 +691,14 @@
                     // replace the file
             ajax
               .call(
-                mainPathApi+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
                 campaignDetailLog.fileIdToDelete,
                 "GET"
               )
               .success(function(response1) {
                 if (response1.IsSuccess == true) {
                   console.log(response1.Item);
-                  ajax.call(mainPathApi+"FileContent/replace", response1.Item, "POST")
+                  ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
                     .success(function(response2) {
                       if (response2.IsSuccess == true) {
                         campaignDetailLog.FileItem = response2.Item;
@@ -741,7 +741,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
                     campaignDetailLog.FileItem = response.Item;
                     campaignDetailLog.FileItem.FileName = uploadFile.name;
                     campaignDetailLog.FileItem.uploadName = uploadFile.uploadName;
@@ -750,7 +750,7 @@
                     campaignDetailLog.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- campaignDetailLog.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(mainPathApi+"FileContent/add", campaignDetailLog.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", campaignDetailLog.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             campaignDetailLog.FileItem = response.Item;
                             campaignDetailLog.showSuccessIcon();
@@ -788,7 +788,7 @@
     campaignDetailLog.exportFile = function () {
         campaignDetailLog.addRequested = true;
         campaignDetailLog.gridOptions.advancedSearchData.engine.ExportFile = campaignDetailLog.ExportFileClass;
-        ajax.call(mainPathApi+'campaignDetailLog/exportfile', campaignDetailLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/exportfile', campaignDetailLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             campaignDetailLog.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -831,7 +831,7 @@
     }
     //Get TotalRowCount
     campaignDetailLog.getCount = function () {
-        ajax.call(mainPathApi+"campaignDetailLog/count", campaignDetailLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"campaignDetailLog/count", campaignDetailLog.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             campaignDetailLog.addRequested = false;
             rashaErManage.checkAction(response);
             campaignDetailLog.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

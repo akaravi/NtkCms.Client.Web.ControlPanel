@@ -12,7 +12,7 @@
     cmsMdlPayPrc.init = function () {
         cmsMdlPayPrc.addRequested = true;
         cmsMdlPayPrc.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"CoreModulePaymentProcess/getall", cmsMdlPayPrc.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreModulePaymentProcess/getall", cmsMdlPayPrc.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsMdlPayPrc.ListItems = response.ListItems;
             cmsMdlPayPrc.gridOptions.fillData(cmsMdlPayPrc.ListItems, response.resultAccess);
@@ -28,7 +28,7 @@
             rashaErManage.checkAction(data, errCode);
         });
 
-        ajax.call(mainPathApi+"CoreModule/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreModule/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsMdlPayPrc.cmsModulesListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
@@ -40,7 +40,7 @@
         cmsMdlPayPrc.modalTitle = 'اضافه';
         cmsMdlPayPrc.addRequested = true;
         cmsMdlPayPrc.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CmsModulePaymentProcess/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/getviewmodel', '0', 'GET').success(function (response) {
             cmsMdlPayPrc.addRequested = false;
             cmsMdlPayPrc.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -55,7 +55,7 @@
     };
     cmsMdlPayPrc.autoAdd = function () {
         cmsMdlPayPrc.addRequested =true;
-        ajax.call(mainPathApi+'CmsModulePaymentProcess/AutoAdd', '', 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/AutoAdd', '', 'POST').success(function (response) {
             cmsMdlPayPrc.addRequested = false;
             rashaErManage.checkAction(response);
             cmsMdlPayPrc.init();
@@ -68,7 +68,7 @@
             return;
         cmsMdlPayPrc.addRequested = true;
         cmsMdlPayPrc.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CmsModulePaymentProcess/add', cmsMdlPayPrc.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/add', cmsMdlPayPrc.selectedItem, 'POST').success(function (response) {
             cmsMdlPayPrc.busyIndicator.isActive = false;
             cmsMdlPayPrc.addRequested = false;
             rashaErManage.checkAction(response);
@@ -90,7 +90,7 @@
             return;
         }
         cmsMdlPayPrc.addRequested = true;
-        ajax.call(mainPathApi+'CmsModulePaymentProcess/getviewmodel', cmsMdlPayPrc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/getviewmodel', cmsMdlPayPrc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             cmsMdlPayPrc.addRequested = false;
             rashaErManage.checkAction(response);
             cmsMdlPayPrc.selectedItem = response.Item;
@@ -109,7 +109,7 @@
         if (cmsMdlPayPrc.selectedItem.AutoEdit) myControlerAdd = "Auto";
         cmsMdlPayPrc.busyIndicator.isActive = true;
         cmsMdlPayPrc.addRequested = true;
-        ajax.call(mainPathApi+'CmsModulePaymentProcess/edit' + myControlerAdd, cmsMdlPayPrc.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/edit' + myControlerAdd, cmsMdlPayPrc.selectedItem, 'PUT').success(function (response) {
             cmsMdlPayPrc.busyIndicator.isActive = false;
             cmsMdlPayPrc.addRequested = false;
             rashaErManage.checkAction(response);
@@ -148,10 +148,10 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 cmsMdlPayPrc.addRequested = true;
-                ajax.call(mainPathApi+'CmsModulePaymentProcess/getviewmodel', cmsMdlPayPrc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/getviewmodel', cmsMdlPayPrc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsMdlPayPrc.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'CmsModulePaymentProcess/delete', cmsMdlPayPrc.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/delete', cmsMdlPayPrc.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         cmsMdlPayPrc.addRequested = false;
                         if (res.IsSuccess) {

@@ -68,7 +68,7 @@
         }
 
         campaignItem.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"CampaignItemGroup/getall", { RowPerPage:1000}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CampaignItemGroup/getall", { RowPerPage:1000}, 'POST').success(function (response) {
             campaignItem.treeConfig.Items = response.ListItems;
             campaignItem.categoryBusyIndicator.isActive = false;
         }).error(function (data, errCode, c, d) {
@@ -78,7 +78,7 @@
         });
 
         campaignItem.contentBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"CampaignItem/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CampaignItem/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             campaignItem.ListItems = response.ListItems;
             campaignItem.gridOptions.fillData(campaignItem.ListItems, response.resultAccess); // Sending Access as an argument
@@ -91,7 +91,7 @@
             rashaErManage.checkAction(data, errCode);
             campaignItem.contentBusyIndicator.isActive = false;
         });
-        ajax.call(mainPathApi+"newsTag/getviewmodel", "0", 'GET').success(function (response) {    //Get a ViewModel for newsTag
+        ajax.call(cmsServerConfig.configApiServerPath+"newsTag/getviewmodel", "0", 'GET').success(function (response) {    //Get a ViewModel for newsTag
             campaignItem.ModuleTag = response.Item;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -105,7 +105,7 @@
         if (buttonIsPressed) { return };
         campaignItem.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'CampaignItemGroup/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             campaignItem.selectedItem = response.Item;
@@ -118,10 +118,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 campaignItem.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCampaignItemGroupId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(campaignItem.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/Modulecampaign/CampaignItemGroup/add.html',
@@ -151,7 +151,7 @@
 
         campaignItem.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'CampaignItemGroup/getviewmodel', campaignItem.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/getviewmodel', campaignItem.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             campaignItem.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -168,10 +168,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 campaignItem.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCampaignItemGroupId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(campaignItem.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (campaignItem.selectedItem.LinkMainImageId > 0)
@@ -204,7 +204,7 @@
         campaignItem.selectedItem.LinkParentId = null;
         if (campaignItem.treeConfig.currentNode != null)
             campaignItem.selectedItem.LinkParentId = campaignItem.treeConfig.currentNode.Id;
-        ajax.call(mainPathApi+'CampaignItemGroup/add', campaignItem.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/add', campaignItem.selectedItem, 'POST').success(function (response) {
             campaignItem.addRequested = false;
             rashaErManage.checkAction(response);
             console.log(response);
@@ -232,7 +232,7 @@
         }
         campaignItem.categoryBusyIndicator.isActive = true;
         campaignItem.addRequested = true;
-        ajax.call(mainPathApi+'CampaignItemGroup/edit', campaignItem.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/edit', campaignItem.selectedItem, 'PUT').success(function (response) {
             //campaignItem.showbusy = false;
             campaignItem.treeConfig.showbusy = false;
             campaignItem.addRequested = false;
@@ -263,12 +263,12 @@
                 campaignItem.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'CampaignItemGroup/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/getviewmodel', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     campaignItem.selectedItemForDelete = response.Item;
                     console.log(campaignItem.selectedItemForDelete);
-                    ajax.call(mainPathApi+'CampaignItemGroup/delete', campaignItem.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/delete', campaignItem.selectedItemForDelete, 'DELETE').success(function (res) {
                         campaignItem.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //campaignItem.replaceCategoryItem(campaignItem.treeConfig.Items, node.Id);
@@ -321,7 +321,7 @@
             }
             campaignItem.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
-        ajax.call(mainPathApi+"CampaignItem/getall", campaignItem.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CampaignItem/getall", campaignItem.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             campaignItem.contentBusyIndicator.isActive = false;
             campaignItem.ListItems = response.ListItems;
@@ -349,7 +349,7 @@
         campaignItem.addRequested = false;
         campaignItem.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'CampaignItem/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItem/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             //console.log(response);
             rashaErManage.checkAction(response);
@@ -375,7 +375,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'CampaignItem/getviewmodel', campaignItem.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItem/getviewmodel', campaignItem.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             campaignItem.selectedItem = response1.Item;
@@ -401,7 +401,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Campain_Please_Select_The_Category'));
             return;
         }
-        ajax.call(mainPathApi+'CampaignItem/add', campaignItem.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItem/add', campaignItem.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             campaignItem.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -431,7 +431,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Campain_Please_Select_The_Category'));
             return;
         }
-        ajax.call(mainPathApi+'CampaignItem/edit', campaignItem.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItem/edit', campaignItem.selectedItem, 'PUT').success(function (response) {
             campaignItem.categoryBusyIndicator.isActive = false;
             campaignItem.addRequested = false;
             campaignItem.treeConfig.showbusy = false;
@@ -465,14 +465,14 @@
                 campaignItem.showbusy = true;
                 campaignItem.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+"CampaignItem/getviewmodel", campaignItem.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"CampaignItem/getviewmodel", campaignItem.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     campaignItem.showbusy = false;
                     campaignItem.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     campaignItem.selectedItemForDelete = response.Item;
                     //console.log(campaignItem.selectedItemForDelete);
-                    ajax.call(mainPathApi+"CampaignItem/delete", campaignItem.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"CampaignItem/delete", campaignItem.selectedItemForDelete, "DELETE").success(function (res) {
                         campaignItem.categoryBusyIndicator.isActive = false;
                         campaignItem.treeConfig.showbusy = false;
                         campaignItem.showIsBusy = false;
@@ -506,11 +506,11 @@
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(mainPathApi+'CampaignItem/getviewmodel', campaignItem.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItem/getviewmodel', campaignItem.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignItem.selectedItem = response.Item;
             campaignItem.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
-            ajax.call(mainPathApi+'CampaignItem/edit', campaignItem.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CampaignItem/edit', campaignItem.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     var index = campaignItem.ListItems.indexOf(campaignItem.gridOptions.selectedRow.item);
@@ -545,7 +545,7 @@
  
     campaignItem.searchData = function () {
         campaignItem.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"CampaignItem/getall", campaignItem.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CampaignItem/getall", campaignItem.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             campaignItem.categoryBusyIndicator.isActive = false;
             campaignItem.ListItems = response.ListItems;
@@ -636,7 +636,7 @@
     campaignItem.exportFile = function () {
         campaignItem.addRequested = true;
         campaignItem.gridOptions.advancedSearchData.engine.ExportFile = campaignItem.ExportFileClass;
-        ajax.call(mainPathApi+'CampaignItem/exportfile', campaignItem.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItem/exportfile', campaignItem.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             campaignItem.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -679,7 +679,7 @@
     }
     //Get TotalRowCount
     campaignItem.getCount = function () {
-        ajax.call(mainPathApi+"CampaignItem/count", campaignItem.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CampaignItem/count", campaignItem.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             campaignItem.addRequested = false;
             rashaErManage.checkAction(response);
             campaignItem.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -692,7 +692,7 @@
     campaignItem.showCategoryImage = function (mainImageId) {
         if (mainImageId == 0 || mainImageId == null)
             return;
-        ajax.call(mainPathApi+"FileContent/PreviewImage", { id: mainImageId, name: '' }, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/PreviewImage", { id: mainImageId, name: '' }, 'POST').success(function (response) {
             campaignItem.selectedItem.MainImageSrc = response;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);

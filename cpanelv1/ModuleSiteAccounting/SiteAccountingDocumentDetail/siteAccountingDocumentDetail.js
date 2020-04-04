@@ -7,7 +7,7 @@
     if (itemRecordStatus != undefined) siteAccDocumentDetail.itemRecordStatus = itemRecordStatus;
     siteAccDocumentDetail.init = function () {
         siteAccDocumentDetail.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"siteAccDocumentDetail/getall", { RowPerPage:1000}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"siteAccDocumentDetail/getall", { RowPerPage:1000}, 'POST').success(function (response) {
           
             rashaErManage.checkAction(response);
             siteAccDocumentDetail.ListItems = response.ListItems;
@@ -27,7 +27,7 @@
     siteAccDocumentDetail.addRequested = false;
     siteAccDocumentDetail.openAddModal = function () {
         siteAccDocumentDetail.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'siteAccountingDocumentDetail/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'siteAccountingDocumentDetail/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             siteAccDocumentDetail.selectedItem = response.Item;
             $modal.open({
@@ -47,7 +47,7 @@
         }
         siteAccDocumentDetail.categoryBusyIndicator.isActive = true;
         siteAccDocumentDetail.addRequested = true;
-        ajax.call(mainPathApi+'siteAccountingDocumentDetail/add',  siteAccDocumentDetail.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'siteAccountingDocumentDetail/add',  siteAccDocumentDetail.selectedItem , 'POST').success(function (response) {
             siteAccDocumentDetail.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -68,7 +68,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'siteAccountingDocumentDetail/getviewmodel', siteAccDocumentDetail.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'siteAccountingDocumentDetail/getviewmodel', siteAccDocumentDetail.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             siteAccDocumentDetail.selectedItem = response.Item;
             $modal.open({
@@ -87,7 +87,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'siteAccountingDocumentDetail/', siteAccDocumentDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'siteAccountingDocumentDetail/', siteAccDocumentDetail.selectedItem, 'PUT').success(function (response) {
             siteAccDocumentDetail.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -110,7 +110,7 @@
             return;
         }
         siteAccDocumentDetail.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+'ServiceCategory/edit/', siteAccDocumentDetail.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ServiceCategory/edit/', siteAccDocumentDetail.selectedItem , 'PUT').success(function (response) {
             siteAccDocumentDetail.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -151,11 +151,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(siteAccDocumentDetail.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'siteAccDocumentDetail/getviewmodel',  siteAccDocumentDetail.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'siteAccDocumentDetail/getviewmodel',  siteAccDocumentDetail.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     siteAccDocumentDetail.selectedItemForDelete = response.Item;
                     console.log(siteAccDocumentDetail.selectedItemForDelete);
-                    ajax.call(mainPathApi+'siteAccDocumentDetail/delete', siteAccDocumentDetail.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'siteAccDocumentDetail/delete', siteAccDocumentDetail.selectedItemForDelete, 'DELETE').success(function (res) {
                         siteAccDocumentDetail.categoryBusyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {

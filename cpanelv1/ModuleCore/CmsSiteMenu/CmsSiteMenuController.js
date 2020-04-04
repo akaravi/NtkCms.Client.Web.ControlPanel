@@ -29,12 +29,12 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
 
     cmsSiteMenu.init = function () {
         cmsSiteMenu.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"WebDesignerMainMenu/getAreaType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"WebDesignerMainMenu/getAreaType", {}, 'POST').success(function (response) {
             cmsSiteMenu.AreaType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(mainPathApi+"WebDesignerMainMenu/getall", cmsSiteMenu.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"WebDesignerMainMenu/getall", cmsSiteMenu.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteMenu.ListItems = response.ListItems;
             cmsSiteMenu.gridOptions.fillData(cmsSiteMenu.ListItems, response.resultAccess);
@@ -49,14 +49,14 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
             rashaErManage.checkAction(data, errCode);
         });
 
-        ajax.call(mainPathApi+'CoreModule/getallmodulename', {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModule/getallmodulename', {}, 'POST').success(function (response) {
             cmsSiteMenu.cmsModuleSitesListItems = response.ListItems;
         }).error(function (data, errCode) {
             rashaErManage.checkAction(data, errCode);
         });
 
         cmsSiteMenu.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'WebDesignerMainPageDependency/getAll', {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/getAll', {}, 'POST').success(function (response) {
             cmsSiteMenu.cmsPageDependencyListItems = response.ListItems;
             cmsSiteMenu.busyIndicator.isActive = false;
         }).error(function (data, errCode) {
@@ -70,14 +70,14 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
         cmsSiteMenu.modalTitle = 'اضافه';
         cmsSiteMenu.addRequested = true;
         cmsSiteMenu.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'WebDesignerMainMenu/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteMenu.selectedItem = response.Item;
 
             // Create a default menu for the first time
             cmsSiteMenu.treeMenuConfig.treeMenuContent = JSON.parse(cmsSiteMenu.treeMenuConfig.sampleMenuJsonValues);
             //Load cmspages
-            ajax.call(mainPathApi+'WebDesignerMainPage/getall', { RowPerPage: 200 }, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getall', { RowPerPage: 200 }, 'POST').success(function (response) {
                 cmsSiteMenu.cmsPagesListItems = response.ListItems;
                 cmsSiteMenu.addRequested = false;
                 cmsSiteMenu.busyIndicator.isActive = false;
@@ -103,7 +103,7 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
         cmsSiteMenu.busyIndicator.isActive = true;
         cmsSiteMenu.addRequested = true;
         cmsSiteMenu.selectedItem.JsonValues = $.trim(angular.toJson(cmsSiteMenu.treeMenuConfig.treeMenuContent));
-        ajax.call(mainPathApi+'WebDesignerMainMenu/add', cmsSiteMenu.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/add', cmsSiteMenu.selectedItem, 'POST').success(function (response) {
             cmsSiteMenu.addRequested = false;
             cmsSiteMenu.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -128,7 +128,7 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
         }
         cmsSiteMenu.addRequested = true;
         cmsSiteMenu.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'WebDesignerMainMenu/getviewmodel', cmsSiteMenu.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/getviewmodel', cmsSiteMenu.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteMenu.selectedItem = response.Item;
             try {
@@ -139,7 +139,7 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
             cmsSiteMenu.pageDependencyListItems = [];
             cmsSiteMenu.treeMenuConfig.treeMenuContent = result;
             //Load cmspages
-            ajax.call(mainPathApi+'WebDesignerMainPage/getall', { RowPerPage: 200 }, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getall', { RowPerPage: 200 }, 'POST').success(function (response) {
                 cmsSiteMenu.cmsPagesListItems = response.ListItems;
                 cmsSiteMenu.addRequested = false;
                 cmsSiteMenu.busyIndicator.isActive = false;
@@ -163,7 +163,7 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
             return;
         cmsSiteMenu.busyIndicator.isActive = true;
         cmsSiteMenu.selectedItem.JsonValues = $.trim(angular.toJson(cmsSiteMenu.treeMenuConfig.treeMenuContent));
-        ajax.call(mainPathApi+'WebDesignerMainMenu/edit', cmsSiteMenu.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/edit', cmsSiteMenu.selectedItem, 'PUT').success(function (response) {
             cmsSiteMenu.addRequested = false;
             rashaErManage.checkAction(response);
             cmsSiteMenu.busyIndicator.isActive = false;
@@ -202,10 +202,10 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
         rashaErManage.showYesNo(($filter('translatentk')('warning')), "آیا می خواهید این منو را حذف کنید؟", function (isConfirmed) {
             if (isConfirmed) {
                 cmsSiteMenu.busyIndicator.isActive = true;
-                ajax.call(mainPathApi+'WebDesignerMainMenu/getviewmodel', cmsSiteMenu.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/getviewmodel', cmsSiteMenu.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     //rashaErManage.checkAction(response);
                     cmsSiteMenu.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'WebDesignerMainMenu/delete', cmsSiteMenu.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/delete', cmsSiteMenu.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         cmsSiteMenu.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -296,7 +296,7 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
         var engine = { Filters: [] };
         engine.Filters = [];
         engine.Filters.push(filterValue);
-        ajax.call(mainPathApi+'WebDesignerMainPageDependency/getall', engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/getall', engine, "POST").success(function (response) {
             cmsSiteMenu.pageDependencyListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
@@ -313,10 +313,10 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
         //if (selectedPage.virtual_CmsSite.SubDomain != "")
         //    domain = selectedPage.virtual_CmsSite.SubDomain + '.' + domain;
         //var moduleName = getModuleTitle(selectedPage.virtual_CmsModulePageDependency.LinkModuleId);
-        ajax.call(mainPathApi+'WebDesignerMainPageDependency/getviewmodel', selectedPage.LinkPageDependencyId, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/getviewmodel', selectedPage.LinkPageDependencyId, 'GET').success(function (response1) {
             if (response1.IsSuccess) {
                 var pageDependencyClassActionName = response1.Item.ClassActionName;
-                ajax.call(mainPathApi+'CoreModule/getviewmodel', response1.Item.LinkModuleId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreModule/getviewmodel', response1.Item.LinkModuleId, 'GET').success(function (response2) {
                     cmsSiteMenu.addRequested = false;
                     rashaErManage.checkAction(response2);
                     var moduleName = response2.Item.ClassName;

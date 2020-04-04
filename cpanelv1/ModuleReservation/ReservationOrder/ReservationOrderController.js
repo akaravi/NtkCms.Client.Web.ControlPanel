@@ -46,7 +46,7 @@
         filterModel = { PropertyName: "LinkServiceId", SearchType: 0, IntValue1: order.selectedContentId.LinkServiceId };
         if (order.selectedContentId.LinkServiceId >0)
             order.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
-        ajax.call(mainPathApi+"ReservationOrder/getall", order.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ReservationOrder/getall", order.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             order.busyIndicator.isActive = false;
             order.ListItems = response.ListItems;
@@ -65,14 +65,14 @@
             rashaErManage.checkAction(data, errCode);
         });
 
-        ajax.call(mainPathApi+"universalmenumenuitem/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"universalmenumenuitem/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             order.UninversalMenus = response.ListItems;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
         //order.busyIndicator.isActive = true;
-        //ajax.call(mainPathApi+'articleContent/getall', {}, 'POST').success(function (response) {
+        //ajax.call(cmsServerConfig.configApiServerPath+'articleContent/getall', {}, 'POST').success(function (response) {
         //    order.CommentList = response.ListItems;
         //    order.busyIndicator.isActive = false;
         //});
@@ -88,7 +88,7 @@
         order.ViewFindUserDiv = false;
         order.ViewNewUserDiv = false;
         order.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'ReservationOrder/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             order.busyIndicator.isActive = false;
             order.selectedItem = response.Item;
@@ -110,7 +110,7 @@
         //    return;
         order.busyIndicator.isActive = true;
         order.addRequested = true;
-        ajax.call(mainPathApi+'ReservationOrder/add', order.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/add', order.selectedItem, 'POST').success(function (response) {
             order.addRequested = false;
             order.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -137,7 +137,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'ReservationOrder/getviewmodel', order.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/getviewmodel', order.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             order.selectedItem = response.Item;
             order.ViewInfoUserDiv = false;
@@ -162,7 +162,7 @@
         //order.busyIndicator.isActive = true;
         order.addRequested = true;
          order.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'ReservationOrder/edit', order.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/edit', order.selectedItem, 'PUT').success(function (response) {
             order.addRequested = true;
             rashaErManage.checkAction(response);
             order.busyIndicator.isActive = false;
@@ -204,11 +204,11 @@
             if (isConfirmed) {
                 order.busyIndicator.isActive = true;
                 console.log(order.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'ReservationOrder/getviewmodel', order.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/getviewmodel', order.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     order.selectedItemForDelete = response.Item;
                     console.log(order.selectedItemForDelete);
-                    ajax.call(mainPathApi+'ReservationOrder/delete', order.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/delete', order.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         order.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -358,7 +358,7 @@ order.LinkExternalModuleCoreCmsUserIdSelector = {
     };
     order.openReport = function (selected) {
         var linkfilereport = 0;
-        ajax.call(mainPathApi+'ReservationOrder/getviewmodel', selected.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/getviewmodel', selected.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkfilereport = response.Item.virtual_AppointmentDateDetail.AppointmentDate.LinkFileReportId
             window.open('/mvc/ReservationOrder/getonereport/' + selected.Id + '?reportfile=' + linkfilereport);
@@ -416,7 +416,7 @@ order.LinkExternalModuleCoreCmsUserIdSelector = {
     order.exportFile = function () {
         order.addRequested = true;
         order.gridOptions.advancedSearchData.engine.ExportFile = order.ExportFileClass;
-        ajax.call(mainPathApi+'ReservationOrder/exportfile', order.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/exportfile', order.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             order.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -459,7 +459,7 @@ order.LinkExternalModuleCoreCmsUserIdSelector = {
     }
     //Get TotalRowCount
     order.getCount = function () {
-        ajax.call(mainPathApi+"ReservationOrder/count", order.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ReservationOrder/count", order.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             order.addRequested = false;
             rashaErManage.checkAction(response);
             order.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

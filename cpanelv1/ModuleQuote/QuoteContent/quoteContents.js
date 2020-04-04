@@ -198,7 +198,7 @@ quoteContent.LinkCategoryIdSelector = {
 
     //init Function
     quoteContent.init = function () {
-        ajax.call(mainPathApi+"quoteCategory/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"quoteCategory/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
             quoteContent.treeConfig.Items = response.ListItems;
             quoteContent.treeConfig.Items = response.ListItems;
             quoteContent.categoryBusyIndicator.isActive = false;
@@ -206,7 +206,7 @@ quoteContent.LinkCategoryIdSelector = {
             console.log(data);
         });
 
-        ajax.call(mainPathApi+"quoteContent/getall", quoteContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"quoteContent/getall", quoteContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             quoteContent.ListItems = response.ListItems;
             quoteContent.gridOptions.fillData(quoteContent.ListItems, response.resultAccess); // Sending Access as an argument
@@ -230,7 +230,7 @@ quoteContent.LinkCategoryIdSelector = {
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'quoteContent/getviewmodel', quoteContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'quoteContent/getviewmodel', quoteContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             quoteContent.selectedItem = response1.Item;
             $modal.open({
@@ -247,7 +247,7 @@ quoteContent.LinkCategoryIdSelector = {
         if (buttonIsPressed) { return };
         quoteContent.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'QuoteCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'QuoteCategory/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             quoteContent.selectedItem = response.Item;
@@ -260,10 +260,10 @@ quoteContent.LinkCategoryIdSelector = {
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 quoteContent.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(quoteContent.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModuleQuote/QuoteCategory/add.html',
@@ -298,7 +298,7 @@ quoteContent.LinkCategoryIdSelector = {
 
         quoteContent.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'QuoteCategory/getviewmodel', quoteContent.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'QuoteCategory/getviewmodel', quoteContent.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             quoteContent.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -315,10 +315,10 @@ quoteContent.LinkCategoryIdSelector = {
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 quoteContent.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(quoteContent.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (quoteContent.selectedItem.LinkMainImageId > 0)
@@ -355,7 +355,7 @@ quoteContent.LinkCategoryIdSelector = {
         quoteContent.selectedItem.LinkParentId = null;
         if (quoteContent.treeConfig.currentNode != null)
             quoteContent.selectedItem.LinkParentId = quoteContent.treeConfig.currentNode.Id;
-        ajax.call(mainPathApi+'QuoteCategory/add', quoteContent.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'QuoteCategory/add', quoteContent.selectedItem, 'POST').success(function (response) {
             quoteContent.addRequested = false;
             rashaErManage.checkAction(response);
             console.log(response);
@@ -382,7 +382,7 @@ quoteContent.LinkCategoryIdSelector = {
             return;
         }
         quoteContent.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+'QuoteCategory/edit', quoteContent.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'QuoteCategory/edit', quoteContent.selectedItem, 'PUT').success(function (response) {
             quoteContent.addRequested = true;
             //quoteContent.showbusy = false;
             quoteContent.treeConfig.showbusy = false;
@@ -415,12 +415,12 @@ quoteContent.LinkCategoryIdSelector = {
                 quoteContent.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'QuoteCategory/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'QuoteCategory/getviewmodel', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     quoteContent.selectedItemForDelete = response.Item;
                     console.log(quoteContent.selectedItemForDelete);
-                    ajax.call(mainPathApi+'QuoteCategory/delete', quoteContent.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'QuoteCategory/delete', quoteContent.selectedItemForDelete, 'DELETE').success(function (res) {
                         if (res.IsSuccess) {
                             //quoteContent.replaceCategoryItem(quoteContent.treeConfig.Items, node.Id);
                             console.log("Deleted Successfully !");
@@ -471,7 +471,7 @@ quoteContent.LinkCategoryIdSelector = {
             }
             quoteContent.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
-        ajax.call(mainPathApi+"quoteContent/getall", quoteContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"quoteContent/getall", quoteContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             quoteContent.contentBusyIndicator.isActive = false;
             quoteContent.ListItems = response.ListItems;
@@ -502,7 +502,7 @@ quoteContent.LinkCategoryIdSelector = {
         quoteContent.modalTitle = 'اضافه کردن محتوای جدید';
         addNewContentModel = true;
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'quoteContent/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'quoteContent/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             addNewContentModel = false;
             console.log(response);
@@ -534,7 +534,7 @@ quoteContent.LinkCategoryIdSelector = {
             return;
         }
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'quoteContent/getviewmodel', quoteContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'quoteContent/getviewmodel', quoteContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             quoteContent.selectedItem = response1.Item;
@@ -544,7 +544,7 @@ quoteContent.LinkCategoryIdSelector = {
             quoteContent.filePickerMainImage.fileId = null;
             if (response1.Item.LinkMainImageId != null) {
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'FileContent/getviewmodel', response1.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response1.Item.LinkMainImageId, 'GET').success(function (response2) {
                     buttonIsPressed = false;
                     quoteContent.filePickerMainImage.filename = response2.Item.FileName;
                     quoteContent.filePickerMainImage.fileId = response2.Item.Id
@@ -578,7 +578,7 @@ quoteContent.LinkCategoryIdSelector = {
             $.each(apiSelectedItem.Similars, function (index, item) {
                 item.Destination = [];
             });
-        ajax.call(mainPathApi+'quoteContent/add', apiSelectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'quoteContent/add', apiSelectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             quoteContent.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -611,7 +611,7 @@ quoteContent.LinkCategoryIdSelector = {
             $.each(apiSelectedItem.Similars, function (index, item) {
                 item.Destination = [];
             });
-        ajax.call(mainPathApi+'quoteContent/edit', apiSelectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'quoteContent/edit', apiSelectedItem, 'PUT').success(function (response) {
             quoteContent.categoryBusyIndicator.isActive = false;
             quoteContent.addRequested = false;
             quoteContent.treeConfig.showbusy = false;
@@ -645,14 +645,14 @@ quoteContent.LinkCategoryIdSelector = {
                 quoteContent.showbusy = true;
                 quoteContent.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+"quoteContent/getviewmodel", quoteContent.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"quoteContent/getviewmodel", quoteContent.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     quoteContent.showbusy = false;
                     quoteContent.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     quoteContent.selectedItemForDelete = response.Item;
                     console.log(quoteContent.selectedItemForDelete);
-                    ajax.call(mainPathApi+"quoteContent/delete", quoteContent.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"quoteContent/delete", quoteContent.selectedItemForDelete, "DELETE").success(function (res) {
                         quoteContent.categoryBusyIndicator.isActive = false;
                         quoteContent.treeConfig.showbusy = false;
                         quoteContent.showIsBusy = false;
@@ -790,11 +790,11 @@ quoteContent.LinkCategoryIdSelector = {
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(mainPathApi+'quoteContent/getviewmodel', quoteContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'quoteContent/getviewmodel', quoteContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             quoteContent.selectedItem = response.Item;
             quoteContent.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
-            ajax.call(mainPathApi+'quoteContent/edit', quoteContent.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'quoteContent/edit', quoteContent.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     var index = quoteContent.ListItems.indexOf(quoteContent.gridOptions.selectedRow.item);
@@ -816,11 +816,11 @@ quoteContent.LinkCategoryIdSelector = {
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(mainPathApi+'quoteContent/getviewmodel', quoteContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'quoteContent/getviewmodel', quoteContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             quoteContent.selectedItem = response.Item;
             quoteContent.selectedItem.IsArchive = (response.Item.IsArchive == true) ? false : true;
-            ajax.call(mainPathApi+'quoteContent/edit', quoteContent.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'quoteContent/edit', quoteContent.selectedItem, 'PUT').success(function (response2) {
                 quoteContent.categoryBusyIndicator.isActive = true;
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
@@ -856,7 +856,7 @@ quoteContent.LinkCategoryIdSelector = {
     quoteContent.summernoteText = '<h3>Hello Jonathan! </h3>dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industrys</strong> standard dummy text ever since the 1500s,when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronictypesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with<br /><br />';
     quoteContent.searchData = function () {
         quoteContent.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"quoteContent/getall", quoteContent.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"quoteContent/getall", quoteContent.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             quoteContent.categoryBusyIndicator.isActive = false;
             quoteContent.ListItems = response.ListItems;
@@ -1025,7 +1025,7 @@ quoteContent.LinkCategoryIdSelector = {
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(mainPathApi+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             quoteContent.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -1063,7 +1063,7 @@ quoteContent.LinkCategoryIdSelector = {
 
         quoteContent.FileList = [];
         //get list of file from category id
-        ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
             quoteContent.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -1102,14 +1102,14 @@ quoteContent.LinkCategoryIdSelector = {
         quoteContent.fileIdToDelete = quoteContent.selectedIndex;
 
         // Delete the file
-        ajax.call(mainPathApi+"FileContent/getviewmodel", quoteContent.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", quoteContent.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(mainPathApi+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
                     quoteContent.remove(quoteContent.FileList, quoteContent.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 quoteContent.FileItem = response3.Item;
                                 quoteContent.FileItem.FileName = name;
@@ -1138,7 +1138,7 @@ quoteContent.LinkCategoryIdSelector = {
     }
     //save new file
     quoteContent.saveNewFile = function () {
-        ajax.call(mainPathApi+"FileContent/add", quoteContent.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", quoteContent.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 quoteContent.FileItem = response.Item;
                 quoteContent.showSuccessIcon();
@@ -1217,14 +1217,14 @@ quoteContent.LinkCategoryIdSelector = {
                      // replace the file
             ajax
               .call(
-                mainPathApi+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
                 quoteContent.fileIdToDelete,
                 "GET"
               )
               .success(function(response1) {
                 if (response1.IsSuccess == true) {
                   console.log(response1.Item);
-                  ajax.call(mainPathApi+"FileContent/replace", response1.Item, "POST")
+                  ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
                     .success(function(response2) {
                       if (response2.IsSuccess == true) {
                         quoteContent.FileItem = response2.Item;
@@ -1267,7 +1267,7 @@ quoteContent.LinkCategoryIdSelector = {
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
                     quoteContent.FileItem = response.Item;
                     quoteContent.FileItem.FileName = uploadFile.name;
                     quoteContent.FileItem.uploadName = uploadFile.uploadName;
@@ -1276,7 +1276,7 @@ quoteContent.LinkCategoryIdSelector = {
                     quoteContent.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- quoteContent.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(mainPathApi+"FileContent/add", quoteContent.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", quoteContent.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             quoteContent.FileItem = response.Item;
                             quoteContent.showSuccessIcon();
@@ -1314,7 +1314,7 @@ quoteContent.LinkCategoryIdSelector = {
     quoteContent.exportFile = function () {
         quoteContent.addRequested = true;
         quoteContent.gridOptions.advancedSearchData.engine.ExportFile = quoteContent.ExportFileClass;
-        ajax.call(mainPathApi+'QuoteContent/exportfile', quoteContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'QuoteContent/exportfile', quoteContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             quoteContent.addRequested = false;
             rashaErManage.checkAction(response);
             quoteContent.reportDownloadLink = response.LinkFile;
@@ -1356,7 +1356,7 @@ quoteContent.LinkCategoryIdSelector = {
     }
     //Get TotalRowCount
     quoteContent.getCount = function () {
-        ajax.call(mainPathApi+"quoteContent/count", quoteContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"quoteContent/count", quoteContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             quoteContent.addRequested = false;
             rashaErManage.checkAction(response);
             quoteContent.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -1390,11 +1390,11 @@ quoteContent.LinkCategoryIdSelector = {
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -1415,9 +1415,9 @@ quoteContent.LinkCategoryIdSelector = {
             return;
         }
         quoteContent.selectedItem.LinkMainImageId = node.Id;
-        quoteContent.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
-        ajax.call(mainPathApi+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            quoteContent.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
+        quoteContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            quoteContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });

@@ -15,7 +15,7 @@
         } catch (error) {
             console.log(error);
         }
-        ajax.call(mainPathApi+"universalmenusession/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"universalmenusession/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             sessionCtrl.busyIndicator.isActive = false;
             sessionCtrl.ListItems = response.ListItems;
@@ -31,7 +31,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         //sessionCtrl.busyIndicator.isActive = true;
-        //ajax.call(mainPathApi+'biographyContent/getall', {}, 'POST').success(function (response) {
+        //ajax.call(cmsServerConfig.configApiServerPath+'biographyContent/getall', {}, 'POST').success(function (response) {
         //    sessionCtrl.CommentList = response.ListItems;
         //    sessionCtrl.busyIndicator.isActive = false;
         //});
@@ -44,7 +44,7 @@
     sessionCtrl.addRequested = false;
     sessionCtrl.openAddModal = function () {
         sessionCtrl.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'universalmenusession/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenusession/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             sessionCtrl.busyIndicator.isActive = false;
             sessionCtrl.selectedItem = response.Item;
@@ -65,7 +65,7 @@
         }
         sessionCtrl.busyIndicator.isActive = true;
         sessionCtrl.addRequested = true;
-        ajax.call(mainPathApi+'universalmenusession/add', sessionCtrl.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenusession/add', sessionCtrl.selectedItem, 'POST').success(function (response) {
             sessionCtrl.addRequested = false;
             sessionCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -90,7 +90,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'universalmenusession/getviewmodel', sessionCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenusession/getviewmodel', sessionCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             sessionCtrl.selectedItem = response.Item;
             $modal.open({
@@ -111,7 +111,7 @@
         }
 
         sessionCtrl.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'universalmenusession/edit', sessionCtrl.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenusession/edit', sessionCtrl.selectedItem, 'PUT').success(function (response) {
             sessionCtrl.addRequested = true;
             rashaErManage.checkAction(response);
             sessionCtrl.busyIndicator.isActive = false;
@@ -160,10 +160,10 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 sessionCtrl.busyIndicator.isActive = true;
-                ajax.call(mainPathApi+'universalmenusession/getviewmodel', sessionCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'universalmenusession/getviewmodel', sessionCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     sessionCtrl.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'universalmenusession/delete', sessionCtrl.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'universalmenusession/delete', sessionCtrl.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         sessionCtrl.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

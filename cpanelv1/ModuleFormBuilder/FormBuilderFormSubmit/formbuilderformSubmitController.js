@@ -30,7 +30,7 @@
                 IntValue1: value.selectedFormBuilderSubmit.Id
             }]
         };
-        ajax.call(mainPathApi+"FormBuilderFormSubmit/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FormBuilderFormSubmit/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             value.ListItems = response.ListItems;
             value.busyIndicator.isActive = false;
@@ -47,7 +47,7 @@
         value.getAllForms(1000, 1);
     }
     value.getAllForms = function (rowPerPage, currentPageNumber) {
-        ajax.call(mainPathApi+"formBuilderform/getall", { RowPerPage: rowPerPage, CurrentPageNumber: currentPageNumber }, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"formBuilderform/getall", { RowPerPage: rowPerPage, CurrentPageNumber: currentPageNumber }, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             value.formListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
@@ -59,7 +59,7 @@
     value.openAddModal = function () {
         value.modalTitle = 'اضافه';
         value.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'formBuilderFormSubmit/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'formBuilderFormSubmit/getviewmodel', "0", 'GET').success(function (response) {
             value.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             value.selectedItem = response.Item;
@@ -85,7 +85,7 @@
         value.busyIndicator.isActive = true;
         value.addRequested = true;
         value.selectedItem.JsonValues = $.trim(angular.toJson(value.submitValue));
-        ajax.call(mainPathApi+'FormBuilderFormSubmit/add', value.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'FormBuilderFormSubmit/add', value.selectedItem, 'POST').success(function (response) {
             value.addRequested = false;
             value.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -110,7 +110,7 @@
             return;
         }
         value.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'FormBuilderFormSubmit/getviewmodel', value.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'FormBuilderFormSubmit/getviewmodel', value.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             value.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             value.selectedItem = response.Item;
@@ -132,7 +132,7 @@
         }
         value.addRequested = true;
         value.selectedItem.JsonValues = $.trim(angular.toJson(value.submitValue));
-        ajax.call(mainPathApi+'FormBuilderFormSubmit/edit', value.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'FormBuilderFormSubmit/edit', value.selectedItem, 'PUT').success(function (response) {
             value.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -172,11 +172,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(value.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'formBuilderFormSubmit/getviewmodel', value.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'formBuilderFormSubmit/getviewmodel', value.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     value.selectedItemForDelete = response.Item;
                     console.log(value.selectedItemForDelete);
-                    ajax.call(mainPathApi+'formBuilderFormSubmit/delete', value.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'formBuilderFormSubmit/delete', value.selectedItemForDelete, 'DELETE').success(function (res) {
                         value.busyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
@@ -196,7 +196,7 @@
 
     value.searchData = function () {
         //value.gridOptions.serachData();
-        ajax.call(mainPathApi+"FormBuilderFormSubmit/getall", value.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FormBuilderFormSubmit/getall", value.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             //value.contentBusyIndicator.isActive = false;
             value.ListItems = response.ListItems;
@@ -294,7 +294,7 @@
     // Show InputValue form builder and auto scroll to its position
     value.openCustomizeInputValueModal = function (item) {
         value.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'universalmenuProcesses/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/getviewmodel', item.Id, 'GET').success(function (response) {
             value.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             value.selectedItem = response.Item;
@@ -336,7 +336,7 @@
     value.exportFile = function () {
         value.gridOptions.advancedSearchData.engine.ExportFile = value.ExportFileClass;
         value.addRequested = true;
-        ajax.call(mainPathApi+'BiographyContent/exportfile', value.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'BiographyContent/exportfile', value.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             value.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -375,7 +375,7 @@
 
     $builder.defa
     value.onLinkFormIdChange = function (formId, values) {
-        ajax.call(mainPathApi+'formbuilderform/getviewmodel', formId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/getviewmodel', formId, 'GET').success(function (response) {
             value.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             value.selectedItem.JsonForm = response.Item.JsonForm;

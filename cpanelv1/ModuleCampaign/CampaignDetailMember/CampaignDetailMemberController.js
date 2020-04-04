@@ -42,7 +42,7 @@
 
     
 
-    ajax.call(mainPathApi+"MemberGroup/getall", {}, 'POST').success(function (response) {
+    ajax.call(cmsServerConfig.configApiServerPath+"MemberGroup/getall", {}, 'POST').success(function (response) {
         campaignDetailMember.memberGroups = response.ListItems;
     }).error(function (data, errCode, c, d) {
         console.log(data);
@@ -94,7 +94,7 @@
         } catch (error) {
             console.log(error);
         }
-        ajax.call(mainPathApi+"campaignDetailMember/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"campaignDetailMember/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetailMember.busyIndicator.isActive = false;
             campaignDetailMember.ListItems = response.ListItems;
@@ -124,7 +124,7 @@
         campaignDetailMember.ViewFindUserDiv = false;
         campaignDetailMember.ViewNewUserDiv = false;
         campaignDetailMember.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'MemberUser/getviewmodel', "0", "GET").success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/getviewmodel', "0", "GET").success(function (response1) {
             campaignDetailMember.busyIndicator.isActive = false;
             campaignDetailMember.selectedMemberUser = response1.Item;
         }).error(function (data, errCode, c, d) {
@@ -132,7 +132,7 @@
             campaignDetailMember.busyIndicator.isActive = false;
 
         });
-        ajax.call(mainPathApi+'campaignDetailMember/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetailMember.busyIndicator.isActive = false;
             campaignDetailMember.selectedItem = response.Item;
@@ -170,7 +170,7 @@
 
             campaignDetailMember.addRequested = true;
             campaignDetailMember.busyIndicator.isActive = true;
-            ajax.call(mainPathApi+'memberuser/add', campaignDetailMember.selectedMemberUser, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'memberuser/add', campaignDetailMember.selectedMemberUser, 'POST').success(function (response1) {
                 rashaErManage.checkAction(response1);
                 if (response1.IsSuccess) {
                     campaignDetailMember.selectedItem.LinkMemberId = response1.Item.Id;
@@ -185,7 +185,7 @@
         }
     }
     campaignDetailMember.addSerialCard = function () {
-        ajax.call(mainPathApi+'campaignDetailMember/add', campaignDetailMember.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/add', campaignDetailMember.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 campaignDetailMember.ListItems.unshift(response.Item);
@@ -209,7 +209,7 @@
     //        return;
     //    }
 
-    //    ajax.call(mainPathApi+'campaignDetailMember/getviewmodel', campaignDetailMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/getviewmodel', campaignDetailMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
     //        rashaErManage.checkAction(response);
     //        campaignDetailMember.selectedItem = response.Item;
     //        campaignDetailMember.filePickerMainImage.filename = null;
@@ -238,7 +238,7 @@
     //    //Save attached file ids into campaignDetailMember.selectedItem.LinkFileIds
     //    campaignDetailMember.selectedItem.LinkFileIds = "";
     //    campaignDetailMember.stringfyLinkFileIds();
-    //    ajax.call(mainPathApi+'campaignDetailMember/edit', campaignDetailMember.selectedItem, 'PUT').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/edit', campaignDetailMember.selectedItem, 'PUT').success(function (response) {
     //        campaignDetailMember.addRequested = true;
     //        rashaErManage.checkAction(response);
     //        campaignDetailMember.busyIndicator.isActive = false;
@@ -276,7 +276,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'MemberUser/getviewmodel', "0", "GET").success(function (response2) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/getviewmodel', "0", "GET").success(function (response2) {
             campaignDetailMember.selectedMemberUser = response2.Item;
 
             campaignDetailMember.busyIndicator.isActive = false;
@@ -285,7 +285,7 @@
             campaignDetailMember.busyIndicator.isActive = false;
 
         });
-        ajax.call(mainPathApi+'campaignDetailMember/getviewmodel', campaignDetailMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/getviewmodel', campaignDetailMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetailMember.selectedItem = response.Item;
             if (response.Item.LinkMemberId != null)
@@ -329,7 +329,7 @@
 
             campaignDetailMember.addRequested = true;
             campaignDetailMember.busyIndicator.isActive = true;
-            ajax.call(mainPathApi+'memberuser/add', campaignDetailMember.selectedMemberUser, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'memberuser/add', campaignDetailMember.selectedMemberUser, 'POST').success(function (response1) {
                 rashaErManage.checkAction(response1);
                 if (response1.IsSuccess) {
                     campaignDetailMember.selectedItem.LinkMemberId = response1.Item.Id;
@@ -351,7 +351,7 @@
         //Save attached file ids into campaignDetailMember.selectedItem.LinkFileIds
         campaignDetailMember.selectedItem.LinkFileIds = "";
         campaignDetailMember.stringfyLinkFileIds();
-        ajax.call(mainPathApi+'campaignDetailMember/edit', campaignDetailMember.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/edit', campaignDetailMember.selectedItem, 'PUT').success(function (response) {
             campaignDetailMember.addRequested = true;
             rashaErManage.checkAction(response);
             campaignDetailMember.busyIndicator.isActive = false;
@@ -393,11 +393,11 @@
             if (isConfirmed) {
                 campaignDetailMember.busyIndicator.isActive = true;
                 console.log(campaignDetailMember.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'campaignDetailMember/getviewmodel', campaignDetailMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/getviewmodel', campaignDetailMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     campaignDetailMember.selectedItemForDelete = response.Item;
                     console.log(campaignDetailMember.selectedItemForDelete);
-                    ajax.call(mainPathApi+'campaignDetailMember/delete', campaignDetailMember.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/delete', campaignDetailMember.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         campaignDetailMember.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -418,7 +418,7 @@
 
     campaignDetailMember.searchData = function () {
         campaignDetailMember.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"campaignDetailMember/getall", campaignDetailMember.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"campaignDetailMember/getall", campaignDetailMember.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetailMember.categoryBusyIndicator.isActive = false;
             campaignDetailMember.ListItems = response.ListItems;
@@ -512,7 +512,7 @@
             ContentFullSearch: null,
             Filters: [filterValue]
         }
-        ajax.call(mainPathApi+'memberuser/GetOne', filterModel, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'memberuser/GetOne', filterModel, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetailMember.selectedMember = response.Item;
             if (campaignDetailMember.selectedMember != null && campaignDetailMember.selectedMember.Id != 0) {
@@ -660,7 +660,7 @@
     }
 
     campaignDetailMember.deleteAttachedfieldName = function (index) {
-        ajax.call(mainPathApi+'campaignDetailMember/delete', campaignDetailMember.contractsList[index], 'DELETE').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/delete', campaignDetailMember.contractsList[index], 'DELETE').success(function (res) {
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
                 campaignDetailMember.contractsList.splice(index, 1);
@@ -677,7 +677,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(mainPathApi+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             campaignDetailMember.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -715,7 +715,7 @@
 
         campaignDetailMember.FileList = [];
         //get list of file from category id
-        ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
             campaignDetailMember.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -754,14 +754,14 @@
         campaignDetailMember.fileIdToDelete = campaignDetailMember.selectedIndex;
 
         // Delete the file
-        ajax.call(mainPathApi+"FileContent/getviewmodel", campaignDetailMember.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", campaignDetailMember.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(mainPathApi+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
                     campaignDetailMember.remove(campaignDetailMember.FileList, campaignDetailMember.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 campaignDetailMember.FileItem = response3.Item;
                                 campaignDetailMember.FileItem.FileName = name;
@@ -790,7 +790,7 @@
     }
     //save new file
     campaignDetailMember.saveNewFile = function () {
-        ajax.call(mainPathApi+"FileContent/add", campaignDetailMember.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", campaignDetailMember.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 campaignDetailMember.FileItem = response.Item;
                 campaignDetailMember.showSuccessIcon();
@@ -863,14 +863,14 @@
                     // replace the file
             ajax
               .call(
-                mainPathApi+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
                 campaignDetailMember.fileIdToDelete,
                 "GET"
               )
               .success(function(response1) {
                 if (response1.IsSuccess == true) {
                   console.log(response1.Item);
-                  ajax.call(mainPathApi+"FileContent/replace", response1.Item, "POST")
+                  ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
                     .success(function(response2) {
                       if (response2.IsSuccess == true) {
                         campaignDetailMember.FileItem = response2.Item;
@@ -913,7 +913,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
                     campaignDetailMember.FileItem = response.Item;
                     campaignDetailMember.FileItem.FileName = uploadFile.name;
                     campaignDetailMember.FileItem.uploadName = uploadFile.uploadName;
@@ -922,7 +922,7 @@
                     campaignDetailMember.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- campaignDetailMember.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(mainPathApi+"FileContent/add", campaignDetailMember.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", campaignDetailMember.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             campaignDetailMember.FileItem = response.Item;
                             campaignDetailMember.showSuccessIcon();
@@ -960,7 +960,7 @@
     campaignDetailMember.exportFile = function () {
         campaignDetailMember.addRequested = true;
         campaignDetailMember.gridOptions.advancedSearchData.engine.ExportFile = campaignDetailMember.ExportFileClass;
-        ajax.call(mainPathApi+'campaignDetailMember/exportfile', campaignDetailMember.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/exportfile', campaignDetailMember.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             campaignDetailMember.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -1003,7 +1003,7 @@
     }
     //Get TotalRowCount
     campaignDetailMember.getCount = function () {
-        ajax.call(mainPathApi+"campaignDetailMember/count", campaignDetailMember.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"campaignDetailMember/count", campaignDetailMember.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             campaignDetailMember.addRequested = false;
             rashaErManage.checkAction(response);
             campaignDetailMember.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

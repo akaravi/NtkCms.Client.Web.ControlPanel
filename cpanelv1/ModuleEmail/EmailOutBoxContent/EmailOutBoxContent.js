@@ -39,7 +39,7 @@
     emailOutBoxContent.init = function () {
         emailOutBoxContent.busyIndicator.isActive = true;
         emailOutBoxContent.gridOptions.advancedSearchData.engine.RowPerPage = 20;
-        ajax.call(mainPathApi+"emailOutBoxContent/getall", emailOutBoxContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"emailOutBoxContent/getall", emailOutBoxContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             emailOutBoxContent.ListItems = response.ListItems;
             emailOutBoxContent.gridOptions.fillData(emailOutBoxContent.ListItems, response.resultAccess);
@@ -61,7 +61,7 @@
         if (buttonIsPressed) { return };
         emailOutBoxContent.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'emailOutBoxContent/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/getviewmodel', '0', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailOutBoxContent.selectedItem = response.Item;
@@ -83,7 +83,7 @@
         }
         emailOutBoxContent.addRequested = true;
         emailOutBoxContent.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'emailOutBoxContent/add', emailOutBoxContent.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/add', emailOutBoxContent.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 emailOutBoxContent.ListItems.unshift(response.Item);
@@ -102,7 +102,7 @@
 
     emailOutBoxContent.autoAdd = function () {
         emailOutBoxContent.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'emailOutBoxContent/autoadd', { LinkSourceId: emailOutBoxContent.selectedSourceId }, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/autoadd', { LinkSourceId: emailOutBoxContent.selectedSourceId }, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             emailOutBoxContent.busyIndicator.isActive = false;
             emailOutBoxContent.init();
@@ -127,7 +127,7 @@
 
         emailOutBoxContent.addRequested = true;
         emailOutBoxContent.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'emailOutBoxContent/getonewithjsonformatter', engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/getonewithjsonformatter', engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             emailOutBoxContent.selectedItem = response.Item;
             newsContent.RegisterDate.defaultDate = newsContent.selectedItem.RegisterDate;
@@ -184,10 +184,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/GetAll", filterModelParentRootFolders, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModelParentRootFolders, 'POST').success(function (response1) {
                 emailOutBoxContent.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) {
                     Array.prototype.push.apply(emailOutBoxContent.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (emailOutBoxContent.selectedItem.LinkModuleFileLogoId > 0)
@@ -220,7 +220,7 @@
 
         emailOutBoxContent.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailOutBoxContent.submitValue));
 
-        ajax.call(mainPathApi+'emailOutBoxContent/edit', emailOutBoxContent.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/edit', emailOutBoxContent.selectedItem, 'PUT').success(function (response) {
             emailOutBoxContent.addRequested = false;
             emailOutBoxContent.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -260,11 +260,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'emailOutBoxContent/getviewmodel', emailOutBoxContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/getviewmodel', emailOutBoxContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     emailOutBoxContent.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'emailOutBoxContent/delete', emailOutBoxContent.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/delete', emailOutBoxContent.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             emailOutBoxContent.replaceItem(emailOutBoxContent.selectedItemForDelete.Id);
@@ -348,7 +348,7 @@
     emailOutBoxContent.exportFile = function () {
         emailOutBoxContent.addRequested = true;
         emailOutBoxContent.gridOptions.advancedSearchData.engine.ExportFile = emailOutBoxContent.ExportFileClass;
-        ajax.call(mainPathApi+'CoreSite/exportfile', emailOutBoxContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/exportfile', emailOutBoxContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             emailOutBoxContent.addRequested = false;
             rashaErManage.checkAction(response);
             emailOutBoxContent.reportDownloadLink = response.LinkFile;
@@ -391,7 +391,7 @@
     //Get TotalRowCount
     emailOutBoxContent.getCount = function () {
         emailOutBoxContent.addRequested = true;
-        ajax.call(mainPathApi+"emailOutBoxContent/count", emailOutBoxContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"emailOutBoxContent/count", emailOutBoxContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             emailOutBoxContent.addRequested = false;
             rashaErManage.checkAction(response);
             emailOutBoxContent.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -406,7 +406,7 @@
         $builder.removeAllFormObject('default');
         var engine = { Filters: [{ PropertyName: "Id", IntValue1: selectedId }] };
         emailOutBoxContent.addRequested = true;
-        ajax.call(mainPathApi+"emailOutBoxContent/getonewithjsonformatter", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"emailOutBoxContent/getonewithjsonformatter", engine, 'POST').success(function (response) {
             emailOutBoxContent.addRequested = false;
             if (response.IsSuccess) {
                 emailOutBoxContent.selectedItem = response.Item;
@@ -467,7 +467,7 @@
         emailOutBoxContent.busyIndicator.isActive = true;
         emailOutBoxContent.addRequested = true;
         emailOutBoxContent.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailOutBoxContent.submitValue));
-        ajax.call(mainPathApi+'emailOutBoxContent/edit', emailOutBoxContent.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxContent/edit', emailOutBoxContent.selectedItem, 'PUT').success(function (response) {
             rashaErManage.checkAction(response);
             emailOutBoxContent.busyIndicator.isActive = false;
             emailOutBoxContent.addRequested = false;
@@ -501,11 +501,11 @@
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -525,9 +525,9 @@
             return;
         }
         emailOutBoxContent.selectedItem.LinkModuleFileLogoId = node.Id;
-        emailOutBoxContent.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
-        ajax.call(mainPathApi+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            emailOutBoxContent.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
+        emailOutBoxContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            emailOutBoxContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });

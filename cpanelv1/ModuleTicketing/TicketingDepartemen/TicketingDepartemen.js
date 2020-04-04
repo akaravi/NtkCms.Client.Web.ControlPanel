@@ -76,12 +76,12 @@
 
     ticketingDepartemen.init = function () {
         ticketingDepartemen.busyIndicator.isActive = true;
-        ajax.call(mainPathApi + "ticketingDepartemen/getall", ticketingDepartemen.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "ticketingDepartemen/getall", ticketingDepartemen.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             ticketingDepartemen.ListItems = response.ListItems;
             ticketingDepartemen.gridOptions.fillData(response.ListItems, response.resultAccess);
             ticketingDepartemen.busyIndicator.isActive = false;
             if (!angular.isDefined(ticketingDepartemen.priorityEnum))
-                ajax.call(mainPathApi + "ticketingDepartemen/GetPriorityEnum", {}, 'POST').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "ticketingDepartemen/GetPriorityEnum", {}, 'POST').success(function (response) {
                     ticketingDepartemen.priorityEnum = response.ListItems;
                     ticketingDepartemen.filterPriorityEnum(ticketingDepartemen.ListItems, ticketingDepartemen.priorityEnum);
                 }).error(function (data, errCode, c, d) {
@@ -102,7 +102,7 @@
     }
     ticketingDepartemen.openAddModal = function () {
         ticketingDepartemen.modalTitle = 'اضافه';
-        ajax.call(mainPathApi + 'ticketingDepartemen/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemen/getviewmodel', "0", 'GET').success(function (response) {
             //rashaErManage.checkAction(response);
             console.log(response);
             ticketingDepartemen.selectedItem = response.Item;
@@ -122,7 +122,7 @@
             return;
         }
         ticketingDepartemen.modalTitle = 'ویرایش';
-        ajax.call(mainPathApi + 'ticketingDepartemen/getviewmodel', ticketingDepartemen.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemen/getviewmodel', ticketingDepartemen.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             ticketingDepartemen.selectedItem = response.Item;
             $modal.open({
@@ -141,7 +141,7 @@
         }
         ticketingDepartemen.selectedItem.LinkCmsPageId = 1;
         ticketingDepartemen.addRequested = true;
-        ajax.call(mainPathApi + 'ticketingDepartemen/add', ticketingDepartemen.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemen/add', ticketingDepartemen.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 ticketingDepartemen.ListItems.unshift(response.Item);
@@ -162,7 +162,7 @@
             return;
         }
         ticketingDepartemen.addRequested = true;
-        ajax.call(mainPathApi + 'ticketingDepartemen/edit', ticketingDepartemen.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemen/edit', ticketingDepartemen.selectedItem, 'PUT').success(function (response) {
             ticketingDepartemen.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -184,12 +184,12 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(ticketingDepartemen.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi + 'ticketingDepartemen/getviewmodel', ticketingDepartemen.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemen/getviewmodel', ticketingDepartemen.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
 
                     rashaErManage.checkAction(response);
                     ticketingDepartemen.selectedItemForDelete = response.Item;
                     console.log(ticketingDepartemen.selectedItemForDelete);
-                    ajax.call(mainPathApi + 'ticketingDepartemen/delete', ticketingDepartemen.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemen/delete', ticketingDepartemen.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             ticketingDepartemen.replaceItem(ticketingDepartemen.selectedItemForDelete.Id);
@@ -236,7 +236,7 @@
             return;
         }
         var ticketingDepartemenId = ticketingDepartemen.gridOptions.selectedRow.item.Id;
-        ajax.call(mainPathApi + 'ticketingDepartemenoperator/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemenoperator/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 ticketingDepartemen.selectedItem = response.Item;
@@ -256,7 +256,7 @@
                 IntValue1: ticketingDepartemenId
             }]
         };
-        ajax.call(mainPathApi + 'ticketingDepartemenOperator/getAlloperator', filterModel, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemenOperator/getAlloperator', filterModel, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 ticketingDepartemen.operatorsList = response.ListItems;
@@ -272,7 +272,7 @@
             return;
         }
         ticketingDepartemen.addRequested = true;
-        ajax.call(mainPathApi + 'ticketingDepartemenoperator/add', ticketingDepartemen.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemenoperator/add', ticketingDepartemen.selectedItem, 'POST').success(function (response) {
             ticketingDepartemen.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -289,7 +289,7 @@
     }
 
     ticketingDepartemen.deleteMember = function (index) {
-        ajax.call(mainPathApi + 'ticketingDepartemenoprator/delete', ticketingDepartemen.operatorsList[index], 'DELETE').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemenoprator/delete', ticketingDepartemen.operatorsList[index], 'DELETE').success(function (res) {
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
                 ticketingDepartemen.operatorsList.splice(index, 1);
@@ -325,7 +325,7 @@
             ClauseType: 1
         });
         //engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: input });
-        ajax.call(mainPathApi + "CoreUser/search", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreUser/search", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             ticketingDepartemen.cmsUsersListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
@@ -346,7 +346,7 @@
             ticketingDepartemen.gridContentOptions.advancedSearchData.engine.Filters = [];
             ticketingDepartemen.gridContentOptions.advancedSearchData.engine.Filters.push(Filter_value);
 
-            ajax.call(mainPathApi + 'ticketingDepartemenOperator/getall', ticketingDepartemen.gridContentOptions.advancedSearchData.engine, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemenOperator/getall', ticketingDepartemen.gridContentOptions.advancedSearchData.engine, 'POST').success(function (response) {
                 ticketingDepartemen.TypeOperator.ListItems = response.ListItems;
                 ticketingDepartemen.gridContentOptions.fillData(ticketingDepartemen.TypeOperator.ListItems);
                 ticketingDepartemen.gridContentOptions.currentPageNumber = response.CurrentPageNumber;
@@ -393,7 +393,7 @@
             rashaErManage.showMessage("لطفاَ یک ردیف جهت افزودن اپراتور انتخاب کنید");
             return;
         }
-        ajax.call(mainPathApi + 'ticketingDepartemenOperator/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemenOperator/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             console.log(response);
             ticketingDepartemen.TypeOperator.selectedItem = response.Item;
@@ -408,7 +408,7 @@
         });
         ticketingDepartemen.clearOperatorName();
         // ------------------------- Get users ----------------------------------
-        ajax.call(mainPathApi + "CoreSiteUser/GetCurrentSiteUsers", "", 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreSiteUser/GetCurrentSiteUsers", "", 'POST').success(function (response) {
             ticketingDepartemen.CmsUser.ListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -426,7 +426,7 @@
             return;
         }
         ticketingDepartemen.addRequested = true;
-        ajax.call(mainPathApi + 'ticketingDepartemenOperator/add', ticketingDepartemen.TypeOperator.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemenOperator/add', ticketingDepartemen.TypeOperator.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 ticketingDepartemen.TypeOperator.ListItems.unshift(response.Item);
@@ -448,10 +448,10 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                ajax.call(mainPathApi + 'ticketingDepartemenoperator/getviewmodel', ticketingDepartemen.gridContentOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemenoperator/getviewmodel', ticketingDepartemen.gridContentOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     ticketingDepartemen.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi + 'ticketingDepartemenoperator/delete', ticketingDepartemen.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemenoperator/delete', ticketingDepartemen.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             ticketingDepartemen.replaceItem(ticketingDepartemen.selectedItemForDelete.Id);
@@ -514,7 +514,7 @@
     ticketingDepartemen.exportFile = function () {
         ticketingDepartemen.addRequested = true;
         ticketingDepartemen.gridOptions.advancedSearchData.engine.ExportFile = ticketingDepartemen.ExportFileClass;
-        ajax.call(mainPathApi + 'ticketingDepartemen/exportfile', ticketingDepartemen.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemen/exportfile', ticketingDepartemen.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             ticketingDepartemen.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -584,7 +584,7 @@
     }
     //Get TotalRowCount
     ticketingDepartemen.getCount = function () {
-        ajax.call(mainPathApi + "ticketingDepartemen/count", ticketingDepartemen.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "ticketingDepartemen/count", ticketingDepartemen.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             ticketingDepartemen.addRequested = false;
             rashaErManage.checkAction(response);
             ticketingDepartemen.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

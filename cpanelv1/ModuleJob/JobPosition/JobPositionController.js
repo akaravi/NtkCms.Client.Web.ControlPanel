@@ -10,7 +10,7 @@
 
     jobPosition.init = function () {
         jobPosition.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"jobposition/getall", jobPosition.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"jobposition/getall", jobPosition.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobPosition.busyIndicator.isActive = false;
             jobPosition.ListItems = response.ListItems;
@@ -34,7 +34,7 @@
 
         jobPosition.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'jobposition/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobposition/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -60,7 +60,7 @@
         }
         jobPosition.busyIndicator.isActive = true;
         jobPosition.addRequested = true;
-        ajax.call(mainPathApi+'jobposition/add', jobPosition.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobposition/add', jobPosition.selectedItem, 'POST').success(function (response) {
             jobPosition.addRequested = false;
             jobPosition.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -87,7 +87,7 @@
         }
 
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'jobposition/getviewmodel', jobPosition.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobposition/getviewmodel', jobPosition.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -111,7 +111,7 @@
             return;
         }
         jobPosition.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'jobposition/edit', jobPosition.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobposition/edit', jobPosition.selectedItem, 'PUT').success(function (response) {
             jobPosition.addRequested = true;
             rashaErManage.checkAction(response);
             jobPosition.busyIndicator.isActive = false;
@@ -156,11 +156,11 @@
                 jobPosition.busyIndicator.isActive = true;
                 console.log(jobPosition.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'jobposition/getviewmodel', jobPosition.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'jobposition/getviewmodel', jobPosition.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     jobPosition.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'jobposition/delete', jobPosition.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'jobposition/delete', jobPosition.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         jobPosition.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -314,7 +314,7 @@
         var engine = {};
         engine.Filters = [];
         engine.Filters.push(filterValue);
-        ajax.call(mainPathApi+"jobPositionDetail/GetAll", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"jobPositionDetail/GetAll", engine, 'POST').success(function (response) {
             jobPosition.propertyDetailsListItems = response.ListItems;
 
             $.each(jobPosition.propertyDetailsListItems, function (index, item) {
@@ -336,7 +336,7 @@
     jobPosition.exportFile = function () {
         jobPosition.addRequested = true;
         jobPosition.gridOptions.advancedSearchData.engine.ExportFile = jobPosition.ExportFileClass;
-        ajax.call(mainPathApi+'JobPosition/exportfile', jobPosition.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'JobPosition/exportfile', jobPosition.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 jobPosition.exportDownloadLink = window.location.origin + response.LinkFile;
@@ -379,7 +379,7 @@
     }
     //Get TotalRowCount
     jobPosition.getCount = function () {
-        ajax.call(mainPathApi+"JobPosition/count", jobPosition.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"JobPosition/count", jobPosition.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobPosition.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

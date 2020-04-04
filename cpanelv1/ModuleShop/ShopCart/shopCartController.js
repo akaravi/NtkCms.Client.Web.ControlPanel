@@ -24,7 +24,7 @@
         shopCart.selectedItemSaleDetail.Fee = item.Price;
     };
     shopCart.selectionChangedUser = function (item) {
-        ajax.call(mainPathApi+'CoreUser/getviewmodel', shopCart.selectedItem.LinkCmsUserId, 'GET').success(function (response2) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/getviewmodel', shopCart.selectedItem.LinkCmsUserId, 'GET').success(function (response2) {
             shopCart.selectedItem.ReceiverName = response2.Item.Name;
             shopCart.selectedItem.ReceiverLastName = response2.Item.LastName;
             shopCart.selectedItem.ReceiverMobile = response2.Item.Mobile;
@@ -143,13 +143,13 @@
     shopCart.init = function () {
         shopCart.addRequested = true;
         shopCart.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"shopCart/GetAllPaymentStatus", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopCart/GetAllPaymentStatus", {}, 'POST').success(function (response) {
             shopCart.PaymentStatus = response.ListItems;
 
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(mainPathApi+"shopCart/GetAllInvoiceStatus", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopCart/GetAllInvoiceStatus", {}, 'POST').success(function (response) {
             shopCart.InvoiceStatus = response.ListItems;
             shopCart.setInvoiceStatusEnum(shopCart.ListItems, shopCart.InvoiceStatus);
         }).error(function (data, errCode, c, d) {
@@ -164,7 +164,7 @@
                 }]
             };
         }
-        ajax.call(mainPathApi+"shopCart/getall", shopCart.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopCart/getall", shopCart.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopCart.ListItems = response.ListItems;
             shopCart.gridOptions.fillData(shopCart.ListItems, response.resultAccess);
@@ -248,7 +248,7 @@
         }
         shopCart.gridOptions.advancedSearchData.engine.Filters.push(s);
 
-        ajax.call(mainPathApi+"shopCart/getAll", shopCart.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopCart/getAll", shopCart.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopCart.busyIndicator.isActive = false;
             shopCart.ListItems = response.ListItems;
@@ -266,7 +266,7 @@
         if (shopCart.addRequested) { return };
         shopCart.addRequested = true;
         shopCart.modalTitle = 'اضافه کردن محتوای جدید';
-        ajax.call(mainPathApi+'shopCart/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCart/getviewmodel', "0", 'GET').success(function (response) {
             shopCart.addRequested = false;
             rashaErManage.checkAction(response);
             shopCart.selectedItem = response.Item;
@@ -290,11 +290,11 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'shopCart/getviewmodel', shopCart.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCart/getviewmodel', shopCart.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             shopCart.selectedItem = response1.Item;
             if (shopCart.selectedItem.LinkCmsUserId > 0) {
-                ajax.call(mainPathApi+'CoreUser/getviewmodel', shopCart.selectedItem.LinkCmsUserId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/getviewmodel', shopCart.selectedItem.LinkCmsUserId, 'GET').success(function (response2) {
                     shopCart.selectedUser = response2.Item;
                 }).error(function (data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
@@ -323,7 +323,7 @@
             return;
         }
         shopCart.addRequested = true;
-        ajax.call(mainPathApi+'shopCart/add', shopCart.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCart/add', shopCart.selectedItem, 'POST').success(function (response) {
             //rashaErManage.checkAction(response);
             shopCart.busyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -353,7 +353,7 @@
         shopCart.busyIndicator.isActive = true;
         shopCart.addRequested = true;
 
-        ajax.call(mainPathApi+'shopCart/edit', shopCart.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCart/edit', shopCart.selectedItem, 'PUT').success(function (response) {
             shopCart.busyIndicator.isActive = false;
             shopCart.addRequested = false;
             shopCart.showIsBusy = false;
@@ -386,11 +386,11 @@
                 shopCart.busyIndicator.isActive = true;
                 shopCart.showbusy = true;
                 shopCart.showIsBusy = true;
-                ajax.call(mainPathApi+"shopCart/getviewmodel", shopCart.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"shopCart/getviewmodel", shopCart.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopCart.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+"shopCart/delete", shopCart.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"shopCart/delete", shopCart.selectedItemForDelete, "DELETE").success(function (res) {
                         shopCart.busyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
@@ -422,7 +422,7 @@
     }
 
     shopCart.searchData = function () {
-        ajax.call(mainPathApi+"shopCart/getall", shopCart.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopCart/getall", shopCart.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             shopCart.busyIndicator.isActive = false;
             shopCart.ListItems = response.ListItems;
@@ -494,11 +494,11 @@
     }
 
     shopCart.openPaymentonlocationModel = function (invoiceId) {
-        ajax.call(mainPathApi+'shopCart/getviewmodel', invoiceId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCart/getviewmodel', invoiceId, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopCart.selectedItem = response.Item;
             shopCart.selectedItem.PaymentStatus = 2;
-            ajax.call(mainPathApi+'shopCart/edit', shopCart.selectedItem, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'shopCart/edit', shopCart.selectedItem, 'PUT').success(function (response) {
                 rashaErManage.showMessage("پرداخت در محل");
                 shopCart.init();
             }).error(function (data, errCode, c, d) {
@@ -512,7 +512,7 @@
     }
 
     shopCart.openPaymentModel = function (invoiceId) {
-        ajax.call(mainPathApi+'shopCart/getviewmodel', invoiceId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCart/getviewmodel', invoiceId, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopCart.selectedItem = response.Item;
             if (shopCart.selectedItem.InvoiceStatus == 1) // فاکتور باز است
@@ -521,15 +521,15 @@
                 shopCart.TransactionPaymentMakerClass = { PaymentPrivateId: 0, Price: 0, LastUrlAddressInUse: angularUrl, InvoiceId: invoiceId };
                 shopCart.addRequested = true;
                 shopCart.busyIndicator.isActive = true;
-                ajax.call(mainPathApi+"bankpaymentprivatesiteconfig/GetAllAvailable", shopCart.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"bankpaymentprivatesiteconfig/GetAllAvailable", shopCart.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
                     rashaErManage.checkAction(response);
                     shopCart.privateSiteConfigListItems = response.ListItems;
-                    ajax.call(mainPathApi+"shopCart/getviewmodel", invoiceId, "GET").success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"shopCart/getviewmodel", invoiceId, "GET").success(function (response) {
                         shopCart.addRequested = false;
                         shopCart.TransactionPaymentMakerClass.Price = response.Item.TotalAmount;
                         angular.forEach(shopCart.privateSiteConfigListItems, function (value, key) {
                             if (value.virtual_PublicConfig.LinkModuleFileLogoId != null)
-                                ajax.call(mainPathApi+"FileContent/PreviewImage", { id: value.virtual_PublicConfig.LinkModuleFileLogoId, name: null }, "POST").success(function (response) {
+                                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/PreviewImage", { id: value.virtual_PublicConfig.LinkModuleFileLogoId, name: null }, "POST").success(function (response) {
                                     var position = response.lastIndexOf(".");
                                     var output = [response.slice(0, position), "thumbnailimage", response.slice(position)].join('');
                                     value.logoUrl = window.location.origin + output;
@@ -570,7 +570,7 @@
         var engine = { Filters: [] };
         engine.Filters.push({ PropertyName: "Name", SearchType: 5, StringValue1: input, ClauseType: 1 });
         engine.Filters.push({ PropertyName: "LastName", SearchType: 5, StringValue1: input, ClauseType: 1 });
-        ajax.call(mainPathApi+"CoreUser/search", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/search", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopCart.cmsUsersListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
@@ -589,7 +589,7 @@
     shopCart.invoicePay = function (index) {
 
         shopCart.addRequested = true;
-        ajax.call(mainPathApi+"BankPaymentPrivateSiteConfig/GoToBankPaymentWebSite", shopCart.TransactionPaymentMakerClass, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"BankPaymentPrivateSiteConfig/GoToBankPaymentWebSite", shopCart.TransactionPaymentMakerClass, 'POST').success(function (response) {
             shopCart.addRequested = false;
             shopCart.paymentResponse = response;
             rashaErManage.showMessage(shopCart.paymentResponse.ErrorMessage);
@@ -614,7 +614,7 @@
     //#Help کد مربوط به لود گیرید اقلام فاکتور
     shopCart.loadivocesaledetail = function () {
 
-        ajax.call(mainPathApi+"shopCart/getviewmodel", shopCart.selectedItem.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopCart/getviewmodel", shopCart.selectedItem.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopCart.gridOptionIvoceSaleDetail.ListItems = response.Item.CartDetails;
             shopCart.gridOptionIvoceSaleDetail.resultAccess = response.resultAccess;
@@ -631,7 +631,7 @@
     shopCart.openAddModalSaleDetail = function () {
         shopCart.addRequested = true;
         shopCart.modalTitle = 'ردیف جدید';
-        ajax.call(mainPathApi+'shopCartdetail/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCartdetail/getviewmodel', "0", 'GET').success(function (response) {
             shopCart.addRequested = false;
             rashaErManage.checkAction(response);
             shopCart.selectedItemSaleDetail = response.Item;
@@ -661,7 +661,7 @@
         //if (!shopCart.contentExists(shopCart.selectedItemSaleDetail)) {
         shopCart.addRequested = true;
         shopCart.selectedItemSaleDetail.LinkContentId = shopCart.selectedItem.LinkContentId;
-        ajax.call(mainPathApi+'shopCartDetail/add', shopCart.selectedItemSaleDetail, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCartDetail/add', shopCart.selectedItemSaleDetail, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopCart.addRequested = false;
 
@@ -690,7 +690,7 @@
             return;
         }
         shopCart.addRequested = true;
-        ajax.call(mainPathApi+'shopCartDetail/getviewmodel', shopCart.gridOptionIvoceSaleDetail.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCartDetail/getviewmodel', shopCart.gridOptionIvoceSaleDetail.selectedRow.item.Id, 'GET').success(function (response) {
             shopCart.addRequested = false;
             rashaErManage.checkAction(response);
             shopCart.selectedItemSaleDetail = response.Item;
@@ -713,7 +713,7 @@
         }
         shopCart.addRequested = true;
         shopCart.selectedItemSaleDetail.LinkContentId = shopCart.selectedItem.LinkContentId;
-        ajax.call(mainPathApi+'shopCartDetail/edit', shopCart.selectedItemSaleDetail, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCartDetail/edit', shopCart.selectedItemSaleDetail, 'PUT').success(function (response) {
             shopCart.addRequested = false;
 
             rashaErManage.checkAction(response);
@@ -739,11 +739,11 @@
             if (isConfirmed) {
 
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+"shopCartDetail/getviewmodel", shopCart.gridOptionIvoceSaleDetail.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"shopCartDetail/getviewmodel", shopCart.gridOptionIvoceSaleDetail.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopCart.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+"shopCartDetail/delete", shopCart.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"shopCartDetail/delete", shopCart.selectedItemForDelete, "DELETE").success(function (res) {
 
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
@@ -769,7 +769,7 @@
     shopCart.exportFile = function () {
         shopCart.addRequested = true;
         shopCart.gridOptionIvoceSaleDetail.advancedSearchData.engine.ExportFile = shopCart.ExportFileClass;
-        ajax.call(mainPathApi+'shopCartDetail/exportfile', shopCart.gridOptionIvoceSaleDetail.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCartDetail/exportfile', shopCart.gridOptionIvoceSaleDetail.advancedSearchData.engine, 'POST').success(function (response) {
             shopCart.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -814,7 +814,7 @@
     //#Help کد تعداد اقلام
     //Get TotalRowCount
     shopCart.getCount = function () {
-        ajax.call(mainPathApi+"shopCartDetail/count", shopCart.gridOptionIvoceSaleDetail.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopCartDetail/count", shopCart.gridOptionIvoceSaleDetail.advancedSearchData.engine, 'POST').success(function (response) {
             shopCart.addRequested = false;
             rashaErManage.checkAction(response);
             shopCart.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

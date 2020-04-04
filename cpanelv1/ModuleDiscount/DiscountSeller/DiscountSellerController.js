@@ -22,7 +22,7 @@
         } catch (error) {
             console.log(error);
         }
-        ajax.call(mainPathApi+"DiscountSeller/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"DiscountSeller/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             discountSeller.busyIndicator.isActive = false;
             discountSeller.ListItems = response.ListItems;
@@ -45,7 +45,7 @@
         discountSeller.ViewFindUserDiv = false;
         discountSeller.ViewNewUserDiv = false;
         discountSeller.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'CoreUser/getviewmodel', "0", "GET").success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/getviewmodel', "0", "GET").success(function (response1) {
             discountSeller.busyIndicator.isActive = false;
             discountSeller.selectedUser = response1.Item;
         }).error(function (data, errCode, c, d) {
@@ -53,7 +53,7 @@
             discountSeller.busyIndicator.isActive = false;
 
         });
-        ajax.call(mainPathApi+'discountSeller/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'discountSeller/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountSeller.busyIndicator.isActive = false;
             discountSeller.selectedItem = response.Item;
@@ -102,7 +102,7 @@
             }
             discountSeller.addRequested = true;
             discountSeller.busyIndicator.isActive = true;
-            ajax.call(mainPathApi+'CoreUser/add', discountSeller.selectedUser, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/add', discountSeller.selectedUser, 'POST').success(function (response1) {
                 rashaErManage.checkAction(response1);
                 if (response1.IsSuccess) {
                     discountSeller.selectedItem.LinkModuleCoreCmsUserId = response1.Item.Id;
@@ -133,7 +133,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'discountSeller/add', discountSeller.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'discountSeller/add', discountSeller.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 discountSeller.ListItems.unshift(response.Item);
@@ -156,7 +156,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'CoreUser/getviewmodel', "0", "GET").success(function (response2) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/getviewmodel', "0", "GET").success(function (response2) {
             discountSeller.selectedUser = response2.Item;
             discountSeller.busyIndicator.isActive = false;
         }).error(function (data, errCode, c, d) {
@@ -164,7 +164,7 @@
             discountSeller.busyIndicator.isActive = false;
 
         });
-        ajax.call(mainPathApi+'discountSeller/getviewmodel', discountSeller.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'discountSeller/getviewmodel', discountSeller.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountSeller.selectedItem = response.Item;
             discountSeller.selectedItem.LinkModuleCoreCmsUserIdSearch = '';
@@ -174,7 +174,7 @@
                 var engine = { Filters: [] };
                 engine.Filters.push({ PropertyName: "NationalCode", SearchType: 0, StringValue1: discountSeller.gridOptions.selectedRow.item.LinkModuleCoreCmsUserId, ClauseType: 1 });
                 engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: discountSeller.gridOptions.selectedRow.item.LinkModuleCoreCmsUserId, ClauseType: 1 });
-                ajax.call(mainPathApi+'CoreUser/GetOne', engine, 'POST').success(function (response3) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/GetOne', engine, 'POST').success(function (response3) {
                     rashaErManage.checkAction(response);
                     discountSeller.selectedUser = response3.Item;
                     if (discountSeller.selectedUser != null && discountSeller.selectedUser.Id > 0) {
@@ -231,7 +231,7 @@
 
             discountSeller.addRequested = true;
             discountSeller.busyIndicator.isActive = true;
-            ajax.call(mainPathApi+'CoreUser/add', discountSeller.selectedUser, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/add', discountSeller.selectedUser, 'POST').success(function (response1) {
                 rashaErManage.checkAction(response1);
                 discountSeller.busyIndicator.isActive = false;
                 discountSeller.addRequested = false;
@@ -254,7 +254,7 @@
     discountSeller.editSellserInternal = function () {
 
         discountSeller.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'discountSeller/edit', discountSeller.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'discountSeller/edit', discountSeller.selectedItem, 'PUT').success(function (response) {
             discountSeller.addRequested = true;
             rashaErManage.checkAction(response);
             discountSeller.busyIndicator.isActive = false;
@@ -318,10 +318,10 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 discountSeller.busyIndicator.isActive = true;
-                ajax.call(mainPathApi+'DiscountSeller/getviewmodel', discountSeller.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'DiscountSeller/getviewmodel', discountSeller.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     discountSeller.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'DiscountSeller/delete', discountSeller.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'DiscountSeller/delete', discountSeller.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         discountSeller.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -342,7 +342,7 @@
 
     discountSeller.searchData = function () {
         discountSeller.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"discountSeller/getall", discountSeller.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"discountSeller/getall", discountSeller.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             discountSeller.categoryBusyIndicator.isActive = false;
             discountSeller.ListItems = response.ListItems;
@@ -426,7 +426,7 @@
         var engine = { Filters: [] };
         engine.Filters.push({ PropertyName: "NationalCode", SearchType: 0, StringValue1: userId, ClauseType: 1 });
         engine.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: userId, ClauseType: 1 });
-        ajax.call(mainPathApi+'CoreUser/GetOne', engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/GetOne', engine, 'POST').success(function (response) {
 
             rashaErManage.checkAction(response);
 
@@ -454,7 +454,7 @@
     discountSeller.exportFile = function () {
         discountSeller.addRequested = true;
         discountSeller.gridOptions.advancedSearchData.engine.ExportFile = discountSeller.ExportFileClass;
-        ajax.call(mainPathApi+'DiscountSeller/exportfile', discountSeller.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSeller/exportfile', discountSeller.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             discountSeller.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -497,7 +497,7 @@
     }
     //Get TotalRowCount
     discountSeller.getCount = function () {
-        ajax.call(mainPathApi+"DiscountSeller/count", discountSeller.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"DiscountSeller/count", discountSeller.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             discountSeller.addRequested = false;
             rashaErManage.checkAction(response);
             discountSeller.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

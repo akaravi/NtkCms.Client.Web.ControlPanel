@@ -57,17 +57,17 @@
         } catch (error) {
             console.log(error)
         }
-        ajax.call(mainPathApi+"linkManagementBillboardPattern/getAllSharingLinkType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"linkManagementBillboardPattern/getAllSharingLinkType", {}, 'POST').success(function (response) {
             linkManagementBillboardPattern.SharingLinkType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
             });
-        ajax.call(mainPathApi+"linkManagementBillboardPattern/getAllSettingType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"linkManagementBillboardPattern/getAllSettingType", {}, 'POST').success(function (response) {
             linkManagementBillboardPattern.SettingType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(mainPathApi+"linkManagementBillboardPattern/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"linkManagementBillboardPattern/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementBillboardPattern.busyIndicator.isActive = false;
             linkManagementBillboardPattern.ListItems = response.ListItems;
@@ -82,7 +82,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         //linkManagementBillboardPattern.busyIndicator.isActive = true;
-        //ajax.call(mainPathApi+'linkManagementBillboardPattern/getall', {}, 'POST').success(function (response) {
+        //ajax.call(cmsServerConfig.configApiServerPath+'linkManagementBillboardPattern/getall', {}, 'POST').success(function (response) {
         //    linkManagementBillboardPattern.ContentList = response.ListItems;
         //    linkManagementBillboardPattern.busyIndicator.isActive = false;
         //});
@@ -95,7 +95,7 @@
         linkManagementBillboardPattern.filePickerMainImage.filename = "";
         linkManagementBillboardPattern.filePickerMainImage.fileId = null;
         linkManagementBillboardPattern.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'linkManagementBillboardPattern/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementBillboardPattern/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementBillboardPattern.busyIndicator.isActive = false;
             linkManagementBillboardPattern.selectedItem = response.Item;
@@ -116,7 +116,7 @@
         }
         linkManagementBillboardPattern.busyIndicator.isActive = true;
         linkManagementBillboardPattern.addRequested = true;
-        ajax.call(mainPathApi+'linkManagementBillboardPattern/add', linkManagementBillboardPattern.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementBillboardPattern/add', linkManagementBillboardPattern.selectedItem, 'POST').success(function (response) {
             linkManagementBillboardPattern.addRequested = false;
             linkManagementBillboardPattern.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -143,14 +143,14 @@
             return;
         }
 
-        ajax.call(mainPathApi+'linkManagementBillboardPattern/getviewmodel', linkManagementBillboardPattern.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementBillboardPattern/getviewmodel', linkManagementBillboardPattern.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementBillboardPattern.selectedItem = response.Item;
             linkManagementBillboardPattern.VisitDate.defaultDate = linkManagementBillboardPattern.selectedItem.VisitDate;
             linkManagementBillboardPattern.filePickerMainImage.filename = null;
             linkManagementBillboardPattern.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null) {
-                ajax.call(mainPathApi+'FileContent/getviewmodel', response.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response.Item.LinkMainImageId, 'GET').success(function (response2) {
                     linkManagementBillboardPattern.filePickerMainImage.filename = response2.Item.FileName;
                     linkManagementBillboardPattern.filePickerMainImage.fileId = response2.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -176,7 +176,7 @@
             return;
         }
         linkManagementBillboardPattern.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'linkManagementBillboardPattern/edit', linkManagementBillboardPattern.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementBillboardPattern/edit', linkManagementBillboardPattern.selectedItem, 'PUT').success(function (response) {
             linkManagementBillboardPattern.addRequested = true;
             rashaErManage.checkAction(response);
             linkManagementBillboardPattern.busyIndicator.isActive = false;
@@ -219,9 +219,9 @@
             if (isConfirmed) {
                 linkManagementBillboardPattern.busyIndicator.isActive = true;
                 console.log(linkManagementBillboardPattern.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'linkManagementBillboardPattern/getviewmodel', linkManagementBillboardPattern.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'linkManagementBillboardPattern/getviewmodel', linkManagementBillboardPattern.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     linkManagementBillboardPattern.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'linkManagementBillboardPattern/delete', linkManagementBillboardPattern.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'linkManagementBillboardPattern/delete', linkManagementBillboardPattern.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         linkManagementBillboardPattern.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -433,7 +433,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(mainPathApi+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             linkManagementBillboardPattern.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -471,7 +471,7 @@
 
         linkManagementBillboardPattern.FileList = [];
         //get list of file from category id
-        ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
             linkManagementBillboardPattern.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -511,14 +511,14 @@
         linkManagementBillboardPattern.fileIdToDelete = linkManagementBillboardPattern.selectedIndex;
 
         // Delete the file
-        ajax.call(mainPathApi+"FileContent/getviewmodel", linkManagementBillboardPattern.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", linkManagementBillboardPattern.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(mainPathApi+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
                     linkManagementBillboardPattern.remove(linkManagementBillboardPattern.FileList, linkManagementBillboardPattern.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 linkManagementBillboardPattern.FileItem = response3.Item;
                                 linkManagementBillboardPattern.FileItem.FileName = name;
@@ -547,7 +547,7 @@
     }
     //save new file
     linkManagementBillboardPattern.saveNewFile = function () {
-        ajax.call(mainPathApi+"FileContent/add", linkManagementBillboardPattern.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", linkManagementBillboardPattern.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 linkManagementBillboardPattern.FileItem = response.Item;
                 linkManagementBillboardPattern.showSuccessIcon();
@@ -621,14 +621,14 @@
                     // replace the file
                     ajax
                         .call(
-                            mainPathApi+"FileContent/getviewmodel",
+                            cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
                             linkManagementBillboardPattern.fileIdToDelete,
                             "GET"
                         )
                         .success(function (response1) {
                             if (response1.IsSuccess == true) {
                                 console.log(response1.Item);
-                                ajax.call(mainPathApi+"FileContent/replace", response1.Item, "POST")
+                                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
                                     .success(function (response2) {
                                         if (response2.IsSuccess == true) {
                                             linkManagementBillboardPattern.FileItem = response2.Item;
@@ -671,7 +671,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
                     linkManagementBillboardPattern.FileItem = response.Item;
                     linkManagementBillboardPattern.FileItem.FileName = uploadFile.name;
                     linkManagementBillboardPattern.FileItem.uploadName = uploadFile.uploadName;
@@ -680,7 +680,7 @@
                     linkManagementBillboardPattern.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- linkManagementBillboardPattern.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(mainPathApi+"FileContent/add", linkManagementBillboardPattern.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", linkManagementBillboardPattern.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             linkManagementBillboardPattern.FileItem = response.Item;
                             linkManagementBillboardPattern.showSuccessIcon();
@@ -721,7 +721,7 @@
     linkManagementBillboardPattern.exportFile = function () {
         linkManagementBillboardPattern.addRequested = true;
         linkManagementBillboardPattern.gridOptions.advancedSearchData.engine.ExportFile = linkManagementBillboardPattern.ExportFileClass;
-        ajax.call(mainPathApi+'linkManagementBillboardPattern/exportfile', linkManagementBillboardPattern.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementBillboardPattern/exportfile', linkManagementBillboardPattern.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             linkManagementBillboardPattern.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -764,7 +764,7 @@
     }
     //Get TotalRowCount
     linkManagementBillboardPattern.getCount = function () {
-        ajax.call(mainPathApi+"linkManagementBillboardPattern/count", linkManagementBillboardPattern.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"linkManagementBillboardPattern/count", linkManagementBillboardPattern.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             linkManagementBillboardPattern.addRequested = false;
             rashaErManage.checkAction(response);
             linkManagementBillboardPattern.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

@@ -16,7 +16,7 @@
 
     cmsSiteCategoryCmsModule.init = function () {
         cmsSiteCategoryCmsModule.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"CoreSiteCategoryCmsModule/getall", cmsSiteCategoryCmsModule.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreSiteCategoryCmsModule/getall", cmsSiteCategoryCmsModule.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteCategoryCmsModule.ListItems = response.ListItems;
             cmsSiteCategoryCmsModule.TotalRowCount = response.TotalRowCount;
@@ -32,13 +32,13 @@
             cmsSiteCategoryCmsModule.busyIndicator.isActive = false;
         });
         var filterModel = { RowPerPage: 100, SortColumn: "Title", SortType: 1 };
-        ajax.call(mainPathApi+"CoreSiteCategory/getall", filterModel, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreSiteCategory/getall", filterModel, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteCategoryCmsModule.categoryListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(mainPathApi+"CoreModule/getall", filterModel, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreModule/getall", filterModel, 'POST').success(function (response) {
             cmsSiteCategoryCmsModule.moduleListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
@@ -50,7 +50,7 @@
 
     cmsSiteCategoryCmsModule.openAddModal = function () {
         cmsSiteCategoryCmsModule.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'CoreSiteCategoryCmsModule/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteCategoryCmsModule.selectedItem = response.Item;
             $modal.open({
@@ -67,7 +67,7 @@
             return;
         cmsSiteCategoryCmsModule.busyIndicator.isActive = true;
         cmsSiteCategoryCmsModule.addRequested = true;
-        ajax.call(mainPathApi+'CoreSiteCategoryCmsModule/add', cmsSiteCategoryCmsModule.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/add', cmsSiteCategoryCmsModule.selectedItem, 'POST').success(function (response) {
             cmsSiteCategoryCmsModule.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -89,7 +89,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'CoreSiteCategoryCmsModule/getviewmodel', cmsSiteCategoryCmsModule.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/getviewmodel', cmsSiteCategoryCmsModule.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteCategoryCmsModule.selectedItem = response.Item;
             $modal.open({
@@ -106,7 +106,7 @@
         if (frm.$invalid)
             return;
         cmsSiteCategoryCmsModule.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CoreSiteCategoryCmsModule/edit', cmsSiteCategoryCmsModule.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/edit', cmsSiteCategoryCmsModule.selectedItem, 'PUT').success(function (response) {
             cmsSiteCategoryCmsModule.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -147,10 +147,10 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                ajax.call(mainPathApi+'CoreSiteCategoryCmsModule/getviewmodel', cmsSiteCategoryCmsModule.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/getviewmodel', cmsSiteCategoryCmsModule.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsSiteCategoryCmsModule.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'CoreSiteCategoryCmsModule/delete', cmsSiteCategoryCmsModule.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/delete', cmsSiteCategoryCmsModule.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsSiteCategoryCmsModule.replaceItem(cmsSiteCategoryCmsModule.selectedItemForDelete.Id);
@@ -242,7 +242,7 @@
         model.Filters.push({ PropertyName: "LinkModuleId", SearchType: 0, IntValue1: parseInt(module.Id) });
         model.Filters.push({ PropertyName: "LinkSiteId", SearchType: 0, IntValue1: parseInt(cmsSiteCategoryCmsModule.gridOptions.selectedRow.item.Id) });
         cmsSiteCategoryCmsModule.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CoreModuleSite/GetOne', model, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/GetOne', model, 'POST').success(function (response) {
             cmsSiteCategoryCmsModule.busyIndicator.isActive = false;
             cmsSiteCategoryCmsModule.cmsModuleSite = response.Item;
             cmsSiteCategoryCmsModule.formJson = $builder.forms['default'];
@@ -278,7 +278,7 @@
         cmsSiteCategoryCmsModule.busyIndicator.isActive = true;
         cmsSiteCategoryCmsModule.addRequested = true;
         cmsSiteCategoryCmsModule.cmsModuleSite[cmsSiteCategoryCmsModule.configName] = $.trim(angular.toJson(cmsSiteCategoryCmsModule.submitValue));
-        ajax.call(mainPathApi+'CoreModuleSite/edit', cmsSiteCategoryCmsModule.cmsModuleSite, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/edit', cmsSiteCategoryCmsModule.cmsModuleSite, 'PUT').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsSiteCategoryCmsModule.closeModal();
@@ -297,7 +297,7 @@
     cmsSiteCategoryCmsModule.exportFile = function () {
         cmsSiteCategoryCmsModule.addRequested = true;
         cmsSiteCategoryCmsModule.gridOptions.advancedSearchData.engine.ExportFile = cmsSiteCategoryCmsModule.ExportFileClass;
-        ajax.call(mainPathApi+'CoreSiteCategoryCmsModule/exportfile', cmsSiteCategoryCmsModule.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteCategoryCmsModule/exportfile', cmsSiteCategoryCmsModule.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsSiteCategoryCmsModule.exportDownloadLink = window.location.origin + response.LinkFile;
@@ -340,7 +340,7 @@
     }
     //Get TotalRowCount
     cmsSiteCategoryCmsModule.getCount = function () {
-        ajax.call(mainPathApi+"CoreSiteCategoryCmsModule/count", cmsSiteCategoryCmsModule.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreSiteCategoryCmsModule/count", cmsSiteCategoryCmsModule.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteCategoryCmsModule.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

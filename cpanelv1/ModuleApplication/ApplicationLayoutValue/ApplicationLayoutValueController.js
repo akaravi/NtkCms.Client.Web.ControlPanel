@@ -22,11 +22,11 @@
             searchType: 0,
             IntValue1: parseInt(appLayoutValue.sourceId)
         });
-        ajax.call(mainPathApi + "applicationsource/getall", {}, 'POST').success(function (responseSource) {
+        ajax.call(cmsServerConfig.configApiServerPath + "applicationsource/getall", {}, 'POST').success(function (responseSource) {
             rashaErManage.checkAction(responseSource);
             appLayoutValue.sourceListItems = responseSource.ListItems;
             //
-            ajax.call(mainPathApi + "applicationlayout/getall", appLayoutValue.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "applicationlayout/getall", appLayoutValue.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 appLayoutValue.busyIndicator.isActive = false;
                 appLayoutValue.ListItems = response.ListItems;
@@ -85,7 +85,7 @@
             IntValue1: appLayoutValue.gridOptions.selectedRow.item.Id
         });
 
-        ajax.call(mainPathApi + 'ApplicationLayoutvalue/getone', filterDataModel, 'POST').success(function (responseValue) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayoutvalue/getone', filterDataModel, 'POST').success(function (responseValue) {
             appLayoutValue.busyIndicator.isActive = false;
             appLayoutValue.addRequested = false;
             appLayoutValue.selectedItem = responseValue.Item;
@@ -124,7 +124,7 @@
         //start load ApplicationLayoutvalue If Exist
         appLayoutValue.selectedItem.JsonFormValues = $.trim(angular.toJson(appLayoutValue.ConfigSite));
         if (appLayoutValue.selectedItem.Id && appLayoutValue.selectedItem.Id > 0) {
-            ajax.call(mainPathApi + 'ApplicationLayoutvalue/Edit', appLayoutValue.selectedItem, 'PUT').success(function (responseValue) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayoutvalue/Edit', appLayoutValue.selectedItem, 'PUT').success(function (responseValue) {
                 appLayoutValue.busyIndicator.isActive = false;
                 appLayoutValue.addRequested = false;
                 appLayoutValue.closeModal();
@@ -136,7 +136,7 @@
             appLayoutValue.selectedItem.LinkLayoutId = appLayoutValue.gridOptions.selectedRow.item.Id;
             //appLayoutValue.selectedItem.LinkSourceId = parseInt(appLayoutValue.sourceId);
             appLayoutValue.selectedItem.LinkApplicationId = parseInt(appLayoutValue.appId);
-            ajax.call(mainPathApi + 'ApplicationLayoutvalue/Add', appLayoutValue.selectedItem, 'POST').success(function (responseValue) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayoutvalue/Add', appLayoutValue.selectedItem, 'POST').success(function (responseValue) {
                 appLayoutValue.busyIndicator.isActive = false;
                 appLayoutValue.addRequested = false;
                 appLayoutValue.closeModal();

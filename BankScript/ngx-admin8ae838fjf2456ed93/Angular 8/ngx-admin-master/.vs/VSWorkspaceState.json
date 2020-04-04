@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\@core",
+    "\\src\\app\\@theme",
+    "\\src\\app\\@theme\\components\\auth",
+    "\\src\\app\\pages",
+    "\\src\\app\\pages\\dashboard\\user-activity",
+    "\\src\\app\\pages\\layout",
+    "\\src\\app\\pages\\layout\\stepper"
+  ],
+  "SelectedNode": "\\src\\app\\pages\\layout\\stepper\\stepper.component.html",
+  "PreviewInSolutionExplorer": false
+}

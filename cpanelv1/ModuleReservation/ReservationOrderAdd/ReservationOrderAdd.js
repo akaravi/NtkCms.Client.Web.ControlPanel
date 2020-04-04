@@ -1,6 +1,6 @@
 ﻿app.controller("orderAddCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$timeout', '$window','$state','$stateParams', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $timeout, $window,$state,$stateParams, $filter) {
     var orderAdd = this;
-    orderAdd.mainPathApiUpload = mainPathApiUpload;
+    orderAdd.RouteUploadFileContent = cmsServerConfig.configRouteUploadFileContent;
     orderAdd.ListOrderAdd = [];
     var edititem=false;
     //For Grid Options
@@ -130,7 +130,7 @@
     //init Function
     orderAdd.init = function () {
         orderAdd.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"reservationservice/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"reservationservice/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
             orderAdd.treeConfig.Items = response.ListItems;
             orderAdd.categoryBusyIndicator.isActive = false;
         }).error(function (data, errCode, c, d) {
@@ -151,7 +151,7 @@
             orderAdd.gridContentOptions.advancedSearchData.engine.Filters = null;
             orderAdd.gridContentOptions.advancedSearchData.engine.Filters = [];
             orderAdd.gridContentOptions.advancedSearchData.engine.Filters.push(Filter_value);
-            ajax.call(mainPathApi+'biographyComment/getall', orderAdd.gridContentOptions.advancedSearchData.engine, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'biographyComment/getall', orderAdd.gridContentOptions.advancedSearchData.engine, 'POST').success(function (response) {
                 orderAdd.listComments = response.ListItems;
                 //orderAdd.gridOptions.resultAccess = response.resultAccess; // دسترسی ها نمایش
                 orderAdd.gridContentOptions.fillData(orderAdd.listComments, response.resultAccess);
@@ -212,14 +212,14 @@
     orderAdd.selectContent = function (node) {
         engine={};
         AppDateListIds=[];
-        ajax.call(mainPathApi+"ReservationAppointmentDate/GetAllAppDate", {model:{},ListServiceIds:orderAdd.ServiceSelectedIds}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ReservationAppointmentDate/GetAllAppDate", {model:{},ListServiceIds:orderAdd.ServiceSelectedIds}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             orderAdd.contentBusyIndicator.isActive = false;
             orderAdd.ListItemsAppDate = response.ListItems;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(mainPathApi+"ReservationAppointmentDateDetail/GetAllAppDateDetail",{model:{},ListServiceIds:orderAdd.ServiceSelectedIds,ListAppDateIds:[]}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ReservationAppointmentDateDetail/GetAllAppDateDetail",{model:{},ListServiceIds:orderAdd.ServiceSelectedIds,ListAppDateIds:[]}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             orderAdd.contentBusyIndicator.isActive = false;
             orderAdd.ListItemsAppDateDetail = response.ListItems;
@@ -240,7 +240,7 @@
     //Show Content with Category Id
     orderAdd.selectContentDetail = function (node) {
 
-        ajax.call(mainPathApi+"ReservationAppointmentDateDetail/GetAllAppDateDetail",{model:{},ListServiceIds:orderAdd.ServiceSelectedIds,ListAppDateIds:orderAdd.AppDateSelectedIds}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ReservationAppointmentDateDetail/GetAllAppDateDetail",{model:{},ListServiceIds:orderAdd.ServiceSelectedIds,ListAppDateIds:orderAdd.AppDateSelectedIds}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             orderAdd.contentBusyIndicator.isActive = false;
             orderAdd.ListItemsAppDateDetail = response.ListItems;
@@ -250,7 +250,7 @@
     };
     orderAdd.searchData = function () {
         orderAdd.contentBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"biographyContent/getall", orderAdd.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"biographyContent/getall", orderAdd.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             orderAdd.contentBusyIndicator.isActive = false;
             orderAdd.ListItems = response.ListItems;
@@ -273,7 +273,7 @@ orderAdd.ShowInvoiceSale = function (Detail,Service) {
             LinkAppointmentDateDetailId:Detail
         });
        orderAdd.DetailSelected=Detail;
-     /*ajax.call(mainPathApi+"ReservationOrder/AddOrder", orderAdd.ListOrderAdd, 'POST').success(function (response) {
+     /*ajax.call(cmsServerConfig.configApiServerPath+"ReservationOrder/AddOrder", orderAdd.ListOrderAdd, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             orderAdd.ListOrderAdd = response.ListItems;
             //orderAdd.gridOptions.fillData(orderAdd.ListItems, response.resultAccess);
@@ -290,7 +290,7 @@ orderAdd.ShowInvoiceSale = function (Detail,Service) {
         });*/
 };
 orderAdd.ListOrderAddcomplate = function (ListOrderAdd) {
-        ajax.call(mainPathApi+"ReservationOrder/AddOrder", ListOrderAdd, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ReservationOrder/AddOrder", ListOrderAdd, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             orderAdd.ListOrderAdd = response.ListItems;
            /* if(response.IsSuccess)
@@ -399,11 +399,11 @@ orderAdd.ListOrderAddcomplate = function (ListOrderAdd) {
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -424,9 +424,9 @@ orderAdd.ListOrderAddcomplate = function (ListOrderAdd) {
             return;
         }
         orderAdd.selectedItem.LinkMainImageId = node.Id;
-        orderAdd.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
-        ajax.call(mainPathApi+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            orderAdd.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
+        orderAdd.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            orderAdd.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });

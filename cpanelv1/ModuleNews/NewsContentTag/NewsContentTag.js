@@ -6,7 +6,7 @@
     }
     newsContentTag.init = function () {
         newsContentTag.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"NewsContenttag/getall", newsContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"NewsContenttag/getall", newsContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             newsContentTag.busyIndicator.isActive = false;
 
@@ -23,7 +23,7 @@
     newsContentTag.addRequested = false;
     newsContentTag.openAddModal = function () {
         newsContentTag.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'NewsContenttag/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             newsContentTag.selectedItem = response.Item;
             $modal.open({
@@ -45,7 +45,7 @@
         newsContentTag.addRequested = true;
         newsContentTag.busyIndicator.isActive = true;
 
-        ajax.call(mainPathApi+'NewsContenttag/add', newsContentTag.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/add', newsContentTag.selectedItem , 'POST').success(function (response) {
             newsContentTag.addRequested = false;
             newsContentTag.busyIndicator.isActive = false;
 
@@ -70,7 +70,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'NewsContenttag/getviewmodel',  newsContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/getviewmodel',  newsContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             newsContentTag.selectedItem = response.Item;
             $modal.open({
@@ -90,7 +90,7 @@
         }
         newsContentTag.busyIndicator.isActive = true;
 
-        ajax.call(mainPathApi+'NewsContenttag/edit',  newsContentTag.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/edit',  newsContentTag.selectedItem , 'PUT').success(function (response) {
             newsContentTag.addRequested = true;
             rashaErManage.checkAction(response);
             newsContentTag.busyIndicator.isActive = false;
@@ -135,11 +135,11 @@
             if (isConfirmed) {
                 newsContentTag.busyIndicator.isActive = true;
                 console.log(newsContentTag.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'NewsContenttag/getviewmodel',  newsContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/getviewmodel',  newsContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     newsContentTag.selectedItemForDelete = response.Item;
                     console.log(newsContentTag.selectedItemForDelete);
-                    ajax.call(mainPathApi+'NewsContenttag/delete',  newsContentTag.selectedItemForDelete , 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/delete',  newsContentTag.selectedItemForDelete , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         newsContentTag.busyIndicator.isActive = false;
 
@@ -226,7 +226,7 @@
     newsContentTag.exportFile = function () {
         newsContentTag.addRequested = true;
         newsContentTag.gridOptions.advancedSearchData.engine.ExportFile = newsContentTag.ExportFileClass;
-        ajax.call(mainPathApi+'newsContentTag/exportfile', newsContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newsContentTag/exportfile', newsContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             newsContentTag.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -269,7 +269,7 @@
     }
     //Get TotalRowCount
     newsContentTag.getCount = function () {
-        ajax.call(mainPathApi+"newsContentTag/count", newsContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"newsContentTag/count", newsContentTag.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             newsContentTag.addRequested = false;
             rashaErManage.checkAction(response);
             newsContentTag.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

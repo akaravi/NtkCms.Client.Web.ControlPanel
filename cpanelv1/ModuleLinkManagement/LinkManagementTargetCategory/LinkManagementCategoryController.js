@@ -7,7 +7,7 @@
     if (itemRecordStatus != undefined) linkManagementCategory.itemRecordStatus = itemRecordStatus;
     linkManagementCategory.init = function () {
         linkManagementCategory.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"linkManagementCategory/getall", { RowPerPage:1000}, 'POST').success(function (response) {          
+        ajax.call(cmsServerConfig.configApiServerPath+"linkManagementCategory/getall", { RowPerPage:1000}, 'POST').success(function (response) {          
             rashaErManage.checkAction(response);
             linkManagementCategory.ListItems = response.ListItems;
             linkManagementCategory.categoryBusyIndicator.isActive = false;
@@ -21,7 +21,7 @@
             linkManagementCategory.categoryBusyIndicator.isActive = false;
         });
 
-        ajax.call(mainPathApi+'linkManagementCategory/getall', {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/getall', {}, 'POST').success(function (response) {
             linkManagementCategory.ParentList = response.ListItems;
         });
     }
@@ -29,7 +29,7 @@
     linkManagementCategory.addRequested = false;
     linkManagementCategory.openAddModal = function () {
         linkManagementCategory.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'linkManagementCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementCategory.selectedItem = response.Item;
             //Set dataForTheTree
@@ -42,10 +42,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 articleContent.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(articleContent.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModuleArticle/linkManagementCategory/add.html',
@@ -76,7 +76,7 @@
         }
         linkManagementCategory.categoryBusyIndicator.isActive = true;
         linkManagementCategory.addRequested = true;
-        ajax.call(mainPathApi+'linkManagementCategory/add',  linkManagementCategory.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/add',  linkManagementCategory.selectedItem , 'POST').success(function (response) {
             linkManagementCategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -97,7 +97,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'linkManagementCategory/getviewmodel', linkManagementCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/getviewmodel', linkManagementCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementCategory.selectedItem = response.Item;
             //Set dataForTheTree
@@ -112,10 +112,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 linkManagementCategory.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(linkManagementCategory.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (linkManagementCategory.selectedItem.LinkMainImageId > 0)
@@ -147,7 +147,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'linkManagementCategory/', linkManagementCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/', linkManagementCategory.selectedItem, 'PUT').success(function (response) {
             linkManagementCategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -170,7 +170,7 @@
             return;
         }
         linkManagementCategory.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+'linkManagementCategory/edit/', linkManagementCategory.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/edit/', linkManagementCategory.selectedItem , 'PUT').success(function (response) {
             linkManagementCategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -211,10 +211,10 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(linkManagementCategory.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'linkManagementCategory/getviewmodel',  linkManagementCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/getviewmodel',  linkManagementCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     linkManagementCategory.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'linkManagementCategory/delete', linkManagementCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/delete', linkManagementCategory.selectedItemForDelete, 'DELETE').success(function (res) {
                         linkManagementCategory.categoryBusyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
@@ -293,11 +293,11 @@
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -318,9 +318,9 @@
             return;
         }
         articleContent.selectedItem.LinkMainImageId = node.Id;
-        articleContent.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
-        ajax.call(mainPathApi+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            articleContent.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
+        articleContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            articleContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });

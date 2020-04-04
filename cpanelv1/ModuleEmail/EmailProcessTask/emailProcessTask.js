@@ -28,7 +28,7 @@
         //    return;
         //}
         if (emailProcessTask.selectedPrivateSiteConfig.Id == null || emailProcessTask.selectedPrivateSiteConfig.Id == 0) emailProcessTask.selectedPrivateSiteConfig.Id = '0';
-        ajax.call(mainPathApi+'emailprivatesiteconfig/getviewmodel', emailProcessTask.selectedPrivateSiteConfig.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/getviewmodel', emailProcessTask.selectedPrivateSiteConfig.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailProcessTask.selectedPrivateSiteConfig = response.Item;
@@ -39,7 +39,7 @@
         var filterModel = { PropertyName: "LinkPrivateSiteConfigId", SearchType: 0, IntValue1: emailProcessTask.selectedPrivateSiteConfig.Id };
         if (emailProcessTask.selectedPrivateSiteConfig.Id >0)
             emailProcessTask.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
-        ajax.call(mainPathApi+"emailprocesstask/getall", emailProcessTask.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"emailprocesstask/getall", emailProcessTask.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             emailProcessTask.ListItems = response.ListItems;
             emailProcessTask.gridOptions.fillData(emailProcessTask.ListItems, response.resultAccess);
@@ -61,7 +61,7 @@
         if (buttonIsPressed) { return };
         emailProcessTask.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'emailprocesstask/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/getviewmodel', '0', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailProcessTask.selectedItem = response.Item;
@@ -82,7 +82,7 @@
         
         emailProcessTask.addRequested = true;
         emailProcessTask.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'emailprocesstask/add', emailProcessTask.selectedItem, 'POST').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/add', emailProcessTask.selectedItem, 'POST').success(function (response1) {
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {
 
@@ -111,7 +111,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'emailprocesstask/getviewmodel', emailProcessTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/getviewmodel', emailProcessTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailProcessTask.selectedItem = response.Item;
@@ -133,7 +133,7 @@
         }
        
         emailProcessTask.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'emailprocesstask/edit', emailProcessTask.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/edit', emailProcessTask.selectedItem, 'PUT').success(function (response) {
             emailProcessTask.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -171,12 +171,12 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'emailprocesstask/getviewmodel', emailProcessTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/getviewmodel', emailProcessTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
 
                     rashaErManage.checkAction(response);
                     emailProcessTask.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'emailprocesstask/delete', emailProcessTask.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/delete', emailProcessTask.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             emailProcessTask.replaceItem(emailProcessTask.selectedItemForDelete.Id);
@@ -258,7 +258,7 @@
         filterModel.Filters.push({ PropertyName: "LinkProcessFlowId", IntValue1: item.Id, SearchType: 0 });
         emailProcessTask.addRequested = true;
         //emailProcessTask.optionsBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"emailprocesstaskLog/getall", filterModel, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"emailprocesstaskLog/getall", filterModel, "POST").success(function (response) {
             emailProcessTask.addRequested = false;
             //emailProcessTask.optionsBusyIndicator.isActice = false;
             rashaErManage.checkAction(response);
@@ -302,7 +302,7 @@
     emailProcessTask.exportFile = function () {
         emailProcessTask.addRequested = true;
         emailProcessTask.gridOptions.advancedSearchData.engine.ExportFile = emailProcessTask.ExportFileClass;
-        ajax.call(mainPathApi+'emailprivatesiteconfig/exportfile', emailProcessTask.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/exportfile', emailProcessTask.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             emailProcessTask.addRequested = false;
             rashaErManage.checkAction(response);
             emailProcessTask.reportDownloadLink = response.LinkFile;
@@ -344,7 +344,7 @@
     }
     //Get TotalRowCount
     emailProcessTask.getCount = function () {
-        ajax.call(mainPathApi+"emailprocesstask/count", emailProcessTask.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"emailprocesstask/count", emailProcessTask.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             emailProcessTask.addRequested = false;
             rashaErManage.checkAction(response);
             emailProcessTask.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -359,7 +359,7 @@
     //}
 
     emailProcessTask.retryTrans = function (selectedId) {
-        ajax.call(mainPathApi+'emailprocesstask/processflowCheck', selectedId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/processflowCheck', selectedId, 'GET').success(function (response) {
             emailProcessTask.addRequested = false;
             rashaErManage.checkAction(response);
             emailProcessTask.reportDownloadLink = response.LinkFile;

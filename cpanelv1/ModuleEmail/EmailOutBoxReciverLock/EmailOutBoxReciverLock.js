@@ -13,7 +13,7 @@
     emailOutBoxReciverLock.init = function () {
         emailOutBoxReciverLock.busyIndicator.isActive = true;
         emailOutBoxReciverLock.gridOptions.advancedSearchData.engine.RowPerPage = 20;
-        ajax.call(mainPathApi+"emailOutBoxReciverLock/getall", emailOutBoxReciverLock.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"emailOutBoxReciverLock/getall", emailOutBoxReciverLock.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             emailOutBoxReciverLock.ListItems = response.ListItems;
             emailOutBoxReciverLock.gridOptions.fillData(emailOutBoxReciverLock.ListItems, response.resultAccess);
@@ -35,7 +35,7 @@
         if (buttonIsPressed) { return };
         emailOutBoxReciverLock.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'emailOutBoxReciverLock/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/getviewmodel', '0', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailOutBoxReciverLock.selectedItem = response.Item;
@@ -57,7 +57,7 @@
         }
         emailOutBoxReciverLock.addRequested = true;
         emailOutBoxReciverLock.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'emailOutBoxReciverLock/add', emailOutBoxReciverLock.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/add', emailOutBoxReciverLock.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 emailOutBoxReciverLock.ListItems.unshift(response.Item);
@@ -76,7 +76,7 @@
 
     emailOutBoxReciverLock.autoAdd = function () {
         emailOutBoxReciverLock.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'emailOutBoxReciverLock/autoadd', { LinkSourceId: emailOutBoxReciverLock.selectedSourceId }, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/autoadd', { LinkSourceId: emailOutBoxReciverLock.selectedSourceId }, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             emailOutBoxReciverLock.busyIndicator.isActive = false;
             emailOutBoxReciverLock.init();
@@ -100,7 +100,7 @@
 
         emailOutBoxReciverLock.addRequested = true;
         emailOutBoxReciverLock.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'emailOutBoxReciverLock/getonewithjsonformatter', engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/getonewithjsonformatter', engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             emailOutBoxReciverLock.selectedItem = response.Item;
 
@@ -155,10 +155,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/GetAll", filterModelParentRootFolders, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModelParentRootFolders, 'POST').success(function (response1) {
                 emailOutBoxReciverLock.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) {
                     Array.prototype.push.apply(emailOutBoxReciverLock.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (emailOutBoxReciverLock.selectedItem.LinkModuleFileLogoId > 0)
@@ -191,7 +191,7 @@
 
         emailOutBoxReciverLock.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailOutBoxReciverLock.submitValue));
 
-        ajax.call(mainPathApi+'emailOutBoxReciverLock/edit', emailOutBoxReciverLock.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/edit', emailOutBoxReciverLock.selectedItem, 'PUT').success(function (response) {
             emailOutBoxReciverLock.addRequested = false;
             emailOutBoxReciverLock.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -231,11 +231,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'emailOutBoxReciverLock/getviewmodel', emailOutBoxReciverLock.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/getviewmodel', emailOutBoxReciverLock.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     emailOutBoxReciverLock.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'emailOutBoxReciverLock/delete', emailOutBoxReciverLock.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/delete', emailOutBoxReciverLock.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             emailOutBoxReciverLock.replaceItem(emailOutBoxReciverLock.selectedItemForDelete.Id);
@@ -294,7 +294,7 @@
     emailOutBoxReciverLock.exportFile = function () {
         emailOutBoxReciverLock.addRequested = true;
         emailOutBoxReciverLock.gridOptions.advancedSearchData.engine.ExportFile = emailOutBoxReciverLock.ExportFileClass;
-        ajax.call(mainPathApi+'CoreSite/exportfile', emailOutBoxReciverLock.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/exportfile', emailOutBoxReciverLock.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             emailOutBoxReciverLock.addRequested = false;
             rashaErManage.checkAction(response);
             emailOutBoxReciverLock.reportDownloadLink = response.LinkFile;
@@ -337,7 +337,7 @@
     //Get TotalRowCount
     emailOutBoxReciverLock.getCount = function () {
         emailOutBoxReciverLock.addRequested = true;
-        ajax.call(mainPathApi+"emailOutBoxReciverLock/count", emailOutBoxReciverLock.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"emailOutBoxReciverLock/count", emailOutBoxReciverLock.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             emailOutBoxReciverLock.addRequested = false;
             rashaErManage.checkAction(response);
             emailOutBoxReciverLock.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -352,7 +352,7 @@
         $builder.removeAllFormObject('default');
         var engine = { Filters: [{ PropertyName: "Id", IntValue1: selectedId }] };
         emailOutBoxReciverLock.addRequested = true;
-        ajax.call(mainPathApi+"emailOutBoxReciverLock/getonewithjsonformatter", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"emailOutBoxReciverLock/getonewithjsonformatter", engine, 'POST').success(function (response) {
             emailOutBoxReciverLock.addRequested = false;
             if (response.IsSuccess) {
                 emailOutBoxReciverLock.selectedItem = response.Item;
@@ -413,7 +413,7 @@
         emailOutBoxReciverLock.busyIndicator.isActive = true;
         emailOutBoxReciverLock.addRequested = true;
         emailOutBoxReciverLock.selectedItem.PublicConfigJsonValues = $.trim(angular.toJson(emailOutBoxReciverLock.submitValue));
-        ajax.call(mainPathApi+'emailOutBoxReciverLock/edit', emailOutBoxReciverLock.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciverLock/edit', emailOutBoxReciverLock.selectedItem, 'PUT').success(function (response) {
             rashaErManage.checkAction(response);
             emailOutBoxReciverLock.busyIndicator.isActive = false;
             emailOutBoxReciverLock.addRequested = false;
@@ -447,11 +447,11 @@
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -471,9 +471,9 @@
             return;
         }
         emailOutBoxReciverLock.selectedItem.LinkModuleFileLogoId = node.Id;
-        emailOutBoxReciverLock.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
-        ajax.call(mainPathApi+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            emailOutBoxReciverLock.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
+        emailOutBoxReciverLock.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            emailOutBoxReciverLock.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });

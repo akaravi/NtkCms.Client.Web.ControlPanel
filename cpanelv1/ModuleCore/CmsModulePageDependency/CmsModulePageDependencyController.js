@@ -18,7 +18,7 @@
     cmsModulePageDependencygrd.init = function () {
         cmsModulePageDependencygrd.addRequested = true;
         cmsModulePageDependencygrd.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"WebDesignerMainPageDependency/getall", cmsModulePageDependencygrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"WebDesignerMainPageDependency/getall", cmsModulePageDependencygrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulePageDependencygrd.ListItems = response.ListItems;
             cmsModulePageDependencygrd.gridOptions.fillData(cmsModulePageDependencygrd.ListItems, response.resultAccess);
@@ -32,7 +32,7 @@
             cmsModulePageDependencygrd.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(mainPathApi+"CoreModule/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreModule/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulePageDependencygrd.CmsModulesListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
@@ -47,7 +47,7 @@
         cmsModulePageDependencygrd.busyIndicator.isActive = true;
         cmsModulePageDependencygrd.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'WebDesignerMainPageDependency/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/getviewmodel', '0', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsModulePageDependencygrd.selectedItem = response.Item;
@@ -65,7 +65,7 @@
             return;
         cmsModulePageDependencygrd.busyIndicator.isActive = true;
         cmsModulePageDependencygrd.addRequested = true;
-        ajax.call(mainPathApi+'WebDesignerMainPageDependency/add', cmsModulePageDependencygrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/add', cmsModulePageDependencygrd.selectedItem, 'POST').success(function (response) {
             cmsModulePageDependencygrd.addRequested = false;
             cmsModulePageDependencygrd.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -80,7 +80,7 @@
     }
     cmsModulePageDependencygrd.autoAdd = function () {
         cmsModulePageDependencygrd.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'WebDesignerMainPageDependency/AutoAdd', '', 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/AutoAdd', '', 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulePageDependencygrd.init();
         }).error(function (data, errCode, c, d) {
@@ -95,7 +95,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'WebDesignerMainPageDependency/getviewmodel', cmsModulePageDependencygrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/getviewmodel', cmsModulePageDependencygrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsModulePageDependencygrd.selectedItem = response.Item;
@@ -113,7 +113,7 @@
             return;
         cmsModulePageDependencygrd.addRequested = true;
         cmsModulePageDependencygrd.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'WebDesignerMainPageDependency/edit', cmsModulePageDependencygrd.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/edit', cmsModulePageDependencygrd.selectedItem, 'PUT').success(function (response) {
             cmsModulePageDependencygrd.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -156,11 +156,11 @@
                 cmsModulePageDependencygrd.busyIndicator.isActive = true;
                 console.log(cmsModulePageDependencygrd.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'WebDesignerMainPageDependency/getviewmodel', cmsModulePageDependencygrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/getviewmodel', cmsModulePageDependencygrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     cmsModulePageDependencygrd.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'WebDesignerMainPageDependency/delete', cmsModulePageDependencygrd.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/delete', cmsModulePageDependencygrd.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsModulePageDependencygrd.replaceItem(cmsModulePageDependencygrd.selectedItemForDelete.Id);
@@ -240,7 +240,7 @@
     }
     //Get TotalRowCount
     cmsModulePageDependencygrd.getCount = function () {
-        ajax.call(mainPathApi+"WebDesignerMainPageDependency/count", cmsModulePageDependencygrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"WebDesignerMainPageDependency/count", cmsModulePageDependencygrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulePageDependencygrd.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

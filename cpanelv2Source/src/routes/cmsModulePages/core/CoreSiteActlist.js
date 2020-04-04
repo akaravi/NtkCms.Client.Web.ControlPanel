@@ -234,7 +234,7 @@ class ThumbListLayout extends Component {
         // pwd: password,
         // lang: 'fa'
     };
-    axios.post(cmsServerConfig.mainPath + `/api/CoreSite/Getall`, postData, {
+    axios.post(cmsServerConfig.configMvcServerPath + `/api/CoreSite/Getall`, postData, {
       headers: headers
   })
        //axios.get(`${apiUrl}?pageSize=${selectedPageSize}&currentPage=${currentPage}&orderBy=${selectedOrderOption.column}&search=${search}`)

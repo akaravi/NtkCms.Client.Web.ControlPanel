@@ -58,7 +58,7 @@
         //    console.log(error);
         //}
 
-        ajax.call(mainPathApi+"ShopProductItem/getall", shopItem.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ShopProductItem/getall", shopItem.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopItem.ListItems = response.ListItems;
             shopItem.gridOptions.fillData(shopItem.ListItems, response.resultAccess); // Sending Access as an argument
@@ -83,7 +83,7 @@
         shopItem.addRequested = false;
         shopItem.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'ShopProductItem/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductItem/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopItem.selectedItem = response.Item;
@@ -106,7 +106,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'ShopProductItem/getviewmodel', shopItem.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductItem/getviewmodel', shopItem.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopItem.selectedItem = response.Item;
@@ -128,7 +128,7 @@
         }
         shopItem.busyIndicator.isActive = true;
         shopItem.addRequested = true;
-        ajax.call(mainPathApi+'ShopProductItem/add', shopItem.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductItem/add', shopItem.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopItem.busyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -153,7 +153,7 @@
         }
         shopItem.busyIndicator.isActive = true;
         shopItem.addRequested = true;
-        ajax.call(mainPathApi+'ShopProductItem/edit', shopItem.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductItem/edit', shopItem.selectedItem, 'PUT').success(function (response) {
             shopItem.busyIndicator.isActive = false;
             shopItem.addRequested = false;
             shopItem.showIsBusy = false;
@@ -184,13 +184,13 @@
                 shopItem.showbusy = true;
                 shopItem.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+"ShopProductItem/getviewmodel", shopItem.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"ShopProductItem/getviewmodel", shopItem.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     shopItem.showbusy = false;
                     shopItem.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     shopItem.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+"ShopProductItem/delete", shopItem.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"ShopProductItem/delete", shopItem.selectedItemForDelete, "DELETE").success(function (res) {
                         shopItem.busyIndicator.isActive = false;
                         shopItem.showIsBusy = false;
                         rashaErManage.checkAction(res);
@@ -228,7 +228,7 @@
     shopItem.summernoteText = '<h3>Hello Jonathan! </h3>dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industrys</strong> standard dummy text ever since the 1500s,when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronictypesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with<br /><br />';
     shopItem.searchData = function () {
         shopItem.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"shopItem/getall", shopItem.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopItem/getall", shopItem.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             shopItem.busyIndicator.isActive = false;
             shopItem.ListItems = response.ListItems;
@@ -292,7 +292,7 @@
     shopItem.exportFile = function () {
         shopItem.addRequested = true;
         shopItem.gridOptions.advancedSearchData.engine.ExportFile = shopItem.ExportFileClass;
-        ajax.call(mainPathApi+'ShopProductItem/exportfile', shopItem.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductItem/exportfile', shopItem.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             shopItem.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -336,7 +336,7 @@
     }
     //Get TotalRowCount
     shopItem.getCount = function () {
-        ajax.call(mainPathApi+"ShopProductItem/count", shopItem.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ShopProductItem/count", shopItem.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             shopItem.addRequested = false;
             rashaErManage.checkAction(response);
             shopItem.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
