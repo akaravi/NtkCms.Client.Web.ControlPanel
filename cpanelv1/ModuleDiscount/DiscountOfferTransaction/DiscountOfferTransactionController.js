@@ -21,7 +21,7 @@
     var buttonIsPressed = false; // برای جلوگیری از فشرده شدن چندباره دکمه ها
 
 
-    ajax.call(mainPathApi+"MemberGroup/getall", {}, 'POST').success(function (response) {
+    ajax.call(cmsServerConfig.configApiServerPath+"MemberGroup/getall", {}, 'POST').success(function (response) {
         discountOfferTransaction.memberGroups = response.ListItems;
     }).error(function (data, errCode, c, d) {
         console.log(data);
@@ -74,11 +74,11 @@
             console.log(error);
         }
 
-        ajax.call(mainPathApi+"DiscountOfferTransaction/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"DiscountOfferTransaction/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             discountOfferTransaction.busyIndicator.isActive = false;
             discountOfferTransaction.ListItems = response.ListItems;
-            ajax.call(mainPathApi+"DiscountOfferTransaction/getEnumDiscountOfferTransactionType", {}, 'POST').success(function (responseGetEnum) {
+            ajax.call(cmsServerConfig.configApiServerPath+"DiscountOfferTransaction/getEnumDiscountOfferTransactionType", {}, 'POST').success(function (responseGetEnum) {
                 discountOfferTransaction.DiscountOfferTransactionType = responseGetEnum;
                 discountOfferTransaction.setEnumDiscountOfferTransactionType(discountOfferTransaction.ListItems, discountOfferTransaction.DiscountOfferTransactionType);
             }).error(function (data, errCode, c, d) {
@@ -96,7 +96,7 @@
         });
     }
     if (!angular.isDefined(discountOfferTransaction.CategoryListItemsSeller))
-        ajax.call(mainPathApi+"DiscountSeller/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"DiscountSeller/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             discountOfferTransaction.CategoryListItemsSeller = response.ListItems;
         }).error(function (data, errCode, c, d) {
@@ -117,7 +117,7 @@
     discountOfferTransaction.addRequested = false;
     discountOfferTransaction.openAddModal = function () {
         discountOfferTransaction.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'DiscountOfferTransaction/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferTransaction/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountOfferTransaction.busyIndicator.isActive = false;
             discountOfferTransaction.selectedItem = response.Item;
@@ -143,7 +143,7 @@
         }
         discountOfferTransaction.busyIndicator.isActive = true;
         discountOfferTransaction.addRequested = true;
-        ajax.call(mainPathApi+'DiscountOfferTransaction/add', discountOfferTransaction.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferTransaction/add', discountOfferTransaction.selectedItem, 'POST').success(function (response) {
             discountOfferTransaction.addRequested = false;
             discountOfferTransaction.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -170,7 +170,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'DiscountOfferTransaction/getviewmodel', discountOfferTransaction.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferTransaction/getviewmodel', discountOfferTransaction.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountOfferTransaction.selectedItem = response.Item;
             if (discountOfferTransaction
@@ -194,7 +194,7 @@
             return;
         }
         discountOfferTransaction.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'DiscountOfferTransaction/edit', discountOfferTransaction.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferTransaction/edit', discountOfferTransaction.selectedItem, 'PUT').success(function (response) {
             discountOfferTransaction.addRequested = true;
             rashaErManage.checkAction(response);
             discountOfferTransaction.busyIndicator.isActive = false;
@@ -235,10 +235,10 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 discountOfferTransaction.busyIndicator.isActive = true;
-                ajax.call(mainPathApi+'DiscountOfferTransaction/getviewmodel', discountOfferTransaction.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferTransaction/getviewmodel', discountOfferTransaction.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     discountOfferTransaction.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'DiscountOfferTransaction/delete', discountOfferTransaction.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferTransaction/delete', discountOfferTransaction.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         discountOfferTransaction.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -259,7 +259,7 @@
 
     discountOfferTransaction.searchData = function () {
         discountOfferTransaction.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"discountOfferTransaction/getall", discountOfferTransaction.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"discountOfferTransaction/getall", discountOfferTransaction.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             discountOfferTransaction.categoryBusyIndicator.isActive = false;
             discountOfferTransaction.ListItems = response.ListItems;
@@ -390,7 +390,7 @@
     discountOfferTransaction.exportFile = function (frm) {
         discountOfferTransaction.addRequested = true;
         discountOfferTransaction.gridOptions.advancedSearchData.engine.ExportFile = discountOfferTransaction.ExportFileClass;
-        ajax.call(mainPathApi+'DiscountOfferTransaction/exportfile', discountOfferTransaction.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountOfferTransaction/exportfile', discountOfferTransaction.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             discountOfferTransaction.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -433,7 +433,7 @@
     }
     //Get TotalRowCount
     discountOfferTransaction.getCount = function () {
-        ajax.call(mainPathApi+"DiscountOfferTransaction/count", discountOfferTransaction.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"DiscountOfferTransaction/count", discountOfferTransaction.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             discountOfferTransaction.addRequested = false;
             rashaErManage.checkAction(response);
             discountOfferTransaction.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

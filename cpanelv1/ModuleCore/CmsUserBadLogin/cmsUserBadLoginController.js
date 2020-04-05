@@ -7,7 +7,7 @@
         } catch (error) {
             console.log(error)
         }
-        ajax.call(mainPathApi+"CoreUserBadLogin/getall", cmdUserBadLogin.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreUserBadLogin/getall", cmdUserBadLogin.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmdUserBadLogin.ListItems = response.ListItems;
             cmdUserBadLogin.gridOptions.fillData(cmdUserBadLogin.ListItems ,  response.resultAccess);
@@ -23,7 +23,7 @@
     cmdUserBadLogin.addRequested = false;
     cmdUserBadLogin.openAddModal = function () {
         cmdUserBadLogin.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'CoreUserBadLogin/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserBadLogin/getviewmodel', '0', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmdUserBadLogin.selectedItem = response.Item;
             $modal.open({
@@ -39,7 +39,7 @@
 	if (frm.$invalid)
             return;
         cmdUserBadLogin.addRequested = true;
-        ajax.call(mainPathApi+'CoreUserBadLogin/add', cmdUserBadLogin.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserBadLogin/add', cmdUserBadLogin.selectedItem , 'POST').success(function (response) {
             cmdUserBadLogin.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -60,7 +60,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'CoreUserBadLogin/getviewmodel', cmdUserBadLogin.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserBadLogin/getviewmodel', cmdUserBadLogin.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmdUserBadLogin.selectedItem = response.Item;
             $modal.open({
@@ -75,7 +75,7 @@
     cmdUserBadLogin.editRow = function (frm) {
 	if (frm.$invalid)
             return;
-        ajax.call(mainPathApi+'CoreUserBadLogin/edit',  cmdUserBadLogin.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserBadLogin/edit',  cmdUserBadLogin.selectedItem , 'PUT').success(function (response) {
             cmdUserBadLogin.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -113,11 +113,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(cmdUserBadLogin.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'CoreUserBadLogin/getviewmodel', cmdUserBadLogin.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreUserBadLogin/getviewmodel', cmdUserBadLogin.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmdUserBadLogin.selectedItemForDelete = response.Item;
                     console.log(cmdUserBadLogin.selectedItemForDelete);
-                    ajax.call(mainPathApi+'CoreUserBadLogin/delete', cmdUserBadLogin.selectedItemForDelete , 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUserBadLogin/delete', cmdUserBadLogin.selectedItemForDelete , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmdUserBadLogin.replaceItem(cmdUserBadLogin.selectedItemForDelete.Id);
@@ -169,7 +169,7 @@ cmdUserBadLogin.gridOptions = {
    cmdUserBadLogin.exportFile = function () {
        cmdUserBadLogin.addRequested = true;
        cmdUserBadLogin.gridOptions.advancedSearchData.engine.ExportFile = cmdUserBadLogin.ExportFileClass;
-       ajax.call(mainPathApi+'CoreUserBadLogin/exportfile', cmdUserBadLogin.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+       ajax.call(cmsServerConfig.configApiServerPath+'CoreUserBadLogin/exportfile', cmdUserBadLogin.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
            cmdUserBadLogin.addRequested = false;
            rashaErManage.checkAction(response);
            if (response.IsSuccess) {
@@ -212,7 +212,7 @@ cmdUserBadLogin.gridOptions = {
    }
    //Get TotalRowCount
    cmdUserBadLogin.getCount = function () {
-       ajax.call(mainPathApi+"CoreUserBadLogin/count", cmdUserBadLogin.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+       ajax.call(cmsServerConfig.configApiServerPath+"CoreUserBadLogin/count", cmdUserBadLogin.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
            cmdUserBadLogin.addRequested = false;
            rashaErManage.checkAction(response);
            cmdUserBadLogin.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

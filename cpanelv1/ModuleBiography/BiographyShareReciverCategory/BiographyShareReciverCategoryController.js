@@ -130,7 +130,7 @@
         }
 
         biographyShareReciverCategory.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"BiographyShareMainAdminSetting/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"BiographyShareMainAdminSetting/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
             biographyShareReciverCategory.treeConfig.Items = response.ListItems;
             biographyShareReciverCategory.categoryBusyIndicator.isActive = false;
         }).error(function (data, errCode, c, d) {
@@ -140,7 +140,7 @@
         });
 
         biographyShareReciverCategory.contentBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"biographyShareReciverCategory/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"biographyShareReciverCategory/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             biographyShareReciverCategory.ListItems = response.ListItems;
             biographyShareReciverCategory.gridOptions.fillData(biographyShareReciverCategory.ListItems, response.resultAccess); // Sending Access as an argument
@@ -163,7 +163,7 @@
         if (buttonIsPressed) { return };
         biographyShareReciverCategory.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'BiographyShareMainAdminSetting/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             biographyShareReciverCategory.selectedItem = response.Item;
@@ -176,10 +176,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 biographyShareReciverCategory.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "ShareServerCategory.LinkShareMainAdminSettingId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(biographyShareReciverCategory.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModuleBiography/BiographyShareMainAdminSetting/add.html',
@@ -209,7 +209,7 @@
 
         biographyShareReciverCategory.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'BiographyShareMainAdminSetting/getviewmodel', biographyShareReciverCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/getviewmodel', biographyShareReciverCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             biographyShareReciverCategory.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -226,10 +226,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 biographyShareReciverCategory.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "ShareServerCategory.LinkShareMainAdminSettingId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(biographyShareReciverCategory.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (biographyShareReciverCategory.selectedItem.LinkMainImageId > 0)
@@ -262,7 +262,7 @@
         biographyShareReciverCategory.selectedItem.LinkParentId = null;
         if (biographyShareReciverCategory.treeConfig.currentNode != null)
             biographyShareReciverCategory.selectedItem.LinkParentId = biographyShareReciverCategory.treeConfig.currentNode.Id;
-        ajax.call(mainPathApi+'BiographyShareMainAdminSetting/add', biographyShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/add', biographyShareReciverCategory.selectedItem, 'POST').success(function (response) {
             biographyShareReciverCategory.addRequested = false;
             rashaErManage.checkAction(response);
             //console.log(response);
@@ -290,7 +290,7 @@
         }
         biographyShareReciverCategory.categoryBusyIndicator.isActive = true;
         biographyShareReciverCategory.addRequested = true;
-        ajax.call(mainPathApi+'BiographyShareMainAdminSetting/edit', biographyShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/edit', biographyShareReciverCategory.selectedItem, 'PUT').success(function (response) {
             //biographyShareReciverCategory.showbusy = false;
             biographyShareReciverCategory.treeConfig.showbusy = false;
             biographyShareReciverCategory.addRequested = false;
@@ -321,12 +321,12 @@
                 biographyShareReciverCategory.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'BiographyShareMainAdminSetting/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/getviewmodel', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     biographyShareReciverCategory.selectedItemForDelete = response.Item;
                     console.log(biographyShareReciverCategory.selectedItemForDelete);
-                    ajax.call(mainPathApi+'BiographyShareMainAdminSetting/delete', biographyShareReciverCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/delete', biographyShareReciverCategory.selectedItemForDelete, 'DELETE').success(function (res) {
                         biographyShareReciverCategory.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //biographyShareReciverCategory.replaceCategoryItem(biographyShareReciverCategory.treeConfig.Items, node.Id);
@@ -378,7 +378,7 @@
             }
             biographyShareReciverCategory.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
-        ajax.call(mainPathApi+"biographyShareReciverCategory/getall", biographyShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"biographyShareReciverCategory/getall", biographyShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             biographyShareReciverCategory.contentBusyIndicator.isActive = false;
             biographyShareReciverCategory.ListItems = response.ListItems;
@@ -405,7 +405,7 @@
         biographyShareReciverCategory.addRequested = false;
         biographyShareReciverCategory.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'biographyShareReciverCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyShareReciverCategory/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             //console.log(response);
             rashaErManage.checkAction(response);
@@ -431,7 +431,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'biographyShareReciverCategory/getviewmodel', biographyShareReciverCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyShareReciverCategory/getviewmodel', biographyShareReciverCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             biographyShareReciverCategory.selectedItem = response1.Item;
@@ -458,7 +458,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Biography_Please_Select_The_Category'));
             return;
         }
-        ajax.call(mainPathApi+'biographyShareReciverCategory/add', biographyShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyShareReciverCategory/add', biographyShareReciverCategory.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             biographyShareReciverCategory.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -491,7 +491,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Biography_Please_Select_The_Category'));
             return;
         }
-        ajax.call(mainPathApi+'biographyShareReciverCategory/edit', biographyShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyShareReciverCategory/edit', biographyShareReciverCategory.selectedItem, 'PUT').success(function (response) {
             biographyShareReciverCategory.categoryBusyIndicator.isActive = false;
             biographyShareReciverCategory.addRequested = false;
             biographyShareReciverCategory.treeConfig.showbusy = false;
@@ -525,14 +525,14 @@
                 biographyShareReciverCategory.showbusy = true;
                 biographyShareReciverCategory.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+"biographyShareReciverCategory/getviewmodel", biographyShareReciverCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"biographyShareReciverCategory/getviewmodel", biographyShareReciverCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     biographyShareReciverCategory.showbusy = false;
                     biographyShareReciverCategory.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     biographyShareReciverCategory.selectedItemForDelete = response.Item;
                     console.log(biographyShareReciverCategory.selectedItemForDelete);
-                    ajax.call(mainPathApi+"biographyShareReciverCategory/delete", biographyShareReciverCategory.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"biographyShareReciverCategory/delete", biographyShareReciverCategory.selectedItemForDelete, "DELETE").success(function (res) {
                         biographyShareReciverCategory.categoryBusyIndicator.isActive = false;
                         biographyShareReciverCategory.treeConfig.showbusy = false;
                         biographyShareReciverCategory.showIsBusy = false;
@@ -579,7 +579,7 @@
 
     biographyShareReciverCategory.searchData = function () {
         biographyShareReciverCategory.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"biographyShareReciverCategory/getall", biographyShareReciverCategory.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"biographyShareReciverCategory/getall", biographyShareReciverCategory.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             biographyShareReciverCategory.categoryBusyIndicator.isActive = false;
             biographyShareReciverCategory.ListItems = response.ListItems;
@@ -671,7 +671,7 @@
     biographyShareReciverCategory.exportFile = function () {
         biographyShareReciverCategory.addRequested = true;
         biographyShareReciverCategory.gridOptions.advancedSearchData.engine.ExportFile = biographyShareReciverCategory.ExportFileClass;
-        ajax.call(mainPathApi+'biographyShareReciverCategory/exportfile', biographyShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyShareReciverCategory/exportfile', biographyShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             biographyShareReciverCategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -714,7 +714,7 @@
     }
     //Get TotalRowCount
     biographyShareReciverCategory.getCount = function () {
-        ajax.call(mainPathApi+"biographyShareReciverCategory/count", biographyShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"biographyShareReciverCategory/count", biographyShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             biographyShareReciverCategory.addRequested = false;
             rashaErManage.checkAction(response);
             biographyShareReciverCategory.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -727,7 +727,7 @@
     biographyShareReciverCategory.showCategoryImage = function (mainImageId) {
         if (mainImageId == 0 || mainImageId == null)
             return;
-        ajax.call(mainPathApi+"FileContent/PreviewImage", { id: mainImageId, name: '' }, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/PreviewImage", { id: mainImageId, name: '' }, 'POST').success(function (response) {
             biographyShareReciverCategory.selectedItem.MainImageSrc = response;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
@@ -759,11 +759,11 @@
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -784,9 +784,9 @@
             return;
         }
         biographyShareReciverCategory.selectedItem.LinkMainImageId = node.Id;
-        biographyShareReciverCategory.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
-        ajax.call(mainPathApi+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            biographyShareReciverCategory.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
+        biographyShareReciverCategory.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            biographyShareReciverCategory.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });

@@ -32,7 +32,7 @@
             console.log(error)
         }
 
-        ajax.call(mainPathApi+"ProductComment/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ProductComment/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             ProductComment.busyIndicator.isActive = false;
             ProductComment.ListItems = response.ListItems;
@@ -47,7 +47,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         //ProductComment.busyIndicator.isActive = true;
-        //ajax.call(mainPathApi+'ProductContent/getall', {}, 'POST').success(function (response) {
+        //ajax.call(cmsServerConfig.configApiServerPath+'ProductContent/getall', {}, 'POST').success(function (response) {
         //    ProductComment.ContentList = response.ListItems;
         //    ProductComment.busyIndicator.isActive = false;
         //});
@@ -59,7 +59,7 @@
     ProductComment.addRequested = false;
     ProductComment.openAddModal = function () {
         ProductComment.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'ProductComment/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ProductComment/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             ProductComment.busyIndicator.isActive = false;
             ProductComment.selectedItem = response.Item;
@@ -80,7 +80,7 @@
         }
         ProductComment.busyIndicator.isActive = true;
         ProductComment.addRequested = true;
-        ajax.call(mainPathApi+'ProductComment/add', ProductComment.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ProductComment/add', ProductComment.selectedItem, 'POST').success(function (response) {
             ProductComment.addRequested = false;
             ProductComment.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -108,7 +108,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'ProductComment/getviewmodel', ProductComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ProductComment/getviewmodel', ProductComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             ProductComment.selectedItem = response.Item;
             $modal.open({
@@ -127,7 +127,7 @@
             return;
         }
         ProductComment.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'ProductComment/edit', ProductComment.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ProductComment/edit', ProductComment.selectedItem, 'PUT').success(function (response) {
             ProductComment.addRequested = true;
             rashaErManage.checkAction(response);
             ProductComment.busyIndicator.isActive = false;
@@ -170,11 +170,11 @@
             if (isConfirmed) {
                 ProductComment.busyIndicator.isActive = true;
                 console.log(ProductComment.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'ProductComment/getviewmodel', ProductComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ProductComment/getviewmodel', ProductComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     //rashaErManage.checkAction(response);
                     ProductComment.selectedItemForDelete = response.Item;
                     console.log(ProductComment.selectedItemForDelete);
-                    ajax.call(mainPathApi+'ProductComment/delete', ProductComment.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ProductComment/delete', ProductComment.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         ProductComment.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

@@ -33,7 +33,7 @@
             console.log(error)
         }
 
-        ajax.call(mainPathApi+"reservationComment/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"reservationComment/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             reservationComment.busyIndicator.isActive = false;
             reservationComment.ListItems = response.ListItems;
@@ -48,7 +48,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         //reservationComment.busyIndicator.isActive = true;
-        //ajax.call(mainPathApi+'reservationContent/getall', {}, 'POST').success(function (response) {
+        //ajax.call(cmsServerConfig.configApiServerPath+'reservationContent/getall', {}, 'POST').success(function (response) {
         //    reservationComment.ContentList = response.ListItems;
         //    reservationComment.busyIndicator.isActive = false;
         //});
@@ -60,7 +60,7 @@
     reservationComment.addRequested = false;
     reservationComment.openAddModal = function () {
         reservationComment.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'reservationComment/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationComment/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             reservationComment.busyIndicator.isActive = false;
             reservationComment.selectedItem = response.Item;
@@ -81,7 +81,7 @@
         }
         reservationComment.busyIndicator.isActive = true;
         reservationComment.addRequested = true;
-        ajax.call(mainPathApi+'reservationComment/add', reservationComment.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationComment/add', reservationComment.selectedItem, 'POST').success(function (response) {
             reservationComment.addRequested = false;
             reservationComment.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -108,7 +108,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'reservationComment/getviewmodel', reservationComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationComment/getviewmodel', reservationComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             reservationComment.selectedItem = response.Item;
             $modal.open({
@@ -127,7 +127,7 @@
             return;
         }
         reservationComment.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'reservationComment/edit', reservationComment.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationComment/edit', reservationComment.selectedItem, 'PUT').success(function (response) {
             reservationComment.addRequested = true;
             rashaErManage.checkAction(response);
             reservationComment.busyIndicator.isActive = false;
@@ -170,11 +170,11 @@
             if (isConfirmed) {
                 reservationComment.busyIndicator.isActive = true;
                 console.log(reservationComment.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'reservationComment/getviewmodel', reservationComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'reservationComment/getviewmodel', reservationComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     //rashaErManage.checkAction(response);
                     reservationComment.selectedItemForDelete = response.Item;
                     console.log(reservationComment.selectedItemForDelete);
-                    ajax.call(mainPathApi+'reservationComment/delete', reservationComment.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'reservationComment/delete', reservationComment.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         reservationComment.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -284,7 +284,7 @@
     reservationComment.exportFile = function () {
         reservationComment.addRequested = true;
         reservationComment.gridOptions.advancedSearchData.engine.ExportFile = reservationComment.ExportFileClass;
-        ajax.call(mainPathApi+'reservationComment/exportfile', reservationComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationComment/exportfile', reservationComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             reservationComment.addRequested = false;
             rashaErManage.checkAction(response);
             reservationComment.reportDownloadLink = response.LinkFile;
@@ -326,7 +326,7 @@
     }
     //Get TotalRowCount
     reservationComment.getCount = function () {
-        ajax.call(mainPathApi+"reservationComment/count", reservationComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"reservationComment/count", reservationComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             reservationComment.addRequested = false;
             rashaErManage.checkAction(response);
             reservationComment.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

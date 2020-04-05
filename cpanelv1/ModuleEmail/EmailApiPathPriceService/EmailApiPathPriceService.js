@@ -19,7 +19,7 @@
             return;
         }
         if (emailapipathpriceservice.selectedPrivateSiteConfig.Id == null || emailapipathpriceservice.selectedPrivateSiteConfig.Id == 0) emailapipathpriceservice.selectedPriceService.Id = '0';
-        ajax.call(mainPathApi+'emailprivatesiteconfig/getviewmodel', emailapipathpriceservice.selectedPrivateSiteConfig.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/getviewmodel', emailapipathpriceservice.selectedPrivateSiteConfig.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailapipathpriceservice.selectedPrivateSiteConfig = response.Item;
@@ -30,7 +30,7 @@
         var filterModel = { PropertyName: "LinkPrivateSiteConfigId", SearchType: 0, IntValue1: emailapipathpriceservice.selectedPrivateSiteConfig.Id };
         if (emailapipathpriceservice.selectedPrivateSiteConfig.Id >0)
             emailapipathpriceservice.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
-        ajax.call(mainPathApi+"emailapipathpriceservice/getall", emailapipathpriceservice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"emailapipathpriceservice/getall", emailapipathpriceservice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             emailapipathpriceservice.ListItems = response.ListItems;
             emailapipathpriceservice.gridOptions.fillData(emailapipathpriceservice.ListItems, response.resultAccess);
@@ -52,7 +52,7 @@
         if (buttonIsPressed) { return };
         emailapipathpriceservice.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'emailapipathpriceservice/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/getviewmodel', '0', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailapipathpriceservice.selectedItem = response.Item;
@@ -74,7 +74,7 @@
        
         emailapipathpriceservice.addRequested = true;
         emailapipathpriceservice.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'emailapipathpriceservice/add', emailapipathpriceservice.selectedItem, 'POST').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/add', emailapipathpriceservice.selectedItem, 'POST').success(function (response1) {
             rashaErManage.checkAction(response1);
            if (response1.IsSuccess) {
                 emailapipathpriceservice.ListItems.unshift(response1.Item);
@@ -96,7 +96,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'emailapipathpriceservice/getviewmodel', emailapipathpriceservice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/getviewmodel', emailapipathpriceservice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailapipathpriceservice.selectedItem = response.Item;
@@ -116,7 +116,7 @@
         }
        
         emailapipathpriceservice.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'emailapipathpriceservice/edit', emailapipathpriceservice.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/edit', emailapipathpriceservice.selectedItem, 'PUT').success(function (response) {
             emailapipathpriceservice.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -154,12 +154,12 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'emailapipathpriceservice/getviewmodel', emailapipathpriceservice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/getviewmodel', emailapipathpriceservice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
 
                     rashaErManage.checkAction(response);
                     emailapipathpriceservice.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'emailapipathpriceservice/delete', emailapipathpriceservice.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/delete', emailapipathpriceservice.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             emailapipathpriceservice.replaceItem(emailapipathpriceservice.selectedItemForDelete.Id);
@@ -245,7 +245,7 @@
         filterModel.Filters.push({ PropertyName: "LinkProcessFlowId", IntValue1: item.Id, SearchType: 0 });
         emailapipathpriceservice.addRequested = true;
         //emailapipathpriceservice.optionsBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"emailprocesstaskLog/getall", filterModel, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"emailprocesstaskLog/getall", filterModel, "POST").success(function (response) {
             emailapipathpriceservice.addRequested = false;
             //emailapipathpriceservice.optionsBusyIndicator.isActice = false;
             rashaErManage.checkAction(response);
@@ -289,7 +289,7 @@
     emailapipathpriceservice.exportFile = function () {
         emailapipathpriceservice.addRequested = true;
         emailapipathpriceservice.gridOptions.advancedSearchData.engine.ExportFile = emailapipathpriceservice.ExportFileClass;
-        ajax.call(mainPathApi+'emailprivatesiteconfig/exportfile', emailapipathpriceservice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/exportfile', emailapipathpriceservice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             emailapipathpriceservice.addRequested = false;
             rashaErManage.checkAction(response);
             emailapipathpriceservice.reportDownloadLink = response.LinkFile;
@@ -331,7 +331,7 @@
     }
     //Get TotalRowCount
     emailapipathpriceservice.getCount = function () {
-        ajax.call(mainPathApi+"emailapipathpriceservice/count", emailapipathpriceservice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"emailapipathpriceservice/count", emailapipathpriceservice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             emailapipathpriceservice.addRequested = false;
             rashaErManage.checkAction(response);
             emailapipathpriceservice.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -346,7 +346,7 @@
     }
 
     emailapipathpriceservice.retryTrans = function (selectedId) {
-        ajax.call(mainPathApi+'emailapipathpriceservice/processflowCheck', selectedId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/processflowCheck', selectedId, 'GET').success(function (response) {
             emailapipathpriceservice.addRequested = false;
             rashaErManage.checkAction(response);
             emailapipathpriceservice.reportDownloadLink = response.LinkFile;

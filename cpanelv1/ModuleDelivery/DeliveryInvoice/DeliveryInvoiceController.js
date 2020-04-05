@@ -50,7 +50,7 @@
             console.log(error);
         }
         
-        ajax.call(mainPathApi+"DeliveryInvoice/getall", deliveryInvoice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"DeliveryInvoice/getall", deliveryInvoice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryInvoice.busyIndicator.isActive = false;
             deliveryInvoice.ListItems = response.ListItems;
@@ -85,7 +85,7 @@
     deliveryInvoice.addRequested = false;
     deliveryInvoice.openAddModal = function () {
         deliveryInvoice.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'DeliveryInvoice/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryInvoice/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryInvoice.busyIndicator.isActive = false;
             deliveryInvoice.selectedItem = response.Item;
@@ -118,7 +118,7 @@
         //deliveryInvoice.selectedItem.StartDateTime = deliveryInvoice.StartDateTime;
         //deliveryInvoice.selectedItem.EndDateTime = deliveryInvoice.EndDateTime;
 
-        ajax.call(mainPathApi+'DeliveryInvoice/add', deliveryInvoice.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryInvoice/add', deliveryInvoice.selectedItem, 'POST').success(function (response) {
             deliveryInvoice.addRequested = false;
             deliveryInvoice.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -145,7 +145,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'DeliveryInvoice/getviewmodel', deliveryInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryInvoice/getviewmodel', deliveryInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryInvoice.selectedItem = response.Item;
             deliveryInvoice.BeginTime.defaultDate = deliveryInvoice.selectedItem.BeginTime;
@@ -171,7 +171,7 @@
             return;
         }
         deliveryInvoice.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'DeliveryInvoice/edit', deliveryInvoice.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryInvoice/edit', deliveryInvoice.selectedItem, 'PUT').success(function (response) {
             deliveryInvoice.addRequested = true;
             rashaErManage.checkAction(response);
             deliveryInvoice.busyIndicator.isActive = false;
@@ -217,11 +217,11 @@
             if (isConfirmed) {
                 deliveryInvoice.busyIndicator.isActive = true;
                 console.log(deliveryInvoice.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'DeliveryInvoice/getviewmodel', deliveryInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'DeliveryInvoice/getviewmodel', deliveryInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     deliveryInvoice.selectedItemForDelete = response.Item;
                     console.log(deliveryInvoice.selectedItemForDelete);
-                    ajax.call(mainPathApi+'DeliveryInvoice/delete', deliveryInvoice.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'DeliveryInvoice/delete', deliveryInvoice.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         deliveryInvoice.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -401,7 +401,7 @@
     deliveryInvoice.exportFile = function () {
         deliveryInvoice.addRequested = true;
         deliveryInvoice.gridOptions.advancedSearchData.engine.ExportFile = deliveryInvoice.ExportFileClass;
-        ajax.call(mainPathApi+'DeliveryInvoice/exportfile', deliveryInvoice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryInvoice/exportfile', deliveryInvoice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             deliveryInvoice.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -444,7 +444,7 @@
     }
     //Get TotalRowCount
     deliveryInvoice.getCount = function () {
-        ajax.call(mainPathApi+"DeliveryInvoice/count", deliveryInvoice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"DeliveryInvoice/count", deliveryInvoice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             deliveryInvoice.addRequested = false;
             rashaErManage.checkAction(response);
             deliveryInvoice.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

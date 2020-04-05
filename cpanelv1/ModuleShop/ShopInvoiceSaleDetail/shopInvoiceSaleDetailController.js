@@ -81,7 +81,7 @@
             shopInvoiceSaleDetail.gridOptions.advancedSearchData.engine.Filters = [];
             var filterDataModel = { PropertyName: "LinkInvoiceSaleId", SearchType: 0, IntValue1: $stateParams.invoiceId };
             shopInvoiceSaleDetail.gridOptions.advancedSearchData.engine.Filters.push(filterDataModel);
-            ajax.call(mainPathApi+"shopinvoicesaledetail/getall", shopInvoiceSaleDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"shopinvoicesaledetail/getall", shopInvoiceSaleDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 shopInvoiceSaleDetail.ListItems = response.ListItems;
                 shopInvoiceSaleDetail.getFileDownloadPath(shopInvoiceSaleDetail.ListItems, "LinkMainImageId", "MainImageSrc");
@@ -98,7 +98,7 @@
             });
         }
         else
-            ajax.call(mainPathApi+"shopinvoicesaledetail/getviewmodel", "0", 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"shopinvoicesaledetail/getviewmodel", "0", 'GET').success(function (response) {
                 rashaErManage.checkAction(response);
                 shopInvoiceSaleDetail.selectedItem = response.Item;
             }).error(function (data, errCode, c, d) {
@@ -106,14 +106,14 @@
                 rashaErManage.checkAction(data, errCode);
             });
         if ($stateParams.invoiceId > 0)
-            ajax.call(mainPathApi+"shopinvoicesale/getviewmodel", $stateParams.invoiceId, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"shopinvoicesale/getviewmodel", $stateParams.invoiceId, 'GET').success(function (response) {
                 rashaErManage.checkAction(response);
                 shopInvoiceSaleDetail.invoiceSale = response.Item;
             }).error(function (data, errCode, c, d) {
                 //shopInvoiceSaleDetail.gridOptions.fillData();
                 rashaErManage.checkAction(data, errCode);
             });
-        ajax.call(mainPathApi+"shopconfiguration/site", {}, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopconfiguration/site", {}, "POST").success(function (response) {
             shopInvoiceSaleDetail.Currency = response.Site.Currency;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
@@ -140,7 +140,7 @@
             SearchType: 0
         }
         shopInvoiceSaleDetail.gridOptions.advancedSearchData.engine.Filters.push(s);
-        ajax.call(mainPathApi+"shopInvoiceSaleDetail/getall", shopInvoiceSaleDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopInvoiceSaleDetail/getall", shopInvoiceSaleDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSaleDetail.contentBusyIndicator.isActive = false;
             shopInvoiceSaleDetail.ListItems = response.ListItems;
@@ -157,7 +157,7 @@
     shopInvoiceSaleDetail.openAddModal = function () {
         shopInvoiceSaleDetail.addRequested = true;
         shopInvoiceSaleDetail.modalTitle = 'ردیف جدید';
-        ajax.call(mainPathApi+'shopInvoicesaledetail/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoicesaledetail/getviewmodel', "0", 'GET').success(function (response) {
             shopInvoiceSaleDetail.addRequested = false;
             rashaErManage.checkAction(response);
             shopInvoiceSaleDetail.selectedItem = response.Item;
@@ -179,7 +179,7 @@
             return;
         }
         shopInvoiceSaleDetail.addRequested = true;
-        ajax.call(mainPathApi+'shopInvoiceSaleDetail/getviewmodel', shopInvoiceSaleDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/getviewmodel', shopInvoiceSaleDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             shopInvoiceSaleDetail.addRequested = false;
             rashaErManage.checkAction(response);
             shopInvoiceSaleDetail.selectedItem = response.Item;
@@ -202,7 +202,7 @@
         if (!shopInvoiceSaleDetail.contentExists(shopInvoiceSaleDetail.selectedItem)) {
             shopInvoiceSaleDetail.addRequested = true;
             shopInvoiceSaleDetail.categoryBusyIndicator.isActive = true;
-            ajax.call(mainPathApi+'shopInvoiceSaleDetail/add', shopInvoiceSaleDetail.selectedItem, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/add', shopInvoiceSaleDetail.selectedItem, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 shopInvoiceSaleDetail.addRequested = false;
                 shopInvoiceSaleDetail.categoryBusyIndicator.isActive = false;
@@ -229,7 +229,7 @@
         }
         shopInvoiceSaleDetail.addRequested = true;
         shopInvoiceSaleDetail.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+'shopInvoiceSaleDetail/edit', shopInvoiceSaleDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/edit', shopInvoiceSaleDetail.selectedItem, 'PUT').success(function (response) {
             shopInvoiceSaleDetail.addRequested = false;
             shopInvoiceSaleDetail.categoryBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -255,11 +255,11 @@
             if (isConfirmed) {
                 shopInvoiceSaleDetail.categoryBusyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+"shopInvoiceSaleDetail/getviewmodel", shopInvoiceSaleDetail.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"shopInvoiceSaleDetail/getviewmodel", shopInvoiceSaleDetail.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopInvoiceSaleDetail.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+"shopInvoiceSaleDetail/delete", shopInvoiceSaleDetail.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"shopInvoiceSaleDetail/delete", shopInvoiceSaleDetail.selectedItemForDelete, "DELETE").success(function (res) {
                         shopInvoiceSaleDetail.categoryBusyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
@@ -286,11 +286,11 @@
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(mainPathApi+'shopInvoiceSaleDetail/getviewmodel', shopInvoiceSaleDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/getviewmodel', shopInvoiceSaleDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSaleDetail.selectedItem = response.Item;
             shopInvoiceSaleDetail.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
-            ajax.call(mainPathApi+'shopInvoiceSaleDetail/edit', shopInvoiceSaleDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/edit', shopInvoiceSaleDetail.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     var index = shopInvoiceSaleDetail.ListItems.indexOf(shopInvoiceSaleDetail.gridOptions.selectedRow.item);
@@ -312,11 +312,11 @@
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(mainPathApi+'shopInvoiceSaleDetail/getviewmodel', shopInvoiceSaleDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/getviewmodel', shopInvoiceSaleDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSaleDetail.selectedItem = response.Item;
             shopInvoiceSaleDetail.selectedItem.IsArchive = (response.Item.IsArchive == true) ? false : true;
-            ajax.call(mainPathApi+'shopInvoiceSaleDetail/edit', shopInvoiceSaleDetail.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/edit', shopInvoiceSaleDetail.selectedItem, 'PUT').success(function (response2) {
                 shopInvoiceSaleDetail.categoryBusyIndicator.isActive = true;
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
@@ -405,7 +405,7 @@
             var downloadModel = { id: item.virtual_Content[imageFieldId], name: null };
             model.push(downloadModel);
         });
-        ajax.call(mainPathApi+'FileContent/PreviewThumbnailImages', model, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/PreviewThumbnailImages', model, 'POST').success(function (response) {
             $.each(arr, function (index, item) {
                 item[imageFieldName] = response.ListItems[index].name;
             });
@@ -422,7 +422,7 @@
     shopInvoiceSaleDetail.inputContentChanged = function (input) {
         var engine = { Filters: [] };
         engine.Filters.push({ PropertyName: "Title", SearchType: 5, StringValue1: input, ClauseType: 1 });
-        ajax.call(mainPathApi+"shopcontent/search", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopcontent/search", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSaleDetail.contentListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {

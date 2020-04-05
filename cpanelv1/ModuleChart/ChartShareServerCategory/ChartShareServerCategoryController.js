@@ -102,7 +102,7 @@
         }
 
         chartShareServerCategory.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"ChartShareMainAdminSetting/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ChartShareMainAdminSetting/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
             chartShareServerCategory.treeConfig.Items = response.ListItems;
             chartShareServerCategory.categoryBusyIndicator.isActive = false;
         }).error(function (data, errCode, c, d) {
@@ -112,7 +112,7 @@
         });
 
         chartShareServerCategory.contentBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"chartShareServerCategory/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"chartShareServerCategory/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartShareServerCategory.ListItems = response.ListItems;
             chartShareServerCategory.gridOptions.fillData(chartShareServerCategory.ListItems, response.resultAccess); // Sending Access as an argument
@@ -134,7 +134,7 @@
         if (buttonIsPressed) { return };
         chartShareServerCategory.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'ChartShareMainAdminSetting/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartShareMainAdminSetting/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             chartShareServerCategory.selectedItem = response.Item;
@@ -147,10 +147,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 chartShareServerCategory.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkShareMainAdminSettingId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(chartShareServerCategory.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModuleChart/ChartShareMainAdminSetting/add.html',
@@ -180,7 +180,7 @@
 
         chartShareServerCategory.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'ChartShareMainAdminSetting/getviewmodel', chartShareServerCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartShareMainAdminSetting/getviewmodel', chartShareServerCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             chartShareServerCategory.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -197,10 +197,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 chartShareServerCategory.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkShareMainAdminSettingId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(chartShareServerCategory.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (chartShareServerCategory.selectedItem.LinkMainImageId > 0)
@@ -233,7 +233,7 @@
         chartShareServerCategory.selectedItem.LinkParentId = null;
         if (chartShareServerCategory.treeConfig.currentNode != null)
             chartShareServerCategory.selectedItem.LinkParentId = chartShareServerCategory.treeConfig.currentNode.Id;
-        ajax.call(mainPathApi+'ChartShareMainAdminSetting/add', chartShareServerCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartShareMainAdminSetting/add', chartShareServerCategory.selectedItem, 'POST').success(function (response) {
             chartShareServerCategory.addRequested = false;
             rashaErManage.checkAction(response);
             //console.log(response);
@@ -261,7 +261,7 @@
         }
         chartShareServerCategory.categoryBusyIndicator.isActive = true;
         chartShareServerCategory.addRequested = true;
-        ajax.call(mainPathApi+'ChartShareMainAdminSetting/edit', chartShareServerCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartShareMainAdminSetting/edit', chartShareServerCategory.selectedItem, 'PUT').success(function (response) {
             //chartShareServerCategory.showbusy = false;
             chartShareServerCategory.treeConfig.showbusy = false;
             chartShareServerCategory.addRequested = false;
@@ -292,12 +292,12 @@
                 chartShareServerCategory.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'ChartShareMainAdminSetting/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ChartShareMainAdminSetting/getviewmodel', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     chartShareServerCategory.selectedItemForDelete = response.Item;
                     console.log(chartShareServerCategory.selectedItemForDelete);
-                    ajax.call(mainPathApi+'ChartShareMainAdminSetting/delete', chartShareServerCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ChartShareMainAdminSetting/delete', chartShareServerCategory.selectedItemForDelete, 'DELETE').success(function (res) {
                         chartShareServerCategory.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //chartShareServerCategory.replaceCategoryItem(chartShareServerCategory.treeConfig.Items, node.Id);
@@ -347,7 +347,7 @@
             }
             chartShareServerCategory.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
-        ajax.call(mainPathApi+"chartShareServerCategory/getall", chartShareServerCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"chartShareServerCategory/getall", chartShareServerCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartShareServerCategory.contentBusyIndicator.isActive = false;
             chartShareServerCategory.ListItems = response.ListItems;
@@ -374,7 +374,7 @@
         chartShareServerCategory.addRequested = false;
         chartShareServerCategory.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'chartShareServerCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartShareServerCategory/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             //console.log(response);
             rashaErManage.checkAction(response);
@@ -400,7 +400,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'chartShareServerCategory/getviewmodel', chartShareServerCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartShareServerCategory/getviewmodel', chartShareServerCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             chartShareServerCategory.selectedItem = response1.Item;
@@ -427,7 +427,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Subscription_Please_Select_The_Category'));
             return;
         }
-        ajax.call(mainPathApi+'chartShareServerCategory/add', chartShareServerCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartShareServerCategory/add', chartShareServerCategory.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             chartShareServerCategory.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -460,7 +460,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Subscription_Please_Select_The_Category'));
             return;
         }
-        ajax.call(mainPathApi+'chartShareServerCategory/edit', chartShareServerCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartShareServerCategory/edit', chartShareServerCategory.selectedItem, 'PUT').success(function (response) {
             chartShareServerCategory.categoryBusyIndicator.isActive = false;
             chartShareServerCategory.addRequested = false;
             chartShareServerCategory.treeConfig.showbusy = false;
@@ -494,14 +494,14 @@
                 chartShareServerCategory.showbusy = true;
                 chartShareServerCategory.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+"chartShareServerCategory/getviewmodel", chartShareServerCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"chartShareServerCategory/getviewmodel", chartShareServerCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     chartShareServerCategory.showbusy = false;
                     chartShareServerCategory.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     chartShareServerCategory.selectedItemForDelete = response.Item;
                     console.log(chartShareServerCategory.selectedItemForDelete);
-                    ajax.call(mainPathApi+"chartShareServerCategory/delete", chartShareServerCategory.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"chartShareServerCategory/delete", chartShareServerCategory.selectedItemForDelete, "DELETE").success(function (res) {
                         chartShareServerCategory.categoryBusyIndicator.isActive = false;
                         chartShareServerCategory.treeConfig.showbusy = false;
                         chartShareServerCategory.showIsBusy = false;
@@ -548,7 +548,7 @@
    
     chartShareServerCategory.searchData = function () {
         chartShareServerCategory.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"chartShareServerCategory/getall", chartShareServerCategory.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"chartShareServerCategory/getall", chartShareServerCategory.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             chartShareServerCategory.categoryBusyIndicator.isActive = false;
             chartShareServerCategory.ListItems = response.ListItems;
@@ -640,7 +640,7 @@
     chartShareServerCategory.exportFile = function () {
         chartShareServerCategory.addRequested = true;
         chartShareServerCategory.gridOptions.advancedSearchData.engine.ExportFile = chartShareServerCategory.ExportFileClass;
-        ajax.call(mainPathApi+'chartShareServerCategory/exportfile', chartShareServerCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartShareServerCategory/exportfile', chartShareServerCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             chartShareServerCategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -683,7 +683,7 @@
     }
     //Get TotalRowCount
     chartShareServerCategory.getCount = function () {
-        ajax.call(mainPathApi+"chartShareServerCategory/count", chartShareServerCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"chartShareServerCategory/count", chartShareServerCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             chartShareServerCategory.addRequested = false;
             rashaErManage.checkAction(response);
             chartShareServerCategory.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -696,7 +696,7 @@
     chartShareServerCategory.showCategoryImage = function (mainImageId) {
         if (mainImageId == 0 || mainImageId == null)
             return;
-        ajax.call(mainPathApi+"FileContent/PreviewImage", { id: mainImageId, name: '' }, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/PreviewImage", { id: mainImageId, name: '' }, 'POST').success(function (response) {
             chartShareServerCategory.selectedItem.MainImageSrc = response;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
@@ -728,11 +728,11 @@
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -753,9 +753,9 @@
             return;
         }
         chartShareServerCategory.selectedItem.LinkMainImageId = node.Id;
-        chartShareServerCategory.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
-        ajax.call(mainPathApi+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            chartShareServerCategory.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
+        chartShareServerCategory.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            chartShareServerCategory.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });

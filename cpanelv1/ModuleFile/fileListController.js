@@ -17,7 +17,7 @@
             console.log(error);
         }
 
-        ajax.call(mainPathApi+"FileContent/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             filesList.busyIndicator.isActive = false;
             filesList.ListItems = response.ListItems;
@@ -46,7 +46,7 @@
         }
         filesList.busyIndicator.isActive = true;
         filesList.addRequested = true;
-        ajax.call(mainPathApi+'FileContent/add', filesList.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/add', filesList.selectedItem, 'POST').success(function (response) {
             filesList.addRequested = false;
             filesList.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -68,7 +68,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'FileContent/getviewmodel', filesList.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', filesList.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             filesList.selectedItem = response.Item;
             $modal.open({
@@ -88,7 +88,7 @@
             return;
         }
         filesList.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'FileContent/edit', filesList.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/edit', filesList.selectedItem, 'PUT').success(function (response) {
             filesList.addRequested = true;
             rashaErManage.checkAction(response);
             filesList.busyIndicator.isActive = false;
@@ -129,10 +129,10 @@
             if (isConfirmed) {
                 filesList.busyIndicator.isActive = true;
                 console.log(filesList.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'FileContent/getviewmodel', filesList.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', filesList.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     filesList.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'FileContent/delete', filesList.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', filesList.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         filesList.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -221,7 +221,7 @@
     filesList.exportFile = function () {
         filesList.gridOptions.advancedSearchData.engine.ExportFile = filesList.ExportFileClass;
         filesList.addRequested = true;
-        ajax.call(mainPathApi+'FileContent/exportfile', filesList.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/exportfile', filesList.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             filesList.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -264,7 +264,7 @@
     }
     //Get TotalRowCount
     filesList.getCount = function () {
-        ajax.call(mainPathApi+"FileContent/count", filesList.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/count", filesList.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             filesList.addRequested = false;
             rashaErManage.checkAction(response);
             filesList.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

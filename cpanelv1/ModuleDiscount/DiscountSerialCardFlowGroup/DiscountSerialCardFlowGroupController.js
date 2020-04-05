@@ -22,7 +22,7 @@
 
     
 
-    ajax.call(mainPathApi+"MemberGroup/getall", {}, 'POST').success(function (response) {
+    ajax.call(cmsServerConfig.configApiServerPath+"MemberGroup/getall", {}, 'POST').success(function (response) {
         discountSerialCardFlowGroup.memberGroups = response.ListItems;
     }).error(function (data, errCode, c, d) {
         console.log(data);
@@ -74,7 +74,7 @@
         } catch (error) {
             console.log(error);
         }
-        ajax.call(mainPathApi+"DiscountSerialCardFlowGroup/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"DiscountSerialCardFlowGroup/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             discountSerialCardFlowGroup.busyIndicator.isActive = false;
             discountSerialCardFlowGroup.ListItems = response.ListItems;
@@ -95,7 +95,7 @@
     discountSerialCardFlowGroup.addRequested = false;
     discountSerialCardFlowGroup.openAddModal = function () {
         discountSerialCardFlowGroup.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'DiscountSerialCardFlowGroup/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountSerialCardFlowGroup.busyIndicator.isActive = false;
             discountSerialCardFlowGroup.selectedItem = response.Item;
@@ -119,7 +119,7 @@
         }
         discountSerialCardFlowGroup.busyIndicator.isActive = true;
         discountSerialCardFlowGroup.addRequested = true;
-        ajax.call(mainPathApi+'DiscountSerialCardFlowGroup/add', discountSerialCardFlowGroup.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/add', discountSerialCardFlowGroup.selectedItem, 'POST').success(function (response) {
             discountSerialCardFlowGroup.addRequested = false;
             discountSerialCardFlowGroup.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -145,7 +145,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'DiscountSerialCardFlowGroup/getviewmodel', discountSerialCardFlowGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/getviewmodel', discountSerialCardFlowGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountSerialCardFlowGroup.selectedItem = response.Item;
             if (discountSerialCardFlowGroup
@@ -169,7 +169,7 @@
             return;
         }
         discountSerialCardFlowGroup.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'DiscountSerialCardFlowGroup/edit', discountSerialCardFlowGroup.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/edit', discountSerialCardFlowGroup.selectedItem, 'PUT').success(function (response) {
             discountSerialCardFlowGroup.addRequested = true;
             rashaErManage.checkAction(response);
             discountSerialCardFlowGroup.busyIndicator.isActive = false;
@@ -209,10 +209,10 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 discountSerialCardFlowGroup.busyIndicator.isActive = true;
-                ajax.call(mainPathApi+'DiscountSerialCardFlowGroup/getviewmodel', discountSerialCardFlowGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/getviewmodel', discountSerialCardFlowGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     discountSerialCardFlowGroup.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'DiscountSerialCardFlowGroup/delete', discountSerialCardFlowGroup.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/delete', discountSerialCardFlowGroup.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         discountSerialCardFlowGroup.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -233,7 +233,7 @@
 
     discountSerialCardFlowGroup.searchData = function () {
         discountSerialCardFlowGroup.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"DiscountSerialCardFlowGroup/getall", discountSerialCardFlowGroup.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"DiscountSerialCardFlowGroup/getall", discountSerialCardFlowGroup.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             discountSerialCardFlowGroup.categoryBusyIndicator.isActive = false;
             discountSerialCardFlowGroup.ListItems = response.ListItems;
@@ -315,7 +315,7 @@
     discountSerialCardFlowGroup.exportFile = function () {
         discountSerialCardFlowGroup.addRequested = true;
         discountSerialCardFlowGroup.gridOptions.advancedSearchData.engine.ExportFile = discountSerialCardFlowGroup.ExportFileClass;
-        ajax.call(mainPathApi+'DiscountSerialCardFlowGroup/exportfile', discountSerialCardFlowGroup.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountSerialCardFlowGroup/exportfile', discountSerialCardFlowGroup.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             discountSerialCardFlowGroup.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -358,7 +358,7 @@
     }
     //Get TotalRowCount
     discountSerialCardFlowGroup.getCount = function () {
-        ajax.call(mainPathApi+"DiscountSerialCardFlowGroup/count", discountSerialCardFlowGroup.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"DiscountSerialCardFlowGroup/count", discountSerialCardFlowGroup.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             discountSerialCardFlowGroup.addRequested = false;
             rashaErManage.checkAction(response);
             discountSerialCardFlowGroup.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

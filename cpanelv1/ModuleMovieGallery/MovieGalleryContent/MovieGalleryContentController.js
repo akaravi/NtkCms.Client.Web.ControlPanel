@@ -69,7 +69,7 @@
     //}
     mvGallery.init = function () {
         mvGallery.treeBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"movieGalleryCategory/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"movieGalleryCategory/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
             mvGallery.treeConfig.Items = response.ListItems;
             mvGallery.treeBusyIndicator.isActive = false;
         }).error(function (data, errCode, c, d) {
@@ -80,7 +80,7 @@
             mvGallery.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
         mvGallery.addRequested = true;
         mvGallery.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"movieGalleryContent/getall", mvGallery.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"movieGalleryContent/getall", mvGallery.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             mvGallery.addRequested = false;
             mvGallery.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -107,7 +107,7 @@
 
     mvGallery.openUpload = function () {
         mvGallery.modalTitle = "آپلود فایل";
-        ajax.call(mainPathApi+'movieGallery/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGallery/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mvGallery.selectedItem = response.Item;
             $modal.open({
@@ -247,7 +247,7 @@ mvGallery.LinkCategoryIdSelector = {
 
     mvGallery.openNewFolder = function () {
         mvGallery.modalTitle = "ایجاد شاخه جدید";
-        ajax.call(mainPathApi+'movieGalleryCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mvGallery.selectedItem = response.Item;
             $modal.open({
@@ -261,7 +261,7 @@ mvGallery.LinkCategoryIdSelector = {
     }
 
     mvGallery.getGalleriesByCategory = function (id) {
-        ajax.call(mainPathApi+'movieGallery/getviewmodel', id, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGallery/getviewmodel', id, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             mvGallery.selectedItems = response.Items;
             $modal.open({
@@ -290,7 +290,7 @@ mvGallery.LinkCategoryIdSelector = {
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'movieGallerycontent/getviewmodel', mvGallery.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGallerycontent/getviewmodel', mvGallery.selectedRow.item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             mvGallery.selectedItem = response1.Item;
             $modal.open({
@@ -310,7 +310,7 @@ mvGallery.LinkCategoryIdSelector = {
         }
         mvGallery.addRequested = true;
         mvGallery.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'movieGallerycontent/add', mvGallery.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGallerycontent/add', mvGallery.selectedItem, 'POST').success(function (response) {
             mvGallery.addRequested = false;
             mvGallery.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -330,7 +330,7 @@ mvGallery.LinkCategoryIdSelector = {
                         mvGallery.selectedItem.ContentTags.push(newObject);
                     }
                 });
-                ajax.call(mainPathApi+'movieGallerycontentTag/addbatch', mvGallery.selectedItem.ContentTags, 'POST').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'movieGallerycontentTag/addbatch', mvGallery.selectedItem.ContentTags, 'POST').success(function (response) {
                     console.log(response);
                 }).error(function (data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
@@ -368,7 +368,7 @@ mvGallery.LinkCategoryIdSelector = {
         });
         mvGallery.addRequested = true;
         mvGallery.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'movieGallerycontent/edit', mvGallery.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGallerycontent/edit', mvGallery.selectedItem, 'PUT').success(function (response) {
             mvGallery.addRequested = false;
             mvGallery.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -403,7 +403,7 @@ mvGallery.LinkCategoryIdSelector = {
         if (mvGallery.addRequested) { return };
         mvGallery.addRequested = true;
         mvGallery.treeBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+'movieGalleryCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mvGallery.addRequested = false;
             mvGallery.treeBusyIndicator.isActive = false;
@@ -417,10 +417,10 @@ mvGallery.LinkCategoryIdSelector = {
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 mvGallery.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(mvGallery.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModulemovieGallery/movieGalleryCategory/add.html',
@@ -455,7 +455,7 @@ mvGallery.LinkCategoryIdSelector = {
         }
         mvGallery.addRequested = true;
         mvGallery.treeBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+'movieGalleryCategory/getviewmodel', mvGallery.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/getviewmodel', mvGallery.treeConfig.currentNode.Id, 'GET').success(function (response) {
             mvGallery.addRequested = false;
             mvGallery.treeBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -472,10 +472,10 @@ mvGallery.LinkCategoryIdSelector = {
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 mvGallery.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(mvGallery.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (mvGallery.selectedItem.LinkMainImageId > 0)
@@ -514,7 +514,7 @@ mvGallery.LinkCategoryIdSelector = {
         mvGallery.selectedItem.LinkCategorytId = null;
         if (mvGallery.treeConfig.currentNode != null)
             mvGallery.selectedItem.LinkParentId = mvGallery.treeConfig.currentNode.Id;
-        ajax.call(mainPathApi+'movieGalleryCategory/add', mvGallery.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/add', mvGallery.selectedItem, 'POST').success(function (response) {
             mvGallery.treeBusyIndicator.isActive = false;
             mvGallery.addRequested = false;
             rashaErManage.checkAction(response);
@@ -539,7 +539,7 @@ mvGallery.LinkCategoryIdSelector = {
         }
         mvGallery.addRequested = true;
         mvGallery.treeBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+'movieGalleryCategory/edit', mvGallery.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/edit', mvGallery.selectedItem, 'PUT').success(function (response) {
             mvGallery.addRequested = false;
             mvGallery.treeBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -568,12 +568,12 @@ mvGallery.LinkCategoryIdSelector = {
                 mvGallery.addRequested = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'movieGalleryCategory/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/getviewmodel', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     mvGallery.selectedItemForDelete = response.Item;
                     console.log(mvGallery.selectedItemForDelete);
-                    ajax.call(mainPathApi+'movieGalleryCategory/delete', mvGallery.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/delete', mvGallery.selectedItemForDelete, 'DELETE').success(function (res) {
                         mvGallery.treeBusyIndicator.isActive = false;
                         mvGallery.addRequested = true;
                         if (res.IsSuccess) {
@@ -610,7 +610,7 @@ mvGallery.LinkCategoryIdSelector = {
             return;
         }
         mvGallery.modalTitle = 'ویرایش';
-        ajax.call(mainPathApi+'movieGalleryContent/getviewmodel', mvGallery.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryContent/getviewmodel', mvGallery.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mvGallery.selectedItem = response.Item;
             mvGallery.startDate.defaultDate = mvGallery.selectedItem.FromDate;
@@ -657,10 +657,10 @@ mvGallery.LinkCategoryIdSelector = {
                     var filterDataModel = { PropertyName: "Id", SearchType: 0, IntValue1: value.Id, ClauseType: 1 };
                     deleteFilterModel.Filters.push(filterDataModel);
                 });
-                //ajax.call(mainPathApi+"movieGallerycontent/getall", mvGallery.selectedRow.item.Id, "POST").success(function (response) {
+                //ajax.call(cmsServerConfig.configApiServerPath+"movieGallerycontent/getall", mvGallery.selectedRow.item.Id, "POST").success(function (response) {
                 //    rashaErManage.checkAction(response);
                 //    mvGallery.selectedItemsForDelete = response.ListItems;
-                ajax.call(mainPathApi+"movieGallerycontent/DeleteFilterModel", deleteFilterModel, "DELETE").success(function (res) {
+                ajax.call(cmsServerConfig.configApiServerPath+"movieGallerycontent/DeleteFilterModel", deleteFilterModel, "DELETE").success(function (res) {
                     rashaErManage.checkAction(res);
                     if (res.IsSuccess) {
                         //mvGallery.replaceItem(mvGallery.selectedItemForDelete.Id);
@@ -710,7 +710,7 @@ mvGallery.LinkCategoryIdSelector = {
         }
         mvGallery.addRequested = true;
         mvGallery.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"movieGalleryContent/getall", mvGallery.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"movieGalleryContent/getall", mvGallery.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             mvGallery.addRequested = false;
             mvGallery.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -742,7 +742,7 @@ mvGallery.LinkCategoryIdSelector = {
         mvGallery.filePickerMainImage.filename = "";
         mvGallery.filePickerMainImage.fileId = null;
         mvGallery.modalTitle = 'اضافه کردن محتوای جدید';
-        ajax.call(mainPathApi+'movieGallerycontent/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGallerycontent/getviewmodel', "0", 'GET').success(function (response) {
             mvGallery.addRequested = false;
             mvGallery.treeBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -783,10 +783,10 @@ mvGallery.LinkCategoryIdSelector = {
             }]
         };
         mvGallery.addRequested = true;
-        ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+        ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
             mvGallery.dataForTheTree = response1.ListItems;
             var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-            ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                 //mvGallery.dataForTheTree.concat(response2.ListItems);
                 Array.prototype.push.apply(mvGallery.dataForTheTree, response2.ListItems);
                 $modal.open({
@@ -800,7 +800,7 @@ mvGallery.LinkCategoryIdSelector = {
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(mainPathApi+'movieGalleryContent/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryContent/getviewmodel', '0', 'GET').success(function (response) {
             mvGallery.selectedItem = response.Item;
             mvGallery.selectedItem.FolderId = null;
         }).error(function (data, errCode, c, d) {
@@ -819,7 +819,7 @@ mvGallery.LinkCategoryIdSelector = {
 
     //Get TotalRowCount
     mvGallery.getCount = function () {
-        ajax.call(mainPathApi+"movieGallerycontent/count", mvGallery.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"movieGallerycontent/count", mvGallery.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             mvGallery.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {
@@ -1062,11 +1062,11 @@ mvGallery.LinkCategoryIdSelector = {
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -1103,7 +1103,7 @@ mvGallery.LinkCategoryIdSelector = {
         $("#addRequests").fadeIn("slow");
         mvGallery.addRequested = true;
         if (mvGallery.treeOptions.dirSelectable) {
-            ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", selectedFolder.Id, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", selectedFolder.Id, 'POST').success(function (response) {
                 angular.forEach(response.ListItems, function (value, key) {
                     var newObject = jQuery.extend({}, mvGallery.selectedItem);   //#Clone a Javascript Object
                     newObject.LinkFileId = value.Id;
@@ -1112,7 +1112,7 @@ mvGallery.LinkCategoryIdSelector = {
                     mvGallery.contentsToAdd.push(newObject);
                 });
                 angular.forEach(mvGallery.contentsToAdd, function (value, key) {
-                    ajax.call(mainPathApi+"movieGallerycontent/add", value, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"movieGallerycontent/add", value, 'POST').success(function (response) {
                         value.addIsSuccess = response.IsSuccess;
                         value.addErrorMessage = response.ErrorMessage;
                     }).error(function (data, errCode, c, d) {
@@ -1135,7 +1135,7 @@ mvGallery.LinkCategoryIdSelector = {
                 mvGallery.contentsToAdd.push(newObject);
             });
             angular.forEach(mvGallery.contentsToAdd, function (value, key) {
-                ajax.call(mainPathApi+"movieGallerycontent/add", value, 'POST').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"movieGallerycontent/add", value, 'POST').success(function (response) {
                     value.addIsSuccess = response.IsSuccess;
                     value.addErrorMessage = response.ErrorMessage;
                 }).error(function (data, errCode, c, d) {
@@ -1175,11 +1175,11 @@ mvGallery.LinkCategoryIdSelector = {
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -1200,9 +1200,9 @@ mvGallery.LinkCategoryIdSelector = {
             return;
         }
         mvGallery.selectedItem.LinkMainImageId = node.Id;
-        mvGallery.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
-        ajax.call(mainPathApi+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            mvGallery.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
+        mvGallery.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            mvGallery.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
@@ -1213,7 +1213,7 @@ mvGallery.LinkCategoryIdSelector = {
     mvGallery.exportFile = function () {
         mvGallery.gridOptions.advancedSearchData.engine.ExportFile = mvGallery.ExportFileClass;
         mvGallery.addRequested = true;
-        ajax.call(mainPathApi+'movieGallerycontent/exportfile', mvGallery.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGallerycontent/exportfile', mvGallery.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             mvGallery.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {

@@ -34,13 +34,13 @@
             console.log(error);
         }
          //////////////مقداردهی مقادیر enum////////////////////
-            ajax.call(mainPathApi+"reservationservice/getAllPaymentType", {}, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"reservationservice/getAllPaymentType", {}, 'POST').success(function (response) {
                 reservationService.PaymentType = response.ListItems;
             }).error(function (data, errCode, c, d) {
                 console.log(data);
             });
         //////////////////////////////////////////////////////////
-        ajax.call(mainPathApi+"reservationservice/getall", reservationService.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"reservationservice/getall", reservationService.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             reservationService.busyIndicator.isActive = false;
             reservationService.ListItems = response.ListItems;
@@ -66,7 +66,7 @@
     reservationService.addRequested = false;
     reservationService.openAddModal = function () {
         reservationService.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'reservationservice/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationservice/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             reservationService.busyIndicator.isActive = false;
             reservationService.selectedItem = response.Item;
@@ -91,7 +91,7 @@
         }
         reservationService.busyIndicator.isActive = true;
         reservationService.addRequested = true;
-        ajax.call(mainPathApi+'ReservationService/add', reservationService.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationService/add', reservationService.selectedItem, 'POST').success(function (response) {
             reservationService.addRequested = false;
             reservationService.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -116,7 +116,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'reservationservice/getviewmodel', reservationService.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationservice/getviewmodel', reservationService.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             reservationService.selectedItem = response.Item;
             $modal.open({
@@ -137,7 +137,7 @@
             return;
         }
         reservationService.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'reservationservice/edit', reservationService.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationservice/edit', reservationService.selectedItem, 'PUT').success(function (response) {
             reservationService.addRequested = true;
             rashaErManage.checkAction(response);
             reservationService.busyIndicator.isActive = false;
@@ -204,11 +204,11 @@
             if (isConfirmed) {
                 reservationService.busyIndicator.isActive = true;
                 console.log(reservationService.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'reservationservice/getviewmodel', reservationService.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'reservationservice/getviewmodel', reservationService.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     reservationService.selectedItemForDelete = response.Item;
                     console.log(reservationService.selectedItemForDelete);
-                    ajax.call(mainPathApi+'reservationservice/delete', reservationService.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'reservationservice/delete', reservationService.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         reservationService.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -345,7 +345,7 @@
    
 
     //reservationService.setWebhook = function (data) {
-    //    ajax.call(mainPathApi+'reservationProcessUser/SetWebhookAsync', reservationService.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+'reservationProcessUser/SetWebhookAsync', reservationService.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
     //        rashaErManage.showMessage(response.ErrorMessage);
 
     //    }).error(function (data, errCode, c, d) {
@@ -355,7 +355,7 @@
     //    });
     //}
     //reservationService.setWebhookEmpty = function (data) {
-    //    ajax.call(mainPathApi+'reservationProcessUser/SetWebhookAsyncEmpty', reservationService.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+'reservationProcessUser/SetWebhookAsyncEmpty', reservationService.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
     //        rashaErManage.showMessage(response.ErrorMessage);
 
     //    }).error(function (data, errCode, c, d) {
@@ -365,7 +365,7 @@
     //    });
     //}
     //reservationService.GetUpdatesAsync = function (data) {
-    //    ajax.call(mainPathApi+'reservationProcessReceive/GetUpdatesAsync', reservationService.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+'reservationProcessReceive/GetUpdatesAsync', reservationService.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
     //        rashaErManage.showMessage(response.ErrorMessage);
 
     //    }).error(function (data, errCode, c, d) {
@@ -378,7 +378,7 @@
     reservationService.exportFile = function () {
         reservationService.addRequested = true;
         reservationService.gridOptions.advancedSearchData.engine.ExportFile = reservationService.ExportFileClass;
-        ajax.call(mainPathApi+'reservationservice/exportfile', reservationService.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationservice/exportfile', reservationService.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             reservationService.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -421,7 +421,7 @@
     }
     //Get TotalRowCount
     reservationService.getCount = function () {
-        ajax.call(mainPathApi+"reservationservice/count", reservationService.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"reservationservice/count", reservationService.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             reservationService.addRequested = false;
             rashaErManage.checkAction(response);
             reservationService.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

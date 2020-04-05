@@ -8,7 +8,7 @@ app.controller("ProductcategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
     if (itemRecordStatus != undefined) Productcategory.itemRecordStatus = itemRecordStatus;
     Productcategory.init = function () {
         Productcategory.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"Productcategory/getall", { RowPerPage:1000}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"Productcategory/getall", { RowPerPage:1000}, 'POST').success(function (response) {
           
             rashaErManage.checkAction(response);
             Productcategory.ListItems = response.ListItems;
@@ -30,7 +30,7 @@ app.controller("ProductcategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
     Productcategory.addRequested = false;
     Productcategory.openAddModal = function () {
         Productcategory.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'Productcategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Productcategory/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             Productcategory.selectedItem = response.Item;
             //Set dataForTheTree
@@ -43,10 +43,10 @@ app.controller("ProductcategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 productContent.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(productContent.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModuleProduct/ProductCategory/add.html',
@@ -77,7 +77,7 @@ app.controller("ProductcategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
         }
         Productcategory.categoryBusyIndicator.isActive = true;
         Productcategory.addRequested = true;
-        ajax.call(mainPathApi+'Productcategory/add',  Productcategory.selectedItem , 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Productcategory/add',  Productcategory.selectedItem , 'POST').success(function (response) {
             Productcategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -99,7 +99,7 @@ app.controller("ProductcategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'Productcategory/getviewmodel', Productcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Productcategory/getviewmodel', Productcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             Productcategory.selectedItem = response.Item;
             //Set dataForTheTree
@@ -114,10 +114,10 @@ app.controller("ProductcategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 Productcategory.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "LinkCategoryId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(Productcategory.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (Productcategory.selectedItem.LinkMainImageId > 0)
@@ -149,7 +149,7 @@ app.controller("ProductcategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
             return;
         }
 
-        ajax.call(mainPathApi+'Productcategory/', Productcategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Productcategory/', Productcategory.selectedItem, 'PUT').success(function (response) {
             Productcategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -174,7 +174,7 @@ app.controller("ProductcategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
             return;
         }
         Productcategory.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+'ProductCategory/edit/', Productcategory.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ProductCategory/edit/', Productcategory.selectedItem , 'PUT').success(function (response) {
             Productcategory.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -220,11 +220,11 @@ app.controller("ProductcategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(Productcategory.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'Productcategory/getviewmodel',  Productcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'Productcategory/getviewmodel',  Productcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     Productcategory.selectedItemForDelete = response.Item;
                     console.log(Productcategory.selectedItemForDelete);
-                    ajax.call(mainPathApi+'Productcategory/delete', Productcategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'Productcategory/delete', Productcategory.selectedItemForDelete, 'DELETE').success(function (res) {
                         Productcategory.categoryBusyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
@@ -362,11 +362,11 @@ app.controller("ProductcategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -387,9 +387,9 @@ app.controller("ProductcategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
             return;
         }
         productContent.selectedItem.LinkMainImageId = node.Id;
-        productContent.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
-        ajax.call(mainPathApi+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            productContent.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
+        productContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            productContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });

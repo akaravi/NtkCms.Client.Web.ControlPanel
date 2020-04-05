@@ -48,7 +48,7 @@
 
     //init Function
     shopProcess.init = function () {
-        ajax.call(mainPathApi+"ShopProductProcess/getall", shopProcess.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ShopProductProcess/getall", shopProcess.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopProcess.ListItems = response.ListItems;
             shopProcess.gridOptions.fillData(shopProcess.ListItems, response.resultAccess); // Sending Access as an argument
@@ -63,7 +63,7 @@
         });
         shopProcess.modulesbusyIndicator = true;
     // Get All CmsModules
-        ajax.call(mainPathApi+"ShopProcessCategory/getall", '', 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ShopProcessCategory/getall", '', 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopProcess.ProcessCategoryListItems = response.ListItems;
             shopProcess.busyIndicator.isActive = false;
@@ -92,7 +92,7 @@
         shopProcess.addRequested = false;
         shopProcess.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'ShopProductProcess/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopProcess.selectedItem = response.Item;
@@ -116,7 +116,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-            ajax.call(mainPathApi+"ShopProcessCategory/getall", {}, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"ShopProcessCategory/getall", {}, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 shopProcess.ProcessCategoryListItems = response.ListItems;
             }).error(function (data, errCode, c, d) {
@@ -125,7 +125,7 @@
             });
             
         $builder.removeAllFormObject('default');
-        ajax.call(mainPathApi+'ShopProductProcess/getviewmodel', shopProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/getviewmodel', shopProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             shopProcess.selectedItem = response1.Item;
@@ -135,7 +135,7 @@
             shopProcess.paymentProcessCustomizeListItemsbusyIndicator = true;
 
             
-               ajax.call(mainPathApi+'ShopProcess/GetViewModel', shopProcess.selectedItem.LinkProcessId, "GET").success(function (response) {
+               ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetViewModel', shopProcess.selectedItem.LinkProcessId, "GET").success(function (response) {
                     rashaErManage.checkAction(response);
                     shopProcess.cmsModulesProcessesCustomizeListItems = response.Item;
                     
@@ -148,7 +148,7 @@
                             engine.RowPerPage = 100;
                             engine.Filters = [];
                             engine.Filters.push(filterValue);
-                    ajax.call(mainPathApi+'ShopProcess/getall',engine , "POST").success(function (response2) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/getall',engine , "POST").success(function (response2) {
                         rashaErManage.checkAction(response2);
                         shopProcess.cmsModulesProcessesListItems = response2.ListItems;
                     }).error(function (data, errCode, c, d) {
@@ -204,7 +204,7 @@
         shopProcess.busyIndicator.isActive = true;
         shopProcess.addRequested = true;
         shopProcess.selectedItem.JsonFormAdminSiteValues = $.trim(angular.toJson(shopProcess.submitValue));
-        ajax.call(mainPathApi+'ShopProductProcess/add', shopProcess.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/add', shopProcess.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopProcess.busyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -226,7 +226,7 @@
         //    updateMethod = "POST";
         shopProcess.addRequested = true;
         shopProcess.selectedItem.JsonFormValues = $.trim(angular.toJson(shopProcess.submitValue));
-        ajax.call(mainPathApi+'cmsModulepaymentprocesscustomize/' + updateMode, shopProcess.selectedItem, updateMethod).success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'cmsModulepaymentprocesscustomize/' + updateMode, shopProcess.selectedItem, updateMethod).success(function (response) {
             rashaErManage.checkAction(response);
             shopProcess.addRequested = false;
             shopProcess.closeModal();
@@ -247,7 +247,7 @@
         shopProcess.busyIndicator.isActive = true;
 
         shopProcess.selectedItem.JsonFormAdminSiteValues = $.trim(angular.toJson(shopProcess.submitValue));
-        ajax.call(mainPathApi+'ShopProductProcess/edit', shopProcess.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/edit', shopProcess.selectedItem, 'PUT').success(function (response) {
             shopProcess.addRequested = false;
             shopProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -278,13 +278,13 @@
                 shopProcess.showbusy = true;
                 shopProcess.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+"ShopProductProcess/getviewmodel", shopProcess.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"ShopProductProcess/getviewmodel", shopProcess.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     shopProcess.showbusy = false;
                     shopProcess.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     shopProcess.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+"ShopProductProcess/delete", shopProcess.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"ShopProductProcess/delete", shopProcess.selectedItemForDelete, "DELETE").success(function (res) {
                         shopProcess.busyIndicator.isActive = false;
                         shopProcess.showIsBusy = false;
                         rashaErManage.checkAction(res);
@@ -320,7 +320,7 @@
 
     shopProcess.searchData = function () {
         shopProcess.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"shopProcess/getall", shopProcess.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopProcess/getall", shopProcess.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             shopProcess.busyIndicator.isActive = false;
             shopProcess.ListItems = response.ListItems;
@@ -365,7 +365,7 @@
         engine.Filters.push(filterValue);
         shopProcess.paymentProcessListItemsbusyIndicator = true;
         shopProcess.paymentProcessCustomizeListItemsbusyIndicator = true;
-        ajax.call(mainPathApi+'cmsmodulepaymentprocess/getall', engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'cmsmodulepaymentprocess/getall', engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             shopProcess.paymentProcessListItems = response.ListItems;
             shopProcess.paymentProcessListItemsbusyIndicator = false;
@@ -387,7 +387,7 @@
         engine.Filters = [];
         engine.Filters.push(filterValue);
         shopProcess.paymentProcessCustomizeListItemsbusyIndicator = true;
-        ajax.call(mainPathApi+'cmsModulePaymentProcessCustomize/getall', engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'cmsModulePaymentProcessCustomize/getall', engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             shopProcess.paymentProcessCustomizeListItems = response.ListItems;
             shopProcess.paymentProcessListItemsbusyIndicator = false;
@@ -468,7 +468,7 @@
         shopProcess.advancedSearchData.engine.RowPerPage = 200;
         shopProcess.isLoading = true;                 // غیرفعال کردن منوی کشویی بعدی
         shopProcess.isWaiting = true;*/
-        ajax.call(mainPathApi+'ShopProcess/getall', filterValue, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/getall', filterValue, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             shopProcess.cmsModulesProcessesListItems = response.ListItems;
             shopProcess.isLoading = false;          // فعال کردن منوی کشویی بعدی
@@ -502,7 +502,7 @@
         shopProcess.advancedSearchData.engine.Filters = [];
         shopProcess.advancedSearchData.engine.Filters.push(filterValue);
         shopProcess.isWaiting = true;
-        ajax.call(mainPathApi+'ShopProcess/getall', filterValue, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/getall', filterValue, "POST").success(function (response) {
             shopProcess.isWaiting = false;
             rashaErManage.checkAction(response);
             shopProcess.cmsModulesProcessesCustomizeListItems = response.ListItems;
@@ -543,7 +543,7 @@
     shopProcess.LoadUniversalMenuProcessOfModuleProcessCustomize = function (LinkProcessId) {
         $builder.removeAllFormObject('default');
         // Get Process
-        ajax.call(mainPathApi+'ShopProcess/GetViewModel', LinkProcessId, "GET").success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetViewModel', LinkProcessId, "GET").success(function (response1) {
             shopProcess.selectedItem.LinkProcessId = response1.Item.Id;
             // Get CmsModuleProcess 
            
@@ -581,7 +581,7 @@
     shopProcess.openCustomizeInputValueModal = function (item) {
 
         shopProcess.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'ShopProductProcess/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/getviewmodel', item.Id, 'GET').success(function (response) {
             shopProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             shopProcess.selectedItem = response.Item;
@@ -620,14 +620,14 @@
 
     shopProcess.submitValues = function (item) {
         shopProcess.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'ShopProductProcess/getviewmodel', shopProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/getviewmodel', shopProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             shopProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             shopProcess.selectedItem = response.Item;
             shopProcess.selectedItem.LinkProcessCategoryId = null;
             shopProcess.selectedItem.LinkModuleProcessId = null;
             shopProcess.selectedItem.ProcessCustomizationInputValue = $.trim(angular.toJson(shopProcess.valueSubmit));
-            ajax.call(mainPathApi+'ShopProductProcess/', shopProcess.selectedItem, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/', shopProcess.selectedItem, 'PUT').success(function (response) {
                 shopProcess.addRequested = true;
                 rashaErManage.checkAction(response);
                 if (response.IsSuccess) {
@@ -685,7 +685,7 @@
     shopProcess.exportFile = function () {
         shopProcess.addRequested = true;
         shopProcess.gridOptions.advancedSearchData.engine.ExportFile = shopProcess.ExportFileClass;
-        ajax.call(mainPathApi+'ShopProductProcess/exportfile', shopProcess.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/exportfile', shopProcess.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 shopProcess.exportDownloadLink = window.location.origin + response.LinkFile;
@@ -728,7 +728,7 @@
     }
     //Get TotalRowCount
     shopProcess.getCount = function () {
-        ajax.call(mainPathApi+"ShopProductProcess/count", shopProcess.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ShopProductProcess/count", shopProcess.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopProcess.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {
@@ -740,7 +740,7 @@
     shopProcess.exportFile = function () {
         shopProcess.addRequested = true;
         shopProcess.gridOptions.advancedSearchData.engine.ExportFile = shopProcess.ExportFileClass;
-        ajax.call(mainPathApi+'ShopProductService/exportfile', shopProcess.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductService/exportfile', shopProcess.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 shopProcess.exportDownloadLink = window.location.origin + response.LinkFile;
@@ -783,7 +783,7 @@
     }
     //Get TotalRowCount
     shopProcess.getCount = function () {
-        ajax.call(mainPathApi+"ShopProductService/count", shopProcess.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ShopProductService/count", shopProcess.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopProcess.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

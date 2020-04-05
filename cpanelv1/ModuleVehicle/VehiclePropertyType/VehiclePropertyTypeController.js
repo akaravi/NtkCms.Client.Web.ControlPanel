@@ -11,7 +11,7 @@
 
     vehiclePropertyType.init = function () {
         vehiclePropertyType.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"vehiclepropertytype/getall", vehiclePropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"vehiclepropertytype/getall", vehiclePropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             vehiclePropertyType.busyIndicator.isActive = false;
             vehiclePropertyType.ListItems = response.ListItems;
@@ -33,7 +33,7 @@
     vehiclePropertyType.addRequested = false;
     vehiclePropertyType.openAddModal = function () {
         vehiclePropertyType.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'vehiclepropertytype/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             vehiclePropertyType.busyIndicator.isActive = false;
             vehiclePropertyType.selectedItem = response.Item;
@@ -57,7 +57,7 @@
         }
         vehiclePropertyType.busyIndicator.isActive = true;
         vehiclePropertyType.addRequested = true;
-        ajax.call(mainPathApi+'vehiclepropertytype/add', vehiclePropertyType.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/add', vehiclePropertyType.selectedItem, 'POST').success(function (response) {
             vehiclePropertyType.addRequested = false;
             vehiclePropertyType.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -79,7 +79,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'vehiclepropertytype/getviewmodel', vehiclePropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/getviewmodel', vehiclePropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             vehiclePropertyType.selectedItem = response.Item;
             $modal.open({
@@ -99,7 +99,7 @@
             return;
         }
         vehiclePropertyType.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'vehiclepropertytype/edit', vehiclePropertyType.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/edit', vehiclePropertyType.selectedItem, 'PUT').success(function (response) {
             vehiclePropertyType.addRequested = true;
             rashaErManage.checkAction(response);
             vehiclePropertyType.busyIndicator.isActive = false;
@@ -141,11 +141,11 @@
             if (isConfirmed) {
                 vehiclePropertyType.busyIndicator.isActive = true;
                 console.log(vehiclePropertyType.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'vehiclepropertytype/getviewmodel', vehiclePropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/getviewmodel', vehiclePropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     vehiclePropertyType.selectedItemForDelete = response.Item;
                     console.log(vehiclePropertyType.selectedItemForDelete);
-                    ajax.call(mainPathApi+'vehiclepropertytype/delete', vehiclePropertyType.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/delete', vehiclePropertyType.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         vehiclePropertyType.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -239,7 +239,7 @@
     vehiclePropertyType.exportFile = function () {
         vehiclePropertyType.addRequested = true;
         vehiclePropertyType.gridOptions.advancedSearchData.engine.ExportFile = vehiclePropertyType.ExportFileClass;
-        ajax.call(mainPathApi+'vehiclePropertyType/exportfile', vehiclePropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyType/exportfile', vehiclePropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             vehiclePropertyType.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -282,7 +282,7 @@
     }
     //Get TotalRowCount
     vehiclePropertyType.getCount = function () {
-        ajax.call(mainPathApi+"vehiclePropertyType/count", vehiclePropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"vehiclePropertyType/count", vehiclePropertyType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             vehiclePropertyType.addRequested = false;
             rashaErManage.checkAction(response);
             vehiclePropertyType.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

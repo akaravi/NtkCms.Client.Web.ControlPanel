@@ -18,7 +18,7 @@
     //FilterModel.GetExport = { ExportType: 1, RecieveMethod:0,RowData:1000}
     logInputCtrl.init = function () {
         logInputCtrl.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"ApiTelegramLogInput/getall", logInputCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramLogInput/getall", logInputCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             logInputCtrl.ListItems = response.ListItems;
             logInputCtrl.gridOptions.fillData(logInputCtrl.ListItems, response.resultAccess);
@@ -80,7 +80,7 @@ logInputCtrl.treeOptions = {
     logInputCtrl.addRequested = false;
     logInputCtrl.openAddModal = function () {
         logInputCtrl.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'ApiTelegramLogInput/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             logInputCtrl.busyIndicator.isActive = false;
             logInputCtrl.selectedItem = response.Item;
@@ -103,7 +103,7 @@ logInputCtrl.treeOptions = {
         }
         logInputCtrl.busyIndicator.isActive = true;
         logInputCtrl.addRequested = true;
-        ajax.call(mainPathApi+'ApiTelegramLogInput/add', logInputCtrl.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/add', logInputCtrl.selectedItem, 'POST').success(function (response) {
             logInputCtrl.addRequested = false;
             logInputCtrl.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -127,7 +127,7 @@ logInputCtrl.treeOptions = {
             return;
         }
 
-        ajax.call(mainPathApi+'ApiTelegramLogInput/getviewmodel', logInputCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/getviewmodel', logInputCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             logInputCtrl.selectedItem = response.Item;
             $modal.open({
@@ -148,7 +148,7 @@ logInputCtrl.treeOptions = {
             return;
         }
         logInputCtrl.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'ApiTelegramLogInput/edit', logInputCtrl.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/edit', logInputCtrl.selectedItem, 'PUT').success(function (response) {
             logInputCtrl.addRequested = true;
             rashaErManage.checkAction(response);
             logInputCtrl.busyIndicator.isActive = false;
@@ -190,10 +190,10 @@ logInputCtrl.treeOptions = {
             if (isConfirmed) {
                 logInputCtrl.busyIndicator.isActive = true;
                 console.log(logInputCtrl.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'apitelegramloginput/getviewmodel', logInputCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'apitelegramloginput/getviewmodel', logInputCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     logInputCtrl.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'ApiTelegramLogInput/delete', logInputCtrl.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/delete', logInputCtrl.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         logInputCtrl.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -283,7 +283,7 @@ logInputCtrl.treeOptions = {
     logInputCtrl.openSendMessageToSender = function (item) {
         logInputCtrl.modalTitle = "ارسال پیام";
         logInputCtrl.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'ApiTelegramLogInput/GetViewModel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/GetViewModel', item.Id, 'GET').success(function (response) {
             logInputCtrl.selectedItem = response.Item;
             $modal.open({
                 templateUrl: 'cpanelv1/ModuleApiTelegram/ApiTelegramLogInput/sendMessageModal.html',
@@ -320,7 +320,7 @@ logInputCtrl.treeOptions = {
         logInputCtrl.selectedItem.chatId=[parseInt(logInputCtrl.selectedItem.LinkUserId)];
 
         logInputCtrl.inputClass = { MessageType: logInputCtrl.selectedItem.MessageType, text: logInputCtrl.selectedItem.text,title: logInputCtrl.selectedItem.title, chatId: [parseInt(logInputCtrl.selectedItem.ChatId)], MemberGroupId: [], SentToAllMembers: false, BotId: logInputCtrl.selectedItem.LinkBotConfigId, LinkFileId:logInputCtrl.selectedItem.LinkFileId, latitude: logInputCtrl.selectedItem.latitude0, longitude: logInputCtrl.selectedItem.longitude, firstName:logInputCtrl.selectedItem.firstName, lastName: logInputCtrl.selectedItem.lastName, phoneNumber: logInputCtrl.selectedItem.phoneNumber};
-        ajax.call(mainPathApi+'ApiTelegramBotConfig/SendMessage', logInputCtrl.inputClass, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/SendMessage', logInputCtrl.inputClass, 'POST').success(function (response) {
             logInputCtrl.busyIndicator.isActive = false;
             logInputCtrl.addRequested = false;
             logInputCtrl.sendButtonText = "ارسال";
@@ -336,7 +336,7 @@ logInputCtrl.treeOptions = {
     logInputCtrl.exportFile = function () {
         logInputCtrl.addRequested = true;
         logInputCtrl.gridOptions.advancedSearchData.engine.ExportFile = logInputCtrl.ExportFileClass;
-        ajax.call(mainPathApi+'ApiTelegramLogInput/exportfile', logInputCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/exportfile', logInputCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 $window.open(response.LinkFile, '_blank');
@@ -378,7 +378,7 @@ logInputCtrl.treeOptions = {
     }
     //Get TotalRowCount
     logInputCtrl.getCount = function () {
-        ajax.call(mainPathApi+"ApiTelegramLogInput/count", logInputCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramLogInput/count", logInputCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             logInputCtrl.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {
@@ -390,7 +390,7 @@ logInputCtrl.treeOptions = {
     logInputCtrl.exportFile = function () {
         logInputCtrl.addRequested = true;
         logInputCtrl.gridOptions.advancedSearchData.engine.ExportFile = logInputCtrl.ExportFileClass;
-        ajax.call(mainPathApi+'ApiTelegramLogInput/exportfile', logInputCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/exportfile', logInputCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             logInputCtrl.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -433,7 +433,7 @@ logInputCtrl.treeOptions = {
     }
     //Get TotalRowCount
     logInputCtrl.getCount = function () {
-        ajax.call(mainPathApi+"ApiTelegramLogInput/count", logInputCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramLogInput/count", logInputCtrl.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             logInputCtrl.addRequested = false;
             rashaErManage.checkAction(response);
             logInputCtrl.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

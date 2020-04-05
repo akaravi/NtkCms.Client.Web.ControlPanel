@@ -33,7 +33,7 @@
             console.log(error)
         }
 
-        ajax.call(mainPathApi+"linkManagementAccountingDetail/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"linkManagementAccountingDetail/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementAccountingDetail.busyIndicator.isActive = false;
             linkManagementAccountingDetail.ListItems = response.ListItems;
@@ -48,7 +48,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         //linkManagementAccountingDetail.busyIndicator.isActive = true;
-        //ajax.call(mainPathApi+'linkManagementAccountingDetail/getall', {}, 'POST').success(function (response) {
+        //ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccountingDetail/getall', {}, 'POST').success(function (response) {
         //    linkManagementAccountingDetail.ContentList = response.ListItems;
         //    linkManagementAccountingDetail.busyIndicator.isActive = false;
         //});
@@ -59,7 +59,7 @@
     linkManagementAccountingDetail.addRequested = false;
     linkManagementAccountingDetail.openAddModal = function () {
         linkManagementAccountingDetail.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'linkManagementAccountingDetail/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccountingDetail/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementAccountingDetail.busyIndicator.isActive = false;
             linkManagementAccountingDetail.selectedItem = response.Item;
@@ -80,7 +80,7 @@
         }
         linkManagementAccountingDetail.busyIndicator.isActive = true;
         linkManagementAccountingDetail.addRequested = true;
-        ajax.call(mainPathApi+'linkManagementAccountingDetail/add', linkManagementAccountingDetail.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccountingDetail/add', linkManagementAccountingDetail.selectedItem, 'POST').success(function (response) {
             linkManagementAccountingDetail.addRequested = false;
             linkManagementAccountingDetail.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -107,7 +107,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'linkManagementAccountingDetail/getviewmodel', linkManagementAccountingDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccountingDetail/getviewmodel', linkManagementAccountingDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementAccountingDetail.selectedItem = response.Item;
             $modal.open({
@@ -126,7 +126,7 @@
             return;
         }
         linkManagementAccountingDetail.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'linkManagementAccountingDetail/edit', linkManagementAccountingDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccountingDetail/edit', linkManagementAccountingDetail.selectedItem, 'PUT').success(function (response) {
             linkManagementAccountingDetail.addRequested = true;
             rashaErManage.checkAction(response);
             linkManagementAccountingDetail.busyIndicator.isActive = false;
@@ -169,9 +169,9 @@
             if (isConfirmed) {
                 linkManagementAccountingDetail.busyIndicator.isActive = true;
                 console.log(linkManagementAccountingDetail.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'linkManagementAccountingDetail/getviewmodel', linkManagementAccountingDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccountingDetail/getviewmodel', linkManagementAccountingDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     linkManagementAccountingDetail.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'linkManagementAccountingDetail/delete', linkManagementAccountingDetail.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccountingDetail/delete', linkManagementAccountingDetail.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         linkManagementAccountingDetail.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -292,7 +292,7 @@
     linkManagementAccountingDetail.exportFile = function () {
         linkManagementAccountingDetail.addRequested = true;
         linkManagementAccountingDetail.gridOptions.advancedSearchData.engine.ExportFile = linkManagementAccountingDetail.ExportFileClass;
-        ajax.call(mainPathApi+'linkManagementAccountingDetail/exportfile', linkManagementAccountingDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccountingDetail/exportfile', linkManagementAccountingDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             linkManagementAccountingDetail.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -335,7 +335,7 @@
     }
     //Get TotalRowCount
     linkManagementAccountingDetail.getCount = function () {
-        ajax.call(mainPathApi+"linkManagementAccountingDetail/count", linkManagementAccountingDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"linkManagementAccountingDetail/count", linkManagementAccountingDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             linkManagementAccountingDetail.addRequested = false;
             rashaErManage.checkAction(response);
             linkManagementAccountingDetail.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

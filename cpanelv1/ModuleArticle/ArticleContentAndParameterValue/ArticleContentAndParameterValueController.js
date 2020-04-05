@@ -22,7 +22,7 @@
 
     
 
-    ajax.call(mainPathApi+"MemberGroup/getall", {}, 'POST').success(function (response) {
+    ajax.call(cmsServerConfig.configApiServerPath+"MemberGroup/getall", {}, 'POST').success(function (response) {
         articleContentAndParameterValue.memberGroups = response.ListItems;
     }).error(function (data, errCode, c, d) {
         console.log(data);
@@ -74,7 +74,7 @@
         } catch (error) {
             console.log(error);
         }
-        ajax.call(mainPathApi+"articleContentAndParameterValue/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"articleContentAndParameterValue/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             articleContentAndParameterValue.busyIndicator.isActive = false;
             articleContentAndParameterValue.ListItems = response.ListItems;
@@ -95,7 +95,7 @@
     articleContentAndParameterValue.addRequested = false;
     articleContentAndParameterValue.openAddModal = function () {
         articleContentAndParameterValue.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'articleContentAndParameterValue/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleContentAndParameterValue/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             articleContentAndParameterValue.busyIndicator.isActive = false;
             articleContentAndParameterValue.selectedItem = response.Item;
@@ -119,7 +119,7 @@
         }
         articleContentAndParameterValue.busyIndicator.isActive = true;
         articleContentAndParameterValue.addRequested = true;
-        ajax.call(mainPathApi+'articleContentAndParameterValue/add', articleContentAndParameterValue.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleContentAndParameterValue/add', articleContentAndParameterValue.selectedItem, 'POST').success(function (response) {
             articleContentAndParameterValue.addRequested = false;
             articleContentAndParameterValue.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -145,7 +145,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'articleContentAndParameterValue/getviewmodel', articleContentAndParameterValue.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleContentAndParameterValue/getviewmodel', articleContentAndParameterValue.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             articleContentAndParameterValue.selectedItem = response.Item;
             if (articleContentAndParameterValue
@@ -169,7 +169,7 @@
             return;
         }
         articleContentAndParameterValue.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'articleContentAndParameterValue/edit', articleContentAndParameterValue.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleContentAndParameterValue/edit', articleContentAndParameterValue.selectedItem, 'PUT').success(function (response) {
             articleContentAndParameterValue.addRequested = true;
             rashaErManage.checkAction(response);
             articleContentAndParameterValue.busyIndicator.isActive = false;
@@ -209,10 +209,10 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 articleContentAndParameterValue.busyIndicator.isActive = true;
-                ajax.call(mainPathApi+'articleContentAndParameterValue/getviewmodel', articleContentAndParameterValue.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'articleContentAndParameterValue/getviewmodel', articleContentAndParameterValue.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     articleContentAndParameterValue.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'articleContentAndParameterValue/delete', articleContentAndParameterValue.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'articleContentAndParameterValue/delete', articleContentAndParameterValue.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         articleContentAndParameterValue.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -233,7 +233,7 @@
 
     articleContentAndParameterValue.searchData = function () {
         articleContentAndParameterValue.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"articleContentAndParameterValue/getall", articleContentAndParameterValue.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"articleContentAndParameterValue/getall", articleContentAndParameterValue.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             articleContentAndParameterValue.categoryBusyIndicator.isActive = false;
             articleContentAndParameterValue.ListItems = response.ListItems;
@@ -368,7 +368,7 @@
     articleContentAndParameterValue.exportFile = function () {
         articleContentAndParameterValue.addRequested = true;
         articleContentAndParameterValue.gridOptions.advancedSearchData.engine.ExportFile = articleContentAndParameterValue.ExportFileClass;
-        ajax.call(mainPathApi+'articleContentAndParameterValue/exportfile', articleContentAndParameterValue.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleContentAndParameterValue/exportfile', articleContentAndParameterValue.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             articleContentAndParameterValue.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -411,7 +411,7 @@
     }
     //Get TotalRowCount
     articleContentAndParameterValue.getCount = function () {
-        ajax.call(mainPathApi+"articleContentAndParameterValue/count", articleContentAndParameterValue.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"articleContentAndParameterValue/count", articleContentAndParameterValue.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             articleContentAndParameterValue.addRequested = false;
             rashaErManage.checkAction(response);
             articleContentAndParameterValue.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

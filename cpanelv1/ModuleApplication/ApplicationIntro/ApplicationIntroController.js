@@ -64,7 +64,7 @@
     // }
     applicationIntro.init = function () {
         applicationIntro.busyIndicator.isActive = true;
-        ajax.call(mainPathApi + "ApplicationIntro/getall", applicationIntro.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "ApplicationIntro/getall", applicationIntro.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
 
             applicationIntro.busyIndicator.isActive = false;
@@ -95,7 +95,7 @@
 
         applicationIntro.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(mainPathApi + 'ApplicationIntro/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationIntro/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             applicationIntro.busyIndicator.isActive = false;
@@ -120,7 +120,7 @@
         }
         applicationIntro.busyIndicator.isActive = true;
         applicationIntro.addRequested = true;
-        ajax.call(mainPathApi + 'ApplicationIntro/add', applicationIntro.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationIntro/add', applicationIntro.selectedItem, 'POST').success(function (response) {
             applicationIntro.addRequested = false;
             applicationIntro.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -147,7 +147,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(mainPathApi + 'ApplicationIntro/getviewmodel', applicationIntro.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationIntro/getviewmodel', applicationIntro.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -169,7 +169,7 @@
             return;
         }
         applicationIntro.busyIndicator.isActive = true;
-        ajax.call(mainPathApi + 'ApplicationIntro/edit', applicationIntro.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationIntro/edit', applicationIntro.selectedItem, 'PUT').success(function (response) {
             applicationIntro.addRequested = true;
             rashaErManage.checkAction(response);
             applicationIntro.busyIndicator.isActive = false;
@@ -215,11 +215,11 @@
                 applicationIntro.busyIndicator.isActive = true;
                 console.log(applicationIntro.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(mainPathApi + 'ApplicationIntro/getviewmodel', applicationIntro.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationIntro/getviewmodel', applicationIntro.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     applicationIntro.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi + 'ApplicationIntro/delete', applicationIntro.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationIntro/delete', applicationIntro.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         applicationIntro.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -364,7 +364,7 @@
     applicationIntro.exportFile = function () {
         applicationIntro.addRequested = true;
         applicationIntro.gridOptions.advancedSearchData.engine.ExportFile = applicationIntro.ExportFileClass;
-        ajax.call(mainPathApi + 'ApplicationIntro/exportfile', applicationIntro.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationIntro/exportfile', applicationIntro.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             applicationIntro.addRequested = false;
             rashaErManage.checkAction(response);
             applicationIntro.reportDownloadLink = response.LinkFile;
@@ -434,7 +434,7 @@
     }
     //Get TotalRowCount
     applicationIntro.getCount = function () {
-        ajax.call(mainPathApi + "ApplicationIntro/count", applicationIntro.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "ApplicationIntro/count", applicationIntro.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             applicationIntro.addRequested = false;
             rashaErManage.checkAction(response);
             applicationIntro.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -553,7 +553,7 @@
         if (applicationIntro.selectedItem.memberIds != '')
             applicationIntro.selectedItem.LinkMemberIds = applicationIntro.selectedItem.memberIds.split(',');
 
-        ajax.call(mainPathApi + 'ApplicationLogNotification/SendNotification', applicationIntro.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLogNotification/SendNotification', applicationIntro.selectedItem, 'POST').success(function (response) {
             applicationIntro.busyIndicator.isActive = false;
             applicationIntro.addRequested = false;
             applicationIntro.sendButtonText = "ارسال";

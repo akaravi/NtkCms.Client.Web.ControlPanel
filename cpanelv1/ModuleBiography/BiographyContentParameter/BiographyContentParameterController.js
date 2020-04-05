@@ -22,7 +22,7 @@
 
     
 
-    ajax.call(mainPathApi+"MemberGroup/getall", {}, 'POST').success(function (response) {
+    ajax.call(cmsServerConfig.configApiServerPath+"MemberGroup/getall", {}, 'POST').success(function (response) {
         biographyContentParameter.memberGroups = response.ListItems;
     }).error(function (data, errCode, c, d) {
         console.log(data);
@@ -74,7 +74,7 @@
         } catch (error) {
             console.log(error);
         }
-        ajax.call(mainPathApi+"biographyContentParameter/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"biographyContentParameter/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             biographyContentParameter.busyIndicator.isActive = false;
             biographyContentParameter.ListItems = response.ListItems;
@@ -95,7 +95,7 @@
     biographyContentParameter.addRequested = false;
     biographyContentParameter.openAddModal = function () {
         biographyContentParameter.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'biographyContentParameter/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             biographyContentParameter.busyIndicator.isActive = false;
             biographyContentParameter.selectedItem = response.Item;
@@ -116,7 +116,7 @@
             return;
         biographyContentParameter.busyIndicator.isActive = true;
         biographyContentParameter.addRequested = true;
-        ajax.call(mainPathApi+'biographyContentParameter/add', biographyContentParameter.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/add', biographyContentParameter.selectedItem, 'POST').success(function (response) {
             biographyContentParameter.addRequested = false;
             biographyContentParameter.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -142,7 +142,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'biographyContentParameter/getviewmodel', biographyContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/getviewmodel', biographyContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             biographyContentParameter.selectedItem = response.Item;
             if (biographyContentParameter
@@ -163,7 +163,7 @@
         if (frm.$invalid)
             return;
         biographyContentParameter.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'biographyContentParameter/edit', biographyContentParameter.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/edit', biographyContentParameter.selectedItem, 'PUT').success(function (response) {
             biographyContentParameter.addRequested = true;
             rashaErManage.checkAction(response);
             biographyContentParameter.busyIndicator.isActive = false;
@@ -203,10 +203,10 @@
         rashaErManage.showYesNo("هشدار", "آیا می خواهید این مشخصه را حذف کنید", function (isConfirmed) {
             if (isConfirmed) {
                 biographyContentParameter.busyIndicator.isActive = true;
-                ajax.call(mainPathApi+'biographyContentParameter/getviewmodel', biographyContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/getviewmodel', biographyContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     biographyContentParameter.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'biographyContentParameter/delete', biographyContentParameter.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/delete', biographyContentParameter.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         biographyContentParameter.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -227,7 +227,7 @@
 
     biographyContentParameter.searchData = function () {
         biographyContentParameter.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"biographyContentParameter/getall", biographyContentParameter.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"biographyContentParameter/getall", biographyContentParameter.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             biographyContentParameter.categoryBusyIndicator.isActive = false;
             biographyContentParameter.ListItems = response.ListItems;
@@ -362,7 +362,7 @@
     biographyContentParameter.exportFile = function () {
         biographyContentParameter.addRequested = true;
         biographyContentParameter.gridOptions.advancedSearchData.engine.ExportFile = biographyContentParameter.ExportFileClass;
-        ajax.call(mainPathApi+'biographyContentParameter/exportfile', biographyContentParameter.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/exportfile', biographyContentParameter.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             biographyContentParameter.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -405,7 +405,7 @@
     }
     //Get TotalRowCount
     biographyContentParameter.getCount = function () {
-        ajax.call(mainPathApi+"biographyContentParameter/count", biographyContentParameter.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"biographyContentParameter/count", biographyContentParameter.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             biographyContentParameter.addRequested = false;
             rashaErManage.checkAction(response);
             biographyContentParameter.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

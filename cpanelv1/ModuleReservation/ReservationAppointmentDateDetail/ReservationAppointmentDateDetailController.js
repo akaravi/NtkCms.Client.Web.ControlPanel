@@ -55,11 +55,11 @@
             console.log(error);
         }
         
-        ajax.call(mainPathApi+"ReservationAppointmentDateDetail/getall", appDateDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ReservationAppointmentDateDetail/getall", appDateDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             appDateDetail.busyIndicator.isActive = false;
             appDateDetail.ListItems = response.ListItems;
-            ajax.call(mainPathApi+"ReservationAppointmentDateDetail/getAllSessionStatusEnum", {}, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"ReservationAppointmentDateDetail/getAllSessionStatusEnum", {}, 'POST').success(function (response) {
                 appDateDetail.SessionStatus = response.ListItems;
                 appDateDetail.setSessionStatusEnum(appDateDetail.ListItems, appDateDetail.SessionStatus);
             }).error(function (data, errCode, c, d) {
@@ -95,7 +95,7 @@
     appDateDetail.addRequested = false;
     appDateDetail.openAddModal = function () {
         appDateDetail.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'ReservationAppointmentDateDetail/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             appDateDetail.busyIndicator.isActive = false;
             appDateDetail.selectedItem = response.Item;
@@ -128,7 +128,7 @@
         //appDateDetail.selectedItem.StartDateTime = appDateDetail.StartDateTime;
         //appDateDetail.selectedItem.EndDateTime = appDateDetail.EndDateTime;
 
-        ajax.call(mainPathApi+'ReservationAppointmentDateDetail/add', appDateDetail.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/add', appDateDetail.selectedItem, 'POST').success(function (response) {
             appDateDetail.addRequested = false;
             appDateDetail.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -155,7 +155,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'ReservationAppointmentDateDetail/getviewmodel', appDateDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/getviewmodel', appDateDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             appDateDetail.selectedItem = response.Item;
             appDateDetail.StartService.defaultDate = appDateDetail.selectedItem.StartService;
@@ -182,7 +182,7 @@
             return;
         }
         appDateDetail.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'ReservationAppointmentDateDetail/edit', appDateDetail.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/edit', appDateDetail.selectedItem, 'PUT').success(function (response) {
             appDateDetail.addRequested = true;
             rashaErManage.checkAction(response);
             appDateDetail.busyIndicator.isActive = false;
@@ -228,11 +228,11 @@
             if (isConfirmed) {
                 appDateDetail.busyIndicator.isActive = true;
                 console.log(appDateDetail.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'ReservationAppointmentDateDetail/getviewmodel', appDateDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/getviewmodel', appDateDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     appDateDetail.selectedItemForDelete = response.Item;
                     console.log(appDateDetail.selectedItemForDelete);
-                    ajax.call(mainPathApi+'ReservationAppointmentDateDetail/delete', appDateDetail.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/delete', appDateDetail.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         appDateDetail.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -397,7 +397,7 @@
     appDateDetail.exportFile = function () {
         appDateDetail.addRequested = true;
         appDateDetail.gridOptions.advancedSearchData.engine.ExportFile = appDateDetail.ExportFileClass;
-        ajax.call(mainPathApi+'ReservationAppointmentDateDetail/exportfile', appDateDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/exportfile', appDateDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             appDateDetail.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -440,7 +440,7 @@
     }
     //Get TotalRowCount
     appDateDetail.getCount = function () {
-        ajax.call(mainPathApi+"ReservationAppointmentDateDetail/count", appDateDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ReservationAppointmentDateDetail/count", appDateDetail.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             appDateDetail.addRequested = false;
             rashaErManage.checkAction(response);
             appDateDetail.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

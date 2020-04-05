@@ -9,7 +9,7 @@
             console.log(error)
         }
 
-        ajax.call(mainPathApi+"CoreTokenUser/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreTokenUser/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsUserTicketgrd.ListItems = response.ListItems;
             cmsUserTicketgrd.gridOptions.fillData(cmsUserTicketgrd.ListItems , response.resultAccess);
@@ -24,7 +24,7 @@
     cmsUserTicketgrd.addRequested = false;
     cmsUserTicketgrd.openAddModal = function () {
         cmsUserTicketgrd.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'CoreTokenUser/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUser/getviewmodel', '0', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsUserTicketgrd.selectedItem = response.Item;
             $modal.open({
@@ -41,7 +41,7 @@
             return;
 
         cmsUserTicketgrd.addRequested = true;
-        ajax.call(mainPathApi+'CoreTokenUser/add', cmsUserTicketgrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUser/add', cmsUserTicketgrd.selectedItem, 'POST').success(function (response) {
             cmsUserTicketgrd.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -62,7 +62,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'CoreTokenUser/getviewmodel', cmsUserTicketgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUser/getviewmodel', cmsUserTicketgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsUserTicketgrd.selectedItem = response.Item;
             $modal.open({
@@ -78,7 +78,7 @@
         if (frm.$invalid)
             return;
 
-        ajax.call(mainPathApi+'CoreTokenUser/edit', cmsUserTicketgrd.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUser/edit', cmsUserTicketgrd.selectedItem, 'PUT').success(function (response) {
             cmsUserTicketgrd.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -118,11 +118,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(cmsUserTicketgrd.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'CoreTokenUser/getviewmodel', cmsUserTicketgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUser/getviewmodel', cmsUserTicketgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsUserTicketgrd.selectedItemForDelete = response.Item;
                     console.log(cmsUserTicketgrd.selectedItemForDelete);
-                    ajax.call(mainPathApi+'CoreTokenUser/delete', cmsUserTicketgrd.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUser/delete', cmsUserTicketgrd.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsUserTicketgrd.replaceItem(cmsUserTicketgrd.selectedItemForDelete.Id);
@@ -203,7 +203,7 @@
     cmsUserTicketgrd.exportFile = function () {
         cmsUserTicketgrd.addRequested = true;
         cmsUserTicketgrd.gridOptions.advancedSearchData.engine.ExportFile = cmsUserTicketgrd.ExportFileClass;
-        ajax.call(mainPathApi+'CoreTokenUser/exportfile', cmsUserTicketgrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreTokenUser/exportfile', cmsUserTicketgrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             cmsUserTicketgrd.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -246,7 +246,7 @@
     }
     //Get TotalRowCount
     cmsUserTicketgrd.getCount = function () {
-        ajax.call(mainPathApi+"CoreTokenUser/count", cmsUserTicketgrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreTokenUser/count", cmsUserTicketgrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             cmsUserTicketgrd.addRequested = false;
             rashaErManage.checkAction(response);
             cmsUserTicketgrd.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

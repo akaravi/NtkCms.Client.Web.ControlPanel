@@ -15,7 +15,7 @@
         outputLogCtrl.treeBusyIndicator = true;
         console.log("ok");
        
-        ajax.call(mainPathApi+"ArticleCategory/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ArticleCategory/getall", {}, 'POST').success(function (response) {
             outputLogCtrl.treeConfig.Items = response.ListItems;
             console.log(response.ListItems);
             outputLogCtrl.treeBusyIndicator = false;

@@ -20,7 +20,7 @@
             console.log(error);
         }
 
-        ajax.call(mainPathApi+"advertisementcontracttype/getall", advertisementContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"advertisementcontracttype/getall", advertisementContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementContractType.busyIndicator.isActive = false;
             advertisementContractType.ListItems = response.ListItems;
@@ -45,7 +45,7 @@
     advertisementContractType.addRequested = false;
     advertisementContractType.openAddModal = function () {
         advertisementContractType.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'advertisementcontracttype/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontracttype/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementContractType.busyIndicator.isActive = false;
             advertisementContractType.selectedItem = response.Item;
@@ -70,7 +70,7 @@
         }
         advertisementContractType.busyIndicator.isActive = true;
         advertisementContractType.addRequested = true;
-        ajax.call(mainPathApi+'advertisementcontracttype/add', advertisementContractType.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontracttype/add', advertisementContractType.selectedItem, 'POST').success(function (response) {
             advertisementContractType.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -93,7 +93,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'advertisementcontracttype/getviewmodel', advertisementContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontracttype/getviewmodel', advertisementContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementContractType.selectedItem = response.Item;
             $modal.open({
@@ -114,7 +114,7 @@
             return;
         }
         advertisementContractType.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'advertisementcontracttype/edit', advertisementContractType.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontracttype/edit', advertisementContractType.selectedItem, 'PUT').success(function (response) {
             advertisementContractType.addRequested = true;
             rashaErManage.checkAction(response);
             advertisementContractType.busyIndicator.isActive = false;
@@ -158,11 +158,11 @@
             if (isConfirmed) {
                 advertisementContractType.busyIndicator.isActive = true;
                 console.log(advertisementContractType.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'advertisementcontracttype/getviewmodel', advertisementContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontracttype/getviewmodel', advertisementContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     advertisementContractType.selectedItemForDelete = response.Item;
                     console.log(advertisementContractType.selectedItemForDelete);
-                    ajax.call(mainPathApi+'advertisementcontracttype/delete', advertisementContractType.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontracttype/delete', advertisementContractType.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         advertisementContractType.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -269,7 +269,7 @@
     advertisementContractType.exportFile = function () {
         advertisementContractType.addRequested = true;
         advertisementContractType.gridOptions.advancedSearchData.engine.ExportFile = advertisementContractType.ExportFileClass;
-        ajax.call(mainPathApi+'advertisementContractType/exportfile', advertisementContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementContractType/exportfile', advertisementContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             advertisementContractType.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -312,7 +312,7 @@
     }
     //Get TotalRowCount
     advertisementContractType.getCount = function () {
-        ajax.call(mainPathApi+"advertisementContractType/count", advertisementContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"advertisementContractType/count", advertisementContractType.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             advertisementContractType.addRequested = false;
             rashaErManage.checkAction(response);
             advertisementContractType.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

@@ -21,7 +21,7 @@
             $state.go("index.cmsmodulepaymentprocess");
             return;
         }
-        ajax.call(mainPathApi+'CmsModulePaymentProcess/getviewmodel', cmsMdlPayPrcCust.selectedModulePaymentProcess.Id, 'GET').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/getviewmodel', cmsMdlPayPrcCust.selectedModulePaymentProcess.Id, 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.selectedModulePaymentProcess = response.Item;
@@ -36,7 +36,7 @@
             IntValue1: cmsMdlPayPrcCust.selectedModulePaymentProcess.Id
         };
         cmsMdlPayPrcCust.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
-        ajax.call(mainPathApi+"CoreModulePaymentProcessCustomize/getall", cmsMdlPayPrcCust.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreModulePaymentProcessCustomize/getall", cmsMdlPayPrcCust.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.ListItems = response.ListItems;
@@ -52,14 +52,14 @@
             rashaErManage.checkAction(data, errCode);
         });
 
-        ajax.call(mainPathApi+"CoreModule/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreModule/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.cmsModulesListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
 
-        ajax.call(mainPathApi+"CoreModulePaymentProcess/getAll", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreModulePaymentProcess/getAll", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.cmsModulesPaymentProcessListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
@@ -73,7 +73,7 @@
         cmsMdlPayPrcCust.modalTitle = 'اضافه';
         cmsMdlPayPrcCust.isLoading = true;
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', '0', 'GET').success(function (response) {
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.selectedItem = response.Item;
@@ -90,7 +90,7 @@
 
     cmsMdlPayPrcCust.autoAdd = function () {
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/AutoAdd', '', 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/AutoAdd', '', 'POST').success(function (response) {
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.init();
@@ -106,7 +106,7 @@
         cmsMdlPayPrcCust.addRequested = true;
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
 
-        ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/add', cmsMdlPayPrcCust.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/add', cmsMdlPayPrcCust.selectedItem, 'POST').success(function (response) {
             cmsMdlPayPrcCust.addRequested = false;
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -131,7 +131,7 @@
         }
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
         cmsMdlPayPrcCust.isLoading = true;
-        ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/getviewmodel', cmsMdlPayPrcCust.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', cmsMdlPayPrcCust.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.selectedItem = response.Item;
@@ -152,7 +152,7 @@
             return;
         var myControlerAdd = "";
         if (cmsMdlPayPrcCust.selectedItem.AutoEdit) myControlerAdd = "Auto";
-        ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/edit' + myControlerAdd, cmsMdlPayPrcCust.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/edit' + myControlerAdd, cmsMdlPayPrcCust.selectedItem, 'PUT').success(function (response) {
             cmsMdlPayPrcCust.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -190,10 +190,10 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(cmsMdlPayPrcCust.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/getviewmodel', cmsMdlPayPrcCust.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', cmsMdlPayPrcCust.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsMdlPayPrcCust.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/delete', cmsMdlPayPrcCust.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/delete', cmsMdlPayPrcCust.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsMdlPayPrcCust.replaceItem(cmsMdlPayPrcCust.selectedItemForDelete.Id);
@@ -258,7 +258,7 @@
         cmsMdlPayPrcCust.gridOptions.advancedSearchData.engine.Filters.push(Filter_value);
         cmsMdlPayPrcCust.busyIndicator = true;
         cmsMdlPayPrcCust.isLoading = true;
-        ajax.call(mainPathApi+"CoreModulePaymentProcess/GetAll", cmsMdlPayPrcCust.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreModulePaymentProcess/GetAll", cmsMdlPayPrcCust.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             cmsMdlPayPrcCust.busyIndicator = false;
             cmsMdlPayPrcCust.isLoading = false;
             rashaErManage.checkAction(response);
@@ -273,9 +273,9 @@
         if (modulePaymentProcessId != null) {
             cmsMdlPayPrcCust.selectedItem.selectedModule = null;
             cmsMdlPayPrcCust.isLoading = true;
-            ajax.call(mainPathApi+'CmsModulePaymentProcess/getviewmodel', modulePaymentProcessId, 'GET').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/getviewmodel', modulePaymentProcessId, 'GET').success(function (response1) {
                 rashaErManage.checkAction(response1);
-                ajax.call(mainPathApi+'CoreModule/getviewmodel', response1.Item.LinkModuleId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreModule/getviewmodel', response1.Item.LinkModuleId, 'GET').success(function (response2) {
                     rashaErManage.checkAction(response2);
                     cmsMdlPayPrcCust.isLoading = false;
                     cmsMdlPayPrcCust.selectedItem.LinkModuleId = response2.Item.Id;
@@ -298,7 +298,7 @@
     // Show InputValue form builder and auto scroll to its position Admin form
     cmsMdlPayPrcCust.scrollToFormBuilderMainAdmin = function (item) {
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', item.Id, 'GET').success(function (response) {
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.selectedItem = response.Item;
@@ -328,7 +328,7 @@
         cmsMdlPayPrcCust.showSaveButton = false;
         if (preview == "false") {
             cmsMdlPayPrcCust.showSaveButton = true;
-            ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/getviewmodel', selectedId, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', selectedId, 'GET').success(function (response) {
                 cmsMdlPayPrcCust.busyIndicator.isActive = false;
                 rashaErManage.checkAction(response);
                 cmsMdlPayPrcCust.selectedItem = response.Item;
@@ -374,14 +374,14 @@
     // Save Input Value Form
     cmsMdlPayPrcCust.saveJsonFormMainAdmin = function () {
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/getviewmodel', cmsMdlPayPrcCust.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', cmsMdlPayPrcCust.selectedItem.Id, 'GET').success(function (response1) {
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             cmsMdlPayPrcCust.selectedItem = response1.Item;
             // $builder.forms['default'] -> get the form in Json format
             cmsMdlPayPrcCust.selectedItem.InputFormMainAdminClassJsonForm = $.trim(angular.toJson($builder.forms['default']));
             cmsMdlPayPrcCust.busyIndicator.isActive = true;
-            ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/edit', cmsMdlPayPrcCust.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/edit', cmsMdlPayPrcCust.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     cmsMdlPayPrcCust.closeModal();
@@ -403,7 +403,7 @@
         model.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: parseInt(cmsMdlPayPrcCust.selectedItem.LinkModulePaymentProcessId) });
         cmsMdlPayPrcCust.addRequested = true;
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CmsModulePaymentProcess/GetOneWithJsonFormatter', model, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/GetOneWithJsonFormatter', model, 'POST').success(function (response) {
             cmsMdlPayPrcCust.addRequested = false;
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -455,7 +455,7 @@
         //    updateMethod = "POST";
         cmsMdlPayPrcCust.addRequested = true;
         cmsMdlPayPrcCust.selectedItem.InputFormMainAdminClassJsonFormValues = ($.trim(angular.toJson(cmsMdlPayPrcCust.submitValueFormMainAdmin)));
-        ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/' + updateMode, cmsMdlPayPrcCust.selectedItem, updateMethod).success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/' + updateMode, cmsMdlPayPrcCust.selectedItem, updateMethod).success(function (response) {
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.addRequested = false;
             cmsMdlPayPrcCust.closeModal();
@@ -468,7 +468,7 @@
     // Show InputValue form builder and auto scroll to its position User form
     cmsMdlPayPrcCust.scrollToFormBuilderEndUser = function (item) {
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', item.Id, 'GET').success(function (response) {
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.selectedItem = response.Item;
@@ -498,7 +498,7 @@
         cmsMdlPayPrcCust.showSaveButton = false;
         if (preview == "false") {
             cmsMdlPayPrcCust.showSaveButton = true;
-            ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/getviewmodel', selectedId, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', selectedId, 'GET').success(function (response) {
                 cmsMdlPayPrcCust.busyIndicator.isActive = false;
                 rashaErManage.checkAction(response);
                 cmsMdlPayPrcCust.selectedItem = response.Item;
@@ -540,14 +540,14 @@
     // Save Input Value Form
     cmsMdlPayPrcCust.saveJsonFormEndUser = function () {
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/getviewmodel', cmsMdlPayPrcCust.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', cmsMdlPayPrcCust.selectedItem.Id, 'GET').success(function (response1) {
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             cmsMdlPayPrcCust.selectedItem = response1.Item;
             // $builder.forms['default'] -> get the form in Json format
             cmsMdlPayPrcCust.selectedItem.InputFormEndUserClassJsonForm = $.trim(angular.toJson($builder.forms['default']));
             cmsMdlPayPrcCust.busyIndicator.isActive = true;
-            ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/edit', cmsMdlPayPrcCust.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/edit', cmsMdlPayPrcCust.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     cmsMdlPayPrcCust.closeModal();
@@ -569,7 +569,7 @@
         model.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: parseInt(cmsMdlPayPrcCust.selectedItem.LinkModulePaymentProcessId) });
         cmsMdlPayPrcCust.addRequested = true;
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CmsModulePaymentProcess/GetOneWithJsonFormatter', model, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/GetOneWithJsonFormatter', model, 'POST').success(function (response) {
             cmsMdlPayPrcCust.addRequested = false;
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -621,7 +621,7 @@
         //    updateMethod = "POST";
         cmsMdlPayPrcCust.addRequested = true;
         cmsMdlPayPrcCust.selectedItem.InputFormEndUserClassJsonFormValues = ($.trim(angular.toJson(cmsMdlPayPrcCust.submitValueFormEndUser)));
-        ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/' + updateMode, cmsMdlPayPrcCust.selectedItem, updateMethod).success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/' + updateMode, cmsMdlPayPrcCust.selectedItem, updateMethod).success(function (response) {
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.addRequested = false;
             cmsMdlPayPrcCust.closeModal();
@@ -634,7 +634,7 @@
     // Show InputValue form builder and auto scroll to its position
     cmsMdlPayPrcCust.scrollToFormBuilderSiteAdmin = function (item) {
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', item.Id, 'GET').success(function (response) {
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.selectedItem = response.Item;
@@ -664,7 +664,7 @@
         cmsMdlPayPrcCust.showSaveButton = false;
         if (preview == "false") {
             cmsMdlPayPrcCust.showSaveButton = true;
-            ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/getviewmodel', selectedId, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', selectedId, 'GET').success(function (response) {
                 cmsMdlPayPrcCust.busyIndicator.isActive = false;
                 rashaErManage.checkAction(response);
                 cmsMdlPayPrcCust.selectedItem = response.Item;
@@ -705,14 +705,14 @@
     // Save Input Value Form
     cmsMdlPayPrcCust.saveJsonFormSiteAdmin = function () {
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/getviewmodel', cmsMdlPayPrcCust.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', cmsMdlPayPrcCust.selectedItem.Id, 'GET').success(function (response1) {
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             cmsMdlPayPrcCust.selectedItem = response1.Item;
             // $builder.forms['default'] -> get the form in Json format
             cmsMdlPayPrcCust.selectedItem.InputFormSiteAdminClassJsonForm = $.trim(angular.toJson($builder.forms['default']));
             cmsMdlPayPrcCust.busyIndicator.isActive = true;
-            ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/edit', cmsMdlPayPrcCust.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/edit', cmsMdlPayPrcCust.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     cmsMdlPayPrcCust.closeModal();
@@ -734,7 +734,7 @@
         model.Filters.push({ PropertyName: "Id", SearchType: 0, IntValue1: parseInt(cmsMdlPayPrcCust.selectedItem.LinkModulePaymentProcessId) });
         cmsMdlPayPrcCust.addRequested = true;
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CmsModulePaymentProcess/GetOneWithJsonFormatter', model, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/GetOneWithJsonFormatter', model, 'POST').success(function (response) {
             cmsMdlPayPrcCust.addRequested = false;
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -786,7 +786,7 @@
         //    updateMethod = "POST";
         cmsMdlPayPrcCust.addRequested = true;
         cmsMdlPayPrcCust.selectedItem.InputFormSiteAdminClassJsonFormValues = ($.trim(angular.toJson(cmsMdlPayPrcCust.submitValueFormSiteAdmin)));
-        ajax.call(mainPathApi+'CmsModulePaymentProcessCustomize/' + updateMode, cmsMdlPayPrcCust.selectedItem, updateMethod).success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/' + updateMode, cmsMdlPayPrcCust.selectedItem, updateMethod).success(function (response) {
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.addRequested = false;
             cmsMdlPayPrcCust.closeModal();

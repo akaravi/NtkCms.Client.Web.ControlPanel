@@ -29,7 +29,7 @@
                                     <input class="form-control" ng-model="campaignDetailMember.selectedItem.NationalCode" />
                                 </div>
                                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                    <img src=mainPathCmsFiles+"refresh.png" style="cursor:pointer;" ng-click="campaignDetailMember.getUser(campaignDetailMember.selectedItem.NationalCode)" />
+                                    <img src=cmsServerConfig.configCpanelImages+"refresh.png" style="cursor:pointer;" ng-click="campaignDetailMember.getUser(campaignDetailMember.selectedItem.NationalCode)" />
                                 </div>
                                 <div class="col-xs-10 " ng-show="campaignDetailMember.ViewFindUserDiv">
                                     {{'FirstName_Label'|lowercase|translate}}<label class="control-label">{{campaignDetailMember.selectedMember.FirstName}}</label>

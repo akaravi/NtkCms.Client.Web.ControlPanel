@@ -12,7 +12,7 @@
     cmsModulePrc.cmsModulesListItems = [];
     cmsModulePrc.init = function () {
         cmsModulePrc.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"CoreModuleProcess/getall", cmsModulePrc.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreModuleProcess/getall", cmsModulePrc.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulePrc.ListItems = response.ListItems;
             cmsModulePrc.gridOptions.fillData(cmsModulePrc.ListItems, response.resultAccess);
@@ -27,7 +27,7 @@
             rashaErManage.checkAction(data, errCode);
         });
 
-        ajax.call(mainPathApi+"CoreModule/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreModule/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulePrc.cmsModulesListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
@@ -37,7 +37,7 @@
     cmsModulePrc.addRequested = false;
     cmsModulePrc.openAddModal = function () {
         cmsModulePrc.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'CoreModuleProcess/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/getviewmodel', '0', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulePrc.selectedItem = response.Item;
             $modal.open({
@@ -51,7 +51,7 @@
     cmsModulePrc.autoAdd = function () {
         cmsModulePrc.addRequested = true;
         cmsModulePrc.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CoreModuleProcess/AutoAdd', '', 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/AutoAdd', '', 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulePrc.addRequested = false;
             cmsModulePrc.init();
@@ -65,7 +65,7 @@
         if (frm.$invalid)
             return;
         cmsModulePrc.addRequested = true;
-        ajax.call(mainPathApi+'CoreModuleProcess/add', cmsModulePrc.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/add', cmsModulePrc.selectedItem, 'POST').success(function (response) {
             cmsModulePrc.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -85,7 +85,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'CoreModuleProcess/getviewmodel', cmsModulePrc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/getviewmodel', cmsModulePrc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulePrc.selectedItem = response.Item;
             $modal.open({
@@ -103,7 +103,7 @@
         var myControlerAdd = "";
         if (cmsModulePrc.selectedItem.AutoEdit) myControlerAdd = "Auto";
         cmsModulePrc.addRequested = true;
-        ajax.call(mainPathApi+'CoreModuleProcess/edit' + myControlerAdd, cmsModulePrc.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/edit' + myControlerAdd, cmsModulePrc.selectedItem, 'PUT').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsModulePrc.addRequested = false;
@@ -139,10 +139,10 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                ajax.call(mainPathApi+'CoreModuleProcess/getviewmodel', cmsModulePrc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/getviewmodel', cmsModulePrc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsModulePrc.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'CoreModuleProcess/delete', cmsModulePrc.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/delete', cmsModulePrc.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsModulePrc.replaceItem(cmsModulePrc.selectedItemForDelete.Id);
@@ -208,7 +208,7 @@
     cmsModulePrc.gridOptions.onRowSelected = function () { }
 
     cmsModulePrc.getCount = function () {
-        ajax.call(mainPathApi+"CoreModuleProcess/count", cmsModulePrc.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreModuleProcess/count", cmsModulePrc.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulePrc.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

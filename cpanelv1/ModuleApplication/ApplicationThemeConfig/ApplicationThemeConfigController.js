@@ -14,11 +14,11 @@
     themeConfig.init = function () {
         themeConfig.busyIndicator.isActive = true;
 
-        ajax.call(mainPathApi + "applicationsource/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "applicationsource/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             themeConfig.sourceListItems = response.ListItems;
             //
-            ajax.call(mainPathApi + "applicationThemeConfig/getAll", themeConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "applicationThemeConfig/getAll", themeConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
                 // Populate TreeConfig with all the Menu
                 themeConfig.ListItems = response.ListItems;
                 themeConfig.gridOptions.fillData(response.ListItems, response.resultAccess);
@@ -148,7 +148,7 @@
         }
         themeConfig.gridOptions.advancedSearchData.engine.Filters.push(s);
 
-        ajax.call(mainPathApi + "ApplicationThemeConfig/GetAll", themeConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "ApplicationThemeConfig/GetAll", themeConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             themeConfig.busyIndicator.isActive = false;
             themeConfig.ListItems = response.ListItems;
@@ -171,7 +171,7 @@
         themeConfig.filePickerMainImage.filename = "";
         themeConfig.filePickerMainImage.fileId = null;
         themeConfig.modalTitle = 'اضافه';
-        ajax.call(mainPathApi + 'ApplicationThemeConfig/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationThemeConfig/getviewmodel', "0", 'GET').success(function (response) {
             console.log(response);
             rashaErManage.checkAction(response);
             themeConfig.selectedItem = response.Item;
@@ -198,7 +198,7 @@
             rashaErManage.showMessage("لطفاً یک ردیف جهت ویرایش انتخاب کنید");
             return;
         }
-        ajax.call(mainPathApi + 'ApplicationThemeConfig/getviewmodel', themeConfig.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationThemeConfig/getviewmodel', themeConfig.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             themeConfig.selectedItem = response.Item;
             themeConfig.filePickerMainImage.filename = null;
@@ -211,7 +211,7 @@
             themeConfig.selectedItem.ThemeConfigRuntimeJsonValuesModel = $.parseJSON(themeConfig.selectedItem.ThemeConfigRuntimeJsonValues);
             if (response.Item.LinkMainImageId != null) {
                 ajax
-                    .call(mainPathApi + "FileContent/getviewmodel", response.Item.LinkMainImageId, "GET")
+                    .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", response.Item.LinkMainImageId, "GET")
                     .success(function (response2) {
                         buttonIsPressed = false;
                         themeConfig.filePickerMainImage.filename = response2.Item.FileName;
@@ -245,7 +245,7 @@
         themeConfig.selectedItem.ThemeConfigRuntimeJsonValues = $.trim(angular.toJson(themeConfig.selectedItem.ThemeConfigRuntimeJsonValuesModel));
         themeConfig.selectedItem.ThemeConfigLayoutJsonValues = $.trim(angular.toJson(themeConfig.ListItemsLayoutTheme));
         //
-        ajax.call(mainPathApi + 'ApplicationThemeConfig/add', themeConfig.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationThemeConfig/add', themeConfig.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 themeConfig.ListItems.unshift(response.Item);
@@ -271,7 +271,7 @@
 
         themeConfig.selectedItem.ThemeConfigLayoutJsonValues = $.trim(angular.toJson(themeConfig.ListItemsLayoutTheme));
 
-        ajax.call(mainPathApi + 'applicationThemeConfig/edit', themeConfig.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'applicationThemeConfig/edit', themeConfig.selectedItem, 'PUT').success(function (response) {
             themeConfig.addRequested = false;
             themeConfig.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -294,12 +294,12 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 themeConfig.busyIndicator.isActive = true;
-                ajax.call(mainPathApi + "applicationthemeconfig/getviewmodel", themeConfig.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "applicationthemeconfig/getviewmodel", themeConfig.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     themeConfig.busyIndicator.isActive = false;
                     rashaErManage.checkAction(response);
                     themeConfig.selectedItemForDelete = response.Item;
                     themeConfig.busyIndicator.isActive = true;
-                    ajax.call(mainPathApi + "applicationthemeconfig/delete", themeConfig.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "applicationthemeconfig/delete", themeConfig.selectedItemForDelete, "DELETE").success(function (res) {
                         themeConfig.busyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         themeConfig.replaceItem(themeConfig.selectedItemForDelete.Id);
@@ -405,7 +405,7 @@
                 ListItemsLayoutThemeValue = [];
             }
         }
-        ajax.call(mainPathApi + "ApplicationLayout/GetAllExist", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "ApplicationLayout/GetAllExist", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             themeConfig.busyIndicator.isActive = false;
             for (var i = 0; i < response.ListItems.length; i++) {
@@ -480,14 +480,14 @@
                     // replace the file
                     ajax
                         .call(
-                            mainPathApi + "FileContent/getviewmodel",
+                            cmsServerConfig.configApiServerPath + "FileContent/getviewmodel",
                             themeConfig.fileIdToDelete,
                             "GET"
                         )
                         .success(function (response1) {
                             if (response1.IsSuccess == true) {
                                 console.log(response1.Item);
-                                ajax.call(mainPathApi + "FileContent/replace", response1.Item, "POST")
+                                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/replace", response1.Item, "POST")
                                     .success(function (response2) {
                                         if (response2.IsSuccess == true) {
                                             themeConfig.FileItem = response2.Item;
@@ -531,7 +531,7 @@
                 // File does not exists
                 // Save New file
                 ajax
-                    .call(mainPathApi + "FileContent/getviewmodel", "0", "GET")
+                    .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", "GET")
                     .success(function (response) {
                         themeConfig.FileItem = response.Item;
                         themeConfig.FileItem.FileName = uploadFile.name;
@@ -542,7 +542,7 @@
                         // ------- themeConfig.saveNewFile()  ----------------------
                         var result = 0;
                         ajax
-                            .call(mainPathApi + "FileContent/add", themeConfig.FileItem, "POST")
+                            .call(cmsServerConfig.configApiServerPath + "FileContent/add", themeConfig.FileItem, "POST")
                             .success(function (response) {
                                 if (response.IsSuccess) {
                                     themeConfig.FileItem = response.Item;
@@ -584,7 +584,7 @@
     themeConfig.exportFile = function () {
         themeConfig.addRequested = true;
         themeConfig.gridOptions.advancedSearchData.engine.ExportFile = themeConfig.ExportFileClass;
-        ajax.call(mainPathApi + 'applicationthemeconfig/exportfile', themeConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'applicationthemeconfig/exportfile', themeConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             themeConfig.addRequested = false;
             rashaErManage.checkAction(response);
             themeConfig.reportDownloadLink = response.LinkFile;
@@ -655,7 +655,7 @@
     }
     //Get TotalRowCount
     themeConfig.getCount = function () {
-        ajax.call(mainPathApi + "applicationthemeconfig/count", themeConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "applicationthemeconfig/count", themeConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             themeConfig.addRequested = false;
             rashaErManage.checkAction(response);
             themeConfig.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

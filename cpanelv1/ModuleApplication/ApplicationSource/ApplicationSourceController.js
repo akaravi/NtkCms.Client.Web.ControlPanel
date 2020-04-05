@@ -18,7 +18,7 @@
 
     appSource.init = function () {
         appSource.busyIndicator.isActive = true;
-        ajax.call(mainPathApi + "ApplicationSource/getall", appSource.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "ApplicationSource/getall", appSource.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             appSource.busyIndicator.isActive = false;
             appSource.ListItems = response.ListItems;
@@ -36,7 +36,7 @@
 
 
     appSource.autoAdd = function () {
-        ajax.call(mainPathApi + 'ApplicationSource/autoadd', '', 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationSource/autoadd', '', 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             appSource.init();
         }).error(function (data, errCode, c, d) {
@@ -52,7 +52,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(mainPathApi + 'ApplicationSource/getviewmodel', appSource.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationSource/getviewmodel', appSource.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             appSource.selectedItem = response.Item;
@@ -75,7 +75,7 @@
             appSource.filePickerMainImage.filename = null;
             appSource.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null) {
-                ajax.call(mainPathApi + "FileContent/getviewmodel", response.Item.LinkMainImageId, "GET")
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", response.Item.LinkMainImageId, "GET")
                     .success(function (response2) {
                         buttonIsPressed = false;
                         appSource.filePickerMainImage.filename = response2.Item.FileName;
@@ -110,7 +110,7 @@
         appSource.selectedItem.DefaultConfigBuilderSiteJsonValues = $.trim(angular.toJson(appSource.ConfigBuilderSite));
         appSource.selectedItem.DefaultConfigRuntimeSiteJsonValues = $.trim(angular.toJson(appSource.ConfigRuntimeSite));
 
-        ajax.call(mainPathApi + 'ApplicationSource/edit', appSource.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationSource/edit', appSource.selectedItem, 'PUT').success(function (response) {
             rashaErManage.checkAction(response);
             appSource.busyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -151,11 +151,11 @@
             if (isConfirmed) {
                 appSource.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(mainPathApi + 'ApplicationSource/getviewmodel', appSource.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationSource/getviewmodel', appSource.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     appSource.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi + 'ApplicationSource/delete', appSource.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationSource/delete', appSource.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         appSource.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -278,7 +278,7 @@
 
     appSource.buildApp = function (source) {
         rashaErManage.showMessage("دستور برای سرور ارسال شد");
-        ajax.call(mainPathApi + 'ApplicationSource/buildApp', source.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationSource/buildApp', source.Id, 'GET').success(function (response) {
             rashaErManage.showMessage(response.ErrorMessage);
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
@@ -305,14 +305,14 @@
                     // replace the file
                     ajax
                         .call(
-                            mainPathApi + "FileContent/getviewmodel",
+                            cmsServerConfig.configApiServerPath + "FileContent/getviewmodel",
                             appSource.fileIdToDelete,
                             "GET"
                         )
                         .success(function (response1) {
                             if (response1.IsSuccess == true) {
                                 console.log(response1.Item);
-                                ajax.call(mainPathApi + "FileContent/replace", response1.Item, "POST")
+                                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/replace", response1.Item, "POST")
                                     .success(function (response2) {
                                         if (response2.IsSuccess == true) {
                                             appSource.FileItem = response2.Item;
@@ -356,7 +356,7 @@
                 // File does not exists
                 // Save New file
                 ajax
-                    .call(mainPathApi + "FileContent/getviewmodel", "0", "GET")
+                    .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", "GET")
                     .success(function (response) {
                         appSource.FileItem = response.Item;
                         appSource.FileItem.FileName = uploadFile.name;
@@ -367,7 +367,7 @@
                         // ------- appSource.saveNewFile()  ----------------------
                         var result = 0;
                         ajax
-                            .call(mainPathApi + "FileContent/add", appSource.FileItem, "POST")
+                            .call(cmsServerConfig.configApiServerPath + "FileContent/add", appSource.FileItem, "POST")
                             .success(function (response) {
                                 if (response.IsSuccess) {
                                     appSource.FileItem = response.Item;

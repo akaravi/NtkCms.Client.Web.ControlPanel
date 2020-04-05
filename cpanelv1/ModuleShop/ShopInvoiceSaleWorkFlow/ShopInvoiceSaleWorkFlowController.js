@@ -22,7 +22,7 @@
 
     
 
-    //ajax.call(mainPathApi+"MemberGroup/getall", {}, 'POST').success(function (response) {
+    //ajax.call(cmsServerConfig.configApiServerPath+"MemberGroup/getall", {}, 'POST').success(function (response) {
     //    shopInvoiceSaleWorkFlow.memberGroups = response.ListItems;
     //}).error(function (data, errCode, c, d) {
     //    console.log(data);
@@ -74,7 +74,7 @@
         } catch (error) {
             console.log(error);
         }
-        ajax.call(mainPathApi+"shopInvoiceSaleWorkFlow/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopInvoiceSaleWorkFlow/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSaleWorkFlow.busyIndicator.isActive = false;
             shopInvoiceSaleWorkFlow.ListItems = response.ListItems;
@@ -95,7 +95,7 @@
     shopInvoiceSaleWorkFlow.addRequested = false;
     shopInvoiceSaleWorkFlow.openAddModal = function () {
         shopInvoiceSaleWorkFlow.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'shopInvoiceSaleWorkFlow/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSaleWorkFlow.busyIndicator.isActive = false;
             shopInvoiceSaleWorkFlow.selectedItem = response.Item;
@@ -119,7 +119,7 @@
         }
         shopInvoiceSaleWorkFlow.busyIndicator.isActive = true;
         shopInvoiceSaleWorkFlow.addRequested = true;
-        ajax.call(mainPathApi+'shopInvoiceSaleWorkFlow/add', shopInvoiceSaleWorkFlow.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/add', shopInvoiceSaleWorkFlow.selectedItem, 'POST').success(function (response) {
             shopInvoiceSaleWorkFlow.addRequested = false;
             shopInvoiceSaleWorkFlow.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -145,7 +145,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'shopInvoiceSaleWorkFlow/getviewmodel', shopInvoiceSaleWorkFlow.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/getviewmodel', shopInvoiceSaleWorkFlow.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSaleWorkFlow.selectedItem = response.Item;
             if (shopInvoiceSaleWorkFlow
@@ -169,7 +169,7 @@
             return;
         }
         shopInvoiceSaleWorkFlow.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'shopInvoiceSaleWorkFlow/edit', shopInvoiceSaleWorkFlow.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/edit', shopInvoiceSaleWorkFlow.selectedItem, 'PUT').success(function (response) {
             shopInvoiceSaleWorkFlow.addRequested = true;
             rashaErManage.checkAction(response);
             shopInvoiceSaleWorkFlow.busyIndicator.isActive = false;
@@ -209,10 +209,10 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 shopInvoiceSaleWorkFlow.busyIndicator.isActive = true;
-                ajax.call(mainPathApi+'shopInvoiceSaleWorkFlow/getviewmodel', shopInvoiceSaleWorkFlow.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/getviewmodel', shopInvoiceSaleWorkFlow.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     shopInvoiceSaleWorkFlow.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'shopInvoiceSaleWorkFlow/delete', shopInvoiceSaleWorkFlow.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/delete', shopInvoiceSaleWorkFlow.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         shopInvoiceSaleWorkFlow.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -233,7 +233,7 @@
 
     shopInvoiceSaleWorkFlow.searchData = function () {
         shopInvoiceSaleWorkFlow.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"shopInvoiceSaleWorkFlow/getall", shopInvoiceSaleWorkFlow.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopInvoiceSaleWorkFlow/getall", shopInvoiceSaleWorkFlow.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSaleWorkFlow.categoryBusyIndicator.isActive = false;
             shopInvoiceSaleWorkFlow.ListItems = response.ListItems;
@@ -333,7 +333,7 @@
     shopInvoiceSaleWorkFlow.exportFile = function () {
         shopInvoiceSaleWorkFlow.addRequested = true;
         shopInvoiceSaleWorkFlow.gridOptions.advancedSearchData.engine.ExportFile = shopInvoiceSaleWorkFlow.ExportFileClass;
-        ajax.call(mainPathApi+'shopInvoiceSaleWorkFlow/exportfile', shopInvoiceSaleWorkFlow.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/exportfile', shopInvoiceSaleWorkFlow.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             shopInvoiceSaleWorkFlow.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -376,7 +376,7 @@
     }
     //Get TotalRowCount
     shopInvoiceSaleWorkFlow.getCount = function () {
-        ajax.call(mainPathApi+"shopInvoiceSaleWorkFlow/count", shopInvoiceSaleWorkFlow.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopInvoiceSaleWorkFlow/count", shopInvoiceSaleWorkFlow.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             shopInvoiceSaleWorkFlow.addRequested = false;
             rashaErManage.checkAction(response);
             shopInvoiceSaleWorkFlow.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

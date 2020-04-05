@@ -3,7 +3,7 @@
 
     $scope.init = function () {
         //$http.get("/bank/getall")
-        ajax.call(mainPathApi+"bank/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"bank/getall", {}, 'POST').success(function (response) {
             //$scope.gridOptions.data = response;
             rashaErManage.checkAction(response);
             $scope.columnOptions.data = response.ListItems;

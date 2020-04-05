@@ -123,7 +123,7 @@ $scope.addEditMarketerGroup=function()
 //#help#
     $scope.getViewModel=function(viewmodelId)
     {
-        var ret=ajax.call(mainPathApi+'MarketingCustomer/getviewmodel', viewmodelId, 'GET');
+        var ret=ajax.call(cmsServerConfig.configApiServerPath+'MarketingCustomer/getviewmodel', viewmodelId, 'GET');
         ret.success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess)
@@ -343,7 +343,7 @@ $scope.LinkParentIdGruopMarketerSelector = {
         $scope.addRequested = true;
         $scope.selectedItem.CustomerSettings=[];
         $scope.selectedItem.CustomerSettings.push({LinkProductId:$scope.selectedItem.LinkProductId,LinkCustomerSettingKindId:$scope.selectedItem.LinkCustomerSettingKindId,LinkCustomerSettingPositionId:$scope.selectedItem.LinkCustomerSettingPositionId,StartDate:$scope.selectedItem.StartDate});
-        ajax.call(mainPathApi+'MarketingCustomer/add', $scope.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MarketingCustomer/add', $scope.selectedItem, 'POST').success(function (response) {
             $scope.addRequested = false;
             $scope.busyIndicatorManagement['customer'].isActive=false;
             rashaErManage.checkAction(response);
@@ -372,7 +372,7 @@ $scope.addNewMarketerGroupToDb=function(frm)
         $scope.addRequested = true;
         //$scope.selectedItem.CustomerSettings=[];
         //$scope.selectedItem.CustomerSettings.push({LinkProductId:$scope.selectedItem.LinkProductId,LinkCustomerSettingKindId:$scope.selectedItem.LinkCustomerSettingKindId,LinkCustomerSettingPositionId:$scope.selectedItem.LinkCustomerSettingPositionId,StartDate:$scope.selectedItem.StartDate});
-        ajax.call(mainPathApi+'MarketingMarketerGroup/add', $scope.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MarketingMarketerGroup/add', $scope.selectedItem, 'POST').success(function (response) {
             $scope.addRequested = false;
             $scope.busyIndicatorManagement['marketergroup'].isActive=false;
             rashaErManage.checkAction(response);
@@ -400,7 +400,7 @@ $scope.addNewMarketerToDb=function(frm)
         $scope.addRequested = true;
         //$scope.selectedItem.CustomerSettings=[];
         //$scope.selectedItem.CustomerSettings.push({LinkProductId:$scope.selectedItem.LinkProductId,LinkCustomerSettingKindId:$scope.selectedItem.LinkCustomerSettingKindId,LinkCustomerSettingPositionId:$scope.selectedItem.LinkCustomerSettingPositionId,StartDate:$scope.selectedItem.StartDate});
-        ajax.call(mainPathApi+'MarketingMarketer/add', $scope.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MarketingMarketer/add', $scope.selectedItem, 'POST').success(function (response) {
             $scope.addRequested = false;
             $scope.busyIndicatorManagement['marketer'].isActive=false;
             rashaErManage.checkAction(response);
@@ -428,7 +428,7 @@ $scope.addNewPositionToDb=function(frm)
         $scope.addRequested = true;
         //$scope.selectedItem.CustomerSettings=[];
         //$scope.selectedItem.CustomerSettings.push({LinkProductId:$scope.selectedItem.LinkProductId,LinkCustomerSettingKindId:$scope.selectedItem.LinkCustomerSettingKindId,LinkCustomerSettingPositionId:$scope.selectedItem.LinkCustomerSettingPositionId,StartDate:$scope.selectedItem.StartDate});
-        ajax.call(mainPathApi+'MarketingCustomerSettingPosition/add', $scope.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MarketingCustomerSettingPosition/add', $scope.selectedItem, 'POST').success(function (response) {
             $scope.addRequested = false;
             $scope.busyIndicatorManagement['position'].isActive=false;
             rashaErManage.checkAction(response);
@@ -456,7 +456,7 @@ $scope.addNewSettingKindToDb=function(frm)
         $scope.addRequested = true;
         //$scope.selectedItem.CustomerSettings=[];
         //$scope.selectedItem.CustomerSettings.push({LinkProductId:$scope.selectedItem.LinkProductId,LinkCustomerSettingKindId:$scope.selectedItem.LinkCustomerSettingKindId,LinkCustomerSettingPositionId:$scope.selectedItem.LinkCustomerSettingPositionId,StartDate:$scope.selectedItem.StartDate});
-        ajax.call(mainPathApi+'MarketingCustomerSettingKind/add', $scope.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MarketingCustomerSettingKind/add', $scope.selectedItem, 'POST').success(function (response) {
             $scope.addRequested = false;
             $scope.busyIndicatorManagement['settingkind'].isActive=false;
             rashaErManage.checkAction(response);
@@ -484,7 +484,7 @@ $scope.addNewProductGroupToDb=function(frm)
         $scope.addRequested = true;
         //$scope.selectedItem.CustomerSettings=[];
         //$scope.selectedItem.CustomerSettings.push({LinkProductId:$scope.selectedItem.LinkProductId,LinkCustomerSettingKindId:$scope.selectedItem.LinkCustomerSettingKindId,LinkCustomerSettingPositionId:$scope.selectedItem.LinkCustomerSettingPositionId,StartDate:$scope.selectedItem.StartDate});
-        ajax.call(mainPathApi+'MarketingProductGroup/add', $scope.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MarketingProductGroup/add', $scope.selectedItem, 'POST').success(function (response) {
             $scope.addRequested = false;
             $scope.busyIndicatorManagement['productgroup'].isActive=false;
             rashaErManage.checkAction(response);
@@ -512,7 +512,7 @@ $scope.addNewProductToDb=function(frm)
         $scope.addRequested = true;
         //$scope.selectedItem.CustomerSettings=[];
         //$scope.selectedItem.CustomerSettings.push({LinkProductId:$scope.selectedItem.LinkProductId,LinkCustomerSettingKindId:$scope.selectedItem.LinkCustomerSettingKindId,LinkCustomerSettingPositionId:$scope.selectedItem.LinkCustomerSettingPositionId,StartDate:$scope.selectedItem.StartDate});
-        ajax.call(mainPathApi+'MarketingProduct/add', $scope.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MarketingProduct/add', $scope.selectedItem, 'POST').success(function (response) {
             $scope.addRequested = false;
             $scope.busyIndicatorManagement['product'].isActive=false;
             rashaErManage.checkAction(response);
@@ -543,23 +543,23 @@ $scope.addNewProductToDb=function(frm)
     {
         var url='';
         if (sender=='customer')
-            url = mainPathApi +'MarketingCustomer/getAll';
+            url = cmsServerConfig.configApiServerPath +'MarketingCustomer/getAll';
         if (sender=='product')
-            url = mainPathApi +'MarketingProduct/getAll';
+            url = cmsServerConfig.configApiServerPath +'MarketingProduct/getAll';
         if (sender=='position')
-            url = mainPathApi +'MarketingCustomerSettingPosition/getAll';
+            url = cmsServerConfig.configApiServerPath +'MarketingCustomerSettingPosition/getAll';
         if (sender=='reminder')
-            url = mainPathApi +'MarketingCustomerSettingActivity/getAll';
+            url = cmsServerConfig.configApiServerPath +'MarketingCustomerSettingActivity/getAll';
         if (sender=='meeting')
-            url = mainPathApi +'MarketingCustomerSettingActivity/getAll';
+            url = cmsServerConfig.configApiServerPath +'MarketingCustomerSettingActivity/getAll';
         if (sender=='comment')
-            url = mainPathApi +'MarketingCustomerSettingActivity/getAll';
+            url = cmsServerConfig.configApiServerPath +'MarketingCustomerSettingActivity/getAll';
         if (sender=='alert')
-            url = mainPathApi +'MarketingCustomerSettingActivity/getAll';
+            url = cmsServerConfig.configApiServerPath +'MarketingCustomerSettingActivity/getAll';
         if (sender=='session')
-            url = mainPathApi +'MarketingCustomerSettingActivity/getAll';
+            url = cmsServerConfig.configApiServerPath +'MarketingCustomerSettingActivity/getAll';
         if (sender=='communication')
-            url = mainPathApi +'MarketingCustomerSettingActivity/getAll';
+            url = cmsServerConfig.configApiServerPath +'MarketingCustomerSettingActivity/getAll';
 
         $scope.busyIndicatorManagement[sender].isActive=true;
         ajax.call(url, data, "POST").success(function (response) 

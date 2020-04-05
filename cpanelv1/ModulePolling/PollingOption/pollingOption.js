@@ -17,7 +17,7 @@
             console.log(error)
         }
 
-        ajax.call(mainPathApi+"pollingOption/getall", '', 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"pollingOption/getall", '', 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             pollingOption.busyIndicator.isActive = false;
             pollingOption.ListItems = response.ListItems;
@@ -38,7 +38,7 @@
     pollingOption.OptionList = [{ Option: "test1"}, {Option: "test2"}, { Option: "test3"}];
     pollingOption.openAddModal = function () {
         pollingOption.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'pollingOption/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'pollingOption/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             pollingOption.busyIndicator.isActive = false;
             pollingOption.selectedItem = response.Item;
@@ -67,8 +67,8 @@
 
         $.each(pollingOption.OptionList, function (index, option) {
 
-            //ajax.call(mainPathApi+'pollingOption/add', pollingOption.selectedItem, 'POST').success(function (response) {
-            ajax.call(mainPathApi+'pollingOption/add', option, 'POST').success(function (response) {
+            //ajax.call(cmsServerConfig.configApiServerPath+'pollingOption/add', pollingOption.selectedItem, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'pollingOption/add', option, 'POST').success(function (response) {
                 pollingOption.addRequested = false;
                 pollingOption.busyIndicator.isActive = false;
                 rashaErManage.checkAction(response);
@@ -94,7 +94,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'pollingOption/getviewmodel', pollingOption.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'pollingOption/getviewmodel', pollingOption.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             pollingOption.selectedItem = response.Item;
             $modal.open({
@@ -113,7 +113,7 @@
             return;
         }
         pollingOption.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'pollingOption/edit', pollingOption.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'pollingOption/edit', pollingOption.selectedItem, 'PUT').success(function (response) {
             pollingOption.addRequested = true;
             rashaErManage.checkAction(response);
             pollingOption.busyIndicator.isActive = false;
@@ -156,11 +156,11 @@
             if (isConfirmed) {
                 pollingOption.busyIndicator.isActive = true;
                 console.log(pollingOption.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'pollingOption/getviewmodel', pollingOption.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'pollingOption/getviewmodel', pollingOption.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     //rashaErManage.checkAction(response);
                     pollingOption.selectedItemForDelete = response.Item;
                     console.log(pollingOption.selectedItemForDelete);
-                    ajax.call(mainPathApi+'pollingOption/delete', pollingOption.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'pollingOption/delete', pollingOption.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         pollingOption.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

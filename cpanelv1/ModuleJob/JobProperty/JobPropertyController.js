@@ -1,6 +1,6 @@
 ﻿app.controller("jobPropertyController", ["$scope", "$http", "ajax", 'rashaErManage', '$modal', '$modalStack', 'SweetAlert', '$window', '$filter', function ($scope, $http, ajax, rashaErManage, $modal, $modalStack, sweetAlert, $window, $filter) {
     var jobProperty = this;
-    jobProperty.mainPathApiUpload = mainPathApiUpload;
+    jobProperty.RouteUploadFileContent = cmsServerConfig.configRouteUploadFileContent;
     jobProperty.busyIndicator = {
         isActive: true,
         message: "در حال بار گذاری ..."
@@ -59,7 +59,7 @@
 
     jobProperty.init = function () {
         jobProperty.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"jobproperty/getAllwithalias", jobProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"jobproperty/getAllwithalias", jobProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobProperty.ListItems = response.ListItems;
             jobProperty.gridOptions.fillData(jobProperty.ListItems, response.resultAccess);
@@ -73,14 +73,14 @@
             jobProperty.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(mainPathApi+"CoreLocation/GetAllProvinces", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreLocation/GetAllProvinces", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobProperty.provinceCmsLocatinoListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             jobProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(mainPathApi+"jobpropertytype/getAll", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"jobpropertytype/getAll", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobProperty.propertyTypeListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
@@ -113,7 +113,7 @@
         jobProperty.filePickerFiles.filename = "";
         jobProperty.filePickerFiles.fileId = null;
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'jobproperty/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobproperty/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             jobProperty.busyIndicator.isActive = false;
@@ -144,11 +144,11 @@
         jobProperty.addRequested = true;
         var valueItem = {};
         jobProperty.valueItems = [];
-        ajax.call(mainPathApi+'jobproperty/add', jobProperty.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobproperty/add', jobProperty.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 jobProperty.closeModal();
-                ajax.call(mainPathApi+"jobpropertydetailvalue/getviewmodel", '0', 'GET').success(function (response1) {
+                ajax.call(cmsServerConfig.configApiServerPath+"jobpropertydetailvalue/getviewmodel", '0', 'GET').success(function (response1) {
                     rashaErManage.checkAction(response1);
                     for (var i = 0; i < jobProperty.propertyDetailsListItems.length; i++) {
                         valueItem = $.extend(true, {}, response1.Item);
@@ -183,7 +183,7 @@
                             valueItem.Value = jobProperty.propertyDetailsListItems[i].value;
                         jobProperty.valueItems.push(valueItem);
                     }
-                    ajax.call(mainPathApi+'JobPropertyDetailValue/AddBatch', jobProperty.valueItems, 'POST').success(function (response2) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetailValue/AddBatch', jobProperty.valueItems, 'POST').success(function (response2) {
                         rashaErManage.checkAction(response2);
                         if (response2.IsSuccess) {
                             jobProperty.ListItems.unshift(response.Item);
@@ -226,7 +226,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'jobproperty/getviewmodel', parseInt(jobProperty.gridOptions.selectedRow.item.Id), 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobproperty/getviewmodel', parseInt(jobProperty.gridOptions.selectedRow.item.Id), 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             jobProperty.selectedItem = response.Item;
@@ -239,7 +239,7 @@
             jobProperty.filePickerMainImage.filename = null;
             jobProperty.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null && response.Item.LinkMainImageId > 0) {
-                ajax.call(mainPathApi+'FileContent/getviewmodel', parseInt(response.Item.LinkMainImageId), 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(response.Item.LinkMainImageId), 'GET').success(function (response2) {
                     if (response2.IsSuccess && response2.Item.Id > 9) {
                         jobProperty.filePickerMainImage.filename = response2.Item.FileName;
                         jobProperty.filePickerMainImage.fileId = response2.Item.Id;
@@ -270,7 +270,7 @@
         // Edit Property: Title, Description, LinkPropertyTypeId
         jobProperty.busyIndicator.isActive = true;
         jobProperty.selectedItem.LinkExtraImageIds = stringfyLinkFileIds(jobProperty.attachedFiles);
-        ajax.call(mainPathApi+'jobproperty/edit', jobProperty.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobproperty/edit', jobProperty.selectedItem, 'PUT').success(function (response) {
             jobProperty.addRequested = true;
             rashaErManage.checkAction(response);
             jobProperty.busyIndicator.isActive = false;
@@ -298,7 +298,7 @@
             var engine = {};
             engine.Filters = [];
             engine.Filters.push(filterValue);
-            ajax.call(mainPathApi+'JobPropertyDetailValue/deleteList', engine, 'DELETE').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetailValue/deleteList', engine, 'DELETE').success(function (response) {
                 rashaErManage.checkAction(response);
                 console.log(response.Item);
             }).error(function (data, errCode, c, d) {
@@ -306,7 +306,7 @@
                 jobProperty.busyIndicator.isActive = false;
 
             });
-            ajax.call(mainPathApi+'JobPropertyDetailValue/AddBatch', jobProperty.selectedItem.LinkPropertyId, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetailValue/AddBatch', jobProperty.selectedItem.LinkPropertyId, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 console.log(response.Item);
             }).error(function (data, errCode, c, d) {
@@ -357,7 +357,7 @@
             }
             // ---------------------------------- End of Set Values to Edit --------------------------------------
             jobProperty.addRequested = true;
-            ajax.call(mainPathApi+'JobPropertyDetailValue/EditBatch', jobProperty.propertyDetailValuesListItems, 'PUT').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetailValue/EditBatch', jobProperty.propertyDetailValuesListItems, 'PUT').success(function (response) {
                 rashaErManage.checkAction(response);
                 jobProperty.busyIndicator.isActive = false;
                 if (response.IsSuccess) {
@@ -398,11 +398,11 @@
             if (isConfirmed) {
                 jobProperty.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'jobproperty/getviewmodel', jobProperty.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'jobproperty/getviewmodel', jobProperty.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     jobProperty.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'jobproperty/delete', jobProperty.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'jobproperty/delete', jobProperty.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         jobProperty.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -523,7 +523,7 @@
         engine.Filters = [];
         engine.Filters.push(filterValue);
         jobProperty.addRequested = true;
-        ajax.call(mainPathApi+"JobPropertyDetail/GetAll", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"JobPropertyDetail/GetAll", engine, 'POST').success(function (response) {
             jobProperty.addRequested = false;
             jobProperty.propertyDetailsListItems = response.ListItems;
 
@@ -580,7 +580,7 @@
         };
         engine1.Filters = [];
         engine1.Filters.push(filterValue1);
-        ajax.call(mainPathApi+"JobPropertyDetail/GetAll", engine1, 'POST').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"JobPropertyDetail/GetAll", engine1, 'POST').success(function (response1) {
             jobProperty.propertyDetailsListItems = response1.ListItems;
             //---------- Load Values ---------------------------------------
             var filterValue2 = {
@@ -590,7 +590,7 @@
             }
             var engine2 = { Filters: [] };
             engine2.Filters.push(filterValue2);
-            ajax.call(mainPathApi+"JobPropertyDetailValue/GetAll", engine2, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"JobPropertyDetailValue/GetAll", engine2, 'POST').success(function (response) {
                 $.each(jobProperty.propertyDetailsListItems, function (index, item) {
                     item.value = null;
                     // Add groups to its list
@@ -723,7 +723,7 @@
 
     jobProperty.contractsList = [];
     jobProperty.openAddContractModal = function (propertyId, propertyTitle) {
-        ajax.call(mainPathApi+"jobcontracttype/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"jobcontracttype/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             jobProperty.busyIndicator.isActive = false;
             jobProperty.contractTypeListItems = response.ListItems;
@@ -732,7 +732,7 @@
             jobProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(mainPathApi+'JobContract/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'JobContract/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 jobProperty.selectedItem = response.Item;
@@ -742,7 +742,7 @@
                 };
                 model.Filters = [];
                 model.Filters.push({ PropertyName: "LinkPropertyId", IntValue1: parseInt(propertyId), SearchType: 0 });
-                ajax.call(mainPathApi+'JobContract/getall', model, 'POST').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'JobContract/getall', model, 'POST').success(function (response) {
                     rashaErManage.checkAction(response);
                     jobProperty.contractsList = response.ListItems;
                     jobProperty.contractsListresultAccess = response.resultAccess;
@@ -777,7 +777,7 @@
         }
         jobProperty.addRequested = true;
         jobProperty.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'JobContract/add', jobProperty.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'JobContract/add', jobProperty.selectedItem, 'POST').success(function (response) {
             jobProperty.addRequested = false;
             jobProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -831,7 +831,7 @@
 
     jobProperty.editContract = function (index) {
         jobProperty.addRequested = true;
-        ajax.call(mainPathApi+'JobContract/edit', jobProperty.contractsList[index], 'PUT').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath+'JobContract/edit', jobProperty.contractsList[index], 'PUT').success(function (res) {
             jobProperty.addRequested = false;
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
@@ -846,7 +846,7 @@
 
     jobProperty.deleteContract = function (index) {
         jobProperty.addRequested = true;
-        ajax.call(mainPathApi+'JobContract/delete', jobProperty.contractsList[index], 'DELETE').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath+'JobContract/delete', jobProperty.contractsList[index], 'DELETE').success(function (res) {
             jobProperty.addRequested = false;
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
@@ -864,7 +864,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(mainPathApi+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             jobProperty.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -903,7 +903,7 @@
 
         jobProperty.FileList = [];
         //get list of file from category id
-        ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
             jobProperty.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);
@@ -942,14 +942,14 @@
         jobProperty.fileIdToDelete = jobProperty.selectedIndex;
 
         // Delete the file
-        ajax.call(mainPathApi+"FileContent/getviewmodel", jobProperty.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", jobProperty.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(mainPathApi+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
                     jobProperty.remove(jobProperty.FileList, jobProperty.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 jobProperty.FileItem = response3.Item;
                                 jobProperty.FileItem.FileName = name;
@@ -978,7 +978,7 @@
     }
     //save new file
     jobProperty.saveNewFile = function () {
-        ajax.call(mainPathApi+"FileContent/add", jobProperty.FileItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", jobProperty.FileItem, 'POST').success(function (response) {
             if (response.IsSuccess) {
                 jobProperty.FileItem = response.Item;
                 jobProperty.showSuccessIcon();
@@ -1052,14 +1052,14 @@
                      // replace the file
             ajax
               .call(
-                mainPathApi+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
                 jobProperty.fileIdToDelete,
                 "GET"
               )
               .success(function(response1) {
                 if (response1.IsSuccess == true) {
                   console.log(response1.Item);
-                  ajax.call(mainPathApi+"FileContent/replace", response1.Item, "POST")
+                  ajax.call(cmsServerConfig.configApiServerPath+"FileContent/replace", response1.Item, "POST")
                     .success(function(response2) {
                       if (response2.IsSuccess == true) {
                         jobProperty.FileItem = response2.Item;
@@ -1102,7 +1102,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(mainPathApi+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
                     jobProperty.FileItem = response.Item;
                     jobProperty.FileItem.FileName = uploadFile.name;
                     jobProperty.FileItem.uploadName = uploadFile.uploadName;
@@ -1111,7 +1111,7 @@
                     jobProperty.FileItem.LinkCategoryId = null;  //Save the new file in the root
                     // ------- jobProperty.saveNewFile()  ----------------------
                     var result = 0;
-                    ajax.call(mainPathApi+"FileContent/add", jobProperty.FileItem, 'POST').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/add", jobProperty.FileItem, 'POST').success(function (response) {
                         if (response.IsSuccess) {
                             jobProperty.FileItem = response.Item;
                             jobProperty.showSuccessIcon();
@@ -1150,7 +1150,7 @@
     jobProperty.exportFile = function () {
         jobProperty.addRequested = true;
         jobProperty.gridOptions.advancedSearchData.engine.ExportFile = jobProperty.ExportFileClass;
-        ajax.call(mainPathApi+'JobProperty/exportfile', jobProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'JobProperty/exportfile', jobProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             jobProperty.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -1193,7 +1193,7 @@
     }
     //Get TotalRowCount
     jobProperty.getCount = function () {
-        ajax.call(mainPathApi+"JobProperty/count", jobProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"JobProperty/count", jobProperty.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             jobProperty.addRequested = false;
             rashaErManage.checkAction(response);
             jobProperty.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -1212,7 +1212,7 @@
     jobProperty.onRecordStatusChange = function (record) {
         //jobProperty.busyIndicator.isActive = true;
         //var filterstatus = { Filters: [{ PropertyName: "RecordStatus", SearchType: 0, IntValue1: record }] };
-        //ajax.call(mainPathApi+"jobproperty/getAllwithalias", filterstatus, 'POST').success(function (response) {
+        //ajax.call(cmsServerConfig.configApiServerPath+"jobproperty/getAllwithalias", filterstatus, 'POST').success(function (response) {
         //    rashaErManage.checkAction(response);
         //    jobProperty.ListItems = response.ListItems;
         //    jobProperty.gridOptions.fillData(jobProperty.ListItems, response.resultAccess);

@@ -33,7 +33,7 @@
             console.log(error)
         }
 
-        ajax.call(mainPathApi+"CoreModuleSaleInvoice/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreModuleSaleInvoice/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModuleSaleInvoice.busyIndicator.isActive = false;
             cmsModuleSaleInvoice.ListItems = response.ListItems;
@@ -48,7 +48,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         //cmsModuleSaleInvoice.busyIndicator.isActive = true;
-        //ajax.call(mainPathApi+'CoreModuleSaleInvoice/getall', {}, 'POST').success(function (response) {
+        //ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/getall', {}, 'POST').success(function (response) {
         //    cmsModuleSaleInvoice.ContentList = response.ListItems;
         //    cmsModuleSaleInvoice.busyIndicator.isActive = false;
         //});
@@ -59,7 +59,7 @@
     cmsModuleSaleInvoice.addRequested = false;
     cmsModuleSaleInvoice.openAddModal = function () {
         cmsModuleSaleInvoice.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'CoreModuleSaleInvoice/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModuleSaleInvoice.busyIndicator.isActive = false;
             cmsModuleSaleInvoice.selectedItem = response.Item;
@@ -80,7 +80,7 @@
         }
         cmsModuleSaleInvoice.busyIndicator.isActive = true;
         cmsModuleSaleInvoice.addRequested = true;
-        ajax.call(mainPathApi+'CoreModuleSaleInvoice/add', cmsModuleSaleInvoice.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/add', cmsModuleSaleInvoice.selectedItem, 'POST').success(function (response) {
             cmsModuleSaleInvoice.addRequested = false;
             cmsModuleSaleInvoice.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -107,7 +107,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'CoreModuleSaleInvoice/getviewmodel', cmsModuleSaleInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/getviewmodel', cmsModuleSaleInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModuleSaleInvoice.selectedItem = response.Item;
             $modal.open({
@@ -126,7 +126,7 @@
             return;
         }
         cmsModuleSaleInvoice.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'CoreModuleSaleInvoice/edit', cmsModuleSaleInvoice.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/edit', cmsModuleSaleInvoice.selectedItem, 'PUT').success(function (response) {
             cmsModuleSaleInvoice.addRequested = true;
             rashaErManage.checkAction(response);
             cmsModuleSaleInvoice.busyIndicator.isActive = false;
@@ -169,9 +169,9 @@
             if (isConfirmed) {
                 cmsModuleSaleInvoice.busyIndicator.isActive = true;
                 console.log(cmsModuleSaleInvoice.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'CoreModuleSaleInvoice/getviewmodel', cmsModuleSaleInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/getviewmodel', cmsModuleSaleInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     cmsModuleSaleInvoice.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'CoreModuleSaleInvoice/delete', cmsModuleSaleInvoice.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/delete', cmsModuleSaleInvoice.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         cmsModuleSaleInvoice.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -265,7 +265,7 @@ cmsModuleSaleInvoice.showlistDetail=function (IdInvoice){
         var engine = {};
         engine.Filters = [];
         engine.Filters.push(s);
-ajax.call(mainPathApi+"CoreModuleSaleInvoiceDetail/getall", engine, "POST").success(function (response) {
+ajax.call(cmsServerConfig.configApiServerPath+"CoreModuleSaleInvoiceDetail/getall", engine, "POST").success(function (response) {
             cmsModuleSaleInvoice.listComments = response.ListItems;
             rashaErManage.checkAction(response);
             cmsModuleSaleInvoice.gridOptionsDetail.fillData(cmsModuleSaleInvoice.listComments, response.resultAccess);
@@ -351,7 +351,7 @@ cmsModuleSaleInvoice.gridOptionsDetail = {
     cmsModuleSaleInvoice.exportFile = function () {
         cmsModuleSaleInvoice.addRequested = true;
         cmsModuleSaleInvoice.gridOptions.advancedSearchData.engine.ExportFile = cmsModuleSaleInvoice.ExportFileClass;
-        ajax.call(mainPathApi+'CoreModuleSaleInvoice/exportfile', cmsModuleSaleInvoice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/exportfile', cmsModuleSaleInvoice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             cmsModuleSaleInvoice.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -394,7 +394,7 @@ cmsModuleSaleInvoice.gridOptionsDetail = {
     }
     //Get TotalRowCount
     cmsModuleSaleInvoice.getCount = function () {
-        ajax.call(mainPathApi+"CoreModuleSaleInvoice/count", cmsModuleSaleInvoice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreModuleSaleInvoice/count", cmsModuleSaleInvoice.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             cmsModuleSaleInvoice.addRequested = false;
             rashaErManage.checkAction(response);
             cmsModuleSaleInvoice.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

@@ -2,7 +2,7 @@
     var cmsPageTemplategrd = this;
     if (itemRecordStatus != undefined) cmsPageTemplategrd.itemRecordStatus = itemRecordStatus;
     cmsPageTemplategrd.init = function () {
-        ajax.call(mainPathApi+"WebDesignerMainPageTemplate/getall", cmsPageTemplategrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"WebDesignerMainPageTemplate/getall", cmsPageTemplategrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageTemplategrd.ListItems = response.ListItems;
             cmsPageTemplategrd.gridOptions.fillData(cmsPageTemplategrd.ListItems,response.resultAccess);
@@ -18,7 +18,7 @@
     cmsPageTemplategrd.addRequested = false;
     cmsPageTemplategrd.openAddModal = function () {
         cmsPageTemplategrd.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'WebDesignerMainPageTemplate/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/getviewmodel', '0', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageTemplategrd.selectedItem = response.Item;
             $modal.open({
@@ -35,7 +35,7 @@
             return;
 
         cmsPageTemplategrd.addRequested = true;
-        ajax.call(mainPathApi+'WebDesignerMainPageTemplate/add', cmsPageTemplategrd.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/add', cmsPageTemplategrd.selectedItem, 'POST').success(function (response) {
             cmsPageTemplategrd.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -55,7 +55,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'WebDesignerMainPageTemplate/getviewmodel',  cmsPageTemplategrd.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/getviewmodel',  cmsPageTemplategrd.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageTemplategrd.selectedItem = response.Item;
             $modal.open({
@@ -69,7 +69,7 @@
     cmsPageTemplategrd.editRow = function (frm) {
 	if (frm.$invalid)
             return;
-        ajax.call(mainPathApi+'WebDesignerMainPageTemplate/edit', cmsPageTemplategrd.selectedItem , 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/edit', cmsPageTemplategrd.selectedItem , 'PUT').success(function (response) {
             cmsPageTemplategrd.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -107,10 +107,10 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                ajax.call(mainPathApi+'WebDesignerMainPageTemplate/getviewmodel', cmsPageTemplategrd.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/getviewmodel', cmsPageTemplategrd.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsPageTemplategrd.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'WebDesignerMainPageTemplate/delete',  cmsPageTemplategrd.selectedItemForDelete , 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/delete',  cmsPageTemplategrd.selectedItemForDelete , 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsPageTemplategrd.replaceItem(cmsPageTemplategrd.selectedItemForDelete.Id);

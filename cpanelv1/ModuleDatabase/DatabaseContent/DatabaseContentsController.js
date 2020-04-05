@@ -167,7 +167,7 @@
             console.log(error);
         }
 
-        ajax.call(mainPathApi+"DBCategory/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"DBCategory/getall", engine, 'POST').success(function (response) {
             dbContent.treeConfig.Items = response.ListItems;
             dbContent.treeConfig.Items = response.ListItems;
             dbContent.categoryBusyIndicator.isActive = false;
@@ -177,7 +177,7 @@
 
         });
 
-        ajax.call(mainPathApi+"dbContent/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"dbContent/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             dbContent.ListItems = response.ListItems;
             dbContent.gridOptions.fillData(dbContent.ListItems, response.resultAccess); // Sending Access as an argument
@@ -210,7 +210,7 @@
             dbContent.gridContentOptions.advancedSearchData.engine.Filters.push(Filter_value);
 
 
-            ajax.call(mainPathApi+'dbComment/getall', dbContent.gridContentOptions.advancedSearchData.engine, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'dbComment/getall', dbContent.gridContentOptions.advancedSearchData.engine, 'POST').success(function (response) {
                 dbContent.listComments = response.ListItems;
                 //dbContent.gridOptions.resultAccess = response.resultAccess; // دسترسی ها نمایش
                 dbContent.gridContentOptions.fillData(dbContent.listComments, response.resultAccess);
@@ -235,7 +235,7 @@
     // Open Add Category Modal 
     dbContent.addNewCategoryModel = function () {
         dbContent.addRequested = false;
-        ajax.call(mainPathApi+'DBCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DBCategory/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             dbContent.selectedItem = response.Item;
             $modal.open({
@@ -257,7 +257,7 @@
         }
 
         dbContent.contentBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+'DBCategory/getviewmodel', dbContent.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DBCategory/getviewmodel', dbContent.treeConfig.currentNode.Id, 'GET').success(function (response) {
             dbContent.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             dbContent.selectedItem = response.Item;
@@ -282,7 +282,7 @@
         dbContent.selectedItem.LinkParentId = null;
         //if (dbContent.treeConfig.currentNode != null)
         //    dbContent.selectedItem.LinkParentId = dbContent.treeConfig.currentNode.Id;
-        ajax.call(mainPathApi+'DBCategory/add', dbContent.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DBCategory/add', dbContent.selectedItem, 'POST').success(function (response) {
             dbContent.addRequested = false;
             rashaErManage.checkAction(response);
             console.log(response);
@@ -309,7 +309,7 @@
             return;
         }
         dbContent.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+'DBCategory/edit', dbContent.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DBCategory/edit', dbContent.selectedItem, 'PUT').success(function (response) {
             dbContent.addRequested = true;
             //dbContent.showbusy = false;
             dbContent.treeConfig.showbusy = false;
@@ -339,11 +339,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 dbContent.categoryBusyIndicator.isActive = true;
-                ajax.call(mainPathApi+'DBCategory/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'DBCategory/getviewmodel', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     dbContent.selectedItemForDelete = response.Item;
                     console.log(dbContent.selectedItemForDelete);
-                    ajax.call(mainPathApi+'DBCategory/delete', dbContent.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'DBCategory/delete', dbContent.selectedItemForDelete, 'DELETE').success(function (res) {
 
                         if (res.IsSuccess) {
                             dbContent.gridOptions.advancedSearchData.engine.Filters = null;
@@ -393,7 +393,7 @@
             }
             dbContent.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
-        ajax.call(mainPathApi+"dbContent/getall", dbContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"dbContent/getall", dbContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             dbContent.contentBusyIndicator.isActive = false;
             dbContent.ListItems = response.ListItems;
@@ -424,7 +424,7 @@
         dbContent.filePickerFiles.fileId = null;
         dbContent.addRequested = false;
         dbContent.modalTitle = 'اضافه کردن محتوای جدید';
-        ajax.call(mainPathApi+'dbContent/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'dbContent/getviewmodel', "0", 'GET').success(function (response) {
             console.log(response);
             rashaErManage.checkAction(response);
             dbContent.selectedItem = response.Item;
@@ -448,7 +448,7 @@
             return;
         }
 
-        ajax.call(mainPathApi+'dbContent/getviewmodel', dbContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'dbContent/getviewmodel', dbContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             dbContent.selectedItem = response1.Item;
             dbContent.startDate.defaultDate = dbContent.selectedItem.FromDate;
@@ -456,7 +456,7 @@
             dbContent.filePickerMainImage.filename = null;
             dbContent.filePickerMainImage.fileId = null;
             if (response1.Item.LinkMainImageId != null) {
-                ajax.call(mainPathApi+'FileContent/getviewmodel', response1.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response1.Item.LinkMainImageId, 'GET').success(function (response2) {
                     dbContent.filePickerMainImage.filename = response2.Item.FileName;
                     dbContent.filePickerMainImage.fileId = response2.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -492,7 +492,7 @@
             }
             return val;
         });
-        ajax.call(mainPathApi+'dbContent/add', dbContent.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'dbContent/add', dbContent.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             dbContent.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -523,7 +523,7 @@
             }
             return val;
         });
-        ajax.call(mainPathApi+'dbContent/edit', dbContent.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'dbContent/edit', dbContent.selectedItem, 'PUT').success(function (response) {
             dbContent.categoryBusyIndicator.isActive = false;
             dbContent.addRequested = false;
             dbContent.treeConfig.showbusy = false;
@@ -556,13 +556,13 @@
                 console.log(dbContent.gridOptions.selectedRow.item);
                 dbContent.showbusy = true;
                 dbContent.showIsBusy = true;
-                ajax.call(mainPathApi+"dbContent/getviewmodel", dbContent.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"dbContent/getviewmodel", dbContent.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     dbContent.showbusy = false;
                     dbContent.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     dbContent.selectedItemForDelete = response.Item;
                     console.log(dbContent.selectedItemForDelete);
-                    ajax.call(mainPathApi+"dbContent/delete", dbContent.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"dbContent/delete", dbContent.selectedItemForDelete, "DELETE").success(function (res) {
                         dbContent.categoryBusyIndicator.isActive = false;
                         dbContent.treeConfig.showbusy = false;
                         dbContent.showIsBusy = false;
@@ -596,11 +596,11 @@
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(mainPathApi+'dbContent/getviewmodel', dbContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'dbContent/getviewmodel', dbContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             dbContent.selectedItem = response.Item;
             dbContent.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
-            ajax.call(mainPathApi+'dbContent/edit', dbContent.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'dbContent/edit', dbContent.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
                     var index = dbContent.ListItems.indexOf(dbContent.gridOptions.selectedRow.item);
@@ -625,11 +625,11 @@
             return;
         }
 
-        ajax.call(mainPathApi+'dbContent/getviewmodel', dbContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'dbContent/getviewmodel', dbContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             dbContent.selectedItem = response.Item;
             dbContent.selectedItem.IsArchive = (response.Item.IsArchive == true) ? false : true;
-            ajax.call(mainPathApi+'dbContent/edit', dbContent.selectedItem, 'PUT').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath+'dbContent/edit', dbContent.selectedItem, 'PUT').success(function (response2) {
                 dbContent.categoryBusyIndicator.isActive = true;
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
@@ -665,7 +665,7 @@
 
     dbContent.summernoteText = '<h3>Hello Jonathan! </h3>dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industrys</strong> standard dummy text ever since the 1500s,when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronictypesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with<br /><br />';
     dbContent.searchData = function () {
-        ajax.call(mainPathApi+"dbContent/getall", dbContent.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"dbContent/getall", dbContent.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             dbContent.dbsBusyIndicator.isActive = false;
             dbContent.ListItems = response.ListItems;
@@ -711,13 +711,13 @@
                 console.log("Item to be deleted: ", dbContent.gridOptions.selectedRow.item);
                 dbContent.showbusy = true;
                 dbContent.showIsBusy = true;
-                ajax.call(mainPathApi+'dbContent/getviewmodel', dbContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'dbContent/getviewmodel', dbContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     dbContent.showbusy = false;
                     dbContent.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     dbContent.selectedItemForDelete = response.Item;
                     console.log(dbContent.selectedItemForDelete);
-                    ajax.call(mainPathApi+'dbContent/delete', dbContent.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'dbContent/delete', dbContent.selectedItemForDelete, 'DELETE').success(function (res) {
                         dbContent.treeConfig.showbusy = false;
                         dbContent.showIsBusy = false;
                         rashaErManage.checkAction(res);
@@ -864,7 +864,7 @@
     dbContent.exportFile = function () {
         dbContent.addRequested = true;
         dbContent.gridOptions.advancedSearchData.engine.ExportFile = dbContent.ExportFileClass;
-        ajax.call(mainPathApi+'DatabaseContent/exportfile', dbContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DatabaseContent/exportfile', dbContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 dbContent.exportDownloadLink = window.location.origin + response.LinkFile;
@@ -907,7 +907,7 @@
     }
     //Get TotalRowCount
     dbContent.getCount = function () {
-        ajax.call(mainPathApi+"DatabaseContent/count", dbContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"DatabaseContent/count", dbContent.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             dbContent.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

@@ -19,7 +19,7 @@
             return;
         }
         var engine = { Filters: [{ PropertyName: "Id", IntValue1: privateSiteConfig.selectedPublicConfig.Id }] };
-        ajax.call(mainPathApi+'bankpaymentpublicconfig/getonewithjsonformatter', engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentpublicconfig/getonewithjsonformatter', engine, 'POST').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             privateSiteConfig.selectedPublicConfig = response.Item;
@@ -30,7 +30,7 @@
         privateSiteConfig.busyIndicator.isActive = true;
         var filterModel = { PropertyName: "LinkPublicConfigId", SearchType: 0, IntValue1: privateSiteConfig.selectedPublicConfig.Id };
         privateSiteConfig.gridOptions.advancedSearchData.engine.Filters.push(filterModel);
-        ajax.call(mainPathApi+"bankpaymentprivatesiteconfig/getall", privateSiteConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"bankpaymentprivatesiteconfig/getall", privateSiteConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             privateSiteConfig.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             privateSiteConfig.ListItems = response.ListItems;
@@ -44,7 +44,7 @@
             privateSiteConfig.gridOptions.fillData();
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(mainPathApi+"bankpaymentprivateSiteConfig/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"bankpaymentprivateSiteConfig/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             privateSiteConfig.privateSiteConfigListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
@@ -69,7 +69,7 @@
         buttonIsPressed = true;
         privateSiteConfig.defaultValue = {};
         $builder.removeAllFormObject('default');
-        ajax.call(mainPathApi+'bankpaymentprivatesiteconfig/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/getviewmodel', '0', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             privateSiteConfig.selectedItem = response.Item;
@@ -139,7 +139,7 @@
         privateSiteConfig.addRequested = true;
         privateSiteConfig.busyIndicator.isActive = true;
         privateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(privateSiteConfig.submitValue));
-        ajax.call(mainPathApi+'bankpaymentprivatesiteconfig/add', privateSiteConfig.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/add', privateSiteConfig.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 privateSiteConfig.ListItems.unshift(response.Item);
@@ -169,7 +169,7 @@
 
         buttonIsPressed = true;
         privateSiteConfig.addRequested = true;
-        ajax.call(mainPathApi+'bankpaymentprivatesiteconfig/getonewithjsonformatter', engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/getonewithjsonformatter', engine, 'POST').success(function (response) {
             buttonIsPressed = false;
             privateSiteConfig.addRequested = false;
             rashaErManage.checkAction(response);
@@ -238,7 +238,7 @@
 
         privateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(privateSiteConfig.submitValue));
 
-        ajax.call(mainPathApi+'bankpaymentprivatesiteconfig/edit', privateSiteConfig.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/edit', privateSiteConfig.selectedItem, 'PUT').success(function (response) {
             privateSiteConfig.addRequested = true;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -279,11 +279,11 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'bankpaymentprivatesiteconfig/getviewmodel', privateSiteConfig.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/getviewmodel', privateSiteConfig.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     privateSiteConfig.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'bankpaymentprivatesiteconfig/delete', privateSiteConfig.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/delete', privateSiteConfig.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             privateSiteConfig.replaceItem(privateSiteConfig.selectedItemForDelete.Id);
@@ -349,7 +349,7 @@
     privateSiteConfig.exportFile = function () {
         privateSiteConfig.addRequested = true;
         privateSiteConfig.gridOptions.advancedSearchData.engine.ExportFile = privateSiteConfig.ExportFileClass;
-        ajax.call(mainPathApi+'CoreSite/exportfile', privateSiteConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/exportfile', privateSiteConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             privateSiteConfig.addRequested = false;
             rashaErManage.checkAction(response);
             privateSiteConfig.reportDownloadLink = response.LinkFile;
@@ -391,7 +391,7 @@
     }
     //Get TotalRowCount
     privateSiteConfig.getCount = function () {
-        ajax.call(mainPathApi+"CoreSite/count", privateSiteConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreSite/count", privateSiteConfig.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             privateSiteConfig.addRequested = false;
             rashaErManage.checkAction(response);
             privateSiteConfig.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -406,7 +406,7 @@
         $builder.removeAllFormObject('default');
         var engine = { Filters: [{ PropertyName: "Id", IntValue1: selectedId }] };
         privateSiteConfig.addRequested = true;
-        ajax.call(mainPathApi+"BankPaymentprivateSiteConfig/getonewithjsonformatter", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"BankPaymentprivateSiteConfig/getonewithjsonformatter", engine, 'POST').success(function (response) {
             privateSiteConfig.addRequested = false;
             if (response.IsSuccess) {
                 privateSiteConfig.selectedItem = response.Item;
@@ -476,7 +476,7 @@
 
     privateSiteConfig.testPay = function () {
         privateSiteConfig.addRequested = true;
-        ajax.call(mainPathApi+"BankPaymentPrivateSiteConfig/testpay", privateSiteConfig.testPayModel, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"BankPaymentPrivateSiteConfig/testpay", privateSiteConfig.testPayModel, 'POST').success(function (response) {
             privateSiteConfig.addRequested = false;
             privateSiteConfig.testPayValue = response;
             privateSiteConfig.testPayModel.RedirectWebUrl = response.RedirectWebUrl;
@@ -490,7 +490,7 @@
         privateSiteConfig.addRequested = true;
         privateSiteConfig.busyIndicator.isActive = true;
         privateSiteConfig.selectedItem.PrivateConfigJsonValues = $.trim(angular.toJson(privateSiteConfig.submitValue));
-        ajax.call(mainPathApi+'bankpaymentprivateSiteConfig/edit', privateSiteConfig.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivateSiteConfig/edit', privateSiteConfig.selectedItem, 'PUT').success(function (response) {
             privateSiteConfig.addRequested = true;
             privateSiteConfig.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);

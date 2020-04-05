@@ -34,7 +34,7 @@ app.controller('wizardCtrl', ["$scope", "$http", "$state", "ajax", "rashaErManag
     }
         wizCtrl.login = function() {
             wizCtrl.isBusy = true;
-            ajax.call(mainPathApi+"CoreUser/userlogin", { 'username': wizCtrl.usernameData, 'pwd': wizCtrl.passwordData }, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/userlogin", { 'username': wizCtrl.usernameData, 'pwd': wizCtrl.passwordData }, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 wizCtrl.isBusy = false;
                 if (response.IsSuccess && response.Item) {

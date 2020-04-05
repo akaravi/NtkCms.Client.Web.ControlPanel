@@ -33,7 +33,7 @@
             console.log(error)
         }
 
-        ajax.call(mainPathApi+"articleComment/getall", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"articleComment/getall", engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             articleComment.busyIndicator.isActive = false;
             articleComment.ListItems = response.ListItems;
@@ -48,7 +48,7 @@
             rashaErManage.checkAction(data, errCode);
         });
         //articleComment.busyIndicator.isActive = true;
-        //ajax.call(mainPathApi+'articleComment/getall', {}, 'POST').success(function (response) {
+        //ajax.call(cmsServerConfig.configApiServerPath+'articleComment/getall', {}, 'POST').success(function (response) {
         //    articleComment.ContentList = response.ListItems;
         //    articleComment.busyIndicator.isActive = false;
         //});
@@ -59,7 +59,7 @@
     articleComment.addRequested = false;
     articleComment.openAddModal = function () {
         articleComment.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'articleComment/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleComment/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             articleComment.busyIndicator.isActive = false;
             articleComment.selectedItem = response.Item;
@@ -84,7 +84,7 @@
         }
         articleComment.busyIndicator.isActive = true;
         articleComment.addRequested = true;
-        ajax.call(mainPathApi+'articleComment/add', articleComment.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleComment/add', articleComment.selectedItem, 'POST').success(function (response) {
             articleComment.addRequested = false;
             articleComment.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -111,7 +111,7 @@
             return;
         }
      
-        ajax.call(mainPathApi+'articleComment/getviewmodel', articleComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleComment/getviewmodel', articleComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             articleComment.selectedItem = response.Item;
             $modal.open({
@@ -130,7 +130,7 @@
             return;
         }
         articleComment.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'articleComment/edit', articleComment.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleComment/edit', articleComment.selectedItem, 'PUT').success(function (response) {
             articleComment.addRequested = true;
             rashaErManage.checkAction(response);
             articleComment.busyIndicator.isActive = false;
@@ -173,9 +173,9 @@
             if (isConfirmed) {
                 articleComment.busyIndicator.isActive = true;
                 console.log(articleComment.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'articleComment/getviewmodel', articleComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'articleComment/getviewmodel', articleComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     articleComment.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'articleComment/delete', articleComment.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'articleComment/delete', articleComment.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         articleComment.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -293,7 +293,7 @@
     articleComment.exportFile = function () {
         articleComment.addRequested = true;
         articleComment.gridOptions.advancedSearchData.engine.ExportFile = articleComment.ExportFileClass;
-        ajax.call(mainPathApi+'articleComment/exportfile', articleComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleComment/exportfile', articleComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             articleComment.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -336,7 +336,7 @@
     }
     //Get TotalRowCount
     articleComment.getCount = function () {
-        ajax.call(mainPathApi+"articleComment/count", articleComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"articleComment/count", articleComment.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             articleComment.addRequested = false;
             rashaErManage.checkAction(response);
             articleComment.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

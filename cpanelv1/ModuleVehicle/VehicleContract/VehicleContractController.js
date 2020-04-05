@@ -23,7 +23,7 @@
             console.log(error);
         }
 
-        ajax.call(mainPathApi+"vehiclecontracttype/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"vehiclecontracttype/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             vehicleContract.contractTypes = response.ListItems;
 
@@ -32,14 +32,14 @@
             rashaErManage.checkAction(data, errCode);
         });
 
-        ajax.call(mainPathApi+"vehicleContracttype/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"vehicleContracttype/getall", {}, 'POST').success(function (response) {
             vehicleContract.propertyTypeListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             vehicleContract.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
 
-        ajax.call(mainPathApi+"vehiclecontract/getall", vehicleContract.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"vehiclecontract/getall", vehicleContract.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             vehicleContract.busyIndicator.isActive = false;
             vehicleContract.ListItems = response.ListItems;
@@ -68,7 +68,7 @@
 
         vehicleContract.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'vehiclecontract/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontract/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -94,7 +94,7 @@
         }
         vehicleContract.busyIndicator.isActive = true;
         vehicleContract.addRequested = true;
-        ajax.call(mainPathApi+'vehiclecontract/add', vehicleContract.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontract/add', vehicleContract.selectedItem, 'POST').success(function (response) {
             vehicleContract.addRequested = false;
             vehicleContract.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -123,7 +123,7 @@
         }
 
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'vehiclecontract/getviewmodel', vehicleContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontract/getviewmodel', vehicleContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -147,7 +147,7 @@
             return;
         }
         vehicleContract.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'vehiclecontract/edit', vehicleContract.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontract/edit', vehicleContract.selectedItem, 'PUT').success(function (response) {
             vehicleContract.addRequested = true;
             rashaErManage.checkAction(response);
             vehicleContract.busyIndicator.isActive = false;
@@ -196,11 +196,11 @@
                 vehicleContract.busyIndicator.isActive = true;
                 console.log(vehicleContract.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'vehiclecontract/getviewmodel', vehicleContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontract/getviewmodel', vehicleContract.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     vehicleContract.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi+'vehiclecontract/delete', vehicleContract.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontract/delete', vehicleContract.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         vehicleContract.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -354,7 +354,7 @@
         var engine = {};
         engine.Filters = [];
         engine.Filters.push(filterValue);
-        ajax.call(mainPathApi+"vehicleContractDetail/GetAll", engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"vehicleContractDetail/GetAll", engine, 'POST').success(function (response) {
             vehicleContract.propertyDetailsListItems = response.ListItems;
 
             $.each(vehicleContract.propertyDetailsListItems, function (index, item) {
@@ -376,7 +376,7 @@
     cmsSitegrd.exportFile = function () {
         cmsSitegrd.addRequested = true;
         cmsSitegrd.gridOptions.advancedSearchData.engine.ExportFile = cmsSitegrd.ExportFileClass;
-        ajax.call(mainPathApi+'VehicleContract/exportfile', cmsSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'VehicleContract/exportfile', cmsSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsSitegrd.exportDownloadLink = window.location.origin + response.LinkFile;
@@ -419,7 +419,7 @@
     }
     //Get TotalRowCount
     cmsSitegrd.getCount = function () {
-        ajax.call(mainPathApi+"VehicleContract/count", cmsSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"VehicleContract/count", cmsSitegrd.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSitegrd.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
         }).error(function (data, errCode, c, d) {

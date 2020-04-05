@@ -10,7 +10,7 @@
 
     advertisementPropertyFavorite.init = function () {
         advertisementPropertyFavorite.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+"advertisementPropertyFavorite/getall", advertisementPropertyFavorite.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"advertisementPropertyFavorite/getall", advertisementPropertyFavorite.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementPropertyFavorite.busyIndicator.isActive = false;
             advertisementPropertyFavorite.ListItems = response.ListItems;
@@ -32,7 +32,7 @@
     advertisementPropertyFavorite.addRequested = false;
     advertisementPropertyFavorite.openAddModal = function () {
         advertisementPropertyFavorite.modalTitle = 'اضافه';
-        ajax.call(mainPathApi+'advertisementPropertyFavorite/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyFavorite/getviewmodel', "0", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementPropertyFavorite.busyIndicator.isActive = false;
             advertisementPropertyFavorite.selectedItem = response.Item;
@@ -56,7 +56,7 @@
         }
         advertisementPropertyFavorite.busyIndicator.isActive = true;
         advertisementPropertyFavorite.addRequested = true;
-        ajax.call(mainPathApi+'advertisementPropertyFavorite/add', advertisementPropertyFavorite.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyFavorite/add', advertisementPropertyFavorite.selectedItem, 'POST').success(function (response) {
             advertisementPropertyFavorite.addRequested = false;
             advertisementPropertyFavorite.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -78,7 +78,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(mainPathApi+'advertisementPropertyFavorite/getviewmodel', advertisementPropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyFavorite/getviewmodel', advertisementPropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementPropertyFavorite.selectedItem = response.Item;
             $modal.open({
@@ -98,7 +98,7 @@
             return;
         }
         advertisementPropertyFavorite.busyIndicator.isActive = true;
-        ajax.call(mainPathApi+'advertisementPropertyFavorite/edit', advertisementPropertyFavorite.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyFavorite/edit', advertisementPropertyFavorite.selectedItem, 'PUT').success(function (response) {
             advertisementPropertyFavorite.addRequested = true;
             rashaErManage.checkAction(response);
             advertisementPropertyFavorite.busyIndicator.isActive = false;
@@ -140,11 +140,11 @@
             if (isConfirmed) {
                 advertisementPropertyFavorite.busyIndicator.isActive = true;
                 console.log(advertisementPropertyFavorite.gridOptions.selectedRow.item);
-                ajax.call(mainPathApi+'AdvertisementPropertyFavorite/getviewmodel', advertisementPropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyFavorite/getviewmodel', advertisementPropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     advertisementPropertyFavorite.selectedItemForDelete = response.Item;
                     console.log(advertisementPropertyFavorite.selectedItemForDelete);
-                    ajax.call(mainPathApi+'AdvertisementPropertyFavorite/delete', advertisementPropertyFavorite.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyFavorite/delete', advertisementPropertyFavorite.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         advertisementPropertyFavorite.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

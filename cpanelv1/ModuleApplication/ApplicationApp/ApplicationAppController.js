@@ -51,7 +51,7 @@
 
     appApplication.init = function () {
         appApplication.busyIndicator.isActive = true;
-        ajax.call(mainPathApi + "ApplicationApp/getall", appApplication.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "ApplicationApp/getall", appApplication.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             appApplication.busyIndicator.isActive = false;
             appApplication.ListItems = response.ListItems;
@@ -59,7 +59,7 @@
             appApplication.calculatePercantage(appApplication.ListItems);
 
             //Get all Sources
-            ajax.call(mainPathApi + "applicationsource/getall", {}, 'POST').success(function (responseSource) {
+            ajax.call(cmsServerConfig.configApiServerPath + "applicationsource/getall", {}, 'POST').success(function (responseSource) {
                 rashaErManage.checkAction(responseSource);
                 appApplication.sourceListItems = responseSource.ListItems;
                 for (var i = 0; i < appApplication.ListItems.length; i++) {
@@ -71,13 +71,13 @@
                 rashaErManage.checkAction(data, errCode);
             });
             //Get all Sources
-            ajax.call(mainPathApi + "applicationApp/getBuildStatusEnum", {}, 'POST').success(function (responseGetEnum) {
+            ajax.call(cmsServerConfig.configApiServerPath + "applicationApp/getBuildStatusEnum", {}, 'POST').success(function (responseGetEnum) {
                 appApplication.buildStatusEnum = responseGetEnum.ListItems;
                 appApplication.setBuildStatusEnum(appApplication.ListItems, appApplication.buildStatusEnum);
             }).error(function (data, errCode, c, d) {
                 rashaErManage.checkAction(data, errCode);
             });
-            ajax.call(mainPathApi + "ApplicationEnum/EnumNotificationType", '', 'GET').success(function (responseGetEnum) {
+            ajax.call(cmsServerConfig.configApiServerPath + "ApplicationEnum/EnumNotificationType", '', 'GET').success(function (responseGetEnum) {
                 rashaErManage.checkAction(responseGetEnum);
                 if (responseGetEnum.IsSuccess)
                     appApplication.EnumNotificationType = responseGetEnum.ListItems;
@@ -97,12 +97,12 @@
 
 
         //@help برای زمانبندی
-        ajax.call(mainPathApi + "TaskSchedulerSchedule/getAllScheduleCronType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "TaskSchedulerSchedule/getAllScheduleCronType", {}, 'POST').success(function (response) {
             appApplication.ScheduleCronType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(mainPathApi + "TaskSchedulerSchedule/getAllDayOfWeek", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "TaskSchedulerSchedule/getAllDayOfWeek", {}, 'POST').success(function (response) {
             appApplication.weekdays = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -140,7 +140,7 @@
         appApplication.FileIdSplashScreen.filename = "";
         appApplication.FileIdSplashScreen.fileId = null;
         buttonIsPressed = true;
-        ajax.call(mainPathApi + 'ApplicationApp/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationApp/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             appApplication.busyIndicator.isActive = false;
@@ -154,7 +154,7 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi + "FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 appApplication.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = {
                     Filters: [{
@@ -164,7 +164,7 @@
                         IntValueForceNullSearch: true
                     }]
                 };
-                ajax.call(mainPathApi + "FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(appApplication.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModuleApplication/ApplicationApp/add.html',
@@ -210,7 +210,7 @@
         appApplication.selectedItem.ConfigBuilderSiteJsonValues = $.trim(angular.toJson(appApplication.ConfigBuilderSite));
         appApplication.selectedItem.ConfigRuntimeSiteJsonValues = $.trim(angular.toJson(appApplication.ConfigRuntimeSite));
 
-        ajax.call(mainPathApi + 'ApplicationApp/add', appApplication.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationApp/add', appApplication.selectedItem, 'POST').success(function (response) {
             appApplication.addRequested = false;
             appApplication.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -237,7 +237,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(mainPathApi + 'ApplicationApp/getviewmodel', appApplication.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationApp/getviewmodel', appApplication.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             appApplication.selectedItem = response.Item;
@@ -266,7 +266,7 @@
             if (response.Item.LinkFileIdIcon != null) {
                 ajax
                     .call(
-                        mainPathApi + "FileContent/getviewmodel",
+                        cmsServerConfig.configApiServerPath + "FileContent/getviewmodel",
                         response.Item.LinkFileIdIcon,
                         "GET"
                     )
@@ -282,7 +282,7 @@
             if (response.Item.LinkFileIdLogo != null) {
                 ajax
                     .call(
-                        mainPathApi + "FileContent/getviewmodel",
+                        cmsServerConfig.configApiServerPath + "FileContent/getviewmodel",
                         response.Item.LinkFileIdLogo,
                         "GET"
                     )
@@ -298,7 +298,7 @@
             if (response.Item.LinkFileIdSplashScreen != null) {
                 ajax
                     .call(
-                        mainPathApi + "FileContent/getviewmodel",
+                        cmsServerConfig.configApiServerPath + "FileContent/getviewmodel",
                         response.Item.LinkFileIdSplashScreen,
                         "GET"
                     )
@@ -323,7 +323,7 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi + "FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 appApplication.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = {
                     Filters: [{
@@ -333,7 +333,7 @@
                         IntValueForceNullSearch: true
                     }]
                 };
-                ajax.call(mainPathApi + "FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(appApplication.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (appApplication.selectedItem.LinkModulesFilesIdIcon > 0)
@@ -425,7 +425,7 @@
         appApplication.selectedItem.ConfigBuilderSiteJsonValues = $.trim(angular.toJson(appApplication.ConfigBuilderSite));
         appApplication.selectedItem.ConfigRuntimeSiteJsonValues = $.trim(angular.toJson(appApplication.ConfigRuntimeSite));
 
-        ajax.call(mainPathApi + 'ApplicationApp/edit', appApplication.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationApp/edit', appApplication.selectedItem, 'PUT').success(function (response) {
             rashaErManage.checkAction(response);
             appApplication.addRequested = false;
             appApplication.busyIndicator.isActive = false;
@@ -469,11 +469,11 @@
                 appApplication.busyIndicator.isActive = true;
                 console.log(appApplication.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(mainPathApi + 'ApplicationApp/getviewmodel', appApplication.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationApp/getviewmodel', appApplication.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     appApplication.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi + 'ApplicationApp/delete', appApplication.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationApp/delete', appApplication.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         appApplication.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -726,7 +726,7 @@
     appApplication.exportFile = function () {
         appApplication.addRequested = true;
         appApplication.gridOptions.advancedSearchData.engine.ExportFile = appApplication.ExportFileClass;
-        ajax.call(mainPathApi + 'ApplicationApp/exportfile', appApplication.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationApp/exportfile', appApplication.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             appApplication.addRequested = false;
             rashaErManage.checkAction(response);
             appApplication.reportDownloadLink = response.LinkFile;
@@ -797,7 +797,7 @@
 
     //Get TotalRowCount
     appApplication.getCount = function () {
-        ajax.call(mainPathApi + "ApplicationApp/count", appApplication.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "ApplicationApp/count", appApplication.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             appApplication.addRequested = false;
             rashaErManage.checkAction(response);
             appApplication.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -810,10 +810,10 @@
 
     appApplication.buildApp = function (App, LastBuildStatus) {
         rashaErManage.showMessage("دستور برای سرور ارسال شد");
-        ajax.call(mainPathApi + 'ApplicationApp/buildApp', App.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationApp/buildApp', App.Id, 'GET').success(function (response) {
             /* var myVar = setInterval(myTimer,10000);
              function myTimer() {
-                 ajax.call(mainPathApi+'ApplicationApp/getviewmodel', App.Id, 'GET').success(function (response) {
+                 ajax.call(cmsServerConfig.configApiServerPath+'ApplicationApp/getviewmodel', App.Id, 'GET').success(function (response) {
                      $("#LastBuildStatusID").empty();
                    
                      $(document).ready(function()
@@ -880,11 +880,11 @@
                 SearchType: 0,
                 IntValue1: node.Id
             });
-            ajax.call(mainPathApi + "FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(mainPathApi + "FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -905,9 +905,9 @@
             return;
         }
         appApplication.selectedItem.LinkModulesFilesIdIcon = node.Id;
-        appApplication.selectedItem.previewImageSrc = mainPathCmsFiles + "loader.gif";
-        ajax.call(mainPathApi + "FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            appApplication.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
+        appApplication.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages + "loader.gif";
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            appApplication.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
@@ -960,7 +960,7 @@
         //تغییر مقادیر
 
 
-        ajax.call(mainPathApi + 'Applicationthemeconfig/getAll', {
+        ajax.call(cmsServerConfig.configApiServerPath + 'Applicationthemeconfig/getAll', {
             Filters: [{
                 PropertyName: "LinkSourceId",
                 IntValue1: sourceId
@@ -1108,7 +1108,7 @@
         if (appApplication.selectedItem.memberIds != '' && appApplication.sendMode == "memberId")
             appApplication.selectedItem.LinkMemberIds = appApplication.selectedItem.memberIds.split(',');
 
-        ajax.call(mainPathApi + 'ApplicationLogNotification/SendNotification', appApplication.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLogNotification/SendNotification', appApplication.selectedItem, 'POST').success(function (response) {
             appApplication.busyIndicator.isActive = false;
             appApplication.addRequested = false;
             appApplication.sendButtonText = "ارسال";

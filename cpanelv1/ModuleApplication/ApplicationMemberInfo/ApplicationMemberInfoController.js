@@ -67,7 +67,7 @@
     }
     memberInfo.init = function () {
         memberInfo.busyIndicator.isActive = true;
-        ajax.call(mainPathApi + "Applicationmemberinfo/getall", memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "Applicationmemberinfo/getall", memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
 
             memberInfo.busyIndicator.isActive = false;
@@ -85,19 +85,19 @@
             rashaErManage.checkAction(data, errCode);
         });
         //@help برای زمانبندی
-        ajax.call(mainPathApi + "TaskSchedulerSchedule/getAllScheduleCronType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "TaskSchedulerSchedule/getAllScheduleCronType", {}, 'POST').success(function (response) {
             memberInfo.ScheduleCronType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(mainPathApi + "ApplicationEnum/EnumNotificationType", '', 'GET').success(function (responseGetEnum) {
+        ajax.call(cmsServerConfig.configApiServerPath + "ApplicationEnum/EnumNotificationType", '', 'GET').success(function (responseGetEnum) {
             rashaErManage.checkAction(responseGetEnum);
             if (responseGetEnum.IsSuccess)
                 memberInfo.EnumNotificationType = responseGetEnum.ListItems;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(mainPathApi + "TaskSchedulerSchedule/getAllDayOfWeek", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "TaskSchedulerSchedule/getAllDayOfWeek", {}, 'POST').success(function (response) {
             memberInfo.weekdays = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -115,7 +115,7 @@
 
         memberInfo.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(mainPathApi + 'ApplicationmemberInfo/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationmemberInfo/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             memberInfo.busyIndicator.isActive = false;
@@ -140,7 +140,7 @@
         }
         memberInfo.busyIndicator.isActive = true;
         memberInfo.addRequested = true;
-        ajax.call(mainPathApi + 'ApplicationMemberInfo/add', memberInfo.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationMemberInfo/add', memberInfo.selectedItem, 'POST').success(function (response) {
             memberInfo.addRequested = false;
             memberInfo.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -166,7 +166,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(mainPathApi + 'ApplicationMemberInfo/getviewmodel', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationMemberInfo/getviewmodel', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -188,7 +188,7 @@
             return;
         }
         memberInfo.busyIndicator.isActive = true;
-        ajax.call(mainPathApi + 'ApplicationMemberInfo/edit', memberInfo.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationMemberInfo/edit', memberInfo.selectedItem, 'PUT').success(function (response) {
             memberInfo.addRequested = true;
             rashaErManage.checkAction(response);
             memberInfo.busyIndicator.isActive = false;
@@ -234,11 +234,11 @@
                 memberInfo.busyIndicator.isActive = true;
                 console.log(memberInfo.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(mainPathApi + 'ApplicationMemberInfo/getviewmodel', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationMemberInfo/getviewmodel', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     memberInfo.selectedItemForDelete = response.Item;
-                    ajax.call(mainPathApi + 'ApplicationMemberInfo/delete', memberInfo.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationMemberInfo/delete', memberInfo.selectedItemForDelete, 'DELETE').success(function (res) {
                         rashaErManage.checkAction(res);
                         memberInfo.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -423,7 +423,7 @@
     memberInfo.exportFile = function () {
         memberInfo.addRequested = true;
         memberInfo.gridOptions.advancedSearchData.engine.ExportFile = memberInfo.ExportFileClass;
-        ajax.call(mainPathApi + 'ApplicationMemberInfo/exportfile', memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationMemberInfo/exportfile', memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             memberInfo.addRequested = false;
             rashaErManage.checkAction(response);
             memberInfo.reportDownloadLink = response.LinkFile;
@@ -493,7 +493,7 @@
     }
     //Get TotalRowCount
     memberInfo.getCount = function () {
-        ajax.call(mainPathApi + "ApplicationMemberInfo/count", memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "ApplicationMemberInfo/count", memberInfo.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             memberInfo.addRequested = false;
             rashaErManage.checkAction(response);
             memberInfo.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -624,7 +624,7 @@
         if (memberInfo.selectedItem.memberIds != '')
             memberInfo.selectedItem.LinkMemberIds = memberInfo.selectedItem.memberIds.split(',');
 
-        ajax.call(mainPathApi + 'ApplicationLogNotification/SendNotification', memberInfo.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLogNotification/SendNotification', memberInfo.selectedItem, 'POST').success(function (response) {
             memberInfo.busyIndicator.isActive = false;
             memberInfo.addRequested = false;
             memberInfo.sendButtonText = "ارسال";

@@ -10,7 +10,7 @@
     checked_ = false;
     schedule.ProcessesListItems = [];
         // Get All ProcessCategory
-        ajax.call(mainPathApi+"TaskSchedulerProcessCategory/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerProcessCategory/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             schedule.cmsModulesListItems = response.ListItems;
             //schedule.busyIndicator.isActive = false;
@@ -140,12 +140,12 @@
     //init Function
     schedule.init = function () {
         schedule.contentBusyIndicator = true;
-        ajax.call(mainPathApi+"TaskSchedulerSchedule/getAllScheduleCronType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/getAllScheduleCronType", {}, 'POST').success(function (response) {
             schedule.ScheduleCronType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(mainPathApi+"TaskSchedulerSchedule/getAllDayOfWeek", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/getAllDayOfWeek", {}, 'POST').success(function (response) {
             schedule.weekdays = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -160,7 +160,7 @@
         /*var engine={};
         engine.Filters = [];
         engine.Filters.push(filterModel);*/
-        ajax.call(mainPathApi+"TaskSchedulerSchedule/getall", filterModel, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/getall", filterModel, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             schedule.ListItems = response.ListItems;
             schedule.gridOptions.fillData(schedule.ListItems, response.resultAccess); // Sending Access as an argument
@@ -177,7 +177,7 @@
     };
  schedule.showTaskLog = function () {
         //schedule.contentBusyIndicator = true;
-        ajax.call(mainPathApi+"TaskSchedulerTaskLog/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerTaskLog/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             schedule.ListItems = response.ListItems;
             schedule.gridOptionsTaskLog.fillData(schedule.ListItems, response.resultAccess); // Sending Access as an argument
@@ -201,7 +201,7 @@
         schedule.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
         schedule.valueSubmit = [];
-        ajax.call(mainPathApi+'TaskSchedulerSchedule/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             schedule.selectedItem = response.Item;
@@ -224,7 +224,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'TaskSchedulerSchedule/getviewmodel', schedule.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/getviewmodel', schedule.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             schedule.selectedItem = response1.Item;
@@ -294,7 +294,7 @@
         schedule.addRequested = true;
         schedule.selectedItem.ScheduleUsageType=2;
         //schedule.selectedItem.ProcessInputValue = $.trim(angular.toJson(schedule.valueSubmit));
-        ajax.call(mainPathApi+'TaskSchedulerSchedule/add', schedule.selectedItem, 'POST').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/add', schedule.selectedItem, 'POST').success(function (response1) {
             rashaErManage.checkAction(response1);
             schedule.contentBusyIndicator.isActive = false;
             if (response1.IsSuccess) {
@@ -335,7 +335,7 @@
            }
         schedule.contentBusyIndicator.isActive = true;
         schedule.editRequested = true;
-        ajax.call(mainPathApi+'TaskSchedulerSchedule/edit', schedule.selectedItem, 'PUT').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/edit', schedule.selectedItem, 'PUT').success(function (response1) {
             schedule.editRequested = false;
             rashaErManage.checkAction(response1);
             schedule.contentBusyIndicator.isActive = false;
@@ -366,14 +366,14 @@
                 schedule.showbusy = true;
                 schedule.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'TaskSchedulerSchedule/getviewmodel', schedule.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/getviewmodel', schedule.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     schedule.showbusy = false;
                     schedule.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     schedule.selectedItemForDelete = response.Item;
                     console.log(schedule.selectedItemForDelete);
-                    ajax.call(mainPathApi+"TaskSchedulerSchedule/delete", schedule.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/delete", schedule.selectedItemForDelete, "DELETE").success(function (res) {
                         schedule.contentBusyIndicator.isActive = false;
                         schedule.treeConfig.showbusy = false;
                         schedule.showIsBusy = false;
@@ -527,7 +527,7 @@
     schedule.exportFile = function () {
         schedule.gridOptions.advancedSearchData.engine.ExportFile = schedule.ExportFileClass;
         schedule.addRequested = true;
-        ajax.call(mainPathApi+'TaskSchedulerSchedule/exportfile', schedule.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/exportfile', schedule.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             schedule.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -570,7 +570,7 @@
     }
     //Get TotalRowCount
     schedule.getCount = function () {
-        ajax.call(mainPathApi+"TaskSchedulerSchedule/count", schedule.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"TaskSchedulerSchedule/count", schedule.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             schedule.addRequested = false;
             rashaErManage.checkAction(response);
             schedule.ListItemsTotalRowCount = ': ' + response.TotalRowCount;

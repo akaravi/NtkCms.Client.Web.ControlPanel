@@ -132,7 +132,7 @@
         }
 
         musicGalleryShareReciverCategory.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"MusicGalleryShareMainAdminSetting/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"MusicGalleryShareMainAdminSetting/getall", { RowPerPage: 1000 }, 'POST').success(function (response) {
             musicGalleryShareReciverCategory.treeConfig.Items = response.ListItems;
             musicGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
         }).error(function (data, errCode, c, d) {
@@ -142,7 +142,7 @@
         });
 
         musicGalleryShareReciverCategory.contentBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"musicGalleryShareReciverCategory/getall", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"musicGalleryShareReciverCategory/getall", {}, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             musicGalleryShareReciverCategory.ListItems = response.ListItems;
             musicGalleryShareReciverCategory.gridOptions.fillData(musicGalleryShareReciverCategory.ListItems, response.resultAccess); // Sending Access as an argument
@@ -164,7 +164,7 @@
         if (buttonIsPressed) { return };
         musicGalleryShareReciverCategory.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'MusicGalleryShareMainAdminSetting/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryShareMainAdminSetting/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             musicGalleryShareReciverCategory.selectedItem = response.Item;
@@ -177,10 +177,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 musicGalleryShareReciverCategory.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "ShareServerCategory.LinkShareMainAdminSettingId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(musicGalleryShareReciverCategory.dataForTheTree, response2.ListItems);
                     $modal.open({
                         templateUrl: 'cpanelv1/ModuleMusicGallery/MusicGalleryShareMainAdminSetting/add.html',
@@ -210,7 +210,7 @@
 
         musicGalleryShareReciverCategory.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'MusicGalleryShareMainAdminSetting/getviewmodel', musicGalleryShareReciverCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryShareMainAdminSetting/getviewmodel', musicGalleryShareReciverCategory.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             musicGalleryShareReciverCategory.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -227,10 +227,10 @@
                     IntValueForceNullSearch: true
                 }]
             };
-            ajax.call(mainPathApi+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getAll", filterModelParentRootFolders, 'POST').success(function (response1) { //Get root directories
                 musicGalleryShareReciverCategory.dataForTheTree = response1.ListItems;
                 var filterModelRootFiles = { Filters: [{ PropertyName: "ShareServerCategory.LinkShareMainAdminSettingId", SearchType: 0, IntValue1: null, IntValueForceNullSearch: true }] };
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", filterModelRootFiles, 'POST').success(function (response2) { //Get files in root
                     Array.prototype.push.apply(musicGalleryShareReciverCategory.dataForTheTree, response2.ListItems);
                     //Set selected files to treeControl
                     if (musicGalleryShareReciverCategory.selectedItem.LinkMainImageId > 0)
@@ -263,7 +263,7 @@
         musicGalleryShareReciverCategory.selectedItem.LinkParentId = null;
         if (musicGalleryShareReciverCategory.treeConfig.currentNode != null)
             musicGalleryShareReciverCategory.selectedItem.LinkParentId = musicGalleryShareReciverCategory.treeConfig.currentNode.Id;
-        ajax.call(mainPathApi+'MusicGalleryShareMainAdminSetting/add', musicGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryShareMainAdminSetting/add', musicGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
             musicGalleryShareReciverCategory.addRequested = false;
             rashaErManage.checkAction(response);
             //console.log(response);
@@ -291,7 +291,7 @@
         }
         musicGalleryShareReciverCategory.categoryBusyIndicator.isActive = true;
         musicGalleryShareReciverCategory.addRequested = true;
-        ajax.call(mainPathApi+'MusicGalleryShareMainAdminSetting/edit', musicGalleryShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryShareMainAdminSetting/edit', musicGalleryShareReciverCategory.selectedItem, 'PUT').success(function (response) {
             //musicGalleryShareReciverCategory.showbusy = false;
             musicGalleryShareReciverCategory.treeConfig.showbusy = false;
             musicGalleryShareReciverCategory.addRequested = false;
@@ -322,12 +322,12 @@
                 musicGalleryShareReciverCategory.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+'MusicGalleryShareMainAdminSetting/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryShareMainAdminSetting/getviewmodel', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     musicGalleryShareReciverCategory.selectedItemForDelete = response.Item;
                     console.log(musicGalleryShareReciverCategory.selectedItemForDelete);
-                    ajax.call(mainPathApi+'MusicGalleryShareMainAdminSetting/delete', musicGalleryShareReciverCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryShareMainAdminSetting/delete', musicGalleryShareReciverCategory.selectedItemForDelete, 'DELETE').success(function (res) {
                         musicGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //musicGalleryShareReciverCategory.replaceCategoryItem(musicGalleryShareReciverCategory.treeConfig.Items, node.Id);
@@ -377,7 +377,7 @@
             }
             musicGalleryShareReciverCategory.gridOptions.advancedSearchData.engine.Filters.push(s);
         }
-        ajax.call(mainPathApi+"musicGalleryShareReciverCategory/getall", musicGalleryShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"musicGalleryShareReciverCategory/getall", musicGalleryShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             musicGalleryShareReciverCategory.contentBusyIndicator.isActive = false;
             musicGalleryShareReciverCategory.ListItems = response.ListItems;
@@ -404,7 +404,7 @@
         musicGalleryShareReciverCategory.addRequested = false;
         musicGalleryShareReciverCategory.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'musicGalleryShareReciverCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'musicGalleryShareReciverCategory/getviewmodel', "0", 'GET').success(function (response) {
             buttonIsPressed = false;
             //console.log(response);
             rashaErManage.checkAction(response);
@@ -430,7 +430,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(mainPathApi+'musicGalleryShareReciverCategory/getviewmodel', musicGalleryShareReciverCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'musicGalleryShareReciverCategory/getviewmodel', musicGalleryShareReciverCategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             musicGalleryShareReciverCategory.selectedItem = response1.Item;
@@ -457,7 +457,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Subscription_Please_Select_The_Category'));
             return;
         }
-        ajax.call(mainPathApi+'musicGalleryShareReciverCategory/add', musicGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'musicGalleryShareReciverCategory/add', musicGalleryShareReciverCategory.selectedItem, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             musicGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
             if (response.IsSuccess) {
@@ -491,7 +491,7 @@
             rashaErManage.showMessage($filter('translatentk')('To_Add_A_Subscription_Please_Select_The_Category'));
             return;
         }
-        ajax.call(mainPathApi+'musicGalleryShareReciverCategory/edit', musicGalleryShareReciverCategory.selectedItem, 'PUT').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'musicGalleryShareReciverCategory/edit', musicGalleryShareReciverCategory.selectedItem, 'PUT').success(function (response) {
             musicGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
             musicGalleryShareReciverCategory.addRequested = false;
             musicGalleryShareReciverCategory.treeConfig.showbusy = false;
@@ -525,14 +525,14 @@
                 musicGalleryShareReciverCategory.showbusy = true;
                 musicGalleryShareReciverCategory.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(mainPathApi+"musicGalleryShareReciverCategory/getviewmodel", musicGalleryShareReciverCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"musicGalleryShareReciverCategory/getviewmodel", musicGalleryShareReciverCategory.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     musicGalleryShareReciverCategory.showbusy = false;
                     musicGalleryShareReciverCategory.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     musicGalleryShareReciverCategory.selectedItemForDelete = response.Item;
                     console.log(musicGalleryShareReciverCategory.selectedItemForDelete);
-                    ajax.call(mainPathApi+"musicGalleryShareReciverCategory/delete", musicGalleryShareReciverCategory.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"musicGalleryShareReciverCategory/delete", musicGalleryShareReciverCategory.selectedItemForDelete, "DELETE").success(function (res) {
                         musicGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
                         musicGalleryShareReciverCategory.treeConfig.showbusy = false;
                         musicGalleryShareReciverCategory.showIsBusy = false;
@@ -579,7 +579,7 @@
 
     musicGalleryShareReciverCategory.searchData = function () {
         musicGalleryShareReciverCategory.categoryBusyIndicator.isActive = true;
-        ajax.call(mainPathApi+"musicGalleryShareReciverCategory/getall", musicGalleryShareReciverCategory.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"musicGalleryShareReciverCategory/getall", musicGalleryShareReciverCategory.gridOptions.advancedSearchData.engine, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             musicGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
             musicGalleryShareReciverCategory.ListItems = response.ListItems;
@@ -671,7 +671,7 @@
     musicGalleryShareReciverCategory.exportFile = function () {
         musicGalleryShareReciverCategory.addRequested = true;
         musicGalleryShareReciverCategory.gridOptions.advancedSearchData.engine.ExportFile = musicGalleryShareReciverCategory.ExportFileClass;
-        ajax.call(mainPathApi+'musicGalleryShareReciverCategory/exportfile', musicGalleryShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'musicGalleryShareReciverCategory/exportfile', musicGalleryShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             musicGalleryShareReciverCategory.addRequested = false;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
@@ -714,7 +714,7 @@
     }
     //Get TotalRowCount
     musicGalleryShareReciverCategory.getCount = function () {
-        ajax.call(mainPathApi+"musicGalleryShareReciverCategory/count", musicGalleryShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"musicGalleryShareReciverCategory/count", musicGalleryShareReciverCategory.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             musicGalleryShareReciverCategory.addRequested = false;
             rashaErManage.checkAction(response);
             musicGalleryShareReciverCategory.ListItemsTotalRowCount = ': ' + response.TotalRowCount;
@@ -727,7 +727,7 @@
     musicGalleryShareReciverCategory.showCategoryImage = function (mainImageId) {
         if (mainImageId == 0 || mainImageId == null)
             return;
-        ajax.call(mainPathApi+"FileContent/PreviewImage", { id: mainImageId, name: '' }, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/PreviewImage", { id: mainImageId, name: '' }, 'POST').success(function (response) {
             musicGalleryShareReciverCategory.selectedItem.MainImageSrc = response;
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
@@ -759,11 +759,11 @@
             var originalName = node.Title;
             node.messageText = " در حال بارگذاری...";
             filterModel.Filters.push({ PropertyName: "LinkParentId", SearchType: 0, IntValue1: node.Id });
-            ajax.call(mainPathApi+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetAll", filterModel, 'POST').success(function (response1) {
                 angular.forEach(response1.ListItems, function (value, key) {
                     node.Children.push(value);
                 });
-                ajax.call(mainPathApi+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", node.Id, 'POST').success(function (response2) {
                     angular.forEach(response2.ListItems, function (value, key) {
                         node.Children.push(value);
                     });
@@ -784,9 +784,9 @@
             return;
         }
         musicGalleryShareReciverCategory.selectedItem.LinkMainImageId = node.Id;
-        musicGalleryShareReciverCategory.selectedItem.previewImageSrc = mainPathCmsFiles+"loader.gif";
-        ajax.call(mainPathApi+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
-            musicGalleryShareReciverCategory.selectedItem.previewImageSrc = mainPathRouteUploadFiles + response.Item.Id + "/" + response.Item.FileName;
+        musicGalleryShareReciverCategory.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+            musicGalleryShareReciverCategory.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
