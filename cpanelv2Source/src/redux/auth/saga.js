@@ -34,7 +34,7 @@ const loginWithEmailPasswordAsync = async (email, password) => {
         lang: 'fa'
 
     };
-    return await axios.post(cmsServerConfig.mainPath + `/api/CoreUser/userlogin`, postData, {
+    return await axios.post(cmsServerConfig.configMvcServerPath + `/api/CoreUser/userlogin`, postData, {
             headers: headers
         })
         .then(

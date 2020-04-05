@@ -32,7 +32,7 @@ class CompCoreSiteSearchSite extends Component {
       'Authorization': localStorage.getItem('userGlobaltoken') 
   };
   const postData = {  };
-        axios.post(cmsServerConfig.mainPath + `/api/CoreSite/Getall`, postData, {
+        axios.post(cmsServerConfig.configMvcServerPath + `/api/CoreSite/Getall`, postData, {
           headers: headers
       })
       .then(
