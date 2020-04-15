@@ -43,7 +43,7 @@
                 if ($rootScope.tokenInfo)
                     $rootScope.tokenInfo.UserLanguage = topNavBar.language;
                 //End of set language
-                if ($rootScope.tokenInfo == undefined || $rootScope.tokenInfo == null || $rootScope.tokenInfo.UserTicketToken == undefined) {
+                if ($rootScope.tokenInfo == undefined || $rootScope.tokenInfo == null || $rootScope.tokenInfo.token == undefined) {
                     //#help# فقط توکن داریم و از سرور درخواست دریاف اطلاعات می کنیم
                     topNavBar.busyIndicator.isActive = true;
                     ajax.call(cmsServerConfig.configApiServerPath + "CoreUser/SelectCurrentSite/", {}, "POST").success(function (response) {
@@ -56,7 +56,7 @@
                             $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Item.virtual_CmsSite.SubDomain + "." + $rootScope.tokenInfo.Item.virtual_CmsSite.Domain + "/";
 
 
-                        localStorage.setItem("userGlobaltoken", response.UserTicketToken);
+                        localStorage.setItem("userGlobaltoken", response.token);
                         topNavBar.setDiskSpaceInfo();
                         //SET
                         topNavBar.busyIndicator.isActive = false;
@@ -87,7 +87,7 @@
             topNavBar.appLoginById = function (NewSiteid, NewUserid) {
                 topNavBar.closeModal();
                 if ((NewSiteid != undefined && NewSiteid > 0) || (NewUserid != undefined && NewUserid > 0)) {
-                    if ($rootScope.tokenInfo == undefined || $rootScope.tokenInfo == null || $rootScope.tokenInfo.UserTicketToken == undefined) {
+                    if ($rootScope.tokenInfo == undefined || $rootScope.tokenInfo == null || $rootScope.tokenInfo.token == undefined) {
                         rashaErManage.showMessage("حساب کاربری شما این دسترسی را ندارد");
                         return;
                     };
@@ -110,7 +110,7 @@
                             $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Item.virtual_CmsSite.SubDomain + "." + $rootScope.tokenInfo.Item.virtual_CmsSite.Domain + "/";
 
 
-                        localStorage.setItem("userGlobaltoken", response.UserTicketToken);
+                        localStorage.setItem("userGlobaltoken", response.token);
                         rashaErManage.showMessage("دسترسی جدید اعمال شد");
                         $state.reload();
                         topNavBar.busyIndicator.isActive = false;
@@ -135,7 +135,7 @@
                 var SelectedCurrentSiteId = 0;
                 var oderShowAllDataStatus = false;
                 var oderShowProfessionalDataStatus = false;
-                if ($rootScope.tokenInfo != undefined || $rootScope.tokenInfo == null || $rootScope.tokenInfo.UserTicketToken == undefined) {
+                if ($rootScope.tokenInfo != undefined || $rootScope.tokenInfo == null || $rootScope.tokenInfo.token == undefined) {
                     SelectedCurrentSiteId = $rootScope.tokenInfo.Item.virtual_CmsSite.Id;
                     oderShowAllDataStatus = $rootScope.tokenInfo.UserAccessAdminAllowToAllData;
                     oderShowProfessionalDataStatus = $rootScope.tokenInfo.UserAccessAdminAllowToProfessionalData;
@@ -173,7 +173,7 @@
 
                     if (data != 'UserAccessAdminAllowToAllData' && data != 'UserAccessAdminAllowToProfessionalData')
                         topNavBar.selectedItem.LinkCmsSiteId = SelectedCurrentSiteId;
-                    localStorage.setItem("userGlobaltoken", response.UserTicketToken);
+                    localStorage.setItem("userGlobaltoken", response.token);
                     if (!Silent)
                         rashaErManage.showMessage("دسترسی جدید اعمال گردید");
                     if (!Silent)

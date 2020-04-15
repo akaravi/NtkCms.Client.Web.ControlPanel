@@ -26,6 +26,7 @@ import { NbAuthStrategyOptions } from './strategies/auth-strategy-options';
 import { NbDummyAuthStrategy } from './strategies/dummy/dummy-strategy';
 import { NbOAuth2AuthStrategy } from './strategies/oauth2/oauth2-strategy';
 import { NbPasswordAuthStrategy } from './strategies/password/password-strategy';
+import { NbNtkcmsAuthStrategy } from './strategies/ntkcms/ntkcms-strategy';
 
 import {
   defaultAuthOptions,
@@ -130,6 +131,7 @@ export class NgxAuthModule {
         NbTokenService,
         NbDummyAuthStrategy,
         NbPasswordAuthStrategy,
+        NbNtkcmsAuthStrategy,
         NbOAuth2AuthStrategy,
       ],
     };

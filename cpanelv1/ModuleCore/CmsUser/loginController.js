@@ -30,7 +30,7 @@
             login.loginRequest = false;
             login.loginBusyIndicator.isActive = false;
             if (response.IsSuccess && response.Item) {
-                localStorage.setItem("userGlobaltoken", response.UserTicketToken);
+                localStorage.setItem("userGlobaltoken", response.token);
                 $state.go("siteSelector", {});
                 //$state.go("index.main", {});
 

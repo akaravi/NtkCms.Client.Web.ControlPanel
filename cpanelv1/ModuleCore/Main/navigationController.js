@@ -157,7 +157,7 @@
             currentSite = $rootScope.tokenInfo.Item.virtual_CmsSite.Id;
         //rashaErManage.showMessage("دستور تغییر دسترسی به سرور ارسال گردید...");
         ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/SelectCurrentSite/", { id: currentSite }, "POST").success(function (response) {
-            localStorage.setItem("userGlobaltoken", response.UserTicketToken);
+            localStorage.setItem("userGlobaltoken", response.token);
             //rashaErManage.showMessage("دسترسی جدید اعمال گردید");
             $rootScope.tokenInfo = response;
 

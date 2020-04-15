@@ -38,7 +38,7 @@ app.controller('wizardCtrl', ["$scope", "$http", "$state", "ajax", "rashaErManag
                 rashaErManage.checkAction(response);
                 wizCtrl.isBusy = false;
                 if (response.IsSuccess && response.Item) {
-                    localStorage.setItem('userGlobaltoken', response.UserTicketToken);
+                    localStorage.setItem('userGlobaltoken', response.token);
                     //به بخش ایجاد سایت جدید می رود
                     $state.go("newsite");
                 }

@@ -1,6 +1,10 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NbDummyAuthStrategy } from '../@theme/components/auth/strategies/dummy/dummy-strategy';
+import { NbNtkcmsAuthStrategy } from '../@theme/components/auth/strategies/ntkcms/ntkcms-strategy';
+//import { NbPasswordAuthStrategy } from '../@theme/components/auth/strategies/password/password-strategy';
+import { NbOAuth2AuthStrategy } from '../@theme/components/auth/strategies/oauth2/oauth2-strategy';
+
 import { NgxAuthModule } from '../@theme/components/auth/auth.module';
 import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
 import { of as observableOf } from 'rxjs';
@@ -105,12 +109,26 @@ export const NB_CORE_PROVIDERS = [
   ...DATA_SERVICES,
   ...NgxAuthModule.forRoot({
 
+    //strategies: [
+      // NbDummyAuthStrategy.setup({
+      //   name: 'email',
+      //   delay: 3000,
+      // }),
+    //],
     strategies: [
-      NbDummyAuthStrategy.setup({
+      NbNtkcmsAuthStrategy.setup({
         name: 'email',
-        delay: 3000,
       }),
     ],
+    // strategies: [
+    //   NbOAuth2AuthStrategy.setup({
+        //name: 'oauth',
+        // redirect: {
+        //   success: '/welcome/', // welcome page path
+        //   failure: null, // stay on the same page
+        // },
+    //   }),
+    // ],
     forms: {
       login: {
         socialLinks: socialLinks,

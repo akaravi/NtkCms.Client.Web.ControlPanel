@@ -277,7 +277,7 @@
         var oderShowAllDataStatus = false;
         var oderShowProfessionalDataStatus = false;
 
-        if ($rootScope.tokenInfo != undefined || $rootScope.tokenInfo==null || $rootScope.tokenInfo.UserTicketToken==undefined) {
+        if ($rootScope.tokenInfo != undefined || $rootScope.tokenInfo==null || $rootScope.tokenInfo.token==undefined) {
             oldSelectedUserId = $rootScope.tokenInfo.Item.LinkUserId;
             oderShowAllDataStatus = $rootScope.tokenInfo.UserAccessAdminAllowToAllData;
             oderShowProfessionalDataStatus = $rootScope.tokenInfo.UserAccessAdminAllowToProfessionalData;
@@ -298,7 +298,7 @@
             if ($rootScope.tokenInfo.Item.virtual_CmsSite.SubDomain && $rootScope.tokenInfo.Item.virtual_CmsSite.SubDomain.length > 0)
                 $rootScope.infoDomainAddress = "http://" + $rootScope.tokenInfo.Item.virtual_CmsSite.SubDomain + "." + $rootScope.tokenInfo.Item.virtual_CmsSite.Domain + "/";
 
-            localStorage.setItem("userGlobaltoken", response.UserTicketToken);
+            localStorage.setItem("userGlobaltoken", response.token);
             
             $state.reload();
 

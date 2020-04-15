@@ -75,7 +75,7 @@ function* loginWithEmailPassword({
         if (loginUser.IsSuccess) {
             localStorage.setItem('user_id', loginUser.Item);
             localStorage.setItem('user', loginUser.Item);
-            localStorage.setItem('userGlobaltoken', loginUser.UserTicketToken);
+            localStorage.setItem('userGlobaltoken', loginUser.token);
 
             yield put(loginUserSuccess(loginUser));
             history.push('/');

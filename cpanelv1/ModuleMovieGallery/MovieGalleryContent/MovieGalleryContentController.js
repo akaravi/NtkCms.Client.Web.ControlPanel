@@ -128,7 +128,7 @@
     $scope.$on('$dropletReady', function whenDropletReady() {
         mvGallery.interface.allowedExtensions(['png', 'jpg', 'bmp', 'gif', 'svg', 'torrent']);
         mvGallery.interface.setRequestUrl('/cmsmovieGallery/upload');
-        var userglobaltoken = $rootScope.tokenInfo.UserTicketToken;
+        var userglobaltoken = $rootScope.tokenInfo.token;
         var data = {};
         data.userToken = userglobaltoken;
         data.LinkmovieGalleryCategoryId = mvGallery.treeConfig.currentNode.Id;

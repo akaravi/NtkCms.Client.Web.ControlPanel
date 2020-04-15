@@ -570,7 +570,7 @@
             data: JSON.stringify(FilterModel),
             url: cmsServerConfig.configApiServerPath+"FileCategory/getall",
             contentType: "application/json",
-            headers: { "Authorization": $rootScope.tokenInfo.UserTicketToken },
+            headers: { "Authorization": $rootScope.tokenInfo.token },
             success: function (response1) {
                 // response1.ListItems is list of all categories
                 // Get all the Files
@@ -580,7 +580,7 @@
                     data: JSON.stringify(FilterModel),
                     url: cmsServerConfig.configApiServerPath+"FileContent/getall",
                     contentType: "application/json",
-                    headers: { "Authorization": $rootScope.tokenInfo.UserTicketToken },
+                    headers: { "Authorization": $rootScope.tokenInfo.token },
                     success: function (request2) {
                         ret.fileList = request2.ListItems;
                         ret.list = fileTreeMakeCategory(response1.ListItems, request2.ListItems);
