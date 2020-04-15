@@ -3,16 +3,16 @@
 
 <nb-alert *ngIf="showMessages.error && errors?.length && !submitted" outline="danger" role="alert">
   <p class="alert-title"><b>Oمشکلی در ورود به وجود آمده است</b></p>
-  <!--<ul class="alert-message-list">
+  <ul class="alert-message-list">
     <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
-  </ul>-->
+  </ul>
 </nb-alert>
 
 <nb-alert *ngIf="showMessages.success && messages?.length && !submitted" outline="success" role="alert">
   <p class="alert-title"><b>ورود با موفقیت انجام شد</b></p>
-  <!--<ul class="alert-message-list">
+  <ul class="alert-message-list">
     <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
-  </ul>-->
+  </ul>
 </nb-alert>
 
 <form (ngSubmit)="login()" #form="ngForm" aria-labelledby="title">

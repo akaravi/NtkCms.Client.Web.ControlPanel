@@ -17,6 +17,7 @@ import {
   ntkcmsStrategyOptions,
 } from "./ntkcms-strategy-options";
 import { NbAuthIllegalTokenError } from "../../services/token/token";
+import { NbTokenLocalStorage } from "../../services/token/token-storage";
 
 /**
  * The most common authentication provider for email/password strategy.
@@ -151,7 +152,8 @@ export class NbNtkcmsAuthStrategy extends NbAuthStrategy {
   ): [NbAuthStrategyClass, NbNtkcmsAuthStrategyOptions] {
     return [NbNtkcmsAuthStrategy, options];
   }
-
+  //,protected tokenService: NbTokenService
+  protected tokenLocalStorage: NbTokenLocalStorage;
   constructor(protected http: HttpClient, private route: ActivatedRoute) {
     super();
   }
@@ -161,8 +163,7 @@ export class NbNtkcmsAuthStrategy extends NbAuthStrategy {
     const method = this.getOption(`${module}.method`);
     const url = this.getActionEndpoint(module);
     const requireValidToken = this.getOption(`${module}.requireValidToken`);
-    //modelData = {body: data, observe: 'response'};
-    //var modelData = {username: data.email, pwd:data.password};
+
     return this.http
       .request(method, url, { body: data, observe: "response" })
       .pipe(
@@ -174,23 +175,37 @@ export class NbNtkcmsAuthStrategy extends NbAuthStrategy {
           return res;
         }),
         map((res) => {
-          var token_ = this.getOption("token.getter")(
-            module,
-            res,
-            this.options
-          );
-          var retdirect_ = "";
+      
           if (res.body["IsSuccess"])
-            retdirect_ = this.getOption(`${module}.redirect.success`);
-          return new NbAuthResult(
-            res.body["IsSuccess"],
-            res,
-            retdirect_,
-            //[],
-            this.getOption("messages.getter")(module, res, this.options),
-            this.getOption("messages.getter")(module, res, this.options),
-            this.createToken(token_, requireValidToken)
-          );
+          {
+            var token_ = this.getOption("token.getter")(
+              module,
+              res,
+              this.options
+            );
+            return new NbAuthResult(
+              res.body["IsSuccess"],
+              res,
+              this.getOption(`${module}.redirect.success`),
+              //[],
+              this.getOption("messages.getter")(module, res, this.options),
+              this.getOption("messages.getter")(module, res, this.options),
+              this.createToken(token_, requireValidToken)
+            );
+
+          }
+          else{
+            return new NbAuthResult(
+              res.body["IsSuccess"],
+              res,
+              this.getOption(`${module}.redirect.failure`),
+              //[],
+              this.getOption("messages.getter")(module, res, this.options),
+              this.getOption("messages.getter")(module, res, this.options),
+              
+            );
+          }
+          
         }),
         catchError((res) => {
           return this.handleResponseError(res, module);
@@ -291,18 +306,26 @@ export class NbNtkcmsAuthStrategy extends NbAuthStrategy {
         })
       );
   }
+  protected key = "auth_app_token";
 
   logout(): Observable<NbAuthResult> {
     const module = "logout";
     const method = this.getOption(`${module}.method`);
     const url = this.getActionEndpoint(module);
-
+    //var token = this.tokenService.get();
+    //var tokenClass =  this.tokenLocalStorage.get();
+    var tokenClass = JSON.parse(localStorage.getItem(this.key) + "");
+    var token = "";
+    if (tokenClass) token = tokenClass["value"];
     return observableOf({}).pipe(
       switchMap((res: any) => {
         if (!url) {
           return observableOf(res);
         }
-        return this.http.request(method, url, { observe: "response" ,headers:{ } });
+        return this.http.request(method, url, {
+          observe: "response",
+          headers: { Authorization: token },
+        });
       }),
       map((res) => {
         if (this.getOption(`${module}.alwaysFail`)) {
@@ -312,13 +335,31 @@ export class NbNtkcmsAuthStrategy extends NbAuthStrategy {
         return res;
       }),
       map((res) => {
-        return new NbAuthResult(
-          true,
-          res,
-          this.getOption(`${module}.redirect.success`),
-          [],
-          this.getOption("messages.getter")(module, res, this.options)
-        );
+        if (res.body["IsSuccess"])
+        {
+          return new NbAuthResult(
+            res.body["IsSuccess"],
+            res,
+            this.getOption(`${module}.redirect.success`),
+            //[],
+            this.getOption("messages.getter")(module, res, this.options),
+            this.getOption("messages.getter")(module, res, this.options),
+            this.createToken("")
+          );
+
+        }
+        else{
+          return new NbAuthResult(
+            res.body["IsSuccess"],
+            res,
+            this.getOption(`${module}.redirect.failure`),
+            //[],
+            this.getOption("messages.getter")(module, res, this.options),
+            this.getOption("messages.getter")(module, res, this.options),
+          );
+        }
+
+
       }),
       catchError((res) => {
         return this.handleResponseError(res, module);

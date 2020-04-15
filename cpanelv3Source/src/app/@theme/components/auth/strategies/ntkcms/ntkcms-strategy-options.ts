@@ -39,6 +39,7 @@ export interface NbNtkcmsStrategyMessage {
 
 export class NbNtkcmsAuthStrategyOptions extends NbAuthStrategyOptions {
   baseEndpoint? = 'https://apicms.ir/api/auth/';
+  //baseEndpoint? = 'http://localhost:2390/api/auth/';
   login?: boolean | NbNtkcmsStrategyModule = {
     alwaysFail: false,
     endpoint: 'signIn',///'login',
@@ -89,7 +90,7 @@ export class NbNtkcmsAuthStrategyOptions extends NbAuthStrategyOptions {
     endpoint: 'signOut',
     method: 'post',//'delete',
     redirect: {
-      success: '/',
+      success: '/auth/login',
       failure: null,
     },
     defaultErrors: ['Something went wrong, please try again.'],
