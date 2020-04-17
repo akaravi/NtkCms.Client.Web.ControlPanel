@@ -3,18 +3,29 @@ import { NgModule } from '@angular/core';
 
 
 const routes: Routes = [
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  // { path: '**', redirectTo: 'pages' },
+  {
+    path: 'cms',
+    loadChildren: () => import('./cms/cms.module')
+      .then(m => m.CmsModule),
+  },
   {
     path: 'pages',
-    loadChildren: () => import('app/pages/pages.module')
+    loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
   },
   {
     path: 'auth',
-    loadChildren: () => import('app/@theme/components/auth/auth.module')
+    loadChildren: () => import('./@theme/components/auth/auth.module')
       .then(m => m.NgxAuthModule),
-  },
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
- // { path: '**', redirectTo: 'pages' },
+  }
+  ,
+    {
+      path: '**',
+      component: NotFoundComponent,
+    }
+ 
 ];
 
 const config: ExtraOptions = {

@@ -2087,7 +2087,7 @@ function rashaErManage($state, notify, SweetAlert) {
         var ErrorMessage="";
         if (response) {
             //#help# خطا های موجود در درخواست
-            if (!response.ResponseError && response.ErrorMessage) {
+            if (!response.Status && response.ErrorMessage) {
                 console.log(response);
                 notify({
                     message: 'Show Log For More Error',
@@ -2108,7 +2108,7 @@ function rashaErManage($state, notify, SweetAlert) {
                 });
                 return;
             }
-            if (response.ResponseError == 200) {
+            if (response.Status == 200) {
                 if (response.UserTicket) {
                     localStorage.setItem('userGlobaltoken', response.UserTicket);
                 }
@@ -2122,7 +2122,7 @@ function rashaErManage($state, notify, SweetAlert) {
                     //console.log(response.ErrorMessage);
                 }
                 return;
-            } else if (response.ResponseError == 401) {
+            } else if (response.Status == 401) {
                 localStorage.removeItem('userGlobaltoken');
                 if ((Date.now() - lastErroLogin) > 1000)
                     notify({
@@ -2132,28 +2132,28 @@ function rashaErManage($state, notify, SweetAlert) {
                     });
                 lastErroLogin = Date.now();
                 $state.go('login', {});
-            } else if (response.ResponseError == 420) {
+            } else if (response.Status == 420) {
                 if (response.ErrorMessage != '')
                     notify({
                         message: response.ErrorMessage,
                         classes: 'alert-danger',
                         templateUrl: template
                     });
-            } else if (response.ResponseError == 430) {
+            } else if (response.Status == 430) {
                 if (response.ErrorMessage != '')
                     notify({
                         message: response.ErrorMessage,
                         classes: 'alert-warning',
                         templateUrl: template
                     });
-            } else if (response.ResponseError == 440) {
+            } else if (response.Status == 440) {
                 if (response.ErrorMessage != '')
                     notify({
                         message: response.ErrorMessage,
                         classes: 'alert-danger',
                         templateUrl: template
                     });
-            } else if (response.ResponseError == 500) {
+            } else if (response.Status == 500) {
                 if (response.ErrorMessage != '')
                     notify({
                         message: response.ErrorMessage,
@@ -2161,7 +2161,7 @@ function rashaErManage($state, notify, SweetAlert) {
                         templateUrl: template
                     });
                 //#help# ارسال برای سرور
-            } else if (response.ResponseError == 402) {
+            } else if (response.Status == 402) {
                 localStorage.removeItem('userGlobaltoken');
                 $state.go('login', {});
             }else  {
@@ -4077,7 +4077,7 @@ function rashaUpload($compile, ajax, $http) {
 
                 vehicleProperty.FileList = [];
                 //get list of file from category id
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", {}, 'POST').success(function (response) {
                     vehicleProperty.FileList = response.ListItems;
                 }).error(function (data) {
                     console.log(data);
@@ -4912,7 +4912,7 @@ function rashaFileUploaderDraggable($compile, $http, ajax, $modal, rashaErManage
             config.loadTheme = function () {
                 $http.get("cpanelv1/js/directiveTemplate/rashaFileManagerUploaderDragableTheme.html")
                     .then(function (response) {
-                        if (response.status != 200) {
+                        if (response.Status != 200) {
                             rashaErManage.showMessage('Theme Not Found');
                             return;
                         }
@@ -5594,7 +5594,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
 
                 $http.get("cpanelv1/js/directiveTemplate/rashaFileManagerView" + temp + ".html")
                     .then(function (response) {
-                        if (response.status != 200) {
+                        if (response.Status != 200) {
                             rashaErManage.showMessage('Theme Not Found');
                             return;
                         }
@@ -5604,7 +5604,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
 
                         if (file.isText || file.isHtml) {
                             $http.get(cmsServerConfig.configPathFileByIdAndName + file.Id + '/' + file.Title).then(function (responseText) {
-                                if (responseText.status == 200) {
+                                if (responseText.Status == 200) {
                                     config.fileText = responseText.data;
                                     config.modalStack = $modal.open({
                                         template: str,
@@ -5628,7 +5628,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
             config.openUploaderDialog = function () {
                 $http.get("cpanelv1/js/directiveTemplate/rashaFileManagerUploaderDialog.html")
                     .then(function (response) {
-                        if (response.status != 200) {
+                        if (response.Status != 200) {
                             rashaErManage.showMessage('Theme Not Found');
                             return;
                         }

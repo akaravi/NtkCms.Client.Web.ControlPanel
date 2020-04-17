@@ -25,7 +25,7 @@
     login.verifyLogin = function () {
         login.loginRequest = true;
         login.loginBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/userlogin", { 'username': login.usernameData, 'pwd': login.passwordData, 'lang': login.language }, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"Auth/signIn", { 'username': login.usernameData, 'password': login.passwordData, 'lang': login.language }, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             login.loginRequest = false;
             login.loginBusyIndicator.isActive = false;

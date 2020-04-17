@@ -715,7 +715,7 @@
 
         campaignDetailMember.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'POST').success(function (response) {
             campaignDetailMember.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);

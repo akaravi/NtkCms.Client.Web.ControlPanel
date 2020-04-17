@@ -46,7 +46,7 @@ export class NbNtkcmsAuthStrategyOptions extends NbAuthStrategyOptions {
     method: 'post',
     requireValidToken: false,
     redirect: {
-      success: '/',
+      success: '/pages',
       failure: null,
     },
     defaultErrors: ['Login/Email combination is not correct, please try again.'],

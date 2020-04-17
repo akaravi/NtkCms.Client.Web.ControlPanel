@@ -296,7 +296,7 @@ objectPropertyType.alreadyExist = function (id, array) {
 
         objectPropertyType.FileList = [];
         //get list of file from category id
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetFilesFromCategory", {}, 'POST').success(function (response) {
             objectPropertyType.FileList = response.ListItems;
         }).error(function (data) {
             console.log(data);

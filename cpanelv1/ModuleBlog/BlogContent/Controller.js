@@ -2034,7 +2034,7 @@
       blogContent.FileList = [];
       //get list of file from category id
       ajax
-        .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", null, "POST")
+        .call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", {}, "POST")
         .success(function (response) {
           blogContent.FileList = response.ListItems;
         })
@@ -2052,7 +2052,7 @@
 
       blogContent.FileList = [];
       //get list of file from category id
-      ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+      ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", {}, 'POST').success(function (response) {
         blogContent.FileList = response.ListItems;
       }).error(function (data) {
         rashaErManage.checkAction(data, errCode);
@@ -2069,7 +2069,7 @@
 
       blogContent.FileList = [];
       //get list of file from category id
-      ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", null, 'POST').success(function (response) {
+      ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetFilesFromCategory", {}, 'POST').success(function (response) {
         blogContent.FileList = response.ListItems;
       }).error(function (data) {
         rashaErManage.checkAction(data, errCode);
