@@ -17,7 +17,7 @@
             </li>
             
             <li class="dropdown" dropdown="">
-                <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle count-info " href="" dropdown-toggle="" ng-show="tokenInfo.UserAccessAdminAllowToAllData" ng-click="topNavBar.appLoginByIdShow()" data-guide="5" title="دسترسی سریع پشتیبانی">
+                <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle count-info " href="" dropdown-toggle="" ng-show="tokenInfo.Item.UserAccessAdminAllowToAllData" ng-click="topNavBar.appLoginByIdShow()" data-guide="5" title="دسترسی سریع پشتیبانی">
                     <span class="fa fa-universal-access " style="font-size:25px"></span> 
                 </a>
             </li>
@@ -43,8 +43,8 @@
     </nav>
     <div class="row" style="margin: 10px;">
         <div class="col-sm-4">
-            <label class="label label-success" style="padding-bottom: 5px;">{{'CURRENT_SITE'|lowercase|translate}}&nbsp;{{tokenInfo.Item.virtual_CmsSite.Title}}&nbsp;[{{tokenInfo.Item.virtual_CmsSite.Id}}]</label>
-            <label class="label label-success" style="padding-bottom: 5px;">{{'ACCESS'|lowercase|translate}}&nbsp;{{tokenInfo.UserTypeTitle}}&nbsp;[{{tokenInfo.Item.virtual_CmsUser.Id}}]</label>
+            <label class="label label-success" style="padding-bottom: 5px;">{{'CURRENT_SITE'|lowercase|translate}}&nbsp;{{tokenInfo.Item.Title}}&nbsp;[{{tokenInfo.Item.SiteId}}]</label>
+            <label class="label label-success" style="padding-bottom: 5px;">{{'ACCESS'|lowercase|translate}}&nbsp;{{tokenInfo.UserTypeTitle}}&nbsp;[{{tokenInfo.Item.UserId}}]</label>
         </div>
         <div class="col-sm-4">
             <angucomplete-alt id="site_selector_autocomplete"
@@ -64,11 +64,11 @@
         </div>
         <div class="col-sm-4"  >
             <button class="btn btn-primary" type="button" ng-click="topNavBar.appFilter()">{{'FILTER'|lowercase|translate}}</button>
-            <button id="UserAccessAdminAllowToAllData_btn" ng-show="tokenInfo.Item.virtual_CmsUserGroup.UserType == 1 || tokenInfo.Item.virtual_CmsUserGroup.UserType == 2 || tokenInfo.Item.virtual_CmsUserGroup.UserType == 3" class="btn btn-primary" name="UserAccessAdminAllowToAllData" ng-model="topNavBar.UserAccessAdminAllowToAllData" ng-click="topNavBar.appFilter('UserAccessAdminAllowToAllData')"  data-guide="4">
-                <i id="UserAccessAdminAllowToAllData_icon" class="fa {{tokenInfo.UserAccessAdminAllowToAllData ? 'fa-toggle-on' : 'fa-toggle-off'}}"></i>&nbsp;{{'SHOW_ALL_DATA'|lowercase|translate}}
+            <button id="UserAccessAdminAllowToAllData_btn" ng-show="tokenInfo.Item.UserType == 1 || tokenInfo.Item.UserType == 2 || tokenInfo.Item.UserType == 3" class="btn btn-primary" name="UserAccessAdminAllowToAllData" ng-model="topNavBar.UserAccessAdminAllowToAllData" ng-click="topNavBar.appFilter('UserAccessAdminAllowToAllData')"  data-guide="4">
+                <i id="UserAccessAdminAllowToAllData_icon" class="fa {{tokenInfo.Item.UserAccessAdminAllowToAllData ? 'fa-toggle-on' : 'fa-toggle-off'}}"></i>&nbsp;{{'SHOW_ALL_DATA'|lowercase|translate}}
             </button>
-            <button id="UserAccessAdminAllowToProfessionalData_btn"   ng-show="tokenInfo.Item.virtual_CmsUserGroup.UserType == 1 || tokenInfo.Item.virtual_CmsUserGroup.UserType == 2 || tokenInfo.Item.virtual_CmsUserGroup.UserType == 3" class="btn btn-primary" name="UserAccessAdminAllowToProfessionalData" ng-model="topNavBar.UserAccessAdminAllowToProfessionalData" ng-click="topNavBar.appFilter('UserAccessAdminAllowToProfessionalData')" data-guide="3">
-                <i id="UserAccessAdminAllowToProfessionalData_icon" class="fa {{tokenInfo.UserAccessAdminAllowToProfessionalData ? 'fa-toggle-on' : 'fa-toggle-off'}}"></i>&nbsp;{{'SHOW_PROFESSIONAL_DATA'|lowercase|translate}}
+            <button id="UserAccessAdminAllowToProfessionalData_btn"   ng-show="tokenInfo.Item.UserType == 1 || tokenInfo.Item.UserType == 2 || tokenInfo.Item.UserType == 3" class="btn btn-primary" name="UserAccessAdminAllowToProfessionalData" ng-model="topNavBar.UserAccessAdminAllowToProfessionalData" ng-click="topNavBar.appFilter('UserAccessAdminAllowToProfessionalData')" data-guide="3">
+                <i id="UserAccessAdminAllowToProfessionalData_icon" class="fa {{tokenInfo.Item.UserAccessAdminAllowToProfessionalData ? 'fa-toggle-on' : 'fa-toggle-off'}}"></i>&nbsp;{{'SHOW_PROFESSIONAL_DATA'|lowercase|translate}}
             </button>
 
         </div>

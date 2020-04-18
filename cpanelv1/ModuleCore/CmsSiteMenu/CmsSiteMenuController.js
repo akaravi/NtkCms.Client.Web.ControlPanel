@@ -306,14 +306,14 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
     cmsSiteMenu.onPageChange = function (selectedPage) {
         //cmsSiteMenu.selectedNode.pageId = selectedPage.Id;
         cmsSiteMenu.selectedNode.pageTitle = selectedPage.Title;
-        cmsSiteMenu.selectedNode.pageDependency = selectedPage.LinkPageDependencyId;
+        cmsSiteMenu.selectedNode.pageDependency = selectedPage.LinkPageDependencyGuId;
         cmsSiteMenu.addRequested = true;
         cmsSiteMenu.selectedNode.AddressLink = "در حال بارگذاری...";
         //var domain = selectedPage.virtual_CmsSite.Domain;
         //if (selectedPage.virtual_CmsSite.SubDomain != "")
         //    domain = selectedPage.virtual_CmsSite.SubDomain + '.' + domain;
         //var moduleName = getModuleTitle(selectedPage.virtual_CmsModulePageDependency.LinkModuleId);
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/getviewmodel', selectedPage.LinkPageDependencyId, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/getviewmodel', selectedPage.LinkPageDependencyGuId, 'GET').success(function (response1) {
             if (response1.IsSuccess) {
                 var pageDependencyClassActionName = response1.Item.ClassActionName;
                 ajax.call(cmsServerConfig.configApiServerPath+'CoreModule/getviewmodel', response1.Item.LinkModuleId, 'GET').success(function (response2) {

@@ -1821,9 +1821,9 @@ function rashaMenuRight($compile) {
                     '<span class="clear">' +
                     '<span class="block m-t-xs">' +
                     //'<span class="font-noraml">{{main.userName}} خوش آمدید</span>' +
-                    '<span class="font-noraml">{{tokenInfo.Item.virtual_CmsUser.Name}} خوش آمدید</span>' +
+                    '<span class="font-noraml">{{tokenInfo.Item.Name}} خوش آمدید</span>' +
                     '<span class="clear">' +
-                    '<span class="font-noraml" dir="ltr" >UserName:({{tokenInfo.Item.virtual_CmsUser.Username}})</span>' +
+                    '<span class="font-noraml" dir="ltr" >UserName:({{tokenInfo.Item.Username}})</span>' +
                     '</span>' +
                     //'<span class="text-muted text-xs block" >{{navigationText}}<b class="caret"></b></span>' +
                     //'</span>' +
@@ -1899,9 +1899,9 @@ function rashaMenuLeft($compile) {
                     '<span class="clear">' +
                     '<span class="block m-t-xs">' +
                     //'<span class="font-noraml">{{main.userName}} خوش آمدید</span>' +
-                    '<span class="font-noraml">{{tokenInfo.Item.virtual_CmsUser.Name}} خوش آمدید</span>' +
+                    '<span class="font-noraml">{{tokenInfo.Item.Name}} خوش آمدید</span>' +
                     '<span class="clear">' +
-                    '<span class="font-noraml" dir="ltr" >UserName:({{tokenInfo.Item.virtual_CmsUser.Username}})</span>' +
+                    '<span class="font-noraml" dir="ltr" >UserName:({{tokenInfo.Item.Username}})</span>' +
                     '</span>' +
                     //'<span class="text-muted text-xs block" >{{navigationText}}<b class="caret"></b></span>' +
                     //'</span>' +
@@ -1967,9 +1967,9 @@ function rashaMenuUp($compile) {
                     //'<a class="dropdown-toggle" dropdown-toggle href>' +
                     //'<span class="clear">' +
                     //'<span class="block m-t-xs">' +
-                    //'<span class="font-noraml">{{tokenInfo.Item.virtual_CmsUser.Name}} upupupupupup</span>' +
+                    //'<span class="font-noraml">{{tokenInfo.Item.Name}} upupupupupup</span>' +
                     //'<span class="clear">' +
-                    //'<span class="font-noraml" dir="ltr" >UserName:({{tokenInfo.Item.virtual_CmsUser.Username}})</span>' +
+                    //'<span class="font-noraml" dir="ltr" >UserName:({{tokenInfo.Item.Username}})</span>' +
                     //'</span>' +
                     //'</a>' +
                     //'</div>' +
@@ -2027,9 +2027,9 @@ function rashaMenuDown($compile) {
                     //'<a class="dropdown-toggle" dropdown-toggle href>' +
                     //'<span class="clear">' +
                     //'<span class="block m-t-xs">' +
-                    //'<span class="font-noraml">{{tokenInfo.Item.virtual_CmsUser.Name}} upupupupupup</span>' +
+                    //'<span class="font-noraml">{{tokenInfo.Item.Name}} upupupupupup</span>' +
                     //'<span class="clear">' +
-                    //'<span class="font-noraml" dir="ltr" >UserName:({{tokenInfo.Item.virtual_CmsUser.Username}})</span>' +
+                    //'<span class="font-noraml" dir="ltr" >UserName:({{tokenInfo.Item.Username}})</span>' +
                     //'</span>' +
                     //'</a>' +
                     //'</div>' +
@@ -2084,6 +2084,8 @@ var lastErroLogin = Date.now();
 function rashaErManage($state, notify, SweetAlert) {
     var template = 'cpanelv1/ModuleCore/common/notify.html';
     this.checkAction = function (response, errCode, c, d) {
+        if(response && response.token&& response.token.length>10)
+            localStorage.setItem("userGlobaltoken", response.token);
         var ErrorMessage="";
         if (response) {
             //#help# خطا های موجود در درخواست
@@ -2278,12 +2280,8 @@ function ajax($http, $state) {
             if (isasync == 'true') isasync = true;
             else isasync = false;
         }
-        //siteuserGlobaltoken
         var userglobaltoken = localStorage.getItem('userGlobaltoken');
-        // data.userToken = userglobaltoken;
         if (method.toUpperCase() == 'GET') {
-
-            //url = url + '?' + $.param(data);
             url = url + '/' + data;
             data = '';
         }
@@ -2297,6 +2295,7 @@ function ajax($http, $state) {
                 'Content-Type': 'application/json',
                 'Authorization': userglobaltoken
             }
+            
             //'transformRequest': function (obj) {
             //    //return $.param(obj);
             //    return JSON.stringify(obj);

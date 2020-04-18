@@ -50,7 +50,7 @@
                                                     <div class='hr-line-dashed'></div>
                                                     <div class="form-group">
                                                         <button class="btn btn-primary" ng-disabled="cmsSitegrd.buttonIsPressed"
-                                                            type="submit"  ng-show="tokenInfo.UserAccessAdminAllowToProfessionalData">
+                                                            type="submit"  ng-show="tokenInfo.Item.UserAccessAdminAllowToProfessionalData">
                                                             {{'save'|lowercase|translate}} </button>
                                                         <button class="btn btn-primary" ng-disabled="cmsSitegrd.buttonIsPressed"
                                                             type="button" ng-click="cmsSitegrd.SiteStorageLoad()">
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel panel-primary" ng-show="tokenInfo.UserAccessAdminAllowToProfessionalData">
+                    <div class="panel panel-primary" ng-show="tokenInfo.Item.UserAccessAdminAllowToProfessionalData">
                         <div class="panel-heading">
                             <h5>
                                 <i class="fa fa-folder-open fa"></i>&nbsp;{{'تنظیمات ماژول'|lowercase|translate}}</h5>
@@ -169,7 +169,7 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <div class="col-md-6" ng-show="tokenInfo.UserAccessAdminAllowToProfessionalData">
+                <div class="col-md-6" ng-show="tokenInfo.Item.UserAccessAdminAllowToProfessionalData">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h5>
@@ -256,7 +256,7 @@
     
                                         <div class="form-group">
                                             <button class="btn btn-primary" ng-disabled="cmsSitegrd.buttonIsPressed"
-                                                type="submit"  ng-show="tokenInfo.UserAccessAdminAllowToProfessionalData"> 
+                                                type="submit"  ng-show="tokenInfo.Item.UserAccessAdminAllowToProfessionalData"> 
                                                 {{'save'|lowercase|translate}} </button>
                                             <button class="btn btn-primary" ng-disabled="cmsSitegrd.buttonIsPressed"
                                                 type="button" ng-click="cmsSitegrd.SiteAccessLoad()">
@@ -270,7 +270,7 @@
                     </div>
                 </div>
          
-                <div class="col-md-6" ng-show="tokenInfo.UserAccessAdminAllowToProfessionalData">
+                <div class="col-md-6" ng-show="tokenInfo.Item.UserAccessAdminAllowToProfessionalData">
     
                     <div class="panel panel-primary">
                         <div class="panel-heading">

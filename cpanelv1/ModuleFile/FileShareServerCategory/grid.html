@@ -10,7 +10,7 @@
                             <ul class="tree" tree-options="fileShareServerCategory.treeConfig"></ul>
                         </div>
                         <!-- Category Section -->
-                        <div style="margin-top: 20px;" ng-show="tokenInfo.Item.virtual_CmsUserGroup.UserType == 1 || tokenInfo.Item.virtual_CmsUserGroup.UserType == 2 || tokenInfo.Item.virtual_CmsUserGroup.UserType == 3">
+                        <div style="margin-top: 20px;" ng-show="tokenInfo.Item.UserType == 1 || tokenInfo.Item.UserType == 2 || tokenInfo.Item.UserType == 3">
                             <a ng-click="fileShareServerCategory.toggleCategoryButtons()" title="{{'operatoin'|lowercase|translate}}" class="btn btn-success">
                                 <i class="fa fa-bars" style="text-align: center;" aria-hidden="true"></i>
                             </a>

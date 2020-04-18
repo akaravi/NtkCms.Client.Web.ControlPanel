@@ -1125,7 +1125,7 @@
         rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
         return;
       }
-      if (biographyContent.gridOptions.selectedRow.item.LinkSiteId != $rootScope.tokenInfo.Item.virtual_CmsSite.Id && !$rootScope.tokenInfo.UserAccessAdminAllowToAllData) {
+      if (biographyContent.gridOptions.selectedRow.item.LinkSiteId != $rootScope.tokenInfo.Item.SiteId && !$rootScope.tokenInfo.Item.UserAccessAdminAllowToAllData) {
         rashaErManage.showMessage($filter('translatentk')('This_Biography_Is_Shared'));
         return;
       }

@@ -36,7 +36,7 @@
             }
         }
     }
-
+    
     cmsPageDesign.gridOptions.pageChanged = function (page) {
         cmsPageDesign.gridOptions.advancedSearchData.engine.CurrentPageNumber = cmsPageDesign.gridOptions.currentPageNumber;
         cmsPageDesign.gridOptions.reGetAll();
@@ -79,18 +79,7 @@
         }
         //#help# صفحه بر اساس نیازمندی
 
-        //GetAll MasterPages
-        // var filterMasterPage = { Filters: [] };
-        // filterMasterPage.Filters.push({ PropertyName: "PageAbilityType", SearchType: 0, EnumValue1: "Master" });
-        // if (!angular.isDefined(cmsPageDesign.masterPageListItems))
-        //     ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getall', filterMasterPage, 'POST').success(function (response) {
-        //         rashaErManage.checkAction(response);
-        //         if (response != null) {
-        //             cmsPageDesign.masterPageListItems = response.ListItems;
-        //         }
-        //     }).error(function (data, errCode, c, d) {
-        //         rashaErManage.checkAction(data, errCode);
-        //     });
+
         if (!angular.isDefined(cmsPageDesign.cmsPageTemplatesListItems))
             ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/getallAvailable', {}, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
@@ -109,7 +98,8 @@
     //#cmsPageDesign.init
     //#help#بارگزاری لیست
     cmsPageDesign.onloadmydata = function () {
-        cmsPageDesign.gridOptions.advancedSearchData.engine.Filters.push({ PropertyName: "LinkPageDependencyId", IntValue1: cmsPageDesign.dependencyId, SearchType: 0 }); // Filter pages with LinkPageDependencyId
+        cmsPageDesign.gridOptions.advancedSearchData.engine.Filters=[];
+        cmsPageDesign.gridOptions.advancedSearchData.engine.Filters.push({ PropertyName: "LinkPageDependencyGuId", ObjectIdValue1: cmsPageDesign.dependencyId, SearchType: 0 }); 
         cmsPageDesign.busyIndicator.isActive = true;
         ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getall', cmsPageDesign.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
@@ -185,7 +175,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getviewmodel', '0', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageDesign.selectedItem = response.Item;
-            cmsPageDesign.selectedItem.LinkPageDependencyId = cmsPageDesign.dependencyId;
+            cmsPageDesign.selectedItem.LinkPageDependencyGuId = cmsPageDesign.dependencyId;
             cmsPageDesign.filePickerFavIcon.fileId = 0;
             cmsPageDesign.filePickerFavIcon.fileName = "";
             cmsPageDesign.busyIndicator.isActive = false;
@@ -305,7 +295,7 @@
                 scope: $scope
             });
             // Load Values Backward
-            //cmsPageDesign.LoadModuleOfDependency(item.LinkPageDependencyId);  این تابع در قالب قبلی کاربرد داشت
+            //cmsPageDesign.LoadModuleOfDependency(item.LinkPageDependencyGuId);  این تابع در قالب قبلی کاربرد داشت
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
@@ -440,7 +430,7 @@
         cmsPageDesign.LargeImageSelectPage = {};
         cmsPageDesign.addRequested = true;
         cmsPageDesign.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/GetAllDefaultPagesBySiteCategory', { pageId: cmsPageDesign.selectedItem.Id, LinkSiteCategoryId: categoryId, LinkPageDependencyId: cmsPageDesign.dependencyId }, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/GetAllDefaultPagesBySiteCategory', { pageId: cmsPageDesign.selectedItem.Id, LinkSiteCategoryId: categoryId, LinkPageDependencyGuId: cmsPageDesign.dependencyId }, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsPageDesign.cmsDefaultPageListItems = response.ListItems;

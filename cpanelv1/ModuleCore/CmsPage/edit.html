@@ -42,7 +42,7 @@
                             <div class='form-group' ng-show="cmsPageDesign.gridOptions.resultAccess.AccessEditField.indexOf('LinkCmsPageId')>-1" >
                                 <label class="col-sm-2 control-label">{{'select_master_page'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" ng-model="cmsPageDesign.selectedItem.LinkCmsPageId" ng-disabled="cmsPageDesign.selectedItem.LinkPageDependencyId == 20096">
+                                    <select class="form-control" ng-model="cmsPageDesign.selectedItem.LinkCmsPageId" ng-disabled="cmsPageDesign.selectedItem.LinkPageDependencyGuId == 20096">
                                         <option value="" ng-selected="cmsPageDesign.selectedItem.LinkCmsPageId == Null || cmsPageDesign.selectedItem.LinkCmsPageId == 0">بدون صفحه مستر</option>
                                         <option ng-repeat="x in cmsPageDesign.masterPageListItems" value="{{x.Id}}" ng-selected="cmsPageDesign.selectedItem.LinkCmsPageId == x.Id">>&nbsp;{{x.Title}}</option>
                                     </select>
@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                             <div class='hr-line-dashed'></div>
-                            <div class="form-group" ng-show="cmsPageDesign.gridOptions.resultAccess.AccessEditField.indexOf('LinkPageDependencyId')>-1">
+                            <div class="form-group" ng-show="cmsPageDesign.gridOptions.resultAccess.AccessEditField.indexOf('LinkPageDependencyGuId')>-1">
                                 <label class='col-sm-2 control-label'>{{'need'|lowercase|translate}}</label>
                                 <div class="col-sm-10">
                                     <input class="form-control" name="LinkPageDependencyTitle" readonly="readonly" value="{{cmsPageDesign.dependencyTitle}}" />

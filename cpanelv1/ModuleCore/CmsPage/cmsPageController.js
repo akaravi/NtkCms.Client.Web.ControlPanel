@@ -177,7 +177,7 @@
                 scope: $scope
             });
             // Load Values Backward
-            cmsPagegrd.LoadModuleOfDependency(item.LinkPageDependencyId);
+            cmsPagegrd.LoadModuleOfDependency(item.LinkPageDependencyGuId);
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
@@ -291,7 +291,7 @@
             cmsPagegrd.PageDependenciesListItems = response.ListItems;
             // خودبخود فراخوانی نمی شود LoadModuleOfDependency اگر ماژول انتخاب شده فقط یک وابستگی داشته باشد تابع 
             if (response.ListItems.length == 1)
-                cmsPagegrd.selectedItem.LinkPageDependencyId = response.ListItems[0].Id;
+                cmsPagegrd.selectedItem.LinkPageDependencyGuId = response.ListItems[0].Id;
         }).error(function (data, errCode, c, d) {
             cmsPagegrd.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
@@ -306,7 +306,7 @@
                     ajax.call(cmsServerConfig.configApiServerPath+'CoreModule/getviewmodel', response1.Item.LinkModuleId, 'GET').success(function (response2) {
                         rashaErManage.checkAction(response2);
                         cmsPagegrd.selectedItem.LinkModuleId = response2.Item.Id;
-                        cmsPagegrd.selectedItem.LinkPageDependencyId = pageDependencyId;
+                        cmsPagegrd.selectedItem.LinkPageDependencyGuId = pageDependencyId;
                         cmsPagegrd.onModuleChange(cmsPagegrd.selectedItem.LinkModuleId);
                     }).error(function (data, errCode, c, d) {
                         rashaErManage.checkAction(data, errCode);

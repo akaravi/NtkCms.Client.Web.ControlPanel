@@ -1120,7 +1120,7 @@
         rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
         return;
       }
-      if (newsContent.gridOptions.selectedRow.item.LinkSiteId != $rootScope.tokenInfo.Item.virtual_CmsSite.Id && !$rootScope.tokenInfo.UserAccessAdminAllowToAllData) {
+      if (newsContent.gridOptions.selectedRow.item.LinkSiteId != $rootScope.tokenInfo.Item.SiteId && !$rootScope.tokenInfo.Item.UserAccessAdminAllowToAllData) {
         rashaErManage.showMessage($filter('translatentk')('This_News_Is_Shared'));
         return;
       }

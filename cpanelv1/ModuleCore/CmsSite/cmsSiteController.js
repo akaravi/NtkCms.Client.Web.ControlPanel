@@ -213,7 +213,7 @@
             cmsSitegrd.AccountingFormCreatedDateDatePickerConfig.defaultDate = date;
             cmsSitegrd.AccountingFormUpdatedDateDatePickerConfig.defaultDate = date;
             cmsSitegrd.selectedItem.mode = 1;
-            cmsSitegrd.selectedItem.LinkCreatedBySiteId = $scope.tokenInfo.Item.virtual_CmsSite.Id;
+            cmsSitegrd.selectedItem.LinkCreatedBySiteId = $scope.tokenInfo.Item.SiteId;
             cmsSitegrd.selectedItem.IsActivated = 1;
             $modal.open({
                 templateUrl: 'cpanelv1/ModuleCore/cmsSite/add.html',
@@ -572,7 +572,7 @@
                 type: 'string',
                 visible: true,
                 displayForce: true,
-                template: '<a type="button" ng-show="tokenInfo.UserAccessAllowToChildSite" class="btn btn-info" ng-disabled="cmsSitegrd.addRequested" ng-click="cmsSitegrd.showChildren(x.Id)">نمایش&nbsp;<i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>'
+                template: '<a type="button" ng-show="tokenInfo.Item.UserAccessAllowToChildSite" class="btn btn-info" ng-disabled="cmsSitegrd.addRequested" ng-click="cmsSitegrd.showChildren(x.Id)">نمایش&nbsp;<i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>'
             }
         ],
         data: {},
@@ -1360,7 +1360,7 @@
     //     cmsSitegrd.ModuleConfigSelected = module;
     //     cmsSitegrd.ModuleConfigSelectedSiteId = cmsSitegrd.gridOptions.selectedRow.item.Id;
 
-    //     if ($rootScope.tokenInfo && $rootScope.tokenInfo.UserAccessAdminAllowToProfessionalData) {
+    //     if ($rootScope.tokenInfo && $rootScope.tokenInfo.Item.UserAccessAdminAllowToProfessionalData) {
     //         cmsSitegrd.AdminMainLoad();
     //         cmsSitegrd.SiteDefaultLoad();
     //         cmsSitegrd.SiteAccessDefaultLoad();
@@ -1549,10 +1549,11 @@
     cmsSitegrd.loginToSite = function (selectedId) {
         cmsSitegrd.addRequested = true;
         cmsSitegrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath + "CoreUser/SelectCurrentSite", {
-            id: selectedId,
-            lang: $rootScope.tokenInfo.lang
+        ajax.call(cmsServerConfig.configApiServerPath + "Auth/RenewToken/", {
+            SiteId: selectedId,
+            lang: $rootScope.tokenInfo.Language
         }, 'POST').success(function (response) {
+           
             cmsSitegrd.addRequested = false;
             cmsSitegrd.busyIndicator.isActive = false;
             rashaErManage.showMessage("ورود به سایت موردنظر انجام شد!");

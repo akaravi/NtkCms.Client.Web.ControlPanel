@@ -66,7 +66,7 @@
                                     <li style="text-align: center; background: #1bb394; color: #fff;font-size:15px">{{'htmlbuilder_advanced_tools' |lowercase|translate}}</li>
                                     <li ng-click="cmsPageDesign.openDefaultPagesModal(item)" style="padding: 3px 0;cursor: pointer;"><button class="btn btn-info btn-xs"><span style="width: 18px;" class="fa fa-star" aria-hidden="true"></span></button>&nbsp;{{'select_from_default_pages'|lowercase|translate}}</li>
                                 </ul>
-                                <ul class="folder-list" style="padding: 0" ng-show="tokenInfo.UserAccessAdminAllowToProfessionalData">
+                                <ul class="folder-list" style="padding: 0" ng-show="tokenInfo.Item.UserAccessAdminAllowToProfessionalData">
                                     <li style="text-align: center; background: #1bb394; color: #fff;font-size:15px">{{'htmlbuilder_management_setting'|lowercase|translate}}</li>
                                     <li ng-click="cmsPageDesign.saveFromAdmin(item)" style="padding: 3px 0;cursor: pointer;"><button class="btn btn-primary btn-xs" data-title="select" data-toggle="modal" data-target="#select"><span style="width: 18px;" class="fa fa-floppy-o" aria-hidden="true"></span></button>&nbsp;{{'set_default_admin_page'|lowercase|translate}}</li>
                                     <li style="padding: 3px 0;cursor: pointer;"><button class="btn btn-primary btn-xs" data-title="select" data-toggle="modal" data-target="#select"><span style="width: 18px;" class="glyphicon glyphicon-time" aria-hidden="true"></span></button>&nbsp;آخرین تاریخ آپدیت:{{item.PageJsonValueDefualtByAdminDateTimeUpdate|jalaliDate:'HH:mm jYY/jMM/jDD'}}</li>

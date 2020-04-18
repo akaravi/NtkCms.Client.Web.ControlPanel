@@ -30,9 +30,9 @@ const getCoreUserActSelectCurrentSiteRequestAsync = async (id) => {
         'Authorization': localStorage.getItem('userGlobaltoken') 
     };
     const postData = {
-        id:id
+        SiteId:id
     };
-    return await axios.post(cmsServerConfig.configMvcServerPath + `/api/CoreUser/SelectCurrentSite/`,postData, {
+    return await axios.post(cmsServerConfig.configApiServerPath + `Auth/RenewToken/`,postData, {
             headers: headers
         })
         .then(
