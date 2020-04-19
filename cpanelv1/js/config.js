@@ -7,7 +7,7 @@ var cmsServerConfig = {
     configPathFileByIdAndName:"https://oco.ir/files/",
     configRouteThumbnails:"https://oco.ir/imageThumbnails/",
     nnnnnnnnnnn:"https://apicms.ir/api/files/",
-    configRouteUploadFileContent:"https://oco.ir/api/FileContent/upload/",
+    configRouteUploadFileContent:"https://apicms.ir/api/v1/FileContent/upload/",
 };
 
 //tools
