@@ -1,15 +1,16 @@
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+//import { NotFoundComponent } from './pages/miscellaneous/not-found/not-found.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
   // { path: '**', redirectTo: 'pages' },
-  {
-    path: 'cms',
-    loadChildren: () => import('./cms/cms.module')
-      .then(m => m.CmsModule),
-  },
+  // {
+  //   path: 'cms',
+  //   loadChildren: () => import('./cms/cms.module')
+  //     .then(m => m.CmsModule),
+  // },
   {
     path: 'pages',
     loadChildren: () => import('./pages/pages.module')
@@ -20,11 +21,11 @@ const routes: Routes = [
     loadChildren: () => import('./@theme/components/auth/auth.module')
       .then(m => m.NgxAuthModule),
   }
-  ,
-    {
-      path: '**',
-      component: NotFoundComponent,
-    }
+  // ,
+  //   {
+  //     path: '**',
+  //     component: NotFoundComponent,
+  //   }
  
 ];
 

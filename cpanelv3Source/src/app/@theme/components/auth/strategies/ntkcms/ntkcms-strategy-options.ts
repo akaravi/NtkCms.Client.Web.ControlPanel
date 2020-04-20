@@ -38,7 +38,7 @@ export interface NbNtkcmsStrategyMessage {
 }
 
 export class NbNtkcmsAuthStrategyOptions extends NbAuthStrategyOptions {
-  baseEndpoint? = 'https://apicms.ir/api/auth/';
+  baseEndpoint? = 'https://apicms.ir/api/v1/Auth/';
   //baseEndpoint? = 'http://localhost:2390/api/auth/';
   login?: boolean | NbNtkcmsStrategyModule = {
     alwaysFail: false,

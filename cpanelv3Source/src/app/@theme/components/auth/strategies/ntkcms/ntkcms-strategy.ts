@@ -165,7 +165,7 @@ export class NbNtkcmsAuthStrategy extends NbAuthStrategy {
     const requireValidToken = this.getOption(`${module}.requireValidToken`);
 
     return this.http
-      .request(method, url, { body: data, observe: "response" })
+      .request(method, url, { body: {Username :data.email,password:data.password}, observe: "response" })
       .pipe(
         map((res) => {
           if (this.getOption(`${module}.alwaysFail`)) {
@@ -175,7 +175,6 @@ export class NbNtkcmsAuthStrategy extends NbAuthStrategy {
           return res;
         }),
         map((res) => {
-      
           if (res.body["IsSuccess"])
           {
             var token_ = this.getOption("token.getter")(
