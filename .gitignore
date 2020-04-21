@@ -14,6 +14,13 @@ tempkey.rsa
 /cpanelv3Source/npm-debug.log
 /cpanelv3Source/yarn-error.log
 
+/cpanelv4Source/node_modules
+/cpanelv4Source/node_modules/*
+/cpanelv4Source/dist
+/cpanelv4Source/npm-debug.log
+/cpanelv4Source/yarn-error.log
+
+/BankScript/98125_ariyan_angular/*
 /BankScript/Gogo-React/node_modules/*
 /BankScript/Gogo-React-RTL/node_modules/*
 /BankScript/Gogo-React-RTL/npm-debug.log.1081871002
