@@ -5,8 +5,8 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, tap, switchMap, finalize, filter, take } from 'rxjs/operators';
-import { ToastrService } from 'ngx-toastr';
-//import { AuthService } from '../_services/auth/auth.service';
+//import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../cms/core/auth/auth.service';
 
 
 
@@ -14,8 +14,8 @@ import { ToastrService } from 'ngx-toastr';
 export class ErrorInterceptor implements HttpInterceptor {
     private isTokenRefreshin = false;
     tokenSubject = new BehaviorSubject<string>(null);
-//constructor(private authService: AuthService, private alertService: ToastrService) { }
-    constructor(private alertService: ToastrService) { }
+constructor(private authService: AuthService//, private alertService: ToastrService
+    ) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(this.attachTokenToRequest(req)).pipe(
@@ -25,13 +25,13 @@ export class ErrorInterceptor implements HttpInterceptor {
             }), catchError((error): Observable<any> => {
                 if (error instanceof HttpErrorResponse) {
                     if ((error as HttpErrorResponse).status === 401) {
-                        // if (error.error === '0x000keyvanx00') {
-                        //     this.authService.logoutRefreshToken();
-                        //     return throwError('خطا در اعتبار سنجی خودکار');
-                        // } else if (error.error === '1x111keyvanx11') {
-                        //     return throwError('کاربری با این یوزر و پس وجود ندارد');
-                        // }
-                        // return this.handleHttpResponseError(req, next);
+                        if (error.error === '0x000keyvanx00') {
+                            this.authService.logoutRefreshToken();
+                            return throwError('خطا در اعتبار سنجی خودکار');
+                        } else if (error.error === '1x111keyvanx11') {
+                            return throwError('کاربری با این یوزر و پس وجود ندارد');
+                        }
+                        return this.handleHttpResponseError(req, next);
                     } else {
                         return this.handelError(error);
                     }
@@ -45,21 +45,21 @@ export class ErrorInterceptor implements HttpInterceptor {
             this.isTokenRefreshin = true;
 
             this.tokenSubject.next(null);
-            // return this.authService.getNewRefreshToken().pipe(
-            //     switchMap((tokenResponse: any) => {
-            //         if (tokenResponse) {
-            //             this.tokenSubject.next(tokenResponse.token);
-            //             localStorage.setItem('token', tokenResponse.token);
-            //             //  localStorage.setItem('refreshToken', tokenResponse.refresh_token);
-            //             //  localStorage.setItem('user', JSON.stringify(tokenResponse.user));
-            //             return next.handle(this.attachTokenToRequest(requrst));
-            //         }
-            //     }), catchError(err => {
-            //         return this.handelError(err);
-            //     }), finalize(() => {
-            //         this.isTokenRefreshin = false;
-            //     })
-            // );
+            return this.authService.getNewRefreshToken().pipe(
+                switchMap((tokenResponse: any) => {
+                    if (tokenResponse) {
+                        this.tokenSubject.next(tokenResponse.token);
+                        localStorage.setItem('token', tokenResponse.token);
+                        //  localStorage.setItem('refreshToken', tokenResponse.refresh_token);
+                        //  localStorage.setItem('user', JSON.stringify(tokenResponse.user));
+                        return next.handle(this.attachTokenToRequest(requrst));
+                    }
+                }), catchError(err => {
+                    return this.handelError(err);
+                }), finalize(() => {
+                    this.isTokenRefreshin = false;
+                })
+            );
         } else {
             this.isTokenRefreshin = false;
             return this.tokenSubject.pipe(filter(token => token != null),

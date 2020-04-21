@@ -21,10 +21,16 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+import { ErrorInterceptor } from './cmsCommon/services/error.interceptor.service';
+import { StoreModule } from '@ngrx/store';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { reducers } from './cmsstore';
+import { CustomRouteSerializer } from './cmsCommon/helpers/customRouteSerializer';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +50,13 @@ import {
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),
     CoreModule.forRoot(),
+
+    StoreModule.forRoot(reducers),
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomRouteSerializer
+    }),
   ],
+  providers: [ErrorInterceptor],
   bootstrap: [AppComponent],
 })
 export class AppModule {

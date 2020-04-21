@@ -11,13 +11,17 @@ const routes: Routes = [
   //   loadChildren: () => import('./cms/cms.module')
   //     .then(m => m.CmsModule),
   // },
+  
+  {
+    path: 'auth', loadChildren: () => import('./cms/core/auth/auth.module').then(m => m.AuthModule),
+    data: { preload: false}},
   {
     path: 'pages',
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
   },
   {
-    path: 'auth',
+    path: 'auth2',
     loadChildren: () => import('./@theme/components/auth/auth.module')
       .then(m => m.NgxAuthModule),
   }
