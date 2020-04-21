@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 
 import { ChartistModule } from 'ng-chartist';
@@ -16,6 +17,7 @@ import { AuthRoutes } from './auth.routing';
         AuthRoutes,
         ChartistModule,
         NgbModule,
+        FormsModule,
     ],
     exports: [],
     declarations: [

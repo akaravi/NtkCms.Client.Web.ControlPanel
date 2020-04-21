@@ -11,10 +11,10 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StoreModule } from '@ngrx/store';
 
-import { 
-  PerfectScrollbarModule, 
-  PERFECT_SCROLLBAR_CONFIG, 
-  PerfectScrollbarConfigInterface
+import {
+  PerfectScrollbarModule,
+  PERFECT_SCROLLBAR_CONFIG,
+  PerfectScrollbarConfigInterface,
 } from 'ngx-perfect-scrollbar';
 
 import { AppComponent } from './app.component';
@@ -23,13 +23,16 @@ import { FullLayoutComponent } from './layouts/full/full-layout.component';
 
 import { DragulaService } from 'ng2-dragula';
 import { AuthService } from './shared/auth/auth.service';
+
 import { AuthGuard } from './shared/auth/auth-guard.service';
 import { CmsFullLayoutComponent } from './@cms/layouts/full/cmsFull-layout.component';
 import { CmsContentLayoutComponent } from './@cms/layouts/content/cmsContent-layout.component';
+import { CmsAuthService } from './@cms/cmsPages/core/auth/auth.service';
+import { CmsAuthGuard } from './@cms/cmsPages/core/auth/auth-guard.service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
-  wheelPropagation: false
+  wheelPropagation: false,
 };
 
 export function createTranslateLoader(http: HttpClient) {
@@ -39,10 +42,10 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-     FullLayoutComponent,
-      ContentLayoutComponent,
-      CmsFullLayoutComponent,
-      CmsContentLayoutComponent,
+    FullLayoutComponent,
+    ContentLayoutComponent,
+    CmsFullLayoutComponent,
+    CmsContentLayoutComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -56,24 +59,30 @@ export function createTranslateLoader(http: HttpClient) {
       loader: {
         provide: TranslateLoader,
         useFactory: createTranslateLoader,
-        deps: [HttpClient]
-      }
+        deps: [HttpClient],
+      },
     }),
     AgmCoreModule.forRoot({
-      apiKey: 'YOUR KEY'
+      apiKey: 'YOUR KEY',
     }),
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
   ],
   providers: [
     AuthService,
     AuthGuard,
+    CmsAuthService,
+    CmsAuthGuard,
+
     DragulaService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
-      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
     },
-    { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
