@@ -1,0 +1,312 @@
+<!-- Striped row layout section start -->
+<section id="striped-row-form-layouts">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="content-header">شکل ردیف نوار</div>
+    </div>
+  </div>
+  <div class="row text-left">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title" id="striped-row-layout-basic">اطلاعات پروژه</h4>
+          <p class="mb-0">اضافه کردن  <code>.striped-rows</code> برای ایجاد تگ برای اضافه کردن ردیف راه راه. در این مثال <code>.form-horizontal</code>
+            و <code>.form-bordered</code>برای نشان دادن عملکرد سطرهای سطحی مورد استفاده قرار می گیرد.</p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form form-horizontal striped-rows form-bordered">
+              <div class="form-body">
+                <h4 class="form-section"><i class="ft-user"></i> اطلاعات شخصی</h4>
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="projectinput1">نام</label>
+                  <div class="col-md-9">
+                    <input type="text" id="projectinput1" class="form-control" placeholder="نام" name="fname">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="projectinput2">نام خانوادگی</label>
+                  <div class="col-md-9">
+                    <input type="text" id="projectinput2" class="form-control" placeholder="نام خانوادگی" name="lname">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="projectinput3">ایمیل</label>
+                  <div class="col-md-9">
+                    <input type="text" id="projectinput3" class="form-control" placeholder="ایمیل" name="email">
+                  </div>
+                </div>
+
+                <div class="form-group row last">
+                  <label class="col-md-3 label-control" for="projectinput4">شماره تماس</label>
+                  <div class="col-md-9">
+                    <input type="number" id="projectinput4" class="form-control" placeholder="تلفن" name="phone">
+                  </div>
+                </div>
+
+                <h4 class="form-section"><i class="ft-file-text"></i> الزامات</h4>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="projectinput5">شرکت</label>
+                  <div class="col-md-9">
+                    <input type="text" id="projectinput5" class="form-control" placeholder="نام شرکت" name="company">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="projectinput6">علاقه مند هستم</label>
+                  <div class="col-md-9">
+                    <select id="projectinput6" name="interested" class="form-control">
+                      <option value="none" selected="" disabled="">علاقه مند هستم</option>
+                      <option value="design">طراحی</option>
+                      <option value="development">توسعه دهنده</option>
+                      <option value="illustration">تصویر</option>
+                      <option value="branding">نام تجاری</option>
+                      <option value="video">ویدئو</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="projectinput7">حقوق</label>
+                  <div class="col-md-9">
+                    <select id="projectinput7" name="budget" class="form-control">
+                      <option value="0" selected="" disabled="">حقوق</option>
+                      <option value="less than 5000$">کمتر از 50000 ریال</option>
+                      <option value="5000$ - 10000$">50000 ریال - 1000000 ریال</option>
+                      <option value="10000$ - 20000$">100000 ریال - 200000 ریال</option>
+                      <option value="more than 20000$">بیشتر از 200000 ریال</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control">انتخاب فایل</label>
+                  <div class="col-md-9">
+                    <label id="projectinput8" class="file  mx-auto">
+                      <input type="file" id="file">
+                      <span class="file-custom"></span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group row last">
+                  <label class="col-md-3 label-control" for="projectinput9">درباره ی پروژه</label>
+                  <div class="col-md-9">
+                    <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder="درباره ی پروژه"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row text-left">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title" id="striped-row-layout-icons">جدول زمانی </h4>
+          <p class="mb-0">اضافه کردن  <code>.striped-rows</code> برای ایجاد تگ برای اضافه کردن ردیف راه راه. در این مثال، نمادهای با استفاده از کنترل های فرم برای نشان دادن عملکرد ردیف راه راه استفاده می شود.</p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form form-horizontal striped-rows form-bordered">
+              <div class="form-body">
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="timesheetinput1">نام کارمند</label>
+                  <div class="col-md-9">
+                    <div class="position-relative has-icon-left">
+                      <input type="text" id="timesheetinput1" class="form-control" placeholder="نام کارمند" name="employeename">
+                      <div class="form-control-position">
+                        <i class="ft-user"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="timesheetinput2">نام پروژه</label>
+                  <div class="col-md-9">
+                    <div class="position-relative has-icon-left">
+                      <input type="text" id="timesheetinput2" class="form-control" placeholder="نام پروژه" name="projectname">
+                      <div class="form-control-position">
+                        <i class="fa fa-briefcase"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="timesheetinput3">تاریخ</label>
+                  <div class="col-md-9">
+                    <div class="position-relative has-icon-left">
+                      <input type="date" id="timesheetinput3" class="form-control" name="date">
+                      <div class="form-control-position">
+                        <i class="ft-message-square"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control">نرخ در ساعت</label>
+                  <div class="col-md-9">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">ریال</span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="نرخ در ساعت" aria-label="Amount (to the nearest dollar)"
+                        name="rateperhour">
+                      <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="timesheetinput5">ساعت شروع</label>
+                  <div class="col-md-9">
+                    <div class="position-relative has-icon-left">
+                      <input type="time" id="timesheetinput5" class="form-control" name="starttime">
+                      <div class="form-control-position">
+                        <i class="ft-clock"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="timesheetinput6">تاریخ پایان</label>
+                  <div class="col-md-9">
+                    <div class="position-relative has-icon-left">
+                      <input type="time" id="timesheetinput6" class="form-control" name="endtime">
+                      <div class="form-control-position">
+                        <i class="ft-clock"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row last">
+                  <label class="col-md-3 label-control" for="timesheetinput7">یادداشت</label>
+                  <div class="col-md-9">
+                    <div class="position-relative has-icon-left">
+                      <textarea id="timesheetinput7" rows="5" class="form-control" name="notes" placeholder="یادداشت"></textarea>
+                      <div class="form-control-position">
+                        <i class="ft-file"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions right">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row text-left justify-content-md-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title" id="striped-row-layout-card-center">ثبت نام رویداد</h4>
+          <p class="mb-0">اضافه کردن  <code>.striped-rows</code> 
+          
+            برای ایجاد تگ برای اضافه کردن ردیف راه راه. در این مثال، کارت مرکزی برای نشان دادن عملکرد سطرهای سطحی مورد استفاده قرار می گیرد.</p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form form-horizontal striped-rows">
+              <div class="form-body">
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="eventRegInput1">نام</label>
+                  <div class="col-md-9">
+                    <input type="text" id="eventRegInput1" class="form-control" placeholder="نام" name="fullname">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="eventRegInput2">عنوان</label>
+                  <div class="col-md-9">
+                    <input type="text" id="eventRegInput2" class="form-control" placeholder="عنوان" name="title">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="eventRegInput3">شرکت</label>
+                  <div class="col-md-9">
+                    <input type="text" id="eventRegInput3" class="form-control" placeholder="شرکت" name="company">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="eventRegInput4">ایمیل</label>
+                  <div class="col-md-9">
+                    <input type="email" id="eventRegInput4" class="form-control" placeholder="ایمیل" name="email">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="eventRegInput5">شماره تلفن</label>
+                  <div class="col-md-9">
+                    <input type="number" id="eventRegInput5" class="form-control" name="contact" placeholder="شماره تلفن">
+                  </div>
+                </div>
+
+                <div class="form-group row last">
+                  <label class="col-md-3 label-control">مشتری های موجود</label>
+                  <div class="col-md-9">
+                    <div class="input-group col-md-9">
+                      <div class="custom-control custom-radio d-inline-block">
+                        <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInline1">بله</label>
+                      </div>
+                      <div class="custom-control custom-radio d-inline-block ml-1">
+                        <input type="radio" id="customRadioInline2" checked name="customRadioInline1" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInline2">خیر</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions center">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- // Striped row layout section end -->

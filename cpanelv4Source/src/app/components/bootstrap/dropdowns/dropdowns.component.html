@@ -1,0 +1,140 @@
+<!--Dropdown section starts-->
+<section id="dropdown">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="content-header">کشویی</div>
+    </div>
+  </div>
+  <div class="row text-left">
+    <!--Toggle dropdown starts-->
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">رها کردن کشویی</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <div ngbDropdown>
+              <button class="btn btn-outline-primary mr-1" id="dropdownBasic1" ngbDropdownToggle>رها کردن کشویی</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button class="dropdown-item">عمل- 1</button>
+                <button class="dropdown-item">عملی دیگر</button>
+                <button class="dropdown-item">چیز دیگری اینجاست</button>
+              </div>
+              <span ngbDropdown placement="top-right">
+                <button class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>رها کردن کشویی</button>
+                <div ngbDropdownMenu class="dropdown-menu-right" aria-labelledby="dropdownBasic2">
+                  <button class="dropdown-item">عمل- 1</button>
+                  <button class="dropdown-item">عملی دیگر</button>
+                  <button class="dropdown-item">چیز دیگری اینجاست</button>
+                </div>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Toggle dropdown ends-->
+  </div>
+  <div class="row text-left">
+    <!--Manual triggers starts-->
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">راهنمای دستی</h4>
+          <p>شما می توانید به طور برنامه نویسی از منوی کشویی صادر شده به راحتی کشویی را کنترل کنید.</p>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <div ngbDropdown #myDrop1="ngbDropdown">
+              <button class="btn btn-outline-primary mr-1" id="dropdownMenu2" ngbDropdownToggle>رها کردن کشویی</button>
+              <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item">عمل- 1</button>
+                <button class="dropdown-item">عملی دیگر</button>
+                <button class="dropdown-item">چیز دیگری اینجاست</button>
+              </div>
+              <button class="btn btn-outline-success mr-1" (click)="$event.stopPropagation(); myDrop1.open();">
+                  باز از خارج
+                </button>
+              <button class="btn btn-outline-danger" (click)="$event.stopPropagation(); myDrop1.close();">بستن از خارج</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Manual triggers ends-->
+  </div>
+  <div class="row text-left">
+    <!--Button groups and split buttons starts-->
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">گروه های دکمه و دکمه های تقسیم</h4>
+          <p>
+              دکمه های تقسیم بوت استرپ و منو ها در گروه های دکمه با دستورالعمل های کشویی موجود پشتیبانی می شوند.
+          </p>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <div class="dropdown btn-group dropup mr-1 mb-1" ngbDropdown>
+              <button type="button" class="btn btn-danger btn-raised">عمل</button>
+              <button type="button" class="btn btn-danger btn-raised dropdown-toggle" ngbDropdownToggle aria-haspopup="true"
+                aria-expanded="false">
+                <span class="sr-only">رها کردن کشویی</span>
+              </button>
+              <div ngbDropdownMenu class="dropdown-menu" role="menu">
+                <a class="dropdown-item">عمل</a>
+                <a class="dropdown-item">عملی دیگر</a>
+                <a class="dropdown-item">چیز دیگری اینجا</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item">پیوند جدا شده</a>
+              </div>
+            </div>
+            <div class="dropdown btn-group dropup mr-1 mb-1" ngbDropdown>
+              <button type="button" class="btn btn-outline-danger">عمل</button>
+              <button type="button" class="btn btn-outline-danger dropdown-toggle" ngbDropdownToggle aria-haspopup="true"
+                aria-expanded="false">
+                <span class="sr-only">رها کردن کشویی</span>
+              </button>
+              <div ngbDropdownMenu class="dropdown-menu" role="menu">
+                <a class="dropdown-item">عمل</a>
+                <a class="dropdown-item">عملی دیگر</a>
+                <a class="dropdown-item">چیز دیگری اینجا</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item">پیوند جدا شده</a>
+              </div>
+            </div>
+            <div class="dropdown btn-group mr-1 mb-1" ngbDropdown>
+              <button type="button" class="btn btn-info btn-raised dropdown-toggle" ngbDropdownToggle>
+                کشویی
+                <span class="caret"></span>
+              </button>
+              <div ngbDropdownMenu class="dropdown-menu" role="menu">
+                <a class="dropdown-item">عمل</a>
+                <a class="dropdown-item">عملی دیگر</a>
+                <a class="dropdown-item">چیز دیگری اینجا</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item">پیوند جدا شده</a>
+              </div>
+            </div>
+            <div class="dropdown btn-group mr-1 mb-1" ngbDropdown>
+              <button type="button" class="btn btn-outline-info dropdown-toggle" ngbDropdownToggle>
+                کشویی
+                <span class="caret"></span>
+              </button>
+              <div ngbDropdownMenu class="dropdown-menu" role="menu">
+                <a class="dropdown-item">عمل</a>
+                <a class="dropdown-item">عملی دیگر</a>
+                <a class="dropdown-item">چیز دیگری اینجا</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item">پیوند جدا شده</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Button groups and split buttons ends-->
+  </div>
+</section>
+<!--Dropdown section ends-->

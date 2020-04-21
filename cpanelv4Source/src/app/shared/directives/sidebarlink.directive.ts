@@ -113,6 +113,7 @@ export class SidebarLinkDirective implements OnInit {
       this.sidebarList.collapseOtherLinks(this);
     }
 
+
     if (classList.contains("has-sub") && classList.contains("open")) {
       this.sidebarList.collapse(this);
     } else {

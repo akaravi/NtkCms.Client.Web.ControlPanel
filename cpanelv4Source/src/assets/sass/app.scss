@@ -11,4 +11,13 @@
 @import "scss/core";
 @import "scss/fonts/weather-icons";
 @import "scss/plugins";
+@import '~ngx-ui-switch/ui-switch.component.scss';
+@import "~@ng-select/ng-select/themes/default.theme.css";
 @import "scss/demo"; // Remove this SCSS from production
+
+
+// RTL styles
+.card-link + .card-link {
+    margin-left: 0 !important;
+    margin-right: 1.5rem;
+}

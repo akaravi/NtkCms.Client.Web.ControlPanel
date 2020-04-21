@@ -1,0 +1,149 @@
+<div class="row">
+  <div class="col-sm-12">
+      <div class="content-header">Angular فرم ویزاردی</div>
+  </div>
+</div>
+<section id="ngx">
+  <div class="card">
+      <div class="card-content">
+          <div class="card-body">
+              <aw-wizard #wizard navBarLayout="large-empty-symbols">
+                  <aw-wizard-step [stepTitle]="'Steptitle 1'" [navigationSymbol]="{ symbol: '&#xf007;', fontFamily: 'FontAwesome' }">
+                      <form #personalForm="ngForm" class="editForm" novalidate>
+                          <h4 class="head text-center">لطفا در مورد خودتان به ما بگویید.</h4>
+                          <br/>
+                          <div class='row'>
+                              <div class='col-12'>
+                                  <div class="row">
+                                      <div class='col-12 col-sm-6'>
+                                          <div class="form-group">
+                                              <label class="form-control-label" for="firstname">نام</label>
+                                              <input class="form-control input-md" ngModel #firstname="ngModel" required id="firstname" name="firstname" type="text">
+                                              <small class="form-text text-muted danger" *ngIf="!firstname.valid && (firstname.dirty || firstname.touched)">این فیلد مورد نیاز است!</small>
+                                          </div>
+                                      </div>
+                                      <div class='col-12 col-sm-6'>
+                                          <div class="form-group">
+                                              <label class="form-control-label" for="lastname">نام خانوادگی</label>
+                                              <input class="form-control input-md" ngModel #lastname="ngModel" required id="lastname" name="lastname" type="text">
+                                              <small class="form-text text-muted danger" *ngIf="!lastname.valid && (lastname.dirty || lastname.touched)">این فیلد مورد نیاز است!</small>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                      <label class="form-control-label" for="email">ایمیل</label>
+                                      <input class="form-control input-md" ngModel #email="ngModel" required email id="email" name="email" type="text">
+                                      <small class="form-text text-muted danger" *ngIf="!email.valid && (email.dirty || email.touched)">لطفا یک ایمیل معتبر وارد کنید!</small>
+                                  </div>
+
+                                  <div class="form-group text-center">
+                                      <button type="button" uiSref="work" class="btn btn-info btn-raised" [disabled]="!personalForm.valid" awNextStep>
+                                          بعدی
+                                          <span style="margin-left:10px;">
+                                              <i class="ft-chevron-right"></i>
+                                          </span>
+                                      </button>
+                                  </div>
+                              </div>
+                          </div>
+                      </form>
+                  </aw-wizard-step>
+                  <aw-wizard-step  [stepTitle]="'Steptitle 2'" [navigationSymbol]="{ symbol: '&#xf0b1;', fontFamily: 'FontAwesome' }">
+                      <form #workForm="ngForm" class="editForm" novalidate>
+                          <h4 class="head text-center">چه کار میکنی؟</h4>
+                          <br/>
+                          <div class='row justify-content-center'>
+                              <div class='col-2'>
+                                  <div class="form-group">
+                                      <div class="custom-control custom-radio m-0">
+                                          <input type="radio" #work required id="customRadioInline1" name="work" class="custom-control-input" value="Design">
+                                          <label class="custom-control-label" for="customRadioInline1">طراح</label>
+                                      </div>
+                                      <div class="custom-control custom-radio m-0">
+                                          <input type="radio" #work required id="customRadioInline2"  name="work" class="custom-control-input" value="Code">
+                                          <label class="custom-control-label" for="customRadioInline2">کد نویس</label>
+                                      </div>
+                                      <div class="custom-control custom-radio m-0">
+                                          <input type="radio" #work required id="customRadioInline3" checked name="work" class="custom-control-input" value="Deploy">
+                                          <label class="custom-control-label" for="customRadioInline3">توسعه دهنده</label>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="form-group text-center space-20">
+                              <button uiSref="personal" type="button" class="btn btn-raised btn-secondary mr-1" awPreviousStep>
+                                  <span style="margin-right:10px;">
+                                      <i class="ft-chevron-left"></i>
+                                  </span> قبلی</button>
+                              <button uiSref="address" type="button" class="btn btn-raised btn-info" [disabled]="!workForm.valid" awNextStep>
+                                  بعدی
+                                  <span style="margin-left:10px;">
+                                      <i class="ft-chevron-right"></i>
+                                  </span>
+                              </button>
+                          </div>
+                      </form>                        
+                  </aw-wizard-step>
+                  <aw-wizard-step [stepTitle]="'Steptitle 3'" [navigationSymbol]="{ symbol: '&#xf0ac;', fontFamily: 'FontAwesome' }">
+                      <form #addressForm="ngForm" class="editForm" novalidate>
+                          <h4 class="head text-center">کجا زندگی می کنید؟</h4>
+                          <br/>
+                          <div class='row'>
+                              <div class='col-sm-12'>
+                                  <div class="form-group">
+                                      <label class="form-control-label" for="street">آدرس خیابان</label>
+                                      <input class="form-control input-md" ngModel #street="ngModel" required id="street" name="street" type="text">
+                                      <small class="form-text text-muted danger" *ngIf="!street.valid && (street.dirty || street.touched)">این فیلد مورد نیاز است!</small>
+
+                                  </div>
+                                  <div class="row">
+                                      <div class='col-12 col-sm-4'>
+                                          <div class="form-group">
+                                              <label class="form-control-label" for="city">شهر</label>
+                                              <input class="form-control input-md" ngModel #city="ngModel" required id="city" name="city" type="text">
+                                              <small class="form-text text-muted danger" *ngIf="!city.valid && (city.dirty || city.touched)">این فیلد مورد نیاز است!</small>
+
+                                          </div>
+                                      </div>
+                                      <div class='col-4 col-sm-offset-1 col-sm-3'>
+                                          <div class="form-group">
+                                              <label class="form-control-label" for="state">کشور</label>
+                                              <input class="form-control input-md" ngModel #state="ngModel" required id="state" name="state" type="text">
+                                              <small class="form-text text-muted danger" *ngIf="!state.valid && (state.dirty || state.touched)">این فیلد مورد نیاز است!</small>
+
+                                          </div>
+                                      </div>
+                                      <div class='col-offset-1 col-7 col-sm-offset-1 col-sm-3'>
+                                          <div class="form-group">
+                                              <label class="form-control-label" for="zip">نیرو</label>
+                                              <input class="form-control input-md" ngModel #zip="ngModel" required id="zip" name="zip" type="text">
+                                              <small class="form-text text-muted danger" *ngIf="!zip.valid && (zip.dirty || zip.touched)">این فیلد مورد نیاز است!</small>
+
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="form-group text-center">
+                                      <button uiSref="work" type="button" class="btn btn-raised btn-secondary mr-1" awPreviousStep>
+                                          <span style="margin-right:10px;">
+                                              <i class="ft-chevron-left"></i>
+                                          </span> قبلی</button>
+                                      <button uiSref="result" type="button" class="btn btn-raised btn-success" [disabled]="!addressForm.valid" awResetWizard>
+                                          پایان
+                                          <span style="margin-left:10px;">
+                                              <i class="ft-chevron-right"></i>
+                                          </span>
+                                      </button>
+                                  </div>
+                              </div>
+                          </div>
+                      </form>
+                      
+                  </aw-wizard-step>
+              </aw-wizard>
+
+
+          </div>
+      </div>
+  </div>
+</section>

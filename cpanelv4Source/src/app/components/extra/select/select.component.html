@@ -1,0 +1,148 @@
+<section id="switch">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="content-header">Angular انتخاب</div>
+      <p class="content-sub-header"></p>
+    </div>
+  </div>
+  <div class="row text-left">
+    <div class="col-xl-6 col-lg-6 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>پایه</h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <ng-select [items]="cities" bindLabel="name" placeholder="Select city" [(ngModel)]="selectedCity">
+            </ng-select>
+            <p>
+                شهرهای انتخاب شده : {{selectedCity | json}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>چند با براش های سفارشی انتخاب کنید</h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <ng-select [items]="cities2" bindLabel="name" bindValue="id" [multiple]="true" placeholder="انتخاب شهر"
+              [(ngModel)]="selectedCityIds">
+            </ng-select>
+            <p>
+              شهرهای انتخاب شده: {{selectedCityIds}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row text-left">
+    <div class="col-xl-6 col-lg-6 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>برچسب های سفارشی            </h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <ng-select [items]="users" bindLabel="name" bindValue="id" [addTag]="addCustomUser" [multiple]="true"
+              placeholder="کاربر را انتخاب کنید یا برچسب دلخواه خود را اضافه کنید" [(ngModel)]="selectedUserIds">
+            </ng-select>
+            <p>
+              کاربر انتخاب شده: {{selectedUserIds}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>قالب های سفارشی            </h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <ng-select [items]="cities3" bindLabel="name" bindValue="name" placeholder="انتخاب شهر" [(ngModel)]="selectedCityName">
+              <ng-template ng-header-tmp>
+                  هدر سفارشی
+              </ng-template>
+              <ng-template ng-label-tmp let-item="item">
+                <img height="15" width="15" [src]="item.avatar" />
+                <b>{{item.name}}</b> خیلی خوب
+              </ng-template>
+              <ng-template ng-option-tmp let-item="item" let-index="index">
+                <img height="15" width="15" [src]="item.avatar" />
+                <b>{{item.name}}</b>
+              </ng-template>
+              <ng-template ng-footer-tmp>
+                فوتر سفارشی
+              </ng-template>
+            </ng-select>
+            <p>
+              شهر انتخاب شده: {{selectedCityName}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row text-left">
+    <div class="col-xl-6 col-lg-6 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>پیمایش مجازی            </h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <ng-select [items]="cities4" [virtualScroll]="true" bindLabel="name" bindValue="id" placeholder="انتخاب شهر"
+              [(ngModel)]="selectedCityId">
+            </ng-select>
+            <p>
+              ایدی شهر انتخاب شده: {{selectedCityId}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>اضافه کردن کشویی به بدنه </h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <ng-select [items]="cities4" bindLabel="name" [virtualScroll]="true" bindValue="id" appendTo="body"
+              placeholder="انتخاب شهر" [(ngModel)]="selectedCityId">
+            </ng-select>
+            <p>
+                ایدی شهر انتخاب شده: {{selectedCityId}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row text-left">
+    <div class="col-xl-6 col-lg-6 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>گروه بندی</h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <ng-select [items]="accounts" bindLabel="name" bindValue="name" groupBy="country" [(ngModel)]="selectedAccount">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-12">
+
+    </div>
+
+  </div>
+
+</section>

@@ -1,0 +1,62 @@
+<div class="row text-left">
+  <div class="col-sm-12">
+    <div class="content-header">تور</div>
+    <p class="content-sub-header">Apex مثال تور</p>
+  </div>
+</div>
+<!-- Apex template tour starts -->
+<section id="tours">
+  <div class="row text-left">
+    <div class="col-xl-4 col-lg-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>تور کاربران </h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <p>برای شروع یک تور نسخه ی نمایشی، روی این دکمه کلیک کنید.              </p>
+            <button id="btnStartTour" class="btn btn-primary btn-raised" (click)="startTour()">شروع تور</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>مراحل خود را تعریف کنید            </h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <pre class="language-javascript text-left">
+<code class="language-javascript">مراحل: [  
+    &#123;
+        title: "Customizer",
+        content: "This is the customizer",
+        target: "customizer-toggle-icon",
+        placement: "left"
+    },
+    &#123;
+        ...
+    }     
+]</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>شروع تور </h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <pre class="language-javascript">
+<code class="language-javascript">hopscotch.startTour(this.tourSteps());</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Apex template tour Ends -->
+
+</section>

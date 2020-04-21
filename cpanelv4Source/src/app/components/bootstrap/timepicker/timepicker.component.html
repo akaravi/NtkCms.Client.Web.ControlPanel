@@ -1,0 +1,146 @@
+<!--Timepicker Starts-->
+<section id="timepicker">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="content-header">ساعت</div>
+    </div>
+  </div>
+  <div class="row text-left" matchHeight ="card">
+    <!--Basic Timepicker Starts-->
+    <div class="col-md-4 col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">ساعت پایه</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
+            <button class="btn mb-3 mt-3" style="opacity: 0;">&nbsp;</button>
+            <hr>
+            <p>انتخاب زمان: {{time | json}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Basic Timepicker Ends-->
+
+    <!--Meridian Timepicker Starts-->
+    <div class="col-md-4 col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">ساعت</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ngb-timepicker [(ngModel)]="meridianTime" [meridian]="meridian"></ngb-timepicker>
+            <button class="btn btn-outline-{{meridian ? 'success' : 'danger'}} mb-3 mt-3" (click)="toggleMeridian()">
+              ساعت - {{meridian ? "ON" : "OFF"}}
+          </button>
+            <hr>
+            <p>انتخاب زمان: {{meridianTime | json}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Meridian Timepicker Ends-->
+
+    <!--Seconds Timepicker Starts-->
+    <div class="col-md-4 col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">ثانیه</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ngb-timepicker [(ngModel)]="secondsTime" [seconds]="seconds"></ngb-timepicker>
+            <button class="btn btn-outline-{{seconds ? 'success' : 'danger'}} mb-3 mt-3" (click)="toggleSeconds()">
+              ثانیه - {{seconds ? "ON" : "OFF"}}
+          </button>
+            <hr>
+            <p>انتخاب زمان: {{secondsTime | json}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Seconds Timepicker Ends-->
+  </div>
+  <div class="row text-left" matchHeight ="card">
+    <!--Spinners Timepicker Starts-->
+    <div class="col-md-4 col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">اسپینرها</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ngb-timepicker [(ngModel)]="spinnersTime" [spinners]="spinners"></ngb-timepicker>
+
+            <button class="m-t-1 btn btn-outline-{{spinners ? 'success' : 'danger'}} mb-3 mt-3" (click)="toggleSpinners()">
+                اسپینرها - {{spinners ? "ON" : "OFF"}}
+          </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Spinners Timepicker Ends-->
+
+    <!--Custom steps for Timepicker Starts-->
+    <div class="col-md-4 col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">مراحل سفارشی</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ngb-timepicker [(ngModel)]="stepsTime" [seconds]="true" [hourStep]="hourStep" [minuteStep]="minuteStep" [secondStep]="secondStep"></ngb-timepicker>
+
+            <div class="row">
+              <div class="col-sm-3">
+                <label for="changeHourStep">مرحله ساعت</label>
+                <input type="number" class="form-control form-control-sm" [(ngModel)]="hourStep" />
+              </div>
+              <div class="col-sm-3">
+                <label for="changeMinuteStep">مرحله دقیقه</label>
+                <input type="number" class="form-control form-control-sm" [(ngModel)]="minuteStep" />
+              </div>
+              <div class="col-sm-4">
+                <label for="changeSecondStep">مرحله ثانیه</label>
+                <input type="number" class="form-control form-control-sm" [(ngModel)]="secondStep" />
+              </div>
+            </div>
+            <hr>
+            <p>انتخاب زمان: {{stepsTime | json}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Custom steps for Timepicker Ends-->
+
+    <!--Timepicker Custom validation Starts-->
+    <div class="col-md-4 col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">اعتبار سفارشی</h4>
+          <p>تصدیق اعتبار سفارشی را نشان می دهد، شما باید زمان را بین 12:00 تا 13:59 انتخاب کنید</p>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <div class="form-group" [class.has-success]="ctrl.valid" [class.has-danger]="!ctrl.valid">
+              <ngb-timepicker [(ngModel)]="validationTime" [formControl]="ctrl" required></ngb-timepicker>
+              <div class="form-control-feedback">
+                <div *ngIf="ctrl.valid">انتخاب عالی</div>
+                <div *ngIf="ctrl.errors && ctrl.errors['required']">برخی از زمان ها را در طول ناهار انتخاب کنید</div>
+                <div *ngIf="ctrl.errors && ctrl.errors['tooLate']">آه نه، این خیلی دیر است </div>
+                <div *ngIf="ctrl.errors && ctrl.errors['tooEarly']">این خیلی زود است </div>
+              </div>
+            </div>
+            <hr>
+            <p>انتخاب زمان: {{validationTime | json}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Timepicker Custom validation Ends-->
+  </div>
+</section>
+<!--Timepicker Starts-->

@@ -1,0 +1,127 @@
+<section id="ng-buttons">
+    <div class="row text-left">
+        <div class="col-sm-12 mt-2">
+            <div class="content-header">دکمه های Ngb</div>
+            <p class="content-sub-header">
+                    دکمه های چک باکس بوت استرپ به راحتی ایجاد کنید. مقدار یک دکمه چک شده به یک متغیر مشخص شده توسط از طریق تعیین می شود 
+                <code>ngModel</code>.</p>
+        </div>
+    </div>
+    <div class="row text-left" matchHeight ="card">
+        <!--Checkbox ng-buttons Starts-->
+        <div class="col-md-12 col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">دکمه های جعبه</h4>
+                    <p>دکمه های چک باکس بوت استرپ به راحتی ایجاد کنید.</p>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="btn-group btn-group-toggle">
+                            <label class="btn-raised btn-primary" ngbButtonLabel>
+                                <input type="checkbox" ngbButton [(ngModel)]="model.left"> چپ (قبل از بررسی)
+                            </label>
+                            <label class="btn-raised btn-primary" ngbButtonLabel>
+                                <input type="checkbox" ngbButton [(ngModel)]="model.middle"> وسط
+                            </label>
+                            <label class="btn-raised btn-primary" ngbButtonLabel>
+                                <input type="checkbox" ngbButton [(ngModel)]="model.right"> راست
+                            </label>
+                        </div>
+                        <hr>
+                        <p>{{model | json}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Checkbox ng-buttons Ends-->
+
+        <!--Checkbox Reactive buttons Starts-->
+        <div class="col-md-12 col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">دکمه های جعبه (فرم واکنش)</h4>
+                    <p>مقدار یک دکمه چک شده به یک متغیر مشخص شده از طریق ngModel محدود شده است.</p>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <form [formGroup]="checkboxGroupForm">
+                            <div class="btn-group btn-group-toggle">
+                                <label class="btn-raised btn-primary" ngbButtonLabel>
+                                    <input type="checkbox" formControlName="left" ngbButton> چپ (قبل از بررسی)
+                                </label>
+                                <label class="btn-raised btn-primary" ngbButtonLabel>
+                                    <input type="checkbox" formControlName="middle" ngbButton> وسط
+                                </label>
+                                <label class="btn-raised btn-primary" ngbButtonLabel>
+                                    <input type="checkbox" formControlName="right" ngbButton> راست
+                                </label>
+                            </div>
+                        </form>
+                        <hr>
+                        <p>{{checkboxGroupForm.value | json}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Checkbox Reactive buttons Ends-->
+    </div>
+    <div class="row text-left" matchHeight ="card">
+        <!--Radio buttons Starts-->
+        <div class="col-md-12 col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">دکمه های رادیویی</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="modelRadio">
+                            <label ngbButtonLabel class="btn-raised btn-primary">
+                                <input ngbButton type="radio" [value]="1"> چپ (قبل از بررسی)
+                            </label>
+                            <label ngbButtonLabel class="btn-raised btn-primary">
+                                <input ngbButton type="radio" value="2"> وسط
+                            </label>
+                            <label ngbButtonLabel class="btn-raised btn-primary">
+                                <input ngbButton type="radio" [value]="3"> راست
+                            </label>
+                        </div>
+                        <hr>
+                        <p>{{modelRadio}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Radio buttons Ends-->
+
+        <!--Radio Reactive buttons Starts-->
+        <div class="col-md-12 col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">دکمه های رادیویی (فرم واکنش)</h4>
+                    <p>مقدار یک دکمه چک شده به یک متغیر مشخص شده از طریق ngModel محدود شده است.</p>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <form [formGroup]="radioGroupForm">
+                            <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="modelRadioForm">
+                                <label ngbButtonLabel class="btn-raised btn-primary">
+                                <input ngbButton type="radio" value="Left"> چپ (قبل از بررسی)
+                                </label>
+                                <label ngbButtonLabel class="btn-raised btn-primary">
+                                <input ngbButton type="radio" value="Middle"> وسط
+                                </label>
+                                <label ngbButtonLabel class="btn-raised btn-primary">
+                                <input ngbButton type="radio" value="Right"> راست
+                                </label>
+                            </div>
+                        </form>
+                        <hr>
+                        <p>{{radioGroupForm.value['modelRadioForm']}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Radio Reactive buttons Ends-->
+    </div>
+</section>

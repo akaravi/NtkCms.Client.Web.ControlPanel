@@ -1,0 +1,380 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="content-header text-left">نشانه Syntax</div>
+  </div>
+</div>
+<!-- Basic Usage -->
+<section id="basic-usage" class="row  text-left">
+  <div class=" col-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">استفاده پایه</h4><a class="heading-elements-toggle"></a>
+
+      </div>
+      <div class="card-content">
+        <div class="card-body">
+          <p>ابتدا لازم است فایلهای prism.css و prism.js را وارد کنید<code>appearance-syntax-highlighter.jade</code>فایل شامل شده است</p>
+          <p>Prism بهترین کار را برای تشویق شیوه های نوشتن خوب انجام می دهد. بنابراین، آن فقط با کار می کند<code>&lt;code&gt;
+            </code>عناصر، از مارک کردن کد بدون یک<code>&lt;code&gt;
+            </code>عنصر از لحاظ معنایی نامعتبر است <a target="_blank" href="http://www.w3.org/TR/html5/text-level-semantics.html#the-code-element">با توجه به مشخصات HTML5</a>و
+            
+            روش توصیه شده برای تعریف یک زبان کد یک است <code>language-xxxx</code>
+            کلاس، که از Prism استفاده می کند. با این حال، Prism فرض می کند که این تعریف زبان به ارث برده می شود. بنابراین، اگر چند
+            <code>&lt;code&gt;
+            </code>عناصر یکسان هستند، شما می توانید اضافه کنید <code>language-xxxx</code>کلاس در یکی از اجداد مشترک آنها.
+            
+            به این ترتیب، می توانید یک زبان پیش فرض سند را با اضافه کردن یک کلاس <code>language-xxxx</code>
+            به بدنه <code>&lt;body&gt;
+            </code>یا المنت <code>&lt;html&gt;
+            </code></p>
+          <p>اگر میخواهید از برجسته کردن برای یک نفر خودداری کنید <code>&lt;code&gt;
+            </code>عنصر که یک نسل از عنصر با یک زبان کد اعلام شده است، می توانید کلاس را اضافه کنید
+            <code>language-none</code>به
+            آن (یا هر زبان غیر موجود، واقعا).</p>
+          <p> <a target="_blank" href="https://www.w3.org/TR/html5/grouping-content.html#the-pre-element">راه های توصیه شده برای علامت گذاری یک بلوک کد
+          </a>(هر دو برای معناشناسی و برای Prism) یک است <code>&lt;pre&gt;
+            </code>عنصر با a <code>&lt;code&gt;
+            </code>عنصر داخل، مانند:</p>
+          <p>کد:</p>
+          <pre class="language-markup  text-left"><code class="language-markup">&lt;pre&gt;
+    &lt;code class="language-css"&gt;
+        p &#123;
+            color: red
+        &#125;
+
+    &lt;/code&gt;
+&lt;/pre&gt;
+</code></pre>
+          <p>خروجی</p>
+          <pre class="language-css  text-left"><code class="language-css">p &#123;
+    color: red
+&#125;
+
+</code></pre>
+          <p>اگر از این الگوی استفاده کنید، <code>&lt;pre&gt;
+            </code>به طور خودکار دریافت خواهد شد<code>language-xxxx</code>
+            کلاس (اگر آن را قبلا آن را ندارند) و به عنوان یک بلوک کد مدل می شود.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ Basic Usage -->
+<!-- Examples -->
+<section id="examples" class="row  text-left">
+  <div class=" col-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">مثال</h4> <a class="heading-elements-toggle"></a>
+
+      </div>
+      <div class="card-content">
+        <div class="card-body">
+          <h5 class="card-title">نشانه گذاری HTML</h5>
+          <p>از کد زیر استفاده کنید تا از نحوه نمایشگر نحوی HTML استفاده کنید.</p>
+          <p class="text-bold-800">استفاده:</p>
+          <pre class="language-markup  text-left"> <code class="language-markup">&lt;pre&gt;
+    &lt;code class="language-markup"&gt;
+    HTML CODE ... &lt;/code&gt;
+&lt;/pre&gt;
+</code> </pre>
+          <p class="text-bold-800">مثال:</p>
+          <pre class="language-markup  text-left"> <code class="language-markup">&lt;div class="card"&gt;
+    &lt;img class="card-img-top" src="..." alt="Card image cap"&gt;
+    &lt;div class="card-body"&gt;
+        &lt;h4 class="card-title"&gt;
+        Card title&lt;/h4&gt;
+        &lt;p class="card-text"&gt;
+        Some quick example text to build on the card title and make up the bulk of the card's content.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;ul class="list-group list-group-flush"&gt;
+        &lt;li class="list-group-item"&gt;
+        Cras justo odio&lt;/li&gt;
+        &lt;li class="list-group-item"&gt;
+        Dapibus ac facilisis in&lt;/li&gt;
+        &lt;li class="list-group-item"&gt;
+        Vestibulum at eros&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div class="card-body"&gt;
+        &lt;a class="card-link"&gt;
+        Card link&lt;/a&gt;
+        &lt;a class="card-link"&gt;
+        Another link&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code> </pre>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">نشانه گذاری CSS</h5>
+          <p>از کد زیر استفاده کنید تا از نحوه نمایشگر نحوی HTML استفاده کنید.</p>
+          <p class="text-bold-800">Usage:</p>
+          <pre class="language-markup  text-left"> <code class="language-markup">&lt;pre&gt;
+    &lt;code class="language-css"&gt;
+    CSS CODE ... &lt;/code&gt;
+&lt;/pre&gt;
+</code> </pre>
+          <p class="text-bold-800">مثال:</p>
+          <pre class="language-css  text-left"><code class="language-css"> a:active &#123;
+    outline: 0;
+&#125;
+
+a:hover &#123;
+    outline: 0;
+&#125;
+
+abbr[title] &#123;
+    border-bottom: 1px dotted;
+&#125;
+
+b, strong &#123;
+    font-weight: bold;
+&#125;
+
+dfn &#123;
+    font-style: italic;
+&#125;
+
+h1 &#123;
+    font-size: 2em;
+    margin: 0.67em 0;
+&#125;
+
+</code> </pre>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">نشانه گذاری JS</h5>
+          <p>از کد زیر استفاده کنید تا از نحوه نمایشگر نحوی HTML استفاده کنید.</p>
+          <p class="text-bold-800">Usage:</p>
+          <pre class="language-markup  text-left"> <code class="language-markup">&lt;pre&gt;
+    &lt;code class="language-js"&gt;
+    HTML CODE ... &lt;/code&gt;
+&lt;/pre&gt;
+</code> </pre>
+          <p class="text-bold-800">مثال:</p>
+          <pre class="language-js  text-left"> <code class="language-js">init: function() &#123;
+    var scroll_theme=($('.main-menu').hasClass('menu-dark')) ? 'light': 'dark';
+    this.obj=$(".main-menu-content").perfectScrollbar( &#123;
+        suppressScrollX: true, theme: scroll_theme
+    &#125;
+    );
+&#125;
+
+, update: function() &#123;
+    if (this.obj) &#123;
+        $(".main-menu-content").perfectScrollbar('update');
+    &#125;
+&#125;
+
+, enable: function() &#123;
+    this.init();
+&#125;
+
+, </code> </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ Examples -->
+<!-- Line Numbers -->
+<section id="line-numbers" class="row  text-left">
+  <div class=" col-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">شماره خط</h4> <a class="heading-elements-toggle"></a>
+
+      </div>
+      <div class="card-content">
+        <div class="card-body">
+          <p>شماره خط در ابتدای خطوط کد</p>
+          <p>بدیهی است، این کار فقط برای بلوک های کد انجام می شود (<code>&lt;pre&gt;
+              &lt;code&gt;
+            </code>) و نه برای کد درون خطی. شماره خط کلاس را به دلخواه خود اضافه کنید <code>&lt;pre&gt;
+            </code>و افزونه شماره خط مراقبت خواهد کرد.</p>
+          <p>اختیاری: می توانید مشخصه data-start (Number) را در<code>&lt;pre&gt;
+            </code>عنصر این خط مقابله را تغییر خواهد داد.</p>
+          <p class="text-bold-800">Usage:</p>
+          <pre class="language-markup  text-left"> <code class="language-markup">&lt;pre class="line-numbers"&gt;
+    &lt;code class="language-css"&gt;
+    p &#123;
+        color: red
+    &#125;
+
+    &lt;/code&gt;
+&lt;/pre&gt;
+</code> </pre>
+          <p class="text-bold-800">مثال:</p>
+          <pre class="line-numbers" class="language-js  text-left"><code class="language-js">(function() &#123;
+    if (typeof self==='undefined' || !self.Prism || !self.document) &#123;
+        return;
+    &#125;
+&#125;
+
+());
+</code> </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ Line Numbers -->
+<!-- Line highlight -->
+<section id="line-highlight" class="row  text-left">
+  <div class=" col-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">خط برجسته</h4>
+      </div>
+      <div class="card-content">
+        <div class="card-body">
+          <p>برجسته خطوط خاص و / یا محدوده خط.</p>
+          <p>شما خطوطی را که از طریق<em>data-line</em>ویژگی در <code>&lt;pre&gt;
+            </code> عنصر، در قالب ساده زیر:</p>
+          <ul>
+            <li>شماره یک به خط با آن شماره اشاره دارد</li>
+            <li>محدوده ها با دو عدد نشان داده شده اند، با یک خط (-)</li>
+            <li>تعداد خطوط چندگانه یا محدوده ها با کاما از هم جدا می شوند.</li>
+            <li>فضای خالی اجازه داده شده در هر کجا و از بین می رود.</li>
+          </ul>
+          <p class="text-bold-800">استفاده:</p>
+          <pre class="language-markup  text-left"><code class="language-markup">&lt;pre data-line="2, 4, 8-10"&gt;
+    &lt;code class="language-css"&gt;
+    p &#123;
+        color: red
+    &#125;
+
+    &lt;/code&gt;
+&lt;/pre&gt;
+</code> </pre>
+          <p class="text-bold-800">مثال:</p>
+          <pre data-line="2, 4, 7-9" class="language-css  text-left"><code class="language-css">pre.line-numbers &#123;
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+&#125;
+
+pre.line-numbers > code &#123;
+    position: relative;
+&#125;
+
+.line-numbers .line-numbers-rows &#123;
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em;
+    /* works for line-numbers below 1000 lines */
+    letter-spacing: -1px;
+    border-right: 1px solid #999;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+&#125;
+
+</code> </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ Line highlight -->
+<!-- Autolinker -->
+<section id="autolinker" class="row  text-left">
+  <div class=" col-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">لینک ها</h4> <a class="heading-elements-toggle"></a>
+
+      </div>
+      <div class="card-content">
+        <div class="card-body">
+          <p>URL ها و ایمیل ها را در کد به لینک های قابل کلیک تبدیل می کند. <a>بازده معامله</a> لینک ها در نظرات</p>
+          <p>
+
+              URL ها و ایمیل ها به طور خودکار پیوند داده می شوند، لازم نیست کاری انجام دهید. برای پیوند برخی از متن درون یک نظر به یک URL خاص، می توانید از نحو نشانه گذاری Markdown استفاده کنید:
+          </p>
+          <p class="text-bold-800">Usage:</p>
+          <pre class="language-markup  text-left"><code class="language-markup">&lt;pre&gt;
+    &lt;code class="language-css"&gt;
+    @font-face &#123;
+        src: url(http://lea.verou.me/logo.otf);
+    &#125;
+
+    &lt;/code&gt;
+&lt;/pre&gt;
+</code> </pre>
+          <p class="text-bold-800">مثال:</p>
+          <pre class="language-js  text-left"><code class="language-js">@font-face &#123;
+    src: url(http://lea.verou.me/logo.otf);
+    font-family: 'LeaVerou';
+&#125;
+</code> </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ Autolinker -->
+<!-- Show Invisibles -->
+<section id="show-invisibles" class="row  text-left">
+  <div class=" col-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">نمایش غیرمستقیم</h4>
+      </div>
+      <div class="card-content">
+        <div class="card-body">
+          <p>نمایش شخصیت های پنهان مانند زبانه ها و شکست خط.</p>
+          <p class="text-bold-800">مثال:</p>
+          <pre class="language-js  text-left"><code class="language-js ">(function() &#123;
+    if ( typeof self !=='undefined' && !self.Prism || typeof global !=='undefined' && !global.Prism) &#123;
+        return;
+    &#125;
+    Prism.hooks.add('before-highlight', function(env) &#123;
+        var tokens=env.grammar;
+        tokens.tab=/\t/g;
+        tokens.crlf=/\r\n/g;
+        tokens.lf=/\n/g;
+        tokens.cr=/\r/g;
+        tokens.space=/ /g;
+    &#125;
+    );
+&#125;
+
+)();
+</code> </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ Show Invisibles -->
+<!-- File Highlight -->
+<section id="file-highlight" class="row  text-left">
+  <div class=" col-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">برجسته سازی فایل</h4>
+      </div>
+      <div class="card-content">
+        <div class="card-body">
+          <p>فایلهای خارجی را بیرون بیاورید و با Prism آن را برجسته کنید. در وب سایت خود Prism استفاده می شود.</p>
+          <p>استفاده از <em>data-src</em> ویژگی خالی<code>&lt;pre&gt;
+            </code> elements, like so:</p>
+          <p class="text-bold-800">استفاده:</p>
+          <pre class="language-markup  text-left"> <code class="language-markup">&lt;pre data-src="myfile.js"&gt;
+&lt;/pre&gt;
+</code> </pre>
+          <p>شما لازم نیست زبان را مشخص کنید، به طور خودکار با فرمت فایل تعیین می شود. اگر، با این حال، زبان را نمی توان از پسوند فایل تعریف کرد یا فرمت فایل نادرست است، شما همچنین ممکن است یک زبان را مشخص کنید (با نام معمول نام کلاس).</p>
+          <p>
+              طفا توجه داشته باشید که فایل ها با XMLHttpRequest جمع آوری می شوند. این بدان معنی است که اگر فایل بر مبنای دیگری باشد، فیدبک آن را شکست خواهد داد، مگر اینکه CORS در آن وبسایت فعال باشد
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--/ File Highlight -->

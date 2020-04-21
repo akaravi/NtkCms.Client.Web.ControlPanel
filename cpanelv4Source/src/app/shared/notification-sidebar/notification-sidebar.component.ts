@@ -12,7 +12,7 @@ export class NotificationSidebarComponent implements OnInit, OnDestroy {
   layoutSub: Subscription;
   isOpen = false;
 
-  @ViewChild('sidebar', {static: false} ) sidebar: ElementRef;
+  @ViewChild('sidebar', {static: false}) sidebar: ElementRef;
 
   ngOnInit() {
 
@@ -22,7 +22,7 @@ export class NotificationSidebarComponent implements OnInit, OnDestroy {
     private renderer: Renderer2,
     private layoutService: LayoutService) {
 
-    this.layoutSub = layoutService.changeEmitted$.subscribe(
+    this.layoutSub = layoutService.notiSidebarChangeEmitted$.subscribe(
       value => {
         if (this.isOpen) {
           this.renderer.removeClass(this.sidebar.nativeElement, 'open');

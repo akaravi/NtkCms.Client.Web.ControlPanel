@@ -1,0 +1,184 @@
+<section id="tags">
+  <div class="row text-left">
+    <div class="col-12 mt-3 mb-1">
+      <div class="content-header">برچسب های ورودی</div>
+      <p class="content-sub-header"></p>
+    </div>
+  </div>
+  <div class="row text-left">
+    <div class="col-xl-4 col-lg-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>ورودی ساده با دو مورد </h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <tag-input [(ngModel)]="items" (onSelect)="onSelect($event)" [modelAsStrings]="true">
+            </tag-input>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>ورودی ساده با موارد قابل جابجایی            </h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <tag-input [ngModel]="items1" [removable]="false"></tag-input>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>ورودی ساده با موارد قابل ویرایش            </h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <tag-input [(ngModel)]="items2" [editable]="true" (onTagEdited)="onTagEdited($event)">
+            </tag-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row text-left">
+    <div class="col-xl-4 col-lg-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>یک ورودی که نیاز به تمام برچسب ها را با '@' آغاز می کند و با '$'            </h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <tag-input [ngModel]="['@item']" [errorMessages]="errorMessages" [validators]="validators">
+            </tag-input>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>یک ورودی که ارزش تمام تگ های اضافه شده را اضافه می کند و @ 'را به تگ اضافه می کند</h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <tag-input [ngModel]="['@item']" [onAdding]="transform">
+            </tag-input>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>برچسب ها تنها مواردی را از تکمیل خودکار تکمیل می کنند            </h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <tag-input [ngModel]="['@item']" [onlyFromAutocomplete]="true">
+              <tag-input-dropdown [showDropdownIfEmpty]="true" [focusFirstElement]="true" [displayBy]="'value'" [identifyBy]="'id'" [autocompleteItems]="autocompleteItemsAsObjects">
+                <ng-template let-item="item" let-index="index">
+                  ({{ index }}) {{ item.id }}: {{ item.value }}
+                </ng-template>
+              </tag-input-dropdown>
+            </tag-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row text-left">
+    <div class="col-xl-4 col-lg-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>برچسب ها با آخر ارائه شده اند            </h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <tag-input [ngModel]="[]" [placeholder]="'Enter a new repo'" [secondaryPlaceholder]="'Search in Github'" [onlyFromAutocomplete]="true">
+              <tag-input-dropdown [autocompleteObservable]="requestAutocompleteItems">
+                <ng-template let-item="item" let-index="index" let-last="last">
+                  ({{ index }}) {{ item.id }}: {{ item.value }} # {{ last }}
+                </ng-template>
+              </tag-input-dropdown>
+            </tag-input>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>یک ورودی که امکان افزودن موارد را با فشار دادن کلید "فضای" کلید صفحه خود فراهم می کند</h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <tag-input [ngModel]="['@item']" [inputClass]="'myinput'" [inputId]="'myinputId'" [separatorKeyCodes]="[32, 188]">
+            </tag-input>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>برچسب ها با موضوع بوت استرپ</h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <tag-input [theme]="'bootstrap'" [ngModel]="['@item']" name="items">
+            </tag-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row text-left">
+    <div class="col-xl-4 col-lg-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>ورودی تگ غیرفعال            </h4>
+        </div>
+        <div class="card-body">
+          <div>
+            غیرفعال:
+            <input type="checkbox" [(ngModel)]="disabled" />
+
+            <tag-input [ngModel]="items3" [disabled]="disabled">
+            </tag-input>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>کشیدن و انداختن            </h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <tag-input [(ngModel)]="dragAndDropExample" [modelAsStrings]="true" [dragZone]="'zone1'" [editable]="true">
+            </tag-input>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4>تأیید افزودن و حذف برچسب ها با مشاهدات</h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <tag-input [ngModel]="['item1']" [dragZone]="'zone1'" [modelAsStrings]="true" [onRemoving]="onRemoving" [onAdding]="onAdding">
+            </tag-input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

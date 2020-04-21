@@ -1,0 +1,1255 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="content-header">شبکه</div>
+  </div>
+</div>
+<!--Grid options Starts-->
+<section id="grid-option">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">گزینه های بوت استرپ شبکه</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th> بسیار کوچک <small>(&lt;576px)</small> </th>
+                    <th> کوچک <small>(≥576px)</small> </th>
+                    <th> متوسط <small>(≥768px)</small> </th>
+                    <th> بزرگ <small>(≥992px)</small> </th>
+                    <th> خیلی بزرگ <small>(≥1200px)</small> </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th class="text-nowrap" scope="row">حداکثر عرض کانتینر</th>
+                    <td>هیچ (خودکار)</td>
+                    <td>540px</td>
+                    <td>720px</td>
+                    <td>960px</td>
+                    <td>1140px</td>
+                  </tr>
+                  <tr>
+                    <th class="text-nowrap" scope="row">پیشوند کلاس</th>
+                    <td><code>.col-</code></td>
+                    <td><code>.col-sm-</code></td>
+                    <td><code>.col-md-</code></td>
+                    <td><code>.col-lg-</code></td>
+                    <td><code>.col-xl-</code></td>
+                  </tr>
+                  <tr>
+                    <th class="text-nowrap" scope="row"># ستون</th>
+                    <td colspan="5">12</td>
+                  </tr>
+                  <tr>
+                    <th class="text-nowrap" scope="row">عرض </th>
+                    <td colspan="5">30 پیکسل (15 پیکسل در هر طرف ستون)</td>
+                  </tr>
+                  <tr>
+                    <th class="text-nowrap" scope="row">غیر قابل انعطاف</th>
+                    <td colspan="5">بله</td>
+                  </tr>
+                  <tr>
+                    <th class="text-nowrap" scope="row">سفارش ستون</th>
+                    <td colspan="5">بله</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!--Grid options Ends-->
+
+<!-- Bootstrap Auto Layout Column Starts-->
+<section id="auto-layout-columns" class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">ستون های طرح خودکار</h3>
+        <p>استفاده از ستون های ستون خاص برای اندازه آسان ستون بدون کلاس شماره صریح مانند
+          <code>.col-sm-6</code>.</p>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Bootstrap Auto Layout Column Ends-->
+
+<!--Equal-width Starts-->
+<section id="equal-width" class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">عرض برابر</h4>
+        <p>به عنوان مثال، در اینجا دو طرح بندی شبکهای است که برای هر دستگاه و نمایشگر، از آن استفاده می شود<code>xs</code>
+          به <code>xl</code>هر تعداد کلاس های بدون واحد را برای هر نقطه پایانی که نیاز دارید اضافه کنید و هر ستون یکسان است.</p>
+      </div>
+      <div class="card-body collapse show">
+        <div class="card-content">
+          <div class="bd-example-row">
+            <div class="bd-example">
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    1 of 2
+                  </div>
+                  <div class="col">
+                    2 of 2
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    1 of 3
+                  </div>
+                  <div class="col">
+                    2 of 3
+                  </div>
+                  <div class="col">
+                    3 of 3
+                  </div>
+                </div>
+              </div>
+            </div>
+            <pre class="language-markup my-3">
+  <code class="language-markup">
+      &lt;div class="container"&gt;
+          &lt;div class="row"&gt;
+              &lt;div class="col"&gt;
+                  1 of 2
+              &lt;/div&gt;
+              &lt;div class="col"&gt;
+                  2 of 2
+              &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class="row"&gt;
+              &lt;div class="col"&gt;
+                  1 of 3
+              &lt;/div&gt;
+              &lt;div class="col"&gt;
+                  2 of 3
+              &lt;/div&gt;
+              &lt;div class="col"&gt;
+                  3 of 3
+              &lt;/div&gt;
+          &lt;/div&gt;
+      &lt;/div&gt;
+  </code></pre>
+          </div>
+          <p>ستونهای عرض عرض را می توان به چندین خط تقسیم کرد اما یک وجود دارد <a href="https://github.com/philipwalton/flexbugs#11-min-and-max-size-declarations-are-ignored-when-wrapping-flex-items">اشکال flexbox صافاری</a> that prevented this from working without an explicit <code>flex-basis</code>
+            یا <code>border</code>.</p>
+          <p>دو راه حل در یک گزارش مستند شده است<a href="https://output.jsbin.com/micohor">درخواست آزمون کاهش یافته در خارج از Bootstrap
+          </a>، اگر چه مرورگر به روز است، این نباید لازم باشد.</p>
+          <div class="bd-example-row">
+            <div class="bd-example">
+              <div class="container">
+                <div class="row">
+                  <div class="col">ستون</div>
+                  <div class="col">ستون</div>
+                  <div class="w-100"></div>
+                  <div class="col">ستون</div>
+                  <div class="col">ستون</div>
+                </div>
+              </div>
+            </div>
+            <pre class="language-markup my-3">
+  <code class="language-markup">
+  &lt;div class="container"&gt;
+      &lt;div class="row"&gt;
+          &lt;div class="col"&gt;Column&lt;/div&gt;
+          &lt;div class="col"&gt;Column&lt;/div&gt;
+          &lt;div class="w-100"&gt;&lt;/div&gt;
+          &lt;div class="col"&gt;Column&lt;/div&gt;
+          &lt;div class="col"&gt;Column&lt;/div&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+  </code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Equal-width Ends-->
+
+<!--Setting one column width Starts-->
+<section id="setting-one-column-width" class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">تنظیم یک ستون عرض</h4>
+        <p>
+            ستون بندی خودکار برای ستون های شبکه فلاکسکو نیز به این معنی است که شما می توانید عرض یک ستون را تنظیم کنید و ستون های خواهر و برادر را به طور خودکار در اطراف آن تغییر دهید. شما می توانید طبقات شبکه از پیش تعریف شده (همانطور که در زیر نشان داده شده است)، مخلوط های شبکه یا عرض های درون خطی استفاده کنید. توجه داشته باشید که ستون های دیگر بدون توجه به عرض ستون مرکز تغییر خواهند کرد.
+        </p>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+
+          <div class="bd-example-row">
+            <div class="bd-example">
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    1 of 3
+                  </div>
+                  <div class="col-6">
+                    2 of 3 (wider)
+                  </div>
+                  <div class="col">
+                    3 of 3
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    1 of 3
+                  </div>
+                  <div class="col-5">
+                    2 of 3 (wider)
+                  </div>
+                  <div class="col">
+                    3 of 3
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <pre class="language-markup my-3">
+      <code class="language-markup">
+          &lt;div class="container"&gt;
+              &lt;div class="row"&gt;
+                  &lt;div class="col"&gt;
+                      1 of 3
+                  &lt;/div&gt;
+                  &lt;div class="col-6"&gt;
+                      2 of 3 (wider)
+                  &lt;/div&gt;
+                  &lt;div class="col"&gt;
+                      3 of 3
+                  &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class="row"&gt;
+                  &lt;div class="col"&gt;
+                      1 of 3
+                  &lt;/div&gt;
+                  &lt;div class="col-5"&gt;
+                      2 of 3 (wider)
+                  &lt;/div&gt;
+                  &lt;div class="col"&gt;
+                  3 of 3
+                  &lt;/div&gt;
+              &lt;/div&gt;
+          &lt;/div&gt;
+      </code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Setting one column width Ends-->
+
+<!--Variable width content Starts-->
+<section id="variable-width-content" class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">محتوای عرض متغیر</h4>
+        <p>استفاده از کلاس <code>col-&#123;breakpoint&#125;-auto</code> 
+          به ستون های اندازه بر اساس عرض طبیعی محتوای آنها.
+        </p>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <div class="bd-example-row">
+            <div class="bd-example">
+              <div class="container">
+                <div class="row justify-content-md-center">
+                  <div class="col col-lg-2">
+                    1 of 3
+                  </div>
+                  <div class="col-md-auto">
+                    محتوای عرض متغیر
+                  </div>
+                  <div class="col col-lg-2">
+                    3 of 3
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    1 of 3
+                  </div>
+                  <div class="col-md-auto">
+                      محتوای عرض متغیر
+                  </div>
+                  <div class="col col-lg-2">
+                    3 of 3
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <pre class="language-markup my-3">
+  <code class="language-markup">
+      &lt;div class="container"&gt;
+          &lt;div class="row justify-content-md-center"&gt;
+              &lt;div class="col col-lg-2"&gt;
+                  1 of 3
+              &lt;/div&gt;
+              &lt;div class="col-md-auto"&gt;
+                  Variable width content
+              &lt;/div&gt;
+              &lt;div class="col col-lg-2"&gt;
+                  3 of 3
+              &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class="row"&gt;
+              &lt;div class="col"&gt;
+                  1 of 3
+              &lt;/div&gt;
+              &lt;div class="col-md-auto"&gt;
+                  Variable width content
+              &lt;/div&gt;
+              &lt;div class="col col-lg-2"&gt;
+                  3 of 3
+              &lt;/div&gt;
+          &lt;/div&gt;
+      &lt;/div&gt;
+  </code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Variable width content Ends-->
+
+<!--Equal-width multi-row Starts-->
+<section id="equal-width-multi-row" class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">چند ردیف برابر عرض</h4>
+        <p>ایجاد ستونهای عرض برابر که چندین ردیف را با وارد کردن یک ردیف می کند <code>.w-100</code>
+          کجا ستون ها را می خواهید به یک خط جدید برسید. مخلوط کردن آن ها را پاسخ دهد <code>.w-100</code>
+          با برخی از<a href="https://getbootstrap.com/docs/4.3/utilities/display/">آب و هوای صفحه نمایش پاسخگو</a>.</p>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+
+          <div class="bd-example-row">
+            <div class="bd-example">
+              <div class="container">
+                <div class="row">
+                  <div class="col">col</div>
+                  <div class="col">col</div>
+                  <div class="w-100"></div>
+                  <div class="col">col</div>
+                  <div class="col">col</div>
+                </div>
+              </div>
+            </div>
+            <pre class="language-markup my-3">
+      <code class="language-markup">
+      &lt;div class="row"&gt;
+          &lt;div class="col"&gt;col&lt;/div&gt;
+          &lt;div class="col"&gt;col&lt;/div&gt;
+          &lt;div class="w-100"&gt;&lt;/div&gt;
+          &lt;div class="col"&gt;col&lt;/div&gt;
+          &lt;div class="col"&gt;col&lt;/div&gt;
+      &lt;/div&gt;
+      </code>
+                          </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Equal-width multi-row Ends-->
+
+<!--Responsive classes Starts-->
+<section id="responsive-classes" class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">کلاس های پاسخگو</h3>
+        <p>
+            شبکه بوت استرپ شامل پنج سطر از کلاس های از پیش تعریف شده برای ساخت طرح های پاسخگو پاسخگو است. اندازه ستون های خود را بر روی دستگاه های کوچک کوچک، متوسط، بزرگ، و یا فوق العاده بزرگ سفارشی با این حال شما مناسب را انتخاب کنید.
+        </p>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Responsive classes Ends-->
+
+<!--All breakpoints Starts-->
+<section id="all-breakpoints" class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">همه نقطه های شکستن</h4>
+        <p>برای شبکه هایی که از کوچکترین دستگاه ها تا بزرگترین هستند، با استفاده از<code>.col</code>
+          و <code class="highlighter-rouge">.col-*</code> 
+          کلاس ها. وقتی یک ستون به اندازه خاص نیاز دارید، یک کلاس شماره را مشخص کنید در غیر این صورت، احساس راحتی کنید
+          <code class="highlighter-rouge">.col</code>.</p>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+
+          <div class="bd-example-row">
+            <div class="bd-example">
+              <div class="bd-example">
+                <div class="container">
+                  <div class="row">
+                    <div class="col">col</div>
+                    <div class="col">col</div>
+                    <div class="col">col</div>
+                    <div class="col">col</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-8">col-8</div>
+                    <div class="col-4">col-4</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <pre class="language-markup my-3">
+      <code class="language-markup">
+          &lt;div class="row"&gt;
+              &lt;div class="col"&gt;col&lt;/div&gt;
+              &lt;div class="col"&gt;col&lt;/div&gt;
+              &lt;div class="col"&gt;col&lt;/div&gt;
+              &lt;div class="col"&gt;col&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class="row"&gt;
+              &lt;div class="col-8"&gt;col-8&lt;/div&gt;
+              &lt;div class="col-4"&gt;col-4&lt;/div&gt;
+          &lt;/div&gt;
+      </code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--All breakpoints Ends-->
+
+<!--Stacked to horizontal Starts-->
+<section id="stacked-to-horizontal" class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">تقسیم به افقی</h4>
+        <p>
+            نمی خواهم ستون های شما را به سادگی در برخی از سطوح شبکه بکشند؟ با استفاده از ترکیبی از کلاس های مختلف برای هر سطح در صورت نیاز. مثال زیر را برای درک بهتر این که چگونه همه کارها را انجام می دهد، مشاهده کنید.
+        </p>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+
+          <div class="bd-example-row">
+            <div class="bd-example">
+              <div class="container">
+                <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+                <div class="row">
+                  <div class="col-12 col-md-8">.col-12 .col-md-8</div>
+                  <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+                </div>
+
+                <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+                <div class="row">
+                  <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+                  <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+                  <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+                </div>
+
+                <!-- Columns are always 50% wide, on mobile and desktop -->
+                <div class="row">
+                  <div class="col-6">.col-6</div>
+                  <div class="col-6">.col-6</div>
+                </div>
+              </div>
+            </div>
+
+            <pre class="language-markup my-3">
+  <code class="language-markup">
+  &lt;!-- Stack the columns on mobile by making one full-width and the other half-width --&gt;
+  &lt;div class="row"&gt;
+      &lt;div class="col-12 col-md-8"&gt;.col-12 .col-md-8&lt;/div&gt;
+      &lt;div class="col-6 col-md-4"&gt;.col-6 .col-md-4&lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop --&gt;
+  &lt;div class="row"&gt;
+      &lt;div class="col-6 col-md-4"&gt;.col-6 .col-md-4&lt;/div&gt;
+      &lt;div class="col-6 col-md-4"&gt;.col-6 .col-md-4&lt;/div&gt;
+      &lt;div class="col-6 col-md-4"&gt;.col-6 .col-md-4&lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;!-- Columns are always 50% wide, on mobile and desktop --&gt;
+  &lt;div class="row"&gt;
+      &lt;div class="col-6"&gt;.col-6&lt;/div&gt;
+      &lt;div class="col-6"&gt;.col-6&lt;/div&gt;
+  &lt;/div&gt;
+  </code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Stacked to horizontal Ends-->
+
+<!--Vertical alignment-->
+<section id="vertical-alignment" class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">چیدمان عمودی</h4>
+      </div>
+      <div class="card-body collapse show">
+        <div class="card-content">
+
+          <div class="bd-example-row bd-example-row-flex-cols">
+            <div class="bd-example">
+              <div class="container">
+                <div class="row align-items-start">
+                  <div class="col">
+                   یکی از سه ستون
+                  </div>
+                  <div class="col">
+                   یکی از سه ستون
+                  </div>
+                  <div class="col">
+                   یکی از سه ستون
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col">
+                   یکی از سه ستون
+                  </div>
+                  <div class="col">
+                   یکی از سه ستون
+                  </div>
+                  <div class="col">
+                   یکی از سه ستون
+                  </div>
+                </div>
+                <div class="row align-items-end">
+                  <div class="col">
+                   یکی از سه ستون
+                  </div>
+                  <div class="col">
+                   یکی از سه ستون
+                  </div>
+                  <div class="col">
+                   یکی از سه ستون
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <pre class="language-markup my-3">
+  <code class="language-markup">
+  &lt;div class="container"&gt;
+      &lt;div class="row align-items-start"&gt;
+          &lt;div class="col"&gt;
+              One of three columns
+          &lt;/div&gt;
+          &lt;div class="col"&gt;
+              One of three columns
+          &lt;/div&gt;
+          &lt;div class="col"&gt;
+              One of three columns
+          &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="row align-items-center"&gt;
+          &lt;div class="col"&gt;
+              One of three columns
+          &lt;/div&gt;
+          &lt;div class="col"&gt;
+              One of three columns
+          &lt;/div&gt;
+          &lt;div class="col"&gt;
+              One of three columns
+          &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="row align-items-end"&gt;
+          &lt;div class="col"&gt;
+              One of three columns
+          &lt;/div&gt;
+          &lt;div class="col"&gt;
+              One of three columns
+          &lt;/div&gt;
+          &lt;div class="col"&gt;
+              One of three columns
+          &lt;/div&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+  </code>
+                          </pre>
+          </div>
+
+          <div class="bd-example-row bd-example-row-flex-cols">
+            <div class="bd-example">
+              <div class="container">
+                <div class="row">
+                  <div class="col align-self-start">
+                   یکی از سه ستون
+                  </div>
+                  <div class="col align-self-center">
+                   یکی از سه ستون
+                  </div>
+                  <div class="col align-self-end">
+                   یکی از سه ستون
+                  </div>
+                </div>
+              </div>
+            </div>
+            <pre class="language-markup my-3"><code class="language-markup">
+      &lt;div class="container"&gt;
+          &lt;div class="row"&gt;
+              &lt;div class="col align-self-start"&gt;
+                  One of three columns
+              &lt;/div&gt;
+              &lt;div class="col align-self-center"&gt;
+                  One of three columns
+              &lt;/div&gt;
+              &lt;div class="col align-self-end"&gt;
+                  One of three columns
+              &lt;/div&gt;
+          &lt;/div&gt;
+      &lt;/div&gt;
+              </code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Vertical alignment-->
+
+<!--Horizontal alignment-->
+<section id="horizontal-alignment" class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">تراز افقی</h4>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <div class="bd-example-row">
+            <div class="bd-example">
+              <div class="container">
+                <div class="row justify-content-start">
+                  <div class="col-4">
+                   یکی از دو ستون
+                  </div>
+                  <div class="col-4">
+                   یکی از دو ستون
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-4">
+                   یکی از دو ستون
+                  </div>
+                  <div class="col-4">
+                   یکی از دو ستون
+                  </div>
+                </div>
+                <div class="row justify-content-end">
+                  <div class="col-4">
+                   یکی از دو ستون
+                  </div>
+                  <div class="col-4">
+                   یکی از دو ستون
+                  </div>
+                </div>
+                <div class="row justify-content-around">
+                  <div class="col-4">
+                   یکی از دو ستون
+                  </div>
+                  <div class="col-4">
+                   یکی از دو ستون
+                  </div>
+                </div>
+                <div class="row justify-content-between">
+                  <div class="col-4">
+                   یکی از دو ستون
+                  </div>
+                  <div class="col-4">
+                   یکی از دو ستون
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <pre class="language-markup my-3">
+      <code class="language-markup">
+          &lt;div class="container"&gt;
+              &lt;div class="row justify-content-start"&gt;
+              &lt;div class="col-4"&gt;
+                  One of two columns
+              &lt;/div&gt;
+              &lt;div class="col-4"&gt;
+                  One of two columns
+              &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class="row justify-content-center"&gt;
+              &lt;div class="col-4"&gt;
+                  One of two columns
+              &lt;/div&gt;
+              &lt;div class="col-4"&gt;
+                  One of two columns
+              &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class="row justify-content-end"&gt;
+              &lt;div class="col-4"&gt;
+                  One of two columns
+              &lt;/div&gt;
+              &lt;div class="col-4"&gt;
+                  One of two columns
+              &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class="row justify-content-around"&gt;
+              &lt;div class="col-4"&gt;
+                  One of two columns
+              &lt;/div&gt;
+              &lt;div class="col-4"&gt;
+                  One of two columns
+              &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class="row justify-content-between"&gt;
+              &lt;div class="col-4"&gt;
+                  One of two columns
+              &lt;/div&gt;
+              &lt;div class="col-4"&gt;
+                  One of two columns
+              &lt;/div&gt;
+              &lt;/div&gt;
+          &lt;/div&gt;
+      </code>
+  </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Horizontal alignment-->
+
+<!--No gutters-->
+<section id="no-gutters" class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">بدون زاویه</h4>
+        <p>
+            زوایای بین ستونها در کلاسهای شبکه از پیش تعریف شده ما میتوانند با حذف شوند
+          <code class="highlighter-rouge">.no-gutters</code>.
+          این منفی را حذف می کند <code class="highlighter-rouge">margin</code>s از جانب <code class="highlighter-rouge">.row</code>
+          و افقی <code class="highlighter-rouge">padding</code> از تمام ستون های فرزند فوری</p>
+        <p>این کد منبع برای ایجاد این سبک هاست. توجه داشته باشید که لغو ستون به تنها ستون های فرزند اول محدود می شود و از طریق هدف قرار می گیرند
+           <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors">ویژگی انتخاب
+          </a>.در حالی که این انتخاب کننده خاص تر را تولید می کند، می توان با استفاده از پلاگین های ستون هنوز هم سفارشی کرد
+           <a href="https://getbootstrap.com/docs/4.3/utilities/spacing/">آب و هوا</a>.</p>
+        <p><strong>نیاز به طراحی لبه به لبه؟</strong> والدین <code class="highlighter-rouge">.container</code>
+          یا <code class="highlighter-rouge">.container-fluid</code>.</p>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <div class="bd-example-row">
+            <pre class="language-css my-3">
+  <code class="language-css">
+      .no-gutters &#123;
+          margin-right: 0;
+          margin-left: 0;
+      
+          > .col,
+          > [class*="col-"] &#123;
+          padding-right: 0;
+          padding-left: 0;
+          &#125;
+      &#125;
+  </code>
+  </pre>
+          </div>
+          <p>
+              در عمل، در اینجا این است که چگونه به نظر می رسد. توجه داشته باشید می توانید همچنان از این استفاده کنید با تمام دیگر کلاسهای شبکه از پیش تعریف شده (از جمله عرض ستون، سطوح پاسخگو، ترتیب و موارد دیگر).
+          </p>
+          <div class="bd-example-row">
+            <div class="bd-example">
+              <div class="row no-gutters">
+                <div class="col-12 col-sm-6 col-md-8">.col-12 .col-sm-6 .col-md-8</div>
+                <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+              </div>
+            </div>
+            <pre class="language-markup my-3">
+  <code class="language-markup">
+      &lt;div class="row no-gutters"&gt;
+          &lt;div class="col-12 col-sm-6 col-md-8"&gt;.col-12 .col-sm-6 .col-md-8&lt;/div&gt;
+          &lt;div class="col-6 col-md-4"&gt;.col-6 .col-md-4&lt;/div&gt;
+      &lt;/div&gt;
+  </code>
+  </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--No gutters-->
+
+<!--Column wrapping-->
+<section id="column-wrapping" class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">بسته شدن ستون</h4>
+        <p>
+            اگر بیش از 12 ستون در یک ردیف قرار گیرد، هر گروه از ستون های اضافی، به عنوان یک واحد، بر روی یک خط جدید قرار می گیرند.
+        </p>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+
+          <div class="bd-example-row">
+            <div class="bd-example">
+              <div class="container">
+                <div class="row">
+                  <div class="col-9">.col-9</div>
+                  <div class="col-4">.col-4<br>از آنجا که 9 + 4 = 13 و 12، این دیو 4 ستون گسترده ای به یک خط جدید به عنوان یک واحد پیوندی پیچیده می شود.
+                  </div>
+                  <div class="col-6">.col-6<br>ستون های بعدی در طول خط جدید ادامه می یابد.</div>
+                </div>
+              </div>
+            </div>
+
+            <pre class="language-markup my-3">
+  <code class="language-markup">
+      &lt;div class="row"&gt;
+          &lt;div class="col-9"&gt;.col-9&lt;/div&gt;
+          &lt;div class="col-4"&gt;.col-4&lt;br&gt;Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.&lt;/div&gt;
+          &lt;div class="col-6"&gt;.col-6&lt;br&gt;Subsequent columns continue along the new line.&lt;/div&gt;
+      &lt;/div&gt;
+  </code>
+  </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Column wrapping-->
+
+<!--Column breaks-->
+<section id="column-breaks" class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">ستون می شکند</h4>
+        <p>شکستن ستون ها به یک خط جدید در flexbox، نیاز به یک هک کوچک دارد: یک عنصر با آن اضافه کنید<code class="highlighter-rouge">width:
+            100%</code> 
+            هر کجا که می خواهید ستون خود را به یک خط جدید اضافه کنید. معمولا این کار با چندین انجام می شود
+            <code class="highlighter-rouge">.row</code>s,
+            اما هرگز روش پیاده سازی نمی تواند این را حساب کند.
+          </p>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+
+          <div class="bd-example-row">
+            <div class="bd-example">
+              <div class="container">
+                <div class="row">
+                  <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+                  <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+
+                  <!-- Force next columns to break to new line -->
+                  <div class="w-100"></div>
+
+                  <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+                  <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+                </div>
+              </div>
+            </div>
+
+            <pre class="language-markup my-3">
+  <code class="language-markup">
+      &lt;div class="row"&gt;
+          &lt;div class="col-6 col-sm-3"&gt;.col-6 .col-sm-3&lt;/div&gt;
+          &lt;div class="col-6 col-sm-3"&gt;.col-6 .col-sm-3&lt;/div&gt;
+      
+          &lt;!-- Force next columns to break to new line --&gt;
+          &lt;div class="w-100"&gt;&lt;/div&gt;
+      
+          &lt;div class="col-6 col-sm-3"&gt;.col-6 .col-sm-3&lt;/div&gt;
+          &lt;div class="col-6 col-sm-3"&gt;.col-6 .col-sm-3&lt;/div&gt;
+      &lt;/div&gt;
+  </code>
+                          </pre>
+          </div>
+          <p>شما همچنین می توانید این شکست را در نقطه توقف خاص با ما اعمال کنید
+            <a href="https://getbootstrap.com/docs/4.3/utilities/display/">آب و هوای صفحه نمایش پاسخگو</a>.</p>
+          <div class="bd-example-row">
+
+            <div class="bd-example">
+              <div class="container">
+                <div class="row">
+                  <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
+                  <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
+
+                  <!-- Force next columns to break to new line at md breakpoint and up -->
+                  <div class="w-100 d-none d-md-block"></div>
+
+                  <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
+                  <div class="col-6 col-sm-4">.col-6 .col-sm-4</div>
+                </div>
+              </div>
+            </div>
+            <pre class="language-markup my-3">
+  <code class="language-markup">
+  &lt;div class="row"&gt;
+      &lt;div class="col-6 col-sm-4"&gt;.col-6 .col-sm-4&lt;/div&gt;
+      &lt;div class="col-6 col-sm-4"&gt;.col-6 .col-sm-4&lt;/div&gt;
+  
+      &lt;!-- Force next columns to break to new line at md breakpoint and up --&gt;
+      &lt;div class="w-100 d-none d-md-block"&gt;&lt;/div&gt;
+  
+      &lt;div class="col-6 col-sm-4"&gt;.col-6 .col-sm-4&lt;/div&gt;
+      &lt;div class="col-6 col-sm-4"&gt;.col-6 .col-sm-4&lt;/div&gt;
+  &lt;/div&gt;
+  </code>
+                          </pre>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Column breaks-->
+
+
+<!--Reordering-->
+<section id="reordering" class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">تنظیم مجدد</h3>
+        <h5 class="card-text mt-2">کلاس های سفارش</h5>
+        <p>استفاده از کلاس <code>.order-</code>برای کنترل <strong>نظم بصری</strong> 
+          از محتوای شما این کلاس پاسخگو است، بنابراین شما می توانید تنظیم کنید
+          <code>order</code>توسط نقطه توقف (e.g., <code>.order-1.order-md-2</code>).
+          شامل پشتیبانی برای<code>1</code> through <code>12</code>در تمام پنج سطح شبکه.</p>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <div class="bd-example-row">
+            <div class="bd-example">
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                      اول، اما غیر ارادی
+                  </div>
+                  <div class="col order-12">
+                      دوم، اما آخرین
+                  </div>
+                  <div class="col order-1">
+                      سوم، اما اول
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <pre class="language-markup my-3">
+  <code class="language-markup">
+      &lt;div class="container"&gt;
+          &lt;div class="row"&gt;
+              &lt;div class="col"&gt;
+                  First, but unordered
+              &lt;/div&gt;
+              &lt;div class="col order-12"&gt;
+                  Second, but last
+              &lt;/div&gt;
+              &lt;div class="col order-1"&gt;
+              Third, but first
+              &lt;/div&gt;
+          &lt;/div&gt;
+      &lt;/div&gt;
+  </code>
+                  </pre>
+          </div>
+
+          <p>یک پاسخ نیز وجود دارد<code>.order-first</code> 
+            کلاس که به سرعت با استفاده از دستور یک عنصر تغییر می کند
+            <code>order: -1</code>. این کلاس همچنین می تواند با عدد صاف همخوانی داشته باشد <code>.order-*</code>
+            طبقات مورد نیاز</p>
+          <div class="bd-example-row">
+
+            <div class="bd-example">
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                      اول، اما غیر ارادی
+                  </div>
+                  <div class="col">
+                      دوم، اما غیر ارادی
+                  </div>
+                  <div class="col order-first">
+                      سوم، اما اول
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <pre class="language-markup my-3">
+  <code class="language-markup">
+      &lt;div class="container"&gt;
+          &lt;div class="row"&gt;
+              &lt;div class="col"&gt;
+                  First, but unordered
+              &lt;/div&gt;
+              &lt;div class="col"&gt;
+                  Second, but unordered
+              &lt;/div&gt;
+              &lt;div class="col order-first"&gt;
+                  Third, but first
+              &lt;/div&gt;
+          &lt;/div&gt;
+      &lt;/div&gt;
+  </code>
+                  </pre>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Reordering-->
+
+
+<!--Offsetting columns-->
+<section id="offsetting-columns" class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">تعویض ستون</h3>
+        <h5 class="mt-2">کلاس های افست</h5>
+        <p class="card-text">شما می توانید ستون های شبکه را به دو صورت خنثی کنید: پاسخگو بودن ما<code>.offset-</code> 
+          کلاس های شبکه و ما
+          <a href="https://getbootstrap.com/docs/4.3/utilities/spacing/">margin حاشیه</a>
+          . کلاس های شبکه به اندازه ستون مطابقت دارند، در حالی که حاشیه ها برای طرح بندی سریع که عرض متغیر آن متغیر است مفیدتر است.
+        </p>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p>انتقال ستون به سمت راست با استفاده از <code>.offset-md-*</code> کلاس ها. این کلاس ها حاشیه چپ ستون را با
+            <code>*</code> ستون ها. مثلا،
+            <code>.offset-md-4</code> حرکت می کند <code>.col-md-4</code>
+            بیش از چهار ستون</p>
+
+          <div class="bd-example-row">
+            <div class="bd-example">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-4">.col-md-4</div>
+                  <div class="col-md-4 offset-md-4">.col-md-4 .offset-md-4</div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 offset-md-3">.col-md-3 .offset-md-3</div>
+                  <div class="col-md-3 offset-md-3">.col-md-3 .offset-md-3</div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 offset-md-3">.col-md-6 .offset-md-3</div>
+                </div>
+              </div>
+            </div>
+
+            <pre class="language-markup my-3">
+  <code class="language-markup">
+      &lt;div class="row"&gt;
+          &lt;div class="col-md-4"&gt;.col-md-4&lt;/div&gt;
+          &lt;div class="col-md-4 offset-md-4"&gt;.col-md-4 .offset-md-4&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="row"&gt;
+          &lt;div class="col-md-3 offset-md-3"&gt;.col-md-3 .offset-md-3&lt;/div&gt;
+          &lt;div class="col-md-3 offset-md-3"&gt;.col-md-3 .offset-md-3&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="row"&gt;
+          &lt;div class="col-md-6 offset-md-3"&gt;.col-md-6 .offset-md-3&lt;/div&gt;
+      &lt;/div&gt;
+  </code>
+                  </pre>
+          </div>
+
+          <p>
+              علاوه بر پاک کردن ستون در نقاط بازده پاسخ، ممکن است نیاز به بازنشانی جبران خسارت باشد. این را در عمل ببینید
+            <a href="https://getbootstrap.com/docs/4.3/layout/grid/">مثال شبکه</a>.</p>
+          <div class="bd-example-row">
+            <div class="bd-example">
+              <div class="bd-example">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm-5 col-md-6">.col-sm-5 .col-md-6</div>
+                    <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">.col-sm-5 .offset-sm-2 .col-md-6
+                      .offset-md-0</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-6 col-md-5 col-lg-6">.col.col-sm-6.col-md-5.col-lg-6</div>
+                    <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0">.col-sm-6 .col-md-5 .offset-md-2
+                      .col-lg-6 .offset-lg-0</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <pre class="language-markup my-3">
+  <code class="language-markup">
+      &lt;div class="row"&gt;
+          &lt;div class="col-sm-5 col-md-6"&gt;.col-sm-5 .col-md-6&lt;/div&gt;
+          &lt;div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0"&gt;.col-sm-5 .offset-sm-2 .col-md-6 .offset-md-0&lt;/div&gt;
+      &lt;/div&gt;
+      
+      &lt;div class="row"&gt;
+          &lt;div class="col-sm-6 col-md-5 col-lg-6"&gt;.col.col-sm-6.col-md-5.col-lg-6&lt;/div&gt;
+          &lt;div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0"&gt;.col-sm-6 .col-md-5 .offset-md-2 .col-lg-6 .offset-lg-0&lt;/div&gt;
+      &lt;/div&gt;
+  </code>
+                  </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Offsetting columns-->
+
+<!--Margin utilities-->
+<section id="margin-utilities" class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">Margin حاشیه</h4>
+        <p>با حرکت به flexbox در v4، می توانید از ابزارهای حاشیه ای مانند <code class="highlighter-rouge">.mr-auto</code>
+          برای تحمیل ستون های خواهر و برادر از یکدیگر.</p>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <div class="bd-example-row">
+            <div class="bd-example">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-4">.col-md-4</div>
+                  <div class="col-md-4 ml-auto">.col-md-4 .ml-auto</div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 ml-md-auto">.col-md-3 .ml-md-auto</div>
+                  <div class="col-md-3 ml-md-auto">.col-md-3 .ml-md-auto</div>
+                </div>
+                <div class="row">
+                  <div class="col-auto mr-auto">.col-auto .mr-auto</div>
+                  <div class="col-auto">.col-auto</div>
+                </div>
+              </div>
+            </div>
+
+            <pre class="language-markup my-3">
+  <code class="language-markup">
+      &lt;div class="row"&gt;
+          &lt;div class="col-md-4"&gt;.col-md-4&lt;/div&gt;
+          &lt;div class="col-md-4 ml-auto"&gt;.col-md-4 .ml-auto&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="row"&gt;
+          &lt;div class="col-md-3 ml-md-auto"&gt;.col-md-3 .ml-md-auto&lt;/div&gt;
+          &lt;div class="col-md-3 ml-md-auto"&gt;.col-md-3 .ml-md-auto&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="row"&gt;
+          &lt;div class="col-auto mr-auto"&gt;.col-auto .mr-auto&lt;/div&gt;
+          &lt;div class="col-auto"&gt;.col-auto&lt;/div&gt;
+      &lt;/div&gt;
+  </code>
+                          </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Margin utilities-->
+
+<!--Nesting-->
+<section id="nesting" class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">تودرتویی</h4>
+        <p>برای قرار دادن محتوای خود با شبکه پیش فرض، یک جدید اضافه کنید <code class="highlighter-rouge">.row</code> 
+          و مجموعه ای از
+          <code class="highlighter-rouge">.col-sm-*</code> ستونها در یک موجود <code class="highlighter-rouge">.col-sm-*</code>
+         
+          ستون رشته های مشتق شده باید مجموعه ای از ستون های اضافه شده را تا 12 یا کمتر (لازم نیست که شما از تمام 12 ستون موجود استفاده کنید).
+        </p>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+
+          <div class="bd-example-row">
+            <div class="bd-example">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-9">
+                    سطوح 1: .col-sm-9
+                    <div class="row">
+                      <div class="col-8 col-sm-6">
+                        سطوح 2: .col-8 .col-sm-6
+                      </div>
+                      <div class="col-4 col-sm-6">
+                        سطوح 2: .col-4 .col-sm-6
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <pre class="language-markup my-3">
+  <code class="language-markup">
+      &lt;div class="row"&gt;
+          &lt;div class="col-sm-9"&gt;
+          Level 1: .col-sm-9
+          &lt;div class="row"&gt;
+              &lt;div class="col-8 col-sm-6"&gt;
+              Level 2: .col-8 .col-sm-6
+              &lt;/div&gt;
+              &lt;div class="col-4 col-sm-6"&gt;
+              Level 2: .col-4 .col-sm-6
+              &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;/div&gt;
+      &lt;/div&gt;
+  </code>
+                          </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

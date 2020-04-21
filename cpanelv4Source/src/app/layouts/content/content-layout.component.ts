@@ -10,7 +10,7 @@ import { DOCUMENT } from '@angular/common';
 
 export class ContentLayoutComponent implements OnInit, AfterViewInit {
   public config: any = {};
-  direction: 'ltr';
+  direction: 'rtl';
   @ViewChild('content-wrapper', {static: false}) wrapper: ElementRef;
 
 
@@ -28,10 +28,10 @@ export class ContentLayoutComponent implements OnInit, AfterViewInit {
         this.direction = this.config.layout.dir;
       }
 
-      if (this.config.layout.variant === "Dark") {
+      if (this.config.layout.variant === 'Dark') {
         this.renderer.addClass(this.document.body, 'layout-dark');
       }
-      else if (this.config.layout.variant === "Transparent") {
+      else if (this.config.layout.variant === 'Transparent') {
         this.renderer.addClass(this.document.body, 'layout-dark');
         this.renderer.addClass(this.document.body, 'layout-transparent');
         if (this.config.layout.sidebar.backgroundColor) {

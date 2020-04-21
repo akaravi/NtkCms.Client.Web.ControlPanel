@@ -1,6 +1,6 @@
 import { MatngularPage } from './app.po';
 
-describe('matngular App', () => {
+describe('Matngular App', () => {
   let page: MatngularPage;
 
   beforeEach(() => {

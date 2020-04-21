@@ -1,0 +1,127 @@
+<!--Rating Starts-->
+<section id="rating">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="content-header">امتیازدهی</div>
+    </div>
+  </div>
+  <div class="row text-left" matchHeight="card">
+    <!--Basic Rating Starts-->
+    <div class="col-md-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">امتیازدهی پایه</h4>
+          <p>دستورالعمل رتبه بندی که مراقبت از تجسم یک ستاره ستاره را خواهد داشت.</p>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ngb-rating [(rate)]="currentRate"></ngb-rating>
+            <p>ستاره: <b>{{currentRate}}</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Basic Rating Ends-->
+
+    <!--Custom star template Starts-->
+    <div class="col-md-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">قالب ستاره سفارشی            </h4>
+          <p>قالب رتبه بندی سفارشی به عنوان عنصر کودک ارائه شده است</p>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ngb-rating [(rate)]="currentRating">
+              <ng-template let-fill="fill">
+                <span class="star" [class.filled]="fill === 100">&#9733;</span>
+              </ng-template>
+            </ngb-rating>
+            <p>ستاره: <b>{{currentRating}}</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Custom star template Ends-->
+  </div>
+  <div class="row text-left" matchHeight="card">
+    <!--Events and readonly ratings Starts-->
+    <div class="col-md-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">رویدادها و امتیازات فقط خوانده شده</h4>
+          <p>رویدادهای ارزیابی فقط و قابل ویرایش</p>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ngb-rating [(rate)]="selected" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="readonly"></ngb-rating>
+            <p>انتخاب شده: <b>{{selected}}</b> شناور شده: <b>{{hovered}}</b>
+            </p>
+            <button class="btn btn-sm btn-outline-{{readonly ? 'danger' : 'success'}}" (click)="readonly = !readonly">
+              {{ readonly ? "readonly" : "editable"}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Events and readonly ratings Ends-->
+
+    <!--Form integration Starts-->
+    <div class="col-md-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">ادغام فرم </h4>
+          <p>فرم های NgModel و واکنشی را می توان بدون استفاده از "نرخ" استفاده کرد</p>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+
+            <div class="form-group" [class.has-success]="ctrl.valid" [class.has-danger]="ctrl.invalid">
+              <ngb-rating [formControl]="ctrl"></ngb-rating>
+              <div class="form-control-feedback">
+                <div *ngIf="ctrl.valid">ممنون!</div>
+                <div *ngIf="ctrl.errors">لطفا ما را ارزیابی کن</div>
+              </div>
+            </div>
+
+            <p>مودال: <b>{{ ctrl.value }}</b></p>
+            <button class="btn btn-sm btn-outline-{{ ctrl.disabled ? 'danger' : 'success'}} mr-1" (click)="toggle()">
+              {{ ctrl.disabled ? "control disabled" : " control enabled" }}
+            </button>
+            <button class="btn btn-sm btn-outline-primary" (click)="ctrl.setValue(null)">پاک</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Form integration Ends-->
+  </div>
+  <div class="row text-left" matchHeight="card">
+    <!--Custom decimal rating Starts-->
+    <div class="col-md-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">امتیاز دهی سفارشی            </h4>
+          <p>قالب بندی سفارشی ارائه شده از طریق یک متغیر نمایش صفحه نمایش ریز دانه را نشان می دهد</p>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ng-template #t let-fill="fill">
+              <span *ngIf="fill === 100" class="star full">&hearts;</span>
+              <span *ngIf="fill === 0" class="star">&hearts;</span>
+              <span *ngIf="fill < 100 && fill > 0" class="star">
+                <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+              </span>
+            </ng-template>
+
+            <ngb-rating [(rate)]="decimalCurrentRate" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+            <p>ستاره: <b>{{decimalCurrentRate}}</b></p>
+            <button class="btn btn-sm btn-outline-primary mr-1" (click)="decimalCurrentRate = 1.35">1.35</button>
+            <button class="btn btn-sm btn-outline-primary" (click)="decimalCurrentRate = 4.72">4.72</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Custom decimal rating Ends-->
+  </div>
+</section>
+<!--Rating Ends-->

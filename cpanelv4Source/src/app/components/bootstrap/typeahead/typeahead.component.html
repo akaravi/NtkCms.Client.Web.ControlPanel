@@ -1,0 +1,110 @@
+<!--Typeahead Starts-->
+<section id="typeahead">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="content-header">تایپ</div>
+    </div>
+  </div>
+  <div class="row text-left" matchHeight ="card">
+    <!--Basic Typeahead Starts-->
+    <div class="col-md-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">مثال تایپ</h4>
+          <p> یک مثال تایپ که مقادیری از یک استاتیک دریافت می کند<code>string[]</code></p>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ul>
+              <li><code>debounceTime</code> اپراتور  </li>
+              <li>تنها در صورتی که 2+ کاراکتر تایپ شده است، شروع به کار کند </li>
+              <li>محدود به 10 نتیجه </li>
+            </ul>
+            <div class="form-group">
+              <input type="text" class="form-control mb-3" [(ngModel)]="model" [ngbTypeahead]="search" placeholder="Search for alabama" />
+            </div>
+            <p>Model: {{ model | json }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Basic Typeahead Ends-->
+
+    <!--Wikipedia search Starts-->
+    <div class="col-md-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">جستجوی ویکی پدیا</h4>
+          <p> مثال تایپ که مقادیر از  <code>WikipediaService</code></p>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ul>
+              <li>بازیابی اطلاعات از راه دور  </li>
+              <li><code>debounceTime</code> اپراتور</li>
+              <li><code>do</code> اپراتور</li>
+              <li><code>distinctUntilChanged</code> اپراتور</li>
+              <li><code>switchMap</code> اپراتور</li>
+              <li><code>catch</code> اپراتور برای نمایش یک پیام خطا در مورد مسئله اتصالات </li>
+            </ul>
+
+            <div class="form-group" [class.has-danger]="searchFailed">
+              <input type="text" class="form-control" [(ngModel)]="modelWiki" [ngbTypeahead]="searchWiki" placeholder="Search for alabama"
+              />
+              <span *ngIf="searching">جستجو...</span>
+              <div class="form-control-feedback" *ngIf="searchFailed">با عرض پوزش پیشنهادات قابل بارگیری نیست </div>
+            </div>
+
+            <p>Model: {{ modelWiki | json }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Wikipedia search Ends-->
+  </div>
+  <div class="row text-left" matchHeight ="card">
+    <!--Formatted results Starts-->
+    <div class="col-md-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">نتایج فرمت شده</h4>
+          <p>مثال تایپ که از تابع format برای نتایج رشته استفاده می کند</p>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <div class="form-group">
+              <input type="text" class="form-control format mb-3" [(ngModel)]="modelFormat" [ngbTypeahead]="search" [resultFormatter]="formatter"
+              placeholder="Search for alabama" />
+            </div>
+            <p>Model: {{ modelFormat | json }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Formatted results Ends-->
+
+    <!--Template for results Starts-->
+    <div class="col-md-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">الگو برای نتایج</h4>
+          <p>یک مثال تایپ که از قالب سفارشی برای نمایش نتایج استفاده می کند و از شی به عنوان یک مدل استفاده می کند </p>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ng-template #rt let-r="result" let-t="term">
+              <img [src]="'https://upload.wikimedia.org/wikipedia/commons/thumb/' + r.flag" width="16"> {{ r.name}}
+            </ng-template>
+            <div class="form-group">
+            <input type="text" class="form-control mb-3" [(ngModel)]="modelTemp" [ngbTypeahead]="searchFlags" [resultTemplate]="rt" [inputFormatter]="formatter1"
+              placeholder="Search for alabama" />
+            </div>
+            <p>Model: {{ modelTemp | json }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Template for results Ends-->
+  </div>
+</section>
+<!--Typeahead Ends-->

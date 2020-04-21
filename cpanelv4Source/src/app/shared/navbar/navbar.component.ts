@@ -1,7 +1,7 @@
-import { Component, Output, EventEmitter, OnInit, AfterViewInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-
 import { LayoutService } from '../services/layout.service';
+import { Subscription } from 'rxjs';
 import { ConfigService } from '../services/config.service';
 
 @Component({
@@ -9,20 +9,31 @@ import { ConfigService } from '../services/config.service';
   templateUrl: "./navbar.component.html",
   styleUrls: ["./navbar.component.scss"]
 })
-export class NavbarComponent implements OnInit, AfterViewInit {
-  currentLang = "en";
+export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
+  currentLang = "fa";
   toggleClass = "ft-maximize";
   placement = "bottom-right";
   public isCollapsed = true;
+  layoutSub: Subscription;
   @Output()
   toggleHideSidebar = new EventEmitter<Object>();
 
   public config: any = {};
 
   constructor(public translate: TranslateService, private layoutService: LayoutService, private configService:ConfigService) {
-    const browserLang: string = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : "en");
+    // const browserLang: string = translate.getBrowserLang();
+    const browserLang: string = "fa";
+    translate.use(browserLang.match(/fa|en|es|pt|de/) ? browserLang : "fa");
 
+    this.layoutSub = layoutService.changeEmitted$.subscribe(
+      direction => {
+        const dir = direction.direction;
+        if (dir === "rtl") {
+          this.placement = "bottom-left";
+        } else if (dir === "ltr") {
+          this.placement = "bottom-right";
+        }
+      });
   }
 
   ngOnInit() {
@@ -31,15 +42,23 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     if(this.config.layout.dir) {
-      const dir = this.config.layout.dir;
+      setTimeout(() => {
+        const dir = this.config.layout.dir;
         if (dir === "rtl") {
           this.placement = "bottom-left";
         } else if (dir === "ltr") {
           this.placement = "bottom-right";
         }
+      }, 0);
+     
     }
   }
 
+  ngOnDestroy() {
+    if (this.layoutSub) {
+      this.layoutSub.unsubscribe();
+    }
+  }
 
   ChangeLanguage(language: string) {
     this.translate.use(language);
@@ -54,7 +73,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   toggleNotificationSidebar() {
-    this.layoutService.emitChange(true);
+    this.layoutService.emitNotiSidebarChange(true);
   }
 
   toggleSidebar() {

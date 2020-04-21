@@ -1,0 +1,147 @@
+<!-- // Basic example section Starts -->
+<section id="basic-examples">
+    <div class="row text-left">
+        <div class="col-sm-12 mt-3 mb-1">
+            <div class="content-header">هشدار شیرین</div>
+            <p class="content-sub-header">هشدار شیرین به صورت خودکار در صفحه متمرکز می شود و اگر شما از یک رایانه رومیزی، تلفن همراه یا رایانه لوحی استفاده می کنید مهم نیست. این حتی بسیار قابل تنظیم است، همانطور که در زیر می بینید!
+                </p>
+        </div>
+    </div>
+    <div class="card text-left">
+        <div class="card-content">
+            <div class="card-body">
+                <div class="row mt-1">
+                    <div class="col-md-4 col-sm-6 col-12">
+                        <button type="button" class="btn btn-primary btn-raised btn-block" id="basic-alert" (click)="basicAlert()">پایه</button>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-12">
+                        <button type="button" class="btn btn-primary btn-raised btn-block" id="with-title" (click)="withTitle()">با عنوان</button>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <button type="button" class="btn btn-primary btn-raised btn-block" id="html-alert" (click)="htmlAlert()">HTML</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- // Basic example section end -->
+
+<!-- Types section start -->
+<section id="types">
+    <div class="row text-left">
+        <div class="col-12 mt-3 mb-1">
+            <div class="content-header">نوع</div>
+            <p class="content-sub-header">
+                    نوع مودال. هشدار شیرین همراه با 5 نوع ساخته شده است که یک انیمیشن آیکون مربوطه را نشان می دهد: "هشدار"، "خطا"، "موفقیت" "اطلاعات" و "سوال". شما همچنین می توانید آن را به عنوان "ورودی" تنظیم کنید تا یک مدال سریع دریافت کنید. این می تواند یا در جسم تحت کلید "نوع" قرار داده شود یا به عنوان پارامتر سوم تابع ارسال شود.
+
+            </p>
+        </div>
+    </div>
+    <div class="card text-left">
+        <div class="card-content">
+            <div class="card-body">
+                <div class="row mt-1">
+                    <div class="col-md-4 col-sm-6 col-12">
+                        <button type="button" class="btn btn-secondary btn-raised btn-block mb-5" id="type-question" (click)="typeQuestion()">سوال</button>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-12">
+                        <button type="button" class="btn btn-success btn-raised btn-block mb-5" id="type-success" (click)="typeSuccess()">موفقیت</button>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-12">
+                        <button type="button" class="btn btn-info btn-raised btn-block mb-5" id="type-info" (click)="typeInfo()">اطلاعات</button>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                        <button type="button" class="btn btn-warning btn-raised btn-block mb-5" id="type-warning" (click)="typeWarning()">هشدار</button>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                        <button type="button" class="btn btn-danger btn-raised btn-block mb-5" id="type-error" (click)="typeError()">خطا</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- // Types section end -->
+
+
+<!-- Options section start -->
+<section id="options">
+    <div class="row text-left">
+        <div class="col-12 mt-3 mb-1">
+            <div class="content-header">گزینه ها  </div>
+        </div>
+    </div>
+    <div class="card text-left">
+        <div class="card-content">
+            <div class="card-body">
+                <div class="row mt-1">
+                    <div class="col-lg-4 col-sm-6 col-12">
+                        <h5 class="mt-4">آیکون سفارشی</h5>
+                        <p><code>imageUrl</code> رای اضافه کردن یک آیکون سفارشی برای Modal استفاده می شود. باید حاوی یک رشته با مسیر به تصویر باشد.</p>
+                        <button type="button" class="btn btn-primary btn-raised btn-block" id="custom-icon" (click)="customIcon()">آیکون سفارشی</button>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-12">
+                        <h5 class="mt-4">اتوماتیک تایمر بسته</h5>
+                        <p>یک پیام با تایمر اتوماتیک بسته <code>timer</code> به طور پیشفرض تنظیم شده است <code>null</code>.شما می توانید تایمر را در ms (میلی ثانیه) تنظیم کنید.</p>
+                        <button type="button" class="btn btn-primary btn-raised btn-block" id="auto-close" (click)="autoClose()">اتوماتیک  بسته</button>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-12">
+                        <h5 class="mt-4">اجازه خارج کردن کلیک کنید</h5>
+                        <p>اگر<code>allowOutsideClick</code> تنظیم شده است<code>true</code>، کاربر می تواند با کلیک کردن در خارج از آن، مودال را رد کند.</p>
+                        <button type="button" class="btn btn-primary btn-raised btn-block" id="outside-click" (click)="outsideClick()">روی بیرون کلیک کنید</button>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-12">
+                        <h5 class="mt-4">درخواست آژاکس</h5>
+                        <p>Set <code>showLoaderOnConfirm</code>به درستی دکمه های غیر فعال را نشان می دهد و نشان می دهد که چیزی در حال بارگذاری است. درخواست آژاکس برای مثال</p>
+                        <button type="button" class="btn btn-primary btn-raised btn-block" id="ajax-request" (click)="ajaxRequest()">آژاکس</button>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-12">
+                        <h5 class="mt-4">گزینه های دکمه</h5>
+                        <p>توضیحات سفارشی HTML و دکمه ها</p>
+                        <button type="button" class="btn btn-primary btn-raised btn-block" id="custom-button" (click)="customButton()">HTML سفارشی و دکمه ها</button>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-12">
+                        <h5 class="mt-4">تابع سریع</h5>
+                        <p>جایگزینی برای عملکرد سریع. شما می توانید تنظیم کنید <code>type</code> به عنوان "ورودی" برای دریافت مدرک سریع</p>
+                        <button type="button" class="btn btn-primary btn-raised btn-block" id="prompt-function" (click)="promptFunction()">سریع</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- // Options section end -->
+
+<!-- Button Action option section start -->
+<section id="action-option">
+    <div class="row text-left">
+        <div class="col-12 mt-3 mb-1">
+            <div class="content-header">اقدامات دکمه  </div>
+        </div>
+    </div>
+    <div class="card text-left">
+        <div class="card-content">
+            <div class="card-body">
+                <div class="row mt-1">
+                    <div class="col-lg-4 col-sm-6 col-12">
+                        <h5 class="mt-4">تأیید دکمه اقدام </h5>
+                        <p>یام هشدار، با یک تابع مرتبط با دکمه "تأیید".</p>
+                        <button type="button" class="btn btn-primary btn-raised btn-block" id="confirm-text" (click)="confirmText()">تایید متن</button>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-12">
+                        <h5 class="mt-4">دکمه ادامه و بستن</h5>
+                        <p>تأیید و لغو گزینه های خروج از دکمه </p>
+                        <button type="button" class="btn btn-primary btn-raised btn-block" id="confirm-cancel" (click)="confirmCancelButton()">عملیات دکمه ها</button>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 col-12">
+                        <h5 class="mt-4">مدال های زنجیره ای </h5>
+                        <p>تغییر دکوراسیون بعدی در دکمه بعدی</p>
+                        <button type="button" class="btn btn-primary btn-raised btn-block" id="steps" (click)="steps()">مرحله ای</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- // Button Confirm option section end -->

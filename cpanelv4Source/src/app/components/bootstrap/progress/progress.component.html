@@ -1,0 +1,182 @@
+<!-- Progress Bar Starts-->
+<section id="basic-progress">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="content-header">میله پیشرفت</div>
+        </div>
+    </div>
+    <div class="row text-left">
+        <!--Contextual progress bars Starts-->
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">میله های پیشرفت متنی</h4>
+                    <p>سبک HTML5 را ترسیم کنید <code>progress</code> 
+                        عنصر با چند کلاس اضافی و برخی از CSS خاص مرورگر خاص. اطمینان حاصل کنید که در پشتیبانی مرورگر را بخوانید.
+                    </p>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <p>
+                            <ngb-progressbar type="success" [value]="25"></ngb-progressbar>
+                        </p>
+                        <p>
+                            <ngb-progressbar type="info" [value]="50"></ngb-progressbar>
+                        </p>
+                        <p>
+                            <ngb-progressbar type="warning" [value]="75"></ngb-progressbar>
+                        </p>
+                        <p>
+                            <ngb-progressbar type="danger" [value]="100"></ngb-progressbar>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Contextual progress bars Ends-->
+    </div>
+    <div class="row text-left">
+        <!--Progress bars with current value labels Starts-->
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">میله پیشرفت با برچسب ارزش فعلی</h4>
+                    <p>با قرار دادن متن در داخل، برچسب ها را به میله پیشرفت خود اضافه کنید<code class="highlighter-rouge">.progress-bar</code>.</p>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <p>
+                            <ngb-progressbar showValue="true" type="success" [value]="25"></ngb-progressbar>
+                        </p>
+                        <p>
+                            <ngb-progressbar [showValue]="true" type="info" [value]="50"></ngb-progressbar>
+                        </p>
+                        <p>
+                            <ngb-progressbar showValue="true" type="warning" [value]="150" [max]="200"></ngb-progressbar>
+                        </p>
+                        <p>
+                            <ngb-progressbar [showValue]="true" type="danger" [value]="150" [max]="150"></ngb-progressbar>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Progress bars with current value labels Ends-->
+    </div>
+    <div class="row text-left">
+        <!--Striped progress bars Starts-->
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">میله های پیشرفته راه راه</h4>
+                    <p>یک گرادینت برای ایجاد یک اثر راه راه استفاده می کند.</p>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <p>
+                            <ngb-progressbar type="success" [value]="25" [striped]="true"></ngb-progressbar>
+                        </p>
+                        <p>
+                            <ngb-progressbar type="info" [value]="50" [striped]="true"></ngb-progressbar>
+                        </p>
+                        <p>
+                            <ngb-progressbar type="warning" [value]="75" [striped]="true"></ngb-progressbar>
+                        </p>
+                        <p>
+                            <ngb-progressbar type="danger" [value]="100" [striped]="true"></ngb-progressbar>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Striped progress bars Ends-->
+    </div>
+    <div class="row text-left">
+        <!--Progress bars with custom labels Starts-->
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">میله های پیشرفته با برچسب های سفارشی</h4>
+                    <p></p>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <p>
+                            <ngb-progressbar type="success" [value]="25">25</ngb-progressbar>
+                        </p>
+                        <p>
+                            <ngb-progressbar type="info" [value]="50">کپی کردن فایل <b>2 of 4</b>...</ngb-progressbar>
+                        </p>
+                        <p>
+                            <ngb-progressbar type="warning" [value]="75" [striped]="true" [animated]="true"><i>50%</i></ngb-progressbar>
+                        </p>
+                        <p>
+                            <ngb-progressbar type="danger" [value]="100" [striped]="true">تمام!</ngb-progressbar>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Progress bars with custom labels Ends-->
+    </div>
+    <div class="row text-left">
+        <!--Progress bars Sizes Starts-->
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">میله پیشرفت اندازه</h4>
+                    <p></p>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <h5 class="mb-4">نوار پیشرفت پیش فرض <small>هیچ کلاس اضافی مورد نیاز نیست.</small></h5>
+                        <p>
+                            <ngb-progressbar type="info" [value]="30"></ngb-progressbar>
+                        </p>
+                        <h5 class="mb-4">نوار پیشرفت متوسط <small>استفاده از کلاس <code>.progress-bar-md</code></small></h5>
+                        <p>
+                            <ngb-progressbar type="warning" [value]="50" [striped]="true" class="progress-bar-md"></ngb-progressbar>
+                        </p>
+                        <h5 class="mb-4">نوار پیشرفت کوچک <small> استفاده از کلاس <code>.progress-bar-sm</code></small></h5>
+                        <p>
+                            <ngb-progressbar type="danger" [value]="75" [striped]="true" [animated]="true" class="progress-bar-sm"></ngb-progressbar>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Progress bars Sizes Ends-->
+    </div>
+    <div class="row text-left">
+        <!--Global configuration of progress bars Starts-->
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">پیکربندی جهانی میله های پیشرفت</h4>
+                    <p></p>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <p>
+                            <ngb-progressbar type="primary" [value]="20"  [striped]="true" [animated]="true"></ngb-progressbar>
+                        </p>
+                        <p>
+                            <ngb-progressbar type="success" [value]="40"  [striped]="true" [animated]="true"></ngb-progressbar>
+                        </p>
+                        <p>
+                            <ngb-progressbar type="info" [value]="60"  [striped]="true" [animated]="true"></ngb-progressbar>
+                        </p>
+                        <p>
+                            <ngb-progressbar type="warning" [value]="75" [striped]="true" [animated]="true"></ngb-progressbar>
+                        </p>
+                        <p>
+                            <ngb-progressbar type="danger" [value]="90" [striped]="true" [animated]="true"></ngb-progressbar>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Global configuration of progress bars Ends-->
+    </div>
+</section>
+<!-- Progress Bar Ends-->

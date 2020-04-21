@@ -1,0 +1,725 @@
+<!-- Hidden label form layout section start -->
+<section id="hidden-label-form-layouts">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="content-header">برچسب های پنهان</div>
+    </div>
+  </div>
+  <div class="row text-left" matchHeight="card">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header pb-2">
+          <h4 class="card-title" id="hidden-label-basic-form">اطلاعات پروژه</h4>
+          <p class="mb-0">این اساسی ترین و فرم پیش فرض دارای بخش های فرم است. فقط اضافه کن
+             <code>.sr-only</code>
+             کلاس به یک برچسب برای پنهان کردن. برای اضافه کردن بخش بخش فرم <code>.form-section</code>
+              
+             کلاس با هر برچسب عنوان این فرم دکمه هایی در گوشه پایین سمت چپ دارد که موقعیت پیش فرض آن است.</p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form">
+              <div class="form-body">
+                <h4 class="form-section"><i class="ft-user"></i> اطلاعات شخصی</h4>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="projectinput1">نام</label>
+                    <input type="text" id="projectinput1" class="form-control" placeholder="نام" name="fname">
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="projectinput2">نام خانوادگی</label>
+                    <input type="text" id="projectinput2" class="form-control" placeholder="نام خانوادگی" name="lname">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="projectinput3">ایمیل</label>
+                    <input type="text" id="projectinput3" class="form-control" placeholder="ایمیل" name="email">
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="projectinput4">شماره تماس</label>
+                    <input type="number" id="projectinput4" class="form-control" placeholder="تلفن" name="phone">
+                  </div>
+                </div>
+
+                <h4 class="form-section"><i class="ft-file-text"></i> الزامات</h4>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="projectinput5">شرکت</label>
+                    <input type="text" id="projectinput5" class="form-control" placeholder="نام شرکت" name="company">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="projectinput6">علاقه مند هستم</label>
+                    <select id="projectinput6" name="interested" class="form-control">
+                      <option value="none" selected="" disabled="">علاقه مند هستم</option>
+                      <option value="design">طراحی</option>
+                      <option value="development">توسعه دهنده</option>
+                      <option value="illustration">تصویر</option>
+                      <option value="branding">نام تجاری</option>
+                      <option value="video">ویدئو</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="projectinput7">حقوق</label>
+                    <select id="projectinput7" name="budget" class="form-control">
+                      <option value="0" selected="" disabled="">حقوق</option>
+                      <option value="less than 5000$">کمتر از 50000 ریال</option>
+                      <option value="5000$ - 10000$">50000 ریال - 1000000 ریال</option>
+                      <option value="10000$ - 20000$">100000 ریال - 200000 ریال</option>
+                      <option value="more than 20000$">بیشتر از 200000 ریال</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only">انتخاب فایل</label>
+                    <label id="projectinput8" class="file  mx-auto">
+                      <input type="file" id="file">
+                      <span class="file-custom"></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="projectinput9">درباره ی پروژه</label>
+                    <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder="درباره ی پروژه"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header pb-2">
+          <h4 class="card-title" id="hidden-label-colored-controls">پروفایل کاربر</h4>
+          <p class="mb-0">فقط اضافه کن <code>.sr-only</code> 
+            کلاس به یک برچسب برای پنهان کردن. شما همیشه می توانید رنگ مرز کنترل های فرم را با استفاده از
+            <code>border-*</code> کلاس در این مثال ما کاربر داریم<code>border-primary</code>
+            کلاس برای کنترل فرم. دکمه های عمل فرم در سمت راست پایین قرار دارند</p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form">
+              <div class="form-body">
+                <h4 class="form-section"><i class="ft-info"></i> درباره ی کاربر</h4>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput1">نام</label>
+                    <input type="text" id="userinput1" class="form-control border-primary" placeholder="نام" name="name">
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput2">نام خانوادگی</label>
+                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="نام خانوادگی" name="company">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput3">نام کاربری</label>
+                    <input type="text" id="userinput3" class="form-control border-primary" placeholder="نام کاربری" name="username">
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="userinput4">نام مستعار</label>
+                    <input type="text" id="userinput4" class="form-control border-primary" placeholder="نام مستعار" name="nickname">
+                  </div>
+                </div>
+
+                <h4 class="form-section"><i class="ft-mail"></i> اطلاعات تماس و بیو</h4>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="userinput5">ایمیل</label>
+                    <input class="form-control border-primary" type="email" placeholder="ایمیل" id="userinput5">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="userinput6">وب سایت</label>
+                    <input class="form-control border-primary" type="url" placeholder="http://" id="userinput6">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only">شماره تماس</label>
+                    <input class="form-control border-primary" type="number" placeholder="شماره تماس" id="userinput7">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="userinput8">بیو</label>
+                    <textarea id="userinput8" rows="5" class="form-control border-primary" name="بیو" placeholder="بیو"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions right">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row text-left" matchHeight="card">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header pb-2">
+          <h4 class="card-title" id="hidden-label-tooltips">ردیابی موضوع</h4>
+          <p class="mb-0">فقط اضافه کن<code>.sr-only</code>
+            کلاس به یک برچسب برای پنهان کردن. این فرم راهنمایی های مربوط به شناور را برای ارائه اطلاعات مفیدی در حالی که کاربر پر می کند، نشان می دهد. از ویژگیهای داده مانند تلنگر استفاده کنید
+            <code>data-toggle</code>و
+            ماشه <code>data-trigger</code>و تعیین سطح <code>data-placement</code>و عنوان <code>data-title</code> 
+            برای نشان دادن راهنمایی ها در کنترل های فرم.
+          </p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+
+            <form class="form">
+              <div class="form-body">
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="issueinput1">عنوان موضوع</label>
+                    <input type="text" id="issueinput1" class="form-control" placeholder="عنوان موضوع" name="issuetitle"
+                      data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Issue Title">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="issueinput2">باز شده توسط</label>
+                    <input type="text" id="issueinput2" class="form-control" placeholder="باز شده توسط" name="openedby"
+                      data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Opened By">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="issueinput3">تاریخ بازشدن</label>
+                    <input type="date" id="issueinput3" class="form-control" name="dateopened" data-toggle="tooltip"
+                      data-trigger="hover" data-placement="top" data-title="Date Opened">
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="issueinput4">تاریخ پایان</label>
+                    <input type="date" id="issueinput4" class="form-control" name="datefixed" data-toggle="tooltip"
+                      data-trigger="hover" data-placement="top" data-title="Date Fixed">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="issueinput5">اولویت</label>
+                    <select id="issueinput5" name="priority" class="form-control" data-toggle="tooltip" data-trigger="hover"
+                      data-placement="top" data-title="Priority">
+                      <option value="low">پایین</option>
+                      <option value="medium">متوسط</option>
+                      <option value="high">بالا</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="issueinput6">وضعیت</label>
+                    <select id="issueinput6" name="status" class="form-control" data-toggle="tooltip" data-trigger="hover"
+                      data-placement="top" data-title="Status">
+                      <option value="not started">شروع نشده</option>
+                      <option value="started">شروع شده</option>
+                      <option value="fixed">پایان یافته</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="issueinput8">نظر</label>
+                    <textarea id="issueinput8" rows="5" class="form-control" name="comments" placeholder="نظر"
+                      data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Comments"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header pb-2">
+          <h4 class="card-title" id="hidden-label-icons">جدول زمانی</h4>
+          <p class="mb-0">فقط اضافه کردن کلاس <code>.sr-only</code> 
+            به یک برچسب برای پنهان کردن. این فرم نشان می دهد استفاده از آیکون ها با کنترل های فرم. موقعیت نماد با استفاده از را تعریف کنید
+            <code>has-icon-left</code> یا کلاس <code>has-icon-right</code>
+            . استفاده از کلاس <code>icon-*</code> 
+          
+            برای تعریف آیکون برای کنترل فرم. بخش آیکن ها را برای لیست آیکون هایی که می توانید استفاده کنید مشاهده کنید.</p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+
+            <form class="form">
+              <div class="form-body">
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="timesheetinput1">نام کارمند</label>
+                    <div class="position-relative has-icon-left">
+                      <input type="text" id="timesheetinput1" class="form-control" placeholder="نام کارمند" name="employeename">
+                      <div class="form-control-position">
+                        <i class="ft-user"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="timesheetinput2">نام پروژه</label>
+                    <div class="position-relative has-icon-left">
+                      <input type="text" id="timesheetinput2" class="form-control" placeholder="نام پروژه" name="projectname">
+                      <div class="form-control-position">
+                        <i class="fa fa-briefcase"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="timesheetinput3">تاریخ</label>
+                    <div class="position-relative has-icon-left">
+                      <input type="date" id="timesheetinput3" class="form-control" name="date">
+                      <div class="form-control-position">
+                        <i class="ft-message-square"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only">نرخ هر ساعت</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">ریال</span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="نرخ در ساعت" aria-label="Amount (to the nearest dollar)"
+                        name="rateperhour">
+                      <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="timesheetinput5">ساعت شروع</label>
+                    <div class="position-relative has-icon-left">
+                      <input type="time" id="timesheetinput5" class="form-control" name="starttime">
+                      <div class="form-control-position">
+                        <i class="ft-clock"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label class="sr-only" for="timesheetinput6">ساعت پایان</label>
+                    <div class="position-relative has-icon-left">
+                      <input type="time" id="timesheetinput6" class="form-control" name="endtime">
+                      <div class="form-control-position">
+                        <i class="ft-clock"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="timesheetinput7">یادداشت</label>
+                    <div class="position-relative has-icon-left">
+                      <textarea id="timesheetinput7" rows="5" class="form-control" name="notes" placeholder="یادداشت"></textarea>
+                      <div class="form-control-position">
+                        <i class="ft-file"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions right">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row text-left" matchHeight="card">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header pb-2">
+          <h4 class="card-title" id="hidden-label-round-controls">فرم شکایت</h4>
+          <p class="mb-0">فقط اضافه کردن کلاس<code>.sr-only</code> 
+            
+            به یک برچسب برای پنهان کردن. این تغییر ظاهر کنترل پیش فرض شکل است. در این مثال تمام کنترل های فرم، یک ظاهر طراحی شده است. برای اعمال فرم گرد به کلاس اضافه کنید
+            <code>round</code> به هر شکل کنترل.</p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form">
+              <div class="form-body">
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="complaintinput1">نام شرکت</label>
+                    <input type="text" id="complaintinput1" class="form-control round" placeholder="نام شرکت" name="companyname">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="complaintinput2">نام کارمند</label>
+                    <input type="text" id="complaintinput2" class="form-control round" placeholder="نام کارمند" name="employeename">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="complaintinput3">تاریخ شکایت</label>
+                    <input type="date" id="complaintinput3" class="form-control round" name="complaintdate">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="complaintinput4">نام سرپرست</label>
+                    <input type="text" id="complaintinput4" class="form-control round" placeholder="نام سرپرست"
+                      name="supervisorname">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="complaintinput5">جزئیات شکایت</label>
+                    <textarea id="complaintinput5" rows="5" class="form-control round" name="complaintdetails"
+                      placeholder="جزئیات شکایت"></textarea>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="complaintinput6">امضا</label>
+                    <input type="text" id="complaintinput6" class="form-control round" placeholder="امضا" name="signature">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header pb-2">
+          <h4 class="card-title" id="hidden-label-square-controls">کمک مالی</h4>
+          <p class="mb-0">فقط اضافه کردن کلاس <code>.sr-only</code> 
+            
+            به یک برچسب برای پنهان کردن. این یکی دیگر از تنوع در قالب ظاهر کنترل پیش فرض است. در این مثال تمام کنترل های فرم دارای یک ظاهر طراحی شده است. برای اعمال فرم مربع افزودن کلاس
+            <code>square</code> به هر شکل کنترل.</p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form">
+              <div class="form-body">
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="donationinput1">نام</label>
+                    <input type="text" id="donationinput1" class="form-control square" placeholder="نام" name="fullname">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="donationinput2">ایمیل</label>
+                    <input type="email" id="donationinput2" class="form-control square" placeholder="ایمیل" name="email">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="donationinput3">شماره تماس</label>
+                    <input type="number" id="donationinput3" class="form-control square" name="contact">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="donationinput4">نوع اهداء</label>
+                    <input type="text" id="donationinput4" class="form-control square" placeholder="نوع کمک مالی"
+                      name="donationtype">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only">میزان</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">ریال</span>
+                      </div>
+                      <input type="text" class="form-control square" placeholder="میزان" aria-label="Amount (to the nearest dollar)"
+                        name="amount">
+                      <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="donationinput7">نظر</label>
+                    <textarea id="donationinput7" rows="5" class="form-control square" name="comments" placeholder="نظر"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions right">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row text-left">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header pb-2">
+          <h4 class="card-title" id="hidden-label-form-center">ثبت نام رویداد</h4>
+          <p class="mb-0">فقط اضافه کردن کلاس <code>.sr-only</code> 
+            
+             به یک برچسب برای پنهان کردن. این مثال یک راه برای فرم خود را در کارت نشان می دهد. اینجا ما استفاده کرده ایم
+            <code>.justify-content-md-center .row</code> 
+            کلاس ها را به مرکز فرم در یک کارت عرض کامل. کاربر می تواند این کلاس ها را طبق عرض و مقررات افست تغییر دهد. این مثال همچنین از دکمه های عمل form در پایین موقعیت مرکزی کارت استفاده می کند.
+          </p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form">
+              <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                  <div class="form-body">
+                    <div class="row">
+                      <div class="form-group col-12 mb-2">
+                        <label class="sr-only" for="eventRegInput1">نام</label>
+                        <input type="text" id="eventRegInput1" class="form-control" placeholder="نام" name="fullname">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col-12 mb-2">
+                        <label class="sr-only" for="eventRegInput2">عنوان</label>
+                        <input type="text" id="eventRegInput2" class="form-control" placeholder="عنوان" name="title">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col-12 mb-2">
+                        <label class="sr-only" for="eventRegInput3">شرکت</label>
+                        <input type="text" id="eventRegInput3" class="form-control" placeholder="شرکت" name="company">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col-12 mb-2">
+                        <label class="sr-only" for="eventRegInput4">ایمیل</label>
+                        <input type="email" id="eventRegInput4" class="form-control" placeholder="ایمیل" name="email">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col-12 mb-2">
+                        <label class="sr-only" for="eventRegInput5">شماره تماس</label>
+                        <input type="number" id="eventRegInput5" class="form-control" name="contact" placeholder="شماره تماس">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col-12 mb-2">
+                        <label class="sr-only">مشتری های موجود</label>
+                        <div class="input-group">
+                          <div class="custom-control custom-radio d-inline-block">
+                            <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadioInline1">بله</label>
+                          </div>
+                          <div class="custom-control custom-radio d-inline-block">
+                            <input type="radio" id="customRadioInline2" checked name="customRadioInline1" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadioInline2">خیر</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions center">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row text-left justify-content-md-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header pb-2">
+          <h4 class="card-title" id="hidden-label-card-center">ثبت نام رویداد</h4>
+          <p class="mb-0">فقط اضافه کردن کلاس <code>.sr-only</code> 
+             به یک برچسب برای پنهان کردن. این مثال راه هایی را برای مرمت کارت شما با فرم نشان می دهد. اینجا ما استفاده کرده ایم
+            <code>.justify-content-md-center .row</code>
+          
+            کلاس ها را به مرکز کارت به عنوان عرض کامل آن نیست. کاربر می تواند این کلاس ها را طبق عرض و مقررات افست تغییر دهد. این مثال همچنین از دکمه های عمل form در پایین موقعیت مرکزی کارت استفاده می کند.</p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form">
+              <div class="form-body">
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="eventInput1">نام</label>
+                    <input type="text" id="eventInput1" class="form-control" placeholder="نام" name="fullname">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="eventInput2">عنوان</label>
+                    <input type="text" id="eventInput2" class="form-control" placeholder="عنوان" name="title">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="eventInput3">شرکت</label>
+                    <input type="text" id="eventInput3" class="form-control" placeholder="شرکت" name="company">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="eventInput4">ایمیل</label>
+                    <input type="email" id="eventInput4" class="form-control" placeholder="ایمیل" name="email">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only" for="eventInput5">شماره تماس</label>
+                    <input type="number" id="eventInput5" class="form-control" name="contact" placeholder="شماره تماس">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label class="sr-only">مشتری های موجود</label>
+                    <div class="input-group">
+                      <div class="custom-control custom-radio d-inline-block">
+                        <input type="radio" id="customRadioInline3" name="customRadioInline2" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInline3">بله</label>
+                      </div>
+                      <div class="custom-control custom-radio d-inline-block ml-1">
+                        <input type="radio" id="customRadioInline4" checked name="customRadioInline2" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInline4">خیر</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions center">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- // Hidden label form layout section end -->

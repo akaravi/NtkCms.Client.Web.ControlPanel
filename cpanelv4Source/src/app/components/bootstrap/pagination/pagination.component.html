@@ -1,0 +1,100 @@
+<!--Basic Pagination Starts-->
+<section id="basic-pagination">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="content-header">صفحه بندی                </div>
+            <p class="content-sub-header">لینک های صفحه بندی برای سایت و یا برنامه خود را با مولفه صفحه بندی چند صفحه و یا جایگزین پیجر ساده تر ارائه دهید.</p>
+        </div>
+    </div>
+    <div class="row text-left" matchHeight ="card">
+        <!--Basic Pagination Starts-->
+        <div class="col-xl-6 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">صفحه بندی پایه</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <h5 class="mb-2 mt-4 text-bold-400">صفحه بندی پیش فرض</h5>
+                        <ngb-pagination [collectionSize]="70" [(page)]="page"></ngb-pagination>
+                        <h5 class="mb-2 mt-4 text-bold-400">directionLinks = false</h5>
+                        <ngb-pagination [collectionSize]="70" [(page)]="page1" [directionLinks]="false"></ngb-pagination>
+                        <h5 class="mb-2 mt-4 text-bold-400">boundaryLinks = true</h5>
+                        <ngb-pagination [collectionSize]="70" [(page)]="page2" [boundaryLinks]="true"></ngb-pagination>
+                        <hr>
+                        <p>صفحه کنونی: {{page2}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Basic Pagination Ends-->
+
+        <!--Advanced Pagination Starts-->
+        <div class="col-xl-6 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">صفحه بندی پیشرفته</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <h5 class="mb-2 mt-4 text-bold-400">بیشترین = 5, چرخش = false</h5>
+                        <ngb-pagination [collectionSize]="120" [(page)]="page3" [maxSize]="5" [boundaryLinks]="true"></ngb-pagination>
+                        <h5 class="mb-2 mt-4 text-bold-400">بیشترین = 5, چرخش = true</h5>
+                        <ngb-pagination [collectionSize]="120" [(page)]="page4" [maxSize]="5" [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+                        <h5 class="mb-2 mt-4 text-bold-400">بیشترین = 5, چرخش = true, ellipses = false</h5>
+                        <ngb-pagination [collectionSize]="120" [(page)]="page5" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+                        <hr>
+                        <p>صفحه کنونی: {{page5}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Advanced Pagination Ends-->
+    </div>
+</section>
+<section id="pagination-option">
+    <div class="row text-left" matchHeight ="card">
+        <!--Pagination Sizes Starts-->
+        <div class="col-xl-6 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">اندازه صفحه بندی</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <h5 class="mb-2 mt-4 text-bold-400">صفحه بندی بزرگ</h5>
+                        <ngb-pagination [collectionSize]="30" [(page)]="currentPage" size="lg"></ngb-pagination>
+                        <h5 class="mb-2 mt-4 text-bold-400">صفحه بندی پیش فرض</h5>
+                        <ngb-pagination [collectionSize]="30" [(page)]="currentPage1"></ngb-pagination>
+                        <h5 class="mb-2 mt-4 text-bold-400">صفحه بندی کوچک</h5>
+                        <ngb-pagination [collectionSize]="30" [(page)]="currentPage2" size="sm"></ngb-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Pagination Sizes Ends-->
+
+        <!--Pagination Options Starts-->
+        <div class="col-xl-6 col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">تنظیمات صفحه بندی</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <h5 class="mb-2 mt-4 text-bold-400">کنترل صفحه بندی می تواند غیر فعال شود</h5>
+                        <ngb-pagination [collectionSize]="70" [(page)]="page6" [disabled]='isDisabled'></ngb-pagination>
+                        <button class="btn btn-sm btn-outline-primary" (click)="toggleDisabled()">
+                                غیرفعال کردن را غیرفعال کنید
+                        </button>
+                        
+                        <h5 class="mb-2 mt-4 text-bold-400">این صفحه بندی از مقادیر پیش فرض استفاده می کند</h5>
+                        <ngb-pagination [collectionSize]="70" [(page)]="page7"></ngb-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Pagination Options Ends-->
+    </div>
+</section>
+<!--Basic Pagination Ends-->

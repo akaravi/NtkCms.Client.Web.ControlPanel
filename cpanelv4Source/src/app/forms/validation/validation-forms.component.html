@@ -1,0 +1,296 @@
+<div class="row text-left">
+  <div class="col-sm-12">
+    <div class="content-header">اعتبار سنجی فرم    </div>
+  </div>
+</div>
+<!-- Reactive Form Validaton Starts -->
+<div class="row text-left">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">فرم منظم (فرم واکنش پذیر)</h4>
+      </div>
+      <div class="card-content">
+        <div class="card-body">
+          <form [formGroup]="regularForm" (ngSubmit)="onReactiveFormSubmit()" novalidate>
+            <div class="form-group">
+              <label for="inputایمیل">ایمیل</label>
+
+              <input type="email" class="form-control" id="inputEmail" formControlName="inputEmail" required>
+              <small class="form-text text-muted danger" *ngIf="!regularForm.get('inputEmail').valid && (regularForm.get('inputEmail').dirty || regularForm.get('inputEmail').touched)">
+                لطفا یک ایمیل معتبر وارد کنید!
+              </small>
+            </div>
+            <div class="form-group">
+              <label for="password">رمز عبور</label>
+
+              <input type="password" class="form-control" id="password" formControlName="password" required>
+              <small class="form-text text-muted danger" *ngIf="!regularForm.get('password').valid && (regularForm.get('password').dirty || regularForm.get('password').touched)">
+                طول کاراکترهای رمز عبور باید بین 4 تا 24 باشد!
+              </small>
+            </div>
+            <div class="form-group">
+              <label for="textArea">متن</label>
+
+              <textarea class="form-control" rows="3" id="textArea" formControlName="textArea" required></textarea>
+              <small class="form-text text-muted danger" *ngIf="!regularForm.get('textArea').valid && (regularForm.get('textArea').dirty || regularForm.get('textArea').touched)">
+                این فیلد مورد نیاز است!
+              </small>
+            </div>
+            <div class="form-group">
+              <label class="d-block">دکمه رادیویی</label>
+              <div class="custom-control custom-radio d-block float-left">
+                <input type="radio" id="customRadioInline3" name="customRadioInline2" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline3">گزینه اول این است</label>
+              </div>
+              <div class="custom-control custom-radio d-block float-left ml-1">
+                <input type="radio" id="customRadioInline4" checked name="customRadioInline2" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline4">گزینه دو می تواند چیز دیگری باشد</label>
+              </div>
+            </div>
+            <div class="form-group text-right">
+              <button type="button" class="btn btn-danger btn-raised mr-1">انصراف</button>
+              <button type="button" class="btn btn-success btn-raised" [disabled]="!regularForm.valid">ارسال</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Reactive Form Validaton Ends -->
+
+<!-- Template-driven Form Validaton Starts -->
+<div class="row text-left">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">فرم هدایت شده توسط قالب</h4>
+      </div>
+      <div class="card-content">
+        <div class="card-body">
+          <form class="form" (ngSubmit)="onTemplateFormSubmit()" #f="ngForm">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="floatEmail">ایمیل</label>
+                  <input type="email" class="form-control" id="floatEmail" name="floatEmail" ngModel required email
+                    #floatEmail="ngModel" [ngModelOptions]="{updateOn: 'blur'}">
+                  <small class="form-text text-muted danger" *ngIf="!floatEmail.valid && (floatEmail.dirty || floatEmail.touched)">
+                      لطفا یک ایمیل معتبر وارد کنید!
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="floatPassword">رمز عبور</label>
+                  <input type="password" class="form-control" id="floatPassword" name="floatPassword" ngModel required
+                    minlength="4" maxlength="24" [ngModelOptions]="{updateOn: 'blur'}" #floatPassword="ngModel">
+                  <small class="form-text text-muted danger" *ngIf="!floatPassword.valid && (floatPassword.dirty || floatPassword.touched)">
+                      طول کاراکترهای رمز عبور باید بین 4 تا 24 باشد!
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="floattextArea">متن</label>
+                  <textarea class="form-control" rows="3" id="floattextArea" name="floattextArea" ngModel required
+                    #textArea="ngModel" [ngModelOptions]="{updateOn: 'blur'}"></textarea>
+                  <small class="form-text text-muted danger" *ngIf="!textArea.valid && (textArea.dirty || textArea.touched)">
+                      این فیلد مورد نیاز است!
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-12 text-right">
+                <button type="button" class="btn btn-success mr-2 btn-raised">انصراف</button>
+                <button type="button" class="btn btn-danger btn-raised" [disabled]="!f.valid">ارسال</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Template-driven Form Validaton Ends -->
+
+<!-- Custom Form Validaton Starts -->
+<div class="row text-left">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">اعتبارسنجی سفارشی (قالب مبتنی بر الگو)</h4>
+      </div>
+      <div class="card-content">
+        <div class="card-body">
+          <form (ngSubmit)="onCustomFormSubmit()" #vform="ngForm">
+
+            <div class="form-group">
+              <label for="required">ضروری</label>
+              <input type="text" class="form-control" ngModel name="required" #required="ngModel" required placeholder="ضروری" />
+              <small class="form-text text-muted danger" *ngIf="required.errors?.required">خطای مورد نیاز</small>
+
+            </div>
+            <div class="form-group">
+              <label for="minlength">حداقل طول</label>
+              <input type="text" class="form-control" ngModel name="minlength" #minlength="ngModel" placeholder="حداقل 5"
+                minlength="5" />
+              <small class="form-text text-muted danger" *ngIf="minlength.errors?.minlength">خطای حداقل طول</small>
+            </div>
+            <div class="form-group">
+              <label for="maxlength">بیشترین طول</label>
+              <input type="text" class="form-control" ngModel name="maxlength" #maxlength="ngModel" placeholder="بیشترین 5"
+                maxlength="5" />
+              <small class="form-text text-muted danger" *ngIf="maxlength.errors?.maxlength">خطای بیشترین طول</small>
+            </div>
+            <div class="form-group">
+              <label for="rangelength">دامنه</label>
+              <input type="text" class="form-control" ngModel name="rangelength" #rangelength="ngModel" placeholder="دامنه [5, 9]"
+                [rangeLength]="[5, 9]" />
+              <small class="form-text text-muted danger" *ngIf="rangelength.errors?.rangeLength">خطای دامنه</small>
+            </div>
+            <div class="form-group">
+              <label for="pattern">الگو</label>
+              <input type="text" class="form-control" ngModel name="pattern" #pattern="ngModel" placeholder="[آ-ی]{6}"
+                pattern="[a-z]{6}" />
+              <small class="form-text text-muted danger" *ngIf="pattern.errors?.pattern">خطای الگو</small>
+            </div>
+            <div class="form-group">
+              <label for="base64">base64</label>
+              <input type="text" class="form-control" ngModel name="base64" #base64="ngModel" placeholder="base64"
+                base64 />
+              <small class="form-text text-muted danger" *ngIf="base64.errors?.base64">base64 خطا</small>
+            </div>
+            <div class="form-group">
+              <label for="creditCard">کارت اعتباری</label>
+              <input type="text" class="form-control" ngModel name="creditCard" #creditCard="ngModel" placeholder="کارت اعتباری"
+                creditCard />
+              <small class="form-text text-muted danger" *ngIf="creditCard.errors?.creditCard">خطا کارت اعتباری</small>
+            </div>
+            <div class="form-group">
+              <label for="date">تاریخ</label>
+              <input type="date" class="form-control" ngModel name="date" #date="ngModel" placeholder="تاریخ" date />
+              <small class="form-text text-muted danger" *ngIf="date.errors?.date">خطا تاریخ</small>
+            </div>
+            <div class="form-group">
+              <label for="dateISO">dateISO</label>
+              <input type="text" class="form-control" ngModel name="dateISO" #dateISO="ngModel" placeholder="dateISO"
+                dateISO />
+              <small class="form-text text-muted danger" *ngIf="dateISO.errors?.dateISO">dateISO خطا</small>
+            </div>
+            <div class="form-group">
+              <label for="maxDate">بیشترین تاریخ</label>
+              <input type="date" class="form-control" ngModel name="maxDate" #maxDate="ngModel" placeholder="بیشترین تاریخ 11.11.1400"
+                maxDate="2019-11-11" />
+              <small class="form-text text-muted danger" *ngIf="maxDate.errors?.maxDate">خطا بیشترین تاریخ</small>
+            </div>
+            <div class="form-group">
+              <label for="minDate">کمترین تاریخ</label>
+              <input type="date" class="form-control" ngModel name="minDate" #minDate="ngModel" placeholder="کمترین تاریخ 11.11.1390"
+                minDate="2019-11-11" />
+              <small class="form-text text-muted danger" *ngIf="minDate.errors?.minDate">خطای کمترین</small>
+            </div>
+            <div class="form-group">
+              <label for="digits">رقم</label>
+              <input type="text" class="form-control" ngModel name="digits" #digits="ngModel" placeholder="رقم"
+                digits />
+              <small class="form-text text-muted danger" *ngIf="digits.errors?.digits">خطا رقم</small>
+            </div>
+            <div class="form-group">
+              <label for="email">ایمیل</label>
+              <input type="text" class="form-control" ngModel name="email" #email="ngModel" placeholder="ایمیل" email />
+              <small class="form-text text-muted danger" *ngIf="email.errors?.email">ایمیل خطا</small>
+            </div>
+            <div class="form-group">
+              <label for="equal">برابر</label>
+              <input type="text" class="form-control" ngModel name="equal" #equal="ngModel" placeholder="برابر با ارقام"
+                equal="apex" />
+              <small class="form-text text-muted danger" *ngIf="equal.errors?.equal">خطا برابر</small>
+            </div>
+            <div class="form-group">
+              <label for="notEqual">نا برابر</label>
+              <input type="text" class="form-control" ngModel name="notEqual" #notEqual="ngModel" placeholder="نا برابر در apex"
+                notEqual="apex" />
+              <small class="form-text text-muted danger" *ngIf="notEqual.errors?.notEqual">خطا نا برابر</small>
+            </div>
+            <div class="form-group">
+              <label for="password">مساوی با</label>
+              <input type="text" class="form-control" ngModel name="password" #password="ngModel" placeholder="رمز عبور"
+                required />
+              <small class="form-text text-muted danger" *ngIf="password.errors?.required">خطا ضروری</small>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" ngModel name="equalTo" #equalTo="ngModel" placeholder="تکرار رمز عبور"
+                [equalTo]="password" />
+              <small class="form-text text-muted danger" *ngIf="equalTo.errors?.equalTo">برابر است با خطا</small>
+            </div>
+            <div class="form-group">
+              <label for="oldPassword">برابر نیست با</label>
+              <input type="text" class="form-control" ngModel name="oldPassword" #oldPassword="ngModel" placeholder="رمز عبور"
+                required />
+              <small class="form-text text-muted danger" *ngIf="oldPassword.errors?.required">خطا ضروری</small>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" ngModel name="notEqualTo" #notEqualTo="ngModel" placeholder="تکرار رمز عبور"
+                [notEqualTo]="oldPassword" />
+              <small class="form-text text-muted danger" *ngIf="notEqualTo.errors?.notEqualTo">برابر است با خطا</small>
+            </div>
+            <div class="form-group">
+              <label for="gt">gt</label>
+              <input type="text" class="form-control" ngModel name="gt" #gt="ngModel" placeholder="gt 20" gt="20" />
+              <small class="form-text text-muted danger" *ngIf="gt.errors?.gt">gt خطا</small>
+            </div>
+            <div class="form-group">
+              <label for="lt">lt</label>
+              <input type="text" class="form-control" ngModel name="lt" #lt="ngModel" placeholder="lt 10" lt="10" />
+              <small class="form-text text-muted danger" *ngIf="lt.errors?.lt">lt خطا</small>
+            </div>
+            <div class="form-group">
+              <label for="json">json</label>
+              <input type="text" class="form-control" ngModel name="json" #json="ngModel" placeholder="json" json />
+              <small class="form-text text-muted danger" *ngIf="json.errors?.json">json خطا</small>
+            </div>
+            <div class="form-group">
+              <label for="max">بیشترین</label>
+              <input type="text" class="form-control" ngModel name="max" #max="ngModel" placeholder="بیشترین 10" max="10" />
+              <small class="form-text text-muted danger" *ngIf="max.errors?.max">بیشترین خطا</small>
+            </div>
+            <div class="form-group">
+              <label for="min">کمترین</label>
+              <input type="text" class="form-control" ngModel name="min" #min="ngModel" placeholder="کمترین 10" min="10" />
+              <small class="form-text text-muted danger" *ngIf="min.errors?.min">کمترین error</small>
+            </div>
+            <div class="form-group">
+              <label for="number">شماره</label>
+              <input type="text" class="form-control" ngModel name="number" #number="ngModel" placeholder="شماره"
+                number />
+              <small class="form-text text-muted danger" *ngIf="number.errors?.number">شماره خطا</small>
+            </div>
+            <div class="form-group">
+              <label for="phone">تلفن</label>
+              <input type="text" class="form-control" ngModel name="phone" #phone="ngModel" placeholder="تلفن" phone />
+              <small class="form-text text-muted danger" *ngIf="phone.errors?.phone">تلفن خطا</small>
+            </div>
+            <div class="form-group">
+              <label for="url">url</label>
+              <input type="text" class="form-control" ngModel name="url" #url="ngModel" placeholder="url" url />
+              <small class="form-text text-muted danger" *ngIf="url.errors?.url">url خطا</small>
+            </div>
+            <div class="form-group">
+              <label for="uuid">uuid</label>
+              <input type="text" class="form-control" ngModel name="uuid" #uuid="ngModel" placeholder="uuid" uuid />
+              <small class="form-text text-muted danger" *ngIf="uuid.errors?.uuid">uuid خطا</small>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Custom Form Validaton Ends -->

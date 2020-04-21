@@ -1,0 +1,116 @@
+<!--Carousel Starts-->
+<section id="carousel">
+  <div class="row  text-left">
+    <div class="col-sm-12">
+      <div class="content-header">اسلایدر</div>
+      <p class="content-sub-header">دستورالعمل به راحتی بوسیله نشانه گذاری Bootstrap ایجاد کنید. </p>
+    </div>
+  </div>
+  <div class="row  text-left" matchHeight="card">
+    <!--Basic Carousel Starts-->
+    <div class="col-lg-12 col-xl-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">اسلایدر پایه</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ngb-carousel>
+              <ng-template ngbSlide>
+                <img src="assets/img/photos/12.jpg" alt="Random first slide">
+                <div class="carousel-caption">
+                  <h3 class="ff-serif text-uppercase">برچسب اسلاید اول</h3>
+                  <p class="mb-0">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
+                </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <img src="assets/img/photos/13.jpg" alt="Random second slide">
+                <div class="carousel-caption">
+                  <h3 class="ff-serif text-uppercase">برچسب اسلاید دوم</h3>
+                  <p class="mb-0">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
+                </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <img src="assets/img/photos/14.jpg" alt="Random third slide">
+                <div class="carousel-caption">
+                  <h3 class="ff-serif text-uppercase">برچسب اسلاید سوم</h3>
+                  <p class="mb-0">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
+                </div>
+              </ng-template>
+            </ngb-carousel>
+            <h5 class="mt-5 mb-4 text-bold-500">کد پایه :</h5>
+            <pre class="language-typescript overflow-hidden text-left">
+              <code class="language-typescript">
+                import &#123;Component&#125; from '@angular/core';
+                @Component(&#123;
+                  selector: 'ngbd-carousel-basic',
+                  templateUrl: './carousel-basic.html'
+                &#125;)
+                export class NgbdCarouselBasic &#123;
+                &#125;</code> 
+          </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Basic Carousel Ends-->
+
+    <!--Global configuration of carousels Starts-->
+    <div class="col-lg-12 col-xl-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">پیکربندی اسلایدر </h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ngb-carousel>
+              <ng-template ngbSlide>
+                <img src="assets/img/photos/15.jpg" alt="Random first slide">
+                <div class="carousel-caption">
+                  <h3>10 ثانیه بین اسلایدها ... </h3>
+                  <p>این چرخ فلک از مقادیر پیشفرض سفارشی استفاده میکند.</p>
+                </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <img src="assets/img/photos/16.jpg" alt="Random second slide">
+                <div class="carousel-caption">
+                  <h3>هیچ صفحه کلید ...</h3>
+                  <p>این چرخ فلک از مقادیر پیشفرض سفارشی استفاده میکند.</p>
+                </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <img src="assets/img/photos/17.jpg" alt="Random third slide">
+                <div class="carousel-caption">
+                  <h3>و پس از آخرین اسلاید بسته بندی نکنید.</h3>
+                  <p>این چرخ فلک از مقادیر پیشفرض سفارشی استفاده میکند.</p>
+                </div>
+              </ng-template>
+            </ngb-carousel>
+            <h5 class="mt-5 mb-4 text-bold-500">کد پیکربندی:</h5>
+            <pre class="language-typescript text-left">
+<code class="language-typescript">
+  import &#123;Component&#125; from '@angular/core';
+  import &#123;NgbCarouselConfig&#125; from '@ng-bootstrap/ng-bootstrap';
+
+  @Component(&#123;
+    selector: 'ngbd-carousel-config',
+    templateUrl: './carousel-config.html',
+    providers: [NgbCarouselConfig] // add NgbCarouselConfig to the component providers
+  &#125;)
+  export class NgbdCarouselConfig &#123;
+    constructor(config: NgbCarouselConfig) &#123;
+      
+      config.interval = 10000;
+      config.wrap = false;
+      config.keyboard = false;
+    &#125;
+  &#125;</code> 
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Global configuration of carousels Starts-->
+  </div>
+</section>
+<!--Carousel Ends-->

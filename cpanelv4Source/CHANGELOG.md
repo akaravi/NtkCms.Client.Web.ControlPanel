@@ -1,6 +1,6 @@
 #### Version 8.0
 
-##### 06-17-2019 [8.0]
+##### 16-06-2019 [8.0]
 
 ### **Angular**
 
@@ -14,12 +14,12 @@
 #### Fixed
 
 1. Content layout issue 
-2. Minor bug fix in Chat and taskboard page
+2. Minor bug in Chat and taskboard page
 3. Styling issues in FAQ and Knowledge base page
 
 #### Version 7.0
 
-##### 03-30-2019 [7.0]
+##### 30-03-2019 [7.0]
 
 ### **Angular**
 

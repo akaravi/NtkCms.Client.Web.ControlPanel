@@ -1,0 +1,120 @@
+<!--Toastr Starts-->
+<section id="toastr">
+    <div class="row text-left">
+        <div class="col-12 mt-3 mb-1">
+            <div class="content-header">توستر</div>
+            <p class="content-sub-header">به طور پیش فرض، تستر در گوشه سمت راست بالای صفحه نمایش داده می شود و به طور خودکار در 3 ثانیه رد می شود. شما می توانید با استفاده از ToastOptions کلاس توستر را پیکربندی کنید.</p>
+        </div>
+    </div>
+
+    <!-- Types section start -->
+    <section id="types">
+        <div class="card text-left">
+            <div class="card-header">
+                <div class="card-title">نوع</div>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="row mt-1">
+                        <div class="col-md-4 col-sm-12 text-center">
+                            <button type="button" class="btn btn-success btn-block btn-raised mb-5" id="type-success" (click)="typeSuccess()">موفقیت</button>
+                        </div>
+                        <div class="col-md-4 col-sm-12 text-center">
+                            <button type="button" class="btn btn-danger btn-block btn-raised mb-5" id="type-error" (click)="typeError()">خطا</button>
+                        </div>
+                        <div class="col-md-4 col-sm-12 text-center">
+                            <button type="button" class="btn btn-info btn-block btn-raised mb-5" id="type-info" (click)="typeInfo()">اطلاعات</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-1 text-center">
+                            <button type="button" class="btn btn-warning btn-block btn-raised mb-5" id="type-warning" (click)="typeWarning()">هشدار</button>
+                        </div>
+                        <div class="col-md-4 col-md-offset-1 text-center">
+                            <button type="button" class="btn btn-secondary btn-block btn-raised mb-5" id="type-custom" (click)="typeCustom()">شخصی</button>
+                        </div>
+                        <div class="col-md-4 col-md-offset-1 text-center">                            
+                            <button type="button" class="btn btn-primary btn-block btn-raised" id="progress-bar" (click)="progressBar()">با نوار پیشرفت </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- // Types section end -->
+
+    <!-- Duration & Timeout section start -->
+    <section id="duration-timeout">
+        <div class="row text-left">
+            <div class="col-12 mt-3 mb-1">
+                <div class="content-header">رد کردن گزینه ها</div>
+                <p class="content-sub-header">تعیین اینکه توستر نمایش داده شده را می توان رد کرد. مقادیر مجاز: "خودکار"، "کلیک"، "کنترل".</p>
+            </div>
+        </div>
+        <div class="card text-left">
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            <h5>خودکار</h5>
+                            <p>توستر در میلی ثانیه از کار افتاده است.</p>
+                            <button type="button" class="btn btn-primary btn-block btn-raised" id="timeout" (click)="timeout()">نمایش توستر</button>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <h5>کلیک</h5>
+                            <p>هنگامی که کاربر بر روی آن کلیک می کند، توستر اخراج خواهد شد.</p>
+                            <button type="button" class="btn btn-primary btn-block btn-raised" id="show-clear-toast" (click)="dismissToastOnClick()">پاک کردن توست کلیک کنید</button>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- // Duration & Timeout section end -->
+
+    <!-- Clear toasts section start -->
+    <section id="clear-toasts">
+        <div class="row text-left">
+            <div class="col-12 mt-3 mb-1">
+                <div class="content-header">ویژگی توستر</div>
+            </div>
+        </div>
+        <div class="card text-left">
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="row mt-1">
+                        <div class="col-md-4 col-sm-12">
+                            <h5 class="mt-4">نمایش دکمه بستن</h5>
+                            <p>تعیین می کند که آیا تاست باید شامل دکمه "x" باشد. پیش فرض به اشتباه</p>
+                            <button type="button" class="btn btn-primary btn-block btn-raised" id="close-button" (click)="showCloseButton()">با آیکون بستن</button>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <h5 class="mt-4">عنوان کلاس</h5>
+                            <p>CSS کلاس برای عنوان در toast.Adding<code>h3</code>.</p>
+                            <button type="button" class="btn btn-primary btn-block btn-raised" id="title-class" (click)="titleClass()">کلاس عنوان</button>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <h5 class="mt-4">پیام کلاس</h5>
+                            <p>کلاس CSS برای پیام درون توست. اضافه کردن کلاس<code>text-uppercase</code>  به پیام.</p>
+                            <button type="button" class="btn btn-primary btn-block btn-raised" id="message-class" (click)="messageClass()">کلاس پیام</button>
+                        </div>
+                    </div>
+                    <div class="row mt-1">                
+                        <div class="col-md-4 col-sm-12">
+                            <h5 class="mt-4">فعال HTML</h5>
+                            <p>اجازه ورود پیام را به HTML بدهید. پیش فرض به اشتباه</p>
+                            <button type="button" class="btn btn-primary btn-block btn-raised" id="html-toast" (click)="enableHtml()">HTML فعال</button>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <h5 class="mt-4">پاک کردن</h5>
+                            <p>تست های فعلی را حذف کنید</p>
+                            <button type="button" class="btn btn-primary btn-block btn-raised" id="show-clear-toast" (click)="clearToast()">پاک کردن توستر</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- // Clear toasts section end -->
+</section>
+<!--Toastr Ends-->

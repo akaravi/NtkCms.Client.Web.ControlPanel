@@ -1,0 +1,425 @@
+<!-- Basic form layout section start -->
+<section id="horizontal-form-layouts">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="content-header">فرم های افقی        </div>
+    </div>
+  </div>
+  <div class="row text-left">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header pb-2">
+          <h4 class="card-title" id="horz-layout-basic">اطلاعات پروژه</h4>
+          <p class="mb-0">این فرم افقی پایه با برچسب ها در سمت چپ است و شکل های کنترل را در سمت راست در یک خط قرار می دهد. اضافه کردن
+            <code>.form-horizontal</code> 
+            کلاس به تگ فرم به صورت یک ظاهر طراحی افقی. برای تعریف بخش های استفاده از فرم<code>form-section</code> کلاس با هر برچسب عنوان</p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form form-horizontal">
+              <div class="form-body">
+                <h4 class="form-section"><i class="ft-user"></i> اطلاعات شخصی</h4>
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="projectinput1">نام:</label>
+                  <div class="col-md-9">
+                    <input type="text" id="projectinput1" class="form-control" name="fname">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="projectinput2">نام خانوادگی: </label>
+                  <div class="col-md-9">
+                    <input type="text" id="projectinput2" class="form-control" name="lname">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="projectinput3">ایمیل:</label>
+                  <div class="col-md-9">
+                    <input type="text" id="projectinput3" class="form-control" name="email">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="projectinput4">شماره تماس: </label>
+                  <div class="col-md-9">
+                    <input type="number" id="projectinput4" class="form-control" name="phone">
+                  </div>
+                </div>
+
+                <h4 class="form-section"><i class="ft-file-text"></i> الزامات</h4>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="projectinput5">شرکت : </label>
+                  <div class="col-md-9">
+                    <input type="text" id="projectinput5" class="form-control" name="company">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="projectinput6">علاقه مند هستم :</label>
+                  <div class="col-md-9">
+                    <select id="projectinput6" name="interested" class="form-control">
+                      <option value="none" selected="" disabled="">علاقه مند هستم</option>
+                      <option value="design">طراحی</option>
+                      <option value="development">توسعه دهنده</option>
+                      <option value="illustration">تصویر</option>
+                      <option value="branding">نام تجاری</option>
+                      <option value="video">ویدئو</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="projectinput7">حقوق : </label>
+                  <div class="col-md-9">
+                    <select id="projectinput7" name="budget" class="form-control">
+                      <option value="0" selected="" disabled="">حقوق</option>
+                      <option value="less than 5000$">کمتر از 50000 ریال</option>
+                      <option value="5000$ - 10000$">50000 ریال - 1000000 ریال</option>
+                      <option value="10000$ - 20000$">100000 ریال - 200000 ریال</option>
+                      <option value="more than 20000$">بیشتر از 200000 ریال</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control">انتخاب فایل </label>
+                  <div class="col-md-9">
+                    <label id="projectinput8" class="file  mx-auto">
+                      <input type="file" id="file">
+                      <span class="file-custom"></span>
+                      : </label>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="projectinput9">درباره ی پروژه: </label>
+                  <div class="col-md-9">
+                    <textarea id="projectinput9" rows="5" class="form-control" name="comment"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row text-left">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header pb-2">
+          <h4 class="card-title" id="horz-layout-colored-controls">پروفایل کاربر</h4>
+          <p class="mb-0">این فرم افقی 2 ستونی با برچسب در سمت چپ است و کنترل را در سمت راست در یک خط قرار می دهد. اضافه کردن
+            <code>.form-horizontal</code>
+            کلاس به تگ فرم به صورت یک ظاهر طراحی افقی. کاربر همچنین می تواند رنگ مرزی و رنگ پس زمینه کنترل شکل را تغییر دهد. اضافه کردن <code>border-*</code> class to change
+            رنگ مرز و <code>bg-*</code>کلاس برای تغییر رنگ پس زمینه کنترل فرم.</p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form form-horizontal">
+              <div class="form-body">
+                <h4 class="form-section"><i class="ft-info"></i> درباره ی کاربر</h4>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-md-3 label-control" for="userinput1">نام : </label>
+                      <div class="col-md-9">
+                        <input type="text" id="userinput1" class="form-control border-primary" name="firstname">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-md-3 label-control" for="userinput2">نام خانوادگی:</label>
+                      <div class="col-md-9">
+                        <input type="text" id="userinput2" class="form-control border-primary" name="lastname">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-md-3 label-control" for="userinput3">نام کاربری: </label>
+                      <div class="col-md-9">
+                        <input type="text" id="userinput3" class="form-control border-primary" name="username">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-md-3 label-control" for="userinput4">نام مستعار: </label>
+                      <div class="col-md-9">
+                        <input type="text" id="userinput4" class="form-control border-primary" name="nickname">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <h4 class="form-section"><i class="ft-mail"></i> اطلاعات تماس و بیو</h4>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-md-3 label-control" for="userinput5">ایمیل: </label>
+                      <div class="col-md-9">
+                        <input class="form-control border-primary" type="email" id="userinput5">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-md-3 label-control" for="userinput6">سایت: </label>
+                      <div class="col-md-9">
+                        <input class="form-control border-primary" type="url" id="userinput6">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="col-md-3 label-control">شماره تماس: </label>
+                      <div class="col-md-9">
+                        <input class="form-control border-primary" type="number" id="userinput7">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-md-3 label-control" for="userinput8">بیو: </label>
+                      <div class="col-md-9">
+                        <textarea id="userinput8" rows="6" class="form-control col-md-9 border-primary" name="bio"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions right">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row text-left">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header pb-2">
+          <h4 class="card-title" id="horz-layout-icons">جدول زمانی</h4>
+          <p class="mb-0">اضافه کردن کلاس <code>.form-horizontal</code> 
+            به فرم فرم به صورت یک ظاهر طراحی افقی. این شکل افقی استفاده از آیکون ها را با کنترل های فرم نشان می دهد. موقعیت نماد با استفاده از را تعریف کنید
+
+            <code>has-icon-left</code>
+            یا کلاس <code>has-icon-right</code>. استفاده از کلاس <code>icon-*</code> 
+            برای تعریف آیکون برای کنترل فرم. بخش آیکن ها را برای لیست آیکون هایی که می توانید استفاده کنید مشاهده کنید.
+          </p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form form-horizontal">
+              <div class="form-body">
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="timesheetinput1">نام کارمند:</label>
+                  <div class="col-md-9">
+                    <div class="position-relative has-icon-left">
+                      <input type="text" id="timesheetinput1" class="form-control" name="employeename">
+                      <div class="form-control-position">
+                        <i class="ft-user"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="timesheetinput2">نام پروژه: </label>
+                  <div class="col-md-9">
+                    <div class="position-relative has-icon-left">
+                      <input type="text" id="timesheetinput2" class="form-control" name="projectname">
+                      <div class="form-control-position">
+                        <i class="fa fa-briefcase"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="timesheetinput3">تاریخ: </label>
+                  <div class="col-md-9">
+                    <div class="position-relative has-icon-left">
+                      <input type="date" id="timesheetinput3" class="form-control" name="date">
+                      <div class="form-control-position">
+                        <i class="ft-message-square"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control">نرخ در ساعت: </label>
+                  <div class="col-md-9">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">ریال</span>
+                      </div>
+                      <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" name="rateperhour">
+                      <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="timesheetinput5">زمان شروع: </label>
+                  <div class="col-md-9">
+                    <div class="position-relative has-icon-left">
+                      <input type="time" id="timesheetinput5" class="form-control" name="starttime">
+                      <div class="form-control-position">
+                        <i class="ft-clock"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="timesheetinput6">زمان پایان: </label>
+                  <div class="col-md-9">
+                    <div class="position-relative has-icon-left">
+                      <input type="time" id="timesheetinput6" class="form-control" name="endtime">
+                      <div class="form-control-position">
+                        <i class="ft-clock"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="timesheetinput7">یادداشت: </label>
+                  <div class="col-md-9">
+                    <div class="position-relative has-icon-left">
+                      <textarea id="timesheetinput7" rows="5" class="form-control" name="notes"></textarea>
+                      <div class="form-control-position">
+                        <i class="ft-file"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions right">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row text-left justify-content-md-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header pb-2">
+          <h4 class="card-title" id="horz-layout-card-center">ثبت نام رویداد</h4>
+          <p class="mb-0">اضافه کردن کلاس <code>.form-horizontal</code> 
+            
+            به فرم به صورت یک ظاهر طراحی افقی. این نسخه آزمایشی افقی با کارت مرکزی است. اینجا ما استفاده کرده ایم
+            <code>.justify-content-md-center .row</code>
+            کلاس ها را به مرکز کارت به عنوان عرض کامل آن نیست. کاربر می تواند طبقات ستون را طبق الزاماتش تغییر دهد.
+          </p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form form-horizontal">
+              <div class="form-body">
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="eventRegInput1">نام:</label>
+                  <div class="col-md-9">
+                    <input type="text" id="eventRegInput1" class="form-control" name="fullname">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="eventRegInput2">عنوان: </label>
+                  <div class="col-md-9">
+                    <input type="text" id="eventRegInput2" class="form-control" name="title">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="eventRegInput3">شرکت: </label>
+                  <div class="col-md-9">
+                    <input type="text" id="eventRegInput3" class="form-control" name="company">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="eventRegInput4">ایمیل: </label>
+                  <div class="col-md-9">
+                    <input type="email" id="eventRegInput4" class="form-control" name="email">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control" for="eventRegInput5">شماره تماس: </label>
+                  <div class="col-md-9">
+                    <input type="number" id="eventRegInput5" class="form-control" name="contact">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-md-3 label-control">مشتری های موجود: </label>
+                  <div class="col-md-9">
+                    <div class="input-group col-md-9">
+                      <div class="custom-control custom-radio d-inline-block">
+                        <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInline1">بله</label>
+                      </div>
+                      <div class="custom-control custom-radio d-inline-block ml-1">
+                        <input type="radio" id="customRadioInline2" checked name="customRadioInline1" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInline2">خیر</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions center">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- // Basic form layout section end -->

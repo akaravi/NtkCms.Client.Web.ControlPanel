@@ -1,0 +1,171 @@
+<!--Popover Starts-->
+<section id="popovers">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="content-header">راهنما</div>
+    </div>
+  </div>
+  <div class="row text-left" matchHeight ="card">
+    <!--Quick and easy popovers Starts-->
+    <div class="col-md-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">راهنما سریع و آسان</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <button type="button" class="btn btn-outline-primary mr-1 mb-1" placement="right" ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+              popoverTitle="Popover on right">
+            راهنما راست
+          </button>
+
+            <button type="button" class="btn btn-outline-danger mr-1 mb-1" placement="top" ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+              popoverTitle="Popover on top">
+            راهنما بالا
+          </button>
+
+            <button type="button" class="btn btn-outline-info mr-1 mb-1" placement="bottom" ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+              popoverTitle="Popover on bottom">
+           راهنما پایین
+          </button>
+
+            <button type="button" class="btn btn-outline-warning mr-1 mb-1" placement="left" ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+              popoverTitle="Popover on left">
+            راهنما چپ
+          </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Quick and easy popovers Ends-->
+
+    <!--HTML and bindings in popovers Starts-->
+    <div class="col-md-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">HTML و پیوند در راهنما</h4>
+          <p>
+              راهنما می تواند حاوی هر نوع دلخواه HTML، زاویوی و حتی دستورالعمل باشد! نگران نباشید، محتوای مورد نظر را در یک عنصر قرار دهید
+            <code>&lt;template&gt;</code> .</p>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ng-template #popContent>سلام, <b>{{name}}</b>!</ng-template>
+            <button type="button" class="btn btn-outline-success btn-sm" [ngbPopover]="popContent" popoverTitle="Fancy content">
+                من نشانه گذاری و پیوستن در راهنما من دارم!
+          </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--HTML and bindings in popovers Ends-->
+  </div>
+  <div class="row text-left" matchHeight ="card">
+    <!--Custom and manual triggers Starts-->
+    <div class="col-md-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">راه اندازی سفارشی و دستی</h4>
+          <p>شما می توانید با تعیین نام رویداد (جدا شده توسط <code>:</code>)در
+            <code>triggers</code> ویژگی.</p>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <button type="button" class="btn btn-outline-primary" ngbPopover="می بینید، من در شناور نشان می دهم!" triggers="mouseenter:mouseleave"
+              popoverTitle="Pop title">
+              روی من حرکت کن
+          </button>
+            <p class="pt-3">
+              به طور خلاصه شما می توانید کنترل کامل دستی را بر رویدادهای باز / بستن راهنما انجام دهید.
+            </p>
+            <button type="button" class="btn btn-outline-info mr-1" ngbPopover="یک نکته عالی!" triggers="manual" #p="ngbPopover"
+              (click)="p.open()" popoverTitle="Pop title">
+              برای باز کردن راهنما کلیک کنید
+          </button>
+            <button type="button" class="btn btn-outline-warning" (click)="p.close()">
+              برای بستن راهنما روی من کلیک کنید
+          </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Custom and manual triggers Ends-->
+
+    <!--Append popover in the body Starts-->
+    <div class="col-md-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">apple راهنما در بدنه</h4>
+          <p> تنظیم کنید <code>container</code> اموال به "بدن" برای اینکه راهنما به بدن اضافه شود به جای پدر پدر و مادر عنصر triggering. این گزینه مفید است اگر عنصر trigger popover درون یک عنصر است که محتوای آن را کلیپ می کند
+            (i.e. <code>overflow: hidden</code>).</p>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <div class="mb-0" style="padding: 20px 0; text-align: center; overflow:hidden">
+              <button type="button" class="btn btn-outline-success btn-sm mr-1" ngbPopover="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است"
+                container="body">
+                راهنما به بدن اضافه شده است
+              </button>
+              <button type="button" class="btn btn-outline-danger btn-sm" ngbPopover="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است">
+                پیش فرض راهنما
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Append popover in the body Ends-->
+  </div>
+  <div class="row text-left" matchHeight ="card">
+    <!--Context and manual triggers Starts-->
+    <div class="col-md-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">محتویات محتوا و دستی</h4>
+          <p> شما می توانید به صورت اختیاری در یک زمینه منتقل کنید تا به صورت دستی راهنما ظاهر شود.</p>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ng-template #popContent let-greeting="greeting">{{greeting}}, <b>{{name}}</b>!</ng-template>
+            <p>
+              چگونه می خواهم خوشحال باشم<strong [ngbPopover]="popContent" popoverTitle="Greeting" #x="ngbPopover" triggers="manual">من</strong>?
+            </p>
+            <button type="button" class="btn btn-outline-warning mr-1" (click)="changeGreeting({ greeting: 'Bonjour' })">
+            فرانسه
+          </button>
+            <button type="button" class="btn btn-outline-info mr-1" (click)="changeGreeting({ greeting: 'Gutentag' })">
+            آلمان
+          </button>
+            <button type="button" class="btn btn-outline-danger mr-1" (click)="changeGreeting({ greeting: 'Hello' })">
+            انگلیس
+          </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Context and manual triggers Ends-->
+
+    <!--Popover visibility events Starts-->
+    <div class="col-md-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">رویدادهای دید در راهنما</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <button type="button" class="btn btn-outline-primary" placement="top" ngbPopover="لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم "
+              popoverTitle="Popover on top" #popover="ngbPopover">
+           باز کردن راهنما
+          </button>
+
+            <p class="pt-3">
+              راهنما در حال حاضر: <code>{{ popover.isOpen() ? 'open' : 'closed' }}</code>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Popover visibility events Ends-->
+  </div>
+</section>
+<!--Popover Starts-->

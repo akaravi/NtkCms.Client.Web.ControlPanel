@@ -1,0 +1,633 @@
+<!-- Form actions layout section start -->
+<section id="form-action-layouts">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="content-header">اقدامات فرم        </div>
+    </div>
+  </div>
+  <div class="row text-left">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title" id="from-actions-top-left">اطلاعات پروژه</h4>
+          <div class="alert alert-info" role="alert">
+            <strong>اقدامات فرم در سمت چپ بالا.</strong>
+          </div>
+          <p class="mb-0">برای افزودن اعمال فرم در بالای فرم، یک div با آن اضافه کنید<code>.form-actions</code> کلاس برای شروع فرم اضافه کردن
+             <code>.top</code> کلاس برای اضافه کردن مرز در زیر اقدامات فرم.</p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form">
+              <div class="form-actions top">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+
+              <div class="form-body">
+                <h4 class="form-section"><i class="ft-user"></i> اطلاعات شخصی</h4>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label for="projectinput1">نام</label>
+                    <input type="text" id="projectinput1" class="form-control" placeholder="نام" name="fname">
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label for="projectinput2">نام خانوادگی</label>
+                    <input type="text" id="projectinput2" class="form-control" placeholder="نام خانوادگی" name="lname">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label for="projectinput3">ایمیل</label>
+                    <input type="text" id="projectinput3" class="form-control" placeholder="ایمیل" name="email">
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label for="projectinput4">شماره تماس</label>
+                    <input type="number" id="projectinput4" class="form-control" placeholder="تلفن" name="phone">
+                  </div>
+                </div>
+
+                <h4 class="form-section"><i class="ft-file-text"></i> الزامات</h4>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label for="projectinput5">شرکت</label>
+                    <input type="text" id="projectinput5" class="form-control" placeholder="نام شرکت" name="company">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label for="projectinput6">علاقه مند هستم</label>
+                    <select id="projectinput6" name="interested" class="form-control">
+                      <option value="none" selected="" disabled="">علاقه مند هستم</option>
+                      <option value="design">طراحی</option>
+                      <option value="development">توسعه دهنده</option>
+                      <option value="illustration">تصویر</option>
+                      <option value="branding">نام تجاری</option>
+                      <option value="video">ویدئو</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-6 mb-2">
+                    <label for="projectinput7">Budget</label>
+                    <select id="projectinput7" name="budget" class="form-control">
+                      <option value="0" selected="" disabled="">حقوق</option>
+                      <option value="less than 5000$">کمتر از 50000 ریال</option>
+                      <option value="5000$ - 10000$">50000 ریال - 1000000 ریال</option>
+                      <option value="10000$ - 20000$">100000 ریال - 200000 ریال</option>
+                      <option value="more than 20000$">بیشتر از 200000 ریال</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label>فایل را انتخاب کنید</label>
+                    <input type="file" class="form-control-file" id="projectinput8">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label for="projectinput9">درباره ی پروژه</label>
+                    <textarea id="projectinput9" rows="5" class="form-control" name="comment" placeholder="درباره ی پروژه"></textarea>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title" id="from-actions-bottom-right">پروفایل کاربر</h4>
+          <div class="alert alert-info" role="alert">
+            <strong>اقدامات فرم را در پایین راست انجام دهید.</strong>
+          </div>
+
+          <p class="mb-0">برای افزودن اعمال فرم در پایین فرم، یک div با آن اضافه کنید
+            <code>.form-actions</code> کلاس برای پایان دادن به فرم این موقعیت پیش فرض برای اعمال فرم است. ما اضافه کردیم
+             <code>.right</code> 
+             کلاس برای حرکت دکمه ها در سمت راست.</p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+
+            <form class="form">
+              <div class="form-body">
+                <h4 class="form-section"><i class="ft-info"></i> درباره ی کاربر</h4>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label for="userinput1">نام</label>
+                    <input type="text" id="userinput1" class="form-control border-primary" placeholder="نام" name="name">
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label for="userinput2">نام خانوادگی</label>
+                    <input type="text" id="userinput2" class="form-control border-primary" placeholder="نام خانوادگی" name="company">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label for="userinput3">نام کاربری</label>
+                    <input type="text" id="userinput3" class="form-control border-primary" placeholder="نام کاربری" name="username">
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label for="userinput4">نام مستعار</label>
+                    <input type="text" id="userinput4" class="form-control border-primary" placeholder="نام مستعار" name="nickname">
+                  </div>
+                </div>
+
+                <h4 class="form-section"><i class="ft-mail"></i> اطلاعات تماس و بیو</h4>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label for="userinput5">ایمیل</label>
+                    <input class="form-control border-primary" type="email" placeholder="ایمیل" id="userinput5">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label for="userinput6">سایت</label>
+                    <input class="form-control border-primary" type="url" placeholder="http://" id="userinput6">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label>شماره تماس</label>
+                    <input class="form-control border-primary" type="number" placeholder="شماره تماس" id="userinput7">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label for="userinput8">بیو</label>
+                    <textarea id="userinput8" rows="5" class="form-control border-primary" name="bio" placeholder="بیو"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions right">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row text-left match-height">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title" id="from-actions-top-bottom-left">ردیابی موضوع</h4>
+          <div class="alert alert-info" role="alert">
+            <strong>اقدامات فرم در بالا و پایین چپ.</strong>
+          </div>
+
+          <p class="mb-0">
+              برای اضافه کردن عملیات فرم در بالا و پایین فرم با افزودن div با
+            <code>.form-actions</code>
+            کلاس شروع و پایان فرم</p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+
+            <form class="form">
+              <div class="form-body">
+
+                <div class="form-actions top">
+                  <button type="button" class="btn btn-raised btn-warning mr-1">
+                    <i class="ft-x"></i> انصراف
+                  </button>
+                  <button type="button" class="btn btn-raised btn-primary">
+                    <i class="fa fa-check-square-o"></i> ذخیره
+                  </button>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label for="issueinput1">عنوان موضوع</label>
+                    <input type="text" id="issueinput1" class="form-control" placeholder="عنوان موضوع" name="issuetitle"
+                      data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Issue Title">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label for="issueinput2">باز شده توسط</label>
+                    <input type="text" id="issueinput2" class="form-control" placeholder="باز شده توسط" name="openedby"
+                      data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Opened By">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label for="issueinput3">تاریخ افتتاح</label>
+                    <input type="date" id="issueinput3" class="form-control" name="dateopened" data-toggle="tooltip"
+                      data-trigger="hover" data-placement="top" data-title="Date Opened">
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label for="issueinput4">تاریخ پایان</label>
+                    <input type="date" id="issueinput4" class="form-control" name="datefixed" data-toggle="tooltip"
+                      data-trigger="hover" data-placement="top" data-title="Date Fixed">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label for="issueinput5">اولویت</label>
+                    <select id="issueinput5" name="priority" class="form-control" data-toggle="tooltip" data-trigger="hover"
+                      data-placement="top" data-title="Priority">
+                      <option value="low">پایین</option>
+                      <option value="medium">متوسط</option>
+                      <option value="high">بالا</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label for="issueinput6">وضعیت</label>
+                    <select id="issueinput6" name="status" class="form-control" data-toggle="tooltip" data-trigger="hover"
+                      data-placement="top" data-title="Status">
+                      <option value="not started">شروع نشده</option>
+                      <option value="started">شروع شده</option>
+                      <option value="fixed">پایان یافته</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label for="issueinput8">نظر</label>
+                    <textarea id="issueinput8" rows="5" class="form-control" name="comments" placeholder="نظر"
+                      data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Comments"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title" id="from-actions-top-bottom-right">جدول زمانی</h4>
+          <div class="alert alert-info" role="alert">
+            <strong>اقدامات فرم در بالا و پایین راست.</strong>
+          </div>
+
+          <p class="mb-0">برای اضافه کردن عملیات فرم در بالا و پایین فرم با افزودن div با
+            <code>.form-actions</code>
+            کلاس شروع و پایان فرم اضافه کردن <code>.right</code> 
+            کلاس را به ترتیب دکمه های عمل فرم به سمت راست.</p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+
+            <form class="form">
+              <div class="form-body">
+                <div class="form-actions top right">
+                  <button type="button" class="btn btn-raised btn-warning mr-1">
+                    <i class="ft-x"></i> انصراف
+                  </button>
+                  <button type="button" class="btn btn-raised btn-primary">
+                    <i class="fa fa-check-square-o"></i> ذخیره
+                  </button>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label for="timesheetinput1">نام کارمند</label>
+                    <div class="position-relative has-icon-left">
+                      <input type="text" id="timesheetinput1" class="form-control" placeholder="نام کارمند" name="employeename">
+                      <div class="form-control-position">
+                        <i class="ft-user"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label for="timesheetinput2">نام پروژه</label>
+                    <div class="position-relative has-icon-left">
+                      <input type="text" id="timesheetinput2" class="form-control" placeholder="نام پروژه" name="projectname">
+                      <div class="form-control-position">
+                        <i class="fa fa-briefcase"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label for="timesheetinput3">تاریخ</label>
+                    <div class="position-relative has-icon-left">
+                      <input type="date" id="timesheetinput3" class="form-control" name="date">
+                      <div class="form-control-position">
+                        <i class="ft-message-square"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label>نرخ هر ساعت</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">ریال</span>
+                      </div>
+                      <input type="number" class="form-control" placeholder="نرخ هر ساعت" aria-label="Amount (to the nearest dollar)"
+                        name="rateperhour">
+                      <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-6 mb-2">
+                    <label for="timesheetinput5">زمان شروع</label>
+                    <div class="position-relative has-icon-left">
+                      <input type="time" id="timesheetinput5" class="form-control" name="starttime">
+                      <div class="form-control-position">
+                        <i class="ft-clock"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <label for="timesheetinput6">زمان پایان</label>
+                    <div class="position-relative has-icon-left">
+                      <input type="time" id="timesheetinput6" class="form-control" name="endtime">
+                      <div class="form-control-position">
+                        <i class="ft-clock"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label for="timesheetinput7">یادداشت</label>
+                    <div class="position-relative has-icon-left">
+                      <textarea id="timesheetinput7" rows="5" class="form-control" name="notes" placeholder="یادداشت"></textarea>
+                      <div class="form-control-position">
+                        <i class="ft-file"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions right">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row text-left">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title" id="from-actions-multiple">رویداد ثبت نام</h4>
+          <div class="alert alert-info" role="alert">
+            <strong>اقدامات فرم چندگانه در بالا و پایین.</strong>
+          </div>
+
+          <p>برای اضافه کردن عملیات فرم در بالا و پایین فرم با افزودن div با <code>.form-actions</code> کلاس شروع و پایان فرم اضافه کردن
+            <code>.buttons-group</code> کلاس همراه با <code>.float-*</code> 
+            کلاس به شنا کردن گروه دکمه به چپ یا راست.
+          </p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+
+            <form class="form">
+              <div class="form-actions top clearfix">
+                <div class="buttons-group float-left">
+                  <button type="button" class="btn btn-raised btn-warning mr-1">
+                    <i class="ft-x"></i> انصراف
+                  </button>
+                  <button type="button" class="btn btn-raised btn-primary mr-1">
+                    <i class="fa fa-check-square-o"></i> ذخیره
+                  </button>
+                </div>
+
+                <div class="buttons-group float-right">
+                  <button type="button" class="btn btn-raised btn-info mr-1">عمل 1</button>
+                  <button type="button" class="btn btn-raised btn-danger mr-1">عمل 2</button>
+                  <button type="button" class="btn btn-raised btn-success">عمل 3</button>
+                </div>
+              </div>
+
+              <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                  <div class="form-body">
+                    <div class="row">
+                      <div class="form-group col-12 mb-2">
+                        <label for="eventRegInput1">نام</label>
+                        <input type="text" id="eventRegInput1" class="form-control" placeholder="نام" name="fullname">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col-12 mb-2">
+                        <label for="eventRegInput2">عنوان</label>
+                        <input type="text" id="eventRegInput2" class="form-control" placeholder="عنوان" name="title">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col-12 mb-2">
+                        <label for="eventRegInput3">شرکت</label>
+                        <input type="text" id="eventRegInput3" class="form-control" placeholder="شرکت" name="company">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col-12 mb-2">
+                        <label for="eventRegInput4">ایمیل</label>
+                        <input type="email" id="eventRegInput4" class="form-control" placeholder="ایمیل" name="email">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col-12 mb-2">
+                        <label for="eventRegInput5">شماره تماس</label>
+                        <input type="number" id="eventRegInput5" class="form-control" name="contact" placeholder="شماره تماس">
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="form-group col-12 mb-2">
+                        <label>مشتری های موجود</label>
+                        <div class="input-group">
+                          <div class="custom-control custom-radio d-inline-block">
+                            <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadioInline1">بله</label>
+                          </div>
+                          <div class="custom-control custom-radio d-inline-block">
+                            <input type="radio" id="customRadioInline2" checked name="customRadioInline1" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadioInline2">خیر</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions clearfix">
+                <div class="buttons-group float-left">
+                  <button type="button" class="btn btn-raised btn-warning mr-1">
+                    <i class="ft-x"></i> انصراف
+                  </button>
+                  <button type="button" class="btn btn-raised btn-primary mr-1">
+                    <i class="fa fa-check-square-o"></i> ذخیره
+                  </button>
+                </div>
+
+                <div class="buttons-group float-right">
+                  <button type="button" class="btn btn-raised btn-info mr-1">عمل 1</button>
+                  <button type="button" class="btn btn-raised btn-danger mr-1">عمل 2</button>
+                  <button type="button" class="btn btn-raised btn-success">عمل 3</button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row text-left justify-content-md-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title" id="from-actions-top-bottom-center">رویداد ثبت نام</h4>
+          <div class="alert alert-info" role="alert">
+            <strong>اقدامات فرم در بالا و پایین مرکز</strong>
+          </div>
+
+          <p>برای اضافه کردن عملیات فرم در بالا و پایین فرم با افزودن div با کلاس<code>.form-actions</code> 
+             شروع و پایان فرم اضافه کردن کلاس
+            <code>.center</code> برای تنظیم دکمه های عمل فرم به مرکز.</p>
+        </div>
+        <div class="card-content">
+          <div class="px-3">
+            <form class="form">
+              <div class="form-actions top center">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+
+              <div class="form-body">
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label for="eventInput1">نام</label>
+                    <input type="text" id="eventInput1" class="form-control" placeholder="نام" name="fullname">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label for="eventInput2">عنوان</label>
+                    <input type="text" id="eventInput2" class="form-control" placeholder="عنوان" name="title">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label for="eventInput3">شرکت</label>
+                    <input type="text" id="eventInput3" class="form-control" placeholder="شرکت" name="company">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label for="eventInput4">ایمیل</label>
+                    <input type="email" id="eventInput4" class="form-control" placeholder="ایمیل" name="email">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label for="eventInput5">شماره تماس</label>
+                    <input type="number" id="eventInput5" class="form-control" name="contact" placeholder="شماره تماس">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-12 mb-2">
+                    <label>مشتری موجود</label>
+                    <div class="input-group">
+                      <div class="custom-control custom-radio d-inline-block">
+                        <input type="radio" id="customRadioInline3" name="customRadioInline2" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInline3">بله</label>
+                      </div>
+                      <div class="custom-control custom-radio d-inline-block ml-1">
+                        <input type="radio" id="customRadioInline4" checked name="customRadioInline2" class="custom-control-input">
+                        <label class="custom-control-label" for="customRadioInline4">خیر</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions center">
+                <button type="button" class="btn btn-raised btn-warning mr-1">
+                  <i class="ft-x"></i> انصراف
+                </button>
+                <button type="button" class="btn btn-raised btn-primary">
+                  <i class="fa fa-check-square-o"></i> ذخیره
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- // Form actions layout section end -->

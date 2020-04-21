@@ -1,0 +1,90 @@
+<!--Modal starts-->
+<section id="modals">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="content-header">مودال ها</div>
+    </div>
+  </div>
+  <div class="row text-left" matchHeight="card">
+    <!--Modal with Default options starts-->
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">مودال با گزینه های پیش فرض</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ng-template #content let-c="close" let-d="dismiss">
+              <div class="modal-header">
+                <h4 class="modal-title">عنوان مودال</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>بدنه ی مودال</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">بستن</button>
+              </div>
+            </ng-template>
+
+            <button class="btn btn-lg btn-outline-primary" (click)="open(content)">راه اندازی نسخه آزمایشی</button>
+
+            <hr>
+            <p>عمل : {{closeResult}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Modal with Default options ends-->
+
+    <!--Components as content starts-->
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">قطعات به عنوان محتوا</h4>
+          <p>شما می توانید یک جزء موجود را به عنوان محتوای پنجره مدال منتقل کنید. در این مورد به یاد داشته باشید که بخش محتوا را به عنوان بخش
+             <code>entryComponents</code> خود اضافه کنید. <code>NgModule</code>.</p>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <button class="btn btn-lg btn-outline-primary" (click)="openContent()">راه اندازی نسخه آزمایشی</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Components as content ends-->
+
+    <!--Modal with custom class starts-->
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">مدال با کلاس سفارشی</h4>
+          <p>با برخی سبک مدرن تاریک. </p>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ng-template #customContent let-c="close" let-d="dismiss">
+              <div class="modal-header">
+                <h4 class="modal-title">عنوان مودال</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>اینجا مرا پیدا کن</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">بستن</button>
+              </div>
+            </ng-template>
+            <button class="btn btn-lg btn-outline-primary" (click)="openModal(customContent)">راه اندازی نسخه آزمایشی</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Modal with custom class ends-->
+  </div>
+</section>
+<!--Modal ends-->

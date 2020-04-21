@@ -13,12 +13,12 @@
         .#{$abbrev}r#{$infix}-#{$size},
         .#{$abbrev}x#{$infix}-#{$size} {
           #{$prop}-left: $length !important;
-          #{$prop}-right: auto !important;
+          #{$prop}-right: 0;
         }        
         .#{$abbrev}l#{$infix}-#{$size},
         .#{$abbrev}x#{$infix}-#{$size} {
           #{$prop}-right: $length !important;
-          #{$prop}-left: auto !important;
+          #{$prop}-left: 0;
         }
       }
     }

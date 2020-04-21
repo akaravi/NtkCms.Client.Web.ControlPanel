@@ -1,0 +1,116 @@
+<section id="alert">
+    <div class="row match-height text-left">
+        <div class="col-sm-12">
+            <div class="content-header">هشدارها</div>
+            <p class="content-sub-header">پیام های بازخورد متنی را برای اقدامات معمولی کاربر با تعداد انگشت شماری از پیام های هشدار موجود و انعطاف پذیر ارائه دهید.</p>
+        </div>
+    </div>
+    <!--Alert States Starts-->
+    <div class="row match-height text-left">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">هشدار های وضعیت</h4>
+                    <p>هر متن و یک دکمه اختیاری اختیاری را در آن قرار دهید<code>.alert</code> و یکی از چهار کلاس متنی است(e.g., <code>.alert-COLOR</code>) برای پیام های هشدار رنگی اولیه.</p>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <ngb-alert type="primary" [dismissible]="false">
+                            <strong>اولیه!</strong>بهتر است خودتان را بررسی کنید، خیلی خوب نیستید.
+                        </ngb-alert>
+                        <ngb-alert type="secondary" [dismissible]="false">
+                            <strong>قانویه!</strong>بهتر است خودتان را بررسی کنید، خیلی خوب نیستید.
+                        </ngb-alert>
+                        <ngb-alert type="success" [dismissible]="false">
+                            <strong>موفقیت!</strong>بهتر است خودتان را بررسی کنید، خیلی خوب نیستید.
+                        </ngb-alert>
+                        <ngb-alert type="danger" [dismissible]="false">
+                            <strong>اخطار!</strong>بهتر است خودتان را بررسی کنید، خیلی خوب نیستید.
+                        </ngb-alert>
+                        <ngb-alert type="info" [dismissible]="false">
+                            <strong>اطلاعات!</strong>بهتر است خودتان را بررسی کنید، خیلی خوب نیستید.
+                        </ngb-alert>
+                        <ngb-alert [dismissible]="false">
+                            <strong>هشدار!</strong>بهتر است خودتان را بررسی کنید، خیلی خوب نیستید.
+                        </ngb-alert>
+                        <ngb-alert type="light" [dismissible]="false">
+                            <strong>روشن!</strong>بهتر است خودتان را بررسی کنید، خیلی خوب نیستید.
+                        </ngb-alert>
+                        <ngb-alert type="dark" [dismissible]="false">
+                            <strong>تیره!</strong>بهتر است خودتان را بررسی کنید، خیلی خوب نیستید.
+                        </ngb-alert>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Alert States Ends-->
+    
+    <!--Closable Alert Starts-->
+    <div class="row match-height text-left">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">هشدار بسته</h4>
+                    <p></p>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <div *ngFor="let alert of alerts">
+                            <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">{{ alert.message }}</ngb-alert>
+                        </div>
+                        <p>
+                            <button type="button" class="btn btn-primary btn-raised" (click)="reset()">تنظیم مجدد</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Closable Alert Ends-->
+    
+    <!--Self-Closing Alert Section starts-->
+    <div class="row match-height text-left">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">هشدار بسته شدن خود</h4>
+                    <p>هشدار خودکفائی استاتیک که پس از 20 ثانیه ناپدید می شود (اگر صفحه قبل از آن ناپدید شده است، صفحه را تازه کنید)</p>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <ngb-alert *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true">ویژگی های جدید عالی ما را بررسی کنید</ngb-alert>
+
+                        <hr/>
+
+                        <p>نمایش پیغام موفقیت آمیز خود را که پس از 5 ثانیه ناپدید می شود.</p>
+                        <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+                        <p>
+                            <button class="btn btn-primary btn-raised" (click)="changeSuccessMessage()">تعویض پیام</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Self-Closing Alert Section Ends-->
+    
+    <!--Custom Alert Starts-->
+    <div class="row match-height text-left">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">هشدار سفارشی</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <p>
+                            <ngb-alert type="custom" [dismissible]="false"><strong>وه!</strong> این یک هشدار سفارشی است</ngb-alert>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Custom Alert Ends-->    
+</section>

@@ -1,0 +1,297 @@
+<!--Tabs Starts-->
+<section id="tabs">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="content-header">تب ها</div>
+    </div>
+  </div>
+  <div class="row text-left">
+    <!--Tabset Starts-->
+    <div class="col-md-12 col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">تب</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ngb-tabset>
+              <ngb-tab title="Simple">
+                <ng-template ngbTabContent>
+                  <p>
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها
+                    و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                  </p>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab>
+                <ng-template ngbTabTitle><b>تصادفی</b> عنوان</ng-template>
+                <ng-template ngbTabContent>
+                  <p>
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها
+                    و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                  </p>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Disabled" [disabled]="true">
+                <ng-template ngbTabContent>
+                  <p>
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها
+                    و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                  </p>
+                </ng-template>
+              </ngb-tab>
+            </ngb-tabset>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Tabset Ends-->
+  </div>
+  <div class="row text-left">
+    <!--Pills Starts-->
+    <div class="col-md-12 col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">قرص</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ngb-tabset type="pills">
+              <ngb-tab title="Simple">
+                <ng-template ngbTabContent>
+                  <p>
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها
+                    و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                  </p>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab>
+                <ng-template ngbTabTitle><b>تصادفی</b> عنوان</ng-template>
+                <ng-template ngbTabContent>
+                  <p>
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها
+                    و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                  </p>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Disabled" [disabled]="true">
+                <ng-template ngbTabContent>
+                  <p>
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها
+                    و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                  </p>
+                </ng-template>
+              </ngb-tab>
+            </ngb-tabset>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Pills Ends-->
+  </div>
+  <div class="row text-left">
+    <!--Select an active tab by id Starts-->
+    <div class="col-md-12 col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Select an active tab by id</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ngb-tabset #t="ngbTabset">
+              <ngb-tab title="Simple" id="foo">
+                <ng-template ngbTabContent>
+                  <p>
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها
+                    و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                  </p>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab id="bar">
+                <ng-template ngbTabTitle><b>تصادفی</b> عنوان</ng-template>
+                <ng-template ngbTabContent>
+                  <p>
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها
+                    و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                  </p>
+                </ng-template>
+              </ngb-tab>
+            </ngb-tabset>
+            <p>
+              <button class="btn btn-outline-primary" (click)="t.select('bar')">برگه انتخاب شده با شناسه "bar"</button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Select an active tab by id Ends-->
+  </div>
+  <div class="row text-left">
+    <!--Prevent tab change Starts-->
+    <div class="col-md-12 col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">جلوگیری از تغییر زبانه </h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ngb-tabset (tabChange)="beforeChange($event)">
+              <ngb-tab title="Simple" id="foo">
+                <ng-template ngbTabContent>
+                  <p>
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها
+                    و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                  </p>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab id="bar" title="من نمی توانم... ">
+                <ng-template ngbTabContent>
+                  <p>من نمی توانم محتوا را انتخاب کنم</p>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="But I can!">
+                <ng-template ngbTabContent>
+                  <p>
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها
+                    و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                  </p>
+                </ng-template>
+              </ngb-tab>
+            </ngb-tabset>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Prevent tab change Ends-->
+  </div>
+  <div class="row text-left">
+    <!--Nav justification Starts-->
+    <div class="col-md-12 col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">توجیه ناپذیر </h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ngb-tabset [justify]="currentJustify">
+              <ngb-tab title="Simple">
+                <ng-template ngbTabContent>
+                  <p>
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها
+                    و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد .
+
+                  </p>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab>
+                <ng-template ngbTabTitle><b>تصادفی</b> عنوان</ng-template>
+                <ng-template ngbTabContent>
+                  <p> لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                    چاپگرها و
+                    متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+
+                  </p>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="A very long nav title">
+                <ng-template ngbTabContent>
+                  <p>
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها
+                    و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                  </p>
+                </ng-template>
+              </ngb-tab>
+            </ngb-tabset>
+
+            <div class="btn-group btn-group-toggle" ngbRadioGroup [(ngModel)]="currentJustify">
+              <label ngbButtonLabel class="btn-outline-primary btn-sm">
+                <input ngbButton type="radio" value="start">شروع
+              </label>
+              <label ngbButtonLabel class="btn-outline-primary btn-sm">
+                <input ngbButton type="radio" value="center">وسط
+              </label>
+              <label ngbButtonLabel class="btn-outline-primary btn-sm">
+                <input ngbButton type="radio" value="end">پایان
+              </label>
+              <label ngbButtonLabel class="btn-outline-primary btn-sm">
+                <input ngbButton type="radio" value="fill">پر کنید
+              </label>
+              <label ngbButtonLabel class="btn-outline-primary btn-sm">
+                <input ngbButton type="radio" value="justified">تعدیل شده
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Nav justification Ends-->
+  </div>
+  <div class="row text-left">
+    <!--Nav orientation Starts-->
+    <div class="col-md-12 col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">جهت گیری نوری</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <ngb-tabset type="pills" [orientation]="currentOrientation">
+              <ngb-tab title="Simple">
+                <ng-template ngbTabContent>
+                  <p>
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها
+                    و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                  </p>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab>
+                <ng-template ngbTabTitle><b>تصادفی</b> عنوان</ng-template>
+                <ng-template ngbTabContent>
+                  <p>
+                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
+                  متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                  کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                  </p>
+                </ng-template>
+              </ngb-tab>
+              <ngb-tab title="Disabled" [disabled]="true">
+                <ng-template ngbTabContent>
+                  <p>
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها
+                    و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
+                    کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                  </p>
+                </ng-template>
+              </ngb-tab>
+            </ngb-tabset>
+
+            <div class="btn-group btn-group-toggle" ngbRadioGroup [(ngModel)]="currentOrientation">
+              <label ngbButtonLabel class="btn-outline-primary btn-sm">
+                <input ngbButton type="radio" value="horizontal">افقی
+              </label>
+              <label ngbButtonLabel class="btn-outline-primary btn-sm">
+                <input ngbButton type="radio" value="vertical">عمودی
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Nav orientation Ends-->
+  </div>
+</section>
+<!--Tabs Starts-->

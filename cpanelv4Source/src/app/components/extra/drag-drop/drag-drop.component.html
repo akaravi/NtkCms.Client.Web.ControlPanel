@@ -1,0 +1,328 @@
+<div class="row text-left">
+    <div class="col-sm-12">
+        <div class="content-header">کشیدن و انداختن</div>
+        <p class="content-sub-header">زوایای ساده کشیدن و رها کردن با dragula.</p>
+    </div>
+</div>
+<!-- Drap and Drop Starts -->
+<section id="dragndrop">
+
+    <div class="card text-left">
+        <div class="card-header">
+            <h4>کشیدن و انداختن پایه</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class='parent'>
+                        <label for='hy'>
+                                حرکت بین این دو ظروف را انجام دهید. توجه داشته باشید که چگونه مواد را در نزدیکی نشانگر ماوس قرار داده می شود؟ چیزهای بزرگ.
+                        </label>
+                        <div class='drag-drop-wrapper'>
+                            <div class='drag-drop-container' dragula="DRAGULA_FACTS">
+                                <div>شما می توانید این عناصر را بین این دو ظروف حرکت دهید</div>
+                                <div>حرکت آنها هر جای دیگری کاملا امکان پذیر نیست</div>
+                                <div>
+                                        همچنین امکان حرکت عناصر در یک کانتینر وجود دارد، موقعیت خود را عوض می کند
+                                </div>
+                            </div>
+                            <div class='drag-drop-container' dragula="DRAGULA_FACTS">
+                                <div>
+                                        این مورد پیش فرض استفاده است. شما فقط باید ظروف مورد نظر خود را مشخص کنید
+                                </div>
+                                <div>موارد استفاده بیشتر تعاملی در پیش رو هستند </div>
+                                <div>حتما چک کنید<a href='https://github.com/bevacqua/dragula#readme'>
+                                    مستندات در GitHub!
+                                </a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card text-left">
+        <div class="card-header">
+            <h4>کشیدن و رها کردن رویدادها                </h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="parent">
+                        <label for="hy">رویدادهای زیادی در طول زندگی یک رویداد کشیدن وجود دارد. <a href="https://github.com/bevacqua/dragula#drakeon-events">
+                        همه چیز </a> در این مستند</label>
+                        <div class="drag-drop-wrapper">
+                            <div class="drag-drop-container" dragula="DRAGULA_EVENTS">
+                                <div>همانطور که شما شروع به کشیدن یک عنصر می کنید، یک <code>drag</code>رویداد اخراج می شود</div>
+                                <div>هر وقت یک عنصر به دلیل کلون<code>copy: true</code>و یک<code>cloned</code>
+                                    رویداد</div>
+                                <div> <code>shadow</code> 
+                                    رویداد هر وقت که نشانگر نشان دهنده جایی است که یک عنصر حذف می شود، به یک ظرف یا موقعیت دیگر منتقل می شود
+                                </div>
+                                <div>یک <code>drop</code> رویداد هر زمانی که یک عنصر در هر جای دیگری از منشا آن رها شود اخراج می شود
+                                    <em>(جایی که در ابتدا از آن کشید)</em></div>
+                            </div>
+                            <div class="drag-drop-container" dragula="DRAGULA_EVENTS">
+                                <div>اگر عنصر از DOM حذف می شود در نتیجه خارج شدن از هر ظروف، یک<code>remove</code> رویداد اخراج می شود </div>
+                                <div>یک <code>cancel</code> رویداد هنگامی که یک عنصر به یک هدف نامعتبر منتقل می شود اخراج می شود، اما جای خود را حفظ می کند</div>
+                                <div> <code>over</code> رویداد هنگامی رخ می دهد که چیزی را روی یک ظرف بکشید و
+                                    <code>out</code> هنگامی که آن را از ظرف جدا می کنید آتش می گیرد</div>
+                                <div>در نهایت یک <code>dragend</code> 
+                                    رویداد هر زمانی که عملیات کشیدن به پایان می رسد، اخراج می شود، صرفنظر از اینکه آیا آن را لغو، حذف یا رها می کند
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card text-left">
+        <div class="card-header">
+            <h4>خردع</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class='parent'>
+                        <label for='hy'>
+                                آیا می توانید به سرعت حذف موارد زمانی که آن را خارج از ظروف انتخاب شده است؟ توجه داشته باشید که به راحتی می توانید موارد را در هر ظروف با کشیدن و رها کردن آنها مرتب کنید.
+
+                        </label>
+                        <div class='drag-drop-wrapper'>
+                            <div class='drag-drop-container' dragula="SPILL">
+                                <div>لورم ایپسوم </div>
+                                <div>متن ساختگی</div>
+                                <div>روزنامه های علمی</div>
+                                <div>کتاب های مدرن</div>
+                                <div>نظریه های مهم</div>
+                                <div>تولید سادگی</div>
+                                <div>صنعت چاپ</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card text-left">
+        <div class="card-header">
+            <h4>بازگرداندن </h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class='parent'> <label for='hy'>
+                            به طور پیش فرض، حذف یک عنصر در خارج از هر ظروف شناخته شده عنصر را در جایگاه آخر حفظ خواهد کرد. اگر در خارج از ظروف شناخته شده نیز می توانید عناصر را دوباره به مبدا بازگردانید.
+
+                    </label>
+                        <div class='drag-drop-wrapper'>
+                            <div class='drag-drop-container' dragula="REVERT">
+                                <div>انتقال موارد بین ظروف به طور معمول کار می کند</div>
+                                <div>اگر شما سعی در رها کردن یک آیتم خارج از هر ظروف دارید، اما موقعیت اصلی خود را حفظ خواهید کرد
+                                    </div>
+                                <div>وقتی این اتفاق می افتد، یک<code>cancel</code> رویداد مطرح خواهد شد</div>
+                            </div>
+                            <div class='drag-drop-container' dragula="REVERT">
+                                <div>
+                                        توجه داشته باشید که عنصر کش می شود به جای شما که از ابتدا آن را کشانده اید، بازگردانده می شود، حتی اگر آن را بیش از دیگر ظروف
+                                </div>
+                                <div>
+                                        این مفید است اگر شما می خواهید اطمینان حاصل کنید رویدادهای افتادن تنها زمانی اتفاق می افتد زمانی که کاربر قصد دارد برای آنها به طور صریح اتفاق بیفتد، اجتناب از شگفتی
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card text-left">
+        <div class="card-header">
+            <h4>کپی</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class='parent'>
+                        <label for='hy'>مسائل مربوط به کپی کردن نیز رایج است، بنابراین ما برای شما آسان ساختیم.</label>
+                        <div class='drag-drop-wrapper'>
+                            <div class='drag-drop-container' dragula="COPYABLE" id="left">
+                                <div>هنگامی که عناصر قابل کپی هستند، نمی توان آنها را در ظرف منشا مرتب سازی کرد</div>
+                                <div>Cعفونت از عناصر اصلی جلوگیری می کند. یک کپی ایجاد می شود و
+                                        به جای آن کش می شود</div>
+                                <div>هر گاه این اتفاق می افتد، یک <code>cloned</code>رویداد مطرح شده است</div>
+                            </div>
+                            <div class='drag-drop-container' dragula="COPYABLE" id="right">
+                                <div>
+                                        توجه داشته باشید که کلون ها در صورت تخریب در یک کانتینر دیگر تخریب می شوند
+                                </div>
+                                <div>
+                                        شما یک کپی را می کشید، بنابراین زمانی که آنها را به ظرف دیگری منتقل می کنید، نسخه برداری را خواهید دید.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card text-left">
+        <div class="card-header">
+            <h4>مدل کپی</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class='parent'>
+                        <label for='hy'>شما باید یک<code>copyItem</code>اگر شما با استفاده از تابع عمل کنید <code>copy</code>
+                            با <code>[dragulaModel]</code>.</label>
+                        <div class='drag-drop-wrapper'>
+                            <div class='drag-drop-container' dragula="PERSON" id="left" [(dragulaModel)]="left">
+                                <div *ngFor="let person of left">{{person | json}}</div>
+                            </div>
+                            <div class='drag-drop-container' dragula="PERSON" id="right" [(dragulaModel)]="right">
+                                <div *ngFor="let person of right">{{person | json}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card text-left">
+        <div class="card-header">
+            <h4>دسته</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class='parent'>
+                        <label for='hy'>دسته های کشیدن را شناور کروز خود را؟</label>
+                        <div class='drag-drop-wrapper'>
+                            <div class='drag-drop-container' dragula="HANDLES">
+                                <div><span class='handle'>+</span>من را حرکت دهید، اما می توانید علامت پلاس را به من بکشید.</div>
+                                <div><span class='handle'>+</span>توجه داشته باشید که <code>handle</code>عنصر در <code>moves</code>
+                                    دسته فقط هدف اصلی رویداد است.
+                                </div>
+                            </div>
+                            <div class='drag-drop-container' dragula="HANDLES">
+                                <div><span class='handle'>+</span>
+                                    این نیز ممکن است مفید باشد اگر شما می خواهید چند فرزند یک عنصر قادر به تحریک یک رویداد کشیدن باشد.
+                                </div>
+                                <div><span class='handle'>+</span>شما همچنین می توانید از <code>moves</code> گزینه ای برای تعیین اینکه آیا عنصر را می توان در همه از یک ظرف کشید
+                                     <em>دسته را بکشید یا نه</em>.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card text-left">
+        <div class="card-header">
+            <h4>کلیک کنید یا کشیدن</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class='parent'>
+                        <label><strong>کلیک کنید یا کشیدن</strong> هنگامی که دکمه ماوس قبل از یکبار کلیک می شود یک کلیک می کند
+                            <code>mousemove</code> 
+                            رویداد، در غیر این صورت یک رویداد کشیدن اخراج می شود هیچ پیکربندی اضافی لازم نیست
+                        </label>
+                        <div class='drag-drop-wrapper'>
+                            <div class='drag-drop-container' dragula="CLICKS">
+                                <div (click)='onclick("one")'>{{clicked.one ? "Clicked!" : "Clicking on these elements
+                                    triggers a regular click event you can listen to."}}</div>
+                                <div (click)='onclick("two")'>{{clicked.two ? "Clicked!" : "Try dragging or clicking on
+                                    this element."}}</div>
+                                <div (click)='onclick("three")'>{{clicked.three ? "Clicked!" : "Note how you can click
+                                    normally?"}}</div>
+                                <div (click)='onclick("four")'>{{clicked.four ? "Clicked!" : "Drags don't trigger click
+                                    events."}}</div>
+                                <div (click)='onclick("five")'>{{clicked.five ? "Clicked!" : "Clicks don't end up in a
+                                    drag, either."}}</div>
+                                <div (click)='onclick("six")'>{{clicked.six ? "Clicked!" : "This is useful if you have
+                                    elements that can be both clicked or dragged."}}</div>
+                                <div (click)='onclick("seven")'>{{clicked.seven ? "ZOMG, THAT TICKLES! PLEASE. STOP." :
+                                    "Business as usual."}}</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card text-left">
+        <div class="card-header">
+            <h4>Angular ngFor</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class='parent'>
+                        <label for='hy'><strong>Angular-specific مثال.</strong>برخی از<code>ngFor</code>?</label>
+                        <div class='drag-drop-wrapper'>
+                            <div class='drag-drop-container' [dragula]="MANY_ITEMS" [(dragulaModel)]='many'>
+                                <div *ngFor='let text of many' [innerHtml]='text'></div>
+                            </div>
+                            <div class='drag-drop-container' [dragula]="MANY_ITEMS" [(dragulaModel)]='many2'>
+                                <div *ngFor='let text of many2' [innerHtml]='text'></div>
+                            </div>
+                        </div>
+                        <div class='drag-drop-wrapper'>
+                            <div class='drag-drop-container'>
+                                <pre>{{many | json}}</pre>
+                            </div>
+                            <div class='drag-drop-container'>
+                                <pre>{{many2 | json}}</pre>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card text-left">
+        <div class="card-header">
+            <h4>تو در تو</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="parent">
+                        <label for="hy">
+                            <strong>Angular-specific مثال.</strong>
+                            فانتزی بعضی از توزیع ها<code>ngFor</code>?
+                        </label>
+                        <div class="drag-drop-wrapper" dragula="COLUMNS" [(dragulaModel)]="groups">
+                            <div class="drag-drop-container" *ngFor="let group of groups">
+                                <span class="group-handle">{{group.name}}</span>
+                                <div class="drag-drop-container" dragula="ITEMS" [(dragulaModel)]="group.items">
+                                    <div *ngFor="let item of group.items" [innerHtml]="item.name"></div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Drap and Drop Ends -->
