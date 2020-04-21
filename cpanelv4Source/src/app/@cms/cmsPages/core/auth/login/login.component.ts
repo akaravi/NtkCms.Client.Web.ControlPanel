@@ -3,6 +3,9 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CmsAuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import * as fromStore from '../../../../cmsStore';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cms-login',
@@ -18,7 +21,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private authService: CmsAuthService
+    private authService: CmsAuthService,
+    private alertService: ToastrService, 
+    private store: Store<fromStore.State>
   ) {}
   ngOnInit() {
     this.model.isremember = true;
@@ -34,17 +39,18 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   // On submit button click
-  onSubmit() {
+  login() {
     this.subManager.add(
         this.authService.signinUser(this.model).subscribe(next => {
-        //   this.store.dispatch(new fromStore.InitHub());
-        //   if (this.returnUrl === null || this.returnUrl === undefined) {
-        //     this.returnUrl = this.authService.getDashboardUrl();
-        //   }
-        //   this.router.navigate([this.returnUrl]);
-        //   this.alertService.success('با موفقیت وارد شدید', 'موفق');
+          this.store.dispatch(new fromStore.InitHub());
+          if (this.returnUrl === null || this.returnUrl === undefined) {
+            this.returnUrl = this.authService.getDashboardUrl();
+          }
+          this.router.navigate([this.returnUrl]);
+          this.alertService.success('با موفقیت وارد شدید', 'موفق');
+
         }, error => {
-          //this.alertService.error(error, 'خطا در ورود');
+          this.alertService.error(error, 'خطا در ورود');
         })
       );
   }
