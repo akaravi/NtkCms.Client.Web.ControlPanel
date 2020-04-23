@@ -74,7 +74,38 @@ export class CmsAuthService implements OnDestroy {
       })
     );
   }
+  changePassword(model: any) {
+    return this.http.post(this.baseUrl + 'changePassword', model).pipe(
+     map((ret: ErrorExcptionResult<TokenInfoModel>) => {
+       if (ret) {
+         if (ret.IsSuccess) {
 
+           this.alertService.success('تغییر پسورد با موفقیت انجام شد', 'موفق');
+
+         } else {
+           this.alertService.error(ret.ErrorMessage, 'خطا در تغییر  پسورد حساب کاربری');
+         }
+         return ret;
+       }
+     })
+   );
+ }
+ forgetPassword(model: any) {
+  return this.http.post(this.baseUrl + 'forgetPassword', model).pipe(
+   map((ret: ErrorExcptionResult<TokenInfoModel>) => {
+     if (ret) {
+       if (ret.IsSuccess) {
+
+         this.alertService.success('دستور عمل بازیابی پسورد به آدرس ایمیل شما ارسال شد', 'موفق');
+
+       } else {
+         this.alertService.error(ret.ErrorMessage, 'خطا در بازیابی پسورد');
+       }
+       return ret;
+     }
+   })
+ );
+}
   logout() {
     const token = localStorage.getItem('token');
     const headers = { Authorization: token };

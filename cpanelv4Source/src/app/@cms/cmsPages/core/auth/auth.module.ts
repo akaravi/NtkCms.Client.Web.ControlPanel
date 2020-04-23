@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AuthRoutes } from './auth.routing';
+import { ForgotPasswordComponent } from './forgotPassword/forgotPassword.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AuthRoutes } from './auth.routing';
     exports: [],
     declarations: [
       LoginComponent,
-      RegisterComponent
+      RegisterComponent,
+      ForgotPasswordComponent 
     ],
     providers: [],
 })

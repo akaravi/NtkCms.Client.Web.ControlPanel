@@ -9,16 +9,15 @@ import { ToastrService } from 'ngx-toastr';
 import { ErrorHelper } from 'app/@cms/cmsCommon/helper/errorHelper';
 
 @Component({
-  selector: 'app-cms-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-cms-forgot-password',
+  templateUrl: './forgotPassword.component.html',
+  styleUrls: ['./forgotPassword.component.scss'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class ForgotPasswordComponent implements OnInit, OnDestroy  {
   @ViewChild('f', { static: false }) loginForm: NgForm;
   subManager = new Subscription();
   model: any = {};
   returnUrl: any = '';
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -27,6 +26,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private store: Store<fromStore.State>,
     private errorHelper: ErrorHelper
   ) {}
+
   ngOnInit() {
     this.model.isremember = true;
     this.subManager.add(
@@ -38,25 +38,26 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }
-
-  // On submit button click
+  // On submit click, reset form fields
   onSubmit() {
     this.subManager.add(
-      this.authService.signinUser(this.model).subscribe(
+      this.authService.forgetPassword(this.model).subscribe(
         (ret) => {
           if (ret.IsSuccess) {
             this.store.dispatch(new fromStore.InitHub());
             if (this.returnUrl === null || this.returnUrl === undefined) {
-              this.returnUrl = this.authService.getDashboardUrl();
+              this.returnUrl = this.authService.getLoginUrl();
             }
             this.router.navigate([this.returnUrl]);
           }
         },
         (ret) => {
-          this.alertService.error(this.errorHelper.GetString( ret.error), 'خطا در ورود');
+          this.alertService.error(
+            this.errorHelper.GetString(ret.error),
+            'خطا در بازیابی پسورد'
+          );
         }
       )
     );
   }
- 
 }

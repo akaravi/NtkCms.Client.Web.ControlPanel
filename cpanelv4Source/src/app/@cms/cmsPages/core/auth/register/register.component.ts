@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ErrorHelper } from 'app/@cms/cmsCommon/helper/errorHelper';
 
 @Component({
-    selector: 'app-register-page',
+    selector: 'app-cms-register-page',
     templateUrl: './register.component.html',
     styleUrls: ['./register.component.scss']
 })
