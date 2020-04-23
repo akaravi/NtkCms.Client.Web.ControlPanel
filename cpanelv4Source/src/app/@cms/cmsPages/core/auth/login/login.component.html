@@ -16,18 +16,18 @@
                   <p class="card-text mb-3">
                     خوش آمدید، لطفا به حساب کاربری خود وارد شوید.
                   </p>
-                  <form #loginForm="ngForm"  (ngSubmit)="login()" aria-labelledby="title">
+                  <form #loginForm="ngForm"  (ngSubmit)="onSubmit()" aria-labelledby="title">
 
-                    <input type="text" class="form-control mb-3" placeholder="نام کاربری" name="username"
-                      [(ngModel)]="model.username" />
-                    <input type="password" class="form-control mb-3" placeholder="رمز عبور" name="password"
-                      [(ngModel)]="model.password" />
+                    <input [(ngModel)]="model.username" type="text" class="form-control mb-3" placeholder="نام کاربری" name="username"
+                      />
+                    <input  [(ngModel)]="model.password" type="password" class="form-control mb-3" placeholder="رمز عبور" name="password"
+                      />
                     <div class="d-flex justify-content-between mt-2">
                       <div class="remember-me">
                         <div class="custom-control custom-checkbox custom-control-inline mb-3">
-                          <input type="checkbox" id="rememberMe" name="rememberMe" [(ngModel)]="model.rememberMe"
+                          <input type="checkbox" id="isremember" name="isremember" [(ngModel)]="model.isremember"
                             class="custom-control-input" />
-                          <label class="custom-control-label" for="rememberMe">
+                          <label class="custom-control-label" for="isremember">
                             مرا به خاطر بسپار
                           </label>
                         </div>

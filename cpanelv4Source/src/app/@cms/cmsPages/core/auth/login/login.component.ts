@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromStore from '../../../../cmsStore';
 import { ToastrService } from 'ngx-toastr';
+import { ErrorHelper } from 'app/@cms/cmsCommon/helper/errorHelper';
 
 @Component({
   selector: 'app-cms-login',
@@ -22,12 +23,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private authService: CmsAuthService,
-    private alertService: ToastrService, 
-    private store: Store<fromStore.State>
+    private alertService: ToastrService,
+    private store: Store<fromStore.State>,
+    private errorHelper: ErrorHelper
   ) {}
   ngOnInit() {
     this.model.isremember = true;
-    this.model.granttype = 'password';
     this.subManager.add(
       this.route.queryParams.subscribe(
         (params) => (this.returnUrl = params.return)
@@ -39,20 +40,23 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   // On submit button click
-  login() {
+  onSubmit() {
     this.subManager.add(
-        this.authService.signinUser(this.model).subscribe(next => {
-          this.store.dispatch(new fromStore.InitHub());
-          if (this.returnUrl === null || this.returnUrl === undefined) {
-            this.returnUrl = this.authService.getDashboardUrl();
+      this.authService.signinUser(this.model).subscribe(
+        (ret) => {
+          if (ret.IsSuccess) {
+            this.store.dispatch(new fromStore.InitHub());
+            if (this.returnUrl === null || this.returnUrl === undefined) {
+              this.returnUrl = this.authService.getDashboardUrl();
+            }
+            this.router.navigate([this.returnUrl]);
           }
-          this.router.navigate([this.returnUrl]);
-          this.alertService.success('با موفقیت وارد شدید', 'موفق');
-
-        }, error => {
-          this.alertService.error(error, 'خطا در ورود');
-        })
-      );
+        },
+        (ret) => {
+          this.alertService.error(this.errorHelper.GetString( ret.error), 'خطا در ورود');
+        }
+      )
+    );
   }
   // On Forgot password link click
   onForgotPassword() {

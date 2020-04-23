@@ -20,20 +20,42 @@ const appRoutes: Routes = [
     redirectTo: 'dashboard/dashboard1',
     pathMatch: 'full',
   },
-  { path: 'cms', component: CmsFullLayoutComponent, data: { title: 'full Views' }, children: FullLayoutROUTES, canActivate: [CmsAuthGuard] },
-  { path: 'cms', component: CmsContentLayoutComponent, data: { title: 'content Views' }, children: ContentLayoutROUTES, canActivate: [CmsAuthGuard] },
-  { path: '', component: FullLayoutComponent, data: { title: 'full Views' }, children: Full_ROUTES, canActivate: [AuthGuard] },
-  { path: '', component: ContentLayoutComponent, data: { title: 'content Views' }, children: CONTENT_ROUTES, canActivate: [AuthGuard] },
+  {
+    path: 'cms',
+    component: CmsFullLayoutComponent,
+    data: { title: 'full Views' },
+    children: FullLayoutROUTES,
+    //canActivate: [CmsAuthGuard],
+  },
+  {
+    path: 'cms',
+    component: CmsContentLayoutComponent,
+    data: { title: 'content Views' },
+    children: ContentLayoutROUTES,
+    //canActivate: [CmsAuthGuard],
+  },
+  {
+    path: '',
+    component: FullLayoutComponent,
+    data: { title: 'full Views' },
+    children: Full_ROUTES,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: '',
+    component: ContentLayoutComponent,
+    data: { title: 'content Views' },
+    children: CONTENT_ROUTES,
+    canActivate: [AuthGuard],
+  },
   {
     path: '**',
-    redirectTo: 'pages/error'
-  }
+    redirectTo: 'pages/error',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

@@ -16,7 +16,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'Regiser',
+        path: 'register',
         component: RegisterComponent,
         data: {
           title: 'Register New Acount'

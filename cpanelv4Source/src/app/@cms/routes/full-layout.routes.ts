@@ -1,15 +1,16 @@
 import { Routes, RouterModule } from '@angular/router';
 
 export const FullLayoutROUTES: Routes = [
+  {
+    path: 'auth',
+    loadChildren: () => import('../cmsPages/core/auth/auth.module').then(m => m.CmsAuthModule)
+  }, 
   // {
   //   path: '',
   //   redirectTo: 'dashboard',
   //   pathMatch: 'full',
   // },
-  {
-    path: 'dashboard',
-    loadChildren: () => import('../dashboard/dashboard.module').then(m => m.CmsDashboardModule)
-  },
+
 
   // {
   //   path: 'calendar',

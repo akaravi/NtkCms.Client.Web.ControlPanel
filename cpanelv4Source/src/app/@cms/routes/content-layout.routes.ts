@@ -2,9 +2,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 export const ContentLayoutROUTES: Routes = [
   {
-    path: 'auth',
-    loadChildren: () => import('../cmsPages/core/auth/auth.module').then(m => m.CmsAuthModule)
-  }, 
+    path: 'dashboard',
+    loadChildren: () => import('../dashboard/dashboard.module').then(m => m.CmsDashboardModule)
+  },
   //{
         // path: 'pages',
         // loadChildren: () => import('../../pages/content-pages/content-pages.module').then(m => m.ContentPagesModule)

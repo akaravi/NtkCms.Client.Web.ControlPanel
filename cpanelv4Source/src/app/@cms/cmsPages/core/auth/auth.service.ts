@@ -25,7 +25,7 @@ export class CmsAuthService implements OnDestroy {
     private http: HttpClient,
     private alertService: ToastrService,
     private router: Router,
-    private store: Store<fromStore.State>
+    private store: Store<fromStore.State>,
   ) {
     const token = localStorage.getItem('token');
     if (this.loggedIn()) {
@@ -38,11 +38,23 @@ export class CmsAuthService implements OnDestroy {
     this.subManager.unsubscribe();
   }
   signupUser(model: any) {
-    //your code for signing up the new user
+    return this.http.post(this.baseUrl + 'signup', model).pipe(
+      map((ret: ErrorExcptionResult<TokenInfoModel>) => {
+        if (ret) {
+          if (ret.IsSuccess) {
+        this.alertService.success('با موفقیت ثبت نام شدید', 'موفق');
+          
+          } else {
+            this.alertService.error(ret.ErrorMessage, 'خطا در ثبت نام');
+          }
+          return ret;
+        }
+      })
+    );
   }
 
   signinUser(model: any) {
-    return this.http.post(this.baseUrl + 'signIn', model).pipe(
+     return this.http.post(this.baseUrl + 'signin', model).pipe(
       map((ret: ErrorExcptionResult<TokenInfoModel>) => {
         if (ret) {
           if (ret.IsSuccess) {
@@ -50,12 +62,14 @@ export class CmsAuthService implements OnDestroy {
             const decodedToken = this.jwtHelper.decodeToken(ret.token);
             this.store.dispatch(new fromStore.EditDecodedToken(decodedToken));
             this.userRoles = decodedToken.role as Array<string>;
+            this.alertService.success('با موفقیت وارد شدید', 'موفق');
 
             localStorage.setItem('token', ret.token);
             localStorage.setItem('refreshToken', ret.Item.refresh_token);
           } else {
             this.alertService.error(ret.ErrorMessage, 'خطا در ورود');
           }
+          return ret;
         }
       })
     );
@@ -159,5 +173,8 @@ export class CmsAuthService implements OnDestroy {
   }
   getDashboardUrl(): string {
     return '/cms/dashboard/dashboard';
+  }
+  getLoginUrl(): string {
+    return '/cms/auth/login';
   }
 }

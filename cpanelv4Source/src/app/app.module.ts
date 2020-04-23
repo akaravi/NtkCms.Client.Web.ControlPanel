@@ -29,6 +29,7 @@ import { CmsFullLayoutComponent } from './@cms/layouts/full/cmsFull-layout.compo
 import { CmsContentLayoutComponent } from './@cms/layouts/content/cmsContent-layout.component';
 import { CmsAuthService } from './@cms/cmsPages/core/auth/auth.service';
 import { CmsAuthGuard } from './@cms/cmsPages/core/auth/auth-guard.service';
+import { ErrorHelper } from './@cms/cmsCommon/helper/errorHelper';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -49,6 +50,8 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   imports: [
     BrowserAnimationsModule,
+    //ErrorHelper,
+
     StoreModule.forRoot({}),
     AppRoutingModule,
     SharedModule,
