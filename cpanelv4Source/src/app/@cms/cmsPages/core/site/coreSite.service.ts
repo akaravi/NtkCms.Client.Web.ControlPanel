@@ -54,7 +54,7 @@ export class CoreSiteService implements OnDestroy {
         })
       );
   }
-  SelectSite(model:AuthRenewTokenModel){
-  return this.cmsAuthService.RenewToken(model);
+  SelectSite(model: AuthRenewTokenModel) {
+    return this.cmsAuthService.RenewToken(model);
   }
 }

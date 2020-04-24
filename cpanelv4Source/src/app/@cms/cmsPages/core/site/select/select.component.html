@@ -35,13 +35,15 @@
               <p class="card-text">
                 بعضی از نمونه های سریع نمونه ای که بر روی عنوان کارت ساخته می شوند و بخش عمده ای از محتوای کارت را تشکیل
                 می دهند.
+              </p>
                 <br>
-                {{item.Id}}
-                <br>{{item.CreatedDate}}
-                <br>{{item.ExpirationDate}}
+                <p class="bg-info">شناسه :{{item.Id}}</p>
+                <p class="bg-success">ساخت :{{item.CreatedDate | persianTimeAgo}}</p>
+                <p class="bg-danger">انقضا :{{item.ExpirationDate | jdate }}</p>
+          
                 <br>{{item.SubDomain}}.{{item.Domain}}
                 <br>
-              </p>
+              
               <a (click)="clickSelectSite(item)" class="btn btn-outline-warning">وارد شوید</a>
             </div>
             <img (click)="clickSelectSite(item)" class="card-img-top img-fluid" src="{{item.MainImageSrc}}" alt="Card image cap" >

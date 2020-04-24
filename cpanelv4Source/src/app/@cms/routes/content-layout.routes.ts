@@ -7,7 +7,7 @@ export const ContentLayoutROUTES: Routes = [
   },
   {
     path: 'site',
-    loadChildren: () => import('../cmspages/core/site/site.module').then(m => m.CoreSiteModule)
+    loadChildren: () => import('../cmsPages/core/site/coreSite.module').then(m => m.CoreSiteModule)
   },
   //{
         // path: 'pages',

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-cms-site-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
+  templateUrl: './coreSiteEdit.component.html',
+  styleUrls: ['./coreSiteEdit.component.scss']
 })
 export class CoreSiteEditComponent implements OnInit {
 
