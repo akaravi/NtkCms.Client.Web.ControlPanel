@@ -42,8 +42,8 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy  {
   onSubmit() {
     this.subManager.add(
       this.authService.forgetPassword(this.model).subscribe(
-        (ret) => {
-          if (ret.IsSuccess) {
+        (next) => {
+          if (next.IsSuccess) {
             this.store.dispatch(new fromStore.InitHub());
             if (this.returnUrl === null || this.returnUrl === undefined) {
               this.returnUrl = this.authService.getLoginUrl();
@@ -51,9 +51,9 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy  {
             this.router.navigate([this.returnUrl]);
           }
         },
-        (ret) => {
+        (error) => {
           this.alertService.error(
-            this.errorHelper.GetString(ret.error),
+            this.errorHelper.GetString(error.error),
             'خطا در بازیابی پسورد'
           );
         }

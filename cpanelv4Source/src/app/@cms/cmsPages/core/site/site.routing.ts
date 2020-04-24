@@ -1,9 +1,9 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { SiteSelectComponent } from "./select/select.component";
-import { SiteEditComponent } from "./edit/edit.component";
-import { SiteListComponent } from "./list/list.component";
-import { SiteAddComponent } from "./add/add.component";
+import { CoreSiteSelectComponent } from "./select/select.component";
+import { CoreSiteEditComponent } from "./edit/edit.component";
+import { CoreSiteListComponent } from "./list/list.component";
+import { CoreSiteAddComponent } from "./add/add.component";
 
 const routes: Routes = [
   {
@@ -11,28 +11,28 @@ const routes: Routes = [
     children: [
       {
         path: "list",
-        component: SiteListComponent,
+        component: CoreSiteListComponent,
         data: {
           title: "login to Panle",
         },
       },
       {
         path: "add",
-        component: SiteAddComponent,
+        component: CoreSiteAddComponent,
         data: {
           title: "Register New Acount",
         },
       },
       {
         path: "edit",
-        component: SiteEditComponent,
+        component: CoreSiteEditComponent,
         data: {
           title: "forgot password You Acount",
         },
       },
       {
         path: "select",
-        component: SiteSelectComponent,
+        component: CoreSiteSelectComponent,
         data: {
           title: "forgot password You Acount",
         },
@@ -45,4 +45,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class SiteRoutes {}
+export class CoreSiteRoutes {}

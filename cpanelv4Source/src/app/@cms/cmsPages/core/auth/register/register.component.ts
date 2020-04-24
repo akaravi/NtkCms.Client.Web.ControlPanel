@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private authService: CmsAuthService,
-    private alertService: ToastrService, 
+    private alertService: ToastrService,
     private store: Store<fromStore.State>,
     private errorHelper: ErrorHelper
 
@@ -43,8 +43,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
     onSubmit() {
         this.subManager.add(
           this.authService.signupUser(this.model).subscribe(
-            (ret) => {
-              if (ret.IsSuccess) {
+            (next) => {
+              if (next.IsSuccess) {
                 this.store.dispatch(new fromStore.InitHub());
                 if (this.returnUrl === null || this.returnUrl === undefined) {
                   this.returnUrl = this.authService.getLoginUrl();
@@ -54,8 +54,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
                 this.router.navigate([this.returnUrl]);
               }
             },
-            (ret) => {
-              this.alertService.error(this.errorHelper.GetString( ret.error), 'خطا در ثبت نام');
+            (error) => {
+              this.alertService.error(this.errorHelper.GetString( error.error), 'خطا در ثبت نام');
             }
           )
         );

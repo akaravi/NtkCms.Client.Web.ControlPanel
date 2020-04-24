@@ -1,3 +1,56 @@
-<p>
-  select works!
-</p>
+<!-- Columns section start -->
+<section id="columns">
+  <div class="row text-left">
+    <div class="col-12 mt-3 mb-1">
+      <div class="content-header">انتخاب وب سایت</div>
+      <div *ngIf="!dataModelLoad">
+        در حال بررسی سایتهایی که شما در آن عضویت دارید
+
+      </div>
+      <div *ngIf="dataModelLoad">
+        <p *ngIf="dataModel.ListItems?.length == 0" class="content-sub-header">
+          حساب کاربری شما در هیچ وب سایتی عضویت ندارد
+          <br>
+         برای خود وب سایت ایجاد کنید
+
+        </p>
+        <p *ngIf="dataModel.ListItems?.length > 0" class="content-sub-header">
+          حساب کاربری شما در کلیه وب سایتهای زیر عضویت دارد
+          <br>
+          نسبت به دسترسی شما در آن وب سایت و فعالیتی که در نظر دارید وب سایت را انتخاب کنید
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row text-left">
+    <div class="col-md-12 mt-1">
+
+      <div *ngIf="dataModelLoad" class="card-columns">
+        <div *ngFor="let item of dataModel.ListItems; index as i; trackBy: trackByFn" class="card">
+          <div class="card-content">         
+            <div class="card-body">
+              <h4 class="card-title">{{item.Title}}</h4>
+              <p class="card-text">
+                بعضی از نمونه های سریع نمونه ای که بر روی عنوان کارت ساخته می شوند و بخش عمده ای از محتوای کارت را تشکیل
+                می دهند.
+                <br>
+                {{item.Id}}
+                <br>{{item.CreatedDate}}
+                <br>{{item.ExpirationDate}}
+                <br>{{item.SubDomain}}.{{item.Domain}}
+                <br>
+              </p>
+              <a (click)="clickSelectSite(item)" class="btn btn-outline-warning">وارد شوید</a>
+            </div>
+            <img (click)="clickSelectSite(item)" class="card-img-top img-fluid" src="{{item.MainImageSrc}}" alt="Card image cap" >
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- Columns section end -->

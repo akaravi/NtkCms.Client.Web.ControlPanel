@@ -3,25 +3,25 @@ import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 
-import { SiteComponent } from './site.component';
-import { SiteRoutes } from './site.routing';
-import { SiteListComponent } from './list/list.component';
-import { SiteAddComponent } from './add/add.component';
-import { SiteEditComponent } from './edit/edit.component';
-import { SiteSelectComponent } from './select/select.component';
+import { CoreSiteComponent } from './site.component';
+import { CoreSiteRoutes } from './site.routing';
+import { CoreSiteListComponent } from './list/list.component';
+import { CoreSiteAddComponent } from './add/add.component';
+import { CoreSiteEditComponent } from './edit/edit.component';
+import { CoreSiteSelectComponent } from './select/select.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    SiteRoutes,
     NgbModule,
     FormsModule,
+    CoreSiteRoutes,
   ],
   declarations: [
-    SiteComponent,
-    SiteListComponent,
-    SiteAddComponent,
-    SiteEditComponent,
-    SiteSelectComponent]
+    CoreSiteComponent,
+    CoreSiteListComponent,
+    CoreSiteAddComponent,
+    CoreSiteEditComponent,
+    CoreSiteSelectComponent]
 })
-export class SiteModule { }
+export class CoreSiteModule { }

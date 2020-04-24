@@ -1,22 +1,28 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { SiteService } from "../site.service";
+import { CoreSiteService } from "../site.service";
 import { Subscription } from "rxjs";
 import { FilterModel } from "app/@cms/cmsModels/base/filterModel";
 import { ToastrService } from "ngx-toastr";
 import { ErrorHelper } from "app/@cms/cmsCommon/helper/errorHelper";
+import { ErrorExcptionResult } from "app/@cms/cmsModels/base/errorExcptionResult";
+import { AuthRenewTokenModel } from 'app/@cms/cmsModels/core/authModel';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-cms-site-select",
   templateUrl: "./select.component.html",
   styleUrls: ["./select.component.scss"],
 })
-export class SiteSelectComponent implements OnInit, OnDestroy {
+export class CoreSiteSelectComponent implements OnInit, OnDestroy {
   subManager = new Subscription();
   filteModel = new FilterModel();
+  dataModel: ErrorExcptionResult<any>;
+  dataModelLoad: boolean = false;
   constructor(
-    private siteService: SiteService,
+    private router: Router,
+    private coreSiteService: CoreSiteService,
     private alertService: ToastrService,
-    private errorHelper: ErrorHelper
+    private errorHelper: ErrorHelper,
   ) {}
   ngOnDestroy() {
     this.subManager.unsubscribe();
@@ -24,19 +30,39 @@ export class SiteSelectComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subManager.add(
-      this.siteService.getAll(this.filteModel).subscribe(
-        (ret) => {
-          if (ret.IsSuccess) {
-            this.alertService.info("وارد حساب خود شوید", "توجه");
+      this.coreSiteService.getAll(this.filteModel).subscribe(
+        (next) => {
+          if (next.IsSuccess) {
+            this.dataModel = next;
+            this.dataModelLoad = true;
+            this.alertService.info("اطلاعات دریافت شد", "توجه");
           }
         },
-        (ret) => {
+        (error) => {
           this.alertService.error(
-            this.errorHelper.GetString(ret.error),
-            "خطا در ثبت نام"
+            this.errorHelper.GetString(error.error),
+            "خطا در دریافت اطلاعات"
           );
         }
       )
+    );
+  }
+  trackByFn() {}
+  clickSelectSite(model:any)
+  {
+    let AuthModel=new AuthRenewTokenModel()
+    AuthModel.SiteId=model['Id'];
+    this.coreSiteService.SelectSite(AuthModel).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+        
+          this.router.navigate(["/cms/dashboard/dashboard1"]);
+        }
+      },
+      (error) => {
+        this.alertService.error(this.errorHelper.GetString( error.error), 'خطا در ورود');
+      }
+
     );
   }
 }

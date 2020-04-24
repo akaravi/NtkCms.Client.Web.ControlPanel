@@ -43,8 +43,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.subManager.add(
       this.authService.signinUser(this.model).subscribe(
-        (ret) => {
-          if (ret.IsSuccess) {
+        (next) => {
+          if (next.IsSuccess) {
             this.store.dispatch(new fromStore.InitHub());
             if (this.returnUrl === null || this.returnUrl === undefined) {
               this.returnUrl = this.authService.getDashboardUrl();
@@ -52,8 +52,8 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.router.navigate([this.returnUrl]);
           }
         },
-        (ret) => {
-          this.alertService.error(this.errorHelper.GetString( ret.error), 'خطا در ورود');
+        (error) => {
+          this.alertService.error(this.errorHelper.GetString( error.error), 'خطا در ورود');
         }
       )
     );

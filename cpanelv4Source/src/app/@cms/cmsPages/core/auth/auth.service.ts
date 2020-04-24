@@ -10,6 +10,7 @@ import { TokenInfoModel } from 'app/@cms/cmsModels/base/tokenInfoModel';
 import { Subscription } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
+import { AuthRenewTokenModel } from 'app/@cms/cmsModels/core/authModel';
 
 @Injectable()
 export class CmsAuthService implements OnDestroy {
@@ -19,7 +20,7 @@ export class CmsAuthService implements OnDestroy {
   baseUrl = cmsServerConfig.configApiServerPath + 'auth/';
   jwtHelper = new JwtHelperService();
   userRoles: string[] = [];
-  userName: string = '';
+  userName = '';
 
   constructor(
     private http: HttpClient,
@@ -54,6 +55,30 @@ export class CmsAuthService implements OnDestroy {
 
   signinUser(model: any) {
     return this.http.post(this.baseUrl + 'signin', model).pipe(
+      map((ret: ErrorExcptionResult<TokenInfoModel>) => {
+        if (ret) {
+          if (ret.IsSuccess) {
+            this.store.dispatch(new fromStore.EditLoggedUser(ret.Item));
+            const decodedToken = this.jwtHelper.decodeToken(ret.token);
+            this.store.dispatch(new fromStore.EditDecodedToken(decodedToken));
+            this.userRoles = decodedToken.role as Array<string>;
+            this.alertService.success('با موفقیت وارد شدید', 'موفق');
+
+            localStorage.setItem('token', ret.token);
+            localStorage.setItem('refreshToken', ret.Item.refresh_token);
+          } else {
+            this.alertService.error(ret.ErrorMessage, 'خطا در ورود');
+          }
+          return ret;
+        }
+      })
+    );
+  }
+
+  RenewToken(model: AuthRenewTokenModel) {
+    const token = localStorage.getItem('token');
+    const headers = { Authorization: token };
+    return this.http.post(this.baseUrl + 'renewToken', model, { headers: headers }).pipe(
       map((ret: ErrorExcptionResult<TokenInfoModel>) => {
         if (ret) {
           if (ret.IsSuccess) {
@@ -123,7 +148,7 @@ export class CmsAuthService implements OnDestroy {
     return this.token;
   }
   loggedIn() {
-    var user: TokenInfoModel;
+    let user: TokenInfoModel;
     this.subManager.add(
       this.store.select(fromStore.getLoggedUserState).subscribe((data) => {
         user = data;
@@ -134,11 +159,11 @@ export class CmsAuthService implements OnDestroy {
     if (token == null || token == undefined) {
       return false;
     }
-    var parts = token.split('.');
+    let parts = token.split('.');
     if (parts.length !== 3) {
       return false;
     }
-    var decoded = this.jwtHelper.urlBase64Decode(parts[1]);
+    let decoded = this.jwtHelper.urlBase64Decode(parts[1]);
     if (!decoded) {
       return false;
     }
@@ -157,7 +182,7 @@ export class CmsAuthService implements OnDestroy {
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
     if (token && token !== 'null' && !this.jwtHelper.isTokenExpired(token)) {
-      var user: TokenInfoModel;
+      let user: TokenInfoModel;
       this.subManager.add(
         this.store.select(fromStore.getLoggedUserState).subscribe((data) => {
           user = data;
@@ -174,7 +199,7 @@ export class CmsAuthService implements OnDestroy {
       // }
       return true;
     } else {
-      return true; //false;
+      return true; // false;
     }
   }
   isAdmin(): boolean {
@@ -204,7 +229,7 @@ export class CmsAuthService implements OnDestroy {
     return isMatch;
   }
   getDashboardUrl(): string {
-    return '/cms/dashboard/dashboard';
+    return '/cms/site/select';
   }
   getLoginUrl(): string {
     return '/cms/auth/login';
