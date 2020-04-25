@@ -17,6 +17,8 @@ export class PublicHelper {
         'لطفا مجددا وارد حساب کاربری خود شوید',
         'نیاز به ورود مجدد'
       );
+      this.router.navigate(['cms/auth/login']);
+
     }
     return token;
   }
