@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
               }
             },
             (error) => {
-              this.alertService.error(this.errorHelper.GetString( error.error), 'خطا در ثبت نام');
+              this.alertService.error(this.errorHelper.CheckError( error), 'خطا در ثبت نام');
             }
           )
         );

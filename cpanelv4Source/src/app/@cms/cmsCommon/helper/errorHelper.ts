@@ -1,21 +1,42 @@
 import { Injectable } from '@angular/core';
 import { ErrorExcptionResultBase } from 'app/@cms/cmsModels/base/errorExcptionResult';
 import { toArray } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ErrorHelper {
-  constructor() {}
-  GetString(model: ErrorExcptionResultBase) {
+  constructor(private router: Router,
+    private alertService: ToastrService,
+    ) {}
+  CheckError(model: any) {
     if (!model) {
       return 'Error';
     }
+    let errorExcptionResult: ErrorExcptionResultBase;
+    if (model['error']) {
+      errorExcptionResult = model['error'];
+      if (errorExcptionResult){
+        if (errorExcptionResult.Status == 401)
+        {
+          this.alertService.warning
+          (
+            'لطفا مجددا وارد حساب کاربری خود شوید',
+            'نیاز به ورود مجدد'
+          );
+      this.router.navigate(['cms/auth/login']);
+      return ;
+        }
+      }
+    }
+    
     if (model.errors) {
       let ret = '';
 
       
-        var aaa =model.errors.keys;
+        var aaa = model.errors.keys;
     
 
       return ret;

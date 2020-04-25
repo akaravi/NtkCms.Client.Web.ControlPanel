@@ -38,10 +38,7 @@ export class CoreSiteSelectComponent implements OnInit, OnDestroy {
           }
         },
         (error) => {
-          this.alertService.error(
-            this.errorHelper.GetString(error.error),
-            'خطا در دریافت اطلاعات'
-          );
+          this.alertService.error( this.errorHelper.CheckError(error),'خطا در دریافت اطلاعات وب سایتها' );
         }
       )
     );
@@ -60,7 +57,7 @@ export class CoreSiteSelectComponent implements OnInit, OnDestroy {
         }
       },
       (error) => {
-        this.alertService.error(this.errorHelper.GetString( error.error), 'خطا در ورود');
+        this.alertService.error(this.errorHelper.CheckError( error), 'خطا در ورود');
       }
 
     ));

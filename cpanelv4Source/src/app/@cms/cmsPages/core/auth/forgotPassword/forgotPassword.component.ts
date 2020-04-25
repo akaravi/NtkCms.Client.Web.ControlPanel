@@ -53,7 +53,7 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy  {
         },
         (error) => {
           this.alertService.error(
-            this.errorHelper.GetString(error.error),
+            this.errorHelper.CheckError(error),
             'خطا در بازیابی پسورد'
           );
         }
