@@ -7,10 +7,19 @@ import { ToastrService } from 'ngx-toastr';
 @Injectable({
   providedIn: 'root',
 })
-export class ErrorHelper {
-  constructor(private router: Router,
-    private alertService: ToastrService,
-    ) {}
+export class PublicHelper {
+  constructor(private router: Router, private alertService: ToastrService) {}
+  CheckToken() {
+    const token = localStorage.getItem('token');
+
+    if (!token || token === 'null') {
+      this.alertService.warning(
+        'لطفا مجددا وارد حساب کاربری خود شوید',
+        'نیاز به ورود مجدد'
+      );
+    }
+    return token;
+  }
   CheckError(model: any) {
     if (!model) {
       return 'Error';
@@ -18,26 +27,22 @@ export class ErrorHelper {
     let errorExcptionResult: ErrorExcptionResultBase;
     if (model['error']) {
       errorExcptionResult = model['error'];
-      if (errorExcptionResult){
-        if (errorExcptionResult.Status == 401)
-        {
-          this.alertService.warning
-          (
+      if (errorExcptionResult) {
+        if (errorExcptionResult.Status == 401) {
+          this.alertService.warning(
             'لطفا مجددا وارد حساب کاربری خود شوید',
             'نیاز به ورود مجدد'
           );
-      this.router.navigate(['cms/auth/login']);
-      return ;
+          this.router.navigate(['cms/auth/login']);
+          return;
         }
       }
     }
-    
+
     if (model.errors) {
       let ret = '';
 
-      
-        var aaa = model.errors.keys;
-    
+      var aaa = model.errors.keys;
 
       return ret;
     } else if (model && model.ErrorMessage) {

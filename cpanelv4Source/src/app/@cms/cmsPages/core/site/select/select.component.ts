@@ -3,7 +3,7 @@ import { CoreSiteService } from '../coreSite.service';
 import { Subscription } from 'rxjs';
 import { FilterModel } from 'app/@cms/cmsModels/base/filterModel';
 import { ToastrService } from 'ngx-toastr';
-import { ErrorHelper } from 'app/@cms/cmsCommon/helper/errorHelper';
+import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
 import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
 import { AuthRenewTokenModel } from 'app/@cms/cmsModels/core/authModel';
 import { Router } from '@angular/router';
@@ -20,7 +20,7 @@ export class CoreSiteSelectComponent implements OnInit, OnDestroy {
   constructor(
     private coreSiteService: CoreSiteService,
     private alertService: ToastrService,
-    private errorHelper: ErrorHelper,
+    private publicHelper: PublicHelper,
     private router: Router,
   ) {}
   ngOnDestroy() {
@@ -38,7 +38,7 @@ export class CoreSiteSelectComponent implements OnInit, OnDestroy {
           }
         },
         (error) => {
-          this.alertService.error( this.errorHelper.CheckError(error),'خطا در دریافت اطلاعات وب سایتها' );
+          this.alertService.error( this.publicHelper.CheckError(error),'خطا در دریافت اطلاعات وب سایتها' );
         }
       )
     );
@@ -57,7 +57,7 @@ export class CoreSiteSelectComponent implements OnInit, OnDestroy {
         }
       },
       (error) => {
-        this.alertService.error(this.errorHelper.CheckError( error), 'خطا در ورود');
+        this.alertService.error(this.publicHelper.CheckError( error), 'خطا در ورود');
       }
 
     ));

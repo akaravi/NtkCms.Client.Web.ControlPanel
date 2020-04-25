@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromStore from '../../../../cmsStore';
 import { ToastrService } from 'ngx-toastr';
-import { ErrorHelper } from 'app/@cms/cmsCommon/helper/errorHelper';
+import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
 
 @Component({
     selector: 'app-cms-register-page',
@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private authService: CmsAuthService,
     private alertService: ToastrService,
     private store: Store<fromStore.State>,
-    private errorHelper: ErrorHelper
+    private publicHelper: PublicHelper
 
   ) {}
     ngOnInit() {
@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
               }
             },
             (error) => {
-              this.alertService.error(this.errorHelper.CheckError( error), 'خطا در ثبت نام');
+              this.alertService.error(this.publicHelper.CheckError( error), 'خطا در ثبت نام');
             }
           )
         );

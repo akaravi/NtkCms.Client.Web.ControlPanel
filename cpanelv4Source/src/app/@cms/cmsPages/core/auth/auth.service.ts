@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
 import { AuthRenewTokenModel } from 'app/@cms/cmsModels/core/authModel';
+import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
 
 @Injectable()
 export class CmsAuthService implements OnDestroy {
@@ -26,7 +27,8 @@ export class CmsAuthService implements OnDestroy {
     private http: HttpClient,
     private alertService: ToastrService,
     private router: Router,
-    private store: Store<fromStore.State>
+    private store: Store<fromStore.State>,
+    private publicHelper: PublicHelper
   ) {
     const token = localStorage.getItem('token');
     if (this.loggedIn()) {
@@ -76,7 +78,7 @@ export class CmsAuthService implements OnDestroy {
   }
 
   RenewToken(model: AuthRenewTokenModel) {
-    const token = localStorage.getItem('token');
+    const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http.post(this.baseUrl + 'renewToken', model, { headers: headers }).pipe(
       map((ret: ErrorExcptionResult<TokenInfoModel>) => {
@@ -133,7 +135,7 @@ export class CmsAuthService implements OnDestroy {
     );
   }
   logout() {
-    const token = localStorage.getItem('token');
+    const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http.get(this.baseUrl + 'signOut', { headers: headers }).pipe(
       map((ret: any) => {
@@ -180,7 +182,7 @@ export class CmsAuthService implements OnDestroy {
   }
 
   isAuthenticated(): boolean {
-    const token = localStorage.getItem('token');
+    const token = this.publicHelper.CheckToken();
     if (token && token !== 'null' && !this.jwtHelper.isTokenExpired(token)) {
       let user: TokenInfoModel;
       this.subManager.add(

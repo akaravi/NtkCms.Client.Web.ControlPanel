@@ -12,6 +12,7 @@ import { FilterModel } from 'app/@cms/cmsModels/base/filterModel';
 import { AuthRenewTokenModel } from 'app/@cms/cmsModels/core/authModel';
 import { CmsAuthService } from '../auth/auth.service';
 import { ResponseServerHelper } from 'app/@cms/cmsCommon/helper/responseServerHelper';
+import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,8 @@ export class CoreSiteService implements OnDestroy {
     private alertService: ToastrService,
     private router: Router,
     private store: Store<fromStore.State>,
-    private cmsAuthService: CmsAuthService
+    private cmsAuthService: CmsAuthService,
+    private publicHelper: PublicHelper,
   ) {
     
   }
@@ -32,7 +34,7 @@ export class CoreSiteService implements OnDestroy {
     this.subManager.unsubscribe();
   }
   getAll(model: FilterModel) {
-    const token = localStorage.getItem('token');
+    const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
       .post(this.baseUrl + 'getAllwithalias', model, { headers: headers })
