@@ -5,18 +5,19 @@ import { ClauseType } from '../Enums/clauseType.enum';
 import { FilterDataModelSearchTypes } from '../Enums/filterDataModelSearchTypes.enum';
 
 export class FilterModel {
-  Filters: Array<FilterDataModel>;
-  Count: boolean;
+
+  Filters: Array<FilterDataModel> = new Array<FilterDataModel>();
+  Count: boolean = false;
   TotalRowData: number;
-  SkipRowData: number;
-  CurrentPageNumber: number;
-  RowPerPage: number;
-  SortType: SortType;
+  SkipRowData: number = 0;
+  CurrentPageNumber: number = 1;
+  RowPerPage: number = 30;
+  SortType: SortType = 1;
   SortColumn: string;
   ExportFile: ExportFileModel;
 }
 export class FilterDataModel {
-  Filters: Array<FilterDataModel>;
+  Filters: Array<FilterDataModel> = new Array<FilterDataModel>();
   StringForceNullSearch: boolean;
   DecimalForceNullSearch: boolean;
   LatitudeLongitudeForceNullSearch: boolean;
@@ -26,10 +27,10 @@ export class FilterDataModel {
   ClauseType: ClauseType;
   SearchType: FilterDataModelSearchTypes;
   StringValue1: string;
-  StringContainValues: Array<string>;
+  StringContainValues: Array<string> = new Array<string>();
   IntValue1: number;
   IntValue2: number;
-  IntContainValues: Array<number>;
+  IntContainValues: Array<number> = new Array<number>();
   DateTimeValue1: Date;
   DateTimeValue2: Date;
   BooleanValue1: boolean;
@@ -44,7 +45,7 @@ export class FilterDataModel {
   LatitudeLongitudeDistanceValue2: number;
   LatitudeLongitudeSortType: string;
   HierarchyIdLevel: number;
-  ObjectIdContainValues: Array<string>;
+  ObjectIdContainValues: Array<string> = new Array<string>();
   ObjectIdValue1: string;
 }
 export class ExportFileModel {

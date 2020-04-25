@@ -28,22 +28,22 @@ export class CoreSiteService implements OnDestroy {
     private cmsAuthService: CmsAuthService,
     private publicHelper: PublicHelper,
   ) {
-    
+
   }
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }
-  getAll(model: FilterModel) {
+  ServiceCoreSiteGetAll(model: FilterModel) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
-      .post(this.baseUrl + 'getAllwithalias', model, { headers: headers })
+      .post(this.baseUrl + 'getAll', model, { headers: headers })
       .pipe(
         map((ret: ErrorExcptionResult<any>) => {
           if (ret) {
             if (ret.IsSuccess) {
               this.alertService.success(
-                'تغییر پسورد با موفقیت انجام شد',
+                'اطلاعات دریافت شد',
                 'موفق'
               );
             } else {
@@ -57,7 +57,8 @@ export class CoreSiteService implements OnDestroy {
         })
       );
   }
-  SelectSite(model: AuthRenewTokenModel) {
+
+  ServiceCoreSiteSelectSite(model: AuthRenewTokenModel) {
     return this.cmsAuthService.RenewToken(model);
   }
 }

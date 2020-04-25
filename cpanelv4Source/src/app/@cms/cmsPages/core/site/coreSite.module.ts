@@ -12,6 +12,8 @@ import { CoreSiteSelectComponent } from './select/select.component';
 import {PersianDate} from '../../_base/pipe/PersianDatePipe/persian-date.pipe';
 import {PersianTimeAgoPipe} from 'persian-time-ago-pipe';
 import {JdatePipe} from 'ngx-persian';
+import { ArchwizardModule } from 'angular-archwizard';
+import { CoreSiteCategorySelectComponent } from '../siteCategory/select/select.component';
 
 
 @NgModule({
@@ -19,8 +21,8 @@ import {JdatePipe} from 'ngx-persian';
     CommonModule,
     NgbModule,
     FormsModule,
-    CoreSiteRoutes
-    
+    CoreSiteRoutes,
+    ArchwizardModule,
   ],
   declarations: [
     CoreSiteComponent,
@@ -30,6 +32,9 @@ import {JdatePipe} from 'ngx-persian';
     CoreSiteSelectComponent,
     PersianDate,
     PersianTimeAgoPipe,
-    JdatePipe]
+    JdatePipe,
+    CoreSiteCategorySelectComponent,
+
+  ]
 })
 export class CoreSiteModule { }

@@ -28,8 +28,11 @@ export class CoreSiteSelectComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.CoreSiteGetAll();
+  }
+  CoreSiteGetAll(){
     this.subManager.add(
-      this.coreSiteService.getAll(this.filteModel).subscribe(
+      this.coreSiteService.ServiceCoreSiteGetAll(this.filteModel).subscribe(
         (next) => {
           if (next.IsSuccess) {
             this.dataModel = next;
@@ -49,7 +52,7 @@ export class CoreSiteSelectComponent implements OnInit, OnDestroy {
    AuthModel = new AuthRenewTokenModel;
     AuthModel.SiteId = model['Id'];
     this.subManager.add(
-    this.coreSiteService.SelectSite(AuthModel).subscribe(
+    this.coreSiteService.ServiceCoreSiteSelectSite(AuthModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
 
