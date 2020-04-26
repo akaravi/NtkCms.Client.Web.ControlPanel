@@ -19,6 +19,8 @@ import { retry, catchError } from 'rxjs/operators';
 export class ApiServerBaseService implements OnDestroy {
   subManager = new Subscription();
   public baseUrl = cmsServerConfig.configApiServerPath;
+  public moduleCotrolerUrl: string;
+  
   constructor(
     public http: HttpClient,
     public alertService: ToastrService,
@@ -29,6 +31,10 @@ export class ApiServerBaseService implements OnDestroy {
   ) {}
   ngOnDestroy() {
     this.subManager.unsubscribe();
+  }
+  setModuleCotrolerUrl(controllerPath: string)
+  {
+    this.moduleCotrolerUrl = controllerPath;
   }
   errorExcptionResultCheck(model: ErrorExcptionResult<any>) {
     if (model) {
@@ -57,7 +63,7 @@ export class ApiServerBaseService implements OnDestroy {
     return throwError(errorMessage);
   }
  
-  ServiceModelInfo(moduleControler: string) {
+  ServiceModelInfo(moduleControler: string=this.moduleCotrolerUrl) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -75,7 +81,7 @@ export class ApiServerBaseService implements OnDestroy {
       );
   }
 
-  ServiceGetAll(model: FilterModel, moduleControler: string) {
+  ServiceGetAll(model: FilterModel, moduleControler: string=this.moduleCotrolerUrl) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -88,7 +94,7 @@ export class ApiServerBaseService implements OnDestroy {
         },catchError(this.handleError))
       );
   }
-  ServiceGetAllAvailable(model: FilterModel, moduleControler: string) {
+  ServiceGetAllAvailable(model: FilterModel, moduleControler: string=this.moduleCotrolerUrl) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -101,7 +107,7 @@ export class ApiServerBaseService implements OnDestroy {
         },catchError(this.handleError))
       );
   }
-  ServiceGetOneById(id: any, moduleControler: string) {
+  ServiceGetOneById(id: any, moduleControler: string=this.moduleCotrolerUrl) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -112,7 +118,7 @@ export class ApiServerBaseService implements OnDestroy {
         },catchError(this.handleError))
       );
   }
-  ServiceGetOne(model: FilterModel, moduleControler: string) {
+  ServiceGetOne(model: FilterModel, moduleControler: string=this.moduleCotrolerUrl) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -125,7 +131,7 @@ export class ApiServerBaseService implements OnDestroy {
         },catchError(this.handleError))
       );
   }
-  ServicePostCount(model: FilterModel, moduleControler: string) {
+  ServicePostCount(model: FilterModel, moduleControler: string=this.moduleCotrolerUrl) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -138,7 +144,7 @@ export class ApiServerBaseService implements OnDestroy {
         },catchError(this.handleError))
       );
   }
-  ServiceExportFile(model: FilterModel, moduleControler: string) {
+  ServiceExportFile(model: FilterModel, moduleControler: string=this.moduleCotrolerUrl) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -151,7 +157,7 @@ export class ApiServerBaseService implements OnDestroy {
         },catchError(this.handleError))
       );
   }
-  ServiceAdd(model: any, moduleControler: string) {
+  ServiceAdd(model: any, moduleControler: string=this.moduleCotrolerUrl) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -164,7 +170,7 @@ export class ApiServerBaseService implements OnDestroy {
         },catchError(this.handleError))
       );
   }
-  ServiceAddBatch(model: Array<any>, moduleControler: string) {
+  ServiceAddBatch(model: Array<any>, moduleControler: string=this.moduleCotrolerUrl) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -177,7 +183,7 @@ export class ApiServerBaseService implements OnDestroy {
         },catchError(this.handleError))
       );
   }
-  ServiceEdit(model: any, moduleControler: string) {
+  ServiceEdit(model: any, moduleControler: string=this.moduleCotrolerUrl) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -190,7 +196,7 @@ export class ApiServerBaseService implements OnDestroy {
         },catchError(this.handleError))
       );
   }
-  ServiceEditBatch(model: Array<any>, moduleControler: string) {
+  ServiceEditBatch(model: Array<any>, moduleControler: string=this.moduleCotrolerUrl) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -203,7 +209,7 @@ export class ApiServerBaseService implements OnDestroy {
         },catchError(this.handleError))
       );
   }
-  ServiceDelete(model: any, moduleControler: string) {
+  ServiceDelete(model: any, moduleControler: string=this.moduleCotrolerUrl) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -216,7 +222,7 @@ export class ApiServerBaseService implements OnDestroy {
         },catchError(this.handleError))
       );
   }
-  ServiceDeleteFilterModel(model: FilterModel, moduleControler: string) {
+  ServiceDeleteFilterModel(model: FilterModel, moduleControler: string=this.moduleCotrolerUrl) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -229,7 +235,7 @@ export class ApiServerBaseService implements OnDestroy {
         },catchError(this.handleError))
       );
   }
-  ServiceDeleteList(model: Array<any>, moduleControler: string) {
+  ServiceDeleteList(model: Array<any>, moduleControler: string=this.moduleCotrolerUrl) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -242,7 +248,7 @@ export class ApiServerBaseService implements OnDestroy {
         },catchError(this.handleError))
       );
   }
-  ServiceDeleteId(model: any, moduleControler: string) {
+  ServiceDeleteId(model: any, moduleControler: string=this.moduleCotrolerUrl) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -255,7 +261,7 @@ export class ApiServerBaseService implements OnDestroy {
         },catchError(this.handleError))
       );
   }
-  ServiceDeleteListId(model: Array<any>, moduleControler: string) {
+  ServiceDeleteListId(model: Array<any>, moduleControler: string=this.moduleCotrolerUrl) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http

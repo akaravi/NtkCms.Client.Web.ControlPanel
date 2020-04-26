@@ -33,7 +33,10 @@ export class CoreSiteCategorySelectComponent implements OnInit {
 
     private alertService: ToastrService,
     private publicHelper: PublicHelper
-  ) {}
+  ) {
+    this.coreSiteCategoryService.constructorIn();
+this.coreSiteCategoryModuleService.constructorIn();
+  }
 
   ngOnInit() {
     this.CoreSiteCategoryGetAll();
@@ -74,7 +77,7 @@ export class CoreSiteCategorySelectComponent implements OnInit {
     this.dataModelModule = new ErrorExcptionResult<any>();
     this.subManager.add(
       this.coreSiteCategoryModuleService
-        .ServiceCoreSiteCategoryCmsModuleGetAll(filterModelCategory)
+        .ServiceGetAll(filterModelCategory)
         .subscribe(
           (next) => {
             if (next.IsSuccess) {
@@ -119,3 +122,4 @@ export class CoreSiteCategorySelectComponent implements OnInit {
     );
   }
 }
+
