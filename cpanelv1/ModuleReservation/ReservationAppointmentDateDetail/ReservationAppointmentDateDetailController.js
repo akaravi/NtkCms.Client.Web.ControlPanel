@@ -232,7 +232,7 @@
                     rashaErManage.checkAction(response);
                     appDateDetail.selectedItemForDelete = response.Item;
                     console.log(appDateDetail.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/delete', appDateDetail.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/delete', appDateDetail.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         appDateDetail.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

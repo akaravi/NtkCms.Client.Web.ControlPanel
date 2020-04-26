@@ -110,7 +110,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/getviewmodel', cmsPageTemplategrd.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsPageTemplategrd.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/delete',  cmsPageTemplategrd.selectedItemForDelete , 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/delete',  cmsPageTemplategrd.selectedItemForDelete , 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsPageTemplategrd.replaceItem(cmsPageTemplategrd.selectedItemForDelete.Id);

@@ -168,7 +168,7 @@
                     rashaErManage.checkAction(response);
                     dbCategory.selectedItemForDelete = response.Item;
                     console.log(dbCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/delete', dbCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/delete', dbCategory.selectedItemForDelete, 'POST').success(function (res) {
                         dbCategory.busyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {

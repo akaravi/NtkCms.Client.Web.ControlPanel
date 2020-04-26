@@ -178,7 +178,7 @@
                     //rashaErManage.checkAction(response);
                     newsComment.selectedItemForDelete = response.Item;
                     console.log(newsComment.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'newsComment/delete', newsComment.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'newsComment/delete', newsComment.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         newsComment.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

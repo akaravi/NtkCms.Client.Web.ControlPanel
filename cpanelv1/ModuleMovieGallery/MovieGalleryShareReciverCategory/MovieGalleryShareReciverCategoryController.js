@@ -327,7 +327,7 @@
                     rashaErManage.checkAction(response);
                     movieGalleryShareReciverCategory.selectedItemForDelete = response.Item;
                     console.log(movieGalleryShareReciverCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryShareMainAdminSetting/delete', movieGalleryShareReciverCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryShareMainAdminSetting/delete', movieGalleryShareReciverCategory.selectedItemForDelete, 'POST').success(function (res) {
                         movieGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //movieGalleryShareReciverCategory.replaceCategoryItem(movieGalleryShareReciverCategory.treeConfig.Items, node.Id);
@@ -532,7 +532,7 @@
                     rashaErManage.checkAction(response);
                     movieGalleryShareReciverCategory.selectedItemForDelete = response.Item;
                     console.log(movieGalleryShareReciverCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"movieGalleryShareReciverCategory/delete", movieGalleryShareReciverCategory.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"movieGalleryShareReciverCategory/delete", movieGalleryShareReciverCategory.selectedItemForDelete, 'POST').success(function (res) {
                         movieGalleryShareReciverCategory.categoryBusyIndicator.isActive = false;
                         movieGalleryShareReciverCategory.treeConfig.showbusy = false;
                         movieGalleryShareReciverCategory.showIsBusy = false;

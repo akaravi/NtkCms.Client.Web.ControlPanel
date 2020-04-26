@@ -3796,7 +3796,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                             ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", fileIdToDelete, 'GET').success(function (response1) {
                                 if (response1.IsSuccess == true) {
                                     //console.log(response1.Item);
-                                    ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                                    ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                                         remove(config.FileList, fileIdToDelete);
                                         if (response2.IsSuccess == true) {
                                             // Save New file
@@ -4118,7 +4118,7 @@ function rashaUpload($compile, ajax, $http) {
                 ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", config.fileIdToDelete, 'GET').success(function (response1) {
                     if (response1.IsSuccess == true) {
                         //console.log(response1.Item);
-                        ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                        ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                             config.remove(config.FileList, config.fileIdToDelete);
                             if (response2.IsSuccess == true) {
                                 // Save New file
@@ -5037,7 +5037,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                     if (isConfirmed) {
                         ajax.call(urlViewModel, config.folderFileSelected[0].Id, 'GET')
                             .success(function (response) {
-                                ajax.call(urlDelete, response.Item, 'DELETE')
+                                ajax.call(urlDelete, response.Item, 'POST')
                                     .success(function (response) {
                                         rashaErManage.checkAction(response);
                                         if (response.IsSuccess)

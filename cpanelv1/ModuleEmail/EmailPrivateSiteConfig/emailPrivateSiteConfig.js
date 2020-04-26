@@ -424,7 +424,7 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     emailPrivateSiteConfig.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/delete', emailPrivateSiteConfig.selectedItemForDelete, 'DELETE').success(function(res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/delete', emailPrivateSiteConfig.selectedItemForDelete, 'POST').success(function(res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             emailPrivateSiteConfig.replaceItem(emailPrivateSiteConfig.selectedItemForDelete.Id);

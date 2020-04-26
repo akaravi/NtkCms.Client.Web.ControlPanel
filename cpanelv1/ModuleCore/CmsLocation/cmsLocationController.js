@@ -152,7 +152,7 @@
                     rashaErManage.checkAction(response);
                     cmsLocation.selectedItemForDelete = response.Item;
                     console.log(cmsLocation.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreLocation/delete', cmsLocation.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreLocation/delete', cmsLocation.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsLocation.replaceItem(cmsLocation.selectedItemForDelete.Id);

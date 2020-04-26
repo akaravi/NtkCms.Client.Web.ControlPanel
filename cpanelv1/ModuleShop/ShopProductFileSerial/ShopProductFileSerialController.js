@@ -174,7 +174,7 @@
                     //rashaErManage.checkAction(response);
                     shopProductFileSerial.selectedItemForDelete = response.Item;
                     console.log(shopProductFileSerial.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'shopProductFileSerial/delete', shopProductFileSerial.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'shopProductFileSerial/delete', shopProductFileSerial.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         shopProductFileSerial.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

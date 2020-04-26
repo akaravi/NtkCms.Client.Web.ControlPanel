@@ -163,7 +163,7 @@
                     rashaErManage.checkAction(response);
                     estatePropertyType.selectedItemForDelete = response.Item;
                     console.log(estatePropertyType.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'estatepropertytype/delete', estatePropertyType.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'estatepropertytype/delete', estatePropertyType.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         estatePropertyType.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -338,7 +338,7 @@ estatePropertyType.alreadyExist = function (id, array) {
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", estatePropertyType.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
                         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {

@@ -193,7 +193,7 @@
                     rashaErManage.checkAction(response);
                     cmsUser.selectedItemForDelete = response.Item;
                     console.log(cmsUser.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/delete', cmsUser.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/delete', cmsUser.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         cmsUser.addRequested = false;
                         if (res.IsSuccess) {
@@ -475,7 +475,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", cmsUser.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     cmsUser.remove(cmsUser.FileList, cmsUser.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

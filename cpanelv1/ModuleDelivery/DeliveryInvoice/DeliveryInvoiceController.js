@@ -221,7 +221,7 @@
                     rashaErManage.checkAction(response);
                     deliveryInvoice.selectedItemForDelete = response.Item;
                     console.log(deliveryInvoice.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'DeliveryInvoice/delete', deliveryInvoice.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'DeliveryInvoice/delete', deliveryInvoice.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         deliveryInvoice.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

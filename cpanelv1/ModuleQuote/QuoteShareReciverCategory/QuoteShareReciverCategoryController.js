@@ -306,7 +306,7 @@
                     rashaErManage.checkAction(response);
                     quoteShareReciverCategory.selectedItemForDelete = response.Item;
                     console.log(quoteShareReciverCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'QuoteShareMainAdminSetting/delete', quoteShareReciverCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'QuoteShareMainAdminSetting/delete', quoteShareReciverCategory.selectedItemForDelete, 'POST').success(function (res) {
                         quoteShareReciverCategory.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //quoteShareReciverCategory.replaceCategoryItem(quoteShareReciverCategory.treeConfig.Items, node.Id);
@@ -508,7 +508,7 @@
                     rashaErManage.checkAction(response);
                     quoteShareReciverCategory.selectedItemForDelete = response.Item;
                     console.log(quoteShareReciverCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"quoteShareReciverCategory/delete", quoteShareReciverCategory.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"quoteShareReciverCategory/delete", quoteShareReciverCategory.selectedItemForDelete, 'POST').success(function (res) {
                         quoteShareReciverCategory.categoryBusyIndicator.isActive = false;
                         quoteShareReciverCategory.treeConfig.showbusy = false;
                         quoteShareReciverCategory.showIsBusy = false;

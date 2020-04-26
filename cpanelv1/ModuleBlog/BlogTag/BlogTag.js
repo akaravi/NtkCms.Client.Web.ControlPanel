@@ -349,7 +349,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'blogCategorytag/getviewmodel', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     blogTag.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'blogCategorytag/delete', blogTag.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'blogCategorytag/delete', blogTag.selectedItemForDelete, 'POST').success(function (res) {
                         blogTag.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             blogTag.gridOptions.advancedSearchData.engine.Filters = null;
@@ -531,7 +531,7 @@
                     rashaErManage.checkAction(response);
                     blogTag.selectedItemForDelete = response.Item;
                     console.log(blogTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"blogtag/delete", blogTag.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"blogtag/delete", blogTag.selectedItemForDelete, 'POST').success(function (res) {
                         blogTag.categoryBusyIndicator.isActive = false;
                         blogTag.treeConfig.showbusy = false;
                         blogTag.showIsBusy = false;
@@ -801,7 +801,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", blogTag.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     blogTag.remove(blogTag.FileList, blogTag.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

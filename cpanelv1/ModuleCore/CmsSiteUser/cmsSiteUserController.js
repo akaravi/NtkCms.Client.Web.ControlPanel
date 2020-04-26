@@ -237,7 +237,7 @@
 
                     rashaErManage.checkAction(response);
                     cmsSiteUser.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/delete', cmsSiteUser.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/delete', cmsSiteUser.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsSiteUser.replaceItem(cmsSiteUser.selectedItemForDelete.Id);

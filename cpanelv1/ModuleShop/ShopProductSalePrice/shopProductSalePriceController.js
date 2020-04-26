@@ -278,7 +278,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopSalePrice.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'ProductCategory/delete', shopSalePrice.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ProductCategory/delete', shopSalePrice.selectedItemForDelete, 'POST').success(function (res) {
                         if (res.IsSuccess) {
                             shopSalePrice.gridOptions.advancedSearchData.engine.Filters = null;
                             shopSalePrice.gridOptions.advancedSearchData.engine.Filters = [];
@@ -544,7 +544,7 @@
                     shopSalePrice.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     shopSalePrice.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"shopSalePrice/delete", shopSalePrice.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"shopSalePrice/delete", shopSalePrice.selectedItemForDelete, 'POST').success(function (res) {
                         shopSalePrice.categoryBusyIndicator.isActive = false;
                         shopSalePrice.treeConfig.showbusy = false;
                         shopSalePrice.showIsBusy = false;
@@ -881,7 +881,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", shopSalePrice.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
                         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {

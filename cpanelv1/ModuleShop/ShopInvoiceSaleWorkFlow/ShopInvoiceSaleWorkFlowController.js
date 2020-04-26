@@ -212,7 +212,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/getviewmodel', shopInvoiceSaleWorkFlow.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     shopInvoiceSaleWorkFlow.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/delete', shopInvoiceSaleWorkFlow.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/delete', shopInvoiceSaleWorkFlow.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         shopInvoiceSaleWorkFlow.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

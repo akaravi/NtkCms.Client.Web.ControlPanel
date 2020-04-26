@@ -32,7 +32,7 @@ export class CoreSiteSelectComponent implements OnInit, OnDestroy {
   }
   CoreSiteGetAll(){
     this.subManager.add(
-      this.coreSiteService.ServiceCoreSiteGetAll(this.filteModel).subscribe(
+      this.coreSiteService.ServiceGetAll(this.filteModel).subscribe(
         (next) => {
           if (next.IsSuccess) {
             this.dataModel = next;
@@ -52,7 +52,7 @@ export class CoreSiteSelectComponent implements OnInit, OnDestroy {
    AuthModel = new AuthRenewTokenModel;
     AuthModel.SiteId = model['Id'];
     this.subManager.add(
-    this.coreSiteService.ServiceCoreSiteSelectSite(AuthModel).subscribe(
+    this.coreSiteService.ServiceSelectSite(AuthModel).subscribe(
       (next) => {
         if (next.IsSuccess) {
 

@@ -144,7 +144,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     trancsLog.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransactionlog/delete', trancsLog.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransactionlog/delete', trancsLog.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             trancsLog.replaceItem(trancsLog.selectedItemForDelete.Id);

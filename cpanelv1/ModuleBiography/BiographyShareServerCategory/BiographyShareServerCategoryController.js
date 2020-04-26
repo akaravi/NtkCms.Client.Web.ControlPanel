@@ -297,7 +297,7 @@
                     rashaErManage.checkAction(response);
                     biographyShareServerCategory.selectedItemForDelete = response.Item;
                     console.log(biographyShareServerCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/delete', biographyShareServerCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'BiographyShareMainAdminSetting/delete', biographyShareServerCategory.selectedItemForDelete, 'POST').success(function (res) {
                         biographyShareServerCategory.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //biographyShareServerCategory.replaceCategoryItem(biographyShareServerCategory.treeConfig.Items, node.Id);
@@ -502,7 +502,7 @@
                     rashaErManage.checkAction(response);
                     biographyShareServerCategory.selectedItemForDelete = response.Item;
                     console.log(biographyShareServerCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"biographyShareServerCategory/delete", biographyShareServerCategory.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"biographyShareServerCategory/delete", biographyShareServerCategory.selectedItemForDelete, 'POST').success(function (res) {
                         biographyShareServerCategory.categoryBusyIndicator.isActive = false;
                         biographyShareServerCategory.treeConfig.showbusy = false;
                         biographyShareServerCategory.showIsBusy = false;

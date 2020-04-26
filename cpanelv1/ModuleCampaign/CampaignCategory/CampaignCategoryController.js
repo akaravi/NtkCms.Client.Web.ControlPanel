@@ -212,7 +212,7 @@
                     rashaErManage.checkAction(response);
                     campaignCategory.selectedItemForDelete = response.Item;
                     console.log(campaignCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'campaignCategory/delete', campaignCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'campaignCategory/delete', campaignCategory.selectedItemForDelete, 'POST').success(function (res) {
                         campaignCategory.categoryBusyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {

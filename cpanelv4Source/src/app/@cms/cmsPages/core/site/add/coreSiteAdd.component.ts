@@ -15,15 +15,26 @@ export class CoreSiteAddComponent implements OnInit {
   subManager = new Subscription();
   filteModel = new FilterModel();
   dataModel: ErrorExcptionResult<any>;
+  //dataModelDomains: Array<string> ;//=  {'oco.ir','qwp.ir'};
   dataModelLoad = false;
   model: any = {};
+  dataModelDomains = [
+    {id: 1, name: 'Vilnius'},
+    {id: 2, name: 'Kaunas'},
+    {id: 3, name: 'Pavilnys', disabled: true},
+    {id: 4, name: 'Pabradė'},
+    {id: 5, name: 'Klaipėda'}
+];
 
+selectedDomain: any;
   constructor(
     private alertService: ToastrService,
     private publicHelper: PublicHelper,
-    ) { }
+    ) {
+
+     }
 
   ngOnInit() {
   }
-  
+
 }

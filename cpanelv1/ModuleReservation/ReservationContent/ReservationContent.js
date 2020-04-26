@@ -737,7 +737,7 @@
                                     .call(
                                         cmsServerConfig.configApiServerPath+"reservationCategory/delete",
                                         reservationContent.selectedItemForDelete,
-                                        "DELETE"
+                                        "POST"
                                     )
                                     .success(function (res) {
                                         reservationContent.categoryBusyIndicator.isActive = false;
@@ -1223,7 +1223,7 @@
                                     .call(
                                         cmsServerConfig.configApiServerPath+"reservationContent/delete",
                                         reservationContent.selectedItemForDelete,
-                                        "DELETE"
+                                        "POST"
                                     )
                                     .success(function (res) {
                                         reservationContent.categoryBusyIndicator.isActive = false;
@@ -1464,7 +1464,7 @@
                                     .call(
                                         cmsServerConfig.configApiServerPath+"reservationContent/delete",
                                         reservationContent.selectedItemForDelete,
-                                        "DELETE"
+                                        "POST"
                                     )
                                     .success(function (res) {
                                         reservationContent.treeConfig.showbusy = false;
@@ -1652,7 +1652,7 @@
                 .call(
                     cmsServerConfig.configApiServerPath+"reservationContent/delete",
                     reservationContent.contractsList[index],
-                    "DELETE"
+                    "POST"
                 )
                 .success(function (res) {
                     rashaErManage.checkAction(res);
@@ -1779,7 +1779,7 @@
                     if (response1.IsSuccess == true) {
                         console.log(response1.Item);
                         ajax
-                            .call(cmsServerConfig.configApiServerPath + "FileContent/delete", response1.Item, "DELETE")
+                            .call(cmsServerConfig.configApiServerPath + "FileContent/delete", response1.Item, "POST")
                             .success(function (response2) {
                                 reservationContent.remove(
                                     reservationContent.FileList,

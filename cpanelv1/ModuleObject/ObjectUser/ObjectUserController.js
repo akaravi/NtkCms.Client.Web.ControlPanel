@@ -564,7 +564,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     objectUser.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'objectGroup/delete', objectUser.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'objectGroup/delete', objectUser.selectedItemForDelete, 'POST').success(function (res) {
                         if (res.IsSuccess) {
                             objectUser.gridOptions.advancedSearchData.engine.Filters = null;
                             objectUser.gridOptions.advancedSearchData.engine.Filters = [];
@@ -796,7 +796,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     objectUser.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'objectUser/delete', objectUser.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'objectUser/delete', objectUser.selectedItemForDelete, 'POST').success(function (res) {
                         //objectUser.busyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
@@ -952,7 +952,7 @@ objectUser.onPropertyTypeChange = function (propertyTypeId) {
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", objectUser.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
                         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {

@@ -150,7 +150,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogOutput/getviewmodel', logOutputCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     logOutputCtrl.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogOutput/delete', logOutputCtrl.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogOutput/delete', logOutputCtrl.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         logOutputCtrl.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

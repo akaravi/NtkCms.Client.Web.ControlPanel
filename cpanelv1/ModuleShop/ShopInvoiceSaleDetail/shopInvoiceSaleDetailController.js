@@ -259,7 +259,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopInvoiceSaleDetail.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"shopInvoiceSaleDetail/delete", shopInvoiceSaleDetail.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"shopInvoiceSaleDetail/delete", shopInvoiceSaleDetail.selectedItemForDelete, 'POST').success(function (res) {
                         shopInvoiceSaleDetail.categoryBusyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {

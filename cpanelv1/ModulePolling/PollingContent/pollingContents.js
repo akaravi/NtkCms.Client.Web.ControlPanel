@@ -565,7 +565,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     pollingContent.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath + "pollingCategory/delete", pollingContent.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "pollingCategory/delete", pollingContent.selectedItemForDelete, 'POST').success(function (res) {
                         if (res.IsSuccess) {
                             pollingContent.categoryBusyIndicator.isActive = false;
                             if (pollingContent.selectedItemForDelete.LinkParentId == null) {
@@ -742,7 +742,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath + "pollingContent/getviewmodel", pollingContent.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     rashaErManage.checkAction(response);
                     pollingContent.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath + "pollingContent/delete", pollingContent.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "pollingContent/delete", pollingContent.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             pollingContent.replaceItem(pollingContent.selectedItemForDelete.Id, false, pollingContent.ListItems);
@@ -946,7 +946,7 @@
                 pollingContent.showIsBusy = false;
                 rashaErManage.checkAction(response);
                 pollingContent.selectedItemForDelete = response.Item;
-                ajax.call(cmsServerConfig.configApiServerPath + "pollingOption/delete", pollingContent.selectedItemForDelete, "DELETE").success(function (res) {
+                ajax.call(cmsServerConfig.configApiServerPath + "pollingOption/delete", pollingContent.selectedItemForDelete, 'POST').success(function (res) {
                     pollingContent.treeConfig.showbusy = false;
                     pollingContent.showIsBusy = false;
                     rashaErManage.checkAction(res);
@@ -1091,7 +1091,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/getviewmodel", pollingContent.gridOptions2.selectedRow.item.Id, "GET").success(function (response) {
                     rashaErManage.checkAction(response);
                     pollingContent.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/delete", pollingContent.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/delete", pollingContent.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             pollingContent.replaceItem(pollingContent.selectedItemForDelete.Id, false, pollingContent.OptionList);
@@ -1116,7 +1116,7 @@
                     pollingContent.addOptionBusyIndicator = false;
                     rashaErManage.checkAction(response);
                     pollingContent.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/delete", pollingContent.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "pollingoption/delete", pollingContent.selectedItemForDelete, 'POST').success(function (res) {
                         pollingContent.addOptionBusyIndicator = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
@@ -1234,7 +1234,7 @@
     }
 
     pollingContent.deleteAttachedfieldName = function (index) {
-        ajax.call(cmsServerConfig.configApiServerPath + 'pollingContent/delete', pollingContent.contractsList[index], 'DELETE').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'pollingContent/delete', pollingContent.contractsList[index], 'POST').success(function (res) {
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
                 pollingContent.contractsList.splice(index, 1);

@@ -192,7 +192,7 @@
 
                     rashaErManage.checkAction(response);
                     transc.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/delete', transc.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/delete', transc.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             transc.replaceItem(transc.selectedItemForDelete.Id);

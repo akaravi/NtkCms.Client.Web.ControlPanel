@@ -865,7 +865,7 @@
                   .call(
                     cmsServerConfig.configApiServerPath + "biographyCategory/delete",
                     biographyContent.selectedItemForDelete,
-                    "DELETE"
+                    "POST"
                   )
                   .success(function (res) {
                     biographyContent.categoryBusyIndicator.isActive = false;
@@ -1557,7 +1557,7 @@
                   .call(
                     cmsServerConfig.configApiServerPath + "biographyContent/delete",
                     biographyContent.selectedItemForDelete,
-                    "DELETE"
+                    "POST"
                   )
                   .success(function (res) {
                     biographyContent.categoryBusyIndicator.isActive = false;
@@ -1803,7 +1803,7 @@
 
             var itemCopy = angular.copy(item);
             itemCopy.rowOption = null;
-            ajax.call(cmsServerConfig.configApiServerPath + "biographyComment/delete", itemCopy, "DELETE")
+            ajax.call(cmsServerConfig.configApiServerPath + "biographyComment/delete", itemCopy, "POST")
               .success(function (res) {
                 biographyContent.treeConfig.showbusy = false;
                 biographyContent.showbusy = false;
@@ -1994,7 +1994,7 @@
         .call(
           cmsServerConfig.configApiServerPath + "biographyContent/delete",
           biographyContent.contractsList[index],
-          "DELETE"
+          "POST"
         )
         .success(function (res) {
           rashaErManage.checkAction(res);
@@ -2138,7 +2138,7 @@
           if (response1.IsSuccess == true) {
 
             ajax
-              .call(cmsServerConfig.configApiServerPath + "FileContent/delete", response1.Item, "DELETE")
+              .call(cmsServerConfig.configApiServerPath + "FileContent/delete", response1.Item, "POST")
               .success(function (response2) {
                 biographyContent.remove(
                   biographyContent.FileList,

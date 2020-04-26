@@ -79,7 +79,7 @@ cmsLog.listforDel=listforDel;
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(cmsLog.gridOptions.selectedRow.item);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreLogError/DeleteList',cmsLog.listforDel , 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreLogError/DeleteList',cmsLog.listforDel , 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             //cmsLog.replaceItem(cmsLog.selectedItemForDelete.Id);
@@ -107,7 +107,7 @@ cmsLog.listforDel=listforDel;
                     rashaErManage.checkAction(response);
                     cmsLog.selectedItemForDelete = response.Item;
                     console.log(cmsLog.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreLogError/delete', cmsLog.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreLogError/delete', cmsLog.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsLog.replaceItem(cmsLog.selectedItemForDelete.Id);

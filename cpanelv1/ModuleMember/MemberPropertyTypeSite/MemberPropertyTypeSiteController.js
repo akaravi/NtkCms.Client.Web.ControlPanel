@@ -199,7 +199,7 @@
                     rashaErManage.checkAction(response);
                     memberPropertyTypeSite.selectedItemForDelete = response.Item;
                     console.log(memberPropertyTypeSite.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyTypeSite/delete', memberPropertyTypeSite.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyTypeSite/delete', memberPropertyTypeSite.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         memberPropertyTypeSite.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

@@ -235,7 +235,7 @@
                     rashaErManage.checkAction(response);
                     pollingcategory.selectedItemForDelete = response.Item;
                     console.log(pollingcategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'pollingcategory/delete', pollingcategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'pollingcategory/delete', pollingcategory.selectedItemForDelete, 'POST').success(function (res) {
                         pollingcategory.categoryBusyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {

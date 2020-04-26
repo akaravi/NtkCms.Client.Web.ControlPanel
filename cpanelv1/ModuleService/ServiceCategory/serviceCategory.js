@@ -224,7 +224,7 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
                     rashaErManage.checkAction(response);
                     Servicecategory.selectedItemForDelete = response.Item;
                     console.log(Servicecategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/delete', Servicecategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/delete', Servicecategory.selectedItemForDelete, 'POST').success(function (res) {
                         Servicecategory.categoryBusyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {

@@ -496,7 +496,7 @@ memberProperty.selectedItemLinkMemberUserId=false;
                 console.log(memberProperty.gridOptionsHistory.selectedRow.item);
                 ajax.call(cmsServerConfig.configApiServerPath+'MemberHistory/getviewmodel', memberProperty.gridOptionsHistory.selectedRow.item.Id, 'GET').success(function (response) {
                     memberProperty.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'MemberHistory/delete', memberProperty.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'MemberHistory/delete', memberProperty.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         //memberProperty.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -921,7 +921,7 @@ memberProperty.PropertyID=PropertyId;
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     memberProperty.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyType/delete', memberProperty.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyType/delete', memberProperty.selectedItemForDelete, 'POST').success(function (res) {
                         if (res.IsSuccess) {
                             memberProperty.gridOptions.advancedSearchData.engine.Filters = null;
                             memberProperty.gridOptions.advancedSearchData.engine.Filters = [];
@@ -1207,7 +1207,7 @@ memberProperty.PropertyID=PropertyId;
             var engine = {};
             engine.Filters = [];
             engine.Filters.push(filterValue);
-            ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyDetailValue/DeleteFilterModel', engine, 'DELETE').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyDetailValue/DeleteFilterModel', engine, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 console.log(response.Item);
             }).error(function (data, errCode, c, d) {
@@ -1342,7 +1342,7 @@ memberProperty.PropertyID=PropertyId;
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     memberProperty.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'memberproperty/delete', memberProperty.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'memberproperty/delete', memberProperty.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         //memberProperty.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -1643,7 +1643,7 @@ function stringfyLinkFileIds(arrayOfFiles) {
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", memberProperty.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
                         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {

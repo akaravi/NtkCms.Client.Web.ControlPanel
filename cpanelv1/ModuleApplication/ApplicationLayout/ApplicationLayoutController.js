@@ -233,7 +233,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayout/getviewmodel', appLayout.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     appLayout.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayout/delete', appLayout.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayout/delete', appLayout.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         appLayout.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

@@ -213,7 +213,7 @@
                     rashaErManage.checkAction(response);
                     reservationcategory.selectedItemForDelete = response.Item;
                     console.log(reservationcategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'reservationcategory/delete', reservationcategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'reservationcategory/delete', reservationcategory.selectedItemForDelete, 'POST').success(function (res) {
                         reservationcategory.categoryBusyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {

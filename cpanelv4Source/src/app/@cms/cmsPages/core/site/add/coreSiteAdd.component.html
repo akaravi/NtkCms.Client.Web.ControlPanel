@@ -52,40 +52,34 @@
                           </div>
                       </form>                        
                   </aw-wizard-step>
-                  <aw-wizard-step [stepTitle]="'Steptitle 3'" [navigationSymbol]="{ symbol: '&#xf0ac;', fontFamily: 'FontAwesome' }">
+                  <aw-wizard-step [stepTitle]="'آدرس وب سایت'" [navigationSymbol]="{ symbol: '&#xf0ac;', fontFamily: 'FontAwesome' }">
                       <form #addressForm="ngForm" class="editForm" novalidate>
-                          <h4 class="head text-center">کجا زندگی می کنید؟</h4>
+                          <h4 class="head text-center">مشخصات دامنه اتصال به وب سایت</h4>
                           <br/>
                           <div class='row'>
                               <div class='col-sm-12'>
-                                  <div class="form-group">
-                                      <label class="form-control-label" for="street">آدرس خیابان</label>
-                                      <input class="form-control input-md" ngModel #street="ngModel" required id="street" name="street" type="text">
-                                      <small class="form-text text-muted danger" *ngIf="!street.valid && (street.dirty || street.touched)">این فیلد مورد نیاز است!</small>
-
-                                  </div>
+                    
                                   <div class="row">
                                       <div class='col-12 col-sm-4'>
                                           <div class="form-group">
-                                              <label class="form-control-label" for="city">شهر</label>
-                                              <input class="form-control input-md" ngModel #city="ngModel" required id="city" name="city" type="text">
-                                              <small class="form-text text-muted danger" *ngIf="!city.valid && (city.dirty || city.touched)">این فیلد مورد نیاز است!</small>
+                                              
+                                            <!-- <ng-select [items]="dataModelDomains" bindLabel="name" placeholder="دامنه را انتخاب کنید" [(ngModel)]="selectedDomain">
+                                            </ng-select> -->
+                                            <p>
+                                                شهرهای انتخاب شده : {{Domain | json}}
+                                            </p>
+
+                                              <label class="form-control-label" for="Domain">دامنه</label>
+                                              <input class="form-control input-md" ngModel #Domain="ngModel" required id="Domain" name="Domain" type="text">
+                                              <small class="form-text text-muted danger" *ngIf="!Domain.valid && (Domain.dirty || Domain.touched)">این فیلد مورد نیاز است!</small>
 
                                           </div>
                                       </div>
                                       <div class='col-4 col-sm-offset-1 col-sm-3'>
                                           <div class="form-group">
-                                              <label class="form-control-label" for="state">کشور</label>
-                                              <input class="form-control input-md" ngModel #state="ngModel" required id="state" name="state" type="text">
-                                              <small class="form-text text-muted danger" *ngIf="!state.valid && (state.dirty || state.touched)">این فیلد مورد نیاز است!</small>
-
-                                          </div>
-                                      </div>
-                                      <div class='col-offset-1 col-7 col-sm-offset-1 col-sm-3'>
-                                          <div class="form-group">
-                                              <label class="form-control-label" for="zip">نیرو</label>
-                                              <input class="form-control input-md" ngModel #zip="ngModel" required id="zip" name="zip" type="text">
-                                              <small class="form-text text-muted danger" *ngIf="!zip.valid && (zip.dirty || zip.touched)">این فیلد مورد نیاز است!</small>
+                                              <label class="form-control-label" for="SubDomain">زیر دامنه</label>
+                                              <input class="form-control input-md" ngModel #SubDomain="ngModel" required id="SubDomain" name="SubDomain" type="text">
+                                              <small class="form-text text-muted danger" *ngIf="!SubDomain.valid && (SubDomain.dirty || SubDomain.touched)">این فیلد مورد نیاز است!</small>
 
                                           </div>
                                       </div>

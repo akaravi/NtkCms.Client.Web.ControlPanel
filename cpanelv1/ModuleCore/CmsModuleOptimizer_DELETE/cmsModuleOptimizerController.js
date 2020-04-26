@@ -139,7 +139,7 @@
 
                     rashaErManage.checkAction(response);
                     cmsModuleOptimizer.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/delete', cmsModuleOptimizer.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/delete', cmsModuleOptimizer.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsModuleOptimizer.replaceItem(cmsModuleOptimizer.selectedItemForDelete.Id);

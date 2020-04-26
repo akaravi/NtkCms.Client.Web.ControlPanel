@@ -145,7 +145,7 @@
                     rashaErManage.checkAction(response);
                     vehiclePropertyType.selectedItemForDelete = response.Item;
                     console.log(vehiclePropertyType.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/delete', vehiclePropertyType.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/delete', vehiclePropertyType.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         vehiclePropertyType.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

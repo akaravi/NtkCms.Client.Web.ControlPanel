@@ -189,7 +189,7 @@
                     rashaErManage.checkAction(response);
                     ticketingDepartemen.selectedItemForDelete = response.Item;
                     console.log(ticketingDepartemen.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemen/delete', ticketingDepartemen.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemen/delete', ticketingDepartemen.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             ticketingDepartemen.replaceItem(ticketingDepartemen.selectedItemForDelete.Id);
@@ -289,7 +289,7 @@
     }
 
     ticketingDepartemen.deleteMember = function (index) {
-        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemenoprator/delete', ticketingDepartemen.operatorsList[index], 'DELETE').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemenoprator/delete', ticketingDepartemen.operatorsList[index], 'POST').success(function (res) {
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
                 ticketingDepartemen.operatorsList.splice(index, 1);
@@ -451,7 +451,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemenoperator/getviewmodel', ticketingDepartemen.gridContentOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     ticketingDepartemen.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemenoperator/delete', ticketingDepartemen.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'ticketingDepartemenoperator/delete', ticketingDepartemen.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             ticketingDepartemen.replaceItem(ticketingDepartemen.selectedItemForDelete.Id);

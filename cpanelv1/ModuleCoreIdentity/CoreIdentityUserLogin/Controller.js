@@ -79,7 +79,7 @@ coreIdentityUserLogin.listforDel=listforDel;
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(coreIdentityUserLogin.gridOptions.selectedRow.item);
-                    ajax.call(cmsServerConfig.configApiServerPath+'coreIdentityUserLogin/DeleteList',coreIdentityUserLogin.listforDel , 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'coreIdentityUserLogin/DeleteList',coreIdentityUserLogin.listforDel , 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             //coreIdentityUserLogin.replaceItem(coreIdentityUserLogin.selectedItemForDelete.Id);
@@ -107,7 +107,7 @@ coreIdentityUserLogin.listforDel=listforDel;
                     rashaErManage.checkAction(response);
                     coreIdentityUserLogin.selectedItemForDelete = response.Item;
                     console.log(coreIdentityUserLogin.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'coreIdentityUserLogin/delete', coreIdentityUserLogin.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'coreIdentityUserLogin/delete', coreIdentityUserLogin.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             coreIdentityUserLogin.replaceItem(coreIdentityUserLogin.selectedItemForDelete.Id);

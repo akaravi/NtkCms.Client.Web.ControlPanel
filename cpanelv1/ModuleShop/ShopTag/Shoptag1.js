@@ -349,7 +349,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'shopCategorytag/getviewmodel', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     shopTag.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'shopCategorytag/delete', shopTag.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'shopCategorytag/delete', shopTag.selectedItemForDelete, 'POST').success(function (res) {
                         shopTag.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             shopTag.gridOptions.advancedSearchData.engine.Filters = null;
@@ -530,7 +530,7 @@
                     rashaErManage.checkAction(response);
                     shopTag.selectedItemForDelete = response.Item;
                     console.log(shopTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"shoptag/delete", shopTag.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"shoptag/delete", shopTag.selectedItemForDelete, 'POST').success(function (res) {
                         shopTag.categoryBusyIndicator.isActive = false;
                         shopTag.treeConfig.showbusy = false;
                         shopTag.showIsBusy = false;
@@ -800,7 +800,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", shopTag.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     shopTag.remove(shopTag.FileList, shopTag.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

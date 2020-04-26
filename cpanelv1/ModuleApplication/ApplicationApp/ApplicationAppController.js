@@ -473,7 +473,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     appApplication.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationApp/delete', appApplication.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationApp/delete', appApplication.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         appApplication.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

@@ -211,7 +211,7 @@
                     rashaErManage.checkAction(response);
                     place.selectedItemForDelete = response.Item;
                     console.log(place.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/delete', place.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/delete', place.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         place.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -432,7 +432,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", place.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     place.remove(place.FileList, place.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

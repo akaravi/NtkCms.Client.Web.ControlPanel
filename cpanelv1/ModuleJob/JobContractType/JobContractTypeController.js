@@ -162,7 +162,7 @@
                     rashaErManage.checkAction(response);
                     jobContractType.selectedItemForDelete = response.Item;
                     console.log(jobContractType.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'jobcontracttype/delete', jobContractType.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'jobcontracttype/delete', jobContractType.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         jobContractType.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

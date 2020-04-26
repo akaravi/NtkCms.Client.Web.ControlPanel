@@ -436,7 +436,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/getviewmodel', cmsSitegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsSitegrd.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/delete', cmsSitegrd.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/delete', cmsSitegrd.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsSitegrd.replaceItem(cmsSitegrd.selectedItemForDelete.Id);
@@ -684,7 +684,7 @@
     }
 
     cmsSitegrd.deleteAttachedfieldName = function (index) {
-        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteDomainAlias/delete', cmsSitegrd.aliasesList[index], 'DELETE').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteDomainAlias/delete', cmsSitegrd.aliasesList[index], 'POST').success(function (res) {
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
                 cmsSitegrd.aliasesList.splice(index, 1);
@@ -911,7 +911,7 @@
         ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", cmsSitegrd.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
                         ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", 'GET').success(function (response3) {

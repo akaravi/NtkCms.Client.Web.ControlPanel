@@ -239,7 +239,7 @@ var todayDate = moment().format();
                     rashaErManage.checkAction(response);
                     chartContentEvent.selectedItemForDelete = response.Item;
                     console.log(chartContentEvent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'chartContentEvent/delete', chartContentEvent.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'chartContentEvent/delete', chartContentEvent.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         chartContentEvent.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

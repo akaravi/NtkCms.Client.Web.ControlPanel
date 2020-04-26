@@ -172,7 +172,7 @@
                     //rashaErManage.checkAction(response);
                     biographyComment.selectedItemForDelete = response.Item;
                     console.log(biographyComment.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'biographyComment/delete', biographyComment.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'biographyComment/delete', biographyComment.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         biographyComment.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

@@ -321,7 +321,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'DiscountSeller/getviewmodel', discountSeller.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     discountSeller.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'DiscountSeller/delete', discountSeller.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'DiscountSeller/delete', discountSeller.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         discountSeller.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

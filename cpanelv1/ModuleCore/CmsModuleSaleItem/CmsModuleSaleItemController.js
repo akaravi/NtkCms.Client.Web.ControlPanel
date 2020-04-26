@@ -544,7 +544,7 @@
                                     .call(
                                         cmsServerConfig.configApiServerPath+"CoreModuleSaleHeader/delete",
                                         cmsModuleSaleItem.selectedItemForDelete,
-                                        "DELETE"
+                                        "POST"
                                     )
                                     .success(function (res) {
                                         cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
@@ -984,7 +984,7 @@
                                     .call(
                                         cmsServerConfig.configApiServerPath+"CoreModuleSaleItem/delete",
                                         cmsModuleSaleItem.selectedItemForDelete,
-                                        "DELETE"
+                                        "POST"
                                     )
                                     .success(function (res) {
                                         cmsModuleSaleItem.categoryBusyIndicator.isActive = false;
@@ -1180,7 +1180,7 @@
         //                    rashaErManage.checkAction(response);
         //                    cmsModuleSaleItem.selectedItemForDelete = response.Item;
         //                    console.log(cmsModuleSaleItem.selectedItemForDelete);
-        //                    ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleItem/delete', cmsModuleSaleItem.selectedItemForDelete, 'DELETE').success(function (res) {
+        //                    ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleItem/delete', cmsModuleSaleItem.selectedItemForDelete, 'POST').success(function (res) {
         //                        cmsModuleSaleItem.treeConfig.showbusy = false;
         //                        cmsModuleSaleItem.showIsBusy = false;
         //                        rashaErManage.checkAction(res);

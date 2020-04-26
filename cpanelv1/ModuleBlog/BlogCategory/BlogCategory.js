@@ -226,7 +226,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'blogCategory/getviewmodel',  blogCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     blogCategory.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'blogCategory/delete', blogCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'blogCategory/delete', blogCategory.selectedItemForDelete, 'POST').success(function (res) {
                         blogCategory.busyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {

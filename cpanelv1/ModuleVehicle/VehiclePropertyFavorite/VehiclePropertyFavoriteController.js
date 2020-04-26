@@ -144,7 +144,7 @@
                     rashaErManage.checkAction(response);
                     vehiclePropertyFavorite.selectedItemForDelete = response.Item;
                     console.log(vehiclePropertyFavorite.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyFavorite/delete', vehiclePropertyFavorite.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyFavorite/delete', vehiclePropertyFavorite.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         vehiclePropertyFavorite.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

@@ -199,7 +199,7 @@
                 console.log(linkManagementAccounting.gridOptions.selectedRow.item);
                 ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/getviewmodel', linkManagementAccounting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     linkManagementAccounting.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/delete', linkManagementAccounting.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/delete', linkManagementAccounting.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         linkManagementAccounting.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

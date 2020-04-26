@@ -200,7 +200,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     estateContract.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/delete', estateContract.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'estatecontract/delete', estateContract.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         estateContract.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

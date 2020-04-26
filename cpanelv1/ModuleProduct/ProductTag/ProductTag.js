@@ -349,7 +349,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'productCategorytag/getviewmodel', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     productTag.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'productCategorytag/delete', productTag.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'productCategorytag/delete', productTag.selectedItemForDelete, 'POST').success(function (res) {
                         productTag.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             productTag.gridOptions.advancedSearchData.engine.Filters = null;
@@ -531,7 +531,7 @@
                     rashaErManage.checkAction(response);
                     productTag.selectedItemForDelete = response.Item;
                     console.log(productTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"producttag/delete", productTag.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"producttag/delete", productTag.selectedItemForDelete, 'POST').success(function (res) {
                         productTag.categoryBusyIndicator.isActive = false;
                         productTag.treeConfig.showbusy = false;
                         productTag.showIsBusy = false;
@@ -801,7 +801,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", productTag.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     productTag.remove(productTag.FileList, productTag.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

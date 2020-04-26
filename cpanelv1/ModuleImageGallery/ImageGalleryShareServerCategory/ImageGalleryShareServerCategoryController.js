@@ -297,7 +297,7 @@
                     rashaErManage.checkAction(response);
                     imageGalleryShareServerCategory.selectedItemForDelete = response.Item;
                     console.log(imageGalleryShareServerCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryShareMainAdminSetting/delete', imageGalleryShareServerCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryShareMainAdminSetting/delete', imageGalleryShareServerCategory.selectedItemForDelete, 'POST').success(function (res) {
                         imageGalleryShareServerCategory.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //imageGalleryShareServerCategory.replaceCategoryItem(imageGalleryShareServerCategory.treeConfig.Items, node.Id);
@@ -501,7 +501,7 @@
                     rashaErManage.checkAction(response);
                     imageGalleryShareServerCategory.selectedItemForDelete = response.Item;
                     console.log(imageGalleryShareServerCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"imageGalleryShareServerCategory/delete", imageGalleryShareServerCategory.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"imageGalleryShareServerCategory/delete", imageGalleryShareServerCategory.selectedItemForDelete, 'POST').success(function (res) {
                         imageGalleryShareServerCategory.categoryBusyIndicator.isActive = false;
                         imageGalleryShareServerCategory.treeConfig.showbusy = false;
                         imageGalleryShareServerCategory.showIsBusy = false;

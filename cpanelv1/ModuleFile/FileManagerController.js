@@ -408,7 +408,7 @@
         fdm.loadingBusyIndicator.isActive = true;
         if (fdm.fileTypes == 1) { // file type
             ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", fdm.fileIdToDelete, 'GET').success(function (response) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response.Item, 'DELETE').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response.Item, 'POST').success(function (response) {
                     fdm.loadingBusyIndicator.isActive = false;
                     //fdm.getCategoryFiles(fdm.thisCategory);
                     if (response.IsSuccess) {
@@ -430,7 +430,7 @@
             });
         } else if (fdm.fileTypes == 2) { // Folder type
             ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getviewmodel", fdm.fileIdToDelete, 'GET').success(function (response) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/delete', response.Item, 'DELETE').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/delete', response.Item, 'POST').success(function (response) {
                     if (response.IsSuccess) {
                         fdm.loadingBusyIndicator.isActive = false;
                         fdm.remove(fdm.categoryList, fdm.fileIdToDelete);
@@ -477,7 +477,7 @@
                     ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", fdm.fileIdToDelete, 'GET').success(function (response1) {
                         if (response1.IsSuccess == true) {
                             console.log(response1.Item);
-                            ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                            ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                                 fdm.loadingBusyIndicator.isActive = false;
                                 fdm.remove(fdm.FileList, fdm.fileIdToDelete);
                                 if (response2.IsSuccess == true) {
@@ -648,7 +648,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", fdm.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     fdm.loadingBusyIndicator.isActive = false;
                     fdm.remove(fdm.FileList, fdm.fileIdToDelete);
                     if (response2.IsSuccess == true) {
@@ -752,7 +752,7 @@
                     // Type is file
                     fdm.loadingBusyIndicator.isActive = true;
                     ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", fdm.fileIdToDelete, 'GET').success(function (response) {
-                        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response.Item, 'DELETE').success(function (response) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response.Item, 'POST').success(function (response) {
                             if (response.IsSuccess) {
                                 fdm.remove(fdm.FileList, fdm.fileIdToDelete);
                                 fdm.copyWork(id, name, parentFolderDes);
@@ -808,7 +808,7 @@
                     // Type is folder
                     fdm.loadingBusyIndicator.isActive = true;
                     ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getviewmodel", fdm.fileIdToDelete, 'GET').success(function (response) {
-                        ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/delete', response.Item, 'DELETE').success(function (response) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/delete', response.Item, 'POST').success(function (response) {
                             if (response.IsSuccess) {
                                 fdm.remove(fdm.categoryList, fdm.fileIdToDelete);
                                 fdm.copyWork(id, name, parentFolderDes);
@@ -888,7 +888,7 @@
                     // Type is file
                     fdm.loadingBusyIndicator.isActive = true;
                     ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", fdm.fileIdToDelete, 'GET').success(function (response) {
-                        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response.Item, 'DELETE').success(function (response) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response.Item, 'POST').success(function (response) {
                             if (response.IsSuccess) {
                                 fdm.remove(fdm.FileList, fdm.fileIdToDelete);
                                 fdm.cutWork(id, name, parentFolderDes);
@@ -948,7 +948,7 @@
                     // Type is folder
                     fdm.loadingBusyIndicator.isActive = true;
                     ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getviewmodel", fdm.fileIdToDelete, 'GET').success(function (response) {
-                        ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/delete', response.Item, 'DELETE').success(function (response) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/delete', response.Item, 'POST').success(function (response) {
                             if (response.IsSuccess) {
                                 fdm.remove(fdm.categoryList, fdm.fileIdToDelete);
                                 fdm.cutWork(id, name, parentFolderDes);

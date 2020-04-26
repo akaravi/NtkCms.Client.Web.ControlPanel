@@ -860,7 +860,7 @@
                   .call(
                     cmsServerConfig.configApiServerPath + "productCategory/delete",
                     productContent.selectedItemForDelete,
-                    "DELETE"
+                    "POST"
                   )
                   .success(function (res) {
                     productContent.categoryBusyIndicator.isActive = false;
@@ -1545,7 +1545,7 @@
                   .call(
                     cmsServerConfig.configApiServerPath + "productContent/delete",
                     productContent.selectedItemForDelete,
-                    "DELETE"
+                    "POST"
                   )
                   .success(function (res) {
                     productContent.categoryBusyIndicator.isActive = false;
@@ -1791,7 +1791,7 @@
 
             var itemCopy = angular.copy(item);
             itemCopy.rowOption = null;
-            ajax.call(cmsServerConfig.configApiServerPath + "productComment/delete", itemCopy, "DELETE")
+            ajax.call(cmsServerConfig.configApiServerPath + "productComment/delete", itemCopy, "POST")
               .success(function (res) {
                 productContent.treeConfig.showbusy = false;
                 productContent.showbusy = false;
@@ -1982,7 +1982,7 @@
         .call(
           cmsServerConfig.configApiServerPath + "productContent/delete",
           productContent.contractsList[index],
-          "DELETE"
+          "POST"
         )
         .success(function (res) {
           rashaErManage.checkAction(res);
@@ -2126,7 +2126,7 @@
           if (response1.IsSuccess == true) {
 
             ajax
-              .call(cmsServerConfig.configApiServerPath + "FileContent/delete", response1.Item, "DELETE")
+              .call(cmsServerConfig.configApiServerPath + "FileContent/delete", response1.Item, "POST")
               .success(function (response2) {
                 productContent.remove(
                   productContent.FileList,

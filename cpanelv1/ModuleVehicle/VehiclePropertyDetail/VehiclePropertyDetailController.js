@@ -239,7 +239,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
                     ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetailGroup/getviewmodel', node.Id, 'GET').success(function (response) {
                         rashaErManage.checkAction(response);
                         vehiclePropertyDetail.selectedItemForDelete = response.Item;
-                        ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetailGroup/delete', vehiclePropertyDetail.selectedItemForDelete, 'DELETE').success(function (res) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetailGroup/delete', vehiclePropertyDetail.selectedItemForDelete, 'POST').success(function (res) {
 
                             if (res.IsSuccess) {
                                 vehiclePropertyDetail.gridOptions.advancedSearchData.engine.Filters = null;
@@ -469,7 +469,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
                     vehiclePropertyDetail.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     vehiclePropertyDetail.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"vehiclePropertyDetail/delete", vehiclePropertyDetail.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"vehiclePropertyDetail/delete", vehiclePropertyDetail.selectedItemForDelete, 'POST').success(function (res) {
                         vehiclePropertyDetail.treeConfig.showbusy = false;
                         vehiclePropertyDetail.showIsBusy = false;
                         rashaErManage.checkAction(res);

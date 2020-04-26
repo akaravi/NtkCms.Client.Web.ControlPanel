@@ -351,7 +351,7 @@
                     rashaErManage.checkAction(response);
                     cmsCpMainMenugrd.selectedItemForDelete = response.Item;
                     console.log(cmsCpMainMenugrd.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/delete', cmsCpMainMenugrd.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreCpMainMenu/delete', cmsCpMainMenugrd.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsCpMainMenugrd.replaceItem(cmsCpMainMenugrd.selectedItemForDelete.Id);

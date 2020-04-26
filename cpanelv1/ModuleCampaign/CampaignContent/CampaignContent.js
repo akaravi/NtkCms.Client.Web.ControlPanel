@@ -442,7 +442,7 @@
                     rashaErManage.checkAction(response);
                     campaignContent.selectedItemForDelete = response.Item;
                     console.log(campaignContent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CampaignCategory/delete', campaignContent.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CampaignCategory/delete', campaignContent.selectedItemForDelete, 'POST').success(function (res) {
                         campaignContent.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //campaignContent.replaceCategoryItem(campaignContent.treeConfig.Items, node.Id);
@@ -729,7 +729,7 @@
                     rashaErManage.checkAction(response);
                     campaignContent.selectedItemForDelete = response.Item;
                     console.log(campaignContent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"campaignContent/delete", campaignContent.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"campaignContent/delete", campaignContent.selectedItemForDelete, 'POST').success(function (res) {
                         campaignContent.categoryBusyIndicator.isActive = false;
                         campaignContent.treeConfig.showbusy = false;
                         campaignContent.showIsBusy = false;
@@ -906,7 +906,7 @@
                     rashaErManage.checkAction(response);
                     campaignContent.selectedItemForDelete = response.Item;
                     console.log(campaignContent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/delete', campaignContent.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/delete', campaignContent.selectedItemForDelete, 'POST').success(function (res) {
                         campaignContent.treeConfig.showbusy = false;
                         campaignContent.showIsBusy = false;
                         rashaErManage.checkAction(res);
@@ -1058,7 +1058,7 @@
     }
 
     campaignContent.deleteAttachedfieldName = function (index) {
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/delete', campaignContent.contractsList[index], 'DELETE').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/delete', campaignContent.contractsList[index], 'POST').success(function (res) {
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
                 campaignContent.contractsList.splice(index, 1);
@@ -1155,7 +1155,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", campaignContent.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     campaignContent.remove(campaignContent.FileList, campaignContent.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

@@ -178,7 +178,7 @@
                     rashaErManage.checkAction(response);
                     chartComment.selectedItemForDelete = response.Item;
                     console.log(chartComment.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'chartComment/delete', chartComment.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'chartComment/delete', chartComment.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         chartComment.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

@@ -267,7 +267,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/getviewmodel', ticketingTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     ticketingTask.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/delete', ticketingTask.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/delete', ticketingTask.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             ticketingTask.replaceItem(ticketingTask.ListItems,ticketingTask.selectedItemForDelete.Id);
@@ -295,7 +295,7 @@
                     rashaErManage.checkAction(response);
                     ticketingTask.selectedItemForDelete = response.Item;
                     console.log(ticketingTask.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/delete', ticketingTask.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/delete', ticketingTask.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             ticketingTask.replaceItem(ticketingTask.answersListItems, ticketingTask.selectedItemForDelete.Id);
@@ -564,7 +564,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", ticketingTask.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     ticketingTask.remove(ticketingTask.FileList, ticketingTask.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

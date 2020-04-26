@@ -200,7 +200,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     vehicleContract.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontract/delete', vehicleContract.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'vehiclecontract/delete', vehicleContract.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         vehicleContract.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

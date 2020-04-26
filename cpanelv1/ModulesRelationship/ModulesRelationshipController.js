@@ -55,7 +55,7 @@
                     rashaErManage.checkAction(response);
                     modulesRelationship.selectedItemForDelete = response.Item;
                     console.log(modulesRelationship.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ModulesRelationshipContent/delete', modulesRelationship.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ModulesRelationshipContent/delete', modulesRelationship.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             modulesRelationship.replaceItem(modulesRelationship.selectedItemForDelete.Id);

@@ -268,7 +268,7 @@
                     rashaErManage.checkAction(response);
                     campaignItem.selectedItemForDelete = response.Item;
                     console.log(campaignItem.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/delete', campaignItem.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/delete', campaignItem.selectedItemForDelete, 'POST').success(function (res) {
                         campaignItem.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //campaignItem.replaceCategoryItem(campaignItem.treeConfig.Items, node.Id);
@@ -472,7 +472,7 @@
                     rashaErManage.checkAction(response);
                     campaignItem.selectedItemForDelete = response.Item;
                     //console.log(campaignItem.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"CampaignItem/delete", campaignItem.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"CampaignItem/delete", campaignItem.selectedItemForDelete, 'POST').success(function (res) {
                         campaignItem.categoryBusyIndicator.isActive = false;
                         campaignItem.treeConfig.showbusy = false;
                         campaignItem.showIsBusy = false;

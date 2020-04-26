@@ -183,7 +183,7 @@
                     rashaErManage.checkAction(response);
                     blogComment.selectedItemForDelete = response.Item;
                     console.log(blogComment.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'blogComment/delete', blogComment.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'blogComment/delete', blogComment.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         blogComment.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

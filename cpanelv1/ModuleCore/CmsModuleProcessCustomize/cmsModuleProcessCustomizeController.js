@@ -200,7 +200,7 @@
                     rashaErManage.checkAction(response);
                     cmsMdlPrcCustm.selectedItemForDelete = response.Item;
                     console.log(cmsMdlPrcCustm.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/delete', cmsMdlPrcCustm.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/delete', cmsMdlPrcCustm.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsMdlPrcCustm.replaceItem(cmsMdlPrcCustm.selectedItemForDelete.Id);

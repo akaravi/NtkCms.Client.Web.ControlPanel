@@ -656,7 +656,7 @@
                     rashaErManage.checkAction(response);
                     appDate.selectedItemForDelete = response.Item;
                     console.log(appDate.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/delete', appDate.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/delete', appDate.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         appDate.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -696,7 +696,7 @@
                     rashaErManage.checkAction(response);
                     appDate.selectedItemForDelete = response.Item;
                     console.log(appDate.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDate/delete', appDate.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDate/delete', appDate.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         appDate.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -916,7 +916,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", appDate.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     appDate.remove(appDate.FileList, appDate.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

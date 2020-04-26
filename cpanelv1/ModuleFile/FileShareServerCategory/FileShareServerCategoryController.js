@@ -298,7 +298,7 @@
                     rashaErManage.checkAction(response);
                     fileShareServerCategory.selectedItemForDelete = response.Item;
                     console.log(fileShareServerCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileShareMainAdminSetting/delete', fileShareServerCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileShareMainAdminSetting/delete', fileShareServerCategory.selectedItemForDelete, 'POST').success(function (res) {
                         fileShareServerCategory.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //fileShareServerCategory.replaceCategoryItem(fileShareServerCategory.treeConfig.Items, node.Id);
@@ -502,7 +502,7 @@
                     rashaErManage.checkAction(response);
                     fileShareServerCategory.selectedItemForDelete = response.Item;
                     console.log(fileShareServerCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileShareServerCategory/delete", fileShareServerCategory.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileShareServerCategory/delete", fileShareServerCategory.selectedItemForDelete, 'POST').success(function (res) {
                         fileShareServerCategory.categoryBusyIndicator.isActive = false;
                         fileShareServerCategory.treeConfig.showbusy = false;
                         fileShareServerCategory.showIsBusy = false;

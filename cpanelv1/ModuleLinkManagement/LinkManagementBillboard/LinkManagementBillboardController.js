@@ -595,7 +595,7 @@
                     rashaErManage.checkAction(response);
                     linkManagementBillboard.selectedItemForDelete = response.Item;
                     console.log(linkManagementBillboard.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementBillboard/delete", linkManagementBillboard.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementBillboard/delete", linkManagementBillboard.selectedItemForDelete, 'POST').success(function (res) {
                         linkManagementBillboard.categoryBusyIndicator.isActive = false;
                         linkManagementBillboard.treeConfig.showbusy = false;
                         linkManagementBillboard.showIsBusy = false;
@@ -814,7 +814,7 @@
     //                rashaErManage.checkAction(response);
     //                linkManagementBillboard.selectedItemForDelete = response.Item;
     //                console.log(linkManagementBillboard.selectedItemForDelete);
-    //                ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/delete', linkManagementBillboard.selectedItemForDelete, 'DELETE').success(function (res) {
+    //                ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/delete', linkManagementBillboard.selectedItemForDelete, 'POST').success(function (res) {
     //                    linkManagementBillboard.treeConfig.showbusy = false;
     //                    linkManagementBillboard.showIsBusy = false;
     //                    rashaErManage.checkAction(res);
@@ -1044,7 +1044,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", linkManagementBillboard.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     linkManagementBillboard.remove(linkManagementBillboard.FileList, linkManagementBillboard.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

@@ -201,7 +201,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     jobContract.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'jobcontract/delete', jobContract.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'jobcontract/delete', jobContract.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         jobContract.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

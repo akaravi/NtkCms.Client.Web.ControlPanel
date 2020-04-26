@@ -145,7 +145,7 @@
                     rashaErManage.checkAction(response);
                     jobPropertyType.selectedItemForDelete = response.Item;
                     console.log(jobPropertyType.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'jobpropertytype/delete', jobPropertyType.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'jobpropertytype/delete', jobPropertyType.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         jobPropertyType.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

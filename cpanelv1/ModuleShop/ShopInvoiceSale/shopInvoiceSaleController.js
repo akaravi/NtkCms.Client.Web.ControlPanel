@@ -429,7 +429,7 @@ shopInvoiceSale.printDiv = function(divName) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopInvoiceSale.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"shopInvoiceSale/delete", shopInvoiceSale.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"shopInvoiceSale/delete", shopInvoiceSale.selectedItemForDelete, 'POST').success(function (res) {
                         shopInvoiceSale.busyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
@@ -785,7 +785,7 @@ shopInvoiceSale.printDiv = function(divName) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopInvoiceSale.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"shopInvoiceSaleDetail/delete", shopInvoiceSale.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"shopInvoiceSaleDetail/delete", shopInvoiceSale.selectedItemForDelete, 'POST').success(function (res) {
 
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {

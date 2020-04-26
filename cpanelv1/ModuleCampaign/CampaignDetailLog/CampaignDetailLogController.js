@@ -264,7 +264,7 @@
                     rashaErManage.checkAction(response);
                     campaignDetailLog.selectedItemForDelete = response.Item;
                     console.log(campaignDetailLog.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/delete', campaignDetailLog.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/delete', campaignDetailLog.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         campaignDetailLog.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -488,7 +488,7 @@
     }
 
     campaignDetailLog.deleteAttachedfieldName = function (index) {
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/delete', campaignDetailLog.contractsList[index], 'DELETE').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/delete', campaignDetailLog.contractsList[index], 'POST').success(function (res) {
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
                 campaignDetailLog.contractsList.splice(index, 1);
@@ -585,7 +585,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", campaignDetailLog.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     campaignDetailLog.remove(campaignDetailLog.FileList, campaignDetailLog.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

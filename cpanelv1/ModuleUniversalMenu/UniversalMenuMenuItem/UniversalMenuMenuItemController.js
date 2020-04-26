@@ -385,7 +385,7 @@
                     rashaErManage.checkAction(response);
                     menuItemCtrl.selectedItemForDelete = response.Item;
                     menuItemCtrl.busyIndicator.isActive = true;
-                    ajax.call(cmsServerConfig.configApiServerPath+"UniversalMenumenuitem/delete", menuItemCtrl.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"UniversalMenumenuitem/delete", menuItemCtrl.selectedItemForDelete, 'POST').success(function (res) {
                         menuItemCtrl.busyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {

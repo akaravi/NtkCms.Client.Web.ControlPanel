@@ -139,7 +139,7 @@
                     rashaErManage.checkAction(response);
                     cmsUserGroupgrd.selectedItemForDelete = response.Item;
                     console.log(cmsUserGroupgrd.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/delete', cmsUserGroupgrd.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/delete', cmsUserGroupgrd.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsUserGroupgrd.replaceItem(cmsUserGroupgrd.selectedItemForDelete.Id);

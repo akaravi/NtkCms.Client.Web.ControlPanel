@@ -214,7 +214,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/getviewmodel',  linkManagementCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     linkManagementCategory.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/delete', linkManagementCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/delete', linkManagementCategory.selectedItemForDelete, 'POST').success(function (res) {
                         linkManagementCategory.categoryBusyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {

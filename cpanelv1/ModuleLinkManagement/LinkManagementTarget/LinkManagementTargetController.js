@@ -550,7 +550,7 @@
                     rashaErManage.checkAction(response);
                     linkManagementTarget.selectedItemForDelete = response.Item;
                     console.log(linkManagementTarget.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetCategory/delete', linkManagementTarget.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetCategory/delete', linkManagementTarget.selectedItemForDelete, 'POST').success(function (res) {
                         linkManagementTarget.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //linkManagementTarget.replaceCategoryItem(linkManagementTarget.treeConfig.Items, node.Id);
@@ -853,7 +853,7 @@
                     rashaErManage.checkAction(response);
                     linkManagementTarget.selectedItemForDelete = response.Item;
                     console.log(linkManagementTarget.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementTarget/delete", linkManagementTarget.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementTarget/delete", linkManagementTarget.selectedItemForDelete, 'POST').success(function (res) {
                         linkManagementTarget.categoryBusyIndicator.isActive = false;
                         linkManagementTarget.treeConfig.showbusy = false;
                         linkManagementTarget.showIsBusy = false;
@@ -1005,7 +1005,7 @@
     //                rashaErManage.checkAction(response);
     //                linkManagementTarget.selectedItemForDelete = response.Item;
     //                console.log(linkManagementTarget.selectedItemForDelete);
-    //                ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/delete', linkManagementTarget.selectedItemForDelete, 'DELETE').success(function (res) {
+    //                ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/delete', linkManagementTarget.selectedItemForDelete, 'POST').success(function (res) {
     //                    linkManagementTarget.treeConfig.showbusy = false;
     //                    linkManagementTarget.showIsBusy = false;
     //                    rashaErManage.checkAction(res);
@@ -1253,7 +1253,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", linkManagementTarget.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     linkManagementTarget.remove(linkManagementTarget.FileList, linkManagementTarget.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

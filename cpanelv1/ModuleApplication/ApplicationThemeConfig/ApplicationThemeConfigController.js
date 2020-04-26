@@ -299,7 +299,7 @@
                     rashaErManage.checkAction(response);
                     themeConfig.selectedItemForDelete = response.Item;
                     themeConfig.busyIndicator.isActive = true;
-                    ajax.call(cmsServerConfig.configApiServerPath + "applicationthemeconfig/delete", themeConfig.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath + "applicationthemeconfig/delete", themeConfig.selectedItemForDelete, 'POST').success(function (res) {
                         themeConfig.busyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         themeConfig.replaceItem(themeConfig.selectedItemForDelete.Id);

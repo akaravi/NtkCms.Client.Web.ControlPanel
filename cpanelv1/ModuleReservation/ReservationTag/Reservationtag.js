@@ -349,7 +349,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'reservationCategorytag/getviewmodel', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     reservationTag.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'reservationCategorytag/delete', reservationTag.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'reservationCategorytag/delete', reservationTag.selectedItemForDelete, 'POST').success(function (res) {
                         reservationTag.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             reservationTag.gridOptions.advancedSearchData.engine.Filters = null;
@@ -531,7 +531,7 @@
                     rashaErManage.checkAction(response);
                     reservationTag.selectedItemForDelete = response.Item;
                     console.log(reservationTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"reservationtag/delete", reservationTag.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"reservationtag/delete", reservationTag.selectedItemForDelete, 'POST').success(function (res) {
                         reservationTag.categoryBusyIndicator.isActive = false;
                         reservationTag.treeConfig.showbusy = false;
                         reservationTag.showIsBusy = false;
@@ -801,7 +801,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", reservationTag.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     reservationTag.remove(reservationTag.FileList, reservationTag.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

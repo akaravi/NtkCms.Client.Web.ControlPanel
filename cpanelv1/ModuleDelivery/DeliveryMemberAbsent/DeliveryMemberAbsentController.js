@@ -224,7 +224,7 @@
                     rashaErManage.checkAction(response);
                     deliveryMemberAbsent.selectedItemForDelete = response.Item;
                     console.log(deliveryMemberAbsent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberAbsent/delete', deliveryMemberAbsent.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberAbsent/delete', deliveryMemberAbsent.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         deliveryMemberAbsent.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

@@ -208,7 +208,7 @@
                     rashaErManage.checkAction(response);
                     reservationService.selectedItemForDelete = response.Item;
                     console.log(reservationService.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'reservationservice/delete', reservationService.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'reservationservice/delete', reservationService.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         reservationService.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

@@ -237,7 +237,7 @@ advertisementPropertyDetail.LinkCategoryIdSelector = {
                     ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetailGroup/getviewmodel', node.Id, 'GET').success(function (response) {
                         rashaErManage.checkAction(response);
                         advertisementPropertyDetail.selectedItemForDelete = response.Item;
-                        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetailGroup/delete', advertisementPropertyDetail.selectedItemForDelete, 'DELETE').success(function (res) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyDetailGroup/delete', advertisementPropertyDetail.selectedItemForDelete, 'POST').success(function (res) {
 
                             if (res.IsSuccess) {
                                 advertisementPropertyDetail.gridOptions.advancedSearchData.engine.Filters = null;
@@ -467,7 +467,7 @@ advertisementPropertyDetail.LinkCategoryIdSelector = {
                     advertisementPropertyDetail.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     advertisementPropertyDetail.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"advertisementPropertyDetail/delete", advertisementPropertyDetail.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"advertisementPropertyDetail/delete", advertisementPropertyDetail.selectedItemForDelete, 'POST').success(function (res) {
                         advertisementPropertyDetail.treeConfig.showbusy = false;
                         advertisementPropertyDetail.showIsBusy = false;
                         rashaErManage.checkAction(res);

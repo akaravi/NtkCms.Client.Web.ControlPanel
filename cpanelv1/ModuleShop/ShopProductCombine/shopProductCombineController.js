@@ -239,7 +239,7 @@
                     shopCombine.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     shopCombine.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"ShopProductCombine/delete", shopCombine.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"ShopProductCombine/delete", shopCombine.selectedItemForDelete, 'POST').success(function (res) {
                         shopCombine.busyIndicator.isActive = false;
                         shopCombine.showIsBusy = false;
                         rashaErManage.checkAction(res);
@@ -405,7 +405,7 @@
         var filterModel = { Filters: [] };
         filterModel.Filters.push({ PropertyName: "LinkProductItemId", SearchType: 0, IntValue1: shopCombine.itemsList[index].Id });
         filterModel.Filters.push({ PropertyName: "LinkProductCombineId", SearchType: 0, IntValue1: shopCombine.selectedItem.LinkProductCombineId });
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductItemCombine/DeleteFilterModel', filterModel, 'DELETE').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductItemCombine/DeleteFilterModel', filterModel, 'POST').success(function (res) {
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
                 shopCombine.itemsList.splice(index, 1);

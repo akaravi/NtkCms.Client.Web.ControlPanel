@@ -205,7 +205,7 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
                 ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/getviewmodel', cmsSiteMenu.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     //rashaErManage.checkAction(response);
                     cmsSiteMenu.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/delete', cmsSiteMenu.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/delete', cmsSiteMenu.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         cmsSiteMenu.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

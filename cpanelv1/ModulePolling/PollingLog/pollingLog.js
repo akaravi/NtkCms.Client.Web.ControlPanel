@@ -223,7 +223,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     pollingLog.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"pollingCategory/delete", pollingLog.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"pollingCategory/delete", pollingLog.selectedItemForDelete, 'POST').success(function (res) {
                         if (res.IsSuccess) {
                             pollingLog.categoryBusyIndicator.isActive = false;
                             if (pollingLog.selectedItemForDelete.LinkParentId == null) {
@@ -386,7 +386,7 @@
                     pollingLog.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     pollingLog.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"pollingLog/delete", pollingLog.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"pollingLog/delete", pollingLog.selectedItemForDelete, 'POST').success(function (res) {
                         pollingLog.treeConfig.showbusy = false;
                         pollingLog.showIsBusy = false;
                         rashaErManage.checkAction(res);
@@ -536,7 +536,7 @@
                 pollingLog.showIsBusy = false;
                 rashaErManage.checkAction(response);
                 pollingLog.selectedItemForDelete = response.Item;
-                ajax.call(cmsServerConfig.configApiServerPath+"pollingOption/delete", pollingLog.selectedItemForDelete, "DELETE").success(function (res) {
+                ajax.call(cmsServerConfig.configApiServerPath+"pollingOption/delete", pollingLog.selectedItemForDelete, 'POST').success(function (res) {
                     pollingLog.treeConfig.showbusy = false;
                     pollingLog.showIsBusy = false;
                     rashaErManage.checkAction(res);
@@ -633,7 +633,7 @@
                     pollingLog.addOptionBusyIndicator = false;
                     rashaErManage.checkAction(response);
                     pollingLog.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"pollingoption/delete", pollingLog.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"pollingoption/delete", pollingLog.selectedItemForDelete, 'POST').success(function (res) {
                         pollingLog.addOptionBusyIndicator = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {

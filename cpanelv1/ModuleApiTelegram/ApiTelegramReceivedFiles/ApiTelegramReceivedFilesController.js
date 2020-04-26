@@ -143,7 +143,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramReceivedFiles/getviewmodel', receivedFiles.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     receivedFiles.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramReceivedFiles/delete', receivedFiles.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramReceivedFiles/delete', receivedFiles.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         receivedFiles.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

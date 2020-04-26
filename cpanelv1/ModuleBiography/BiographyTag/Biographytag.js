@@ -349,7 +349,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'biographyCategorytag/getviewmodel', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     biographyTag.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'biographyCategorytag/delete', biographyTag.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'biographyCategorytag/delete', biographyTag.selectedItemForDelete, 'POST').success(function (res) {
                         biographyTag.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             biographyTag.gridOptions.advancedSearchData.engine.Filters = null;
@@ -531,7 +531,7 @@
                     rashaErManage.checkAction(response);
                     biographyTag.selectedItemForDelete = response.Item;
                     console.log(biographyTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"biographytag/delete", biographyTag.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"biographytag/delete", biographyTag.selectedItemForDelete, 'POST').success(function (res) {
                         biographyTag.categoryBusyIndicator.isActive = false;
                         biographyTag.treeConfig.showbusy = false;
                         biographyTag.showIsBusy = false;
@@ -801,7 +801,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", biographyTag.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     biographyTag.remove(biographyTag.FileList, biographyTag.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

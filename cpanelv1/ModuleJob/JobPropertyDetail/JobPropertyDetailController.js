@@ -220,7 +220,7 @@
                     ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetailGroup/getviewmodel', node.Id, 'GET').success(function (response) {
                         rashaErManage.checkAction(response);
                         jobPropertyDetail.selectedItemForDelete = response.Item;
-                        ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetailGroup/delete', jobPropertyDetail.selectedItemForDelete, 'DELETE').success(function (res) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'JobPropertyDetailGroup/delete', jobPropertyDetail.selectedItemForDelete, 'POST').success(function (res) {
 
                             if (res.IsSuccess) {
                                 jobPropertyDetail.gridOptions.advancedSearchData.engine.Filters = null;
@@ -450,7 +450,7 @@
                     jobPropertyDetail.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     jobPropertyDetail.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"jobPropertyDetail/delete", jobPropertyDetail.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"jobPropertyDetail/delete", jobPropertyDetail.selectedItemForDelete, 'POST').success(function (res) {
                         jobPropertyDetail.treeConfig.showbusy = false;
                         jobPropertyDetail.showIsBusy = false;
                         rashaErManage.checkAction(res);

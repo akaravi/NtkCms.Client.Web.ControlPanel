@@ -326,7 +326,7 @@
             var engine = {};
             engine.Filters = [];
             engine.Filters.push(filterValue);
-            ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetailValue/DeleteFilterModel', engine, 'DELETE').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetailValue/DeleteFilterModel', engine, 'POST').success(function (response) {
                 rashaErManage.checkAction(response);
                 console.log(response.Item);
             }).error(function (data, errCode, c, d) {
@@ -430,7 +430,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     vehicleProperty.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'vehicleproperty/delete', vehicleProperty.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'vehicleproperty/delete', vehicleProperty.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         vehicleProperty.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -869,7 +869,7 @@
 
     vehicleProperty.deleteContract = function (index) {
         vehicleProperty.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'VehicleContract/delete', vehicleProperty.contractsList[index], 'DELETE').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath+'VehicleContract/delete', vehicleProperty.contractsList[index], 'POST').success(function (res) {
             vehicleProperty.addRequested = false;
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
@@ -985,7 +985,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", vehicleProperty.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     vehicleProperty.remove(vehicleProperty.FileList, vehicleProperty.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

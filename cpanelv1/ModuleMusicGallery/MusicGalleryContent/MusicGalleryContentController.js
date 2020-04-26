@@ -584,7 +584,7 @@ mscGallery.LinkCategoryIdSelector = {
                     rashaErManage.checkAction(response);
                     mscGallery.selectedItemForDelete = response.Item;
                     console.log(mscGallery.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryCategory/delete', mscGallery.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryCategory/delete', mscGallery.selectedItemForDelete, 'POST').success(function (res) {
                         mscGallery.treeBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //mscGallery.replaceCategoryItem(mscGallery.treeConfig.Items, node.Id);
@@ -700,7 +700,7 @@ mscGallery.LinkCategoryIdSelector = {
                     var filterDataModel = { PropertyName: "Id", SearchType: 0, IntValue1: value.Id, ClauseType: 1 };
                     deleteFilterModel.Filters.push(filterDataModel);
                 });
-                ajax.call(cmsServerConfig.configApiServerPath+"musicgallerycontent/DeleteFilterModel", deleteFilterModel, "DELETE").success(function (res) {
+                ajax.call(cmsServerConfig.configApiServerPath+"musicgallerycontent/DeleteFilterModel", deleteFilterModel, 'POST').success(function (res) {
                     rashaErManage.checkAction(res);
                     if (res.IsSuccess) {
                         mscGallery.gridOptions.reGetAll();

@@ -174,7 +174,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     cmsModulegrd.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'coremodule/delete', cmsModulegrd.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'coremodule/delete', cmsModulegrd.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsModulegrd.replaceItem(cmsModulegrd.selectedItemForDelete.Id);

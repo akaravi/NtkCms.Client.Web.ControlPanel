@@ -349,7 +349,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'mscGalleryCategorytag/getviewmodel', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     mscGalleryTag.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'mscGalleryCategorytag/delete', mscGalleryTag.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'mscGalleryCategorytag/delete', mscGalleryTag.selectedItemForDelete, 'POST').success(function (res) {
                         mscGalleryTag.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             mscGalleryTag.gridOptions.advancedSearchData.engine.Filters = null;
@@ -531,7 +531,7 @@
                     rashaErManage.checkAction(response);
                     mscGalleryTag.selectedItemForDelete = response.Item;
                     console.log(mscGalleryTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"mscGallerytag/delete", mscGalleryTag.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"mscGallerytag/delete", mscGalleryTag.selectedItemForDelete, 'POST').success(function (res) {
                         mscGalleryTag.categoryBusyIndicator.isActive = false;
                         mscGalleryTag.treeConfig.showbusy = false;
                         mscGalleryTag.showIsBusy = false;
@@ -801,7 +801,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", mscGalleryTag.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     mscGalleryTag.remove(mscGalleryTag.FileList, mscGalleryTag.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

@@ -397,7 +397,7 @@
                     rashaErManage.checkAction(response);
                     campaignDetailMember.selectedItemForDelete = response.Item;
                     console.log(campaignDetailMember.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/delete', campaignDetailMember.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/delete', campaignDetailMember.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         campaignDetailMember.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -660,7 +660,7 @@
     }
 
     campaignDetailMember.deleteAttachedfieldName = function (index) {
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/delete', campaignDetailMember.contractsList[index], 'DELETE').success(function (res) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/delete', campaignDetailMember.contractsList[index], 'POST').success(function (res) {
             rashaErManage.checkAction(res);
             if (res.IsSuccess) {
                 campaignDetailMember.contractsList.splice(index, 1);
@@ -757,7 +757,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", campaignDetailMember.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     campaignDetailMember.remove(campaignDetailMember.FileList, campaignDetailMember.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

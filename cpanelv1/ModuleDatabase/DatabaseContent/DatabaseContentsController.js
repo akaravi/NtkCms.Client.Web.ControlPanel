@@ -343,7 +343,7 @@
                     rashaErManage.checkAction(response);
                     dbContent.selectedItemForDelete = response.Item;
                     console.log(dbContent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'DBCategory/delete', dbContent.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'DBCategory/delete', dbContent.selectedItemForDelete, 'POST').success(function (res) {
 
                         if (res.IsSuccess) {
                             dbContent.gridOptions.advancedSearchData.engine.Filters = null;
@@ -562,7 +562,7 @@
                     rashaErManage.checkAction(response);
                     dbContent.selectedItemForDelete = response.Item;
                     console.log(dbContent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"dbContent/delete", dbContent.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"dbContent/delete", dbContent.selectedItemForDelete, 'POST').success(function (res) {
                         dbContent.categoryBusyIndicator.isActive = false;
                         dbContent.treeConfig.showbusy = false;
                         dbContent.showIsBusy = false;
@@ -717,7 +717,7 @@
                     rashaErManage.checkAction(response);
                     dbContent.selectedItemForDelete = response.Item;
                     console.log(dbContent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'dbContent/delete', dbContent.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'dbContent/delete', dbContent.selectedItemForDelete, 'POST').success(function (res) {
                         dbContent.treeConfig.showbusy = false;
                         dbContent.showIsBusy = false;
                         rashaErManage.checkAction(res);

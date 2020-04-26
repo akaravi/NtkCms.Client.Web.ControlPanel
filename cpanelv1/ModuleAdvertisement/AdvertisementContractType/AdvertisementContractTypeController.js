@@ -162,7 +162,7 @@
                     rashaErManage.checkAction(response);
                     advertisementContractType.selectedItemForDelete = response.Item;
                     console.log(advertisementContractType.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontracttype/delete', advertisementContractType.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontracttype/delete', advertisementContractType.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         advertisementContractType.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

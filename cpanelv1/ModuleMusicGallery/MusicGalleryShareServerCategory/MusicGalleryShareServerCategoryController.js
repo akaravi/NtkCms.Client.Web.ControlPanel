@@ -297,7 +297,7 @@
                     rashaErManage.checkAction(response);
                     musicGalleryShareServerCategory.selectedItemForDelete = response.Item;
                     console.log(musicGalleryShareServerCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryShareMainAdminSetting/delete', musicGalleryShareServerCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'MusicGalleryShareMainAdminSetting/delete', musicGalleryShareServerCategory.selectedItemForDelete, 'POST').success(function (res) {
                         musicGalleryShareServerCategory.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //musicGalleryShareServerCategory.replaceCategoryItem(musicGalleryShareServerCategory.treeConfig.Items, node.Id);
@@ -502,7 +502,7 @@
                     rashaErManage.checkAction(response);
                     musicGalleryShareServerCategory.selectedItemForDelete = response.Item;
                     console.log(musicGalleryShareServerCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"musicGalleryShareServerCategory/delete", musicGalleryShareServerCategory.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"musicGalleryShareServerCategory/delete", musicGalleryShareServerCategory.selectedItemForDelete, 'POST').success(function (res) {
                         musicGalleryShareServerCategory.categoryBusyIndicator.isActive = false;
                         musicGalleryShareServerCategory.treeConfig.showbusy = false;
                         musicGalleryShareServerCategory.showIsBusy = false;

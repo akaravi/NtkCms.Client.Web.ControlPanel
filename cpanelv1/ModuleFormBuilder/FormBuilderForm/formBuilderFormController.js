@@ -148,7 +148,7 @@
                     rashaErManage.checkAction(response);
                     form.selectedItemForDelete = response.Item;
                     console.log(form.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/delete', form.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/delete', form.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             form.replaceItem(form.selectedItemForDelete.Id);

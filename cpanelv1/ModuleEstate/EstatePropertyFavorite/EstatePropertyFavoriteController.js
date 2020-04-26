@@ -144,7 +144,7 @@
                     rashaErManage.checkAction(response);
                     estatePropertyFavorite.selectedItemForDelete = response.Item;
                     console.log(estatePropertyFavorite.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyFavorite/delete', estatePropertyFavorite.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyFavorite/delete', estatePropertyFavorite.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         estatePropertyFavorite.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

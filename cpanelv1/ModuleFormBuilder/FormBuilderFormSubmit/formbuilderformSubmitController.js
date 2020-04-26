@@ -176,7 +176,7 @@
                     rashaErManage.checkAction(response);
                     value.selectedItemForDelete = response.Item;
                     console.log(value.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'formBuilderFormSubmit/delete', value.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'formBuilderFormSubmit/delete', value.selectedItemForDelete, 'POST').success(function (res) {
                         value.busyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {

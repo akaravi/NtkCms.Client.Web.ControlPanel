@@ -240,7 +240,7 @@
                     rashaErManage.checkAction(response);
                     advertisementPropertyType.selectedItemForDelete = response.Item;
                     console.log(advertisementPropertyType.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'advertisementpropertytypecategory/delete', advertisementPropertyType.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'advertisementpropertytypecategory/delete', advertisementPropertyType.selectedItemForDelete, 'POST').success(function (res) {
                         advertisementPropertyType.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //advertisementPropertyType.replaceCategoryItem(advertisementPropertyType.treeConfig.Items, node.Id);
@@ -407,7 +407,7 @@
                     rashaErManage.checkAction(response);
                     advertisementPropertyType.selectedItemForDelete = response.Item;
                     console.log(advertisementPropertyType.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'advertisementpropertytype/delete', advertisementPropertyType.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'advertisementpropertytype/delete', advertisementPropertyType.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         advertisementPropertyType.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

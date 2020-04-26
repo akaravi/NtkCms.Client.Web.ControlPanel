@@ -141,7 +141,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/getviewmodel', ticketingFaq.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     ticketingFaq.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/delete', ticketingFaq.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/delete', ticketingFaq.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             ticketingFaq.replaceItem(ticketingFaq.selectedItemForDelete.Id);

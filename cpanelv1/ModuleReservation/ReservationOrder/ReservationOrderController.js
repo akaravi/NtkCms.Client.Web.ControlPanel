@@ -208,7 +208,7 @@
                     rashaErManage.checkAction(response);
                     order.selectedItemForDelete = response.Item;
                     console.log(order.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/delete', order.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/delete', order.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         order.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

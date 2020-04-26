@@ -191,7 +191,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/getviewmodel', platformCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     platformCtrl.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/delete', platformCtrl.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/delete', platformCtrl.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         platformCtrl.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

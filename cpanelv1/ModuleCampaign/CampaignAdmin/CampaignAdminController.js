@@ -390,7 +390,7 @@
                     rashaErManage.checkAction(response);
                     campaignAdmin.selectedItemForDelete = response.Item;
                     console.log(campaignAdmin.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/delete', campaignAdmin.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'campaignAdmin/delete', campaignAdmin.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         campaignAdmin.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

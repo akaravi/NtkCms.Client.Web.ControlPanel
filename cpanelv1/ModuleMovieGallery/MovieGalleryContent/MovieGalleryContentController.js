@@ -573,7 +573,7 @@ mvGallery.LinkCategoryIdSelector = {
                     rashaErManage.checkAction(response);
                     mvGallery.selectedItemForDelete = response.Item;
                     console.log(mvGallery.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/delete', mvGallery.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/delete', mvGallery.selectedItemForDelete, 'POST').success(function (res) {
                         mvGallery.treeBusyIndicator.isActive = false;
                         mvGallery.addRequested = true;
                         if (res.IsSuccess) {
@@ -660,7 +660,7 @@ mvGallery.LinkCategoryIdSelector = {
                 //ajax.call(cmsServerConfig.configApiServerPath+"movieGallerycontent/getall", mvGallery.selectedRow.item.Id, "POST").success(function (response) {
                 //    rashaErManage.checkAction(response);
                 //    mvGallery.selectedItemsForDelete = response.ListItems;
-                ajax.call(cmsServerConfig.configApiServerPath+"movieGallerycontent/DeleteFilterModel", deleteFilterModel, "DELETE").success(function (res) {
+                ajax.call(cmsServerConfig.configApiServerPath+"movieGallerycontent/DeleteFilterModel", deleteFilterModel, 'POST').success(function (res) {
                     rashaErManage.checkAction(res);
                     if (res.IsSuccess) {
                         //mvGallery.replaceItem(mvGallery.selectedItemForDelete.Id);

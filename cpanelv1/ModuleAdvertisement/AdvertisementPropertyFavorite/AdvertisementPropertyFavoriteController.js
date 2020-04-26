@@ -144,7 +144,7 @@
                     rashaErManage.checkAction(response);
                     advertisementPropertyFavorite.selectedItemForDelete = response.Item;
                     console.log(advertisementPropertyFavorite.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyFavorite/delete', advertisementPropertyFavorite.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyFavorite/delete', advertisementPropertyFavorite.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         advertisementPropertyFavorite.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

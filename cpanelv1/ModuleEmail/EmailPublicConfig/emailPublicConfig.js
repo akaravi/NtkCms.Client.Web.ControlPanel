@@ -195,7 +195,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     emailPublicConfig.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'EmailPublicConfig/delete', emailPublicConfig.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'EmailPublicConfig/delete', emailPublicConfig.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             emailPublicConfig.replaceItem(emailPublicConfig.selectedItemForDelete.Id);

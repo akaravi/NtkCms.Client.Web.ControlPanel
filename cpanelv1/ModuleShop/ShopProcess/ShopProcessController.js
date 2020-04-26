@@ -258,7 +258,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/getviewmodel', shopProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     shopProcess.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/delete', shopProcess.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/delete', shopProcess.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         shopProcess.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

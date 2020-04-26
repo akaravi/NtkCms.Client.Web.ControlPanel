@@ -266,7 +266,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     emailOutBoxReciver.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciver/delete', emailOutBoxReciver.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'emailOutBoxReciver/delete', emailOutBoxReciver.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             emailOutBoxReciver.replaceItem(emailOutBoxReciver.selectedItemForDelete.Id);

@@ -194,7 +194,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     publicConfig.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentpublicconfig/delete', publicConfig.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentpublicconfig/delete', publicConfig.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             publicConfig.replaceItem(publicConfig.selectedItemForDelete.Id);

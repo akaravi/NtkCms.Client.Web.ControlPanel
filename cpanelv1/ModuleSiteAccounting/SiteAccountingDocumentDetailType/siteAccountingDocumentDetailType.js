@@ -159,7 +159,7 @@
                     //rashaErManage.checkAction(response);
                     siteAccDocumentDetailType.selectedItemForDelete = response.Item;
                     console.log(siteAccDocumentDetailType.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'siteAccountingDocumentDetailType/delete', siteAccDocumentDetailType.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'siteAccountingDocumentDetailType/delete', siteAccDocumentDetailType.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         siteAccDocumentDetailType.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

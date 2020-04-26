@@ -160,7 +160,7 @@
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     cmsModulePageDependencygrd.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/delete', cmsModulePageDependencygrd.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/delete', cmsModulePageDependencygrd.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmsModulePageDependencygrd.replaceItem(cmsModulePageDependencygrd.selectedItemForDelete.Id);

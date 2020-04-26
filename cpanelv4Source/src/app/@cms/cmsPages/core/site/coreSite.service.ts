@@ -33,7 +33,7 @@ export class CoreSiteService implements OnDestroy {
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }
-  ServiceCoreSiteGetAll(model: FilterModel) {
+  ServiceGetAll(model: FilterModel) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -58,7 +58,7 @@ export class CoreSiteService implements OnDestroy {
       );
   }
 
-  ServiceCoreSiteSelectSite(model: AuthRenewTokenModel) {
+  ServiceSelectSite(model: AuthRenewTokenModel) {
     return this.cmsAuthService.RenewToken(model);
   }
 }

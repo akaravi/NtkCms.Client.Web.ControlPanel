@@ -117,7 +117,7 @@
                     rashaErManage.checkAction(response);
                     cmdUserBadLogin.selectedItemForDelete = response.Item;
                     console.log(cmdUserBadLogin.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUserBadLogin/delete', cmdUserBadLogin.selectedItemForDelete , 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUserBadLogin/delete', cmdUserBadLogin.selectedItemForDelete , 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             cmdUserBadLogin.replaceItem(cmdUserBadLogin.selectedItemForDelete.Id);

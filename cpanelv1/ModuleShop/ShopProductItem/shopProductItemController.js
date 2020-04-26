@@ -190,7 +190,7 @@
                     shopItem.showIsBusy = false;
                     rashaErManage.checkAction(response);
                     shopItem.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+"ShopProductItem/delete", shopItem.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"ShopProductItem/delete", shopItem.selectedItemForDelete, 'POST').success(function (res) {
                         shopItem.busyIndicator.isActive = false;
                         shopItem.showIsBusy = false;
                         rashaErManage.checkAction(res);

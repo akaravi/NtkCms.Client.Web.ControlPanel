@@ -139,7 +139,7 @@
                     rashaErManage.checkAction(response);
                     chartContentTag.selectedItemForDelete = response.Item;
                     console.log(chartContentTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/delete',  chartContentTag.selectedItemForDelete , 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/delete',  chartContentTag.selectedItemForDelete , 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         chartContentTag.busyIndicator.isActive = false;
 

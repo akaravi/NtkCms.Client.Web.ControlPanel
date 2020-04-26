@@ -155,7 +155,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/getviewmodel', inputLogCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     inputLogCtrl.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/delete', inputLogCtrl.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'inputLogCtrl/delete', inputLogCtrl.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         inputLogCtrl.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

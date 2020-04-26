@@ -221,7 +221,7 @@
                 console.log(linkManagementBillboardPattern.gridOptions.selectedRow.item);
                 ajax.call(cmsServerConfig.configApiServerPath+'linkManagementBillboardPattern/getviewmodel', linkManagementBillboardPattern.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     linkManagementBillboardPattern.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'linkManagementBillboardPattern/delete', linkManagementBillboardPattern.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'linkManagementBillboardPattern/delete', linkManagementBillboardPattern.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         linkManagementBillboardPattern.busyIndicator.isActive = false;
                         if (res.IsSuccess) {
@@ -514,7 +514,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", linkManagementBillboardPattern.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     linkManagementBillboardPattern.remove(linkManagementBillboardPattern.FileList, linkManagementBillboardPattern.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

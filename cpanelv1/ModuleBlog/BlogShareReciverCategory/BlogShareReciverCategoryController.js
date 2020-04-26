@@ -326,7 +326,7 @@
                     rashaErManage.checkAction(response);
                     blogShareReciverCategory.selectedItemForDelete = response.Item;
                     console.log(blogShareReciverCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'BlogShareMainAdminSetting/delete', blogShareReciverCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'BlogShareMainAdminSetting/delete', blogShareReciverCategory.selectedItemForDelete, 'POST').success(function (res) {
                         blogShareReciverCategory.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //blogShareReciverCategory.replaceCategoryItem(blogShareReciverCategory.treeConfig.Items, node.Id);
@@ -530,7 +530,7 @@
                     rashaErManage.checkAction(response);
                     blogShareReciverCategory.selectedItemForDelete = response.Item;
                     console.log(blogShareReciverCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"blogShareReciverCategory/delete", blogShareReciverCategory.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"blogShareReciverCategory/delete", blogShareReciverCategory.selectedItemForDelete, 'POST').success(function (res) {
                         blogShareReciverCategory.categoryBusyIndicator.isActive = false;
                         blogShareReciverCategory.treeConfig.showbusy = false;
                         blogShareReciverCategory.showIsBusy = false;

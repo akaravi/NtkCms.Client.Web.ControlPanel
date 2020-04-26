@@ -223,7 +223,7 @@
                     rashaErManage.checkAction(response);
                     biographycategory.selectedItemForDelete = response.Item;
                     console.log(biographycategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'biographycategory/delete', biographycategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'biographycategory/delete', biographycategory.selectedItemForDelete, 'POST').success(function (res) {
                         biographycategory.categoryBusyIndicator.isActive = false;
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {

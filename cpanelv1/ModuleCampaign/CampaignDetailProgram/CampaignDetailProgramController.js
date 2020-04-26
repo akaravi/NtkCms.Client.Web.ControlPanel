@@ -214,7 +214,7 @@
                     rashaErManage.checkAction(response);
                     campaignDetailProgram.selectedItemForDelete = response.Item;
                     console.log(campaignDetailProgram.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailProgram/delete', campaignDetailProgram.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailProgram/delete', campaignDetailProgram.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         campaignDetailProgram.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

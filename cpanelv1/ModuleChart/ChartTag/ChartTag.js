@@ -349,7 +349,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'chartCategorytag/getviewmodel', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     chartTag.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'chartCategorytag/delete', chartTag.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'chartCategorytag/delete', chartTag.selectedItemForDelete, 'POST').success(function (res) {
                         chartTag.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             chartTag.gridOptions.advancedSearchData.engine.Filters = null;
@@ -532,7 +532,7 @@
                     rashaErManage.checkAction(response);
                     chartTag.selectedItemForDelete = response.Item;
                     console.log(chartTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"charttag/delete", chartTag.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"charttag/delete", chartTag.selectedItemForDelete, 'POST').success(function (res) {
                         chartTag.categoryBusyIndicator.isActive = false;
                         chartTag.treeConfig.showbusy = false;
                         chartTag.showIsBusy = false;
@@ -802,7 +802,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", chartTag.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     chartTag.remove(chartTag.FileList, chartTag.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

@@ -172,7 +172,7 @@
                     //rashaErManage.checkAction(response);
                     mvGalleryComment.selectedItemForDelete = response.Item;
                     console.log(mvGalleryComment.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/delete', mvGalleryComment.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/delete', mvGalleryComment.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         mvGalleryComment.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

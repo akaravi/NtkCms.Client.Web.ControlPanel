@@ -349,7 +349,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+'newsCategorytag/getviewmodel', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     newsTag.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'newsCategorytag/delete', newsTag.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'newsCategorytag/delete', newsTag.selectedItemForDelete, 'POST').success(function (res) {
                         newsTag.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             newsTag.gridOptions.advancedSearchData.engine.Filters = null;
@@ -531,7 +531,7 @@
                     rashaErManage.checkAction(response);
                     newsTag.selectedItemForDelete = response.Item;
                     console.log(newsTag.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"newstag/delete", newsTag.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"newstag/delete", newsTag.selectedItemForDelete, 'POST').success(function (res) {
                         newsTag.categoryBusyIndicator.isActive = false;
                         newsTag.treeConfig.showbusy = false;
                         newsTag.showIsBusy = false;
@@ -801,7 +801,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", newsTag.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     newsTag.remove(newsTag.FileList, newsTag.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

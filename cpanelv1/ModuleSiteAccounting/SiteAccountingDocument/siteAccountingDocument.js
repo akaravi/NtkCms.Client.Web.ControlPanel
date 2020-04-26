@@ -154,7 +154,7 @@
                     //rashaErManage.checkAction(response);
                     ServiceComment.selectedItemForDelete = response.Item;
                     console.log(ServiceComment.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ServiceComment/delete', ServiceComment.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ServiceComment/delete', ServiceComment.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         ServiceComment.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

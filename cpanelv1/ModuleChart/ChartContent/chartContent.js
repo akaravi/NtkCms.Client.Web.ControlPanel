@@ -560,7 +560,7 @@
                     rashaErManage.checkAction(response);
                     chartContent.selectedItemForDelete = response.Item;
                     console.log(chartContent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'chartcategory/delete', chartContent.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'chartcategory/delete', chartContent.selectedItemForDelete, 'POST').success(function (res) {
                         chartContent.contentBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //chartContent.replaceCategoryItem(chartContent.treeConfig.Items, node.Id);
@@ -905,7 +905,7 @@
                     rashaErManage.checkAction(response);
                     chartContent.selectedItemForDelete = response.Item;
                     console.log(chartContent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"chartContent/delete", chartContent.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"chartContent/delete", chartContent.selectedItemForDelete, 'POST').success(function (res) {
                         chartContent.contentBusyIndicator.isActive = false;
                         chartContent.treeConfig.showbusy = false;
                         chartContent.showIsBusy = false;
@@ -1162,7 +1162,7 @@
                     rashaErManage.checkAction(response);
                     chartContent.selectedItemForDelete = response.Item;
                     console.log(chartContent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'chartContent/delete', chartContent.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'chartContent/delete', chartContent.selectedItemForDelete, 'POST').success(function (res) {
                         chartContent.treeConfig.showbusy = false;
                         chartContent.showIsBusy = false;
                         rashaErManage.checkAction(res);
@@ -1213,7 +1213,7 @@
                     rashaErManage.checkAction(response);
                     chartContent.selectedItemForDelete = response.Item;
                     console.log(chartContent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'chartContent/delete', chartContent.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'chartContent/delete', chartContent.selectedItemForDelete, 'POST').success(function (res) {
                         chartContent.treeConfig.showbusy = false;
                         chartContent.showIsBusy = false;
                         rashaErManage.checkAction(res);
@@ -1481,7 +1481,7 @@
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", chartContent.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     chartContent.remove(chartContent.FileList, chartContent.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

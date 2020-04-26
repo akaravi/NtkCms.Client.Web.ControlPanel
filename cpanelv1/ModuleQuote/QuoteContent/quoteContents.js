@@ -420,7 +420,7 @@ quoteContent.LinkCategoryIdSelector = {
                     rashaErManage.checkAction(response);
                     quoteContent.selectedItemForDelete = response.Item;
                     console.log(quoteContent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'QuoteCategory/delete', quoteContent.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'QuoteCategory/delete', quoteContent.selectedItemForDelete, 'POST').success(function (res) {
                         if (res.IsSuccess) {
                             //quoteContent.replaceCategoryItem(quoteContent.treeConfig.Items, node.Id);
                             console.log("Deleted Successfully !");
@@ -652,7 +652,7 @@ quoteContent.LinkCategoryIdSelector = {
                     rashaErManage.checkAction(response);
                     quoteContent.selectedItemForDelete = response.Item;
                     console.log(quoteContent.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"quoteContent/delete", quoteContent.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"quoteContent/delete", quoteContent.selectedItemForDelete, 'POST').success(function (res) {
                         quoteContent.categoryBusyIndicator.isActive = false;
                         quoteContent.treeConfig.showbusy = false;
                         quoteContent.showIsBusy = false;
@@ -1105,7 +1105,7 @@ quoteContent.LinkCategoryIdSelector = {
         ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", quoteContent.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'DELETE').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     quoteContent.remove(quoteContent.FileList, quoteContent.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file

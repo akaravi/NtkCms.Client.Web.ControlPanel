@@ -193,7 +193,7 @@ logInputCtrl.treeOptions = {
                 ajax.call(cmsServerConfig.configApiServerPath+'apitelegramloginput/getviewmodel', logInputCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     logInputCtrl.selectedItemForDelete = response.Item;
-                    ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/delete', logInputCtrl.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/delete', logInputCtrl.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         logInputCtrl.busyIndicator.isActive = false;
                         if (res.IsSuccess) {

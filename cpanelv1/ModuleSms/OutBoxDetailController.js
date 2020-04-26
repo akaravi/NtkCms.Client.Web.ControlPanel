@@ -139,7 +139,7 @@
                     rashaErManage.checkAction(response);
                     outBoxDetail.selectedItemForDelete = response.Item;
                     console.log(outBoxDetail.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetail/delete', outBoxDetail.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetail/delete', outBoxDetail.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             outBoxDetail.replaceItem(outBoxDetail.selectedItemForDelete.Id);

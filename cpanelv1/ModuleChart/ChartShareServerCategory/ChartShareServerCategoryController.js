@@ -297,7 +297,7 @@
                     rashaErManage.checkAction(response);
                     chartShareServerCategory.selectedItemForDelete = response.Item;
                     console.log(chartShareServerCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'ChartShareMainAdminSetting/delete', chartShareServerCategory.selectedItemForDelete, 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'ChartShareMainAdminSetting/delete', chartShareServerCategory.selectedItemForDelete, 'POST').success(function (res) {
                         chartShareServerCategory.categoryBusyIndicator.isActive = false;
                         if (res.IsSuccess) {
                             //chartShareServerCategory.replaceCategoryItem(chartShareServerCategory.treeConfig.Items, node.Id);
@@ -501,7 +501,7 @@
                     rashaErManage.checkAction(response);
                     chartShareServerCategory.selectedItemForDelete = response.Item;
                     console.log(chartShareServerCategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+"chartShareServerCategory/delete", chartShareServerCategory.selectedItemForDelete, "DELETE").success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"chartShareServerCategory/delete", chartShareServerCategory.selectedItemForDelete, 'POST').success(function (res) {
                         chartShareServerCategory.categoryBusyIndicator.isActive = false;
                         chartShareServerCategory.treeConfig.showbusy = false;
                         chartShareServerCategory.showIsBusy = false;

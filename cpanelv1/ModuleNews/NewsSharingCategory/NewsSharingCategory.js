@@ -150,7 +150,7 @@
                     rashaErManage.checkAction(response);
                     newssharingcategory.selectedItemForDelete = response.Item;
                     console.log(newssharingcategory.selectedItemForDelete);
-                    ajax.call(cmsServerConfig.configApiServerPath+'newssharingcategory/delete',  newssharingcategory.selectedItemForDelete , 'DELETE').success(function (res) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'newssharingcategory/delete',  newssharingcategory.selectedItemForDelete , 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
                         if (res.IsSuccess) {
                             newssharingcategory.replaceItem(newssharingcategory.selectedItemForDelete.Id);
