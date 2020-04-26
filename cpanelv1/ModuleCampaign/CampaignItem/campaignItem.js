@@ -91,7 +91,7 @@
             rashaErManage.checkAction(data, errCode);
             campaignItem.contentBusyIndicator.isActive = false;
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"newsTag/getviewmodel", "0", 'GET').success(function (response) {    //Get a ViewModel for newsTag
+        ajax.call(cmsServerConfig.configApiServerPath+"newsTag/GetViewModel", "", 'GET').success(function (response) {    //Get a ViewModel for newsTag
             campaignItem.ModuleTag = response.Item;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -105,7 +105,7 @@
         if (buttonIsPressed) { return };
         campaignItem.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             campaignItem.selectedItem = response.Item;
@@ -151,7 +151,7 @@
 
         campaignItem.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/getviewmodel', campaignItem.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/GetOne', campaignItem.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             campaignItem.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -263,7 +263,7 @@
                 campaignItem.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/GetOne', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     campaignItem.selectedItemForDelete = response.Item;
@@ -349,7 +349,7 @@
         campaignItem.addRequested = false;
         campaignItem.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItem/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItem/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             //console.log(response);
             rashaErManage.checkAction(response);
@@ -375,7 +375,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItem/getviewmodel', campaignItem.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItem/GetOne', campaignItem.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             campaignItem.selectedItem = response1.Item;
@@ -465,7 +465,7 @@
                 campaignItem.showbusy = true;
                 campaignItem.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"CampaignItem/getviewmodel", campaignItem.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"CampaignItem/GetOne", campaignItem.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     campaignItem.showbusy = false;
                     campaignItem.showIsBusy = false;
@@ -506,7 +506,7 @@
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItem/getviewmodel', campaignItem.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItem/GetOne', campaignItem.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignItem.selectedItem = response.Item;
             campaignItem.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;

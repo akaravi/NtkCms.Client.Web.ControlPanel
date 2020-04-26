@@ -45,7 +45,7 @@
         if (buttonIsPressed) { return };
         cmsLocation.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreLocation/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreLocation/GetViewModel', '', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsLocation.selectedItem = response.Item;
@@ -84,7 +84,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreLocation/getviewmodel', cmsLocation.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreLocation/GetOne', cmsLocation.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsLocation.selectedItem = response.Item;
@@ -147,7 +147,7 @@
             if (isConfirmed) {
                 console.log(cmsLocation.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreLocation/getviewmodel', cmsLocation.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreLocation/GetOne', cmsLocation.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     cmsLocation.selectedItemForDelete = response.Item;

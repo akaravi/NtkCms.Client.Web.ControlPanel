@@ -39,7 +39,7 @@
         taskScheduleProcessValue.busyIndicator.isActive = true;
         taskScheduleProcessValue.addRequested = true;
         taskScheduleProcessValue.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcessvalue/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcessvalue/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             taskScheduleProcessValue.selectedItem = response.Item;
             taskScheduleProcessValue.busyIndicator.isActive = false;
@@ -86,7 +86,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcessvalue/getviewmodel', taskScheduleProcessValue.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcessvalue/GetOne', taskScheduleProcessValue.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             taskScheduleProcessValue.selectedItem = response.Item;
             $modal.open({
@@ -147,7 +147,7 @@
             if (isConfirmed) {
                 taskScheduleProcessValue.busyIndicator.isActive = true;
                 console.log(taskScheduleProcessValue.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcessvalue/getviewmodel', taskScheduleProcessValue.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcessvalue/GetOne', taskScheduleProcessValue.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     taskScheduleProcessValue.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcessvalue/delete', taskScheduleProcessValue.selectedItemForDelete, 'POST').success(function (res) {
@@ -234,7 +234,7 @@
         var filterDataModel = { PropertyName: "Id", searchType: 0, IntValue1: taskScheduleProcessValue.ProcessId };
         var filterModel = { Filters: [] };
         filterModel.Filters.push(filterDataModel);
-        ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcess/getviewmodel', ProcessId, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcess/GetOne', ProcessId, 'GET').success(function (response1) {
             var engine = {};
             engine.Filters = [];
             engine.Filters.push({ PropertyName: "LinkProcessId", searchType: 0, IntValue1: ProcessId });

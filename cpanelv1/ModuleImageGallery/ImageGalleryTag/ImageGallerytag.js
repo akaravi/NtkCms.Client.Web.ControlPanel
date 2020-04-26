@@ -187,7 +187,7 @@
     // Open Add Category Modal 
     imgGalleryTag.addNewCategoryModel = function () {
         imgGalleryTag.addRequested = false;
-        ajax.call(cmsServerConfig.configApiServerPath+'imgGalleryCategorytag/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'imgGalleryCategorytag/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             imgGalleryTag.selectedItem = response.Item;
             //Set dataForTheTree
@@ -233,7 +233,7 @@
 
         imgGalleryTag.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'imgGalleryCategorytag/getviewmodel', imgGalleryTag.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'imgGalleryCategorytag/GetOne', imgGalleryTag.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             imgGalleryTag.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -346,7 +346,7 @@
             if (isConfirmed) {
                 imgGalleryTag.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'imgGalleryCategorytag/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'imgGalleryCategorytag/GetOne', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     imgGalleryTag.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'imgGalleryCategorytag/delete', imgGalleryTag.selectedItemForDelete, 'POST').success(function (res) {
@@ -418,7 +418,7 @@
 
         imgGalleryTag.addRequested = false;
         imgGalleryTag.modalTitle = 'اضافه کردن محتوای جدید';
-        ajax.call(cmsServerConfig.configApiServerPath+'imgGallerytag/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'imgGallerytag/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             imgGalleryTag.selectedItem = response.Item;
             imgGalleryTag.selectedItem.LinkCategoryTagId = imgGalleryTag.CategoryTagId;
@@ -442,7 +442,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'imgGallerytag/getviewmodel', imgGalleryTag.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'imgGallerytag/GetOne', imgGalleryTag.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             imgGalleryTag.selectedItem = response1.Item;
@@ -525,7 +525,7 @@
                 console.log(imgGalleryTag.gridOptions.selectedRow.item);
                 imgGalleryTag.showbusy = true;
                 imgGalleryTag.showIsBusy = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"imgGallerytag/getviewmodel", imgGalleryTag.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"imgGallerytag/GetOne", imgGalleryTag.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     imgGalleryTag.showbusy = false;
                     imgGalleryTag.showIsBusy = false;
                     rashaErManage.checkAction(response);
@@ -721,7 +721,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             imgGalleryTag.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -798,14 +798,14 @@
         imgGalleryTag.fileIdToDelete = imgGalleryTag.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", imgGalleryTag.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", imgGalleryTag.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     imgGalleryTag.remove(imgGalleryTag.FileList, imgGalleryTag.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 imgGalleryTag.FileItem = response3.Item;
                                 imgGalleryTag.FileItem.FileName = name;
@@ -908,7 +908,7 @@
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                 imgGalleryTag.fileIdToDelete,
                 "GET"
               )
@@ -958,7 +958,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                     imgGalleryTag.FileItem = response.Item;
                     imgGalleryTag.FileItem.FileName = uploadFile.name;
                     imgGalleryTag.FileItem.uploadName = uploadFile.uploadName;
@@ -1110,7 +1110,7 @@
         }
         imgGalleryTag.selectedItem.LinkMainImageId = node.Id;
         imgGalleryTag.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
             imgGalleryTag.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

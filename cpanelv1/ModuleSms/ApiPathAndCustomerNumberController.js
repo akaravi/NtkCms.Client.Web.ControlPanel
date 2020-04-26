@@ -19,7 +19,7 @@
     apiPathCustomer.addNewModel = function () {
         apiPathCustomer.addRequested = false;
         apiPathCustomer.modalTitle = "ایجاد لینک مشتری به مسیر جدید";
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiPathAndCustomerNumber/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiPathAndCustomerNumber/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             apiPathCustomer.selectedItem = response.Item;
             $modal.open({
@@ -37,7 +37,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiPathAndCustomerNumber/getviewmodel', apiPathCustomer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiPathAndCustomerNumber/GetOne', apiPathCustomer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             apiPathCustomer.selectedItem = response.Item;
             $modal.open({
@@ -86,7 +86,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 // console.log(node.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ApiPathAndCustomerNumber/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ApiPathAndCustomerNumber/GetOne', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     apiPathCustomer.selectedItemForDelete = response.Item;
                     console.log(apiPathCustomer.selectedItemForDelete);

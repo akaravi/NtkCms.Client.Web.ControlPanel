@@ -95,7 +95,7 @@
     newsContentParameterType.addRequested = false;
     newsContentParameterType.openAddModal = function () {
         newsContentParameterType.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'newsContentParameterType/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newsContentParameterType/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             newsContentParameterType.busyIndicator.isActive = false;
             newsContentParameterType.selectedItem = response.Item;
@@ -145,7 +145,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'newsContentParameterType/getviewmodel', newsContentParameterType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'newsContentParameterType/GetOne', newsContentParameterType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             newsContentParameterType.selectedItem = response.Item;
             if (newsContentParameterType
@@ -209,7 +209,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 newsContentParameterType.busyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'newsContentParameterType/getviewmodel', newsContentParameterType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'newsContentParameterType/GetOne', newsContentParameterType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     newsContentParameterType.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'newsContentParameterType/delete', newsContentParameterType.selectedItemForDelete, 'POST').success(function (res) {

@@ -37,7 +37,7 @@
     form.addRequested = false;
     form.openAddModal = function () {
         form.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/GetViewModel', '', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             form.selectedItem = response.Item;
             form.selectedItem.LinkModuleId = null;
@@ -84,7 +84,7 @@
             return;
         }
         form.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/getviewmodel', form.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/GetOne', form.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             form.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             form.selectedItem = response.Item;
@@ -144,7 +144,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(form.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/getviewmodel', form.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/GetOne', form.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     form.selectedItemForDelete = response.Item;
                     console.log(form.selectedItemForDelete);
@@ -254,7 +254,7 @@
     form.scrollToInputValueFormBuilderPanel = function (item) {
         form.gridOptions.selectedRow.item = item;
         form.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/GetOne', item.Id, 'GET').success(function (response) {
             form.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             form.selectedItem = response.Item;
@@ -294,7 +294,7 @@
     // Save Input Value Form
     form.saveFormValues = function () {
         form.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/getviewmodel', form.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/GetOne', form.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             form.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             form.selectedItem = response1.Item;

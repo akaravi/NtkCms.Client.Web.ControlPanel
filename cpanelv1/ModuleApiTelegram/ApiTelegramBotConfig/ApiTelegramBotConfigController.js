@@ -82,7 +82,7 @@
         if (buttonIsPressed) return;
         botConfigCtrl.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             botConfigCtrl.busyIndicator.isActive = false;
@@ -132,7 +132,7 @@
             return;
         }
         botConfigCtrl.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/getviewmodel', botConfigCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/GetOne', botConfigCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             botConfigCtrl.addRequested = false;
             rashaErManage.checkAction(response);
             botConfigCtrl.selectedItem = response.Item;
@@ -201,7 +201,7 @@
             if (isConfirmed) {
                 botConfigCtrl.busyIndicator.isActive = true;
                 console.log(botConfigCtrl.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/getviewmodel', botConfigCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/GetOne', botConfigCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     botConfigCtrl.selectedItemForDelete = response.Item;
                     console.log(botConfigCtrl.selectedItemForDelete);
@@ -309,7 +309,7 @@
             botConfigCtrl.ErrorMessage = response1.ErrorMessage;
             botConfigCtrl.IsSuccess = response1.IsSuccess;
             if (response1.IsSuccess) {
-                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/getviewmodel', selectedId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/GetOne', selectedId, 'GET').success(function (response2) {
                     rashaErManage.checkAction(response2);
                     botConfigCtrl.selectedBotConfig = response2.Item;
                     $modal.open({
@@ -342,7 +342,7 @@
 
     //Test (delete this code later)
     botConfigCtrl.qrCode = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/getviewmodel', 1, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/GetOne', 1, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             botConfigCtrl.selectedItem = response.Item;
             ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramBotConfig/SetQRCodeImage', botConfigCtrl.selectedItem, 'POST').success(function (response) {

@@ -66,7 +66,7 @@
     reservationService.addRequested = false;
     reservationService.openAddModal = function () {
         reservationService.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationservice/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationservice/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             reservationService.busyIndicator.isActive = false;
             reservationService.selectedItem = response.Item;
@@ -116,7 +116,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationservice/getviewmodel', reservationService.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationservice/GetOne', reservationService.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             reservationService.selectedItem = response.Item;
             $modal.open({
@@ -204,7 +204,7 @@
             if (isConfirmed) {
                 reservationService.busyIndicator.isActive = true;
                 console.log(reservationService.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'reservationservice/getviewmodel', reservationService.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'reservationservice/GetOne', reservationService.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     reservationService.selectedItemForDelete = response.Item;
                     console.log(reservationService.selectedItemForDelete);

@@ -24,7 +24,7 @@
         shopInvoiceSale.selectedItemSaleDetail.Fee = item.Price;
     };
     shopInvoiceSale.selectionChangedUser = function (item) {
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/getviewmodel', shopInvoiceSale.selectedItem.LinkCmsUserId, 'GET').success(function (response2) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/GetOne', shopInvoiceSale.selectedItem.LinkCmsUserId, 'GET').success(function (response2) {
             shopInvoiceSale.selectedItem.ReceiverName = response2.Item.Name;
             shopInvoiceSale.selectedItem.ReceiverLastName = response2.Item.LastName;
             shopInvoiceSale.selectedItem.ReceiverMobile = response2.Item.Mobile;
@@ -38,7 +38,7 @@
     };
     //shopInvoiceSale.selectionChangedMember = function (item) {
     //    if (shopInvoiceSale.selectedItem.LinkMemberUserId > 0)
-    //        ajax.call(cmsServerConfig.configApiServerPath+'Memberuser/getviewmodel', shopInvoiceSale.selectedItem.LinkMemberUserId, 'GET').success(function (response2) {
+    //        ajax.call(cmsServerConfig.configApiServerPath+'Memberuser/GetOne', shopInvoiceSale.selectedItem.LinkMemberUserId, 'GET').success(function (response2) {
     //            shopInvoiceSale.selectedItem.ReceiverName = response2.Item.FirstName;
     //            shopInvoiceSale.selectedItem.ReceiverLastName = response2.Item.LastName;
     //            shopInvoiceSale.selectedItem.ReceiverMobile = response2.Item.MobileNo;
@@ -295,7 +295,7 @@ shopInvoiceSale.printDiv = function(divName) {
         if (shopInvoiceSale.addRequested) { return };
         shopInvoiceSale.addRequested = true;
         shopInvoiceSale.modalTitle = 'اضافه کردن محتوای جدید';
-        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSale/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSale/GetViewModel', "", 'GET').success(function (response) {
             shopInvoiceSale.addRequested = false;
             rashaErManage.checkAction(response);
             shopInvoiceSale.selectedItem = response.Item;
@@ -319,11 +319,11 @@ shopInvoiceSale.printDiv = function(divName) {
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSale/getviewmodel', shopInvoiceSale.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSale/GetOne', shopInvoiceSale.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             shopInvoiceSale.selectedItem = response1.Item;
             if (shopInvoiceSale.selectedItem.LinkCmsUserId > 0) {
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/getviewmodel', shopInvoiceSale.selectedItem.LinkCmsUserId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/GetOne', shopInvoiceSale.selectedItem.LinkCmsUserId, 'GET').success(function (response2) {
                     shopInvoiceSale.selectedUser = response2.Item;
                 }).error(function (data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
@@ -332,7 +332,7 @@ shopInvoiceSale.printDiv = function(divName) {
                 shopInvoiceSale.showInfoUser = true;
             }
             //if (shopInvoiceSale.selectedItem.LinkMemberUserId > 0) {
-            //    ajax.call(cmsServerConfig.configApiServerPath+'Memberuser/getviewmodel', shopInvoiceSale.selectedItem.LinkMemberUserId, 'GET').success(function (response3) {
+            //    ajax.call(cmsServerConfig.configApiServerPath+'Memberuser/GetOne', shopInvoiceSale.selectedItem.LinkMemberUserId, 'GET').success(function (response3) {
             //        shopInvoiceSale.selectedMember = response3.Item;
             //    }).error(function (data, errCode, c, d) {
             //        rashaErManage.checkAction(data, errCode);
@@ -425,7 +425,7 @@ shopInvoiceSale.printDiv = function(divName) {
                 shopInvoiceSale.busyIndicator.isActive = true;
                 shopInvoiceSale.showbusy = true;
                 shopInvoiceSale.showIsBusy = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"shopinvoiceSale/getviewmodel", shopInvoiceSale.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"shopinvoiceSale/GetOne", shopInvoiceSale.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopInvoiceSale.selectedItemForDelete = response.Item;
@@ -533,7 +533,7 @@ shopInvoiceSale.printDiv = function(divName) {
     }
 
     shopInvoiceSale.openPaymentonlocationModel = function (invoiceId) {
-        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSale/getviewmodel', invoiceId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSale/GetOne', invoiceId, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSale.selectedItem = response.Item;
             shopInvoiceSale.selectedItem.PaymentStatus = 2;
@@ -551,7 +551,7 @@ shopInvoiceSale.printDiv = function(divName) {
     }
 
     shopInvoiceSale.openPaymentModel = function (invoiceId) {
-        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSale/getviewmodel', invoiceId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSale/GetOne', invoiceId, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSale.selectedItem = response.Item;
             if (shopInvoiceSale.selectedItem.InvoiceStatus == 1) // فاکتور باز است
@@ -563,7 +563,7 @@ shopInvoiceSale.printDiv = function(divName) {
                 ajax.call(cmsServerConfig.configApiServerPath+"bankpaymentprivatesiteconfig/GetAllAvailable", shopInvoiceSale.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
                     rashaErManage.checkAction(response);
                     shopInvoiceSale.privateSiteConfigListItems = response.ListItems;
-                    ajax.call(cmsServerConfig.configApiServerPath+"shopinvoiceSale/getviewmodel", invoiceId, "GET").success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"shopinvoiceSale/GetOne", invoiceId, "GET").success(function (response) {
                         shopInvoiceSale.addRequested = false;
                         shopInvoiceSale.TransactionPaymentMakerClass.Price = response.Item.TotalAmount;
                         angular.forEach(shopInvoiceSale.privateSiteConfigListItems, function (value, key) {
@@ -672,7 +672,7 @@ shopInvoiceSale.printDiv = function(divName) {
     shopInvoiceSale.openAddModalSaleDetail = function () {
         shopInvoiceSale.addRequested = true;
         shopInvoiceSale.modalTitle = 'ردیف جدید';
-        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoicesaledetail/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoicesaledetail/GetViewModel', "", 'GET').success(function (response) {
             shopInvoiceSale.addRequested = false;
             rashaErManage.checkAction(response);
             shopInvoiceSale.selectedItemSaleDetail = response.Item;
@@ -731,7 +731,7 @@ shopInvoiceSale.printDiv = function(divName) {
             return;
         }
         shopInvoiceSale.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/getviewmodel', shopInvoiceSale.gridOptionIvoceSaleDetail.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/GetOne', shopInvoiceSale.gridOptionIvoceSaleDetail.selectedRow.item.Id, 'GET').success(function (response) {
             shopInvoiceSale.addRequested = false;
             rashaErManage.checkAction(response);
             shopInvoiceSale.selectedItemSaleDetail = response.Item;
@@ -781,7 +781,7 @@ shopInvoiceSale.printDiv = function(divName) {
             if (isConfirmed) {
 
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"shopInvoiceSaleDetail/getviewmodel", shopInvoiceSale.gridOptionIvoceSaleDetail.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"shopInvoiceSaleDetail/GetOne", shopInvoiceSale.gridOptionIvoceSaleDetail.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopInvoiceSale.selectedItemForDelete = response.Item;

@@ -63,7 +63,7 @@
     platformCtrl.addRequested = false;
     platformCtrl.openAddModal = function () {
         platformCtrl.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             platformCtrl.busyIndicator.isActive = false;
             platformCtrl.selectedItem = response.Item;
@@ -117,7 +117,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/getviewmodel', platformCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/GetOne', platformCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             platformCtrl.selectedItem = response.Item;
             $modal.open({
@@ -188,7 +188,7 @@
             if (isConfirmed) {
                 platformCtrl.busyIndicator.isActive = true;
                 console.log(platformCtrl.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/getviewmodel', platformCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/GetOne', platformCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     platformCtrl.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'universalmenuplatform/delete', platformCtrl.selectedItemForDelete, 'POST').success(function (res) {

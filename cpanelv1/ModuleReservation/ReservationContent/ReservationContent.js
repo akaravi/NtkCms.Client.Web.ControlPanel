@@ -405,7 +405,7 @@
                     reservationContent.contentBusyIndicator.isActive = false;
                 });
             ajax
-                .call(cmsServerConfig.configApiServerPath + "reservationTag/getviewmodel", "0", "GET")
+                .call(cmsServerConfig.configApiServerPath + "reservationTag/GetViewModel", "", "GET")
                 .success(function (response) {
                     //Get a ViewModel for reservationTag
                     reservationContent.ModuleTag = response.Item;
@@ -414,7 +414,7 @@
                     console.log(data);
                 });
             ajax
-                .call(cmsServerConfig.configApiServerPath + "reservationContentTag/getviewmodel", "0", "GET")
+                .call(cmsServerConfig.configApiServerPath + "reservationContentTag/GetViewModel", "", "GET")
                 .success(function (response) {
                     //Get a ViewModel for reservationContentTag
                     reservationContent.ModuleContentTag = response.Item;
@@ -471,7 +471,7 @@
                 rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
                 return;
             }
-            ajax.call(cmsServerConfig.configApiServerPath+'reservationContent/getviewmodel', reservationContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'reservationContent/GetOne', reservationContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
                 rashaErManage.checkAction(response1);
                 reservationContent.selectedItem = response1.Item;
                 $modal.open({
@@ -492,7 +492,7 @@
             reservationContent.addRequested = false;
             buttonIsPressed = true;
             ajax
-                .call(cmsServerConfig.configApiServerPath + "reservationCategory/getviewmodel", "0", "GET")
+                .call(cmsServerConfig.configApiServerPath + "reservationCategory/GetViewModel", "", "GET")
                 .success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
@@ -574,7 +574,7 @@
             buttonIsPressed = true;
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"reservationCategory/getviewmodel",
+                    cmsServerConfig.configApiServerPath+"reservationCategory/GetOne",
                     reservationContent.treeConfig.currentNode.Id,
                     "GET"
                 )
@@ -727,7 +727,7 @@
                         // console.log(node.gridOptions.selectedRow.item);
                         buttonIsPressed = true;
                         ajax
-                            .call(cmsServerConfig.configApiServerPath + "reservationCategory/getviewmodel", node.Id, "GET")
+                            .call(cmsServerConfig.configApiServerPath + "reservationCategory/GetOne", node.Id, "GET")
                             .success(function (response) {
                                 buttonIsPressed = false;
                                 rashaErManage.checkAction(response);
@@ -844,7 +844,7 @@
             //reservationContent.modalTitle = ($filter('translatentk')('Add_Content'));
             buttonIsPressed = true;
             ajax
-                .call(cmsServerConfig.configApiServerPath + "reservationContent/getviewmodel", "0", "GET")
+                .call(cmsServerConfig.configApiServerPath + "reservationContent/GetViewModel", "", "GET")
                 .success(function (response) {
                     buttonIsPressed = false;
                     console.log(response);
@@ -981,7 +981,7 @@
             buttonIsPressed = true;
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"reservationContent/getviewmodel",
+                    cmsServerConfig.configApiServerPath+"reservationContent/GetOne",
                     reservationContent.gridOptions.selectedRow.item.Id,
                     "GET"
                 )
@@ -1000,7 +1000,7 @@
                     if (response1.Item.LinkMainImageId != null) {
                         ajax
                             .call(
-                                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                                 response1.Item.LinkMainImageId,
                                 "GET"
                             )
@@ -1015,7 +1015,7 @@
                             });
                     }
                     if (response1.Item.LinkFilePodcastId != null) {
-                        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response1.Item.LinkFilePodcastId, 'GET').success(function (response2) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', response1.Item.LinkFilePodcastId, 'GET').success(function (response2) {
                             reservationContent.filePickerFilePodcast.filename = response2.Item.FileName;
                             reservationContent.filePickerFilePodcast.fileId = response2.Item.Id
                         }).error(function (data, errCode, c, d) {
@@ -1208,7 +1208,7 @@
                         buttonIsPressed = true;
                         ajax
                             .call(
-                                cmsServerConfig.configApiServerPath+"reservationContent/getviewmodel",
+                                cmsServerConfig.configApiServerPath+"reservationContent/GetOne",
                                 reservationContent.gridOptions.selectedRow.item.Id,
                                 "GET"
                             )
@@ -1263,7 +1263,7 @@
             }
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"reservationContent/getviewmodel",
+                    cmsServerConfig.configApiServerPath+"reservationContent/GetOne",
                     reservationContent.gridOptions.selectedRow.item.Id,
                     "GET"
                 )
@@ -1305,7 +1305,7 @@
 
             ajax
                 .call(
-                    cmsServerConfig.configApiServerPath+"reservationContent/getviewmodel",
+                    cmsServerConfig.configApiServerPath+"reservationContent/GetOne",
                     reservationContent.gridOptions.selectedRow.item.Id,
                     "GET"
                 )
@@ -1450,7 +1450,7 @@
                         reservationContent.showIsBusy = true;
                         ajax
                             .call(
-                                cmsServerConfig.configApiServerPath+"reservationContent/getviewmodel",
+                                cmsServerConfig.configApiServerPath+"reservationContent/GetOne",
                                 reservationContent.gridOptions.selectedRow.item.Id,
                                 "GET"
                             )
@@ -1674,7 +1674,7 @@
                     if (item == parseInt(item, 10)) {
                         // Check if item is an integer
                         ajax
-                            .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", parseInt(item), "GET")
+                            .call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", parseInt(item), "GET")
                             .success(function (response) {
                                 if (response.IsSuccess) {
                                     reservationContent.attachedFiles.push({
@@ -1774,7 +1774,7 @@
 
             // Delete the file
             ajax
-                .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", reservationContent.fileIdToDelete, "GET")
+                .call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", reservationContent.fileIdToDelete, "GET")
                 .success(function (response1) {
                     if (response1.IsSuccess == true) {
                         console.log(response1.Item);
@@ -1788,7 +1788,7 @@
                                 if (response2.IsSuccess == true) {
                                     // Save New file
                                     ajax
-                                        .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", "GET")
+                                        .call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", "GET")
                                         .success(function (response3) {
                                             if (response3.IsSuccess == true) {
                                                 reservationContent.FileItem = response3.Item;
@@ -1894,7 +1894,7 @@
                         // replace the file
                         ajax
                             .call(
-                                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                                 reservationContent.fileIdToDelete,
                                 "GET"
                             )
@@ -1944,7 +1944,7 @@
                 }
                 else { // File does not exists
                     // Save New file
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                         reservationContent.FileItem = response.Item;
                         reservationContent.FileItem.FileName = uploadFile.name;
                         reservationContent.FileItem.uploadName = uploadFile.uploadName;
@@ -2006,7 +2006,7 @@
                         // replace the file
                         ajax
                             .call(
-                                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                                 reservationContent.fileIdToDelete,
                                 "GET"
                             )
@@ -2057,7 +2057,7 @@
                     // File does not exists
                     // Save New file
                     ajax
-                        .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", "GET")
+                        .call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", "GET")
                         .success(function (response) {
                             reservationContent.FileItem = response.Item;
                             reservationContent.FileItem.FileName = uploadFile.name;
@@ -2253,7 +2253,7 @@
             reservationContent.selectedItem.LinkMainImageId = node.Id;
             reservationContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
             ajax
-                .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", node.Id, "GET")
+                .call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", node.Id, "GET")
                 .success(function (response) {
                     reservationContent.selectedItem.previewImageSrc =
                         cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;

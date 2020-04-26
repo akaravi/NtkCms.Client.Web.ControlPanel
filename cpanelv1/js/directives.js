@@ -830,7 +830,7 @@ function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
                     id: defId
                 };
 
-                ajax.call(cmsServerConfig.configApiServerPath + config.url + '/getviewmodel', defId, 'GET')
+                ajax.call(cmsServerConfig.configApiServerPath + config.url + '/GetOne', defId, 'GET')
                     .success(function (response) {
                         // Create a ViewModel with null values
                         config.ViewModel = response.Item;
@@ -2932,7 +2932,7 @@ function customPopover(ajax, $timeout, $parse) {
             });
             //#help# برای بستن
             scope.content = function () {
-                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/getviewmodel', attrs.popoverId, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/GetOne', attrs.popoverId, 'GET').success(function (response) {
                     $("#image" + attrs.popoverId).attr("src", cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName);
                 }).error(function (data, errCode, c, d) {
                     console.log(data);
@@ -3793,14 +3793,14 @@ function rashaFilePickerB($compile, ajax, $http) {
                             config.fileTypes = 1;
                             fileIdToDelete = config.selectedIndex;
                             // Delete the file
-                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", fileIdToDelete, 'GET').success(function (response1) {
+                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", fileIdToDelete, 'GET').success(function (response1) {
                                 if (response1.IsSuccess == true) {
                                     //console.log(response1.Item);
                                     ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                                         remove(config.FileList, fileIdToDelete);
                                         if (response2.IsSuccess == true) {
                                             // Save New file
-                                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                                            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", 'GET').success(function (response3) {
                                                 if (response3.IsSuccess == true) {
                                                     FileItem = response3.Item;
                                                     FileItem.FileName = name;
@@ -3868,7 +3868,7 @@ function rashaFilePickerB($compile, ajax, $http) {
                         }
                     } else { // File does not exists
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", 'GET').success(function (response) {
                             FileItem = response.Item;
                             FileItem.FileName = name;
                             FileItem.Extension = name.split('.').pop();
@@ -4115,14 +4115,14 @@ function rashaUpload($compile, ajax, $http) {
                 config.fileIdToDelete = config.selectedIndex;
 
                 // Delete the file
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", config.fileIdToDelete, 'GET').success(function (response1) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", config.fileIdToDelete, 'GET').success(function (response1) {
                     if (response1.IsSuccess == true) {
                         //console.log(response1.Item);
                         ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                             config.remove(config.FileList, config.fileIdToDelete);
                             if (response2.IsSuccess == true) {
                                 // Save New file
-                                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", 'GET').success(function (response3) {
                                     if (response3.IsSuccess == true) {
                                         config.FileItem = response3.Item;
                                         config.FileItem.FileName = name;
@@ -4220,7 +4220,7 @@ function rashaUpload($compile, ajax, $http) {
                             // replace the file
                             ajax
                                 .call(
-                                    cmsServerConfig.configApiServerPath + "FileContent/getviewmodel",
+                                    cmsServerConfig.configApiServerPath + "FileContent/GetOne",
                                     config.fileIdToDelete,
                                     "GET"
                                 )
@@ -4269,7 +4269,7 @@ function rashaUpload($compile, ajax, $http) {
                         }
                     } else { // File does not exists
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", 'GET').success(function (response) {
                             config.FileItem = response.Item;
                             config.FileItem.FileName = name;
                             config.FileItem.Extension = name.split('.').pop();
@@ -5026,11 +5026,11 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                 if (config.folderFileSelected[0].isFolder)
                     isFolder = true;
                 var prompMessage = "آیا می خواهید این فایل را حذف کنید؟";
-                var urlViewModel = cmsServerConfig.configApiServerPath + 'FileContent/getviewmodel';
+                var urlViewModel = cmsServerConfig.configApiServerPath + 'FileContent/GetOne';
                 var urlDelete = cmsServerConfig.configApiServerPath + 'FileContent/delete';
                 if (isFolder) {
                     prompMessage = "آیا می خواهید این پوشه و تمامی محتوایات آن حذف شود؟";
-                    urlViewModel = cmsServerConfig.configApiServerPath + 'FileCategory/getviewmodel';
+                    urlViewModel = cmsServerConfig.configApiServerPath + 'FileCategory/GetOne';
                     urlDelete = cmsServerConfig.configApiServerPath + 'FileCategory/delete';
                 }
                 rashaErManage.showYesNo("اخطار!!!", prompMessage, function (isConfirmed) {
@@ -5492,10 +5492,10 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
                     return;
                 }
                 var newName = fileFolder.newTitle;
-                var urlViewModel = cmsServerConfig.configApiServerPath + 'FileCategory/getviewmodel';
+                var urlViewModel = cmsServerConfig.configApiServerPath + 'FileCategory/GetOne';
                 var urlEdit = cmsServerConfig.configApiServerPath + 'FileCategory/edit';
                 if (!fileFolder.isFolder) {
-                    urlViewModel = cmsServerConfig.configApiServerPath + 'FileContent/getviewmodel';
+                    urlViewModel = cmsServerConfig.configApiServerPath + 'FileContent/GetOne';
                     urlEdit = cmsServerConfig.configApiServerPath + 'FileContent/edit';
                     newName = newName + "." + fileFolder.extension;
                 }
@@ -5664,7 +5664,7 @@ function rashaFileManager($compile, $http, ajax, $modal, rashaErManage) {
 
             config.makeNewFolder = function () {
                 var folderName = config.getNextFolderName();
-                ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileCategory/GetViewModel", "", 'GET').success(function (response) {
                     if (response.IsSuccess) {
                         //config.BusyIndicator.isActive=true;
                         response.Item.Title = folderName;

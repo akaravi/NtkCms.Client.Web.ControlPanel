@@ -30,7 +30,7 @@
     blogCategory.addRequested = false;
     blogCategory.openAddModal = function () {
         blogCategory.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'blogCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogCategory/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             blogCategory.selectedItem = response.Item;
 
@@ -101,7 +101,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'blogCategory/getviewmodel', blogCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogCategory/GetOne', blogCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             blogCategory.selectedItem = response.Item;
             //Set dataForTheTree
@@ -223,7 +223,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(blogCategory.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'blogCategory/getviewmodel',  blogCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'blogCategory/GetOne',  blogCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     blogCategory.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'blogCategory/delete', blogCategory.selectedItemForDelete, 'POST').success(function (res) {
@@ -390,7 +390,7 @@
         }
         blogCategory.selectedItem.LinkMainImageId = node.Id;
         blogCategory.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
             blogCategory.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

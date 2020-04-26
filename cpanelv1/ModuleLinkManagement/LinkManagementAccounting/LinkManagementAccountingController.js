@@ -85,7 +85,7 @@
     linkManagementAccounting.addRequested = false;
     linkManagementAccounting.openAddModal = function () {
         linkManagementAccounting.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementAccounting.busyIndicator.isActive = false;
             linkManagementAccounting.selectedItem = response.Item;
@@ -133,7 +133,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/getviewmodel', linkManagementAccounting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/GetOne', linkManagementAccounting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementAccounting.selectedItem = response.Item;
             linkManagementAccounting.BeginDate.defaultDate = linkManagementAccounting.selectedItem.BeginDate;
@@ -197,7 +197,7 @@
             if (isConfirmed) {
                 linkManagementAccounting.busyIndicator.isActive = true;
                 console.log(linkManagementAccounting.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/getviewmodel', linkManagementAccounting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/GetOne', linkManagementAccounting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     linkManagementAccounting.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'linkManagementAccounting/delete', linkManagementAccounting.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);

@@ -333,7 +333,7 @@
 
     fdm.createFolder = function (name) {
         fdm.loadingBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getviewmodel", "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetViewModel", "", 'GET').success(function (response) {
             fdm.Item = response.Item;
             fdm.Item.Title = name;
             //fdm.Item.Name = name;
@@ -406,7 +406,7 @@
     fdm.deleteFileOrFolder = function () {
         fdm.loadingBusyIndicator.isActive = true;
         if (fdm.fileTypes == 1) { // file type
-            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", fdm.fileIdToDelete, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", fdm.fileIdToDelete, 'GET').success(function (response) {
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response.Item, 'POST').success(function (response) {
                     fdm.loadingBusyIndicator.isActive = false;
                     //fdm.getCategoryFiles(fdm.thisCategory);
@@ -428,7 +428,7 @@
 
             });
         } else if (fdm.fileTypes == 2) { // Folder type
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getviewmodel", fdm.fileIdToDelete, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetOne", fdm.fileIdToDelete, 'GET').success(function (response) {
                 ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/delete', response.Item, 'POST').success(function (response) {
                     if (response.IsSuccess) {
                         fdm.loadingBusyIndicator.isActive = false;
@@ -473,7 +473,7 @@
                     fdm.fileIdToDelete = fdm.selectedIndex;
                     fdm.loadingBusyIndicator.isActive = true;
                     // Delete the file
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", fdm.fileIdToDelete, 'GET').success(function (response1) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", fdm.fileIdToDelete, 'GET').success(function (response1) {
                         if (response1.IsSuccess == true) {
                             console.log(response1.Item);
                             ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
@@ -481,7 +481,7 @@
                                 fdm.remove(fdm.FileList, fdm.fileIdToDelete);
                                 if (response2.IsSuccess == true) {
                                     // Save New file
-                                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                                         if (response3.IsSuccess == true) {
                                             fdm.FileItem = response3.Item;
                                             fdm.FileItem.FileName = uploadFile.name;
@@ -564,7 +564,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                     fdm.FileItem = response.Item;
                     fdm.FileItem.FileName = uploadFile.name;
                     fdm.FileItem.uploadName = uploadFile.uploadName;
@@ -644,7 +644,7 @@
         fdm.loadingBusyIndicator.isActive = true;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", fdm.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", fdm.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
@@ -652,7 +652,7 @@
                     fdm.remove(fdm.FileList, fdm.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 fdm.FileItem = response3.Item;
                                 fdm.FileItem.FileName = name;
@@ -750,7 +750,7 @@
                     // fdm.delete(true); ---------------------------------
                     // Type is file
                     fdm.loadingBusyIndicator.isActive = true;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", fdm.fileIdToDelete, 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", fdm.fileIdToDelete, 'GET').success(function (response) {
                         ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response.Item, 'POST').success(function (response) {
                             if (response.IsSuccess) {
                                 fdm.remove(fdm.FileList, fdm.fileIdToDelete);
@@ -778,7 +778,7 @@
             }
             //Same filename does not exist
             fdm.loadingBusyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", id, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", id, 'GET').success(function (response) {
                 response.Item.LinkCategoryId = parentFolderDes;
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/Copy', response.Item, 'POST').success(function (response) {
                     fdm.FileList.unshift(response.Item);
@@ -806,7 +806,7 @@
                     // fdm.delete(true); ---------------------------------
                     // Type is folder
                     fdm.loadingBusyIndicator.isActive = true;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getviewmodel", fdm.fileIdToDelete, 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetOne", fdm.fileIdToDelete, 'GET').success(function (response) {
                         ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/delete', response.Item, 'POST').success(function (response) {
                             if (response.IsSuccess) {
                                 fdm.remove(fdm.categoryList, fdm.fileIdToDelete);
@@ -834,7 +834,7 @@
             }
             //Same folder name does not exist
             fdm.loadingBusyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getviewmodel", id, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetOne", id, 'GET').success(function (response) {
                 response.Item.LinkParentId = parentFolderDes;
                 ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/add', response.Item, 'POST').success(function (response) {
                     fdm.categoryList.unshift(response.Item);
@@ -886,7 +886,7 @@
                     // fdm.delete(true); ---------------------------------
                     // Type is file
                     fdm.loadingBusyIndicator.isActive = true;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", fdm.fileIdToDelete, 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", fdm.fileIdToDelete, 'GET').success(function (response) {
                         ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response.Item, 'POST').success(function (response) {
                             if (response.IsSuccess) {
                                 fdm.remove(fdm.FileList, fdm.fileIdToDelete);
@@ -913,7 +913,7 @@
                 }
             }
             fdm.loadingBusyIndicator.isActive = true;
-            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", id, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", id, 'GET').success(function (response) {
                 response.Item.LinkCategoryId = parentFolderDes;
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/edit', response.Item, 'PUT').success(function (response) {
                     if (fdm.FileList.length > 0) {
@@ -946,7 +946,7 @@
                     // fdm.delete(true); ---------------------------------
                     // Type is folder
                     fdm.loadingBusyIndicator.isActive = true;
-                    ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getviewmodel", fdm.fileIdToDelete, 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetOne", fdm.fileIdToDelete, 'GET').success(function (response) {
                         ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/delete', response.Item, 'POST').success(function (response) {
                             if (response.IsSuccess) {
                                 fdm.remove(fdm.categoryList, fdm.fileIdToDelete);
@@ -975,7 +975,7 @@
             }
             fdm.loadingBusyIndicator.isActive = true;
 
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getviewmodel", id, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetOne", id, 'GET').success(function (response) {
                 response.Item.LinkParentId = fdm.thisCategory;
                 ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/edit', response.Item, 'PUT').success(function (response) {
                     fdm.replace(fdm.categoryList, response.Item);
@@ -1051,7 +1051,7 @@
 
     fdm.renameFile = function (newFileName) {
         if (fdm.fileTypes == 1) { // file type
-            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", fdm.fileIdToRename, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", fdm.fileIdToRename, 'GET').success(function (response) {
                 var ext = response.Item.FileName.split('.').pop();
                 response.Item.FileName = newFileName + "." + ext;
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/edit', response.Item, 'PUT').success(function (response) {
@@ -1073,7 +1073,7 @@
             });
 
         } else if (fdm.fileTypes == 2) { //folder type
-            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/getviewmodel", fdm.fileIdToRename, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"FileCategory/GetOne", fdm.fileIdToRename, 'GET').success(function (response) {
                 response.Item.Title = newFileName;
                 ajax.call(cmsServerConfig.configApiServerPath+'FileCategory/edit', response.Item, 'PUT').success(function (response) {
                     fdm.replace(fdm.categoryList, response.Item);
@@ -1328,7 +1328,7 @@
 
     fdm.uploadFile2 = function (index, name) {
 
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
             fdm.FileItem = response.Item;
             fdm.FileItem.FileName = name;
             fdm.FileItem.Extension = name.split('.').pop();

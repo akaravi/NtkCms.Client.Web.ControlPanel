@@ -140,7 +140,7 @@
         emailPrivateSiteConfig.defaultValue = {};
 
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/getviewmodel', '0', 'GET').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/GetViewModel', '', 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailPrivateSiteConfig.selectedItem = response.Item;
@@ -420,7 +420,7 @@ emailPrivateSiteConfig.removeFromCollection = function(listsimilar,idSuperSeder)
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/getviewmodel', emailPrivateSiteConfig.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/GetOne', emailPrivateSiteConfig.gridOptions.selectedRow.item.Id, 'GET').success(function(response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     emailPrivateSiteConfig.selectedItemForDelete = response.Item;

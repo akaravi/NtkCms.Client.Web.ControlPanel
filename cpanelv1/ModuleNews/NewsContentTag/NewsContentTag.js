@@ -23,7 +23,7 @@
     newsContentTag.addRequested = false;
     newsContentTag.openAddModal = function () {
         newsContentTag.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             newsContentTag.selectedItem = response.Item;
             $modal.open({
@@ -70,7 +70,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/getviewmodel',  newsContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/GetOne',  newsContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             newsContentTag.selectedItem = response.Item;
             $modal.open({
@@ -135,7 +135,7 @@
             if (isConfirmed) {
                 newsContentTag.busyIndicator.isActive = true;
                 console.log(newsContentTag.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/getviewmodel',  newsContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'NewsContenttag/GetOne',  newsContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     newsContentTag.selectedItemForDelete = response.Item;
                     console.log(newsContentTag.selectedItemForDelete);

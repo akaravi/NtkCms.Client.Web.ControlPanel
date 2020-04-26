@@ -105,7 +105,7 @@
     //    discountOffer.ViewFindUserDiv = false;
     //    discountOffer.ViewNewUserDiv = false;
     //    discountOffer.modalTitle = 'اضافه';
-    //    ajax.call(cmsServerConfig.configApiServerPath+'DiscountOffer/getviewmodel', "0", 'GET').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+'DiscountOffer/GetViewModel', "", 'GET').success(function (response) {
     //        rashaErManage.checkAction(response);
     //        discountOffer.busyIndicator.isActive = false;
     //        discountOffer.selectedItem = response.Item;
@@ -153,7 +153,7 @@
         discountOffer.ViewFindUserDiv = false;
         discountOffer.ViewNewUserDiv = false;
         discountOffer.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/getviewmodel', "0", "GET").success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/GetViewModel', "", "GET").success(function (response1) {
             discountOffer.busyIndicator.isActive = false;
             discountOffer.selectedMemberUser = response1.Item;
         }).error(function (data, errCode, c, d) {
@@ -161,7 +161,7 @@
             discountOffer.busyIndicator.isActive = false;
 
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'discountOffer/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'discountOffer/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountOffer.busyIndicator.isActive = false;
             discountOffer.selectedItem = response.Item;
@@ -287,7 +287,7 @@
     //        return;
     //    }
 
-    //    ajax.call(cmsServerConfig.configApiServerPath+'DiscountOffer/getviewmodel', discountOffer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+'DiscountOffer/GetOne', discountOffer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
     //        rashaErManage.checkAction(response);
     //        discountOffer.selectedItem = response.Item;
             
@@ -357,7 +357,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/getviewmodel', "0", "GET").success(function (response2) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/GetViewModel', "", "GET").success(function (response2) {
             discountOffer.selectedMemberUser = response2.Item;
 
             discountOffer.busyIndicator.isActive = false;
@@ -366,7 +366,7 @@
             discountOffer.busyIndicator.isActive = false;
 
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'discountOffer/getviewmodel', discountOffer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'discountOffer/GetOne', discountOffer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountOffer.selectedItem = response.Item;
             if (response.Item.LinkMemberId != null && response.Item.LinkMemberId > 0) {
@@ -488,7 +488,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 discountOffer.busyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'DiscountOffer/getviewmodel', discountOffer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'DiscountOffer/GetOne', discountOffer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     discountOffer.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'DiscountOffer/delete', discountOffer.selectedItemForDelete, 'POST').success(function (res) {
@@ -618,7 +618,7 @@
     //discountOffer.getUser = function (memberId) {
     //    discountOffer.ViewFindUserDiv = false;
     //    discountOffer.ViewNewUserDiv = false;
-    //    ajax.call(cmsServerConfig.configApiServerPath+'memberuser/getviewmodel', memberId, 'GET').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+'memberuser/GetOne', memberId, 'GET').success(function (response) {
     //        rashaErManage.checkAction(response);
     //        discountOffer.selectedMember = response.Item;
     //    }).error(function (data, errCode, c, d) {

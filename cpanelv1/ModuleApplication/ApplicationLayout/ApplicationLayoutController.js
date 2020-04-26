@@ -102,7 +102,7 @@
         }
         appLayout.busyIndicator.isActive = true;
         appLayout.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayout/getviewmodel', appLayout.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayout/GetOne', appLayout.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             appLayout.selectedItem = response.Item;
 
@@ -120,7 +120,7 @@
             appLayout.filePickerMainImage.filename = null;
             appLayout.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", response.Item.LinkMainImageId, "GET")
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", response.Item.LinkMainImageId, "GET")
                     .success(function (response2) {
                         buttonIsPressed = false;
                         appLayout.filePickerMainImage.filename = response2.Item.FileName;
@@ -230,7 +230,7 @@
             if (isConfirmed) {
                 appLayout.busyIndicator.isActive = true;
                 console.log(appLayout.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayout/getviewmodel', appLayout.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayout/GetOne', appLayout.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     appLayout.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationLayout/delete', appLayout.selectedItemForDelete, 'POST').success(function (res) {
@@ -409,7 +409,7 @@
         }
         appLayout.selectedItem.LinkModuleFilePreviewImageId = node.Id;
         appLayout.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages + "loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", node.Id, "GET").success(function (response) {
             appLayout.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -435,7 +435,7 @@
                     // replace the file
                     ajax
                         .call(
-                            cmsServerConfig.configApiServerPath + "FileContent/getviewmodel",
+                            cmsServerConfig.configApiServerPath + "FileContent/GetOne",
                             appLayout.fileIdToDelete,
                             "GET"
                         )
@@ -486,7 +486,7 @@
                 // File does not exists
                 // Save New file
                 ajax
-                    .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", "GET")
+                    .call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", "GET")
                     .success(function (response) {
                         appLayout.FileItem = response.Item;
                         appLayout.FileItem.FileName = uploadFile.name;

@@ -28,7 +28,7 @@
         //    return;
         //}
         if (emailProcessTask.selectedPrivateSiteConfig.Id == null || emailProcessTask.selectedPrivateSiteConfig.Id == 0) emailProcessTask.selectedPrivateSiteConfig.Id = '0';
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/getviewmodel', emailProcessTask.selectedPrivateSiteConfig.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/GetOne', emailProcessTask.selectedPrivateSiteConfig.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailProcessTask.selectedPrivateSiteConfig = response.Item;
@@ -61,7 +61,7 @@
         if (buttonIsPressed) { return };
         emailProcessTask.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/GetViewModel', '', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailProcessTask.selectedItem = response.Item;
@@ -111,7 +111,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/getviewmodel', emailProcessTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/GetOne', emailProcessTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailProcessTask.selectedItem = response.Item;
@@ -171,7 +171,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/getviewmodel', emailProcessTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'emailprocesstask/GetOne', emailProcessTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
 
                     rashaErManage.checkAction(response);

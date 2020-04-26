@@ -59,7 +59,7 @@
     cmsModuleSaleInvoice.addRequested = false;
     cmsModuleSaleInvoice.openAddModal = function () {
         cmsModuleSaleInvoice.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModuleSaleInvoice.busyIndicator.isActive = false;
             cmsModuleSaleInvoice.selectedItem = response.Item;
@@ -107,7 +107,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/getviewmodel', cmsModuleSaleInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/GetOne', cmsModuleSaleInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModuleSaleInvoice.selectedItem = response.Item;
             $modal.open({
@@ -169,7 +169,7 @@
             if (isConfirmed) {
                 cmsModuleSaleInvoice.busyIndicator.isActive = true;
                 console.log(cmsModuleSaleInvoice.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/getviewmodel', cmsModuleSaleInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/GetOne', cmsModuleSaleInvoice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     cmsModuleSaleInvoice.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleInvoice/delete', cmsModuleSaleInvoice.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);

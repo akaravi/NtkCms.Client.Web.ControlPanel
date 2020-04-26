@@ -95,7 +95,7 @@
     shopInvoiceSaleWorkFlow.addRequested = false;
     shopInvoiceSaleWorkFlow.openAddModal = function () {
         shopInvoiceSaleWorkFlow.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSaleWorkFlow.busyIndicator.isActive = false;
             shopInvoiceSaleWorkFlow.selectedItem = response.Item;
@@ -145,7 +145,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/getviewmodel', shopInvoiceSaleWorkFlow.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/GetOne', shopInvoiceSaleWorkFlow.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSaleWorkFlow.selectedItem = response.Item;
             if (shopInvoiceSaleWorkFlow
@@ -209,7 +209,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 shopInvoiceSaleWorkFlow.busyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/getviewmodel', shopInvoiceSaleWorkFlow.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/GetOne', shopInvoiceSaleWorkFlow.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     shopInvoiceSaleWorkFlow.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleWorkFlow/delete', shopInvoiceSaleWorkFlow.selectedItemForDelete, 'POST').success(function (res) {

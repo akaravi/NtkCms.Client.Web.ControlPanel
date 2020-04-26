@@ -95,7 +95,7 @@
     blogContentParameter.addRequested = false;
     blogContentParameter.openAddModal = function () {
         blogContentParameter.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameter/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameter/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             blogContentParameter.busyIndicator.isActive = false;
             blogContentParameter.selectedItem = response.Item;
@@ -142,7 +142,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameter/getviewmodel', blogContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameter/GetOne', blogContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             blogContentParameter.selectedItem = response.Item;
             if (blogContentParameter
@@ -203,7 +203,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 blogContentParameter.busyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameter/getviewmodel', blogContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameter/GetOne', blogContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     blogContentParameter.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'blogContentParameter/delete', blogContentParameter.selectedItemForDelete, 'POST').success(function (res) {

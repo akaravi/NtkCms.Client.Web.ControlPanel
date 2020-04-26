@@ -140,7 +140,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
     vehiclePropertyDetail.openAddCategoryModal = function () {
         vehiclePropertyDetail.addRequested = false;
         vehiclePropertyDetail.modalTitle = "ایجاد گروه جدید";
-        ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetailGroup/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetailGroup/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             vehiclePropertyDetail.selectedItem = response.Item;
             $modal.open({
@@ -186,7 +186,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
             rashaErManage.showMessage("لطفاَ یک دسته جهت ویرایش انتخاب کنید");
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetailGroup/getviewmodel', vehiclePropertyDetail.treeConfig.currentNode.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetailGroup/GetOne', vehiclePropertyDetail.treeConfig.currentNode.Id, 'GET').success(function (response1) {
             vehiclePropertyDetail.showbusy = false;
             rashaErManage.checkAction(response1);
             vehiclePropertyDetail.selectedItem = response1.Item;
@@ -236,7 +236,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
             rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
                 if (isConfirmed) {
                     vehiclePropertyDetail.categorybusyIndicator.isActive = true;
-                    ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetailGroup/getviewmodel', node.Id, 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetailGroup/GetOne', node.Id, 'GET').success(function (response) {
                         rashaErManage.checkAction(response);
                         vehiclePropertyDetail.selectedItemForDelete = response.Item;
                         ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetailGroup/delete', vehiclePropertyDetail.selectedItemForDelete, 'POST').success(function (res) {
@@ -330,7 +330,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
         vehiclePropertyDetail.FieldName = "";
         vehiclePropertyDetail.addRequested = false;
         vehiclePropertyDetail.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetail/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetail/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             vehiclePropertyDetail.selectedItem = response.Item;
             vehiclePropertyDetail.selectedItem.LinkPropertyDetailGroupId = node.Id;
@@ -396,7 +396,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
             return;
         }
         vehiclePropertyDetail.FieldName = "";
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetail/getviewmodel', vehiclePropertyDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetail/GetOne', vehiclePropertyDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             vehiclePropertyDetail.selectedItem = response1.Item;
 
@@ -464,7 +464,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
             if (isConfirmed) {
                 vehiclePropertyDetail.showbusy = true;
                 vehiclePropertyDetail.showIsBusy = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"vehiclePropertyDetail/getviewmodel", vehiclePropertyDetail.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"vehiclePropertyDetail/GetOne", vehiclePropertyDetail.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     vehiclePropertyDetail.showbusy = false;
                     vehiclePropertyDetail.showIsBusy = false;
                     rashaErManage.checkAction(response);
@@ -641,7 +641,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
             return;
         }
         vehiclePropertyDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/getviewmodel', item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/GetOne', item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             vehiclePropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
@@ -649,7 +649,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
             ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/edit', vehiclePropertyDetail.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/getviewmodel', vehiclePropertyDetail.ListItems[index + 1].Id, 'GET').success(function (response3) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/GetOne', vehiclePropertyDetail.ListItems[index + 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         vehiclePropertyDetail.selectedItem = response3.Item;
                         vehiclePropertyDetail.selectedItem.ShowInFormOrder = temp;
@@ -683,7 +683,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
             return;
         }
         vehiclePropertyDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/getviewmodel', item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/GetOne', item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             vehiclePropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
@@ -691,7 +691,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
             ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/edit', vehiclePropertyDetail.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/getviewmodel', vehiclePropertyDetail.ListItems[index - 1].Id, 'GET').success(function (response3) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyDetail/GetOne', vehiclePropertyDetail.ListItems[index - 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         vehiclePropertyDetail.selectedItem = response3.Item;
                         vehiclePropertyDetail.selectedItem.ShowInFormOrder = temp;
@@ -735,7 +735,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
             return;
         }
         vehiclePropertyDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/getviewmodel', item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/GetOne', item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             vehiclePropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
@@ -743,7 +743,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
             ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/edit', vehiclePropertyDetail.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/getviewmodel', vehiclePropertyDetail.treeConfig.Items[index + 1].Id, 'GET').success(function (response3) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/GetOne', vehiclePropertyDetail.treeConfig.Items[index + 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         vehiclePropertyDetail.selectedItem = response3.Item;
                         vehiclePropertyDetail.selectedItem.ShowInFormOrder = temp;
@@ -785,7 +785,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
             return;
         }
         vehiclePropertyDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/getviewmodel', item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/GetOne', item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             vehiclePropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
@@ -793,7 +793,7 @@ vehiclePropertyDetail.LinkCategoryIdSelector = {
             ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/edit', vehiclePropertyDetail.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/getviewmodel', vehiclePropertyDetail.treeConfig.Items[index - 1].Id, 'GET').success(function (response3) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyDetailGroup/GetOne', vehiclePropertyDetail.treeConfig.Items[index - 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         vehiclePropertyDetail.selectedItem = response3.Item;
                         vehiclePropertyDetail.selectedItem.ShowInFormOrder = temp;

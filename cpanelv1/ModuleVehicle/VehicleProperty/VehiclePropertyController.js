@@ -141,7 +141,7 @@
         vehicleProperty.filePickerFiles.filename = "";
         vehicleProperty.filePickerFiles.fileId = null;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'vehicleproperty/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehicleproperty/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             vehicleProperty.busyIndicator.isActive = false;
@@ -176,7 +176,7 @@
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 vehicleProperty.closeModal();
-                ajax.call(cmsServerConfig.configApiServerPath+"vehiclepropertydetailvalue/getviewmodel", '0', 'GET').success(function (response1) {
+                ajax.call(cmsServerConfig.configApiServerPath+"vehiclepropertydetailvalue/GetViewModel", "0", 'GET').success(function (response1) {
                     rashaErManage.checkAction(response1);
                     for (var i = 0; i < vehicleProperty.propertyDetailsListItems.length; i++) {
                         valueItem = $.extend(true, {}, response1.Item);
@@ -254,7 +254,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'vehicleproperty/getviewmodel', parseInt(vehicleProperty.gridOptions.selectedRow.item.Id), 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehicleproperty/GetOne', parseInt(vehicleProperty.gridOptions.selectedRow.item.Id), 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             vehicleProperty.selectedItem = response.Item;
@@ -267,7 +267,7 @@
             vehicleProperty.filePickerMainImage.filename = null;
             vehicleProperty.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null && response.Item.LinkMainImageId > 0) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(response.Item.LinkMainImageId), 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(response.Item.LinkMainImageId), 'GET').success(function (response2) {
                     if (response2.IsSuccess && response2.Item.Id > 9) {
                         vehicleProperty.filePickerMainImage.filename = response2.Item.FileName;
                         vehicleProperty.filePickerMainImage.fileId = response2.Item.Id;
@@ -426,7 +426,7 @@
             if (isConfirmed) {
                 vehicleProperty.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'vehicleproperty/getviewmodel', vehicleProperty.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'vehicleproperty/GetOne', vehicleProperty.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     vehicleProperty.selectedItemForDelete = response.Item;
@@ -755,7 +755,7 @@
             vehicleProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'VehicleContract/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'VehicleContract/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 vehicleProperty.selectedItem = response.Item;
@@ -887,7 +887,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             if (index == 0)
                                 vehicleProperty.selectedItem.LinkExtraImageId1 = response.Item.Id;
@@ -982,14 +982,14 @@
         vehicleProperty.fileIdToDelete = vehicleProperty.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", vehicleProperty.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", vehicleProperty.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     vehicleProperty.remove(vehicleProperty.FileList, vehicleProperty.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 vehicleProperty.FileItem = response3.Item;
                                 vehicleProperty.FileItem.FileName = name;
@@ -1092,7 +1092,7 @@
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                 vehicleProperty.fileIdToDelete,
                 "GET"
               )
@@ -1142,7 +1142,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                     vehicleProperty.FileItem = response.Item;
                     vehicleProperty.FileItem.FileName = uploadFile.name;
                     vehicleProperty.FileItem.uploadName = uploadFile.uploadName;

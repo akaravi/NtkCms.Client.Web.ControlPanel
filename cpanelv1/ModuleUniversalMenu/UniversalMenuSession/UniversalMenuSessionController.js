@@ -44,7 +44,7 @@
     sessionCtrl.addRequested = false;
     sessionCtrl.openAddModal = function () {
         sessionCtrl.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenusession/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenusession/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             sessionCtrl.busyIndicator.isActive = false;
             sessionCtrl.selectedItem = response.Item;
@@ -90,7 +90,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenusession/getviewmodel', sessionCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenusession/GetOne', sessionCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             sessionCtrl.selectedItem = response.Item;
             $modal.open({
@@ -160,7 +160,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 sessionCtrl.busyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'universalmenusession/getviewmodel', sessionCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'universalmenusession/GetOne', sessionCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     sessionCtrl.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'universalmenusession/delete', sessionCtrl.selectedItemForDelete, 'POST').success(function (res) {

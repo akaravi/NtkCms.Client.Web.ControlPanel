@@ -98,7 +98,7 @@
             });
         }
         else
-            ajax.call(cmsServerConfig.configApiServerPath+"shopinvoicesaledetail/getviewmodel", "0", 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"shopinvoicesaledetail/GetViewModel", "", 'GET').success(function (response) {
                 rashaErManage.checkAction(response);
                 shopInvoiceSaleDetail.selectedItem = response.Item;
             }).error(function (data, errCode, c, d) {
@@ -106,7 +106,7 @@
                 rashaErManage.checkAction(data, errCode);
             });
         if ($stateParams.invoiceId > 0)
-            ajax.call(cmsServerConfig.configApiServerPath+"shopinvoicesale/getviewmodel", $stateParams.invoiceId, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"shopinvoicesale/GetOne", $stateParams.invoiceId, 'GET').success(function (response) {
                 rashaErManage.checkAction(response);
                 shopInvoiceSaleDetail.invoiceSale = response.Item;
             }).error(function (data, errCode, c, d) {
@@ -157,7 +157,7 @@
     shopInvoiceSaleDetail.openAddModal = function () {
         shopInvoiceSaleDetail.addRequested = true;
         shopInvoiceSaleDetail.modalTitle = 'ردیف جدید';
-        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoicesaledetail/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoicesaledetail/GetViewModel', "", 'GET').success(function (response) {
             shopInvoiceSaleDetail.addRequested = false;
             rashaErManage.checkAction(response);
             shopInvoiceSaleDetail.selectedItem = response.Item;
@@ -179,7 +179,7 @@
             return;
         }
         shopInvoiceSaleDetail.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/getviewmodel', shopInvoiceSaleDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/GetOne', shopInvoiceSaleDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             shopInvoiceSaleDetail.addRequested = false;
             rashaErManage.checkAction(response);
             shopInvoiceSaleDetail.selectedItem = response.Item;
@@ -255,7 +255,7 @@
             if (isConfirmed) {
                 shopInvoiceSaleDetail.categoryBusyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"shopInvoiceSaleDetail/getviewmodel", shopInvoiceSaleDetail.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"shopInvoiceSaleDetail/GetOne", shopInvoiceSaleDetail.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopInvoiceSaleDetail.selectedItemForDelete = response.Item;
@@ -286,7 +286,7 @@
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/getviewmodel', shopInvoiceSaleDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/GetOne', shopInvoiceSaleDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSaleDetail.selectedItem = response.Item;
             shopInvoiceSaleDetail.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
@@ -312,7 +312,7 @@
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/getviewmodel', shopInvoiceSaleDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopInvoiceSaleDetail/GetOne', shopInvoiceSaleDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopInvoiceSaleDetail.selectedItem = response.Item;
             shopInvoiceSaleDetail.selectedItem.IsArchive = (response.Item.IsArchive == true) ? false : true;

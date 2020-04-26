@@ -29,7 +29,7 @@
     linkManagementCategory.addRequested = false;
     linkManagementCategory.openAddModal = function () {
         linkManagementCategory.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementCategory.selectedItem = response.Item;
             //Set dataForTheTree
@@ -97,7 +97,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/getviewmodel', linkManagementCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/GetOne', linkManagementCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementCategory.selectedItem = response.Item;
             //Set dataForTheTree
@@ -211,7 +211,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(linkManagementCategory.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/getviewmodel',  linkManagementCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/GetOne',  linkManagementCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     linkManagementCategory.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'linkManagementCategory/delete', linkManagementCategory.selectedItemForDelete, 'POST').success(function (res) {
@@ -319,7 +319,7 @@
         }
         articleContent.selectedItem.LinkMainImageId = node.Id;
         articleContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
             articleContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

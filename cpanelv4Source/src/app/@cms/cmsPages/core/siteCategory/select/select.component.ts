@@ -34,8 +34,8 @@ export class CoreSiteCategorySelectComponent implements OnInit {
     private alertService: ToastrService,
     private publicHelper: PublicHelper
   ) {
-    this.coreSiteCategoryService.constructorIn();
-this.coreSiteCategoryModuleService.constructorIn();
+    this.coreSiteCategoryService.ServiceConstructor();
+this.coreSiteCategoryModuleService.ServiceConstructor();
   }
 
   ngOnInit() {

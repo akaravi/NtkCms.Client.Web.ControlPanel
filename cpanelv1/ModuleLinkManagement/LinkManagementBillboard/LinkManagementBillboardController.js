@@ -171,7 +171,7 @@
 
     //open addMenu modal
     linkManagementBillboard.Showstatistics = function (selectedId) {
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementBillboard/getviewmodel', selectedId, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementBillboard/GetOne', selectedId, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             linkManagementBillboard.selectedItem = response1.Item;
             $modal.open({
@@ -367,7 +367,7 @@
 
 
 
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementBillboard.selectedItem = response.Item;
             linkManagementBillboard.selectedItem.OtherInfos = [];
@@ -398,7 +398,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/getviewmodel', linkManagementBillboard.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/GetOne', linkManagementBillboard.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             linkManagementBillboard.selectedItem = response1.Item;
@@ -410,7 +410,7 @@
             linkManagementBillboard.filePickerMainImage.fileId = null;
 
             if (response1.Item.LinkMainImageId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response1.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', response1.Item.LinkMainImageId, 'GET').success(function (response2) {
                     linkManagementBillboard.filePickerMainImage.filename = response2.Item.FileName;
                     linkManagementBillboard.filePickerMainImage.fileId = response2.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -589,7 +589,7 @@
                 console.log(linkManagementBillboard.gridOptions.selectedRow.item);
                 linkManagementBillboard.showbusy = true;
                 linkManagementBillboard.showIsBusy = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementBillboard/getviewmodel", linkManagementBillboard.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementBillboard/GetOne", linkManagementBillboard.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     linkManagementBillboard.showbusy = false;
                     linkManagementBillboard.showIsBusy = false;
                     rashaErManage.checkAction(response);
@@ -675,7 +675,7 @@
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/getviewmodel', linkManagementBillboard.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/GetOne', linkManagementBillboard.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementBillboard.selectedItem = response.Item;
             linkManagementBillboard.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
@@ -701,7 +701,7 @@
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/getviewmodel', linkManagementBillboard.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/GetOne', linkManagementBillboard.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementBillboard.selectedItem = response.Item;
             linkManagementBillboard.selectedItem.IsArchive = (response.Item.IsArchive == true) ? false : true;
@@ -808,7 +808,7 @@
     //            console.log("Item to be deleted: ", linkManagementBillboard.gridOptions.selectedRow.item);
     //            linkManagementBillboard.showbusy = true;
     //            linkManagementBillboard.showIsBusy = true;
-    //            ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/getviewmodel', linkManagementBillboard.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+    //            ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementBillboard/GetOne', linkManagementBillboard.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
     //                linkManagementBillboard.showbusy = false;
     //                linkManagementBillboard.showIsBusy = false;
     //                rashaErManage.checkAction(response);
@@ -963,7 +963,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             linkManagementBillboard.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -1041,14 +1041,14 @@
         linkManagementBillboard.fileIdToDelete = linkManagementBillboard.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", linkManagementBillboard.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", linkManagementBillboard.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     linkManagementBillboard.remove(linkManagementBillboard.FileList, linkManagementBillboard.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 linkManagementBillboard.FileItem = response3.Item;
                                 linkManagementBillboard.FileItem.FileName = name;
@@ -1151,7 +1151,7 @@
                     // replace the file
                     ajax
                         .call(
-                            cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                            cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                             linkManagementBillboard.fileIdToDelete,
                             "GET"
                         )
@@ -1201,7 +1201,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                     linkManagementBillboard.FileItem = response.Item;
                     linkManagementBillboard.FileItem.FileName = uploadFile.name;
                     linkManagementBillboard.FileItem.uploadName = uploadFile.uploadName;
@@ -1353,7 +1353,7 @@
         }
         linkManagementBillboard.selectedItem.LinkMainImageId = node.Id;
         linkManagementBillboard.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
             linkManagementBillboard.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

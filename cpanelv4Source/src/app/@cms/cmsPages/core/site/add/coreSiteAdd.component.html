@@ -1,7 +1,7 @@
 <section id="ngx">
   <div class="card">
-      <div class="card-content">
-          <div class="card-body">
+      <div class="card-content" >
+          <div *ngIf="dataModel.IsSuccess" class="card-body">
               <aw-wizard #wizard navBarLayout="large-empty-symbols">
                   <aw-wizard-step [stepTitle]="'مشخصات اولیه'" [navigationSymbol]="{ symbol: '&#xf007;', fontFamily: 'FontAwesome' }">
                       <form #personalForm="ngForm" class="editForm" novalidate>
@@ -11,14 +11,14 @@
                               <div class='col-12'>
                                      <div class="form-group">
                                          <label class="form-control-label" for="Title">عنوان وب سایت</label>
-                                         <input class="form-control input-md" ngModel #Title="ngModel" required id="Title" name="Title" type="text">
+                                         <input [(ngModel)]="dataModel.Item.Title" class="form-control input-md"  #Title="ngModel" required id="Title" name="Title" type="text">
                                          <small class="form-text text-muted danger" *ngIf="!Title.valid && (Title.dirty || Title.touched)">این فیلد مورد نیاز است!</small>
                                     </div>
                                   <div class="form-group">
                                       <label class="form-control-label" for="Description">توضیحات</label>
-                                      <textarea class="form-control input-md" ngModel #Description="ngModel" required  id="Description" name="Description" type="text">
+                                      <textarea [(ngModel)]="dataModel.Item.Description" class="form-control input-md" ngModel #Description="ngModel" required  id="Description" name="Description" type="text">
                                           </textarea>
-                                      <small class="form-text text-muted danger" *ngIf="!Description.valid && (Description.dirty || Description.touched)">لطفا توضیحات کوتاه در مورد وب سایت وارد کنید!</small>
+                                      <small class="form-text text-muted danger"  *ngIf="!Description.valid && (Description.dirty || Description.touched)">لطفا توضیحات کوتاه در مورد وب سایت وارد کنید!</small>
                                   </div>
 
                                   <div class="form-group text-center">
@@ -37,7 +37,9 @@
                       <form #workForm="ngForm" class="editForm" novalidate>
                           <h4 class="head text-center">نوع وب سایت</h4>
                           <br/>
-                        <app-core-site-category-select></app-core-site-category-select>
+
+                        <app-core-site-category-select  [(ngModel)]="dataModel.Item.CategoryId"></app-core-site-category-select>
+
                           <div class="form-group text-center space-20">
                               <button uiSref="personal" type="button" class="btn btn-raised btn-secondary mr-1" awPreviousStep>
                                   <span style="margin-left:10px;">
@@ -56,35 +58,34 @@
                       <form #addressForm="ngForm" class="editForm" novalidate>
                           <h4 class="head text-center">مشخصات دامنه اتصال به وب سایت</h4>
                           <br/>
+                          
                           <div class='row'>
                               <div class='col-sm-12'>
-                    
                                   <div class="row">
                                       <div class='col-12 col-sm-4'>
                                           <div class="form-group">
-                                              
-                                            <!-- <ng-select [items]="dataModelDomains" bindLabel="name" placeholder="دامنه را انتخاب کنید" [(ngModel)]="selectedDomain">
-                                            </ng-select> -->
-                                            <p>
+                                            <label class="form-control-label" for="SubDomain"> دامنه</label>
+                                             <ng-select  #Domain="ngModel" [items]="dataModelDomains" bindLabel="Domain" placeholder="دامنه را انتخاب کنید" [(ngModel)]="selectedDomain">
+                                            </ng-select> 
+                                            <small class="form-text text-muted danger" *ngIf="!Domain.valid && (Domain.dirty || Domain.touched)">این فیلد مورد نیاز است!</small>
                                                 <!-- شهرهای انتخاب شده : {{Domain | json}} -->
-                                            </p>
-
-                                              <label class="form-control-label" for="Domain">دامنه</label>
-                                              <input class="form-control input-md" ngModel #Domain="ngModel" required id="Domain" name="Domain" type="text">
-                                              <small class="form-text text-muted danger" *ngIf="!Domain.valid && (Domain.dirty || Domain.touched)">این فیلد مورد نیاز است!</small>
-
-                                          </div>
+                                           </div>
                                       </div>
                                       <div class='col-4 col-sm-offset-1 col-sm-3'>
                                           <div class="form-group">
                                               <label class="form-control-label" for="SubDomain">زیر دامنه</label>
-                                              <input class="form-control input-md" ngModel #SubDomain="ngModel" required id="SubDomain" name="SubDomain" type="text">
+                                              <input [(ngModel)]="dataModel.Item.SubDomain" class="form-control input-md" ngModel #SubDomain="ngModel" required id="SubDomain" name="SubDomain" type="text">
                                               <small class="form-text text-muted danger" *ngIf="!SubDomain.valid && (SubDomain.dirty || SubDomain.touched)">این فیلد مورد نیاز است!</small>
 
                                           </div>
                                       </div>
                                   </div>
-
+                                  <div class="row">
+                                    <div class='col-12 col-sm-4'>
+                                        آدرس وب سایت شما :
+                                        https://{{dataModel.Item.Domain}}+"."{{dataModel.Item.SubDomain}}
+                                    </div>
+                                  </div>
                                   <div class="form-group text-center">
                                       <button uiSref="work" type="button" class="btn btn-raised btn-secondary mr-1" awPreviousStep>
                                           <span style="margin-left:10px;">

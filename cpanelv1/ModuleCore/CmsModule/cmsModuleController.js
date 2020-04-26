@@ -53,7 +53,7 @@
     cmsModulegrd.addRequested = false;
     cmsModulegrd.openAddModal = function () {
         cmsModulegrd.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/GetViewModel', '', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsModulegrd.selectedItem = response.Item;
             $modal.open({
@@ -107,7 +107,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/getviewmodel', cmsModulegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'coremodule/GetOne', cmsModulegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
 
             rashaErManage.checkAction(response);
@@ -170,7 +170,7 @@
             if (isConfirmed) {
                 console.log(cmsModulegrd.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'coremodule/getviewmodel', cmsModulegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'coremodule/GetOne', cmsModulegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     cmsModulegrd.selectedItemForDelete = response.Item;
@@ -371,7 +371,7 @@
 
     cmsModulegrd.scrollToFormBuilder = function (item) {
         cmsModulegrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MobilecmsModulegrd/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MobilecmsModulegrd/GetOne', item.Id, 'GET').success(function (response) {
             cmsModulegrd.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsModulegrd.selectedItem = response.Item;

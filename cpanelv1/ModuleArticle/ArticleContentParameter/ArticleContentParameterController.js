@@ -95,7 +95,7 @@
     articleContentParameter.addRequested = false;
     articleContentParameter.openAddModal = function () {
         articleContentParameter.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'articleContentParameter/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleContentParameter/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             articleContentParameter.busyIndicator.isActive = false;
             articleContentParameter.selectedItem = response.Item;
@@ -145,7 +145,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'articleContentParameter/getviewmodel', articleContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleContentParameter/GetOne', articleContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             articleContentParameter.selectedItem = response.Item;
             if (articleContentParameter
@@ -209,7 +209,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 articleContentParameter.busyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'articleContentParameter/getviewmodel', articleContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'articleContentParameter/GetOne', articleContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     articleContentParameter.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'articleContentParameter/delete', articleContentParameter.selectedItemForDelete, 'POST').success(function (res) {

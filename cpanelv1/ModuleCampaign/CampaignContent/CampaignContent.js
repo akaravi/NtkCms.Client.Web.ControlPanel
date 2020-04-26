@@ -224,12 +224,12 @@
             rashaErManage.checkAction(data, errCode);
             campaignContent.contentBusyIndicator.isActive = false;
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"newsTag/getviewmodel", "0", 'GET').success(function (response) {    //Get a ViewModel for newsTag
+        ajax.call(cmsServerConfig.configApiServerPath+"newsTag/GetViewModel", "", 'GET').success(function (response) {    //Get a ViewModel for newsTag
             campaignContent.ModuleTag = response.Item;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"campaignContentTag/getviewmodel", "0", 'GET').success(function (response) { //Get a ViewModel for campaignContentTag
+        ajax.call(cmsServerConfig.configApiServerPath+"campaignContentTag/GetViewModel", "", 'GET').success(function (response) { //Get a ViewModel for campaignContentTag
             campaignContent.ModuleContentTag = response.Item;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -279,7 +279,7 @@
         if (buttonIsPressed) { return };
         campaignContent.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CampaignCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignCategory/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             campaignContent.selectedItem = response.Item;
@@ -325,7 +325,7 @@
 
         campaignContent.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CampaignCategory/getviewmodel', campaignContent.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignCategory/GetOne', campaignContent.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             campaignContent.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -437,7 +437,7 @@
                 campaignContent.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'CampaignCategory/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CampaignCategory/GetOne', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     campaignContent.selectedItemForDelete = response.Item;
@@ -528,7 +528,7 @@
         campaignContent.addRequested = false;
         campaignContent.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             //console.log(response);
             rashaErManage.checkAction(response);
@@ -555,7 +555,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/getviewmodel', campaignContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/GetOne', campaignContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             campaignContent.selectedItem = response1.Item;
@@ -564,7 +564,7 @@
             campaignContent.filePickerMainImage.filename = null;
             campaignContent.filePickerMainImage.fileId = null;
             if (response1.Item.LinkMainImageId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response1.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', response1.Item.LinkMainImageId, 'GET').success(function (response2) {
                     buttonIsPressed = false;
                     campaignContent.filePickerMainImage.filename = response2.Item.FileName;
                     campaignContent.filePickerMainImage.fileId = response2.Item.Id
@@ -722,7 +722,7 @@
                 campaignContent.showbusy = true;
                 campaignContent.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"campaignContent/getviewmodel", campaignContent.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"campaignContent/GetOne", campaignContent.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     campaignContent.showbusy = false;
                     campaignContent.showIsBusy = false;
@@ -763,7 +763,7 @@
             rashaErManage.showMessage($filter('translatentk')('Please_Select_A_Content'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/getviewmodel', campaignContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/GetOne', campaignContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignContent.selectedItem = response.Item;
             campaignContent.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
@@ -792,7 +792,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/getviewmodel', campaignContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/GetOne', campaignContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignContent.selectedItem = response.Item;
             campaignContent.selectedItem.IsArchive = (response.Item.IsArchive == true) ? false : true;
@@ -900,7 +900,7 @@
                 console.log("Item to be deleted: ", campaignContent.gridOptions.selectedRow.item);
                 campaignContent.showbusy = true;
                 campaignContent.showIsBusy = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/getviewmodel', campaignContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'campaignContent/GetOne', campaignContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     campaignContent.showbusy = false;
                     campaignContent.showIsBusy = false;
                     rashaErManage.checkAction(response);
@@ -1075,7 +1075,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             campaignContent.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -1152,14 +1152,14 @@
         campaignContent.fileIdToDelete = campaignContent.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", campaignContent.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", campaignContent.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     campaignContent.remove(campaignContent.FileList, campaignContent.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 campaignContent.FileItem = response3.Item;
                                 campaignContent.FileItem.FileName = name;
@@ -1261,7 +1261,7 @@
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                 campaignContent.fileIdToDelete,
                 "GET"
               )
@@ -1311,7 +1311,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                     campaignContent.FileItem = response.Item;
                     campaignContent.FileItem.FileName = uploadFile.name;
                     campaignContent.FileItem.uploadName = uploadFile.uploadName;
@@ -1473,7 +1473,7 @@
     //    }
     //    campaignContent.selectedItem.LinkMainImageId = node.Id;
     //    campaignContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-    //    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
     //        campaignContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
     //    }).error(function (data, errCode, c, d) {
     //        console.log(data);

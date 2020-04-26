@@ -17,7 +17,7 @@
     outBox.addRequested = false;
     outBox.openAddModal = function () {
         outBox.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'outBox/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'outBox/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             outBox.selectedItem = response.Item;
             $modal.open({
@@ -55,7 +55,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'outBox/getviewmodel', outBox.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'outBox/GetOne', outBox.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             outBox.selectedItem = response.Item;
             $modal.open({
@@ -133,7 +133,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(outBox.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'outBox/getviewmodel',outBox.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'outBox/GetOne',outBox.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     outBox.selectedItemForDelete = response.Item;
                     console.log(outBox.selectedItemForDelete);

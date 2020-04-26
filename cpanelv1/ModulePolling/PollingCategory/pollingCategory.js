@@ -33,7 +33,7 @@
 
         pollingcategory.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'pollingcategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'pollingcategory/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             pollingcategory.selectedItem = response.Item;
@@ -105,7 +105,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'pollingcategory/getviewmodel', pollingcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'pollingcategory/GetOne', pollingcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             pollingcategory.selectedItem = response.Item;
@@ -230,7 +230,7 @@
             if (isConfirmed) {
                 console.log(pollingcategory.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'pollingcategory/getviewmodel',  pollingcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'pollingcategory/GetOne',  pollingcategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     pollingcategory.selectedItemForDelete = response.Item;
@@ -399,7 +399,7 @@
         }
         pollingContent.selectedItem.LinkMainImageId = node.Id;
         pollingContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
             pollingContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

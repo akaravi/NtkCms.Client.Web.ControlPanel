@@ -113,7 +113,7 @@
         jobProperty.filePickerFiles.filename = "";
         jobProperty.filePickerFiles.fileId = null;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobproperty/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobproperty/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             jobProperty.busyIndicator.isActive = false;
@@ -148,7 +148,7 @@
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 jobProperty.closeModal();
-                ajax.call(cmsServerConfig.configApiServerPath+"jobpropertydetailvalue/getviewmodel", '0', 'GET').success(function (response1) {
+                ajax.call(cmsServerConfig.configApiServerPath+"jobpropertydetailvalue/GetViewModel", "0", 'GET').success(function (response1) {
                     rashaErManage.checkAction(response1);
                     for (var i = 0; i < jobProperty.propertyDetailsListItems.length; i++) {
                         valueItem = $.extend(true, {}, response1.Item);
@@ -226,7 +226,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'jobproperty/getviewmodel', parseInt(jobProperty.gridOptions.selectedRow.item.Id), 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobproperty/GetOne', parseInt(jobProperty.gridOptions.selectedRow.item.Id), 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             jobProperty.selectedItem = response.Item;
@@ -239,7 +239,7 @@
             jobProperty.filePickerMainImage.filename = null;
             jobProperty.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null && response.Item.LinkMainImageId > 0) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(response.Item.LinkMainImageId), 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(response.Item.LinkMainImageId), 'GET').success(function (response2) {
                     if (response2.IsSuccess && response2.Item.Id > 9) {
                         jobProperty.filePickerMainImage.filename = response2.Item.FileName;
                         jobProperty.filePickerMainImage.fileId = response2.Item.Id;
@@ -398,7 +398,7 @@
             if (isConfirmed) {
                 jobProperty.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'jobproperty/getviewmodel', jobProperty.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'jobproperty/GetOne', jobProperty.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     jobProperty.selectedItemForDelete = response.Item;
@@ -732,7 +732,7 @@
             jobProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'JobContract/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'JobContract/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 jobProperty.selectedItem = response.Item;
@@ -864,7 +864,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             jobProperty.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -942,14 +942,14 @@
         jobProperty.fileIdToDelete = jobProperty.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", jobProperty.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", jobProperty.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     jobProperty.remove(jobProperty.FileList, jobProperty.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 jobProperty.FileItem = response3.Item;
                                 jobProperty.FileItem.FileName = name;
@@ -1052,7 +1052,7 @@
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                 jobProperty.fileIdToDelete,
                 "GET"
               )
@@ -1102,7 +1102,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                     jobProperty.FileItem = response.Item;
                     jobProperty.FileItem.FileName = uploadFile.name;
                     jobProperty.FileItem.uploadName = uploadFile.uploadName;

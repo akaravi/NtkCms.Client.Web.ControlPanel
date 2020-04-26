@@ -84,7 +84,7 @@
 
     cmsPagegrd.openAddModal = function () {
         cmsPagegrd.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/GetViewModel', '', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPagegrd.selectedItem = response.Item;
 
@@ -168,7 +168,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/GetOne', item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPagegrd.selectedItem = response.Item;
             cmsPagegrd.selectedItem.LinkModuleId = null;
@@ -226,7 +226,7 @@
         cmsPagegrd.busyIndicator.isActive = true;
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getviewmodel', item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/GetOne', item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsPagegrd.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/delete', cmsPagegrd.selectedItemForDelete, 'POST').success(function (res) {
@@ -301,9 +301,9 @@
     cmsPagegrd.LoadModuleOfDependency = function (pageDependencyId) {
         if (pageDependencyId != null) {
             cmsPagegrd.selectedItem.selectedModule = null;
-            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/getviewmodel', pageDependencyId, 'GET').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/GetOne', pageDependencyId, 'GET').success(function (response1) {
                 if (response1.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreModule/getviewmodel', response1.Item.LinkModuleId, 'GET').success(function (response2) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreModule/GetOne', response1.Item.LinkModuleId, 'GET').success(function (response2) {
                         rashaErManage.checkAction(response2);
                         cmsPagegrd.selectedItem.LinkModuleId = response2.Item.Id;
                         cmsPagegrd.selectedItem.LinkPageDependencyGuId = pageDependencyId;

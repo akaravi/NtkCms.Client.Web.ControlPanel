@@ -42,7 +42,7 @@
     siteAccDocumentDetailType.addRequested = false;
     siteAccDocumentDetailType.openAddModal = function () {
         siteAccDocumentDetailType.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'siteAccountingDocumentDetailType/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'siteAccountingDocumentDetailType/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             siteAccDocumentDetailType.busyIndicator.isActive = false;
             siteAccDocumentDetailType.selectedItem = response.Item;
@@ -92,7 +92,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'serviceTag/getviewmodel', siteAccDocumentDetailType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'serviceTag/GetOne', siteAccDocumentDetailType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             siteAccDocumentDetailType.selectedItem = response.Item;
             $modal.open({
@@ -155,7 +155,7 @@
             if (isConfirmed) {
                 siteAccDocumentDetailType.busyIndicator.isActive = true;
                 console.log(siteAccDocumentDetailType.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'siteAccDocumentDetailType/getviewmodel', siteAccDocumentDetailType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'siteAccDocumentDetailType/GetOne', siteAccDocumentDetailType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     //rashaErManage.checkAction(response);
                     siteAccDocumentDetailType.selectedItemForDelete = response.Item;
                     console.log(siteAccDocumentDetailType.selectedItemForDelete);

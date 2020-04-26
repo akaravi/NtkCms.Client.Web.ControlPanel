@@ -30,7 +30,7 @@
     dbCategory.addRequested = false;
     dbCategory.openAddModal = function () {
         dbCategory.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             dbCategory.selectedItem = response.Item;
             $modal.open({
@@ -73,7 +73,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/getviewmodel', dbCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/GetOne', dbCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             dbCategory.selectedItem = response.Item;
             $modal.open({
@@ -164,7 +164,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(dbCategory.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/getviewmodel',  dbCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'dbCategory/GetOne',  dbCategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     dbCategory.selectedItemForDelete = response.Item;
                     console.log(dbCategory.selectedItemForDelete);

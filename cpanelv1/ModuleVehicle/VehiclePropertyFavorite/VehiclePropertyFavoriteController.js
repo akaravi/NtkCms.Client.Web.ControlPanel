@@ -32,7 +32,7 @@
     vehiclePropertyFavorite.addRequested = false;
     vehiclePropertyFavorite.openAddModal = function () {
         vehiclePropertyFavorite.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyFavorite/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyFavorite/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             vehiclePropertyFavorite.busyIndicator.isActive = false;
             vehiclePropertyFavorite.selectedItem = response.Item;
@@ -78,7 +78,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyFavorite/getviewmodel', vehiclePropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclePropertyFavorite/GetOne', vehiclePropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             vehiclePropertyFavorite.selectedItem = response.Item;
             $modal.open({
@@ -140,7 +140,7 @@
             if (isConfirmed) {
                 vehiclePropertyFavorite.busyIndicator.isActive = true;
                 console.log(vehiclePropertyFavorite.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyFavorite/getviewmodel', vehiclePropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'VehiclePropertyFavorite/GetOne', vehiclePropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     vehiclePropertyFavorite.selectedItemForDelete = response.Item;
                     console.log(vehiclePropertyFavorite.selectedItemForDelete);

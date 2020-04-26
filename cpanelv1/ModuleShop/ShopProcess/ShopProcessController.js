@@ -64,7 +64,7 @@
 //       shopProcess.modalTitle = 'اضافه';
 //       shopProcess.filePickerMainImage.filename = "";
 //       shopProcess.filePickerMainImage.fileId = null; 
-//       ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/getviewmodel', "0", 'GET').success(function (response) {
+//       ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetViewModel', "", 'GET').success(function (response) {
 //           rashaErManage.checkAction(response);
 //           shopProcess.busyIndicator.isActive = false;
 //           shopProcess.selectedItem = response.Item;
@@ -147,7 +147,7 @@
         }
         shopProcess.busyIndicator.isActive = true;
         shopProcess.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/getviewmodel', shopProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', shopProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopProcess.selectedItem = response.Item;
         shopProcess.filePickerMainImage.filename = null;
@@ -155,7 +155,7 @@
          if (response.Item.LinkMainImageId != null) {
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                 response.Item.LinkMainImageId,
                 "GET"
               )
@@ -255,7 +255,7 @@
             if (isConfirmed) {
                 shopProcess.busyIndicator.isActive = true;
                 console.log(shopProcess.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/getviewmodel', shopProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', shopProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     shopProcess.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/delete', shopProcess.selectedItemForDelete, 'POST').success(function (res) {
@@ -319,7 +319,7 @@
     // Show InputValue form builder and auto scroll to its position Admin form
     shopProcess.scrollToFormBuilderMainAdmin = function (item) {
         shopProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', item.Id, 'GET').success(function (response) {
             shopProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             shopProcess.selectedItem = response.Item;
@@ -349,7 +349,7 @@
         shopProcess.showSaveButton = false;
         if (preview == "false") {
             shopProcess.showSaveButton = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/getviewmodel', selectedId, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', selectedId, 'GET').success(function (response) {
                 shopProcess.busyIndicator.isActive = false;
                 rashaErManage.checkAction(response);
                 shopProcess.selectedItem = response.Item;
@@ -395,7 +395,7 @@
     // Save Input Value Form
     shopProcess.saveJsonFormMainAdmin = function () {
         shopProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/getviewmodel', shopProcess.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', shopProcess.selectedItem.Id, 'GET').success(function (response1) {
             shopProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             shopProcess.selectedItem = response1.Item;
@@ -490,7 +490,7 @@
     // Show InputValue form builder and auto scroll to its position
     shopProcess.scrollToFormBuilderSiteAdmin = function (item) {
         shopProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', item.Id, 'GET').success(function (response) {
             shopProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             shopProcess.selectedItem = response.Item;
@@ -521,7 +521,7 @@
         shopProcess.showSaveButton = false;
         if (preview == "false") {
             shopProcess.showSaveButton = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/getviewmodel', selectedId, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', selectedId, 'GET').success(function (response) {
                 shopProcess.busyIndicator.isActive = false;
                 rashaErManage.checkAction(response);
                 shopProcess.selectedItem = response.Item;
@@ -562,7 +562,7 @@
     // Save Input Value Form
     shopProcess.saveJsonFormSiteAdmin = function () {
         shopProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/getviewmodel', shopProcess.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', shopProcess.selectedItem.Id, 'GET').success(function (response1) {
             shopProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             shopProcess.selectedItem = response1.Item;
@@ -681,7 +681,7 @@
 
     shopProcess.scrollToFormBuilder = function (item) {
         shopProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', item.Id, 'GET').success(function (response) {
             shopProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             shopProcess.selectedItem = response.Item;
@@ -727,7 +727,7 @@
     shopProcess.saveProcessInputCustomizeValue = function () {
         shopProcess.busyIndicator.isActive = true;
         shopProcess.selectedProcessId = shopProcess.gridOptions.selectedRow.item.Id;       //Storing selected Process Id for further uses
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/getviewmodel', shopProcess.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', shopProcess.selectedItem.Id, 'GET').success(function (response1) {
             shopProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             shopProcess.selectedItem = response1.Item;
@@ -819,7 +819,7 @@
         var filterDataModel = { PropertyName: "Id", searchType: 0, IntValue1: shopProcess.ProcessId };
         var engine = { Filters: [] };
         engine.Filters.push(filterDataModel);
-        ajax.call(cmsServerConfig.configApiServerPath+'shopProcess/getviewmodel', ProcessId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopProcess/GetOne', ProcessId, 'GET').success(function (response) {
             shopProcess.selectedItem = response.Item;
             shopProcess.formJson = $builder.forms['default'];
             $builder.removeAllFormObject('default');
@@ -983,7 +983,7 @@
         }
         shopProcess.selectedItem.LinkModuleFilePreviewImageId = node.Id;
         shopProcess.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
             shopProcess.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -1009,7 +1009,7 @@
             // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                 shopProcess.fileIdToDelete,
                 "GET"
               )
@@ -1060,7 +1060,7 @@
           // File does not exists
           // Save New file
           ajax
-            .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", "GET")
+            .call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", "GET")
             .success(function(response) {
               shopProcess.FileItem = response.Item;
                 shopProcess.FileItem.FileName = uploadFile.name;

@@ -95,7 +95,7 @@
     articleContentAndParameterValue.addRequested = false;
     articleContentAndParameterValue.openAddModal = function () {
         articleContentAndParameterValue.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'articleContentAndParameterValue/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleContentAndParameterValue/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             articleContentAndParameterValue.busyIndicator.isActive = false;
             articleContentAndParameterValue.selectedItem = response.Item;
@@ -145,7 +145,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'articleContentAndParameterValue/getviewmodel', articleContentAndParameterValue.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleContentAndParameterValue/GetOne', articleContentAndParameterValue.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             articleContentAndParameterValue.selectedItem = response.Item;
             if (articleContentAndParameterValue
@@ -209,7 +209,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 articleContentAndParameterValue.busyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'articleContentAndParameterValue/getviewmodel', articleContentAndParameterValue.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'articleContentAndParameterValue/GetOne', articleContentAndParameterValue.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     articleContentAndParameterValue.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'articleContentAndParameterValue/delete', articleContentAndParameterValue.selectedItemForDelete, 'POST').success(function (res) {

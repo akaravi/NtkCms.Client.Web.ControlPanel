@@ -554,7 +554,7 @@
           biographyContent.contentBusyIndicator.isActive = false;
         });
 
-      ajax.call(cmsServerConfig.configApiServerPath + "biographyContentTag/getviewmodel", "0", "GET").success(function (response) { //Get a ViewModel for biographyContentTag
+      ajax.call(cmsServerConfig.configApiServerPath + "biographyContentTag/GetViewModel", "", "GET").success(function (response) { //Get a ViewModel for biographyContentTag
           biographyContent.ModuleContentTag = response.Item;
         })
         .error(function (data, errCode, c, d) {
@@ -611,7 +611,7 @@
       biographyContent.addRequested = false;
       buttonIsPressed = true;
       ajax
-        .call(cmsServerConfig.configApiServerPath + "biographyCategory/getviewmodel", "0", "GET")
+        .call(cmsServerConfig.configApiServerPath + "biographyCategory/GetViewModel", "", "GET")
         .success(function (response) {
           buttonIsPressed = false;
           rashaErManage.checkAction(response);
@@ -689,7 +689,7 @@
       buttonIsPressed = true;
       ajax
         .call(
-          cmsServerConfig.configApiServerPath + "biographyCategory/getviewmodel",
+          cmsServerConfig.configApiServerPath + "biographyCategory/GetOne",
           biographyContent.treeConfig.currentNode.Id,
           "GET"
         )
@@ -771,7 +771,7 @@
         rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
         return;
       }
-      ajax.call(cmsServerConfig.configApiServerPath + 'biographyContent/getviewmodel', biographyContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+      ajax.call(cmsServerConfig.configApiServerPath + 'biographyContent/GetOne', biographyContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
         rashaErManage.checkAction(response1);
         biographyContent.selectedItem = response1.Item;
         $modal.open({
@@ -856,7 +856,7 @@
             biographyContent.categoryBusyIndicator.isActive = true;
             buttonIsPressed = true;
             ajax
-              .call(cmsServerConfig.configApiServerPath + "biographyCategory/getviewmodel", node.Id, "GET")
+              .call(cmsServerConfig.configApiServerPath + "biographyCategory/GetOne", node.Id, "GET")
               .success(function (response) {
                 buttonIsPressed = false;
                 rashaErManage.checkAction(response);
@@ -980,7 +980,7 @@
       //biographyContent.modalTitle = ($filter('translatentk')('Add_Content'));
       buttonIsPressed = true;
       ajax
-        .call(cmsServerConfig.configApiServerPath + "biographyContent/getviewmodel", "0", "GET")
+        .call(cmsServerConfig.configApiServerPath + "biographyContent/GetViewModel", "", "GET")
         .success(function (response) {
           buttonIsPressed = false;
           rashaErManage.checkAction(response);
@@ -1131,7 +1131,7 @@
       }
       biographyContent.selectedItemOtherInfos = {};
       buttonIsPressed = true;
-      ajax.call(cmsServerConfig.configApiServerPath + "biographyContent/getviewmodel", biographyContent.gridOptions.selectedRow.item.Id, "GET")
+      ajax.call(cmsServerConfig.configApiServerPath + "biographyContent/GetOne", biographyContent.gridOptions.selectedRow.item.Id, "GET")
         .success(function (response1) {
           buttonIsPressed = false;
           rashaErManage.checkAction(response1);
@@ -1214,7 +1214,7 @@
             });
           //BiographyContentOtherInfo
           if (response1.Item.LinkMainImageId != null) {
-            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", response1.Item.LinkMainImageId, "GET")
+            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", response1.Item.LinkMainImageId, "GET")
               .success(function (response2) {
                 buttonIsPressed = false;
                 biographyContent.filePickerMainImage.filename =
@@ -1226,7 +1226,7 @@
               });
           }
           if (response1.Item.LinkFilePodcastId != null) {
-            ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/getviewmodel', response1.Item.LinkFilePodcastId, 'GET').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/GetOne', response1.Item.LinkFilePodcastId, 'GET').success(function (response2) {
               biographyContent.filePickerFilePodcast.filename = response2.Item.FileName;
               biographyContent.filePickerFilePodcast.fileId = response2.Item.Id
             }).error(function (data, errCode, c, d) {
@@ -1234,7 +1234,7 @@
             });
           }
           if (response1.Item.LinkFileMovieId != null) {
-            ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/getviewmodel', response1.Item.LinkFileMovieId, 'GET').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/GetOne', response1.Item.LinkFileMovieId, 'GET').success(function (response2) {
               biographyContent.filePickerFileMovie.filename = response2.Item.FileName;
               biographyContent.filePickerFileMovie.fileId = response2.Item.Id
             }).error(function (data, errCode, c, d) {
@@ -1543,7 +1543,7 @@
             buttonIsPressed = true;
             ajax
               .call(
-                cmsServerConfig.configApiServerPath + "biographyContent/getviewmodel",
+                cmsServerConfig.configApiServerPath + "biographyContent/GetOne",
                 biographyContent.gridOptions.selectedRow.item.Id,
                 "GET"
               )
@@ -1597,7 +1597,7 @@
       }
       ajax
         .call(
-          cmsServerConfig.configApiServerPath + "biographyContent/getviewmodel",
+          cmsServerConfig.configApiServerPath + "biographyContent/GetOne",
           biographyContent.gridOptions.selectedRow.item.Id,
           "GET"
         )
@@ -1638,7 +1638,7 @@
 
       ajax
         .call(
-          cmsServerConfig.configApiServerPath + "biographyContent/getviewmodel",
+          cmsServerConfig.configApiServerPath + "biographyContent/GetOne",
           biographyContent.gridOptions.selectedRow.item.Id,
           "GET"
         )
@@ -2015,7 +2015,7 @@
         $.each(fileIds, function (index, item) {
           if (item == parseInt(item, 10)) {
             // Check if item is an integer
-            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", parseInt(item), "GET").success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", parseInt(item), "GET").success(function (response) {
                 if (response.IsSuccess) {
                   biographyContent.attachedFiles.push({
                     fileId: response.Item.Id,
@@ -2132,7 +2132,7 @@
 
       // Delete the file
       ajax
-        .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", biographyContent.fileIdToDelete, "GET")
+        .call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", biographyContent.fileIdToDelete, "GET")
         .success(function (response1) {
           rashaErManage.checkAction(response1);
           if (response1.IsSuccess == true) {
@@ -2148,7 +2148,7 @@
                 if (response2.IsSuccess == true) {
                   // Save New file
                   ajax
-                    .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", "GET")
+                    .call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", "GET")
                     .success(function (response3) {
                       rashaErManage.checkAction(response3);
 
@@ -2252,7 +2252,7 @@
             // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath + "FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath + "FileContent/GetOne",
                 biographyContent.fileIdToDelete,
                 "GET"
               )
@@ -2303,7 +2303,7 @@
           }
         } else { // File does not exists
           // Save New file
-          ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", 'GET').success(function (response) {
+          ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", 'GET').success(function (response) {
             biographyContent.FileItem = response.Item;
             biographyContent.FileItem.FileName = uploadFile.name;
             biographyContent.FileItem.uploadName = uploadFile.uploadName;
@@ -2356,7 +2356,7 @@
             // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath + "FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath + "FileContent/GetOne",
                 biographyContent.fileIdToDelete,
                 "GET"
               )
@@ -2407,7 +2407,7 @@
           }
         } else { // File does not exists
           // Save New file
-          ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", 'GET').success(function (response) {
+          ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", 'GET').success(function (response) {
             biographyContent.FileItem = response.Item;
             biographyContent.FileItem.FileName = uploadFile.name;
             biographyContent.FileItem.uploadName = uploadFile.uploadName;
@@ -2468,7 +2468,7 @@
             // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath + "FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath + "FileContent/GetOne",
                 biographyContent.fileIdToDelete,
                 "GET"
               )
@@ -2519,7 +2519,7 @@
           // File does not exists
           // Save New file
           ajax
-            .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", "GET")
+            .call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", "GET")
             .success(function (response) {
               biographyContent.FileItem = response.Item;
               biographyContent.FileItem.FileName = uploadFile.name;
@@ -2744,7 +2744,7 @@
       biographyContent.selectedItem.LinkMainImageId = node.Id;
       biographyContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages + "loader.gif";
       ajax
-        .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", node.Id, "GET")
+        .call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", node.Id, "GET")
         .success(function (response) {
           biographyContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         })

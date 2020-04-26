@@ -2,7 +2,7 @@
 export class ErrorExcptionResultBase {
   Status: number;
   token: string;
-  IsSuccess: boolean;
+  IsSuccess: boolean = false;
   errors: Map<string, Array<string>>;
   ErrorMessage: string;
 }

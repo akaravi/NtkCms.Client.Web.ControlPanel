@@ -95,7 +95,7 @@
     discountGroup.addRequested = false;
     discountGroup.openAddModal = function () {
         discountGroup.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountGroup.busyIndicator.isActive = false;
             discountGroup.selectedItem = response.Item;
@@ -145,7 +145,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/getviewmodel', discountGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/GetOne', discountGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountGroup.selectedItem = response.Item;
             if (discountGroup
@@ -210,7 +210,7 @@
             if (isConfirmed) {
                 discountGroup.busyIndicator.isActive = true;
                 
-                ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/getviewmodel', discountGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'DiscountGroup/GetOne', discountGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     discountGroup.selectedItemForDelete = response.Item;
                     

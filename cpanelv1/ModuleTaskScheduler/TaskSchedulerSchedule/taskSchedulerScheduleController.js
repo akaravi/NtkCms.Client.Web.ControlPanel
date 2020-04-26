@@ -201,7 +201,7 @@
         schedule.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
         schedule.valueSubmit = [];
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             schedule.selectedItem = response.Item;
@@ -224,7 +224,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/getviewmodel', schedule.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/GetOne', schedule.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             schedule.selectedItem = response1.Item;
@@ -366,7 +366,7 @@
                 schedule.showbusy = true;
                 schedule.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/getviewmodel', schedule.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/GetOne', schedule.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     schedule.showbusy = false;
                     schedule.showIsBusy = false;

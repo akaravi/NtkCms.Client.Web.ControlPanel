@@ -59,7 +59,7 @@
     CmsModuleHeaderG.addRequested = false;
     CmsModuleHeaderG.openAddModal = function () {
         CmsModuleHeaderG.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleHeaderGroup/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleHeaderGroup/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             CmsModuleHeaderG.busyIndicator.isActive = false;
             CmsModuleHeaderG.selectedItem = response.Item;
@@ -107,7 +107,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleHeaderGroup/getviewmodel', CmsModuleHeaderG.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleHeaderGroup/GetOne', CmsModuleHeaderG.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             CmsModuleHeaderG.selectedItem = response.Item;
             $modal.open({
@@ -169,7 +169,7 @@
             if (isConfirmed) {
                 CmsModuleHeaderG.busyIndicator.isActive = true;
                 console.log(CmsModuleHeaderG.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleHeaderGroup/getviewmodel', CmsModuleHeaderG.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleHeaderGroup/GetOne', CmsModuleHeaderG.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     CmsModuleHeaderG.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSaleHeaderGroup/delete', CmsModuleHeaderG.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);

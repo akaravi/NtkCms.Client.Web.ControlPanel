@@ -99,7 +99,7 @@
         shopCombine.addRequested = false;
         shopCombine.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductCombine/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductCombine/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopCombine.selectedItem = response.Item;
@@ -122,7 +122,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductCombine/getviewmodel', shopCombine.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductCombine/GetOne', shopCombine.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopCombine.selectedItem = response.Item;
@@ -137,7 +137,7 @@
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
-        //ajax.call(cmsServerConfig.configApiServerPath+'ShopProductItemCombine/getviewmodel', '0', 'GET').success(function (response) {
+        //ajax.call(cmsServerConfig.configApiServerPath+'ShopProductItemCombine/GetViewModel', '', 'GET').success(function (response) {
         //    rashaErManage.checkAction(response);
         //    if (response.IsSuccess) {
         //        shopCombine.shopProductItemCombineToadd = response.Item;
@@ -233,7 +233,7 @@
                 shopCombine.showbusy = true;
                 shopCombine.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"ShopProductCombine/getviewmodel", shopCombine.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"ShopProductCombine/GetOne", shopCombine.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     shopCombine.showbusy = false;
                     shopCombine.showIsBusy = false;
@@ -322,7 +322,7 @@
 
     shopCombine.openItemsModal = function (selectedId) {
         shopCombine.itemsList = [];
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductCombine/getviewmodel', selectedId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductCombine/GetOne', selectedId, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 shopCombine.selectedItem = response.Item;

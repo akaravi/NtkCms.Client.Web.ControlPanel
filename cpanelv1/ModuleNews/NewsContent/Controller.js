@@ -548,7 +548,7 @@
           newsContent.contentBusyIndicator.isActive = false;
         });
 
-      ajax.call(cmsServerConfig.configApiServerPath + "newsContentTag/getviewmodel", "0", "GET").success(function (response) { //Get a ViewModel for newsContentTag
+      ajax.call(cmsServerConfig.configApiServerPath + "newsContentTag/GetViewModel", "", "GET").success(function (response) { //Get a ViewModel for newsContentTag
           newsContent.ModuleContentTag = response.Item;
         })
         .error(function (data, errCode, c, d) {
@@ -606,7 +606,7 @@
       newsContent.addRequested = false;
       buttonIsPressed = true;
       ajax
-        .call(cmsServerConfig.configApiServerPath + "newsCategory/getviewmodel", "0", "GET")
+        .call(cmsServerConfig.configApiServerPath + "newsCategory/GetViewModel", "", "GET")
         .success(function (response) {
           buttonIsPressed = false;
           rashaErManage.checkAction(response);
@@ -684,7 +684,7 @@
       buttonIsPressed = true;
       ajax
         .call(
-          cmsServerConfig.configApiServerPath + "newsCategory/getviewmodel",
+          cmsServerConfig.configApiServerPath + "newsCategory/GetOne",
           newsContent.treeConfig.currentNode.Id,
           "GET"
         )
@@ -766,7 +766,7 @@
         rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
         return;
       }
-      ajax.call(cmsServerConfig.configApiServerPath + 'newsContent/getviewmodel', newsContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+      ajax.call(cmsServerConfig.configApiServerPath + 'newsContent/GetOne', newsContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
         rashaErManage.checkAction(response1);
         newsContent.selectedItem = response1.Item;
         $modal.open({
@@ -851,7 +851,7 @@
             newsContent.categoryBusyIndicator.isActive = true;
             buttonIsPressed = true;
             ajax
-              .call(cmsServerConfig.configApiServerPath + "newsCategory/getviewmodel", node.Id, "GET")
+              .call(cmsServerConfig.configApiServerPath + "newsCategory/GetOne", node.Id, "GET")
               .success(function (response) {
                 buttonIsPressed = false;
                 rashaErManage.checkAction(response);
@@ -975,7 +975,7 @@
       //newsContent.modalTitle = ($filter('translatentk')('Add_Content'));
       buttonIsPressed = true;
       ajax
-        .call(cmsServerConfig.configApiServerPath + "newsContent/getviewmodel", "0", "GET")
+        .call(cmsServerConfig.configApiServerPath + "newsContent/GetViewModel", "", "GET")
         .success(function (response) {
           buttonIsPressed = false;
           rashaErManage.checkAction(response);
@@ -1126,7 +1126,7 @@
       }
       newsContent.selectedItemOtherInfos = {};
       buttonIsPressed = true;
-      ajax.call(cmsServerConfig.configApiServerPath + "newsContent/getviewmodel", newsContent.gridOptions.selectedRow.item.Id, "GET")
+      ajax.call(cmsServerConfig.configApiServerPath + "newsContent/GetOne", newsContent.gridOptions.selectedRow.item.Id, "GET")
         .success(function (response1) {
           buttonIsPressed = false;
           rashaErManage.checkAction(response1);
@@ -1202,7 +1202,7 @@
             });
           //NewsContentOtherInfo
           if (response1.Item.LinkMainImageId != null) {
-            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", response1.Item.LinkMainImageId, "GET")
+            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", response1.Item.LinkMainImageId, "GET")
               .success(function (response2) {
                 buttonIsPressed = false;
                 newsContent.filePickerMainImage.filename =
@@ -1214,7 +1214,7 @@
               });
           }
           if (response1.Item.LinkFilePodcastId != null) {
-            ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/getviewmodel', response1.Item.LinkFilePodcastId, 'GET').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/GetOne', response1.Item.LinkFilePodcastId, 'GET').success(function (response2) {
               newsContent.filePickerFilePodcast.filename = response2.Item.FileName;
               newsContent.filePickerFilePodcast.fileId = response2.Item.Id
             }).error(function (data, errCode, c, d) {
@@ -1222,7 +1222,7 @@
             });
           }
           if (response1.Item.LinkFileMovieId != null) {
-            ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/getviewmodel', response1.Item.LinkFileMovieId, 'GET').success(function (response2) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/GetOne', response1.Item.LinkFileMovieId, 'GET').success(function (response2) {
               newsContent.filePickerFileMovie.filename = response2.Item.FileName;
               newsContent.filePickerFileMovie.fileId = response2.Item.Id
             }).error(function (data, errCode, c, d) {
@@ -1531,7 +1531,7 @@
             buttonIsPressed = true;
             ajax
               .call(
-                cmsServerConfig.configApiServerPath + "newsContent/getviewmodel",
+                cmsServerConfig.configApiServerPath + "newsContent/GetOne",
                 newsContent.gridOptions.selectedRow.item.Id,
                 "GET"
               )
@@ -1585,7 +1585,7 @@
       }
       ajax
         .call(
-          cmsServerConfig.configApiServerPath + "newsContent/getviewmodel",
+          cmsServerConfig.configApiServerPath + "newsContent/GetOne",
           newsContent.gridOptions.selectedRow.item.Id,
           "GET"
         )
@@ -1626,7 +1626,7 @@
 
       ajax
         .call(
-          cmsServerConfig.configApiServerPath + "newsContent/getviewmodel",
+          cmsServerConfig.configApiServerPath + "newsContent/GetOne",
           newsContent.gridOptions.selectedRow.item.Id,
           "GET"
         )
@@ -2003,7 +2003,7 @@
         $.each(fileIds, function (index, item) {
           if (item == parseInt(item, 10)) {
             // Check if item is an integer
-            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", parseInt(item), "GET").success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", parseInt(item), "GET").success(function (response) {
                 if (response.IsSuccess) {
                   newsContent.attachedFiles.push({
                     fileId: response.Item.Id,
@@ -2120,7 +2120,7 @@
 
       // Delete the file
       ajax
-        .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", newsContent.fileIdToDelete, "GET")
+        .call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", newsContent.fileIdToDelete, "GET")
         .success(function (response1) {
           rashaErManage.checkAction(response1);
           if (response1.IsSuccess == true) {
@@ -2136,7 +2136,7 @@
                 if (response2.IsSuccess == true) {
                   // Save New file
                   ajax
-                    .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", "GET")
+                    .call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", "GET")
                     .success(function (response3) {
                       rashaErManage.checkAction(response3);
 
@@ -2240,7 +2240,7 @@
             // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath + "FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath + "FileContent/GetOne",
                 newsContent.fileIdToDelete,
                 "GET"
               )
@@ -2291,7 +2291,7 @@
           }
         } else { // File does not exists
           // Save New file
-          ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", 'GET').success(function (response) {
+          ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", 'GET').success(function (response) {
             newsContent.FileItem = response.Item;
             newsContent.FileItem.FileName = uploadFile.name;
             newsContent.FileItem.uploadName = uploadFile.uploadName;
@@ -2344,7 +2344,7 @@
             // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath + "FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath + "FileContent/GetOne",
                 newsContent.fileIdToDelete,
                 "GET"
               )
@@ -2395,7 +2395,7 @@
           }
         } else { // File does not exists
           // Save New file
-          ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", 'GET').success(function (response) {
+          ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", 'GET').success(function (response) {
             newsContent.FileItem = response.Item;
             newsContent.FileItem.FileName = uploadFile.name;
             newsContent.FileItem.uploadName = uploadFile.uploadName;
@@ -2456,7 +2456,7 @@
             // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath + "FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath + "FileContent/GetOne",
                 newsContent.fileIdToDelete,
                 "GET"
               )
@@ -2507,7 +2507,7 @@
           // File does not exists
           // Save New file
           ajax
-            .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", "GET")
+            .call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", "GET")
             .success(function (response) {
               newsContent.FileItem = response.Item;
               newsContent.FileItem.FileName = uploadFile.name;
@@ -2732,7 +2732,7 @@
       newsContent.selectedItem.LinkMainImageId = node.Id;
       newsContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages + "loader.gif";
       ajax
-        .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", node.Id, "GET")
+        .call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", node.Id, "GET")
         .success(function (response) {
           newsContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         })

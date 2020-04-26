@@ -85,7 +85,7 @@
     deliveryMethodDetail.addRequested = false;
     deliveryMethodDetail.openAddModal = function () {
         deliveryMethodDetail.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMethodDetail/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMethodDetail/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryMethodDetail.busyIndicator.isActive = false;
             deliveryMethodDetail.selectedItem = response.Item;
@@ -145,7 +145,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMethodDetail/getviewmodel', deliveryMethodDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMethodDetail/GetOne', deliveryMethodDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryMethodDetail.selectedItem = response.Item;
             deliveryMethodDetail.EstimateTime.defaultDate = deliveryMethodDetail.selectedItem.EstimateTime;
@@ -217,7 +217,7 @@
             if (isConfirmed) {
                 deliveryMethodDetail.busyIndicator.isActive = true;
                 console.log(deliveryMethodDetail.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMethodDetail/getviewmodel', deliveryMethodDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMethodDetail/GetOne', deliveryMethodDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     deliveryMethodDetail.selectedItemForDelete = response.Item;
                     console.log(deliveryMethodDetail.selectedItemForDelete);

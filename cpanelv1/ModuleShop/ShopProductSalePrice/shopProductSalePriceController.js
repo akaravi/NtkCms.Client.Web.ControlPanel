@@ -147,12 +147,12 @@
             rashaErManage.checkAction(data, errCode);
             shopSalePrice.contentBusyIndicator.isActive = false;
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"productTag/getviewmodel", "0", 'GET').success(function (response) {    //Get a ViewModel for productTag
+        ajax.call(cmsServerConfig.configApiServerPath+"productTag/GetViewModel", "", 'GET').success(function (response) {    //Get a ViewModel for productTag
             shopSalePrice.ModuleTag = response.Item;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"shopSalePriceTag/getviewmodel", "0", 'GET').success(function (response) { //Get a ViewModel for shopSalePriceTag
+        ajax.call(cmsServerConfig.configApiServerPath+"shopSalePriceTag/GetViewModel", "", 'GET').success(function (response) { //Get a ViewModel for shopSalePriceTag
             shopSalePrice.ModuleContentTag = response.Item;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -168,7 +168,7 @@
         if (buttonIsPressed) { return };
         shopSalePrice.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ProductCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ProductCategory/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopSalePrice.selectedItem = response.Item;
@@ -191,7 +191,7 @@
         }
         shopSalePrice.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ProductCategory/getviewmodel', shopSalePrice.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ProductCategory/GetOne', shopSalePrice.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             shopSalePrice.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -274,7 +274,7 @@
             if (isConfirmed) {
                 shopSalePrice.categoryBusyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'ProductCategory/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ProductCategory/GetOne', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopSalePrice.selectedItemForDelete = response.Item;
@@ -355,7 +355,7 @@
         shopSalePrice.addRequested = false;
         shopSalePrice.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopSalePrice/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopSalePrice/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopSalePrice.selectedItem = response.Item;
@@ -380,7 +380,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopSalePrice/getviewmodel', shopSalePrice.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopSalePrice/GetOne', shopSalePrice.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             shopSalePrice.selectedItem = response1.Item;
@@ -389,7 +389,7 @@
             shopSalePrice.filePickerMainImage.filename = null;
             shopSalePrice.filePickerMainImage.fileId = null;
             if (response1.Item.LinkMainImageId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response1.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', response1.Item.LinkMainImageId, 'GET').success(function (response2) {
                     shopSalePrice.filePickerMainImage.filename = response2.Item.FileName;
                     shopSalePrice.filePickerMainImage.fileId = response2.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -538,7 +538,7 @@
                 shopSalePrice.showbusy = true;
                 shopSalePrice.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"shopSalePrice/getviewmodel", shopSalePrice.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"shopSalePrice/GetOne", shopSalePrice.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     shopSalePrice.showbusy = false;
                     shopSalePrice.showIsBusy = false;
@@ -578,7 +578,7 @@
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'shopSalePrice/getviewmodel', shopSalePrice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopSalePrice/GetOne', shopSalePrice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopSalePrice.selectedItem = response.Item;
             shopSalePrice.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
@@ -605,7 +605,7 @@
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'shopSalePrice/getviewmodel', shopSalePrice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopSalePrice/GetOne', shopSalePrice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopSalePrice.selectedItem = response.Item;
             shopSalePrice.selectedItem.IsArchive = (response.Item.IsArchive == true) ? false : true;
@@ -801,7 +801,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             shopSalePrice.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -878,13 +878,13 @@
         shopSalePrice.fileIdToDelete = shopSalePrice.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", shopSalePrice.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", shopSalePrice.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 shopSalePrice.FileItem = response3.Item;
                                 shopSalePrice.FileItem.FileName = name;
@@ -986,7 +986,7 @@
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                 shopSalePrice.fileIdToDelete,
                 "GET"
               )
@@ -1036,7 +1036,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                     shopSalePrice.FileItem = response.Item;
                     shopSalePrice.FileItem.FileName = uploadFile.name;
                     shopSalePrice.FileItem.uploadName = uploadFile.uploadName;

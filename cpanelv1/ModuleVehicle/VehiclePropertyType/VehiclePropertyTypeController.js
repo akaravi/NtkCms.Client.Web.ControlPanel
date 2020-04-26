@@ -33,7 +33,7 @@
     vehiclePropertyType.addRequested = false;
     vehiclePropertyType.openAddModal = function () {
         vehiclePropertyType.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             vehiclePropertyType.busyIndicator.isActive = false;
             vehiclePropertyType.selectedItem = response.Item;
@@ -79,7 +79,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/getviewmodel', vehiclePropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/GetOne', vehiclePropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             vehiclePropertyType.selectedItem = response.Item;
             $modal.open({
@@ -141,7 +141,7 @@
             if (isConfirmed) {
                 vehiclePropertyType.busyIndicator.isActive = true;
                 console.log(vehiclePropertyType.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/getviewmodel', vehiclePropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'vehiclepropertytype/GetOne', vehiclePropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     vehiclePropertyType.selectedItemForDelete = response.Item;
                     console.log(vehiclePropertyType.selectedItemForDelete);

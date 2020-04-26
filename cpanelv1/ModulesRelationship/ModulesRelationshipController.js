@@ -51,7 +51,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(modulesRelationship.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ModulesRelationshipContent/getviewmodel', modulesRelationship.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ModulesRelationshipContent/GetOne', modulesRelationship.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     modulesRelationship.selectedItemForDelete = response.Item;
                     console.log(modulesRelationship.selectedItemForDelete);

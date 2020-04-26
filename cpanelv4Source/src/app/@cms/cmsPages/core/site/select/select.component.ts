@@ -22,7 +22,11 @@ export class CoreSiteSelectComponent implements OnInit, OnDestroy {
     private alertService: ToastrService,
     private publicHelper: PublicHelper,
     private router: Router,
-  ) {}
+  ) {
+
+    this.coreSiteService.ServiceConstructor()
+
+  }
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }

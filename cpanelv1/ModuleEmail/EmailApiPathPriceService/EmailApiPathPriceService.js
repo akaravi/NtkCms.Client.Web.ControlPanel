@@ -19,7 +19,7 @@
             return;
         }
         if (emailapipathpriceservice.selectedPrivateSiteConfig.Id == null || emailapipathpriceservice.selectedPrivateSiteConfig.Id == 0) emailapipathpriceservice.selectedPriceService.Id = '0';
-        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/getviewmodel', emailapipathpriceservice.selectedPrivateSiteConfig.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailprivatesiteconfig/GetOne', emailapipathpriceservice.selectedPrivateSiteConfig.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailapipathpriceservice.selectedPrivateSiteConfig = response.Item;
@@ -52,7 +52,7 @@
         if (buttonIsPressed) { return };
         emailapipathpriceservice.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/GetViewModel', '', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailapipathpriceservice.selectedItem = response.Item;
@@ -96,7 +96,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/getviewmodel', emailapipathpriceservice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/GetOne', emailapipathpriceservice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             emailapipathpriceservice.selectedItem = response.Item;
@@ -154,7 +154,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/getviewmodel', emailapipathpriceservice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'emailapipathpriceservice/GetOne', emailapipathpriceservice.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
 
                     rashaErManage.checkAction(response);

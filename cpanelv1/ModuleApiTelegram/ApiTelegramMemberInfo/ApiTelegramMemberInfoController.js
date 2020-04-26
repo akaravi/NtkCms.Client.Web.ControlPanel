@@ -128,7 +128,7 @@
     memberInfo.addRequested = false;
     memberInfo.openAddModal = function () {
         memberInfo.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             memberInfo.busyIndicator.isActive = false;
             memberInfo.selectedItem = response.Item;
@@ -176,7 +176,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/getviewmodel', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/GetOne', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             memberInfo.selectedItem = response.Item;
             if (memberInfo
@@ -241,7 +241,7 @@
             if (isConfirmed) {
                 memberInfo.busyIndicator.isActive = true;
                 console.log(memberInfo.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/getviewmodel', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegrammemberInfo/GetOne', memberInfo.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     memberInfo.selectedItemForDelete = response.Item;
                     console.log(memberInfo.selectedItemForDelete);
@@ -362,10 +362,10 @@
         }
         memberInfo.addRequested = true;
         memberInfo.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramMemberInfo/getviewmodel", selectedId, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"ApiTelegramMemberInfo/GetOne", selectedId, "GET").success(function (response) {
             memberInfo.selectedItem = response.Item;
             memberInfo.selectedItem.LinkMemberId = memberId;
-            ajax.call(cmsServerConfig.configApiServerPath+"MemberUser/getviewmodel", memberId, "GET").success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"MemberUser/GetOne", memberId, "GET").success(function (response) {
                 memberInfo.selectedMemberUser = response.Item;
                 memberInfo.addRequested = false;
                 memberInfo.busyIndicator.isActive = false;
@@ -463,7 +463,7 @@
             memberInfo.selectedItem.LinkMemberId = 'loading';
             memberInfo.selectedMemberUser = null;
             memberInfo.addRequested = true;
-            ajax.call(cmsServerConfig.configApiServerPath+"MemberUser/getviewmodel", selected.originalObject.Id, "GET").success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"MemberUser/GetOne", selected.originalObject.Id, "GET").success(function (response) {
                 memberInfo.addRequested = false;
                 rashaErManage.checkAction(response);
                 memberInfo.selectedItem.LinkMemberId = selected.originalObject.Id;

@@ -88,7 +88,7 @@
     deliveryMemberAbsent.addRequested = false;
     deliveryMemberAbsent.openAddModal = function () {
         deliveryMemberAbsent.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberAbsent/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberAbsent/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryMemberAbsent.busyIndicator.isActive = false;
             deliveryMemberAbsent.selectedItem = response.Item;
@@ -148,7 +148,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberAbsent/getviewmodel', deliveryMemberAbsent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberAbsent/GetOne', deliveryMemberAbsent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             deliveryMemberAbsent.selectedItem = response.Item;
             deliveryMemberAbsent.BeginDate.defaultDate = deliveryMemberAbsent.selectedItem.BeginDate;
@@ -220,7 +220,7 @@
             if (isConfirmed) {
                 deliveryMemberAbsent.busyIndicator.isActive = true;
                 console.log(deliveryMemberAbsent.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberAbsent/getviewmodel', deliveryMemberAbsent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'DeliveryMemberAbsent/GetOne', deliveryMemberAbsent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     deliveryMemberAbsent.selectedItemForDelete = response.Item;
                     console.log(deliveryMemberAbsent.selectedItemForDelete);

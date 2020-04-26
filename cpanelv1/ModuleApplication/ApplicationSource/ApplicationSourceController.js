@@ -52,7 +52,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationSource/getviewmodel', appSource.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationSource/GetOne', appSource.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             appSource.selectedItem = response.Item;
@@ -75,7 +75,7 @@
             appSource.filePickerMainImage.filename = null;
             appSource.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", response.Item.LinkMainImageId, "GET")
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", response.Item.LinkMainImageId, "GET")
                     .success(function (response2) {
                         buttonIsPressed = false;
                         appSource.filePickerMainImage.filename = response2.Item.FileName;
@@ -151,7 +151,7 @@
             if (isConfirmed) {
                 appSource.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationSource/getviewmodel', appSource.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationSource/GetOne', appSource.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     appSource.selectedItemForDelete = response.Item;
@@ -305,7 +305,7 @@
                     // replace the file
                     ajax
                         .call(
-                            cmsServerConfig.configApiServerPath + "FileContent/getviewmodel",
+                            cmsServerConfig.configApiServerPath + "FileContent/GetOne",
                             appSource.fileIdToDelete,
                             "GET"
                         )
@@ -356,7 +356,7 @@
                 // File does not exists
                 // Save New file
                 ajax
-                    .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", "GET")
+                    .call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", "GET")
                     .success(function (response) {
                         appSource.FileItem = response.Item;
                         appSource.FileItem.FileName = uploadFile.name;

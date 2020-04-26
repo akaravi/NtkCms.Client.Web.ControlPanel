@@ -16,7 +16,7 @@
     apiCompany.addNewModel = function(){
         apiCompany.addRequested = false;
         apiCompany.modalTitle = "ایجاد کمپانی جدید";
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiPathCompany/getviewmodel',  0 , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiPathCompany/GetOne',  0 , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             apiCompany.selectedItem = response.Item;
             $modal.open({
@@ -34,7 +34,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'apiPathCompany/getviewmodel', apiCompany.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'apiPathCompany/GetOne', apiCompany.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             apiCompany.selectedItem = response.Item;
             $modal.open({
@@ -83,7 +83,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
                 // console.log(node.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'apiPathCompany/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'apiPathCompany/GetOne', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     apiCompany.selectedItemForDelete = response.Item;
                     console.log(apiCompany.selectedItemForDelete);

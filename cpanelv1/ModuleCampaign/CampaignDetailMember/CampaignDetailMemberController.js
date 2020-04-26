@@ -124,7 +124,7 @@
         campaignDetailMember.ViewFindUserDiv = false;
         campaignDetailMember.ViewNewUserDiv = false;
         campaignDetailMember.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/getviewmodel', "0", "GET").success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/GetViewModel', "", "GET").success(function (response1) {
             campaignDetailMember.busyIndicator.isActive = false;
             campaignDetailMember.selectedMemberUser = response1.Item;
         }).error(function (data, errCode, c, d) {
@@ -132,7 +132,7 @@
             campaignDetailMember.busyIndicator.isActive = false;
 
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetailMember.busyIndicator.isActive = false;
             campaignDetailMember.selectedItem = response.Item;
@@ -209,7 +209,7 @@
     //        return;
     //    }
 
-    //    ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/getviewmodel', campaignDetailMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+    //    ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/GetOne', campaignDetailMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
     //        rashaErManage.checkAction(response);
     //        campaignDetailMember.selectedItem = response.Item;
     //        campaignDetailMember.filePickerMainImage.filename = null;
@@ -276,7 +276,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/getviewmodel', "0", "GET").success(function (response2) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MemberUser/GetViewModel', "", "GET").success(function (response2) {
             campaignDetailMember.selectedMemberUser = response2.Item;
 
             campaignDetailMember.busyIndicator.isActive = false;
@@ -285,7 +285,7 @@
             campaignDetailMember.busyIndicator.isActive = false;
 
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/getviewmodel', campaignDetailMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/GetOne', campaignDetailMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetailMember.selectedItem = response.Item;
             if (response.Item.LinkMemberId != null)
@@ -393,7 +393,7 @@
             if (isConfirmed) {
                 campaignDetailMember.busyIndicator.isActive = true;
                 console.log(campaignDetailMember.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/getviewmodel', campaignDetailMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailMember/GetOne', campaignDetailMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     campaignDetailMember.selectedItemForDelete = response.Item;
                     console.log(campaignDetailMember.selectedItemForDelete);
@@ -677,7 +677,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             campaignDetailMember.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -754,14 +754,14 @@
         campaignDetailMember.fileIdToDelete = campaignDetailMember.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", campaignDetailMember.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", campaignDetailMember.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     campaignDetailMember.remove(campaignDetailMember.FileList, campaignDetailMember.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 campaignDetailMember.FileItem = response3.Item;
                                 campaignDetailMember.FileItem.FileName = name;
@@ -863,7 +863,7 @@
                     // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                 campaignDetailMember.fileIdToDelete,
                 "GET"
               )
@@ -913,7 +913,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                     campaignDetailMember.FileItem = response.Item;
                     campaignDetailMember.FileItem.FileName = uploadFile.name;
                     campaignDetailMember.FileItem.uploadName = uploadFile.uploadName;

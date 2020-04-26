@@ -45,7 +45,7 @@
     estateContractType.addRequested = false;
     estateContractType.openAddModal = function () {
         estateContractType.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             estateContractType.busyIndicator.isActive = false;
             estateContractType.selectedItem = response.Item;
@@ -93,7 +93,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/getviewmodel', estateContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/GetOne', estateContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             estateContractType.selectedItem = response.Item;
             $modal.open({
@@ -158,7 +158,7 @@
             if (isConfirmed) {
                 estateContractType.busyIndicator.isActive = true;
                 console.log(estateContractType.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/getviewmodel', estateContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'estatecontracttype/GetOne', estateContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     estateContractType.selectedItemForDelete = response.Item;
                     console.log(estateContractType.selectedItemForDelete);

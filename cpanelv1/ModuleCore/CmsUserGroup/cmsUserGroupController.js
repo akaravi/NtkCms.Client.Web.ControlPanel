@@ -39,7 +39,7 @@
     cmsUserGroupgrd.addRequested = false;
     cmsUserGroupgrd.openAddModal = function () {
         cmsUserGroupgrd.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/GetViewModel', '', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsUserGroupgrd.selectedItem = response.Item;
             $modal.open({
@@ -78,7 +78,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/getviewmodel', cmsUserGroupgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/GetOne', cmsUserGroupgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsUserGroupgrd.selectedItem = response.Item;
             $modal.open({
@@ -135,7 +135,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(cmsUserGroupgrd.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/getviewmodel', cmsUserGroupgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreUserGroup/GetOne', cmsUserGroupgrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsUserGroupgrd.selectedItemForDelete = response.Item;
                     console.log(cmsUserGroupgrd.selectedItemForDelete);

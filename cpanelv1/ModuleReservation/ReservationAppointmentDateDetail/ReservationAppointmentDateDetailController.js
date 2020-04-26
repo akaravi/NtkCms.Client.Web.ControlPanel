@@ -95,7 +95,7 @@
     appDateDetail.addRequested = false;
     appDateDetail.openAddModal = function () {
         appDateDetail.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             appDateDetail.busyIndicator.isActive = false;
             appDateDetail.selectedItem = response.Item;
@@ -155,7 +155,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/getviewmodel', appDateDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/GetOne', appDateDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             appDateDetail.selectedItem = response.Item;
             appDateDetail.StartService.defaultDate = appDateDetail.selectedItem.StartService;
@@ -228,7 +228,7 @@
             if (isConfirmed) {
                 appDateDetail.busyIndicator.isActive = true;
                 console.log(appDateDetail.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/getviewmodel', appDateDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ReservationAppointmentDateDetail/GetOne', appDateDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     appDateDetail.selectedItemForDelete = response.Item;
                     console.log(appDateDetail.selectedItemForDelete);

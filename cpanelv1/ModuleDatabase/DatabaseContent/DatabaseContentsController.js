@@ -235,7 +235,7 @@
     // Open Add Category Modal 
     dbContent.addNewCategoryModel = function () {
         dbContent.addRequested = false;
-        ajax.call(cmsServerConfig.configApiServerPath+'DBCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DBCategory/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             dbContent.selectedItem = response.Item;
             $modal.open({
@@ -257,7 +257,7 @@
         }
 
         dbContent.contentBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'DBCategory/getviewmodel', dbContent.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'DBCategory/GetOne', dbContent.treeConfig.currentNode.Id, 'GET').success(function (response) {
             dbContent.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             dbContent.selectedItem = response.Item;
@@ -339,7 +339,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 dbContent.categoryBusyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'DBCategory/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'DBCategory/GetOne', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     dbContent.selectedItemForDelete = response.Item;
                     console.log(dbContent.selectedItemForDelete);
@@ -424,7 +424,7 @@
         dbContent.filePickerFiles.fileId = null;
         dbContent.addRequested = false;
         dbContent.modalTitle = 'اضافه کردن محتوای جدید';
-        ajax.call(cmsServerConfig.configApiServerPath+'dbContent/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'dbContent/GetViewModel', "", 'GET').success(function (response) {
             console.log(response);
             rashaErManage.checkAction(response);
             dbContent.selectedItem = response.Item;
@@ -448,7 +448,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'dbContent/getviewmodel', dbContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'dbContent/GetOne', dbContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             dbContent.selectedItem = response1.Item;
             dbContent.startDate.defaultDate = dbContent.selectedItem.FromDate;
@@ -456,7 +456,7 @@
             dbContent.filePickerMainImage.filename = null;
             dbContent.filePickerMainImage.fileId = null;
             if (response1.Item.LinkMainImageId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response1.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', response1.Item.LinkMainImageId, 'GET').success(function (response2) {
                     dbContent.filePickerMainImage.filename = response2.Item.FileName;
                     dbContent.filePickerMainImage.fileId = response2.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -556,7 +556,7 @@
                 console.log(dbContent.gridOptions.selectedRow.item);
                 dbContent.showbusy = true;
                 dbContent.showIsBusy = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"dbContent/getviewmodel", dbContent.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"dbContent/GetOne", dbContent.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     dbContent.showbusy = false;
                     dbContent.showIsBusy = false;
                     rashaErManage.checkAction(response);
@@ -596,7 +596,7 @@
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'dbContent/getviewmodel', dbContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'dbContent/GetOne', dbContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             dbContent.selectedItem = response.Item;
             dbContent.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
@@ -625,7 +625,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'dbContent/getviewmodel', dbContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'dbContent/GetOne', dbContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             dbContent.selectedItem = response.Item;
             dbContent.selectedItem.IsArchive = (response.Item.IsArchive == true) ? false : true;
@@ -711,7 +711,7 @@
                 console.log("Item to be deleted: ", dbContent.gridOptions.selectedRow.item);
                 dbContent.showbusy = true;
                 dbContent.showIsBusy = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'dbContent/getviewmodel', dbContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'dbContent/GetOne', dbContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     dbContent.showbusy = false;
                     dbContent.showIsBusy = false;
                     rashaErManage.checkAction(response);

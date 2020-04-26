@@ -214,7 +214,7 @@
 
     //open addMenu modal
     linkManagementTarget.Showstatistics = function (selectedId) {
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/getviewmodel', selectedId, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/GetOne', selectedId, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             linkManagementTarget.selectedItem = response1.Item;
             $modal.open({
@@ -299,12 +299,12 @@
             rashaErManage.checkAction(data, errCode);
             linkManagementTarget.contentBusyIndicator.isActive = false;
         });
-        //ajax.call(cmsServerConfig.configApiServerPath+"linkManagementTag/getviewmodel", "0", 'GET').success(function (response) {    //Get a ViewModel for BiographyTag
+        //ajax.call(cmsServerConfig.configApiServerPath+"linkManagementTag/GetViewModel", "", 'GET').success(function (response) {    //Get a ViewModel for BiographyTag
         //    linkManagementTarget.ModuleTag = response.Item;
         //}).error(function (data, errCode, c, d) {
         //    console.log(data);
         //});
-        //ajax.call(cmsServerConfig.configApiServerPath+"linkManagementContentTag/getviewmodel", "0", 'GET').success(function (response) { //Get a ViewModel for BiographyContentTag
+        //ajax.call(cmsServerConfig.configApiServerPath+"linkManagementContentTag/GetViewModel", "", 'GET').success(function (response) { //Get a ViewModel for BiographyContentTag
         //    linkManagementTarget.ModuleContentTag = response.Item;
         //}).error(function (data, errCode, c, d) {
         //    console.log(data);
@@ -377,7 +377,7 @@
         if (buttonIsPressed) { return };
         linkManagementTarget.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetCategory/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             linkManagementTarget.selectedItem = response.Item;
@@ -428,7 +428,7 @@
 
         linkManagementTarget.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetCategory/getviewmodel', linkManagementTarget.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetCategory/GetOne', linkManagementTarget.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             linkManagementTarget.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -545,7 +545,7 @@
                 linkManagementTarget.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetCategory/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetCategory/GetOne', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     linkManagementTarget.selectedItemForDelete = response.Item;
@@ -636,7 +636,7 @@
         linkManagementTarget.modalTitle = 'اضافه کردن محتوای جدید';
         addNewContentModel = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             addNewContentModel = false;
             console.log(response);
@@ -670,7 +670,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/getviewmodel', linkManagementTarget.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/GetOne', linkManagementTarget.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             linkManagementTarget.selectedItem = response1.Item;
@@ -680,7 +680,7 @@
             linkManagementTarget.filePickerMainImage.fileId = null;
             if (response1.Item.LinkMainImageId != null) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response1.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', response1.Item.LinkMainImageId, 'GET').success(function (response2) {
                     buttonIsPressed = false;
                     linkManagementTarget.filePickerMainImage.filename = response2.Item.FileName;
                     linkManagementTarget.filePickerMainImage.fileId = response2.Item.Id
@@ -846,7 +846,7 @@
                 linkManagementTarget.showbusy = true;
                 linkManagementTarget.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementTarget/getviewmodel", linkManagementTarget.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"LinkManagementTarget/GetOne", linkManagementTarget.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     linkManagementTarget.showbusy = false;
                     linkManagementTarget.showIsBusy = false;
@@ -886,7 +886,7 @@
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/getviewmodel', linkManagementTarget.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/GetOne', linkManagementTarget.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementTarget.selectedItem = response.Item;
             linkManagementTarget.selectedItem.IsAccepted = (response.Item.IsAccepted == true) ? false : true;
@@ -912,7 +912,7 @@
             rashaErManage.showMessage("لطفاَ یک مقاله را انتخاب کنید .");
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/getviewmodel', linkManagementTarget.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/GetOne', linkManagementTarget.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementTarget.selectedItem = response.Item;
             linkManagementTarget.selectedItem.IsArchive = (response.Item.IsArchive == true) ? false : true;
@@ -999,7 +999,7 @@
     //            console.log("Item to be deleted: ", linkManagementTarget.gridOptions.selectedRow.item);
     //            linkManagementTarget.showbusy = true;
     //            linkManagementTarget.showIsBusy = true;
-    //            ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/getviewmodel', linkManagementTarget.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+    //            ajax.call(cmsServerConfig.configApiServerPath+'LinkManagementTarget/GetOne', linkManagementTarget.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
     //                linkManagementTarget.showbusy = false;
     //                linkManagementTarget.showIsBusy = false;
     //                rashaErManage.checkAction(response);
@@ -1173,7 +1173,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             linkManagementTarget.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -1250,14 +1250,14 @@
         linkManagementTarget.fileIdToDelete = linkManagementTarget.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", linkManagementTarget.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", linkManagementTarget.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     linkManagementTarget.remove(linkManagementTarget.FileList, linkManagementTarget.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 linkManagementTarget.FileItem = response3.Item;
                                 linkManagementTarget.FileItem.FileName = name;
@@ -1365,7 +1365,7 @@
                     // replace the file
                     ajax
                         .call(
-                            cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                            cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                             linkManagementTarget.fileIdToDelete,
                             "GET"
                         )
@@ -1415,7 +1415,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                     linkManagementTarget.FileItem = response.Item;
                     linkManagementTarget.FileItem.FileName = uploadFile.name;
                     linkManagementTarget.FileItem.uploadName = uploadFile.uploadName;
@@ -1674,7 +1674,7 @@
         }
         linkManagementTarget.selectedItem.LinkMainImageId = node.Id;
         linkManagementTarget.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
             linkManagementTarget.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

@@ -75,7 +75,7 @@
         if (buttonIsPressed) { return };
         cmsSiteUser.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/GetViewModel', '', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsSiteUser.selectedItem = response.Item;
@@ -108,9 +108,9 @@
         ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/add', cmsSiteUser.selectedItem, 'POST').success(function (response1) {
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/getviewmodel', response1.Item.LinkSiteId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/GetOne', response1.Item.LinkSiteId, 'GET').success(function (response2) {
                     response1.Item.virtual_CmsSite = { Title: response2.Item.Title };
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/getviewmodel', response1.Item.LinkUserId, 'GET').success(function (response3) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/GetOne', response1.Item.LinkUserId, 'GET').success(function (response3) {
                         response1.Item.virtual_CmsUser = { Username: response3.Item.Username };
                         cmsSiteUser.ListItems.unshift(response1.Item);
                         cmsSiteUser.gridOptions.myfilterText(cmsSiteUser.ListItems, "LinkUserGroupId", cmsSiteUser.cmsUserGroups, "Title", "LinkUserGroupTitle");
@@ -148,7 +148,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/getviewmodel', cmsSiteUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/GetOne', cmsSiteUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsSiteUser.selectedItem = response.Item;
@@ -181,9 +181,9 @@
             cmsSiteUser.addRequested = true;
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/getviewmodel', response1.Item.LinkSiteId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/GetOne', response1.Item.LinkSiteId, 'GET').success(function (response2) {
                     response1.Item.virtual_CmsSite = { Title: response2.Item.Title };
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/getviewmodel', response1.Item.LinkUserId, 'GET').success(function (response3) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/GetOne', response1.Item.LinkUserId, 'GET').success(function (response3) {
                         response1.Item.virtual_CmsUser = { Username: response3.Item.Username };
                         cmsSiteUser.replaceItem(cmsSiteUser.selectedItem.Id, response1.Item);
                     }).error(function (data, errCode, c, d) {
@@ -232,7 +232,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/getviewmodel', cmsSiteUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteUser/GetOne', cmsSiteUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
 
                     rashaErManage.checkAction(response);

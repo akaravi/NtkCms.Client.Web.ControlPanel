@@ -89,7 +89,7 @@
     $scope.OpenSettingPosition=function(positionId) {
         
         marketingPosition.init();
-        ajax.call(cmsServerConfig.configApiServerPath+"MarketingCustomerSettingPosition/getviewmodel", positionId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"MarketingCustomerSettingPosition/GetOne", positionId, 'GET').success(function (response) {
             
             marketingPosition.positionItem=response.Item;
            $modal.open({
@@ -100,7 +100,7 @@
     }
    $scope.selectCustomer=function(customerId)
     {
-        ajax.call(cmsServerConfig.configApiServerPath+"MarketingCustomer/getviewmodel", customerId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"MarketingCustomer/GetOne", customerId, 'GET').success(function (response) {
             marketingPosition.positionList=response.Item;
            $modal.open({
                 templateUrl: 'cpanelv1/ModuleMarketing/MarketingCustomerSettingPosition/selectCustomer.html',

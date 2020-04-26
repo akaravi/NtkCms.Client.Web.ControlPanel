@@ -92,7 +92,7 @@
         shopProcess.addRequested = false;
         shopProcess.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopProcess.selectedItem = response.Item;
@@ -125,7 +125,7 @@
             });
             
         $builder.removeAllFormObject('default');
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/getviewmodel', shopProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/GetOne', shopProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             shopProcess.selectedItem = response1.Item;
@@ -135,7 +135,7 @@
             shopProcess.paymentProcessCustomizeListItemsbusyIndicator = true;
 
             
-               ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetViewModel', shopProcess.selectedItem.LinkProcessId, "GET").success(function (response) {
+               ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', shopProcess.selectedItem.LinkProcessId, "GET").success(function (response) {
                     rashaErManage.checkAction(response);
                     shopProcess.cmsModulesProcessesCustomizeListItems = response.Item;
                     
@@ -278,7 +278,7 @@
                 shopProcess.showbusy = true;
                 shopProcess.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"ShopProductProcess/getviewmodel", shopProcess.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"ShopProductProcess/GetOne", shopProcess.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     shopProcess.showbusy = false;
                     shopProcess.showIsBusy = false;
@@ -543,7 +543,7 @@
     shopProcess.LoadUniversalMenuProcessOfModuleProcessCustomize = function (LinkProcessId) {
         $builder.removeAllFormObject('default');
         // Get Process
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetViewModel', LinkProcessId, "GET").success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProcess/GetOne', LinkProcessId, "GET").success(function (response1) {
             shopProcess.selectedItem.LinkProcessId = response1.Item.Id;
             // Get CmsModuleProcess 
            
@@ -581,7 +581,7 @@
     shopProcess.openCustomizeInputValueModal = function (item) {
 
         shopProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/GetOne', item.Id, 'GET').success(function (response) {
             shopProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             shopProcess.selectedItem = response.Item;
@@ -620,7 +620,7 @@
 
     shopProcess.submitValues = function (item) {
         shopProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/getviewmodel', shopProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ShopProductProcess/GetOne', shopProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             shopProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             shopProcess.selectedItem = response.Item;

@@ -95,7 +95,7 @@
     biographyContentParameter.addRequested = false;
     biographyContentParameter.openAddModal = function () {
         biographyContentParameter.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             biographyContentParameter.busyIndicator.isActive = false;
             biographyContentParameter.selectedItem = response.Item;
@@ -142,7 +142,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/getviewmodel', biographyContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/GetOne', biographyContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             biographyContentParameter.selectedItem = response.Item;
             if (biographyContentParameter
@@ -203,7 +203,7 @@
         rashaErManage.showYesNo("هشدار", "آیا می خواهید این مشخصه را حذف کنید", function (isConfirmed) {
             if (isConfirmed) {
                 biographyContentParameter.busyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/getviewmodel', biographyContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/GetOne', biographyContentParameter.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     biographyContentParameter.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'biographyContentParameter/delete', biographyContentParameter.selectedItemForDelete, 'POST').success(function (res) {

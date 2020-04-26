@@ -33,7 +33,7 @@
     jobPropertyType.addRequested = false;
     jobPropertyType.openAddModal = function () {
         jobPropertyType.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'jobpropertytype/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobpropertytype/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             jobPropertyType.busyIndicator.isActive = false;
             jobPropertyType.selectedItem = response.Item;
@@ -79,7 +79,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'jobpropertytype/getviewmodel', jobPropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'jobpropertytype/GetOne', jobPropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             jobPropertyType.selectedItem = response.Item;
             $modal.open({
@@ -141,7 +141,7 @@
             if (isConfirmed) {
                 jobPropertyType.busyIndicator.isActive = true;
                 console.log(jobPropertyType.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'jobpropertytype/getviewmodel', jobPropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'jobpropertytype/GetOne', jobPropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     jobPropertyType.selectedItemForDelete = response.Item;
                     console.log(jobPropertyType.selectedItemForDelete);

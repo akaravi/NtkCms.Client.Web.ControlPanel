@@ -238,7 +238,7 @@
             cmsGuide.ListParentItems = response.ListItems;
             cmsGuide.busyIndicator.isActive = false;
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreGuide/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreGuide/GetViewModel', '', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsGuide.selectedItem = response.Item;
             if(cmsGuide.treeConfig !=null && cmsGuide.treeConfig != undefined && cmsGuide.treeConfig.currentNode !=null && cmsGuide.treeConfig.currentNode !=undefined)
@@ -315,7 +315,7 @@
         }
         cmsGuide.CmsUserGroup_Id = [];
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreGuide/getviewmodel', cmsGuide.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreGuide/GetOne', cmsGuide.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsGuide.selectedItem = response.Item;
@@ -388,7 +388,7 @@
                 console.log(cmsGuide.gridOptions.selectedRow.item);
                 cmsGuide.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreGuide/getviewmodel', cmsGuide.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreGuide/GetOne', cmsGuide.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     cmsGuide.selectedItemForDelete = response.Item;
@@ -536,7 +536,7 @@
           if (item == parseInt(item, 10)) {
             // Check if item is an integer
             ajax
-              .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", parseInt(item), "GET")
+              .call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", parseInt(item), "GET")
               .success(function(response) {
                 if (response.IsSuccess) {
                   cmsGuide.attachedFiles.push({

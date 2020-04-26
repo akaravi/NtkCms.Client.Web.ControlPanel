@@ -18,7 +18,7 @@
     cmsPageTemplategrd.addRequested = false;
     cmsPageTemplategrd.openAddModal = function () {
         cmsPageTemplategrd.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/GetViewModel', '', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageTemplategrd.selectedItem = response.Item;
             $modal.open({
@@ -55,7 +55,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/getviewmodel',  cmsPageTemplategrd.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/GetOne',  cmsPageTemplategrd.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageTemplategrd.selectedItem = response.Item;
             $modal.open({
@@ -107,7 +107,7 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/getviewmodel', cmsPageTemplategrd.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/GetOne', cmsPageTemplategrd.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsPageTemplategrd.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageTemplate/delete',  cmsPageTemplategrd.selectedItemForDelete , 'POST').success(function (res) {

@@ -202,7 +202,7 @@
         }).error(function (data, errCode, c, d) {
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSitegrd.selectedItem = response.Item;
             if (cmsSitegrd.CategoryListItems.length > 0)
@@ -295,7 +295,7 @@
                 cmsSitegrd.addRequested = false;
             });
         if (cmsSitegrd.selectedItem.mode == 3) //ساخت سایت با کاربر کنونی
-            ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/getviewmodel', cmsSitegrd.selectedItem.LinkUserId, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/GetOne', cmsSitegrd.selectedItem.LinkUserId, 'GET').success(function (response) {
                 rashaErManage.checkAction(response);
                 cmsSitegrd.selectedUser = response.Item;
                 if (cmsSitegrd.selectedUser.Id > 0)
@@ -344,7 +344,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/getviewmodel', cmsSitegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/GetOne', cmsSitegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSitegrd.selectedItem = response.Item;
             if(!cmsSitegrd.selectedItem.ExpireDate)
@@ -357,7 +357,7 @@
             cmsSitegrd.AccountingFormUpdatedDateDatePickerConfig.defaultDate = cmsSitegrd.selectedItem.AccountingFormUpdatedDate;
             //Set FavIcon
             if (response.Item.LinkFavIconId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/getviewmodel', response.Item.LinkFavIconId, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/GetOne', response.Item.LinkFavIconId, 'GET').success(function (response) {
                     cmsSitegrd.filePickerFavIcon.filename = response.Item.FileName;
                     cmsSitegrd.filePickerFavIcon.fileId = response.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -433,7 +433,7 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/getviewmodel', cmsSitegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/GetOne', cmsSitegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsSitegrd.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath + 'CoreSite/delete', cmsSitegrd.selectedItemForDelete, 'POST').success(function (res) {
@@ -632,7 +632,7 @@
     //Add alias
     cmsSitegrd.openAliasesModal = function (siteId) {
         cmsSitegrd.modalTitle = "دامنه ها";
-        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteDomainAlias/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreSiteDomainAlias/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 cmsSitegrd.selectedItem = response.Item;
@@ -908,13 +908,13 @@
         cmsSitegrd.fileIdToDelete = cmsSitegrd.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", cmsSitegrd.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", cmsSitegrd.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath + 'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 cmsSitegrd.FileItem = response3.Item;
                                 cmsSitegrd.FileItem.FileName = name;
@@ -1001,7 +1001,7 @@
                     // replace the file
                     ajax
                         .call(
-                            cmsServerConfig.configApiServerPath + "FileContent/getviewmodel",
+                            cmsServerConfig.configApiServerPath + "FileContent/GetOne",
                             cmsSitegrd.fileIdToDelete,
                             "GET"
                         )
@@ -1050,7 +1050,7 @@
                 }
             } else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", 'GET').success(function (response) {
                     cmsSitegrd.FileItem = response.Item;
                     cmsSitegrd.FileItem.FileName = uploadFile.name;
                     cmsSitegrd.FileItem.uploadName = uploadFile.uploadName;
@@ -1580,7 +1580,7 @@
     }
 
     cmsSitegrd.getUser = function (userId) {
-        ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/getviewmodel', userId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'CoreUser/GetOne', userId, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSitegrd.selectedUser = response.Item;
         }).error(function (data, errCode, c, d) {

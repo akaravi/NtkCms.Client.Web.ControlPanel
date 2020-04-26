@@ -29,7 +29,7 @@
     reservationcategory.addRequested = false;
     reservationcategory.openAddModal = function () {
         reservationcategory.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationcategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationcategory/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             reservationcategory.selectedItem = response.Item;
             //Set dataForTheTree
@@ -93,7 +93,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationcategory/getviewmodel', reservationcategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationcategory/GetOne', reservationcategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             reservationcategory.selectedItem = response.Item;
             //Set dataForTheTree
@@ -209,7 +209,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(reservationcategory.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'reservationcategory/getviewmodel', reservationcategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'reservationcategory/GetOne', reservationcategory.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     reservationcategory.selectedItemForDelete = response.Item;
                     console.log(reservationcategory.selectedItemForDelete);
@@ -367,7 +367,7 @@
         }
         reservationContent.selectedItem.LinkMainImageId = node.Id;
         reservationContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
             reservationContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

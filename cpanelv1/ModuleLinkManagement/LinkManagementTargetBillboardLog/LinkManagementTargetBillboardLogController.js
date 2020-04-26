@@ -97,7 +97,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetBillboardLog/getviewmodel', ContentLogId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementTargetBillboardLog/GetOne', ContentLogId, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementTargetBillboardLog.selectedItem = response.Item;
             linkManagementTargetBillboardLog.VisitDate.defaultDate = linkManagementTargetBillboardLog.selectedItem.VisitDate;

@@ -85,7 +85,7 @@
         place.filePickerMainImage.filename = "";
         place.filePickerMainImage.fileId = null;
         place.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             place.busyIndicator.isActive = false;
             place.selectedItem = response.Item;
@@ -132,13 +132,13 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/getviewmodel', place.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/GetOne', place.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             place.selectedItem = response.Item;
             place.filePickerMainImage.filename = null;
             place.filePickerMainImage.fileId = null;
             if (response.Item.LinkBackgroundImageId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response.Item.LinkBackgroundImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', response.Item.LinkBackgroundImageId, 'GET').success(function (response2) {
                     place.filePickerMainImage.filename = response2.Item.FileName;
                     place.filePickerMainImage.fileId = response2.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -207,7 +207,7 @@
             if (isConfirmed) {
                 place.busyIndicator.isActive = true;
                 console.log(place.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/getviewmodel', place.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/GetOne', place.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     place.selectedItemForDelete = response.Item;
                     console.log(place.selectedItemForDelete);
@@ -274,13 +274,13 @@
     //open Design modal
     place.DesignPlace = function (item) {
         //place.ntkDragg.readFromDb(item.PlaceDetail, "divcontainer", "divcontainerdelete", "divcontainerSurce", event);
-        ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Reservationplace/GetOne', item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             place.selectedItem = response.Item;
             place.filePickerMainImage.filename = null;
             place.filePickerMainImage.fileId = null;
             if (response.Item.LinkBackgroundImageId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response.Item.LinkBackgroundImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', response.Item.LinkBackgroundImageId, 'GET').success(function (response2) {
                     place.filePickerMainImage.filename = response2.Item.FileName;
                     place.filePickerMainImage.fileId = response2.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -429,14 +429,14 @@
         place.fileIdToDelete = place.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", place.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", place.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     place.remove(place.FileList, place.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 place.FileItem = response3.Item;
                                 place.FileItem.FileName = name;
@@ -538,7 +538,7 @@
                     // replace the file
                     ajax
                       .call(
-                        cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                        cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                         place.fileIdToDelete,
                         "GET"
                       )
@@ -588,7 +588,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                     place.FileItem = response.Item;
                     place.FileItem.FileName = uploadFile.name;
                     place.FileItem.uploadName = uploadFile.uploadName;

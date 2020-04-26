@@ -107,7 +107,7 @@
 
     mvGallery.openUpload = function () {
         mvGallery.modalTitle = "آپلود فایل";
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGallery/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGallery/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mvGallery.selectedItem = response.Item;
             $modal.open({
@@ -247,7 +247,7 @@ mvGallery.LinkCategoryIdSelector = {
 
     mvGallery.openNewFolder = function () {
         mvGallery.modalTitle = "ایجاد شاخه جدید";
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mvGallery.selectedItem = response.Item;
             $modal.open({
@@ -261,7 +261,7 @@ mvGallery.LinkCategoryIdSelector = {
     }
 
     mvGallery.getGalleriesByCategory = function (id) {
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGallery/getviewmodel', id, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGallery/GetOne', id, 'POST').success(function (response) {
             rashaErManage.checkAction(response);
             mvGallery.selectedItems = response.Items;
             $modal.open({
@@ -290,7 +290,7 @@ mvGallery.LinkCategoryIdSelector = {
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGallerycontent/getviewmodel', mvGallery.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGallerycontent/GetOne', mvGallery.selectedRow.item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             mvGallery.selectedItem = response1.Item;
             $modal.open({
@@ -403,7 +403,7 @@ mvGallery.LinkCategoryIdSelector = {
         if (mvGallery.addRequested) { return };
         mvGallery.addRequested = true;
         mvGallery.treeBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mvGallery.addRequested = false;
             mvGallery.treeBusyIndicator.isActive = false;
@@ -455,7 +455,7 @@ mvGallery.LinkCategoryIdSelector = {
         }
         mvGallery.addRequested = true;
         mvGallery.treeBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/getviewmodel', mvGallery.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/GetOne', mvGallery.treeConfig.currentNode.Id, 'GET').success(function (response) {
             mvGallery.addRequested = false;
             mvGallery.treeBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -568,7 +568,7 @@ mvGallery.LinkCategoryIdSelector = {
                 mvGallery.addRequested = true;
                 // console.log(node.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryCategory/GetOne', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     mvGallery.selectedItemForDelete = response.Item;
@@ -610,7 +610,7 @@ mvGallery.LinkCategoryIdSelector = {
             return;
         }
         mvGallery.modalTitle = 'ویرایش';
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryContent/getviewmodel', mvGallery.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryContent/GetOne', mvGallery.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mvGallery.selectedItem = response.Item;
             mvGallery.startDate.defaultDate = mvGallery.selectedItem.FromDate;
@@ -742,7 +742,7 @@ mvGallery.LinkCategoryIdSelector = {
         mvGallery.filePickerMainImage.filename = "";
         mvGallery.filePickerMainImage.fileId = null;
         mvGallery.modalTitle = 'اضافه کردن محتوای جدید';
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGallerycontent/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGallerycontent/GetViewModel', "", 'GET').success(function (response) {
             mvGallery.addRequested = false;
             mvGallery.treeBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -800,7 +800,7 @@ mvGallery.LinkCategoryIdSelector = {
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryContent/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'movieGalleryContent/GetViewModel', '', 'GET').success(function (response) {
             mvGallery.selectedItem = response.Item;
             mvGallery.selectedItem.FolderId = null;
         }).error(function (data, errCode, c, d) {
@@ -1201,7 +1201,7 @@ mvGallery.LinkCategoryIdSelector = {
         }
         mvGallery.selectedItem.LinkMainImageId = node.Id;
         mvGallery.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
             mvGallery.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

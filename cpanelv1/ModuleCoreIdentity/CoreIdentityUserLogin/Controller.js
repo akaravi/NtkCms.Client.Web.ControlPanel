@@ -103,7 +103,7 @@ coreIdentityUserLogin.listforDel=listforDel;
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(coreIdentityUserLogin.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'coreIdentityUserLogin/getviewmodel', coreIdentityUserLogin.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'coreIdentityUserLogin/GetOne', coreIdentityUserLogin.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     coreIdentityUserLogin.selectedItemForDelete = response.Item;
                     console.log(coreIdentityUserLogin.selectedItemForDelete);

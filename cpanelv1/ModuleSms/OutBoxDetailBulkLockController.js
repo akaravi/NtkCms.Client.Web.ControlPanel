@@ -17,7 +17,7 @@
     outBoxDetailBulkLock.addRequested = false;
     outBoxDetailBulkLock.openAddModal = function () {
         outBoxDetailBulkLock.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             outBoxDetailBulkLock.selectedItem = response.Item;
             $modal.open({
@@ -55,7 +55,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/getviewmodel', outBoxDetailBulkLock.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/GetOne', outBoxDetailBulkLock.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             outBoxDetailBulkLock.selectedItem = response.Item;
             $modal.open({
@@ -132,7 +132,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(outBoxDetailBulkLock.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/getviewmodel', outBoxDetailBulkLock.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'outBoxDetailBulkLock/GetOne', outBoxDetailBulkLock.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     outBoxDetailBulkLock.selectedItemForDelete = response.Item;
                     console.log(outBoxDetailBulkLock.selectedItemForDelete);

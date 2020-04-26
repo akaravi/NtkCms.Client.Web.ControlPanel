@@ -29,7 +29,7 @@
     campaignItemGroup.addRequested = false;
     campaignItemGroup.openAddModal = function () {
         campaignItemGroup.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignItemGroup.selectedItem = response.Item;
             //Set dataForTheTree
@@ -93,7 +93,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/getviewmodel', campaignItemGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/GetOne', campaignItemGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignItemGroup.selectedItem = response.Item;
             //Set dataForTheTree
@@ -209,7 +209,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(campaignItemGroup.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/getviewmodel', campaignItemGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CampaignItemGroup/GetOne', campaignItemGroup.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     campaignItemGroup.selectedItemForDelete = response.Item;
                     console.log(campaignItemGroup.selectedItemForDelete);
@@ -367,7 +367,7 @@
         }
         campaignItem.selectedItem.LinkMainImageId = node.Id;
         campaignItem.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
             campaignItem.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

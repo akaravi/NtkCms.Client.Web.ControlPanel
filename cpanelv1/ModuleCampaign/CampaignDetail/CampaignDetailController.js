@@ -119,7 +119,7 @@
     campaignDetail.addRequested = false;
     campaignDetail.openAddModal = function () {
         campaignDetail.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetail/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetail/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetail.busyIndicator.isActive = false;
             campaignDetail.selectedItem = response.Item;
@@ -169,7 +169,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetail/getviewmodel', campaignDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetail/GetOne', campaignDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetail.selectedItem = response.Item;
             if (campaignDetail
@@ -234,7 +234,7 @@
             if (isConfirmed) {
                 campaignDetail.busyIndicator.isActive = true;
                 console.log(campaignDetail.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'campaignDetail/getviewmodel', campaignDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'campaignDetail/GetOne', campaignDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     campaignDetail.selectedItemForDelete = response.Item;
                     console.log(campaignDetail.selectedItemForDelete);

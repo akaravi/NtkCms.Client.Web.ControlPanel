@@ -64,7 +64,7 @@
 //       taskSchedulerProcess.modalTitle = 'اضافه';
 //       taskSchedulerProcess.filePickerMainImage.filename = "";
 //       taskSchedulerProcess.filePickerMainImage.fileId = null; 
-//       ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/getviewmodel', "0", 'GET').success(function (response) {
+//       ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetViewModel', "", 'GET').success(function (response) {
 //           rashaErManage.checkAction(response);
 //           taskSchedulerProcess.busyIndicator.isActive = false;
 //           taskSchedulerProcess.selectedItem = response.Item;
@@ -147,7 +147,7 @@
         }
         taskSchedulerProcess.busyIndicator.isActive = true;
         taskSchedulerProcess.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/getviewmodel', taskSchedulerProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', taskSchedulerProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             taskSchedulerProcess.selectedItem = response.Item;
         taskSchedulerProcess.filePickerMainImage.filename = null;
@@ -155,7 +155,7 @@
          if (response.Item.LinkMainImageId != null) {
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                 response.Item.LinkMainImageId,
                 "GET"
               )
@@ -255,7 +255,7 @@
             if (isConfirmed) {
                 taskSchedulerProcess.busyIndicator.isActive = true;
                 console.log(taskSchedulerProcess.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/getviewmodel', taskSchedulerProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', taskSchedulerProcess.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     taskSchedulerProcess.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/delete', taskSchedulerProcess.selectedItemForDelete, 'POST').success(function (res) {
@@ -319,7 +319,7 @@
     // Show InputValue form builder and auto scroll to its position Admin form
     taskSchedulerProcess.scrollToFormBuilderMainAdmin = function (item) {
         taskSchedulerProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', item.Id, 'GET').success(function (response) {
             taskSchedulerProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             taskSchedulerProcess.selectedItem = response.Item;
@@ -349,7 +349,7 @@
         taskSchedulerProcess.showSaveButton = false;
         if (preview == "false") {
             taskSchedulerProcess.showSaveButton = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/getviewmodel', selectedId, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', selectedId, 'GET').success(function (response) {
                 taskSchedulerProcess.busyIndicator.isActive = false;
                 rashaErManage.checkAction(response);
                 taskSchedulerProcess.selectedItem = response.Item;
@@ -395,7 +395,7 @@
     // Save Input Value Form
     taskSchedulerProcess.saveJsonFormMainAdmin = function () {
         taskSchedulerProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/getviewmodel', taskSchedulerProcess.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', taskSchedulerProcess.selectedItem.Id, 'GET').success(function (response1) {
             taskSchedulerProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             taskSchedulerProcess.selectedItem = response1.Item;
@@ -490,7 +490,7 @@
     // Show InputValue form builder and auto scroll to its position
     taskSchedulerProcess.scrollToFormBuilderSiteAdmin = function (item) {
         taskSchedulerProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', item.Id, 'GET').success(function (response) {
             taskSchedulerProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             taskSchedulerProcess.selectedItem = response.Item;
@@ -521,7 +521,7 @@
         taskSchedulerProcess.showSaveButton = false;
         if (preview == "false") {
             taskSchedulerProcess.showSaveButton = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/getviewmodel', selectedId, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', selectedId, 'GET').success(function (response) {
                 taskSchedulerProcess.busyIndicator.isActive = false;
                 rashaErManage.checkAction(response);
                 taskSchedulerProcess.selectedItem = response.Item;
@@ -562,7 +562,7 @@
     // Save Input Value Form
     taskSchedulerProcess.saveJsonFormSiteAdmin = function () {
         taskSchedulerProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/getviewmodel', taskSchedulerProcess.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', taskSchedulerProcess.selectedItem.Id, 'GET').success(function (response1) {
             taskSchedulerProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             taskSchedulerProcess.selectedItem = response1.Item;
@@ -681,7 +681,7 @@
 
     taskSchedulerProcess.scrollToFormBuilder = function (item) {
         taskSchedulerProcess.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', item.Id, 'GET').success(function (response) {
             taskSchedulerProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             taskSchedulerProcess.selectedItem = response.Item;
@@ -727,7 +727,7 @@
     taskSchedulerProcess.saveProcessInputCustomizeValue = function () {
         taskSchedulerProcess.busyIndicator.isActive = true;
         taskSchedulerProcess.selectedProcessId = taskSchedulerProcess.gridOptions.selectedRow.item.Id;       //Storing selected Process Id for further uses
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/getviewmodel', taskSchedulerProcess.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', taskSchedulerProcess.selectedItem.Id, 'GET').success(function (response1) {
             taskSchedulerProcess.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             taskSchedulerProcess.selectedItem = response1.Item;
@@ -819,7 +819,7 @@
         var filterDataModel = { PropertyName: "Id", searchType: 0, IntValue1: taskSchedulerProcess.ProcessId };
         var engine = { Filters: [] };
         engine.Filters.push(filterDataModel);
-        ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcess/getviewmodel', ProcessId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'taskschedulerProcess/GetOne', ProcessId, 'GET').success(function (response) {
             taskSchedulerProcess.selectedItem = response.Item;
             taskSchedulerProcess.formJson = $builder.forms['default'];
             $builder.removeAllFormObject('default');
@@ -983,7 +983,7 @@
         }
         taskSchedulerProcess.selectedItem.LinkModuleFilePreviewImageId = node.Id;
         taskSchedulerProcess.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
             taskSchedulerProcess.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -1009,7 +1009,7 @@
             // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                 taskSchedulerProcess.fileIdToDelete,
                 "GET"
               )
@@ -1060,7 +1060,7 @@
           // File does not exists
           // Save New file
           ajax
-            .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", "GET")
+            .call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", "GET")
             .success(function(response) {
               taskSchedulerProcess.FileItem = response.Item;
                 taskSchedulerProcess.FileItem.FileName = uploadFile.name;

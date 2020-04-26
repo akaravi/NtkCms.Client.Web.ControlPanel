@@ -48,7 +48,7 @@
     domainAlias.openAddModal = function () {
         domainAlias.modalTitle = 'اضافه';
         domainAlias.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteDomainAlias/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteDomainAlias/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             domainAlias.selectedItem = response.Item;
             domainAlias.addRequested = false;
@@ -87,7 +87,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteDomainAlias/getviewmodel', domainAlias.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteDomainAlias/GetOne', domainAlias.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             domainAlias.selectedItem = response.Item;
             $modal.open({
@@ -142,7 +142,7 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteDomainAlias/getviewmodel', domainAlias.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteDomainAlias/GetOne', domainAlias.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     domainAlias.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'CoreSiteDomainAlias/delete', domainAlias.selectedItemForDelete, 'POST').success(function (res) {

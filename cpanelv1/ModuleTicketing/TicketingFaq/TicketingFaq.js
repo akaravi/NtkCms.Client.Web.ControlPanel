@@ -56,7 +56,7 @@
 
     ticketingFaq.openAddModal = function () {
         ticketingFaq.modalTitle = "اضافه";
-        ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/GetViewModel', "", 'GET').success(function (response) {
             ticketingFaq.selectedItem = response.Item;
             ticketingFaq.selectedItem.ActionDate = date;
             $modal.open({
@@ -74,7 +74,7 @@
             return;
         }
         ticketingFaq.modalTitle = 'ویرایش';
-        ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/getviewmodel', ticketingFaq.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/GetOne', ticketingFaq.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             ticketingFaq.selectedItem = response.Item;
             $modal.open({
@@ -138,7 +138,7 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
-                ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/getviewmodel', ticketingFaq.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/GetOne', ticketingFaq.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     ticketingFaq.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'ticketingFaq/delete', ticketingFaq.selectedItemForDelete, 'POST').success(function (res) {

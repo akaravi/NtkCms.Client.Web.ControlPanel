@@ -59,7 +59,7 @@
     linkManagementMember.addRequested = false;
     linkManagementMember.openAddModal = function () {
         linkManagementMember.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementMember.busyIndicator.isActive = false;
             linkManagementMember.selectedItem = response.Item;
@@ -107,7 +107,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/getviewmodel', linkManagementMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/GetOne', linkManagementMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkManagementMember.selectedItem = response.Item;
             $modal.open({
@@ -169,7 +169,7 @@
             if (isConfirmed) {
                 linkManagementMember.busyIndicator.isActive = true;
                 console.log(linkManagementMember.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/getviewmodel', linkManagementMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/GetOne', linkManagementMember.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     linkManagementMember.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'linkManagementMember/delete', linkManagementMember.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);

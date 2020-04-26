@@ -133,7 +133,7 @@
     campaignDetailLog.addRequested = false;
     campaignDetailLog.openAddModal = function () {
         campaignDetailLog.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetailLog.busyIndicator.isActive = false;
             campaignDetailLog.selectedItem = response.Item;
@@ -187,7 +187,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/getviewmodel', campaignDetailLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/GetOne', campaignDetailLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             campaignDetailLog.selectedItem = response.Item;
             campaignDetailLog.filePickerMainImage.filename = null;
@@ -260,7 +260,7 @@
             if (isConfirmed) {
                 campaignDetailLog.busyIndicator.isActive = true;
                 console.log(campaignDetailLog.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/getviewmodel', campaignDetailLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'campaignDetailLog/GetOne', campaignDetailLog.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     campaignDetailLog.selectedItemForDelete = response.Item;
                     console.log(campaignDetailLog.selectedItemForDelete);
@@ -505,7 +505,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             campaignDetailLog.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -582,14 +582,14 @@
         campaignDetailLog.fileIdToDelete = campaignDetailLog.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", campaignDetailLog.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", campaignDetailLog.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     campaignDetailLog.remove(campaignDetailLog.FileList, campaignDetailLog.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 campaignDetailLog.FileItem = response3.Item;
                                 campaignDetailLog.FileItem.FileName = name;
@@ -691,7 +691,7 @@
                     // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                 campaignDetailLog.fileIdToDelete,
                 "GET"
               )
@@ -741,7 +741,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                     campaignDetailLog.FileItem = response.Item;
                     campaignDetailLog.FileItem.FileName = uploadFile.name;
                     campaignDetailLog.FileItem.uploadName = uploadFile.uploadName;

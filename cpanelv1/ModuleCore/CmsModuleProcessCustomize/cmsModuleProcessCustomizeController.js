@@ -42,7 +42,7 @@
             $state.go("index.cmsmoduleprocess");
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/getviewmodel', cmsMdlPrcCustm.selectedModuleProcess.Id, 'GET').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/GetOne', cmsMdlPrcCustm.selectedModuleProcess.Id, 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsMdlPrcCustm.selectedModuleProcess = response.Item;
@@ -85,7 +85,7 @@
     cmsMdlPrcCustm.addRequested = false;
     cmsMdlPrcCustm.openAddModal = function () {
         cmsMdlPrcCustm.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/GetViewModel', '', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsMdlPrcCustm.selectedItem = response.Item;
             cmsMdlPrcCustm.selectedItem.LinkModuleId = null;
@@ -138,7 +138,7 @@
         }
         cmsMdlPrcCustm.busyIndicator.isActive = true;
         cmsMdlPrcCustm.isLoading = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/getviewmodel', cmsMdlPrcCustm.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/GetOne', cmsMdlPrcCustm.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             cmsMdlPrcCustm.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsMdlPrcCustm.selectedItem = response.Item;
@@ -196,7 +196,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(cmsMdlPrcCustm.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/getviewmodel', cmsMdlPrcCustm.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/GetOne', cmsMdlPrcCustm.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsMdlPrcCustm.selectedItemForDelete = response.Item;
                     console.log(cmsMdlPrcCustm.selectedItemForDelete);
@@ -301,9 +301,9 @@
         if (moduleProcessId != null) {
             cmsMdlPrcCustm.isLoading = true;
             cmsMdlPrcCustm.selectedItem.selectedModule = null;
-            ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/getviewmodel', moduleProcessId, 'GET').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/GetOne', moduleProcessId, 'GET').success(function (response1) {
                 rashaErManage.checkAction(response1);
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreModule/getviewmodel', response1.Item.LinkModuleId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreModule/GetOne', response1.Item.LinkModuleId, 'GET').success(function (response2) {
                     cmsMdlPrcCustm.isLoading = false;
                     rashaErManage.checkAction(response2);
                     cmsMdlPrcCustm.selectedItem.LinkModuleId = response2.Item.Id;
@@ -322,7 +322,7 @@
     // Show InputValue form builder and auto scroll to its position
     cmsMdlPrcCustm.scrollToInputValueFormBuilderPanel = function (item) {
         cmsMdlPrcCustm.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/GetOne', item.Id, 'GET').success(function (response) {
             cmsMdlPrcCustm.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsMdlPrcCustm.selectedItem = response.Item;
@@ -359,7 +359,7 @@
     // Save Input Value Form
     cmsMdlPrcCustm.saveProcessInputCustomizeValue = function () {
         cmsMdlPrcCustm.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/getviewmodel', cmsMdlPrcCustm.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcessCustomize/GetOne', cmsMdlPrcCustm.selectedItem.Id, 'GET').success(function (response1) {
             cmsMdlPrcCustm.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             cmsMdlPrcCustm.selectedItem = response1.Item;

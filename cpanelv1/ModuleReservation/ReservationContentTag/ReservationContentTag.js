@@ -23,7 +23,7 @@
     reservationContentTag.addRequested = false;
     reservationContentTag.openAddModal = function () {
         reservationContentTag.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationContenttag/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationContenttag/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             reservationContentTag.selectedItem = response.Item;
             $modal.open({
@@ -70,7 +70,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'reservationContenttag/getviewmodel',  reservationContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'reservationContenttag/GetOne',  reservationContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             reservationContentTag.selectedItem = response.Item;
             $modal.open({
@@ -135,7 +135,7 @@
             if (isConfirmed) {
                 reservationContentTag.busyIndicator.isActive = true;
                 console.log(reservationContentTag.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'reservationContenttag/getviewmodel',  reservationContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'reservationContenttag/GetOne',  reservationContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     reservationContentTag.selectedItemForDelete = response.Item;
                     console.log(reservationContentTag.selectedItemForDelete);

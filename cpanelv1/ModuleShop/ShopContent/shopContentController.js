@@ -395,12 +395,12 @@
             rashaErManage.checkAction(data, errCode);
             shopContent.contentBusyIndicator.isActive = false;
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"shopTag/getviewmodel", "0", 'GET').success(function (response) {    //Get a ViewModel for shopTag
+        ajax.call(cmsServerConfig.configApiServerPath+"shopTag/GetViewModel", "", 'GET').success(function (response) {    //Get a ViewModel for shopTag
             shopContent.ModuleTag = response.Item;
         }).error(function (data, errCode, c, d) {
             console.log(data);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+"shopContentTag/getviewmodel", "0", 'GET').success(function (response) { //Get a ViewModel for shopContentTag
+        ajax.call(cmsServerConfig.configApiServerPath+"shopContentTag/GetViewModel", "", 'GET').success(function (response) { //Get a ViewModel for shopContentTag
             shopContent.ModuleContentTag = response.Item;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -440,7 +440,7 @@
         };
         shopContent.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCategory/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopContent.selectedItem = response.Item;
@@ -499,7 +499,7 @@
         }
         shopContent.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCategory/getviewmodel', shopContent.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCategory/GetOne', shopContent.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             shopContent.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -622,7 +622,7 @@
             if (isConfirmed) {
                 shopContent.categoryBusyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'shopCategory/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'shopCategory/GetOne', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopContent.selectedItemForDelete = response.Item;
@@ -686,7 +686,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'shopContent/getviewmodel', shopContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopContent/GetOne', shopContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             shopContent.selectedItem = response1.Item;
             $modal.open({
@@ -712,7 +712,7 @@
         shopContent.modalTitle = 'اضافه کردن محتوای جدید';
         buttonIsPressed = true;
 
-        ajax.call(cmsServerConfig.configApiServerPath+'shopContent/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopContent/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             shopContent.attachedFiles = [];
@@ -759,7 +759,7 @@
         }
         shopContent.attachedFiles = [];
         shopContent.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopContent/getviewmodel', shopContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopContent/GetOne', shopContent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             shopContent.addRequested = false;
             rashaErManage.checkAction(response);
             shopContent.clearPreviousData();
@@ -770,7 +770,7 @@
             shopContent.filePickerFilePodcast.fileId = null;
             if (response.Item.LinkMainImageId != null) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', response.Item.LinkMainImageId, 'GET').success(function (response2) {
                     buttonIsPressed = false;
                     shopContent.filePickerMainImage.filename = response2.Item.FileName;
                     shopContent.filePickerMainImage.fileId = response2.Item.Id
@@ -779,7 +779,7 @@
                 });
             }
             if (response.Item.LinkFilePodcastId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response.Item.LinkFilePodcastId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', response.Item.LinkFilePodcastId, 'GET').success(function (response2) {
                     shopContent.filePickerFilePodcast.filename = response2.Item.FileName;
                     shopContent.filePickerFilePodcast.fileId = response2.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -997,7 +997,7 @@
                 shopContent.showbusy = true;
                 shopContent.showIsBusy = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"shopContent/getviewmodel", shopContent.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"shopContent/GetOne", shopContent.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     shopContent.showbusy = false;
                     shopContent.showIsBusy = false;
@@ -1370,7 +1370,7 @@
         }
         shopContent.selectedItem.LinkMainImageId = node.Id;
         shopContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
             shopContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);
@@ -1436,7 +1436,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) { // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             shopContent.attachedFiles.push({
                                 fileId: response.Item.Id,
@@ -1530,14 +1530,14 @@
         shopContent.fileIdToDelete = shopContent.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", shopContent.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", shopContent.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     shopContent.remove(shopContent.FileList, shopContent.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 shopContent.FileItem = response3.Item;
                                 shopContent.FileItem.FileName = name;
@@ -1633,7 +1633,7 @@
                     // replace the file
                     ajax
                         .call(
-                        cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                        cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                         shopContent.fileIdToDelete,
                         "GET"
                         )
@@ -1683,7 +1683,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                     shopContent.FileItem = response.Item;
                     shopContent.FileItem.FileName = uploadFile.name;
                     shopContent.FileItem.uploadName = uploadFile.uploadName;
@@ -1738,7 +1738,7 @@
                     // replace the file
                     ajax
                         .call(
-                        cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                        cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                         shopContent.fileIdToDelete,
                         "GET"
                         )
@@ -1787,7 +1787,7 @@
                 }
             } else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                     shopContent.FileItem = response.Item;
                     shopContent.FileItem.FileName = uploadFile.name;
                     shopContent.FileItem.uploadName = uploadFile.uploadName;

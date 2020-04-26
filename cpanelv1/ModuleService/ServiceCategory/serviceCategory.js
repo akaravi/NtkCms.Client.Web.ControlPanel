@@ -30,7 +30,7 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
     Servicecategory.addRequested = false;
     Servicecategory.openAddModal = function () {
         Servicecategory.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             Servicecategory.selectedItem = response.Item;
             //Set dataForTheTree
@@ -99,7 +99,7 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/getviewmodel', Servicecategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/GetOne', Servicecategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             Servicecategory.selectedItem = response.Item;
             //Set dataForTheTree
@@ -220,7 +220,7 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(Servicecategory.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/getviewmodel',  Servicecategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'Servicecategory/GetOne',  Servicecategory.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     Servicecategory.selectedItemForDelete = response.Item;
                     console.log(Servicecategory.selectedItemForDelete);
@@ -388,7 +388,7 @@ app.controller("ServicecategoryCtrl", ["$scope", "$http", "ajax", 'rashaErManage
         }
         serviceContent.selectedItem.LinkMainImageId = node.Id;
         serviceContent.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
             serviceContent.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

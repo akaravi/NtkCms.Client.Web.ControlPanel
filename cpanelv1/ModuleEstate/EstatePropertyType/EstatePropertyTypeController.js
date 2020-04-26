@@ -41,7 +41,7 @@
         estatePropertyType.filePickerMainImage.filename = "";
         estatePropertyType.filePickerMainImage.fileId = null;
         estatePropertyType.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'estatepropertytype/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estatepropertytype/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             estatePropertyType.busyIndicator.isActive = false;
             estatePropertyType.selectedItem = response.Item;
@@ -87,13 +87,13 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'estatepropertytype/getviewmodel', estatePropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estatepropertytype/GetOne', estatePropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             estatePropertyType.selectedItem = response.Item;
             estatePropertyType.filePickerMainImage.filename = null;
             estatePropertyType.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', response.Item.LinkMainImageId, 'GET').success(function (response2) {
                     estatePropertyType.filePickerMainImage.filename = response2.Item.FileName;
                     estatePropertyType.filePickerMainImage.fileId = response2.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -159,7 +159,7 @@
             if (isConfirmed) {
                 estatePropertyType.busyIndicator.isActive = true;
                 console.log(estatePropertyType.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'estatepropertytype/getviewmodel', estatePropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'estatepropertytype/GetOne', estatePropertyType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     estatePropertyType.selectedItemForDelete = response.Item;
                     console.log(estatePropertyType.selectedItemForDelete);
@@ -335,13 +335,13 @@ estatePropertyType.alreadyExist = function (id, array) {
         estatePropertyType.fileIdToDelete = estatePropertyType.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", estatePropertyType.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", estatePropertyType.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 estatePropertyType.FileItem = response3.Item;
                                 estatePropertyType.FileItem.FileName = name;
@@ -443,7 +443,7 @@ estatePropertyType.alreadyExist = function (id, array) {
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                 estatePropertyType.fileIdToDelete,
                 "GET"
               )
@@ -493,7 +493,7 @@ estatePropertyType.alreadyExist = function (id, array) {
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                     estatePropertyType.FileItem = response.Item;
                     estatePropertyType.FileItem.FileName = uploadFile.name;
                     estatePropertyType.FileItem.uploadName = uploadFile.uploadName;

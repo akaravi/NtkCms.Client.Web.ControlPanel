@@ -66,7 +66,7 @@
     blogComment.addRequested = false;
     blogComment.openAddModal = function () {
         blogComment.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'blogComment/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogComment/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             blogComment.busyIndicator.isActive = false;
             blogComment.selectedItem = response.Item;
@@ -117,7 +117,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'blogComment/getviewmodel', blogComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'blogComment/GetOne', blogComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             blogComment.selectedItem = response.Item;
             $modal.open({
@@ -179,7 +179,7 @@
             if (isConfirmed) {
                 blogComment.busyIndicator.isActive = true;
                 console.log(blogComment.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'blogComment/getviewmodel', blogComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'blogComment/GetOne', blogComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     blogComment.selectedItemForDelete = response.Item;
                     console.log(blogComment.selectedItemForDelete);

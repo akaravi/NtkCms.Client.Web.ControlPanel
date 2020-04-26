@@ -5,6 +5,8 @@ import { FilterModel } from 'app/@cms/cmsModels/base/filterModel';
 import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
 import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
 import { ToastrService } from 'ngx-toastr';
+import { ApiServerConfigSiteBaseService } from 'app/@cms/cmsCommon/services/apiServerConfigSiteBase.service';
+import { CoreSiteService } from '../coreSite.service';
 
 @Component({
   selector: 'app-cms-site-add',
@@ -14,27 +16,54 @@ import { ToastrService } from 'ngx-toastr';
 export class CoreSiteAddComponent implements OnInit {
   subManager = new Subscription();
   filteModel = new FilterModel();
-  dataModel: ErrorExcptionResult<any>;
+  dataModel: ErrorExcptionResult<any> = new ErrorExcptionResult<any>();
   //dataModelDomains: Array<string> ;//=  {'oco.ir','qwp.ir'};
   dataModelLoad = false;
   model: any = {};
   dataModelDomains = [
     {id: 1, name: 'Vilnius'},
-    {id: 2, name: 'Kaunas'},
-    {id: 3, name: 'Pavilnys', disabled: true},
-    {id: 4, name: 'Pabradė'},
-    {id: 5, name: 'Klaipėda'}
 ];
 
 selectedDomain: any;
   constructor(
     private alertService: ToastrService,
     private publicHelper: PublicHelper,
+    private coreSiteService: CoreSiteService,
     ) {
 
      }
 
   ngOnInit() {
-  }
 
+    this.modelInfo();
+    this.coreSiteService.ServiceDomains(0).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          
+            this.dataModelDomains=next.ListItems;
+          
+          //this.router.navigate(['/cms/dashboard/dashboard1']);
+        }
+      },
+      (error) => {
+        this.alertService.error(this.publicHelper.CheckError( error), 'خطا در دریافت لیست دامنه های قابل استفاده');
+      }
+
+    );
+  }
+modelInfo()
+{
+  this.coreSiteService.ServiceModelInfo().subscribe(
+    (next) => {
+      if (next.IsSuccess) {
+          this.dataModel=next;
+      }
+    },
+    (error) => {
+      this.alertService.error(this.publicHelper.CheckError( error), 'خطا در دریافت لیست دامنه های قابل استفاده');
+    }
+
+  );
+
+}
 }

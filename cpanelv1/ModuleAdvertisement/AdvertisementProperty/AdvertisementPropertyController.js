@@ -112,7 +112,7 @@
         advertisementProperty.filePickerFiles.filename = "";
         advertisementProperty.filePickerFiles.fileId = null;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementproperty/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementproperty/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             advertisementProperty.busyIndicator.isActive = false;
@@ -147,7 +147,7 @@
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 advertisementProperty.closeModal();
-                ajax.call(cmsServerConfig.configApiServerPath+"advertisementpropertydetailvalue/getviewmodel", '0', 'GET').success(function (response1) {
+                ajax.call(cmsServerConfig.configApiServerPath+"advertisementpropertydetailvalue/GetViewModel", "0", 'GET').success(function (response1) {
                     rashaErManage.checkAction(response1);
                     for (var i = 0; i < advertisementProperty.propertyDetailsListItems.length; i++) {
                         valueItem = $.extend(true, {}, response1.Item);
@@ -225,7 +225,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementproperty/getviewmodel', parseInt(advertisementProperty.gridOptions.selectedRow.item.Id), 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementproperty/GetOne', parseInt(advertisementProperty.gridOptions.selectedRow.item.Id), 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             advertisementProperty.selectedItem = response.Item;
@@ -238,7 +238,7 @@
             advertisementProperty.filePickerMainImage.filename = null;
             advertisementProperty.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null && response.Item.LinkMainImageId > 0) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(response.Item.LinkMainImageId), 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(response.Item.LinkMainImageId), 'GET').success(function (response2) {
                     if (response2.IsSuccess && response2.Item.Id > 9) {
                         advertisementProperty.filePickerMainImage.filename = response2.Item.FileName;
                         advertisementProperty.filePickerMainImage.fileId = response2.Item.Id;
@@ -397,7 +397,7 @@
             if (isConfirmed) {
                 advertisementProperty.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'advertisementproperty/getviewmodel', advertisementProperty.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'advertisementproperty/GetOne', advertisementProperty.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     advertisementProperty.selectedItemForDelete = response.Item;
@@ -726,7 +726,7 @@
             advertisementProperty.busyIndicator.isActive = false;
             rashaErManage.checkAction(data, errCode);
         });
-        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementContract/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementContract/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 advertisementProperty.selectedItem = response.Item;
@@ -858,7 +858,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             advertisementProperty.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -936,14 +936,14 @@
         advertisementProperty.fileIdToDelete = advertisementProperty.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", advertisementProperty.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", advertisementProperty.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     advertisementProperty.remove(advertisementProperty.FileList, advertisementProperty.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 advertisementProperty.FileItem = response3.Item;
                                 advertisementProperty.FileItem.FileName = name;
@@ -1046,7 +1046,7 @@
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                 advertisementProperty.fileIdToDelete,
                 "GET"
               )
@@ -1096,7 +1096,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                     advertisementProperty.FileItem = response.Item;
                     advertisementProperty.FileItem.FileName = uploadFile.name;
                     advertisementProperty.FileItem.uploadName = uploadFile.uploadName;

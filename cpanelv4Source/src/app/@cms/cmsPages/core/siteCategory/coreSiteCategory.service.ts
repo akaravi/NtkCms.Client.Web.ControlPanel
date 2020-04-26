@@ -7,7 +7,7 @@ import { ApiServerBaseService } from 'app/@cms/cmsCommon/services/apiServerBase.
 })
 export class CoreSiteCategoryService extends ApiServerBaseService implements OnDestroy {
   subManager = new Subscription();
-  constructorIn()
+  ServiceConstructor()
   {
     this.setModuleCotrolerUrl('CoreSiteCategory');
   }

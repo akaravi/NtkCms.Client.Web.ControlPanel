@@ -24,7 +24,7 @@
         shopCart.selectedItemSaleDetail.Fee = item.Price;
     };
     shopCart.selectionChangedUser = function (item) {
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/getviewmodel', shopCart.selectedItem.LinkCmsUserId, 'GET').success(function (response2) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/GetOne', shopCart.selectedItem.LinkCmsUserId, 'GET').success(function (response2) {
             shopCart.selectedItem.ReceiverName = response2.Item.Name;
             shopCart.selectedItem.ReceiverLastName = response2.Item.LastName;
             shopCart.selectedItem.ReceiverMobile = response2.Item.Mobile;
@@ -266,7 +266,7 @@
         if (shopCart.addRequested) { return };
         shopCart.addRequested = true;
         shopCart.modalTitle = 'اضافه کردن محتوای جدید';
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCart/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCart/GetViewModel', "", 'GET').success(function (response) {
             shopCart.addRequested = false;
             rashaErManage.checkAction(response);
             shopCart.selectedItem = response.Item;
@@ -290,11 +290,11 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCart/getviewmodel', shopCart.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCart/GetOne', shopCart.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             shopCart.selectedItem = response1.Item;
             if (shopCart.selectedItem.LinkCmsUserId > 0) {
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/getviewmodel', shopCart.selectedItem.LinkCmsUserId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/GetOne', shopCart.selectedItem.LinkCmsUserId, 'GET').success(function (response2) {
                     shopCart.selectedUser = response2.Item;
                 }).error(function (data, errCode, c, d) {
                     rashaErManage.checkAction(data, errCode);
@@ -386,7 +386,7 @@
                 shopCart.busyIndicator.isActive = true;
                 shopCart.showbusy = true;
                 shopCart.showIsBusy = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"shopCart/getviewmodel", shopCart.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"shopCart/GetOne", shopCart.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopCart.selectedItemForDelete = response.Item;
@@ -494,7 +494,7 @@
     }
 
     shopCart.openPaymentonlocationModel = function (invoiceId) {
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCart/getviewmodel', invoiceId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCart/GetOne', invoiceId, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopCart.selectedItem = response.Item;
             shopCart.selectedItem.PaymentStatus = 2;
@@ -512,7 +512,7 @@
     }
 
     shopCart.openPaymentModel = function (invoiceId) {
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCart/getviewmodel', invoiceId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCart/GetOne', invoiceId, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopCart.selectedItem = response.Item;
             if (shopCart.selectedItem.InvoiceStatus == 1) // فاکتور باز است
@@ -524,7 +524,7 @@
                 ajax.call(cmsServerConfig.configApiServerPath+"bankpaymentprivatesiteconfig/GetAllAvailable", shopCart.gridOptions.advancedSearchData.engine, 'POST').success(function (response) {
                     rashaErManage.checkAction(response);
                     shopCart.privateSiteConfigListItems = response.ListItems;
-                    ajax.call(cmsServerConfig.configApiServerPath+"shopCart/getviewmodel", invoiceId, "GET").success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+"shopCart/GetOne", invoiceId, "GET").success(function (response) {
                         shopCart.addRequested = false;
                         shopCart.TransactionPaymentMakerClass.Price = response.Item.TotalAmount;
                         angular.forEach(shopCart.privateSiteConfigListItems, function (value, key) {
@@ -614,7 +614,7 @@
     //#Help کد مربوط به لود گیرید اقلام فاکتور
     shopCart.loadivocesaledetail = function () {
 
-        ajax.call(cmsServerConfig.configApiServerPath+"shopCart/getviewmodel", shopCart.selectedItem.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"shopCart/GetOne", shopCart.selectedItem.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopCart.gridOptionIvoceSaleDetail.ListItems = response.Item.CartDetails;
             shopCart.gridOptionIvoceSaleDetail.resultAccess = response.resultAccess;
@@ -631,7 +631,7 @@
     shopCart.openAddModalSaleDetail = function () {
         shopCart.addRequested = true;
         shopCart.modalTitle = 'ردیف جدید';
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCartdetail/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCartdetail/GetViewModel', "", 'GET').success(function (response) {
             shopCart.addRequested = false;
             rashaErManage.checkAction(response);
             shopCart.selectedItemSaleDetail = response.Item;
@@ -690,7 +690,7 @@
             return;
         }
         shopCart.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'shopCartDetail/getviewmodel', shopCart.gridOptionIvoceSaleDetail.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopCartDetail/GetOne', shopCart.gridOptionIvoceSaleDetail.selectedRow.item.Id, 'GET').success(function (response) {
             shopCart.addRequested = false;
             rashaErManage.checkAction(response);
             shopCart.selectedItemSaleDetail = response.Item;
@@ -739,7 +739,7 @@
             if (isConfirmed) {
 
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"shopCartDetail/getviewmodel", shopCart.gridOptionIvoceSaleDetail.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"shopCartDetail/GetOne", shopCart.gridOptionIvoceSaleDetail.selectedRow.item.Id, "GET").success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     shopCart.selectedItemForDelete = response.Item;

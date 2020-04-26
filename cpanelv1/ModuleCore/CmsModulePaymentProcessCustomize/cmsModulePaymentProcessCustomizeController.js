@@ -21,7 +21,7 @@
             $state.go("index.cmsmodulepaymentprocess");
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/getviewmodel', cmsMdlPayPrcCust.selectedModulePaymentProcess.Id, 'GET').success(function(response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/GetOne', cmsMdlPayPrcCust.selectedModulePaymentProcess.Id, 'GET').success(function(response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.selectedModulePaymentProcess = response.Item;
@@ -73,7 +73,7 @@
         cmsMdlPayPrcCust.modalTitle = 'اضافه';
         cmsMdlPayPrcCust.isLoading = true;
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/GetViewModel', '', 'GET').success(function (response) {
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.selectedItem = response.Item;
@@ -131,7 +131,7 @@
         }
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
         cmsMdlPayPrcCust.isLoading = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', cmsMdlPayPrcCust.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/GetOne', cmsMdlPayPrcCust.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.selectedItem = response.Item;
@@ -190,7 +190,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(cmsMdlPayPrcCust.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', cmsMdlPayPrcCust.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/GetOne', cmsMdlPayPrcCust.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsMdlPayPrcCust.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/delete', cmsMdlPayPrcCust.selectedItemForDelete, 'POST').success(function (res) {
@@ -273,9 +273,9 @@
         if (modulePaymentProcessId != null) {
             cmsMdlPayPrcCust.selectedItem.selectedModule = null;
             cmsMdlPayPrcCust.isLoading = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/getviewmodel', modulePaymentProcessId, 'GET').success(function (response1) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcess/GetOne', modulePaymentProcessId, 'GET').success(function (response1) {
                 rashaErManage.checkAction(response1);
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreModule/getviewmodel', response1.Item.LinkModuleId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreModule/GetOne', response1.Item.LinkModuleId, 'GET').success(function (response2) {
                     rashaErManage.checkAction(response2);
                     cmsMdlPayPrcCust.isLoading = false;
                     cmsMdlPayPrcCust.selectedItem.LinkModuleId = response2.Item.Id;
@@ -298,7 +298,7 @@
     // Show InputValue form builder and auto scroll to its position Admin form
     cmsMdlPayPrcCust.scrollToFormBuilderMainAdmin = function (item) {
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/GetOne', item.Id, 'GET').success(function (response) {
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.selectedItem = response.Item;
@@ -328,7 +328,7 @@
         cmsMdlPayPrcCust.showSaveButton = false;
         if (preview == "false") {
             cmsMdlPayPrcCust.showSaveButton = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', selectedId, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/GetOne', selectedId, 'GET').success(function (response) {
                 cmsMdlPayPrcCust.busyIndicator.isActive = false;
                 rashaErManage.checkAction(response);
                 cmsMdlPayPrcCust.selectedItem = response.Item;
@@ -374,7 +374,7 @@
     // Save Input Value Form
     cmsMdlPayPrcCust.saveJsonFormMainAdmin = function () {
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', cmsMdlPayPrcCust.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/GetOne', cmsMdlPayPrcCust.selectedItem.Id, 'GET').success(function (response1) {
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             cmsMdlPayPrcCust.selectedItem = response1.Item;
@@ -468,7 +468,7 @@
     // Show InputValue form builder and auto scroll to its position User form
     cmsMdlPayPrcCust.scrollToFormBuilderEndUser = function (item) {
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/GetOne', item.Id, 'GET').success(function (response) {
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.selectedItem = response.Item;
@@ -498,7 +498,7 @@
         cmsMdlPayPrcCust.showSaveButton = false;
         if (preview == "false") {
             cmsMdlPayPrcCust.showSaveButton = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', selectedId, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/GetOne', selectedId, 'GET').success(function (response) {
                 cmsMdlPayPrcCust.busyIndicator.isActive = false;
                 rashaErManage.checkAction(response);
                 cmsMdlPayPrcCust.selectedItem = response.Item;
@@ -540,7 +540,7 @@
     // Save Input Value Form
     cmsMdlPayPrcCust.saveJsonFormEndUser = function () {
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', cmsMdlPayPrcCust.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/GetOne', cmsMdlPayPrcCust.selectedItem.Id, 'GET').success(function (response1) {
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             cmsMdlPayPrcCust.selectedItem = response1.Item;
@@ -634,7 +634,7 @@
     // Show InputValue form builder and auto scroll to its position
     cmsMdlPayPrcCust.scrollToFormBuilderSiteAdmin = function (item) {
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/GetOne', item.Id, 'GET').success(function (response) {
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             cmsMdlPayPrcCust.selectedItem = response.Item;
@@ -664,7 +664,7 @@
         cmsMdlPayPrcCust.showSaveButton = false;
         if (preview == "false") {
             cmsMdlPayPrcCust.showSaveButton = true;
-            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', selectedId, 'GET').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/GetOne', selectedId, 'GET').success(function (response) {
                 cmsMdlPayPrcCust.busyIndicator.isActive = false;
                 rashaErManage.checkAction(response);
                 cmsMdlPayPrcCust.selectedItem = response.Item;
@@ -705,7 +705,7 @@
     // Save Input Value Form
     cmsMdlPayPrcCust.saveJsonFormSiteAdmin = function () {
         cmsMdlPayPrcCust.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/getviewmodel', cmsMdlPayPrcCust.selectedItem.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CmsModulePaymentProcessCustomize/GetOne', cmsMdlPayPrcCust.selectedItem.Id, 'GET').success(function (response1) {
             cmsMdlPayPrcCust.busyIndicator.isActive = false;
             rashaErManage.checkAction(response1);
             cmsMdlPayPrcCust.selectedItem = response1.Item;

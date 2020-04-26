@@ -75,7 +75,7 @@
         memberPropertyTypeSite.filePickerMainImage.fileId = null;
 
         memberPropertyTypeSite.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyTypeSite/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyTypeSite/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             memberPropertyTypeSite.busyIndicator.isActive = false;
             memberPropertyTypeSite.selectedItem = response.Item;
@@ -123,13 +123,13 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyTypeSite/getviewmodel', memberPropertyTypeSite.gridOptionsProperty.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyTypeSite/GetOne', memberPropertyTypeSite.gridOptionsProperty.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             memberPropertyTypeSite.selectedItem = response.Item;
             memberPropertyTypeSite.filePickerMainImage.filename = null;
             memberPropertyTypeSite.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', response.Item.LinkMainImageId, 'GET').success(function (response2) {
                     memberPropertyTypeSite.filePickerMainImage.filename = response2.Item.FileName;
                     memberPropertyTypeSite.filePickerMainImage.fileId = response2.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -195,7 +195,7 @@
             if (isConfirmed) {
                 memberPropertyTypeSite.busyIndicator.isActive = true;
                 console.log(memberPropertyTypeSite.gridOptionsProperty.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyTypeSite/getviewmodel', memberPropertyTypeSite.gridOptionsProperty.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyTypeSite/GetOne', memberPropertyTypeSite.gridOptionsProperty.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     memberPropertyTypeSite.selectedItemForDelete = response.Item;
                     console.log(memberPropertyTypeSite.selectedItemForDelete);

@@ -62,7 +62,7 @@
     cmsModuleSitegrd.addRequested = false;
     cmsModuleSitegrd.openAddModal = function () {
         cmsModuleSitegrd.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/GetViewModel', '', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             var now = moment().add(1, "years").format();
             response.Item.ExpireDate = now;
@@ -114,7 +114,7 @@
             return;
         }
         cmsModuleSitegrd.addRequested = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/getviewmodel', cmsModuleSitegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/GetOne', cmsModuleSitegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             cmsModuleSitegrd.addRequested = false;
             rashaErManage.checkAction(response);
             cmsModuleSitegrd.selectedItem = response.Item;
@@ -180,7 +180,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(cmsModuleSitegrd.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/getviewmodel', cmsModuleSitegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleSite/GetOne', cmsModuleSitegrd.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsModuleSitegrd.selectedItemForDelete = response.Item;
                     console.log(cmsModuleSitegrd.selectedItemForDelete);

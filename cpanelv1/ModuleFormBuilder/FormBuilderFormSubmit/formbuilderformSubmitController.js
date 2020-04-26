@@ -59,7 +59,7 @@
     value.openAddModal = function () {
         value.modalTitle = 'اضافه';
         value.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'formBuilderFormSubmit/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'formBuilderFormSubmit/GetViewModel', "", 'GET').success(function (response) {
             value.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             value.selectedItem = response.Item;
@@ -110,7 +110,7 @@
             return;
         }
         value.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'FormBuilderFormSubmit/getviewmodel', value.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'FormBuilderFormSubmit/GetOne', value.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             value.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             value.selectedItem = response.Item;
@@ -172,7 +172,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(value.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'formBuilderFormSubmit/getviewmodel', value.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'formBuilderFormSubmit/GetOne', value.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     value.selectedItemForDelete = response.Item;
                     console.log(value.selectedItemForDelete);
@@ -294,7 +294,7 @@
     // Show InputValue form builder and auto scroll to its position
     value.openCustomizeInputValueModal = function (item) {
         value.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'universalmenuProcesses/GetOne', item.Id, 'GET').success(function (response) {
             value.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             value.selectedItem = response.Item;
@@ -375,7 +375,7 @@
 
     $builder.defa
     value.onLinkFormIdChange = function (formId, values) {
-        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/getviewmodel', formId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'formbuilderform/GetOne', formId, 'GET').success(function (response) {
             value.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             value.selectedItem.JsonForm = response.Item.JsonForm;

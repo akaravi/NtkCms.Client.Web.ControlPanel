@@ -80,7 +80,7 @@ logInputCtrl.treeOptions = {
     logInputCtrl.addRequested = false;
     logInputCtrl.openAddModal = function () {
         logInputCtrl.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             logInputCtrl.busyIndicator.isActive = false;
             logInputCtrl.selectedItem = response.Item;
@@ -127,7 +127,7 @@ logInputCtrl.treeOptions = {
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/getviewmodel', logInputCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/GetOne', logInputCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             logInputCtrl.selectedItem = response.Item;
             $modal.open({
@@ -190,7 +190,7 @@ logInputCtrl.treeOptions = {
             if (isConfirmed) {
                 logInputCtrl.busyIndicator.isActive = true;
                 console.log(logInputCtrl.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'apitelegramloginput/getviewmodel', logInputCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'apitelegramloginput/GetOne', logInputCtrl.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     logInputCtrl.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/delete', logInputCtrl.selectedItemForDelete, 'POST').success(function (res) {
@@ -283,7 +283,7 @@ logInputCtrl.treeOptions = {
     logInputCtrl.openSendMessageToSender = function (item) {
         logInputCtrl.modalTitle = "ارسال پیام";
         logInputCtrl.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/GetViewModel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramLogInput/GetOne', item.Id, 'GET').success(function (response) {
             logInputCtrl.selectedItem = response.Item;
             $modal.open({
                 templateUrl: 'cpanelv1/ModuleApiTelegram/ApiTelegramLogInput/sendMessageModal.html',

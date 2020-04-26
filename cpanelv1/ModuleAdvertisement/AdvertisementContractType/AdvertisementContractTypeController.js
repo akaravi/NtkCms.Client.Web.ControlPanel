@@ -45,7 +45,7 @@
     advertisementContractType.addRequested = false;
     advertisementContractType.openAddModal = function () {
         advertisementContractType.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontracttype/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontracttype/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementContractType.busyIndicator.isActive = false;
             advertisementContractType.selectedItem = response.Item;
@@ -93,7 +93,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontracttype/getviewmodel', advertisementContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontracttype/GetOne', advertisementContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementContractType.selectedItem = response.Item;
             $modal.open({
@@ -158,7 +158,7 @@
             if (isConfirmed) {
                 advertisementContractType.busyIndicator.isActive = true;
                 console.log(advertisementContractType.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontracttype/getviewmodel', advertisementContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'advertisementcontracttype/GetOne', advertisementContractType.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     advertisementContractType.selectedItemForDelete = response.Item;
                     console.log(advertisementContractType.selectedItemForDelete);

@@ -32,7 +32,7 @@
     estatePropertyFavorite.addRequested = false;
     estatePropertyFavorite.openAddModal = function () {
         estatePropertyFavorite.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyFavorite/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyFavorite/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             estatePropertyFavorite.busyIndicator.isActive = false;
             estatePropertyFavorite.selectedItem = response.Item;
@@ -78,7 +78,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyFavorite/getviewmodel', estatePropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyFavorite/GetOne', estatePropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             estatePropertyFavorite.selectedItem = response.Item;
             $modal.open({
@@ -140,7 +140,7 @@
             if (isConfirmed) {
                 estatePropertyFavorite.busyIndicator.isActive = true;
                 console.log(estatePropertyFavorite.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyFavorite/getviewmodel', estatePropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyFavorite/GetOne', estatePropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     estatePropertyFavorite.selectedItemForDelete = response.Item;
                     console.log(estatePropertyFavorite.selectedItemForDelete);

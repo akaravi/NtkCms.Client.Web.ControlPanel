@@ -23,7 +23,7 @@
     shopContentTag.addRequested = false;
     shopContentTag.openAddModal = function () {
         shopContentTag.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'shopContenttag/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopContenttag/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopContentTag.selectedItem = response.Item;
             $modal.open({
@@ -69,7 +69,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'shopContenttag/getviewmodel',  shopContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'shopContenttag/GetOne',  shopContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             shopContentTag.selectedItem = response.Item;
             $modal.open({
@@ -134,7 +134,7 @@
             if (isConfirmed) {
                 shopContentTag.busyIndicator.isActive = true;
                 console.log(shopContentTag.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'shopContenttag/getviewmodel',  shopContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'shopContenttag/GetOne',  shopContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     shopContentTag.selectedItemForDelete = response.Item;
                     console.log(shopContentTag.selectedItemForDelete);

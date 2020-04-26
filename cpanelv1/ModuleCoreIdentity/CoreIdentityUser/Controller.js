@@ -58,7 +58,7 @@
         coreIdentityUser.filePickerFiles.filename = "";
         coreIdentityUser.filePickerFiles.fileId = null;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreIdentityUser/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreIdentityUser/GetViewModel', '', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             coreIdentityUser.selectedItem = response.Item;
@@ -107,7 +107,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreIdentityUser/getviewmodel', coreIdentityUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreIdentityUser/GetOne', coreIdentityUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             coreIdentityUser.selectedItem = response.Item;
@@ -116,7 +116,7 @@
             coreIdentityUser.filePickerMainImage.filename = null;
             coreIdentityUser.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response.Item.LinkMainImageId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', response.Item.LinkMainImageId, 'GET').success(function (response2) {
                     coreIdentityUser.filePickerMainImage.filename = response2.Item.FileName;
                     coreIdentityUser.filePickerMainImage.fileId = response2.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -188,7 +188,7 @@
                 console.log(coreIdentityUser.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
                 coreIdentityUser.addRequested = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreIdentityUser/getviewmodel', coreIdentityUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreIdentityUser/GetOne', coreIdentityUser.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     coreIdentityUser.selectedItemForDelete = response.Item;
@@ -395,7 +395,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             coreIdentityUser.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -472,14 +472,14 @@
         coreIdentityUser.fileIdToDelete = coreIdentityUser.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", coreIdentityUser.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", coreIdentityUser.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     coreIdentityUser.remove(coreIdentityUser.FileList, coreIdentityUser.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 coreIdentityUser.FileItem = response3.Item;
                                 coreIdentityUser.FileItem.FileName = name;
@@ -582,7 +582,7 @@
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                 coreIdentityUser.fileIdToDelete,
                 "GET"
               )
@@ -632,7 +632,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                     coreIdentityUser.FileItem = response.Item;
                     coreIdentityUser.FileItem.FileName = uploadFile.name;
                     coreIdentityUser.FileItem.uploadName = uploadFile.uploadName;

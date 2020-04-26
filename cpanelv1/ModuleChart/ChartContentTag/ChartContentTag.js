@@ -23,7 +23,7 @@
     chartContentTag.addRequested = false;
     chartContentTag.openAddModal = function () {
         chartContentTag.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             chartContentTag.selectedItem = response.Item;
             $modal.open({
@@ -70,7 +70,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/getviewmodel',  chartContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/GetOne',  chartContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             chartContentTag.selectedItem = response.Item;
             $modal.open({
@@ -135,7 +135,7 @@
             if (isConfirmed) {
                 chartContentTag.busyIndicator.isActive = true;
                 console.log(chartContentTag.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/getviewmodel',  chartContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ChartContentTag/GetOne',  chartContentTag.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     chartContentTag.selectedItemForDelete = response.Item;
                     console.log(chartContentTag.selectedItemForDelete);

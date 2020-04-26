@@ -132,7 +132,7 @@
         ticketingTask.modalTitle = 'اضافه';
         ticketingTask.filePickerFiles.filename = "";
         ticketingTask.filePickerFiles.fileId = null;
-        ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             console.log(response);
             ticketingTask.selectedItem = response.Item;
@@ -151,7 +151,7 @@
             return;
         }
         ticketingTask.modalTitle = 'مشاهده تیکت';
-        ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/getviewmodel', ticketingTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/GetOne', ticketingTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             ticketingTask.selectedItem = response.Item;
             ticketingTask.parseFileIds(response.Item.LinkFileIds);
@@ -178,14 +178,14 @@
             return;
         }
         ticketingTask.modalTitle = 'ویرایش';
-        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/getviewmodel', ticketingTask.answersGridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/GetOne', ticketingTask.answersGridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 ticketingTask.selectedItem = response.Item;
                 ticketingTask.parseFileIds(response.Item.LinkFileIds);
                 ticketingTask.filePickerFiles.filename = null;
                 ticketingTask.filePickerFiles.fileId = null;
-                ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/getviewmodel', response.Item.LinkTicketId, 'GET').success(function (responseTask) {
+                ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/GetOne', response.Item.LinkTicketId, 'GET').success(function (responseTask) {
                     rashaErManage.checkAction(responseTask);
                     if (responseTask.IsSuccess) {
                         ticketingTask.selectedItem.virtual_ticketing=responseTask.Item;
@@ -264,7 +264,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(ticketingTask.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/getviewmodel', ticketingTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/GetOne', ticketingTask.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     ticketingTask.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'TicketingTask/delete', ticketingTask.selectedItemForDelete, 'POST').success(function (res) {
@@ -291,7 +291,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(ticketingTask.answersGridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/getviewmodel', ticketingTask.answersGridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/GetOne', ticketingTask.answersGridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     ticketingTask.selectedItemForDelete = response.Item;
                     console.log(ticketingTask.selectedItemForDelete);
@@ -399,7 +399,7 @@
         ticketingTask.attachedFile = "";
         ticketingTask.filePickerFiles.filename = "";
         ticketingTask.filePickerFiles.fileId = null;
-        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/GetViewModel', "", 'GET').success(function (response) {
             //rashaErManage.checkAction(response);
             console.log(response);
             ticketingTask.selectedItem = response.Item;
@@ -525,7 +525,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             ticketingTask.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -561,14 +561,14 @@
         ticketingTask.fileIdToDelete = ticketingTask.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", ticketingTask.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", ticketingTask.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     ticketingTask.remove(ticketingTask.FileList, ticketingTask.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 ticketingTask.FileItem = response3.Item;
                                 ticketingTask.FileItem.FileName = name;

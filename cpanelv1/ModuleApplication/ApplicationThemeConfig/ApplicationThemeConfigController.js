@@ -171,7 +171,7 @@
         themeConfig.filePickerMainImage.filename = "";
         themeConfig.filePickerMainImage.fileId = null;
         themeConfig.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationThemeConfig/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationThemeConfig/GetViewModel', "", 'GET').success(function (response) {
             console.log(response);
             rashaErManage.checkAction(response);
             themeConfig.selectedItem = response.Item;
@@ -198,7 +198,7 @@
             rashaErManage.showMessage("لطفاً یک ردیف جهت ویرایش انتخاب کنید");
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationThemeConfig/getviewmodel', themeConfig.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + 'ApplicationThemeConfig/GetOne', themeConfig.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             themeConfig.selectedItem = response.Item;
             themeConfig.filePickerMainImage.filename = null;
@@ -211,7 +211,7 @@
             themeConfig.selectedItem.ThemeConfigRuntimeJsonValuesModel = $.parseJSON(themeConfig.selectedItem.ThemeConfigRuntimeJsonValues);
             if (response.Item.LinkMainImageId != null) {
                 ajax
-                    .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", response.Item.LinkMainImageId, "GET")
+                    .call(cmsServerConfig.configApiServerPath + "FileContent/GetOne", response.Item.LinkMainImageId, "GET")
                     .success(function (response2) {
                         buttonIsPressed = false;
                         themeConfig.filePickerMainImage.filename = response2.Item.FileName;
@@ -294,7 +294,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 themeConfig.busyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath + "applicationthemeconfig/getviewmodel", themeConfig.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath + "applicationthemeconfig/GetOne", themeConfig.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     themeConfig.busyIndicator.isActive = false;
                     rashaErManage.checkAction(response);
                     themeConfig.selectedItemForDelete = response.Item;
@@ -480,7 +480,7 @@
                     // replace the file
                     ajax
                         .call(
-                            cmsServerConfig.configApiServerPath + "FileContent/getviewmodel",
+                            cmsServerConfig.configApiServerPath + "FileContent/GetOne",
                             themeConfig.fileIdToDelete,
                             "GET"
                         )
@@ -531,7 +531,7 @@
                 // File does not exists
                 // Save New file
                 ajax
-                    .call(cmsServerConfig.configApiServerPath + "FileContent/getviewmodel", "0", "GET")
+                    .call(cmsServerConfig.configApiServerPath + "FileContent/GetViewModel", "", "GET")
                     .success(function (response) {
                         themeConfig.FileItem = response.Item;
                         themeConfig.FileItem.FileName = uploadFile.name;

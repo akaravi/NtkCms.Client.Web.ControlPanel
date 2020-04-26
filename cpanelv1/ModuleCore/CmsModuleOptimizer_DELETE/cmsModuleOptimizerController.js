@@ -25,7 +25,7 @@
 
         cmsModuleOptimizer.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/GetViewModel', '', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsModuleOptimizer.selectedItem = response.Item;
@@ -74,7 +74,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/getviewmodel', cmsModuleOptimizer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/GetOne', cmsModuleOptimizer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             cmsModuleOptimizer.selectedItem = response.Item;
@@ -134,7 +134,7 @@
             if (isConfirmed) {
                 console.log(cmsModuleOptimizer.gridOptions.selectedRow.item);
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/getviewmodel', cmsModuleOptimizer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'cmsModuleOptimizer/GetOne', cmsModuleOptimizer.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
 
                     rashaErManage.checkAction(response);

@@ -17,7 +17,7 @@
         //    return;
         //}
         if (transc.selectedPrivateSiteConfig.Id == null || transc.selectedPrivateSiteConfig.Id == 0) transc.selectedPrivateSiteConfig.Id = '0';
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/getviewmodel', transc.selectedPrivateSiteConfig.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymentprivatesiteconfig/GetOne', transc.selectedPrivateSiteConfig.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             transc.selectedPrivateSiteConfig = response.Item;
@@ -53,7 +53,7 @@
         if (buttonIsPressed) { return };
         transc.modalTitle = 'اضافه';
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransaction/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'bankpaymenttransaction/GetViewModel', '', 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             transc.selectedItem = response.Item;
@@ -87,9 +87,9 @@
         ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/add', transc.selectedItem, 'POST').success(function (response1) {
             rashaErManage.checkAction(response1);
             if (response1.IsSuccess) {
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/getviewmodel', response1.Item.LinkSiteId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreSite/GetOne', response1.Item.LinkSiteId, 'GET').success(function (response2) {
                     response1.Item.virtual_CmsSite = { Title: response2.Item.Title };
-                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/getviewmodel', response1.Item.LinkUserId, 'GET').success(function (response3) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/GetOne', response1.Item.LinkUserId, 'GET').success(function (response3) {
                         response1.Item.virtual_CmsUser = { Username: response3.Item.Username };
                         transc.ListItems.unshift(response1.Item);
                         transc.gridOptions.myfilterText(transc.ListItems, "LinkUserGroupId", transc.cmsUserGroups, "Title", "LinkUserGroupTitle");
@@ -119,7 +119,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/getviewmodel', transc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/GetOne', transc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             transc.selectedItem = response.Item;
@@ -187,7 +187,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/getviewmodel', transc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'BankPaymentTransaction/GetOne', transc.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
 
                     rashaErManage.checkAction(response);

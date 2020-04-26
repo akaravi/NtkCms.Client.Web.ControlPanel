@@ -117,7 +117,7 @@ var todayDate = moment().format();
     chartContentEvent.addRequested = false;
     chartContentEvent.openAddModal = function () {
         chartContentEvent.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'chartContentEvent/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartContentEvent/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             chartContentEvent.busyIndicator.isActive = false;
             chartContentEvent.selectedItem = response.Item;
@@ -170,7 +170,7 @@ var todayDate = moment().format();
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'chartContentEvent/getviewmodel', chartContentEvent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'chartContentEvent/GetOne', chartContentEvent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             chartContentEvent.selectedItem = response.Item;
             if (chartContentEvent
@@ -235,7 +235,7 @@ var todayDate = moment().format();
             if (isConfirmed) {
                 chartContentEvent.busyIndicator.isActive = true;
                 console.log(chartContentEvent.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'chartContentEvent/getviewmodel', chartContentEvent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'chartContentEvent/GetOne', chartContentEvent.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     chartContentEvent.selectedItemForDelete = response.Item;
                     console.log(chartContentEvent.selectedItemForDelete);

@@ -185,7 +185,7 @@
     // Open Add Category Modal 
     articleTag.addNewCategoryModel = function () {
         articleTag.addRequested = false;
-        ajax.call(cmsServerConfig.configApiServerPath+'articleCategorytag/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleCategorytag/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             articleTag.selectedItem = response.Item;
             //Set dataForTheTree
@@ -230,7 +230,7 @@
 
         articleTag.contentBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'articleCategorytag/getviewmodel', articleTag.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articleCategorytag/GetOne', articleTag.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             articleTag.contentBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -343,7 +343,7 @@
             if (isConfirmed) {
                 articleTag.categoryBusyIndicator.isActive = true;
                 // console.log(node.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'articleCategorytag/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'articleCategorytag/GetOne', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     articleTag.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'articleCategorytag/delete', articleTag.selectedItemForDelete, 'POST').success(function (res) {
@@ -414,7 +414,7 @@
     articleTag.openAddModel = function () {
         articleTag.addRequested = false;
         articleTag.modalTitle = 'اضافه کردن محتوای جدید';
-        ajax.call(cmsServerConfig.configApiServerPath+'articletag/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articletag/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             articleTag.selectedItem = response.Item;
             articleTag.selectedItem.LinkCategoryTagId = articleTag.CategoryTagId;
@@ -438,7 +438,7 @@
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'articletag/getviewmodel', articleTag.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'articletag/GetOne', articleTag.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response1);
             articleTag.selectedItem = response1.Item;
@@ -520,7 +520,7 @@
                 console.log(articleTag.gridOptions.selectedRow.item);
                 articleTag.showbusy = true;
                 articleTag.showIsBusy = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"articletag/getviewmodel", articleTag.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"articletag/GetOne", articleTag.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     articleTag.showbusy = false;
                     articleTag.showIsBusy = false;
                     rashaErManage.checkAction(response);
@@ -817,7 +817,7 @@
         if (fileIds.length != undefined) {
             $.each(fileIds, function (index, item) {
                 if (item == parseInt(item, 10)) {  // Check if item is an integer
-                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(item), 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(item), 'GET').success(function (response) {
                         if (response.IsSuccess) {
                             articleTag.attachedFiles.push({ fileId: response.Item.Id, filename: response.Item.FileName });
                         }
@@ -894,14 +894,14 @@
         articleTag.fileIdToDelete = articleTag.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", articleTag.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", articleTag.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     articleTag.remove(articleTag.FileList, articleTag.fileIdToDelete);
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 articleTag.FileItem = response3.Item;
                                 articleTag.FileItem.FileName = name;
@@ -1004,7 +1004,7 @@
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                 articleTag.fileIdToDelete,
                 "GET"
               )
@@ -1054,7 +1054,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                     articleTag.FileItem = response.Item;
                     articleTag.FileItem.FileName = uploadFile.name;
                     articleTag.FileItem.uploadName = uploadFile.uploadName;
@@ -1206,7 +1206,7 @@
         }
         articleTag.selectedItem.LinkMainImageId = node.Id;
         articleTag.selectedItem.previewImageSrc = cmsServerConfig.configCpanelImages+"loader.gif";
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", node.Id, "GET").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", node.Id, "GET").success(function (response) {
             articleTag.selectedItem.previewImageSrc = cmsServerConfig.configPathFileByIdAndName + response.Item.Id + "/" + response.Item.FileName;
         }).error(function (data, errCode, c, d) {
             console.log(data);

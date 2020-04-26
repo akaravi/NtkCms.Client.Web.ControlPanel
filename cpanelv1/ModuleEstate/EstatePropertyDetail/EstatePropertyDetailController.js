@@ -139,7 +139,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
     estatePropertyDetail.openAddCategoryModal = function () {
         estatePropertyDetail.addRequested = false;
         estatePropertyDetail.modalTitle = "ایجاد گروه جدید";
-        ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailGroup/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailGroup/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             estatePropertyDetail.selectedItem = response.Item;
             $modal.open({
@@ -185,7 +185,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             rashaErManage.showMessage("لطفاَ یک دسته جهت ویرایش انتخاب کنید");
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailGroup/getviewmodel', estatePropertyDetail.treeConfig.currentNode.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailGroup/GetOne', estatePropertyDetail.treeConfig.currentNode.Id, 'GET').success(function (response1) {
             estatePropertyDetail.showbusy = false;
             rashaErManage.checkAction(response1);
             estatePropertyDetail.selectedItem = response1.Item;
@@ -235,7 +235,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
                 if (isConfirmed) {
                     estatePropertyDetail.categorybusyIndicator.isActive = true;
-                    ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailGroup/getviewmodel', node.Id, 'GET').success(function (response) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailGroup/GetOne', node.Id, 'GET').success(function (response) {
                         rashaErManage.checkAction(response);
                         estatePropertyDetail.selectedItemForDelete = response.Item;
                         ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetailGroup/delete', estatePropertyDetail.selectedItemForDelete, 'POST').success(function (res) {
@@ -329,7 +329,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
         estatePropertyDetail.FieldName = "";
         estatePropertyDetail.addRequested = false;
         estatePropertyDetail.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetail/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetail/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             estatePropertyDetail.selectedItem = response.Item;
             estatePropertyDetail.selectedItem.LinkPropertyDetailGroupId = node.Id;
@@ -395,7 +395,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             return;
         }
         estatePropertyDetail.FieldName = "";
-        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetail/getviewmodel', estatePropertyDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetail/GetOne', estatePropertyDetail.gridOptions.selectedRow.item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             estatePropertyDetail.selectedItem = response1.Item;
 
@@ -463,7 +463,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             if (isConfirmed) {
                 estatePropertyDetail.showbusy = true;
                 estatePropertyDetail.showIsBusy = true;
-                ajax.call(cmsServerConfig.configApiServerPath+"estatePropertyDetail/getviewmodel", estatePropertyDetail.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"estatePropertyDetail/GetOne", estatePropertyDetail.gridOptions.selectedRow.item.Id, "GET").success(function (response) {
                     estatePropertyDetail.showbusy = false;
                     estatePropertyDetail.showIsBusy = false;
                     rashaErManage.checkAction(response);
@@ -640,7 +640,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             return;
         }
         estatePropertyDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/getviewmodel', item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/GetOne', item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             estatePropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
@@ -648,7 +648,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/edit', estatePropertyDetail.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/getviewmodel', estatePropertyDetail.ListItems[index + 1].Id, 'GET').success(function (response3) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/GetOne', estatePropertyDetail.ListItems[index + 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         estatePropertyDetail.selectedItem = response3.Item;
                         estatePropertyDetail.selectedItem.ShowInFormOrder = temp;
@@ -682,7 +682,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             return;
         }
         estatePropertyDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/getviewmodel', item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/GetOne', item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             estatePropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
@@ -690,7 +690,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/edit', estatePropertyDetail.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/getviewmodel', estatePropertyDetail.ListItems[index - 1].Id, 'GET').success(function (response3) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'EstatePropertyDetail/GetOne', estatePropertyDetail.ListItems[index - 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         estatePropertyDetail.selectedItem = response3.Item;
                         estatePropertyDetail.selectedItem.ShowInFormOrder = temp;
@@ -734,7 +734,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             return;
         }
         estatePropertyDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/getviewmodel', item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/GetOne', item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             estatePropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
@@ -742,7 +742,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/edit', estatePropertyDetail.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/getviewmodel', estatePropertyDetail.treeConfig.Items[index + 1].Id, 'GET').success(function (response3) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/GetOne', estatePropertyDetail.treeConfig.Items[index + 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         estatePropertyDetail.selectedItem = response3.Item;
                         estatePropertyDetail.selectedItem.ShowInFormOrder = temp;
@@ -784,7 +784,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             return;
         }
         estatePropertyDetail.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/getviewmodel', item.Id, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/GetOne', item.Id, 'GET').success(function (response1) {
             rashaErManage.checkAction(response1);
             estatePropertyDetail.selectedItem = response1.Item;
             var temp = response1.Item.ShowInFormOrder;
@@ -792,7 +792,7 @@ estatePropertyDetail.LinkCategoryIdSelector = {
             ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/edit', estatePropertyDetail.selectedItem, 'PUT').success(function (response2) {
                 rashaErManage.checkAction(response2);
                 if (response2.IsSuccess) {
-                    ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/getviewmodel', estatePropertyDetail.treeConfig.Items[index - 1].Id, 'GET').success(function (response3) {
+                    ajax.call(cmsServerConfig.configApiServerPath+'estatePropertyDetailGroup/GetOne', estatePropertyDetail.treeConfig.Items[index - 1].Id, 'GET').success(function (response3) {
                         rashaErManage.checkAction(response3);
                         estatePropertyDetail.selectedItem = response3.Item;
                         estatePropertyDetail.selectedItem.ShowInFormOrder = temp;

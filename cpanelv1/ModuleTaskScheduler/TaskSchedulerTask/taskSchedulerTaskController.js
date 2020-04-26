@@ -117,7 +117,7 @@
         });
 
         // Get ViewModel of CmsModuleProcess
-        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'CoreModuleProcess/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             task.cmsModuleProcess = response.Item;
 
@@ -146,7 +146,7 @@
         task.valueSubmit = null;
         $builder.removeAllFormObject('default');   // Clear the form builder from previous values
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             task.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -262,7 +262,7 @@ task.moveSelectedAndEdit = function(from, to, calculatePrice) {
     };
  task.moveSelectedschedule = function(LinkSchedulesId) {
 
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/getviewmodel',LinkSchedulesId, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerSchedule/GetOne',LinkSchedulesId, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             for (var i = 0; i < task.selectedItem.TaskSchedulerSchedules.length; i++) {
                 if (task.selectedItem.TaskSchedulerSchedules[i].Id==response.Item.Id) {
@@ -338,7 +338,7 @@ task.moveSelectedAndEdit = function(from, to, calculatePrice) {
             return;
         }
         task.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/getviewmodel', task.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/GetOne', task.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             task.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             task.selectedItem = response.Item;
@@ -409,7 +409,7 @@ task.moveSelectedAndEdit = function(from, to, calculatePrice) {
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(task.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/getviewmodel', task.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/GetOne', task.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     task.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/delete', task.selectedItemForDelete, 'POST').success(function (res) {
@@ -623,7 +623,7 @@ task.RunTaskNow=function(TaskId)
     task.LoadUniversalMenuProcessOfModuleProcessCustomize = function (LinkProcessId) {
         $builder.removeAllFormObject('default');
         // Get Process
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetViewModel', LinkProcessId, "GET").success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', LinkProcessId, "GET").success(function (response1) {
             task.selectedItem.LinkProcessId = response1.Item.Id;
             // Get CmsModuleProcess 
            
@@ -661,7 +661,7 @@ task.RunTaskNow=function(TaskId)
     task.openCustomizeInputValueModal = function (item) {
 
         task.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/GetOne', item.Id, 'GET').success(function (response) {
             task.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             task.selectedItem = response.Item;
@@ -700,7 +700,7 @@ task.RunTaskNow=function(TaskId)
 
     task.submitValues = function (item) {
         task.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/getviewmodel', task.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerTask/GetOne', task.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             task.busyIndicator.isActive = false;
             rashaErManage.checkAction(response);
             task.selectedItem = response.Item;
@@ -780,7 +780,7 @@ function loadselectedProcess(process) {
                 engine.Filters.push(filterValue);
 
                 //task.loadingCmsModuleProcessCustomize = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetViewModel', task.newProcess.LinkProcessId, "GET").success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'TaskSchedulerProcess/GetOne', task.newProcess.LinkProcessId, "GET").success(function (response) {
                     //task.loadingCmsModuleProcessCustomize = false;
                     rashaErManage.checkAction(response);
                     task.cmsModulesProcessesCustomizeListItems = response.Item;

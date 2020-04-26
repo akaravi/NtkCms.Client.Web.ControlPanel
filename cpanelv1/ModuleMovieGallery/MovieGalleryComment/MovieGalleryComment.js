@@ -58,7 +58,7 @@
     mvGalleryComment.addRequested = false;
     mvGalleryComment.openAddModal = function () {
         mvGalleryComment.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mvGalleryComment.busyIndicator.isActive = false;
             mvGalleryComment.selectedItem = response.Item;
@@ -106,7 +106,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/getviewmodel', mvGalleryComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/GetOne', mvGalleryComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             mvGalleryComment.selectedItem = response.Item;
             $modal.open({
@@ -168,7 +168,7 @@
             if (isConfirmed) {
                 mvGalleryComment.busyIndicator.isActive = true;
                 console.log(mvGalleryComment.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/getviewmodel', mvGalleryComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'MovieGalleryComment/GetOne', mvGalleryComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     //rashaErManage.checkAction(response);
                     mvGalleryComment.selectedItemForDelete = response.Item;
                     console.log(mvGalleryComment.selectedItemForDelete);

@@ -95,7 +95,7 @@
     discountSellerPriceSetting.addRequested = false;
     discountSellerPriceSetting.openAddModal = function () {
         discountSellerPriceSetting.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'discountSellerPriceSetting/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'discountSellerPriceSetting/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountSellerPriceSetting.busyIndicator.isActive = false;
             discountSellerPriceSetting.selectedItem = response.Item;
@@ -145,7 +145,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'discountSellerPriceSetting/getviewmodel', discountSellerPriceSetting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'discountSellerPriceSetting/GetOne', discountSellerPriceSetting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             discountSellerPriceSetting.selectedItem = response.Item;
             if (discountSellerPriceSetting
@@ -209,7 +209,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 discountSellerPriceSetting.busyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'discountSellerPriceSetting/getviewmodel', discountSellerPriceSetting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'discountSellerPriceSetting/GetOne', discountSellerPriceSetting.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     discountSellerPriceSetting.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'discountSellerPriceSetting/delete', discountSellerPriceSetting.selectedItemForDelete, 'POST').success(function (res) {

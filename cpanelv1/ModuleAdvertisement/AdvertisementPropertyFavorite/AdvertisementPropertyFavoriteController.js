@@ -32,7 +32,7 @@
     advertisementPropertyFavorite.addRequested = false;
     advertisementPropertyFavorite.openAddModal = function () {
         advertisementPropertyFavorite.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyFavorite/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyFavorite/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementPropertyFavorite.busyIndicator.isActive = false;
             advertisementPropertyFavorite.selectedItem = response.Item;
@@ -78,7 +78,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyFavorite/getviewmodel', advertisementPropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'advertisementPropertyFavorite/GetOne', advertisementPropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             advertisementPropertyFavorite.selectedItem = response.Item;
             $modal.open({
@@ -140,7 +140,7 @@
             if (isConfirmed) {
                 advertisementPropertyFavorite.busyIndicator.isActive = true;
                 console.log(advertisementPropertyFavorite.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyFavorite/getviewmodel', advertisementPropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'AdvertisementPropertyFavorite/GetOne', advertisementPropertyFavorite.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     advertisementPropertyFavorite.selectedItemForDelete = response.Item;
                     console.log(advertisementPropertyFavorite.selectedItemForDelete);

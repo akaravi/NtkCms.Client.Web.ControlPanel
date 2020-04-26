@@ -27,7 +27,7 @@
     siteAccDocumentDetail.addRequested = false;
     siteAccDocumentDetail.openAddModal = function () {
         siteAccDocumentDetail.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'siteAccountingDocumentDetail/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'siteAccountingDocumentDetail/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             siteAccDocumentDetail.selectedItem = response.Item;
             $modal.open({
@@ -68,7 +68,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'siteAccountingDocumentDetail/getviewmodel', siteAccDocumentDetail.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'siteAccountingDocumentDetail/GetOne', siteAccDocumentDetail.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             siteAccDocumentDetail.selectedItem = response.Item;
             $modal.open({
@@ -151,7 +151,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(siteAccDocumentDetail.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'siteAccDocumentDetail/getviewmodel',  siteAccDocumentDetail.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'siteAccDocumentDetail/GetOne',  siteAccDocumentDetail.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     siteAccDocumentDetail.selectedItemForDelete = response.Item;
                     console.log(siteAccDocumentDetail.selectedItemForDelete);

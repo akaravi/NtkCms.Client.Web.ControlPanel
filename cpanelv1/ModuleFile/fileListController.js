@@ -68,7 +68,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', filesList.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', filesList.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             filesList.selectedItem = response.Item;
             $modal.open({
@@ -129,7 +129,7 @@
             if (isConfirmed) {
                 filesList.busyIndicator.isActive = true;
                 console.log(filesList.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', filesList.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', filesList.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     filesList.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', filesList.selectedItemForDelete, 'POST').success(function (res) {

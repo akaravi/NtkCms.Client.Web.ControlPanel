@@ -54,7 +54,7 @@
                     if (response.IsSuccess == true) {
                         notify({ message: 'کد فعالسازی برای شما ارسال شد', classes: 'alert-success', templateUrl: template });
                         register.sendSmsActivationCodeBusyIndicator.isActive = true;
-                        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/getviewmodel',  0 , 'POST').success(function (res) {
+                        ajax.call(cmsServerConfig.configApiServerPath+'CoreUser/GetOne',  0 , 'POST').success(function (res) {
                             register.sendSmsActivationCodeBusyIndicator.isActive = false;
                             if (res.IsSuccess) {
                                 var userName = register.selectedItem.Username;

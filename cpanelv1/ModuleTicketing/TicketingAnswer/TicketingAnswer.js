@@ -69,7 +69,7 @@
 
     ticketingAnswer.addNewModel = function () {
 
-        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/GetViewModel', "", 'GET').success(function (response) {
             //rashaErManage.checkAction(response);
             console.log(response);
             ticketingAnswer.selectedItem = response.Item;
@@ -93,7 +93,7 @@
             return;
         }
         ticketingAnswer.modalTitle = 'ویرایش';
-        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/getviewmodel', ticketingAnswer.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/GetOne', ticketingAnswer.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             ticketingAnswer.selectedItem = response.Item;
             $modal.open({
@@ -161,7 +161,7 @@
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function (isConfirmed) {
             if (isConfirmed) {
                 console.log(ticketingAnswer.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/getviewmodel', ticketingAnswer.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'TicketingAnswer/GetOne', ticketingAnswer.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
 
                     rashaErManage.checkAction(response);
                     ticketingAnswer.selectedItemForDelete = response.Item;

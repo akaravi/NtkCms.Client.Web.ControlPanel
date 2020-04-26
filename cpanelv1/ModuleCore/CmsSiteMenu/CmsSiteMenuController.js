@@ -70,7 +70,7 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
         cmsSiteMenu.modalTitle = 'اضافه';
         cmsSiteMenu.addRequested = true;
         cmsSiteMenu.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteMenu.selectedItem = response.Item;
 
@@ -128,7 +128,7 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
         }
         cmsSiteMenu.addRequested = true;
         cmsSiteMenu.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/getviewmodel', cmsSiteMenu.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/GetOne', cmsSiteMenu.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsSiteMenu.selectedItem = response.Item;
             try {
@@ -202,7 +202,7 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
         rashaErManage.showYesNo(($filter('translatentk')('warning')), "آیا می خواهید این منو را حذف کنید؟", function (isConfirmed) {
             if (isConfirmed) {
                 cmsSiteMenu.busyIndicator.isActive = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/getviewmodel', cmsSiteMenu.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/GetOne', cmsSiteMenu.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     //rashaErManage.checkAction(response);
                     cmsSiteMenu.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainMenu/delete', cmsSiteMenu.selectedItemForDelete, 'POST').success(function (res) {
@@ -313,10 +313,10 @@ app.controller("cmsSiteMenuCtrl", ["$scope", "$http", "ajax", 'rashaErManage', '
         //if (selectedPage.virtual_CmsSite.SubDomain != "")
         //    domain = selectedPage.virtual_CmsSite.SubDomain + '.' + domain;
         //var moduleName = getModuleTitle(selectedPage.virtual_CmsModulePageDependency.LinkModuleId);
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/getviewmodel', selectedPage.LinkPageDependencyGuId, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPageDependency/GetOne', selectedPage.LinkPageDependencyGuId, 'GET').success(function (response1) {
             if (response1.IsSuccess) {
                 var pageDependencyClassActionName = response1.Item.ClassActionName;
-                ajax.call(cmsServerConfig.configApiServerPath+'CoreModule/getviewmodel', response1.Item.LinkModuleId, 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'CoreModule/GetOne', response1.Item.LinkModuleId, 'GET').success(function (response2) {
                     cmsSiteMenu.addRequested = false;
                     rashaErManage.checkAction(response2);
                     var moduleName = response2.Item.ClassName;

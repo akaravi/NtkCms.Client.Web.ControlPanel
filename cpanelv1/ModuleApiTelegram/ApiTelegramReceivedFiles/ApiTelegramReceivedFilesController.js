@@ -30,7 +30,7 @@
     receivedFiles.addRequested = false;
     receivedFiles.openAddModal = function () {
         receivedFiles.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramreceivedFiles/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramreceivedFiles/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             receivedFiles.busyIndicator.isActive = false;
             receivedFiles.selectedItem = response.Item;
@@ -77,7 +77,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramreceivedFiles/getviewmodel', receivedFiles.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramreceivedFiles/GetOne', receivedFiles.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             receivedFiles.selectedItem = response.Item;
             $modal.open({
@@ -140,7 +140,7 @@
             if (isConfirmed) {
                 receivedFiles.busyIndicator.isActive = true;
                 console.log(receivedFiles.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramReceivedFiles/getviewmodel', receivedFiles.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramReceivedFiles/GetOne', receivedFiles.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     receivedFiles.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramReceivedFiles/delete', receivedFiles.selectedItemForDelete, 'POST').success(function (res) {
@@ -234,7 +234,7 @@
     receivedFiles.openSendMessageToSender = function (item) {
         receivedFiles.modalTitle = "ارسال پیام";
         receivedFiles.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramReceivedFiles/GetViewModel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ApiTelegramReceivedFiles/GetOne', item.Id, 'GET').success(function (response) {
             receivedFiles.selectedItem = response.Item;
             $modal.open({
                 templateUrl: 'cpanelv1/ModuleApiTelegram/ApiTelegramReceivedFiles/sendMessageModal.html',

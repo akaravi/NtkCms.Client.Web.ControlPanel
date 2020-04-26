@@ -88,7 +88,7 @@
         order.ViewFindUserDiv = false;
         order.ViewNewUserDiv = false;
         order.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             order.busyIndicator.isActive = false;
             order.selectedItem = response.Item;
@@ -137,7 +137,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/getviewmodel', order.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/GetOne', order.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             order.selectedItem = response.Item;
             order.ViewInfoUserDiv = false;
@@ -204,7 +204,7 @@
             if (isConfirmed) {
                 order.busyIndicator.isActive = true;
                 console.log(order.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/getviewmodel', order.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/GetOne', order.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     order.selectedItemForDelete = response.Item;
                     console.log(order.selectedItemForDelete);
@@ -358,7 +358,7 @@ order.LinkExternalModuleCoreCmsUserIdSelector = {
     };
     order.openReport = function (selected) {
         var linkfilereport = 0;
-        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/getviewmodel', selected.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ReservationOrder/GetOne', selected.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             linkfilereport = response.Item.virtual_AppointmentDateDetail.AppointmentDate.LinkFileReportId
             window.open('/mvc/ReservationOrder/getonereport/' + selected.Id + '?reportfile=' + linkfilereport);

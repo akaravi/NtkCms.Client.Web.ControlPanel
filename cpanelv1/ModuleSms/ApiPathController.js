@@ -16,7 +16,7 @@
 
 
     api.addNew = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+'apipath/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'apipath/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             $rootScope.selectedPath = response.Item;
             $rootScope.action = "add";
@@ -32,7 +32,7 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         };
-        ajax.call(cmsServerConfig.configApiServerPath+'apipath/getviewmodel', api.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'apipath/GetOne', api.gridOptions.selectedRow.item.Id , 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             $rootScope.selectedPath = response.Item;
             $rootScope.action = "edit";
@@ -52,7 +52,7 @@
         }
         rashaErManage.showYesNo(($filter('translatentk')('warning')), ($filter('translatentk')('do_you_want_to_delete_this_attribute')), function(isConfirmed) {
             if (isConfirmed) {
-                ajax.call(cmsServerConfig.configApiServerPath+'apipath/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'apipath/GetOne', node.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     api.selectedItemForDelete = response.Item;
                     console.log(api.selectedItemForDelete);

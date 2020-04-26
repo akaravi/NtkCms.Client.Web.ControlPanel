@@ -318,7 +318,7 @@ memberProperty.selectedItemLinkMemberUserId=false;
         memberProperty.filePickerFiles.filename = "";
         memberProperty.filePickerFiles.fileId = null;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MemberHistory/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MemberHistory/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             //memberProperty.busyIndicator.isActive = false;
@@ -361,7 +361,7 @@ memberProperty.selectedItemLinkMemberUserId=false;
 //#helper  اضافه کردن مقادیر
         var valueItem = {};
         memberProperty.valueItems = [];
-        ajax.call(cmsServerConfig.configApiServerPath+"memberpropertydetailvalue/getviewmodel", '0', 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"memberpropertydetailvalue/GetViewModel", "0", 'GET').success(function (response1) {
                     rashaErManage.checkAction(response1);
                     memberProperty.LinkHistoryId=response.Item.Id;
                     for (var i = 0; i < memberProperty.propertyDetailsListItems.length; i++) {
@@ -442,7 +442,7 @@ memberProperty.selectedItemLinkMemberUserId=false;
         }
         memberProperty.categoryBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'MemberHistory/getviewmodel', memberProperty.gridOptionsHistory.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'MemberHistory/GetOne', memberProperty.gridOptionsHistory.selectedRow.item.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             memberProperty.categoryBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -494,7 +494,7 @@ memberProperty.selectedItemLinkMemberUserId=false;
             if (isConfirmed) {
                 //memberProperty.busyIndicator.isActive = true;
                 console.log(memberProperty.gridOptionsHistory.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'MemberHistory/getviewmodel', memberProperty.gridOptionsHistory.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'MemberHistory/GetOne', memberProperty.gridOptionsHistory.selectedRow.item.Id, 'GET').success(function (response) {
                     memberProperty.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'MemberHistory/delete', memberProperty.selectedItemForDelete, 'POST').success(function (res) {
                         rashaErManage.checkAction(res);
@@ -811,7 +811,7 @@ memberProperty.PropertyID=PropertyId;
         if (buttonIsPressed) return;
         memberProperty.addRequested = false;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyType/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyType/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             memberProperty.selectedItem = response.Item;
@@ -834,7 +834,7 @@ memberProperty.PropertyID=PropertyId;
         }
         memberProperty.categoryBusyIndicator.isActive = true;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyType/getviewmodel', memberProperty.treeConfig.currentNode.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyType/GetOne', memberProperty.treeConfig.currentNode.Id, 'GET').success(function (response) {
             buttonIsPressed = false;
             memberProperty.categoryBusyIndicator.isActive = false;
             rashaErManage.checkAction(response);
@@ -917,7 +917,7 @@ memberProperty.PropertyID=PropertyId;
             if (isConfirmed) {
                 memberProperty.categoryBusyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyType/getviewmodel', node.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'memberPropertyType/GetOne', node.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     memberProperty.selectedItemForDelete = response.Item;
@@ -1014,7 +1014,7 @@ memberProperty.PropertyID=PropertyId;
         memberProperty.filePickerFiles.filename = "";
         memberProperty.filePickerFiles.fileId = null;
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'memberproperty/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'memberproperty/GetViewModel', "", 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             //memberProperty.busyIndicator.isActive = false;
@@ -1055,7 +1055,7 @@ memberProperty.PropertyID=PropertyId;
             rashaErManage.checkAction(response);
             if (response.IsSuccess) {
                 memberProperty.closeModal();
-                ajax.call(cmsServerConfig.configApiServerPath+"memberpropertydetailvalue/getviewmodel", '0', 'GET').success(function (response1) {
+                ajax.call(cmsServerConfig.configApiServerPath+"memberpropertydetailvalue/GetViewModel", "0", 'GET').success(function (response1) {
                     rashaErManage.checkAction(response1);
                     for (var i = 0; i < memberProperty.propertyDetailsListItems.length; i++) {
                         valueItem = $.extend(true, {}, response1.Item);
@@ -1135,7 +1135,7 @@ memberProperty.PropertyID=PropertyId;
             return;
         }
         buttonIsPressed = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'memberproperty/getviewmodel', parseInt(memberProperty.gridOptions.selectedRow.item.Id), 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'memberproperty/GetOne', parseInt(memberProperty.gridOptions.selectedRow.item.Id), 'GET').success(function (response) {
             buttonIsPressed = false;
             rashaErManage.checkAction(response);
             memberProperty.selectedItem = response.Item;
@@ -1148,7 +1148,7 @@ memberProperty.PropertyID=PropertyId;
             memberProperty.filePickerMainImage.filename = null;
             memberProperty.filePickerMainImage.fileId = null;
             if (response.Item.LinkMainImageId != null && response.Item.LinkMainImageId > 0) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', parseInt(response.Item.LinkMainImageId), 'GET').success(function (response2) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', parseInt(response.Item.LinkMainImageId), 'GET').success(function (response2) {
                     if (response2.IsSuccess && response2.Item.Id > 9) {
                         memberProperty.filePickerMainImage.filename = response2.Item.FileName;
                         memberProperty.filePickerMainImage.fileId = response2.Item.Id;
@@ -1338,7 +1338,7 @@ memberProperty.PropertyID=PropertyId;
             if (isConfirmed) {
                 //memberProperty.busyIndicator.isActive = true;
                 buttonIsPressed = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'memberproperty/getviewmodel', memberProperty.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'memberproperty/GetOne', memberProperty.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     buttonIsPressed = false;
                     rashaErManage.checkAction(response);
                     memberProperty.selectedItemForDelete = response.Item;
@@ -1640,13 +1640,13 @@ function stringfyLinkFileIds(arrayOfFiles) {
         memberProperty.fileIdToDelete = memberProperty.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", memberProperty.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", memberProperty.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 memberProperty.FileItem = response3.Item;
                                 memberProperty.FileItem.FileName = name;
@@ -1748,7 +1748,7 @@ function stringfyLinkFileIds(arrayOfFiles) {
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                 memberProperty.fileIdToDelete,
                 "GET"
               )
@@ -1798,7 +1798,7 @@ function stringfyLinkFileIds(arrayOfFiles) {
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                     memberProperty.FileItem = response.Item;
                     memberProperty.FileItem.FileName = uploadFile.name;
                     memberProperty.FileItem.uploadName = uploadFile.uploadName;

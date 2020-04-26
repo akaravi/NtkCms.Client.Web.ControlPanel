@@ -58,7 +58,7 @@
     imgGalleryComment.addRequested = false;
     imgGalleryComment.openAddModal = function () {
         imgGalleryComment.modalTitle = 'اضافه';
-        ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryComment/getviewmodel', "0", 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryComment/GetViewModel', "", 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             imgGalleryComment.busyIndicator.isActive = false;
             imgGalleryComment.selectedItem = response.Item;
@@ -106,7 +106,7 @@
             return;
         }
 
-        ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryComment/getviewmodel', imgGalleryComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryComment/GetOne', imgGalleryComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             imgGalleryComment.selectedItem = response.Item;
             $modal.open({
@@ -168,7 +168,7 @@
             if (isConfirmed) {
                 imgGalleryComment.busyIndicator.isActive = true;
                 console.log(imgGalleryComment.gridOptions.selectedRow.item);
-                ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryComment/getviewmodel', imgGalleryComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'ImageGalleryComment/GetOne', imgGalleryComment.gridOptions.selectedRow.item.Id, 'GET').success(function (response) {
                     //rashaErManage.checkAction(response);
                     imgGalleryComment.selectedItemForDelete = response.Item;
                     console.log(imgGalleryComment.selectedItemForDelete);

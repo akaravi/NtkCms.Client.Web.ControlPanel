@@ -147,7 +147,7 @@
     }
 
     cmsPageDesign.enableMainPage = function (item) {
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/GetOne', item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageDesign.selectedItem = response.Item;
             cmsPageDesign.selectedItem.PageDependencyIsDefualtPage = (response.Item.PageDependencyIsDefualtPage == true) ? false : true;
@@ -172,7 +172,7 @@
     cmsPageDesign.openAddModal = function () {
         cmsPageDesign.modalTitle = 'اضافه';
         cmsPageDesign.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getviewmodel', '0', 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/GetViewModel', '', 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageDesign.selectedItem = response.Item;
             cmsPageDesign.selectedItem.LinkPageDependencyGuId = cmsPageDesign.dependencyId;
@@ -266,14 +266,14 @@
             rashaErManage.showMessage($filter('translatentk')('please_select_a_row_to_edit'));
             return;
         }
-        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getviewmodel', item.Id, 'GET').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/GetOne', item.Id, 'GET').success(function (response) {
             rashaErManage.checkAction(response);
             cmsPageDesign.selectedItem = response.Item;
             cmsPageDesign.filePickerFavIcon.filename = null;
             cmsPageDesign.filePickerFavIcon.fileId = null;
             //Set FavIcon
             if (response.Item.LinkFavIconId != null) {
-                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/getviewmodel', response.Item.LinkFavIconId, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'FileContent/GetOne', response.Item.LinkFavIconId, 'GET').success(function (response) {
                     cmsPageDesign.filePickerFavIcon.filename = response.Item.FileName;
                     cmsPageDesign.filePickerFavIcon.fileId = response.Item.Id
                 }).error(function (data, errCode, c, d) {
@@ -351,7 +351,7 @@
             if (isConfirmed) {
                 cmsPageDesign.busyIndicator.isActive = true;
                 cmsPageDesign.addRequested = true;
-                ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/getviewmodel', item.Id, 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/GetOne', item.Id, 'GET').success(function (response) {
                     rashaErManage.checkAction(response);
                     cmsPageDesign.selectedItemForDelete = response.Item;
                     ajax.call(cmsServerConfig.configApiServerPath+'WebDesignerMainPage/delete', cmsPageDesign.selectedItemForDelete, 'POST').success(function (res) {
@@ -540,13 +540,13 @@
         cmsPageDesign.fileIdToDelete = cmsPageDesign.selectedIndex;
 
         // Delete the file
-        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", cmsPageDesign.fileIdToDelete, 'GET').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetOne", cmsPageDesign.fileIdToDelete, 'GET').success(function (response1) {
             if (response1.IsSuccess == true) {
                 console.log(response1.Item);
                 ajax.call(cmsServerConfig.configApiServerPath+'FileContent/delete', response1.Item, 'POST').success(function (response2) {
                     if (response2.IsSuccess == true) {
                         // Save New file
-                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response3) {
+                        ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response3) {
                             if (response3.IsSuccess == true) {
                                 cmsPageDesign.FileItem = response3.Item;
                                 cmsPageDesign.FileItem.FileName = name;
@@ -637,7 +637,7 @@
                      // replace the file
             ajax
               .call(
-                cmsServerConfig.configApiServerPath+"FileContent/getviewmodel",
+                cmsServerConfig.configApiServerPath+"FileContent/GetOne",
                 cmsPageDesign.fileIdToDelete,
                 "GET"
               )
@@ -687,7 +687,7 @@
             }
             else { // File does not exists
                 // Save New file
-                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/getviewmodel", "0", 'GET').success(function (response) {
+                ajax.call(cmsServerConfig.configApiServerPath+"FileContent/GetViewModel", "", 'GET').success(function (response) {
                     cmsPageDesign.FileItem = response.Item;
                     cmsPageDesign.FileItem.FileName = uploadFile.name;
                     cmsPageDesign.FileItem.uploadName = uploadFile.uploadName;
