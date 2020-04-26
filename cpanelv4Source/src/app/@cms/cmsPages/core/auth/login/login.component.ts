@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.model.isremember = false;
     this.model.username = 'amin@gmail.com';
-    this.model.password = 'amin@gmail.com';
+    
     
     this.subManager.add(
       this.route.queryParams.subscribe(
