@@ -80,6 +80,23 @@ export class ApiServerBaseService implements OnDestroy {
         )
       );
   }
+  ServiceViewModel(moduleControler: string=this.moduleCotrolerUrl) {
+    const token = this.publicHelper.CheckToken();
+    const headers = { Authorization: token };
+    return this.http
+      .get(this.baseUrl + moduleControler + "/GetViewModel", { headers: headers })
+      // .pipe(
+      //   retry(1),
+      //   catchError(this.handleError)
+      // );
+      .pipe(
+        map((ret: ErrorExcptionResult<any>) => {
+          return this.errorExcptionResultCheck(ret);
+        }
+        ,catchError(this.handleError)
+        )
+      );
+  }
 
   ServiceGetAll(model: FilterModel, moduleControler: string=this.moduleCotrolerUrl) {
     const token = this.publicHelper.CheckToken();

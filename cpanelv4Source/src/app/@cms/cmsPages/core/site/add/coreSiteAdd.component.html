@@ -1,10 +1,155 @@
+<section id="form-action-layouts">
+    <div class="row text-left">
+      <div class="col-sm-12">
+        <div class="content-header">
+        ساخت وب سایت جدید    
+        </div>
+      </div>
+    </div>
+    <div class="row text-left">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title" id="from-actions-top-left">اطلاعات وب سایت</h4>
+            <div class="alert alert-info" role="alert">
+              <strong>اقدامات فرم در سمت چپ بالا.</strong>
+            </div>
+            <p class="mb-0">برای افزودن اعمال فرم در بالای فرم، یک div با آن اضافه کنید<code>.form-actions</code> کلاس برای شروع فرم اضافه کردن
+               <code>.top</code> کلاس برای اضافه کردن مرز در زیر اقدامات فرم.</p>
+          </div>
+          <div class="card-content">
+            <div class="px-3">
+              <form class="form">
+                <div class="form-actions top">
+                  <button type="button" class="btn btn-raised btn-warning mr-1">
+                    <i class="ft-x"></i> انصراف
+                  </button>
+                  <button type="button" class="btn btn-raised btn-primary">
+                    <i class="fa fa-check-square-o"></i> ذخیره
+                  </button>
+                </div>
+  
+                <div class="form-body">
+                  <h4 class="form-section"><i class="ft-user"></i> اطلاعات اولیه</h4>
+                  <div class="row">
+                    <div class="form-group col-md-6 mb-2">
+                      <label for="projectinput1">عنوان وب سایت</label>
+                      <input type="text" id="projectinput1" class="form-control" placeholder="وب سایت شرکت ...." name="fname">
+                    </div>
+                    <div class="form-group col-md-6 mb-2">
+                      <label for="projectinput2">نام نویسنده</label>
+                      <input type="text" id="projectinput2" class="form-control" placeholder="نام خانوادگی" name="lname">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-12 mb-2">
+                      <label for="projectinput3">توضیحات</label>
+                      <textarea type="text" id="projectinput3" class="form-control" placeholder="طراحی شده برای اطلاع رسانی" name="email">
+                          </textarea>
+                    </div>
+                    
+                  </div>
+  
+                  <h4 class="form-section"><i class="ft-file-text"></i> دامنه</h4>
+  
+                  <div class="row">
+                    <div *ngIf="dataModelLoad"  class="form-group col-md-4 mb-2 " style="   direction: ltr;">
+                        <label for="projectinput6">نوع وب سایت</label>
+                        <select id="projectinput6" name="interested" class="form-control ">
+                          <option *ngFor="let item of dataModelCategory.ListItems; index as i;" value="design" (click)="clickSelectSiteCategory(item)">{{item.Title}}</option>
+   
+                        </select>
+                      </div>
+                  </div>
+  
+                  <div class="row">
+                    <div class="form-group col-md-4 mb-2 " style="   direction: ltr;">
+                      <label for="projectinput6">دامنه</label>
+                      <select id="projectinput6" name="interested" class="form-control ">
+                          
+                        <option *ngFor="let item of dataModelDomains;" value="{{item.Domain}}">{{item.Domain}}</option>
+                    
+                    
+                      </select>
+                     
+                    </div>
+  
+                    <div class="form-group col-md-4 mb-2" style="   direction: ltr;">
+                        <label for="projectinput5">زیر دامنه</label>
+                        <input type="text" id="projectinput5" class="form-control" placeholder="test" name="company">
+                    </div>
+                    <div class="form-group col-md-4 mb-2 " style="   direction: ltr;">
+                        <label for="projectinput6">-</label>
+                        <select id="projectinput6" name="interested" class="form-control ">
+                          <option value="http">http://</option>
+                          <option value="https">https://</option>
+                          
+                        </select>
+                      </div>
+                  </div>
+                  <div class="form-actions button">
+                    <button type="button" class="btn btn-raised btn-warning mr-1">
+                      <i class="ft-x"></i> انصراف
+                    </button>
+                    <button type="button" class="btn btn-raised btn-primary">
+                      <i class="fa fa-check-square-o"></i> ذخیره
+                    </button>
+                  </div>
+    
+               
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title" id="from-actions-bottom-right">پروفایل کاربر</h4>
+            <div class="alert alert-info" role="alert">
+              <strong>({{dataSelectedSiteCategory.Title}})ماژول های پیش فرض برای نوع وب سایت </strong>
+            </div>
+  
+            <p class="mb-0">در انتخاب نوع وب سایت دقت لازم را داشته باشید</p>
+          </div>
+          <div class="card-content">
+            <div class="px-3">
+  
+              <form class="form">
+                <div class="form-body">
+                  <h4 class="form-section"><i class="ft-info"></i> لیست ماژول ها</h4>
+                  <ul *ngIf="dataModelModule?.ListItems" class="list-group">
+                    <li *ngFor="let item of dataModelModule.ListItems; index as i; " class="list-group-item">{{item.Title}}</li>
+                   
+                  </ul>
+                </div>
+  
+                <div class="form-actions right">
+                  <button type="button" class="btn btn-raised btn-warning mr-1">
+                    <i class="ft-x"></i> انصراف
+                  </button>
+                  <button type="button" class="btn btn-raised btn-primary">
+                    <i class="fa fa-check-square-o"></i> ذخیره
+                  </button>
+                </div>
+              </form>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
 <section id="ngx">
   <div class="card">
       <div class="card-content" >
           <div *ngIf="dataModel.IsSuccess" class="card-body">
               <aw-wizard #wizard navBarLayout="large-empty-symbols">
                   <aw-wizard-step [stepTitle]="'مشخصات اولیه'" [navigationSymbol]="{ symbol: '&#xf007;', fontFamily: 'FontAwesome' }">
-                      <form #personalForm="ngForm" class="editForm" novalidate>
+                      <form #InfoForm="ngForm" class="editForm" novalidate>
                           <h4 class="head text-center">لطفا مشخصات اولیه وب سایت را وارد کنید.</h4>
                           <br/>
                           <div class='row'>
@@ -22,7 +167,7 @@
                                   </div>
 
                                   <div class="form-group text-center">
-                                      <button type="button" uiSref="work" class="btn btn-info btn-raised" [disabled]="!personalForm.valid" awNextStep>
+                                      <button type="button" uiSref="work" class="btn btn-info btn-raised" [disabled]="!InfoForm.valid" awNextStep>
                                           بعدی
                                           <span style="margin-right:10px;">
                                               <i class="ft-chevron-left"></i>
@@ -62,6 +207,14 @@
                           <div class='row'>
                               <div class='col-sm-12'>
                                   <div class="row">
+                                    <div class='col-4 col-sm-offset-1 col-sm-3'>
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="SubDomain">زیر دامنه</label>
+                                            <input [(ngModel)]="dataModel.Item.SubDomain" class="form-control input-md" ngModel #SubDomain="ngModel" required id="SubDomain" name="SubDomain" type="text">
+                                            <small class="form-text text-muted danger" *ngIf="!SubDomain.valid && (SubDomain.dirty || SubDomain.touched)">این فیلد مورد نیاز است!</small>
+
+                                        </div>
+                                    </div>
                                       <div class='col-12 col-sm-4'>
                                           <div class="form-group">
                                             <label class="form-control-label" for="SubDomain"> دامنه</label>
@@ -71,19 +224,12 @@
                                                 <!-- شهرهای انتخاب شده : {{Domain | json}} -->
                                            </div>
                                       </div>
-                                      <div class='col-4 col-sm-offset-1 col-sm-3'>
-                                          <div class="form-group">
-                                              <label class="form-control-label" for="SubDomain">زیر دامنه</label>
-                                              <input [(ngModel)]="dataModel.Item.SubDomain" class="form-control input-md" ngModel #SubDomain="ngModel" required id="SubDomain" name="SubDomain" type="text">
-                                              <small class="form-text text-muted danger" *ngIf="!SubDomain.valid && (SubDomain.dirty || SubDomain.touched)">این فیلد مورد نیاز است!</small>
-
-                                          </div>
-                                      </div>
+                                      
                                   </div>
                                   <div class="row">
                                     <div class='col-12 col-sm-4'>
                                         آدرس وب سایت شما :
-                                        https://{{dataModel.Item.Domain}}+"."{{dataModel.Item.SubDomain}}
+                                        https://{{dataModel.Item.Domain}}"."{{dataModel.Item.SubDomain}}
                                     </div>
                                   </div>
                                   <div class="form-group text-center">
