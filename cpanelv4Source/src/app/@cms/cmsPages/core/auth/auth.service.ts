@@ -137,10 +137,17 @@ export class CmsAuthService implements OnDestroy {
   logout() {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
-    return this.http.get(this.baseUrl + 'signOut', { headers: headers }).pipe(
-      map((ret: any) => {
+    return this.http.post(this.baseUrl + 'signOut','', { headers: headers }).pipe(
+      map((ret: ErrorExcptionResult<any>) => {
         if (ret) {
           this.token = null;
+          localStorage.removeItem('token');
+          localStorage.removeItem('refreshToken');
+          this.alertService.success(
+            'خروح شما با موفقیت انجام شد',
+            'موفق'
+          );
+          return ret;
         }
       })
     );

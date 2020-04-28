@@ -15,6 +15,7 @@ import {JdatePipe} from 'ngx-persian';
 import { ArchwizardModule } from 'angular-archwizard';
 import { CoreSiteCategorySelectComponent } from '../siteCategory/select/select.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     CoreSiteRoutes,
     ArchwizardModule,
     NgSelectModule,
+    NgxDatatableModule
   ],
   declarations: [
     CoreSiteComponent,

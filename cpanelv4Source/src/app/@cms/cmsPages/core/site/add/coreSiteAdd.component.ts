@@ -22,11 +22,8 @@ export class CoreSiteAddComponent implements OnInit {
   subManager = new Subscription();
   filteModel = new FilterModel();
   dataModel: ErrorExcptionResult<any> = new ErrorExcptionResult<any>();
-  //dataModelDomains: Array<string> ;//=  {'oco.ir','qwp.ir'};
   dataModelLoad = false;
-  model: any = {};
   dataModelDomains = [{ Title: "", Domain: "" }];
-  //dataSelectedSiteCategory: any = {};
   dataModelModule: ErrorExcptionResult<any>;
   dataModelCategory: ErrorExcptionResult<any>;
 
@@ -157,7 +154,7 @@ export class CoreSiteAddComponent implements OnInit {
   }
   onSubmit() {
     this.subManager.add(
-      this.coreSiteService.ServiceAdd(this.model).subscribe(
+      this.coreSiteService.ServiceAdd(this.dataModel.Item).subscribe(
         (next) => {
           if (next.IsSuccess) {
           }

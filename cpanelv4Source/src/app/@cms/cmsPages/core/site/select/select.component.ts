@@ -16,7 +16,6 @@ export class CoreSiteSelectComponent implements OnInit, OnDestroy {
   subManager = new Subscription();
   filteModel = new FilterModel();
   dataModel: ErrorExcptionResult<any>;
-  dataModelLoad = false;
   constructor(
     private coreSiteService: CoreSiteService,
     private alertService: ToastrService,
@@ -40,7 +39,6 @@ export class CoreSiteSelectComponent implements OnInit, OnDestroy {
         (next) => {
           if (next.IsSuccess) {
             this.dataModel = next;
-            this.dataModelLoad = true;
             this.alertService.info('اطلاعات دریافت شد', 'توجه');
           }
         },

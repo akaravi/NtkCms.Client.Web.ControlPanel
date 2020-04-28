@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private authService: CmsAuthService,
+    private cmsAuthService: CmsAuthService,
     private alertService: ToastrService,
     private store: Store<fromStore.State>,
     private publicHelper: PublicHelper
@@ -45,12 +45,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   // On submit button click
   onSubmit() {
     this.subManager.add(
-      this.authService.signinUser(this.model).subscribe(
+      this.cmsAuthService.signinUser(this.model).subscribe(
         (next) => {
           if (next.IsSuccess) {
             this.store.dispatch(new fromStore.InitHub());
             if (this.returnUrl === null || this.returnUrl === undefined) {
-              this.returnUrl = this.authService.getDashboardUrl();
+              this.returnUrl = this.cmsAuthService.getDashboardUrl();
             }
             this.router.navigate([this.returnUrl]);
           }

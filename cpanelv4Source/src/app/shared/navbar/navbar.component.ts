@@ -3,6 +3,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { LayoutService } from '../services/layout.service';
 import { Subscription } from 'rxjs';
 import { ConfigService } from '../services/config.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CmsAuthService } from 'app/@cms/cmsPages/core/auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
 
 @Component({
   selector: "app-navbar",
@@ -20,7 +24,15 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public config: any = {};
 
-  constructor(public translate: TranslateService, private layoutService: LayoutService, private configService:ConfigService) {
+  constructor(public translate: TranslateService, private layoutService: LayoutService, private configService:ConfigService
+    ,
+    private router: Router,
+    private route: ActivatedRoute,
+    private cmsAuthService: CmsAuthService,
+    private alertService: ToastrService,
+    private publicHelper: PublicHelper
+    
+    ) {
     // const browserLang: string = translate.getBrowserLang();
     const browserLang: string = "fa";
     translate.use(browserLang.match(/fa|en|es|pt|de/) ? browserLang : "fa");
@@ -84,4 +96,20 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
       this.toggleHideSidebar.emit(true);
     }
   }
+  ActionLogOut(){
+      this.cmsAuthService.logout().subscribe(
+        (next) => {
+          if (next.IsSuccess) {
+          
+            this.router.navigate(['/cms/auth/login']);
+          }
+        },
+        (error) => {
+          this.alertService.error(this.publicHelper.CheckError( error), 'خطا در خروج از سیستم');
+        }
+      
+    );
+
+  }
+  
 }
