@@ -12,7 +12,7 @@ import { CmsFullLayoutComponent } from './@cms/layouts/full/cmsFull-layout.compo
 import { CmsContentLayoutComponent } from './@cms/layouts/content/cmsContent-layout.component';
 import { ContentLayoutROUTES } from './@cms/routes/content-layout.routes';
 import { FullLayoutROUTES } from './@cms/routes/full-layout.routes';
-import { CmsAuthGuard } from './@cms/cmsPages/core/auth/auth-guard.service';
+import { CmsAuthGuard } from './@cms/cmsPages/core/auth/auth.guard.service';
 
 const appRoutes: Routes = [
   {

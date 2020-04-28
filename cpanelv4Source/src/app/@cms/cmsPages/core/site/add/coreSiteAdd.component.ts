@@ -1,14 +1,17 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators, NgForm } from "@angular/forms";
 import { Subscription } from "rxjs";
-import { FilterModel, FilterDataModel } from "app/@cms/cmsModels/base/filterModel";
+import {
+  FilterModel,
+  FilterDataModel,
+} from "app/@cms/cmsModels/base/filterModel";
 import { ErrorExcptionResult } from "app/@cms/cmsModels/base/errorExcptionResult";
 import { PublicHelper } from "app/@cms/cmsCommon/helper/publicHelper";
 import { ToastrService } from "ngx-toastr";
 import { CoreSiteService } from "../coreSite.service";
-import { CoreSiteCategoryModuleService } from '../../siteCategoryModule/coreSiteCategoryModule.service';
-import { CoreModuleService } from '../../module/coreModule.service';
-import { CoreSiteCategoryService } from '../../siteCategory/coreSiteCategory.service';
+import { CoreSiteCategoryModuleService } from "../../siteCategoryModule/coreSiteCategoryModule.service";
+import { CoreModuleService } from "../../module/coreModule.service";
+import { CoreSiteCategoryService } from "../../siteCategory/coreSiteCategory.service";
 
 @Component({
   selector: "app-cms-site-add",
@@ -23,12 +26,11 @@ export class CoreSiteAddComponent implements OnInit {
   dataModelLoad = false;
   model: any = {};
   dataModelDomains = [{ Title: "", Domain: "" }];
-  dataSelectedSiteCategory: any = {};
+  //dataSelectedSiteCategory: any = {};
   dataModelModule: ErrorExcptionResult<any>;
   dataModelCategory: ErrorExcptionResult<any>;
 
   selectedDomain: any;
-
 
   constructor(
     private alertService: ToastrService,
@@ -36,13 +38,15 @@ export class CoreSiteAddComponent implements OnInit {
     private coreSiteService: CoreSiteService,
     private coreSiteCategoryModuleService: CoreSiteCategoryModuleService,
     private coreModuleService: CoreModuleService,
-    private coreSiteCategoryService: CoreSiteCategoryService,
-
+    private coreSiteCategoryService: CoreSiteCategoryService
   ) {}
 
   ngOnInit() {
+    this.coreSiteCategoryService.ServiceConstructor();
+    this.coreSiteService.ServiceConstructor();
     this.GetModelInfo();
     this.GetDomainList();
+    this.CoreSiteCategoryGetAll();
   }
   GetDomainList() {
     this.coreSiteService.ServiceDomains(0).subscribe(
@@ -77,35 +81,33 @@ export class CoreSiteAddComponent implements OnInit {
 
   CoreSiteCategoryGetAll() {
     this.subManager.add(
-      this.coreSiteCategoryService
-        .ServiceGetAll(this.filteModel)
-        .subscribe(
-          (next) => {
-            if (next.IsSuccess) {
-              this.dataModelCategory = next;
-              this.dataModelLoad = true;
-              this.alertService.info('اطلاعات دریافت شد', 'توجه');
-            }
-          },
-          (error) => {
-            this.alertService.error(
-              this.publicHelper.CheckError(error),
-              'خطا در دریافت اطلاعات وب سایتها'
-            );
+      this.coreSiteCategoryService.ServiceGetAll(this.filteModel).subscribe(
+        (next) => {
+          if (next.IsSuccess) {
+            this.dataModelCategory = next;
+            this.dataModelLoad = true;
+            this.alertService.info("اطلاعات دریافت شد", "توجه");
           }
-        )
+        },
+        (error) => {
+          this.alertService.error(
+            this.publicHelper.CheckError(error),
+            "خطا در دریافت اطلاعات وب سایتها"
+          );
+        }
+      )
     );
   }
-  clickSelectSiteCategory(model) {
+  clickSelectSiteCategory(Id: number) {
     let filterModelCategory: FilterModel;
     filterModelCategory = new FilterModel();
     let filterDataModel: FilterDataModel;
     filterDataModel = new FilterDataModel();
-    filterDataModel.IntValue1 = model['Id'];
-    filterDataModel.PropertyName = 'LinkCmsSiteCategoryId';
+    filterDataModel.IntValue1 = Id; //model['Id'];
+    filterDataModel.PropertyName = "LinkCmsSiteCategoryId";
     filterModelCategory.Filters.push(filterDataModel);
 
-    this.dataSelectedSiteCategory = model;
+    //this.dataSelectedSiteCategory ;
     this.dataModelModule = new ErrorExcptionResult<any>();
     this.subManager.add(
       this.coreSiteCategoryModuleService
@@ -119,11 +121,11 @@ export class CoreSiteAddComponent implements OnInit {
               filterDataModel2 = new FilterDataModel();
               next.ListItems.forEach((element) => {
                 filterDataModel2.IntContainValues.push(
-                  element['LinkCmsModuleId']
+                  element["LinkCmsModuleId"]
                 );
               });
 
-              filterDataModel2.PropertyName = 'Id';
+              filterDataModel2.PropertyName = "Id";
               filterModelCategory2.Filters.push(filterDataModel2);
               this.coreModuleService
                 .ServiceCoreModuleGetAll(filterModelCategory2)
@@ -132,13 +134,13 @@ export class CoreSiteAddComponent implements OnInit {
                     if (next2.IsSuccess) {
                       this.dataModelModule = next2;
                       this.dataModelLoad = true;
-                      this.alertService.info('اطلاعات دریافت شد', 'توجه');
+                      this.alertService.info("اطلاعات دریافت شد", "توجه");
                     }
                   },
                   (error2) => {
                     this.alertService.error(
                       this.publicHelper.CheckError(error2),
-                      'خطا در دریافت اطلاعات وب سایتها'
+                      "خطا در دریافت اطلاعات وب سایتها"
                     );
                   }
                 );
@@ -147,11 +149,26 @@ export class CoreSiteAddComponent implements OnInit {
           (error) => {
             this.alertService.error(
               this.publicHelper.CheckError(error),
-              'خطا در دریافت اطلاعات وب سایتها'
+              "خطا در دریافت اطلاعات وب سایتها"
             );
           }
         )
     );
   }
-
+  onSubmit() {
+    this.subManager.add(
+      this.coreSiteService.ServiceAdd(this.model).subscribe(
+        (next) => {
+          if (next.IsSuccess) {
+          }
+        },
+        (error) => {
+          this.alertService.error(
+            this.publicHelper.CheckError(error),
+            "خطا در ساخت وب سایت"
+          );
+        }
+      )
+    );
+  }
 }

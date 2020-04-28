@@ -1,4 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
+import { CmsAuthGuard } from '../cmsPages/core/auth/auth.guard.service';
 
 export const ContentLayoutROUTES: Routes = [
   {
@@ -7,6 +8,7 @@ export const ContentLayoutROUTES: Routes = [
   },
   {
     path: 'site',
+    canActivate: [CmsAuthGuard],
     loadChildren: () => import('../cmsPages/core/site/coreSite.module').then(m => m.CoreSiteModule)
   },
   //{
