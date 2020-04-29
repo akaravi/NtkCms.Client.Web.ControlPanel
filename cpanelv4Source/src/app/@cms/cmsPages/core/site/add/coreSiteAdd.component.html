@@ -12,10 +12,12 @@
           <div class="card-header">
             <h4 class="card-title" id="from-actions-top-left">اطلاعات وب سایت</h4>
             <div class="alert alert-info" role="alert">
-              <strong>اقدامات فرم در سمت چپ بالا.</strong>
+              <strong>در ساخت وب سایت  دقت کنید.</strong>
             </div>
-            <p class="mb-0">برای افزودن اعمال فرم در بالای فرم، یک div با آن اضافه کنید<code>.form-actions</code> کلاس برای شروع فرم اضافه کردن
-               <code>.top</code> کلاس برای اضافه کردن مرز در زیر اقدامات فرم.</p>
+            <p class="mb-0">
+              به صورت 
+              یش فرض هر کاربر می تواند یک وب سایت داشته باشد ولی در چندین سایت کاربر یاشد
+            </p>
           </div>
           <div class="card-content">
             <div class="px-3">
@@ -120,8 +122,7 @@
                   </ul>
                 </div>
   
-                <pre>{{dataModel | json}}</pre>
-           
+                
   
             </div>
           </div>
@@ -129,117 +130,3 @@
       </div>
     </div>
   
-
-<section id="ngx">
-  <div class="card">
-      <div class="card-content" >
-          <div *ngIf="dataModel.IsSuccess" class="card-body">
-              <aw-wizard #wizard navBarLayout="large-empty-symbols">
-                  <aw-wizard-step [stepTitle]="'مشخصات اولیه'" [navigationSymbol]="{ symbol: '&#xf007;', fontFamily: 'FontAwesome' }">
-                      <form #InfoForm="ngForm" class="editForm" novalidate>
-                          <h4 class="head text-center">لطفا مشخصات اولیه وب سایت را وارد کنید.</h4>
-                          <br/>
-                          <div class='row'>
-                              <div class='col-12'>
-                                     <div class="form-group">
-                                         <label class="form-control-label" for="Title">عنوان وب سایت</label>
-                                         <input [(ngModel)]="dataModel.Item.Title" class="form-control input-md"  #Title="ngModel" required id="Title" name="Title" type="text">
-                                         <small class="form-text text-muted danger" *ngIf="!Title.valid && (Title.dirty || Title.touched)">این فیلد مورد نیاز است!</small>
-                                    </div>
-                                  <div class="form-group">
-                                      <label class="form-control-label" for="Description">توضیحات</label>
-                                      <textarea [(ngModel)]="dataModel.Item.Description" class="form-control input-md" ngModel #Description="ngModel" required  id="Description" name="Description" type="text">
-                                          </textarea>
-                                      <small class="form-text text-muted danger"  *ngIf="!Description.valid && (Description.dirty || Description.touched)">لطفا توضیحات کوتاه در مورد وب سایت وارد کنید!</small>
-                                  </div>
-
-                                  <div class="form-group text-center">
-                                      <button type="button" uiSref="work" class="btn btn-info btn-raised" [disabled]="!InfoForm.valid" awNextStep>
-                                          بعدی
-                                          <span style="margin-right:10px;">
-                                              <i class="ft-chevron-left"></i>
-                                          </span>
-                                      </button>
-                                  </div>
-                              </div>
-                          </div>
-                      </form>
-                  </aw-wizard-step>
-                  <aw-wizard-step  [stepTitle]="'محتوای وب سایت'" [navigationSymbol]="{ symbol: '&#xf0b1;', fontFamily: 'FontAwesome' }">
-                      <form #workForm="ngForm" class="editForm" novalidate>
-                          <h4 class="head text-center">نوع وب سایت</h4>
-                          <br/>
-
-                        <app-core-site-category-select  [(ngModel)]="dataModel.Item.CategoryId"></app-core-site-category-select>
-
-                          <div class="form-group text-center space-20">
-                              <button uiSref="personal" type="button" class="btn btn-raised btn-secondary mr-1" awPreviousStep>
-                                  <span style="margin-left:10px;">
-                                      <i class="ft-chevron-right"></i>
-                                  </span> قبلی</button>
-                              <button uiSref="address" type="button" class="btn btn-raised btn-info" [disabled]="!workForm.valid" awNextStep>
-                                  بعدی
-                                  <span style="margin-right:10px;">
-                                      <i class="ft-chevron-left"></i>
-                                  </span>
-                              </button>
-                          </div>
-                      </form>                        
-                  </aw-wizard-step>
-                  <aw-wizard-step [stepTitle]="'آدرس وب سایت'" [navigationSymbol]="{ symbol: '&#xf0ac;', fontFamily: 'FontAwesome' }">
-                      <form #addressForm="ngForm" class="editForm" novalidate>
-                          <h4 class="head text-center">مشخصات دامنه اتصال به وب سایت</h4>
-                          <br/>
-                          
-                          <div class='row'>
-                              <div class='col-sm-12'>
-                                  <div class="row">
-                                    <div class='col-4 col-sm-offset-1 col-sm-3'>
-                                        <div class="form-group">
-                                            <label class="form-control-label" for="SubDomain">زیر دامنه</label>
-                                            <input [(ngModel)]="dataModel.Item.SubDomain" class="form-control input-md" ngModel #SubDomain="ngModel" required id="SubDomain" name="SubDomain" type="text">
-                                            <small class="form-text text-muted danger" *ngIf="!SubDomain.valid && (SubDomain.dirty || SubDomain.touched)">این فیلد مورد نیاز است!</small>
-
-                                        </div>
-                                    </div>
-                                      <div class='col-12 col-sm-4'>
-                                          <div class="form-group">
-                                            <label class="form-control-label" for="SubDomain"> دامنه</label>
-                                             <ng-select  #Domain="ngModel" [items]="dataModelDomains" bindLabel="Domain" placeholder="دامنه را انتخاب کنید" [(ngModel)]="selectedDomain">
-                                            </ng-select> 
-                                            <small class="form-text text-muted danger" *ngIf="!Domain.valid && (Domain.dirty || Domain.touched)">این فیلد مورد نیاز است!</small>
-                                                <!-- شهرهای انتخاب شده : {{Domain | json}} -->
-                                           </div>
-                                      </div>
-                                      
-                                  </div>
-                                  <div class="row">
-                                    <div class='col-12 col-sm-4'>
-                                        آدرس وب سایت شما :
-                                        https://{{dataModel.Item.Domain}}"."{{dataModel.Item.SubDomain}}
-                                    </div>
-                                  </div>
-                                  <div class="form-group text-center">
-                                      <button uiSref="work" type="button" class="btn btn-raised btn-secondary mr-1" awPreviousStep>
-                                          <span style="margin-left:10px;">
-                                              <i class="ft-chevron-right"></i>
-                                          </span> قبلی</button>
-                                      <button uiSref="result" type="button" class="btn btn-raised btn-success" [disabled]="!addressForm.valid" awResetWizard>
-                                          پایان
-                                          <span style="margin-right:10px;">
-                                              <i class="ft-chevron-left"></i>
-                                          </span>
-                                      </button>
-                                  </div>
-                              </div>
-                          </div>
-                      </form>
-                      
-                  </aw-wizard-step>
-              </aw-wizard>
-
-
-          </div>
-      </div>
-  </div>
-</section>

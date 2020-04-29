@@ -3,18 +3,23 @@
   <div class="row text-left">
     <div class="col-12 mt-3 mb-1">
       <div class="content-header">انتخاب وب سایت</div>
-      <div *ngIf="!dataModelLoad">
+      <div *ngIf="!(dataModel?.ListItems)" >
         در حال بررسی سایتهایی که شما در آن عضویت دارید
 
       </div>
-      <div *ngIf="dataModelLoad">
-        <p *ngIf="dataModel.ListItems?.length == 0" class="content-sub-header">
+      <div *ngIf="dataModel?.ListItems?.length == 0">
+        <p  class="content-sub-header">
           حساب کاربری شما در هیچ وب سایتی عضویت ندارد
           <br>
          برای خود وب سایت ایجاد کنید
 
         </p>
-        <p *ngIf="dataModel.ListItems?.length > 0" class="content-sub-header">
+        <app-cms-site-add></app-cms-site-add>
+
+      </div>
+      <div *ngIf="dataModel.ListItems?.length > 0" >
+
+        <p class="content-sub-header">
           حساب کاربری شما در کلیه وب سایتهای زیر عضویت دارد
           <br>
           نسبت به دسترسی شما در آن وب سایت و فعالیتی که در نظر دارید وب سایت را انتخاب کنید
@@ -22,11 +27,10 @@
       </div>
     </div>
   </div>
-<app-cms-site-add></app-cms-site-add>
   <div class="row text-left">
     <div class="col-md-12 mt-1">
 
-      <div *ngIf="dataModelLoad" class="card-columns">
+      <div *ngIf="dataModel?.ListItems?.length > 0"class="card-columns">
         <div *ngFor="let item of dataModel.ListItems; index as i; trackBy: trackByFn" class="card">
           <div class="card-content">         
             <div class="card-body">
