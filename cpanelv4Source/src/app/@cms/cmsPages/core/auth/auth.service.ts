@@ -1,7 +1,6 @@
 import { Router } from '@angular/router';
 import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { cmsServerConfig } from 'app/@cms/cmsCommon/environments/cmsServerConfig';
 import { map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
@@ -12,6 +11,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
 import { AuthRenewTokenModel } from 'app/@cms/cmsModels/core/authModel';
 import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
+import { cmsServerConfig } from 'environments/environment';
 
 @Injectable()
 export class CmsAuthService implements OnDestroy {

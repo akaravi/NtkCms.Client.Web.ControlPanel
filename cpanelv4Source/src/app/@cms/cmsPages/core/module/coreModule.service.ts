@@ -1,6 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { cmsServerConfig } from 'app/@cms/cmsCommon/environments/cmsServerConfig';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -14,6 +13,7 @@ import {
 } from 'app/@cms/cmsModels/base/filterModel';
 import { CmsAuthService } from '../auth/auth.service';
 import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
+import { cmsServerConfig } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root',
