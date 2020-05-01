@@ -21,7 +21,7 @@
             cmsLocation.gridOptions.totalRowCount = response.TotalRowCount;
             cmsLocation.gridOptions.rowPerPage = response.RowPerPage;
             cmsLocation.gridOptions.maxSize = 5;
-            ajax.call(cmsServerConfig.configApiServerPath+"CoreLocation/getalllocationtype", {}, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath+"CoreEnum/EnumLocationType", {}, 'POST').success(function (response) {
                 cmsLocation.locationTypeListItems = response.ListItems;
                 //Filter LocationType
                 $.each(cmsLocation.ListItems, function (index, location) {

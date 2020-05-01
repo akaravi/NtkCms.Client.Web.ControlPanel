@@ -12,7 +12,7 @@
         }
 
         // Get UserAccessControllerTypes Enum
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreUserGroup/getenum", engine, 'POST').success(function (response1) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreEnum/enumAccessControllerTypes", engine, 'GET').success(function (response1) {
             cmsUserGroupgrd.UserAccessControllerTypes = response1;
 
             // Get ListItems to fillData

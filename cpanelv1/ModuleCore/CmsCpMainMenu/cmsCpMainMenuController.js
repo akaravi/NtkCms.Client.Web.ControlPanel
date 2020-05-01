@@ -122,7 +122,7 @@
     cmsCpMainMenugrd.init = function () {
         cmsCpMainMenugrd.addRequested = true;
         cmsCpMainMenugrd.busyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreCpMainMenu/getAllMenuPlaceType", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreEnum/EnumMenuPlaceType", {}, 'GET').success(function (response) {
             cmsCpMainMenugrd.MenuPlaceType = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);

@@ -618,7 +618,7 @@ memberUser.onPropertyTypeChange = function (propertyTypeId) {
 
     //init Function
     memberUser.init = function () {
-        ajax.call(cmsServerConfig.configApiServerPath+"memberuser/getAllGender", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreEnum/EnumGender", {}, 'GET').success(function (response) {
             memberUser.Gender = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);

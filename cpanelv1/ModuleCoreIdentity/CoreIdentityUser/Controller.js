@@ -28,7 +28,7 @@
 
     coreIdentityUser.init = function () {
 
-        ajax.call(cmsServerConfig.configApiServerPath+"CoreUser/getAllGender", {}, 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"CoreEnum/EnumGender", {}, 'GET').success(function (response) {
             coreIdentityUser.Gender = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);

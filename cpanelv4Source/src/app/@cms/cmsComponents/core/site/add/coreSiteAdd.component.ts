@@ -132,10 +132,9 @@ export class CoreSiteAddComponent implements OnInit {
     let AddFirstSite = false;
     if (this.dateModleInput && this.dateModleInput.AddFirstSite)
       AddFirstSite = true;
-    this.subManager.add(
-      this.coreSiteService
-        .ServiceAdd(this.dataModel.Item, AddFirstSite)
-        .subscribe(
+    if (AddFirstSite) {
+      this.subManager.add(
+        this.coreSiteService.ServiceAddFirstSite(this.dataModel.Item).subscribe(
           (next) => {
             if (next.IsSuccess) {
             }
@@ -147,6 +146,22 @@ export class CoreSiteAddComponent implements OnInit {
             );
           }
         )
-    );
+      );
+    } else {
+      this.subManager.add(
+        this.coreSiteService.ServiceAdd(this.dataModel.Item).subscribe(
+          (next) => {
+            if (next.IsSuccess) {
+            }
+          },
+          (error) => {
+            this.alertService.error(
+              this.publicHelper.CheckError(error),
+              "خطا در ساخت وب سایت"
+            );
+          }
+        )
+      );
+    }
   }
 }

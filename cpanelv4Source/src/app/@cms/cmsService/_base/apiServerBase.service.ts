@@ -183,13 +183,11 @@ export class ApiServerBaseService implements OnDestroy {
         }, catchError(this.handleError))
       );
   }
-  ServiceAdd(model: any, AddFirstSite: boolean = false) {
+  ServiceAdd(model: any) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
-    let controler = "/Add";
-    if (AddFirstSite) controler = "/AddFirstSite";
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + controler, model, {
+      .post(this.baseUrl + this.setModuleCotrolerUrl() + '/Add', model, {
         headers: headers,
       })
       .pipe(

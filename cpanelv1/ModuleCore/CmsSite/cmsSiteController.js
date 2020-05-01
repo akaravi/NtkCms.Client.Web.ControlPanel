@@ -147,7 +147,7 @@
             cmsSitegrd.gridOptions.totalRowCount = response.TotalRowCount;
             cmsSitegrd.gridOptions.rowPerPage = response.RowPerPage;
             cmsSitegrd.gridOptions.maxSize = 5;
-            ajax.call(cmsServerConfig.configApiServerPath + "CoreSite/getAllUserLanguage", {}, 'POST').success(function (response) {
+            ajax.call(cmsServerConfig.configApiServerPath + "CoreEnum/EnumUserLanguage", {}, 'POST').success(function (response) {
                 cmsSitegrd.UserLanguage = response.ListItems;
                 cmsSitegrd.setUserLanguageEnum(cmsSitegrd.ListItems, cmsSitegrd.UserLanguage);
             }).error(function (data, errCode, c, d) {

@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { map, catchError } from "rxjs/operators";
 import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
 import { ApiServerBaseService } from '../_base/apiServerBase.service';
@@ -19,7 +19,73 @@ export class CoreModuleService extends ApiServerBaseService implements OnDestroy
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }
-  
+  ServiceAutoAdd() {
+    
+    const token = this.publicHelper.CheckToken();
+    const headers = { Authorization: token };
+    return this.http
+      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/AutoAdd/", {
+        headers: headers,
+      })
+      .pipe(
+        map((ret: ErrorExcptionResult<any>) => {
+          return this.errorExcptionResultCheck(ret);
+        }, catchError(this.handleError))
+      );
+  }
+  ServiceConfig(MoudleClassName:string) {
+    
+    const token = this.publicHelper.CheckToken();
+    const headers = { Authorization: token };
+    return this.http
+      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/Config/",MoudleClassName, {
+        headers: headers,
+      })
+      .pipe(
+        map((ret: ErrorExcptionResult<any>) => {
+          return this.errorExcptionResultCheck(ret);
+        }, catchError(this.handleError))
+      );
+  }
+  ServiceGetOneWithModuleConfig(model: FilterModel) {
+    const token = this.publicHelper.CheckToken();
+    const headers = { Authorization: token };
+    return this.http
+      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/GetOneWithModuleConfig/", model, {
+        headers: headers,
+      })
+      .pipe(
+        map((ret: ErrorExcptionResult<any>) => {
+          return this.errorExcptionResultCheck(ret);
+        }, catchError(this.handleError))
+      );
+  }
+  ServiceGetViewModelWithModuleConfig(id:number) {
+    const token = this.publicHelper.CheckToken();
+    const headers = { Authorization: token };
+    return this.http
+      .get(this.baseUrl + this.setModuleCotrolerUrl() + "/GetViewModelWithModuleConfig/"+id, {
+        headers: headers,
+      })
+      .pipe(
+        map((ret: ErrorExcptionResult<any>) => {
+          return this.errorExcptionResultCheck(ret);
+        }, catchError(this.handleError))
+      );
+  }
+  ServiceGetAllModuleName(model: FilterModel) {
+    const token = this.publicHelper.CheckToken();
+    const headers = { Authorization: token };
+    return this.http
+      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/GetAllModuleName/", model, {
+        headers: headers,
+      })
+      .pipe(
+        map((ret: ErrorExcptionResult<any>) => {
+          return this.errorExcptionResultCheck(ret);
+        }, catchError(this.handleError))
+      );
+  }
   ServiceGetAllByCategorySiteId(CategorySiteId: number ,model: FilterModel) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
@@ -33,9 +99,5 @@ export class CoreModuleService extends ApiServerBaseService implements OnDestroy
         }, catchError(this.handleError))
       );
   }
-  // ServiceSelectSite(model: AuthRenewTokenModel) {
-  //   this.ServiceConstructor();
-  //   return this.cmsAuthService.RenewToken(model);
-  // }
-  
+
 }

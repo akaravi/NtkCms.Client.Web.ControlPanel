@@ -408,7 +408,7 @@
         });
         ticketingDepartemen.clearOperatorName();
         // ------------------------- Get users ----------------------------------
-        ajax.call(cmsServerConfig.configApiServerPath + "CoreSiteUser/GetCurrentSiteUsers", "", 'POST').success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath + "CoreSiteUser/GetCurrentSiteUsers", "", 'GET').success(function (response) {
             ticketingDepartemen.CmsUser.ListItems = response.ListItems;
         }).error(function (data, errCode, c, d) {
             console.log(data);

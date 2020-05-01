@@ -9,7 +9,7 @@ export const ContentLayoutROUTES: Routes = [
   {
     path: 'site',
     canActivate: [CmsAuthGuard],
-    loadChildren: () => import('../cmsPages/core/site/coreSite.module').then(m => m.CoreSiteModule)
+    loadChildren: () => import('../cmsComponents/core/site/coreSite.module').then(m => m.CoreSiteModule)
   },
   //{
         // path: 'pages',

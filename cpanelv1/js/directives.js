@@ -416,7 +416,7 @@ function sideNavigation($timeout) {
 $.ajax({
     type: "POST",
     async: false,
-    url: cmsServerConfig.configApiServerPath + "EnumStatus/GetEnumRecordStatus",
+    url: cmsServerConfig.configApiServerPath + "CoreEnum/EnumRecordStatus",
     contentType: "application/json",
     success: function (response) {
         itemRecordStatus = response.ListItems;
@@ -623,22 +623,22 @@ function currencyInput($filter, $browser) {
     }
 }
 
-function rashaGlobaltoken(ajax) {
-    return {
-        restrict: 'A',
-        link: function (scope, element) {
-            ajax.call(cmsServerConfig.configApiServerPath + 'user/getglobaltoken', '', 'POST').success(function (response) {
-                localStorage.setItem('userGlobaltoken', response);
-                //console.log('ready');
-            }).error(function (a, b, c, d) {
-                console.log(a);
-                console.log(b);
-                console.log(c);
-                console.log(d);
-            });
-        }
-    }
-}
+// function rashaGlobaltoken(ajax) {
+//     return {
+//         restrict: 'A',
+//         link: function (scope, element) {
+//             ajax.call(cmsServerConfig.configApiServerPath + 'user/getglobaltoken', '', 'POST').success(function (response) {
+//                 localStorage.setItem('userGlobaltoken', response);
+//                 //console.log('ready');
+//             }).error(function (a, b, c, d) {
+//                 console.log(a);
+//                 console.log(b);
+//                 console.log(c);
+//                 console.log(d);
+//             });
+//         }
+//     }
+// }
 
 function rashaAutocomplete($compile, $state, ajax, rashaErManage, $modal) {
     return {
@@ -6343,7 +6343,7 @@ angular.module('inspinia')
     .directive('xsWizardPage', xsWizardPage)
     .directive('xsWizardControls', xsWizardControls)
     .directive('customTextInput', customTextInput)
-    .directive('rashaGlobaltoken', rashaGlobaltoken)
+    //.directive('rashaGlobaltoken', rashaGlobaltoken)
     .directive('minimalizaSidebar', minimalizaSidebar)
     .directive("customPopover", customPopover)
     .directive("rashaDatePicker", rashaDatePicker)
