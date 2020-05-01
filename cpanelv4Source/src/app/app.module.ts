@@ -18,8 +18,8 @@ import {
 } from 'ngx-perfect-scrollbar';
 
 import { AppComponent } from './app.component';
-import { ContentLayoutComponent } from './layouts/content/content-layout.component';
-import { FullLayoutComponent } from './layouts/full/full-layout.component';
+import { ContentLayoutComponent } from './@theme/layouts/content/content-layout.component';
+import { FullLayoutComponent } from './@theme/layouts/full/full-layout.component';
 
 import { DragulaService } from 'ng2-dragula';
 import { AuthService } from './shared/auth/auth.service';

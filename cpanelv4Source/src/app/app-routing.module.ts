@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 
-import { FullLayoutComponent } from './layouts/full/full-layout.component';
-import { ContentLayoutComponent } from './layouts/content/content-layout.component';
+import { FullLayoutComponent } from './@theme/layouts/full/full-layout.component';
+import { ContentLayoutComponent } from './@theme/layouts/content/content-layout.component';
 
 import { Full_ROUTES } from './shared/routes/full-layout.routes';
 import { CONTENT_ROUTES } from './shared/routes/content-layout.routes';
@@ -35,14 +35,14 @@ const appRoutes: Routes = [
     //canActivate: [CmsAuthGuard],
   },
   {
-    path: '',
+    path: 'theme',
     component: FullLayoutComponent,
     data: { title: 'full Views' },
     children: Full_ROUTES,
     canActivate: [AuthGuard],
   },
   {
-    path: '',
+    path: 'theme',
     component: ContentLayoutComponent,
     data: { title: 'content Views' },
     children: CONTENT_ROUTES,
