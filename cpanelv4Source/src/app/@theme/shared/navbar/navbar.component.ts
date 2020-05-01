@@ -1,8 +1,8 @@
 import { Component, Output, EventEmitter, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LayoutService } from '../services/layout.service';
+import { LayoutService } from '../../../shared/services/layout.service';
 import { Subscription } from 'rxjs';
-import { ConfigService } from '../services/config.service';
+import { ConfigService } from '../../../shared/services/config.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CmsAuthService } from 'app/@cms/cmsService/core/auth.service';
 import { ToastrService } from 'ngx-toastr';

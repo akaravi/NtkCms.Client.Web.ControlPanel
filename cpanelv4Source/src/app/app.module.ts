@@ -30,7 +30,8 @@ import { CmsContentLayoutComponent } from './@cms/layouts/content/cmsContent-lay
 import { CmsAuthService } from './@cms/cmsService/core/auth.service';
 import { CmsAuthGuard } from './@cms/cmsService/core/auth.guard.service';
 import { PublicHelper } from './@cms/cmsCommon/helper/publicHelper';
-import { CmsSharedModule } from './@cms/cmsCommon/cmShared.module';
+import { CmsSharedModule } from './@cms/shared/cmsShared.module';
+import { ThemeSharedModule } from './@theme/shared/themeShared.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -55,6 +56,7 @@ export function createTranslateLoader(http: HttpClient) {
     AppRoutingModule,
     SharedModule,
     CmsSharedModule,
+    ThemeSharedModule,
     HttpClientModule,
     ToastrModule.forRoot(),
     NgbModule.forRoot(),

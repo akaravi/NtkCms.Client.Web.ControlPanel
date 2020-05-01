@@ -4,8 +4,8 @@ import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { FullLayoutComponent } from './@theme/layouts/full/full-layout.component';
 import { ContentLayoutComponent } from './@theme/layouts/content/content-layout.component';
 
-import { Full_ROUTES } from './shared/routes/full-layout.routes';
-import { CONTENT_ROUTES } from './shared/routes/content-layout.routes';
+import { Full_ROUTES } from './@theme/routes/full-layout.routes';
+import { CONTENT_ROUTES } from './@theme/routes/content-layout.routes';
 
 import { AuthGuard } from './shared/auth/auth-guard.service';
 import { CmsFullLayoutComponent } from './@cms/layouts/full/cmsFull-layout.component';

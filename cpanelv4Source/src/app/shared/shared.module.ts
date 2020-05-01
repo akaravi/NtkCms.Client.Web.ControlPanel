@@ -7,10 +7,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 //COMPONENTS
-import { FooterComponent } from './footer/footer.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { CustomizerComponent } from './customizer/customizer.component';
+import { FooterComponent } from '../@theme/shared/footer/footer.component';
+import { NavbarComponent } from '../@theme/shared/navbar/navbar.component';
+import { SidebarComponent } from '../@theme/shared/sidebar/sidebar.component';
+import { CustomizerComponent } from '../@theme/shared/customizer/customizer.component';
 import { NotificationSidebarComponent } from './notification-sidebar/notification-sidebar.component';
 
 //DIRECTIVES

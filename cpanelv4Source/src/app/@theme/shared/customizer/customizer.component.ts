@@ -9,8 +9,8 @@ import {
   ElementRef,
   Renderer2
 } from "@angular/core";
-import { LayoutService } from "../services/layout.service";
-import { ConfigService } from "../services/config.service";
+import { LayoutService } from "../../../shared/services/layout.service";
+import { ConfigService } from "../../../shared/services/config.service";
 import { Subscription } from "rxjs";
 
 @Component({
