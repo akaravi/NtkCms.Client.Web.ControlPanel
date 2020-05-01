@@ -5,7 +5,7 @@ import { map, catchError } from "rxjs/operators";
 import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
 import { ApiServerBaseService } from '../_base/apiServerBase.service';
 import { FilterModel } from 'app/@cms/cmsModels/base/filterModel';
-import { CoreSiteSearchModel } from 'app/@cms/cmsModels/base/coreSiteModel';
+import { CoreSiteSearchModel } from 'app/@cms/cmsModels/core/coreSiteModel';
 
 @Injectable({
   providedIn: 'root',

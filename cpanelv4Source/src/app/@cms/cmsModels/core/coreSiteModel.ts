@@ -1,4 +1,3 @@
-export class CoreSiteSearchModel{
-key: string;
-
+export class CoreSiteSearchModel {
+  key: string;
 }
