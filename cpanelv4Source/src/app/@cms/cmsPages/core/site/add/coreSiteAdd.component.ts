@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { FormControl, FormGroup, Validators, NgForm } from "@angular/forms";
 import { Subscription } from "rxjs";
 import {
@@ -8,10 +8,10 @@ import {
 import { ErrorExcptionResult } from "app/@cms/cmsModels/base/errorExcptionResult";
 import { PublicHelper } from "app/@cms/cmsCommon/helper/publicHelper";
 import { ToastrService } from "ngx-toastr";
-import { CoreSiteService } from "../coreSite.service";
-import { CoreSiteCategoryModuleService } from "../../siteCategoryModule/coreSiteCategoryModule.service";
-import { CoreModuleService } from "../../module/coreModule.service";
-import { CoreSiteCategoryService } from "../../siteCategory/coreSiteCategory.service";
+import { CoreSiteService } from "../../../../cmsService/core/coreSite.service";
+import { CoreSiteCategoryModuleService } from "../../../../cmsService/core/coreSiteCategoryModule.service";
+import { CoreModuleService } from "../../../../cmsService/core/coreModule.service";
+import { CoreSiteCategoryService } from "../../../../cmsService/core/coreSiteCategory.service";
 
 @Component({
   selector: "app-cms-site-add",
@@ -38,9 +38,17 @@ export class CoreSiteAddComponent implements OnInit {
     private coreSiteCategoryService: CoreSiteCategoryService
   ) {}
 
+  private dateModleInput: any;
+
+  @Input()
+  set dateInput(model: any) {
+    this.dateModleInput = model;
+  }
+  get dateInput(): any {
+    return this.dateModleInput;
+  }
+
   ngOnInit() {
-    this.coreSiteCategoryService.ServiceConstructor();
-    this.coreSiteService.ServiceConstructor();
     this.GetModelInfo();
     this.GetDomainList();
     this.CoreSiteCategoryGetAll();
@@ -96,56 +104,24 @@ export class CoreSiteAddComponent implements OnInit {
     );
   }
   clickSelectSiteCategory(Id: number) {
-    let filterModelCategory: FilterModel;
-    filterModelCategory = new FilterModel();
-    let filterDataModel: FilterDataModel;
-    filterDataModel = new FilterDataModel();
-    filterDataModel.IntValue1 = Id; //model['Id'];
-    filterDataModel.PropertyName = "LinkCmsSiteCategoryId";
-    filterModelCategory.Filters.push(filterDataModel);
+    let filterModel: FilterModel = new FilterModel();
+    filterModel.RowPerPage = 50;
 
-    //this.dataSelectedSiteCategory ;
     this.dataModelModule = new ErrorExcptionResult<any>();
     this.subManager.add(
-      this.coreSiteCategoryModuleService
-        .ServiceGetAll(filterModelCategory)
+      this.coreModuleService
+        .ServiceGetAllByCategorySiteId(Id, filterModel)
         .subscribe(
-          (next) => {
-            if (next.IsSuccess) {
-              let filterModelCategory2: FilterModel;
-              filterModelCategory2 = new FilterModel();
-              let filterDataModel2: FilterDataModel;
-              filterDataModel2 = new FilterDataModel();
-              next.ListItems.forEach((element) => {
-                filterDataModel2.IntContainValues.push(
-                  element["LinkCmsModuleId"]
-                );
-              });
-
-              filterDataModel2.PropertyName = "Id";
-              filterModelCategory2.Filters.push(filterDataModel2);
-              this.coreModuleService
-                .ServiceCoreModuleGetAll(filterModelCategory2)
-                .subscribe(
-                  (next2) => {
-                    if (next2.IsSuccess) {
-                      this.dataModelModule = next2;
-                      this.dataModelLoad = true;
-                      this.alertService.info("اطلاعات دریافت شد", "توجه");
-                    }
-                  },
-                  (error2) => {
-                    this.alertService.error(
-                      this.publicHelper.CheckError(error2),
-                      "خطا در دریافت اطلاعات وب سایتها"
-                    );
-                  }
-                );
+          (next2) => {
+            if (next2.IsSuccess) {
+              this.dataModelModule = next2;
+              this.dataModelLoad = true;
+              this.alertService.info("اطلاعات دریافت شد", "توجه");
             }
           },
-          (error) => {
+          (error2) => {
             this.alertService.error(
-              this.publicHelper.CheckError(error),
+              this.publicHelper.CheckError(error2),
               "خطا در دریافت اطلاعات وب سایتها"
             );
           }
@@ -153,19 +129,24 @@ export class CoreSiteAddComponent implements OnInit {
     );
   }
   onSubmit() {
+    let AddFirstSite = false;
+    if (this.dateModleInput && this.dateModleInput.AddFirstSite)
+      AddFirstSite = true;
     this.subManager.add(
-      this.coreSiteService.ServiceAdd(this.dataModel.Item).subscribe(
-        (next) => {
-          if (next.IsSuccess) {
+      this.coreSiteService
+        .ServiceAdd(this.dataModel.Item, AddFirstSite)
+        .subscribe(
+          (next) => {
+            if (next.IsSuccess) {
+            }
+          },
+          (error) => {
+            this.alertService.error(
+              this.publicHelper.CheckError(error),
+              "خطا در ساخت وب سایت"
+            );
           }
-        },
-        (error) => {
-          this.alertService.error(
-            this.publicHelper.CheckError(error),
-            "خطا در ساخت وب سایت"
-          );
-        }
-      )
+        )
     );
   }
 }

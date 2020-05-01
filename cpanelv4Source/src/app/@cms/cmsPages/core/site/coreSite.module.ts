@@ -9,13 +9,13 @@ import { CoreSiteListComponent } from './list/coreSiteList.component';
 import { CoreSiteAddComponent } from './add/coreSiteAdd.component';
 import { CoreSiteEditComponent } from './edit/coreSiteEdit.component';
 import { CoreSiteSelectComponent } from './select/select.component';
-import {PersianDate} from '../../_base/pipe/PersianDatePipe/persian-date.pipe';
 import {PersianTimeAgoPipe} from 'persian-time-ago-pipe';
 import {JdatePipe} from 'ngx-persian';
 import { ArchwizardModule } from 'angular-archwizard';
 import { CoreSiteCategorySelectComponent } from '../siteCategory/select/select.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { PersianDate } from 'app/@cms/cmsCommon/pipe/PersianDatePipe/persian-date.pipe';
 
 
 @NgModule({

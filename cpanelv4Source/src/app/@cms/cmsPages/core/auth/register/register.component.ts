@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CmsAuthService } from '../auth.service';
+import { CmsAuthService } from '../../../../cmsService/core/auth.service';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromStore from '../../../../cmsStore';

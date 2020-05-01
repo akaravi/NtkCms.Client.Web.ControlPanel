@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { CoreSiteCategoryService } from '../../siteCategory/coreSiteCategory.service';
+import { CoreSiteCategoryService } from '../../../../cmsService/core/coreSiteCategory.service';
 import {
   FilterModel,
   FilterDataModel,
@@ -9,8 +9,8 @@ import {
 import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
 import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
 import { ToastrService } from 'ngx-toastr';
-import { CoreSiteCategoryModuleService } from '../../siteCategoryModule/coreSiteCategoryModule.service';
-import { CoreModuleService } from '../../module/coreModule.service';
+import { CoreSiteCategoryModuleService } from '../../../../cmsService/core/coreSiteCategoryModule.service';
+import { CoreModuleService } from '../../../../cmsService/core/coreModule.service';
 
 @Component({
   selector: 'app-core-site-category-select',
@@ -34,8 +34,7 @@ export class CoreSiteCategorySelectComponent implements OnInit {
     private alertService: ToastrService,
     private publicHelper: PublicHelper
   ) {
-    this.coreSiteCategoryService.ServiceConstructor();
-this.coreSiteCategoryModuleService.ServiceConstructor();
+   
   }
 
   ngOnInit() {
@@ -94,7 +93,7 @@ this.coreSiteCategoryModuleService.ServiceConstructor();
               filterDataModel2.PropertyName = 'Id';
               filterModelCategory2.Filters.push(filterDataModel2);
               this.coreModuleService
-                .ServiceCoreModuleGetAll(filterModelCategory2)
+                .ServiceGetAll(filterModelCategory2)
                 .subscribe(
                   (next2) => {
                     if (next2.IsSuccess) {

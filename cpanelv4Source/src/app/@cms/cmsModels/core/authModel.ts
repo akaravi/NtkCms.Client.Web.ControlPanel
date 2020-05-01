@@ -20,3 +20,8 @@ export class AuthUserSignUpModel {
   family: string;
   SiteId: number;
 }
+export class AuthUserSignOutModel {
+  Tokens: Array<string>= new Array<string>();
+  AllToken: boolean= false;
+}
+

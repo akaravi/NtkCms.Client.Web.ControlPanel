@@ -4,7 +4,7 @@ import { LayoutService } from '../services/layout.service';
 import { Subscription } from 'rxjs';
 import { ConfigService } from '../services/config.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CmsAuthService } from 'app/@cms/cmsPages/core/auth/auth.service';
+import { CmsAuthService } from 'app/@cms/cmsService/core/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
 

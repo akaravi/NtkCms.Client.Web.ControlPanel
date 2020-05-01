@@ -9,17 +9,16 @@ import { Subscription, throwError } from "rxjs";
 import { ErrorExcptionResult } from "app/@cms/cmsModels/base/errorExcptionResult";
 import { FilterModel } from "app/@cms/cmsModels/base/filterModel";
 import { PublicHelper } from "app/@cms/cmsCommon/helper/publicHelper";
-import { CmsAuthService } from "app/@cms/cmsPages/core/auth/auth.service";
+import { CmsAuthService } from "app/@cms/cmsService/core/auth.service";
 import { retry, catchError } from "rxjs/operators";
-import { cmsServerConfig } from 'environments/environment';
+import { cmsServerConfig } from "environments/environment";
 
 @Injectable({
   providedIn: "root",
 })
-export class ApiServerConfigSiteBaseService implements OnDestroy {
+export class ApiServerBaseService implements OnDestroy {
   subManager = new Subscription();
   public baseUrl = cmsServerConfig.configApiServerPath;
-  public moduleCotrolerUrl: string;
 
   constructor(
     public http: HttpClient,
@@ -32,8 +31,9 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }
-  setModuleCotrolerUrl(controllerPath: string) {
-    this.moduleCotrolerUrl = controllerPath;
+
+  setModuleCotrolerUrl() {
+    return "Empty";
   }
   errorExcptionResultCheck(model: ErrorExcptionResult<any>) {
     if (model) {
@@ -62,12 +62,12 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
     return throwError(errorMessage);
   }
 
-  ServiceSiteDefault(moduleControler: string = this.moduleCotrolerUrl) {
+  ServiceModelInfo() {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return (
       this.http
-        .get(this.baseUrl + moduleControler + "/SiteDefault", {
+        .get(this.baseUrl + this.setModuleCotrolerUrl() + "/ModelInfo", {
           headers: headers,
         })
         // .pipe(
@@ -81,59 +81,31 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
         )
     );
   }
-  ServiceSiteDefaultSave(
-    model: any,
-    moduleControler: string = this.moduleCotrolerUrl
-  ) {
+  ServiceViewModel() {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
-    return this.http
-      .post(this.baseUrl + moduleControler, model, { headers: headers })
-      .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
-        }, catchError(this.handleError))
-      );
-  }
-  ServiceSiteStorage(
-    id: number,
-    moduleControler: string = this.moduleCotrolerUrl
-  ) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
-    return this.http
-      .get(this.baseUrl + moduleControler + "/SiteStorage/" + id, {
-        headers: headers,
-      })
-      .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
-        }, catchError(this.handleError))
-      );
-  }
-  ServiceSiteStorageSave(
-    id: number,
-    model: any,
-    moduleControler: string = this.moduleCotrolerUrl
-  ) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
-    return this.http
-      .post(this.baseUrl + moduleControler + "/SiteStorage/" + id, model, {
-        headers: headers,
-      })
-      .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
-        }, catchError(this.handleError))
-      );
+    return (
+      this.http
+        .get(this.baseUrl + this.setModuleCotrolerUrl() + "/GetViewModel", {
+          headers: headers,
+        })
+        // .pipe(
+        //   retry(1),
+        //   catchError(this.handleError)
+        // );
+        .pipe(
+          map((ret: ErrorExcptionResult<any>) => {
+            return this.errorExcptionResultCheck(ret);
+          }, catchError(this.handleError))
+        )
+    );
   }
 
-  ServiceSite(id: number, moduleControler: string = this.moduleCotrolerUrl) {
+  ServiceGetAll(model: FilterModel) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
-      .get(this.baseUrl + moduleControler + "/Site/" + id, {
+      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/getAll", model, {
         headers: headers,
       })
       .pipe(
@@ -142,15 +114,28 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
         }, catchError(this.handleError))
       );
   }
-  ServiceSiteSave(
-    id: number,
-    model: any,
-    moduleControler: string = this.moduleCotrolerUrl
-  ) {
+  ServiceGetAllAvailable(model: FilterModel) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
-      .post(this.baseUrl + moduleControler + "/Site/" + id, model, {
+      .post(
+        this.baseUrl + this.setModuleCotrolerUrl() + "/GetAllAvailable",
+        model,
+        {
+          headers: headers,
+        }
+      )
+      .pipe(
+        map((ret: ErrorExcptionResult<any>) => {
+          return this.errorExcptionResultCheck(ret);
+        }, catchError(this.handleError))
+      );
+  }
+  ServiceGetOneById(id: any) {
+    const token = this.publicHelper.CheckToken();
+    const headers = { Authorization: token };
+    return this.http
+      .get(this.baseUrl + this.setModuleCotrolerUrl() + "/" + id, {
         headers: headers,
       })
       .pipe(
@@ -159,14 +144,11 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
         }, catchError(this.handleError))
       );
   }
-  ServiceSiteAccess(
-    id: number,
-    moduleControler: string = this.moduleCotrolerUrl
-  ) {
+  ServiceGetOne(model: FilterModel) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
-      .get(this.baseUrl + moduleControler + "/SiteAccess/" + id, {
+      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/GetOne", model, {
         headers: headers,
       })
       .pipe(
@@ -175,15 +157,11 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
         }, catchError(this.handleError))
       );
   }
-  ServiceSiteAccessSave(
-    id: number,
-    model: any,
-    moduleControler: string = this.moduleCotrolerUrl
-  ) {
+  ServicePostCount(model: FilterModel) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
-      .post(this.baseUrl + moduleControler + "/SiteAccess/" + id, model, {
+      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/PostCount", model, {
         headers: headers,
       })
       .pipe(
@@ -192,14 +170,11 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
         }, catchError(this.handleError))
       );
   }
-  ServiceSiteAccessDefault(
-    id: number,
-    moduleControler: string = this.moduleCotrolerUrl
-  ) {
+  ServiceExportFile(model: FilterModel) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
-      .get(this.baseUrl + moduleControler + "/SiteAccessDefault/" + id, {
+      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/ExportFile", model, {
         headers: headers,
       })
       .pipe(
@@ -208,14 +183,13 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
         }, catchError(this.handleError))
       );
   }
-  ServiceSiteAccessDefaultSave(
-    model: any,
-    moduleControler: string = this.moduleCotrolerUrl
-  ) {
+  ServiceAdd(model: any, AddFirstSite: boolean = false) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
+    let controler = "/Add";
+    if (AddFirstSite) controler = "/AddFirstSite";
     return this.http
-      .post(this.baseUrl + moduleControler + "/SiteAccessDefault/", model, {
+      .post(this.baseUrl + this.setModuleCotrolerUrl() + controler, model, {
         headers: headers,
       })
       .pipe(
@@ -224,11 +198,11 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
         }, catchError(this.handleError))
       );
   }
-  ServiceAdminMain(moduleControler: string = this.moduleCotrolerUrl) {
+  ServiceAddBatch(model: Array<any>) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
-      .get(this.baseUrl + moduleControler + "/AdminMain/", {
+      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/AddBatch", model, {
         headers: headers,
       })
       .pipe(
@@ -237,16 +211,99 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
         }, catchError(this.handleError))
       );
   }
-  ServiceAdminMainSave(
-    model: any,
-    moduleControler: string = this.moduleCotrolerUrl
-  ) {
+  ServiceEdit(model: any) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
-      .post(this.baseUrl + moduleControler + "/AdminMain/", model, {
+      .put(this.baseUrl + this.setModuleCotrolerUrl() + "/Edit", model, {
         headers: headers,
       })
+      .pipe(
+        map((ret: ErrorExcptionResult<any>) => {
+          return this.errorExcptionResultCheck(ret);
+        }, catchError(this.handleError))
+      );
+  }
+  ServiceEditBatch(model: Array<any>) {
+    const token = this.publicHelper.CheckToken();
+    const headers = { Authorization: token };
+    return this.http
+      .put(this.baseUrl + this.setModuleCotrolerUrl() + "/Edit", model, {
+        headers: headers,
+      })
+      .pipe(
+        map((ret: ErrorExcptionResult<any>) => {
+          return this.errorExcptionResultCheck(ret);
+        }, catchError(this.handleError))
+      );
+  }
+  ServiceDelete(model: any) {
+    const token = this.publicHelper.CheckToken();
+    const headers = { Authorization: token };
+    return this.http
+      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/Delete", model, {
+        headers: headers,
+      })
+      .pipe(
+        map((ret: ErrorExcptionResult<any>) => {
+          return this.errorExcptionResultCheck(ret);
+        }, catchError(this.handleError))
+      );
+  }
+  ServiceDeleteFilterModel(model: FilterModel) {
+    const token = this.publicHelper.CheckToken();
+    const headers = { Authorization: token };
+    return this.http
+      .post(
+        this.baseUrl + this.setModuleCotrolerUrl() + "/DeleteFilterModel",
+        model,
+        {
+          headers: headers,
+        }
+      )
+      .pipe(
+        map((ret: ErrorExcptionResult<any>) => {
+          return this.errorExcptionResultCheck(ret);
+        }, catchError(this.handleError))
+      );
+  }
+  ServiceDeleteList(model: Array<any>) {
+    const token = this.publicHelper.CheckToken();
+    const headers = { Authorization: token };
+    return this.http
+      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/DeleteList", model, {
+        headers: headers,
+      })
+      .pipe(
+        map((ret: ErrorExcptionResult<any>) => {
+          return this.errorExcptionResultCheck(ret);
+        }, catchError(this.handleError))
+      );
+  }
+  ServiceDeleteId(model: any) {
+    const token = this.publicHelper.CheckToken();
+    const headers = { Authorization: token };
+    return this.http
+      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/DeleteId", model, {
+        headers: headers,
+      })
+      .pipe(
+        map((ret: ErrorExcptionResult<any>) => {
+          return this.errorExcptionResultCheck(ret);
+        }, catchError(this.handleError))
+      );
+  }
+  ServiceDeleteListId(model: Array<any>) {
+    const token = this.publicHelper.CheckToken();
+    const headers = { Authorization: token };
+    return this.http
+      .post(
+        this.baseUrl + this.setModuleCotrolerUrl() + "/DeleteListId",
+        model,
+        {
+          headers: headers,
+        }
+      )
       .pipe(
         map((ret: ErrorExcptionResult<any>) => {
           return this.errorExcptionResultCheck(ret);

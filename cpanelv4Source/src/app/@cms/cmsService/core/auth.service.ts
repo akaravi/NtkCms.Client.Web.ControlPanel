@@ -4,14 +4,15 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
-import * as fromStore from '../../../cmsStore';
+import * as fromStore from '../../cmsStore';
 import { TokenInfoModel } from 'app/@cms/cmsModels/base/tokenInfoModel';
 import { Subscription } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
-import { AuthRenewTokenModel } from 'app/@cms/cmsModels/core/authModel';
+import { AuthRenewTokenModel, AuthUserSignOutModel } from 'app/@cms/cmsModels/core/authModel';
 import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
 import { cmsServerConfig } from 'environments/environment';
+import { FilterModel } from 'app/@cms/cmsModels/base/filterModel';
 
 @Injectable()
 export class CmsAuthService implements OnDestroy {
@@ -134,10 +135,10 @@ export class CmsAuthService implements OnDestroy {
       })
     );
   }
-  logout() {
+  logout(model : AuthUserSignOutModel=new AuthUserSignOutModel()) {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
-    return this.http.post(this.baseUrl + 'signOut','', { headers: headers }).pipe(
+    return this.http.post(this.baseUrl + 'signOut',model, { headers: headers }).pipe(
       map((ret: ErrorExcptionResult<any>) => {
         if (ret) {
           this.token = null;
@@ -147,6 +148,20 @@ export class CmsAuthService implements OnDestroy {
             'خروح شما با موفقیت انجام شد',
             'موفق'
           );
+          return ret;
+        }
+      })
+    );
+  }
+
+  existToken(model: FilterModel) {
+    const token = this.publicHelper.CheckToken();
+    const headers = { Authorization: token };
+    return this.http.post(this.baseUrl + 'existToken',model, { headers: headers }).pipe(
+      map((ret: ErrorExcptionResult<any>) => {
+        if (ret) {
+        
+        
           return ret;
         }
       })

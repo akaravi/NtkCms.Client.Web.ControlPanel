@@ -1,5 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
-import { CmsAuthGuard } from '../cmsPages/core/auth/auth.guard.service';
+import { CmsAuthGuard } from '../cmsService/core/auth.guard.service';
 
 export const ContentLayoutROUTES: Routes = [
   {

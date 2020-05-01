@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CoreSiteService } from '../coreSite.service';
+import { CoreSiteService } from '../../../../cmsService/core/coreSite.service';
 import { Subscription } from 'rxjs';
 import { FilterModel } from 'app/@cms/cmsModels/base/filterModel';
 import { ToastrService } from 'ngx-toastr';
@@ -23,7 +23,6 @@ export class CoreSiteSelectComponent implements OnInit, OnDestroy {
     private router: Router,
   ) {
 
-    this.coreSiteService.ServiceConstructor()
 
   }
   ngOnDestroy() {

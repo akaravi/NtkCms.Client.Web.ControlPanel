@@ -27,8 +27,8 @@ import { AuthService } from './shared/auth/auth.service';
 import { AuthGuard } from './shared/auth/auth-guard.service';
 import { CmsFullLayoutComponent } from './@cms/layouts/full/cmsFull-layout.component';
 import { CmsContentLayoutComponent } from './@cms/layouts/content/cmsContent-layout.component';
-import { CmsAuthService } from './@cms/cmsPages/core/auth/auth.service';
-import { CmsAuthGuard } from './@cms/cmsPages/core/auth/auth.guard.service';
+import { CmsAuthService } from './@cms/cmsService/core/auth.service';
+import { CmsAuthGuard } from './@cms/cmsService/core/auth.guard.service';
 import { PublicHelper } from './@cms/cmsCommon/helper/publicHelper';
 import { CmsSharedModule } from './@cms/cmsCommon/cmShared.module';
 

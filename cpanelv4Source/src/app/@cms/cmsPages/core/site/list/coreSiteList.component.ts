@@ -11,16 +11,16 @@ import {
 } from 'app/@cms/cmsCommon/helper/publicHelper';
 import {
   CoreSiteService
-} from '../coreSite.service';
+} from '../../../../cmsService/core/coreSite.service';
 import {
   CoreSiteCategoryModuleService
-} from '../../siteCategoryModule/coreSiteCategoryModule.service';
+} from '../../../../cmsService/core/coreSiteCategoryModule.service';
 import {
   CoreModuleService
-} from '../../module/coreModule.service';
+} from '../../../../cmsService/core/coreModule.service';
 import {
   CoreSiteCategoryService
-} from '../../siteCategory/coreSiteCategory.service';
+} from '../../../../cmsService/core/coreSiteCategory.service';
 import {
   FilterModel
 } from 'app/@cms/cmsModels/base/filterModel';
@@ -74,8 +74,7 @@ export class CoreSiteListComponent implements OnInit {
   dataModelSite: ErrorExcptionResult < any > = new ErrorExcptionResult < any > ();
 
   ngOnInit() {
-    this.coreSiteCategoryService.ServiceConstructor();
-    this.coreSiteService.ServiceConstructor();
+
     this.GetSiteList();
   }
   GetSiteList() {
