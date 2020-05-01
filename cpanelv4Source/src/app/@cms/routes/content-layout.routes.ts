@@ -7,12 +7,14 @@ export const ContentLayoutROUTES: Routes = [
     loadChildren: () => import('../dashboard/dashboard.module').then(m => m.CmsDashboardModule)
   },
   {
-    path: 'site',
+    path: 'core',
     canActivate: [CmsAuthGuard],
-    loadChildren: () => import('../cmsComponents/core/site/coreSite.module').then(m => m.CoreSiteModule)
+    loadChildren: () => import('../cmsComponents/core/core.module').then(m => m.CoreModule)
   },
-  //{
-        // path: 'pages',
-        // loadChildren: () => import('../../pages/content-pages/content-pages.module').then(m => m.ContentPagesModule)
-    //}
+  {
+    path: 'news',
+    canActivate: [CmsAuthGuard],
+    loadChildren: () => import('../cmsComponents/news/news.module').then(m => m.NewsModule)
+  },
+  
 ];

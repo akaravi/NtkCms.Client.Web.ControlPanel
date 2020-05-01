@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoreSiteCategoryComponent } from './coreSiteCategory.component';
+import { CoreSiteCategoryRoutes } from './coreSiteCategory.routing';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    CoreSiteCategoryRoutes
   ],
   declarations: [CoreSiteCategoryComponent]
 })

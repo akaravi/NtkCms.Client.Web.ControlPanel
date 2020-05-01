@@ -1,9 +1,9 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { CoreSiteCategoryListComponent } from './list/coreSiteCategoryList.component';
-import { CoreSiteCategoryAddComponent } from './add/coreSiteCategoryAdd.component';
-import { CoreSiteCategoryEditComponent } from './edit/coreSiteCategoryEdit.component';
-import { CoreSiteCategorySelectComponent } from './select/select.component';
+import { NewsCategoryListComponent } from './list/newsCategoryList.component';
+import { NewsCategoryAddComponent } from './add/newsCategoryAdd.component';
+import { NewsCategoryEditComponent } from './edit/newsCategoryEdit.component';
+import { NewsCategorySelectComponent } from './select/newsCategorySelect.component';
 
 
 const routes: Routes = [
@@ -12,28 +12,28 @@ const routes: Routes = [
     children: [
       {
         path: 'list',
-        component: CoreSiteCategoryListComponent,
+        component: NewsCategoryListComponent,
         data: {
           title: 'login to Panle',
         },
       },
       {
         path: 'add',
-        component: CoreSiteCategoryAddComponent,
+        component: NewsCategoryAddComponent,
         data: {
           title: 'Register New Acount',
         },
       },
       {
         path: 'edit',
-        component: CoreSiteCategoryEditComponent,
+        component: NewsCategoryEditComponent,
         data: {
           title: 'forgot password You Acount',
         },
       },
       {
         path: 'select',
-        component: CoreSiteCategorySelectComponent,
+        component: NewsCategorySelectComponent,
         data: {
           title: 'forgot password You Acount',
         },
@@ -46,4 +46,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class CoreSiteCategoryRoutes {}
+export class NewsCategoryRoutes {}

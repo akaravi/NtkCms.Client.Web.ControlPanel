@@ -21,9 +21,9 @@ import { PersianDate } from 'app/@cms/cmsCommon/pipe/PersianDatePipe/persian-dat
 @NgModule({
   imports: [
     CommonModule,
+    CoreSiteRoutes,
     NgbModule,
     FormsModule,
-    CoreSiteRoutes,
     ArchwizardModule,
     NgSelectModule,
     NgxDatatableModule

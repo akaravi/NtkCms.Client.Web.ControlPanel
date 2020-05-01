@@ -1,7 +1,7 @@
 import { RouteInfo } from './sidebar.metadata';
 
 //Sidebar menu Routes and data
-export const ROUTES: RouteInfo[] = [
+export const ThemplateROUTES: RouteInfo[] = [
 
     {
         path: '', title: 'Dashboard', icon: 'ft-home', class: 'has-sub', badge: '2', badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1', isExternalLink: false, submenu: [

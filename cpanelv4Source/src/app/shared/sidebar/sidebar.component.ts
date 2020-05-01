@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, OnDestroy, ElementRef, Renderer2, AfterViewInit } from "@angular/core";
 
-import { ROUTES } from './sidebar-routes.config';
+import { ThemplateROUTES } from './sidebar-routes.config';
 import { RouteInfo } from "./sidebar.metadata";
 import { Router, ActivatedRoute } from "@angular/router";
 import { TranslateService } from '@ngx-translate/core';
@@ -75,7 +75,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.config = this.configService.templateConf;
-    this.menuItems = ROUTES;
+    this.menuItems = ThemplateROUTES;//karavi menu
 
 
 
