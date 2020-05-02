@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, Renderer2, ViewChild, OnDestroy } from '@angular/core';
-import { LayoutService } from '../services/layout.service';
+import { LayoutService } from '../../../shared/services/layout.service';
 import { Subscription } from 'rxjs';
 
 @Component({

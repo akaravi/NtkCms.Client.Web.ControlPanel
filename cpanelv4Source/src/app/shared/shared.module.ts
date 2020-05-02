@@ -11,7 +11,7 @@ import { FooterComponent } from '../@theme/shared/footer/footer.component';
 import { NavbarComponent } from '../@theme/shared/navbar/navbar.component';
 import { SidebarComponent } from '../@theme/shared/sidebar/sidebar.component';
 import { CustomizerComponent } from '../@theme/shared/customizer/customizer.component';
-import { NotificationSidebarComponent } from './notification-sidebar/notification-sidebar.component';
+import { NotificationSidebarComponent } from '../@theme/shared/notification-sidebar/notification-sidebar.component';
 
 //DIRECTIVES
 import { ToggleFullscreenDirective } from './directives/toggle-fullscreen.directive';

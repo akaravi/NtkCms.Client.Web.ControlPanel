@@ -21,14 +21,14 @@ const appRoutes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'cms',
+    path: '',
     component: CmsFullLayoutComponent,
     data: { title: 'full Views' },
     children: FullLayoutROUTES,
     //canActivate: [CmsAuthGuard],
   },
   {
-    path: 'cms',
+    path: '',
     component: CmsContentLayoutComponent,
     data: { title: 'content Views' },
     children: ContentLayoutROUTES,
