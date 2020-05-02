@@ -207,7 +207,7 @@
             }
             //ngautocomplete
             topNavBar.inputSiteChanged = function (input) {
-                ajax.call(cmsServerConfig.configApiServerPath + "CoreSite/search_new", {
+                ajax.call(cmsServerConfig.configApiServerPath + "CoreSite/searchnew", {
                     key: input
                 }, 'POST').success(function (response) {
                     rashaErManage.checkAction(response);

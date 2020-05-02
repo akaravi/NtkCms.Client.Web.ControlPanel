@@ -414,7 +414,7 @@ function sideNavigation($timeout) {
 };
 //.addHeader("Access-Control-Allow-Origin", "*")
 $.ajax({
-    type: "POST",
+    type: "GET",
     async: false,
     url: cmsServerConfig.configApiServerPath + "CoreEnum/EnumRecordStatus",
     contentType: "application/json",

@@ -1,3 +1,43 @@
-<p>
-  newsContentList works!
-</p>
+<!-- Filter Datatable Options Starts -->
+<section id="filter" class="mb-3">
+  <div class="row text-left">
+      <div class="col-12">
+          <div class="content-header">گزینه فیلتر</div>
+      </div>
+  </div>
+  <div class="row">
+      <div *ngIf="dataModelConetnt?.IsSuccess" class="col-sm-12" >
+          <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='ستون نام را فیلتر کنید' 
+          />
+          <ngx-datatable #tableCategory class='bootstrap' [columns]="columnsCategory" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+              [rowHeight]="'auto'" [limit]="10" [rows]='dataModelCategory.ListItems'
+              [treeFromRelation]="'Children'"
+              [treeToRelation]="'LinkParentId'"
+              [rows]="rows"
+              (treeAction)="onActionCategorySelect($event)"
+              >
+          </ngx-datatable>
+          <ngx-datatable #tableContent class='bootstrap' [columns]="columnsConetnt" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+              [rowHeight]="'auto'" [limit]="10" [rows]='dataModelConetnt.ListItems'>
+          </ngx-datatable>
+          <!-- <ngx-datatable
+          class="material"
+          [rows]="dataModelSite.ListItems"
+          [columns]="columns"
+          [columnMode]="ColumnMode.force"
+          [headerHeight]="50"
+          [summaryRow]="true"
+          [summaryHeight]="55"
+          [footerHeight]="50"
+          rowHeight="auto"
+          [externalPaging]="true"
+          [count]="page.totalElements"
+          [offset]="page.pageNumber"
+          [limit]="page.size"
+          (page)="setPage($event)"
+        >
+        </ngx-datatable> -->
+      </div>
+  </div>
+</section>
+<!-- Filter Datatable Options Ends -->

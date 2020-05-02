@@ -5,11 +5,13 @@ import { NewsContentAddComponent } from './add/newsContentAdd.component';
 import { NewsContentEditComponent } from './edit/newsContentEdit.component';
 import { NewsContentListComponent } from './list/newsContentList.component';
 import { NewsContentSelectComponent } from './select/newsContentSelect.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   imports: [
     CommonModule,
-    NewsContentRoutes
+    NewsContentRoutes,
+    NgxDatatableModule
   ],
   declarations: [
     NewsContentAddComponent,
