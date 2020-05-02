@@ -7,7 +7,7 @@ import { ContentLayoutComponent } from './@theme/layouts/content/content-layout.
 import { Full_ROUTES } from './@theme/routes/full-layout.routes';
 import { CONTENT_ROUTES } from './@theme/routes/content-layout.routes';
 
-import { AuthGuard } from './shared/auth/auth-guard.service';
+import { AuthGuard } from './@theme/shared/auth/auth-guard.service';
 import { CmsFullLayoutComponent } from './@cms/layouts/full/cmsFull-layout.component';
 import { CmsContentLayoutComponent } from './@cms/layouts/content/cmsContent-layout.component';
 import { ContentLayoutROUTES } from './@cms/routes/content-layout.routes';

@@ -22,9 +22,9 @@ import { ContentLayoutComponent } from './@theme/layouts/content/content-layout.
 import { FullLayoutComponent } from './@theme/layouts/full/full-layout.component';
 
 import { DragulaService } from 'ng2-dragula';
-import { AuthService } from './shared/auth/auth.service';
+import { AuthService } from './@theme/shared/auth/auth.service';
 
-import { AuthGuard } from './shared/auth/auth-guard.service';
+import { AuthGuard } from './@theme/shared/auth/auth-guard.service';
 import { CmsFullLayoutComponent } from './@cms/layouts/full/cmsFull-layout.component';
 import { CmsContentLayoutComponent } from './@cms/layouts/content/cmsContent-layout.component';
 import { CmsAuthService } from './@cms/cmsService/core/auth.service';
