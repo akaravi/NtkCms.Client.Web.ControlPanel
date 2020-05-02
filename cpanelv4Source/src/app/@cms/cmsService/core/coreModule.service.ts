@@ -48,6 +48,7 @@ export class CoreModuleService extends ApiServerBaseService implements OnDestroy
       );
   }
   ServiceGetOneWithModuleConfig(model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -74,6 +75,7 @@ export class CoreModuleService extends ApiServerBaseService implements OnDestroy
       );
   }
   ServiceGetAllModuleName(model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -87,6 +89,7 @@ export class CoreModuleService extends ApiServerBaseService implements OnDestroy
       );
   }
   ServiceGetAllByCategorySiteId(CategorySiteId: number ,model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http

@@ -102,7 +102,7 @@ export class CmsSidebarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   }
   DataGetCpMenu() {
-    this.coreCpMainMenuService.ServiceGetAllMenu({}).subscribe(
+    this.coreCpMainMenuService.ServiceGetAllMenu(null).subscribe(
       (next) => {
         if(next.IsSuccess)
         {

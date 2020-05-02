@@ -1,9 +1,9 @@
 import { Injectable, OnDestroy } from "@angular/core";
 import { Subscription, Observable } from "rxjs";
 import { ApiServerBaseService } from "../_base/apiServerBase.service";
-import { FilterModel } from 'app/@cms/cmsModels/base/filterModel';
-import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
-import { catchError,map } from 'rxjs/operators';
+import { FilterModel } from "app/@cms/cmsModels/base/filterModel";
+import { ErrorExcptionResult } from "app/@cms/cmsModels/base/errorExcptionResult";
+import { catchError, map } from "rxjs/operators";
 @Injectable({
   providedIn: "root",
 })
@@ -19,6 +19,7 @@ export class CoreCpMainMenuService extends ApiServerBaseService
   }
 
   ServiceGetAllMenu(model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -35,7 +36,7 @@ export class CoreCpMainMenuService extends ApiServerBaseService
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
-      .put(this.baseUrl + this.setModuleCotrolerUrl() + "/EditStep",model,  {
+      .put(this.baseUrl + this.setModuleCotrolerUrl() + "/EditStep", model, {
         headers: headers,
       })
       .pipe(

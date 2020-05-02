@@ -155,6 +155,7 @@ export class CmsAuthService implements OnDestroy {
   }
 
   existToken(model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http.post(this.baseUrl + 'existToken',model, { headers: headers }).pipe(

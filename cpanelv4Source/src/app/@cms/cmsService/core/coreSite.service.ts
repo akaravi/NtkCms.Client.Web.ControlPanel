@@ -49,6 +49,7 @@ export class CoreSiteService extends ApiServerBaseService implements OnDestroy {
       );
   }
   ServiceGetAllWithAlias(model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -62,6 +63,7 @@ export class CoreSiteService extends ApiServerBaseService implements OnDestroy {
       );
   }
   ServiceGetAllChildWithAlias(model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -75,6 +77,7 @@ export class CoreSiteService extends ApiServerBaseService implements OnDestroy {
       );
   }
   ServiceSearchNew(model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http

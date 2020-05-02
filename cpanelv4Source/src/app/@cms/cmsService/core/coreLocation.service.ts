@@ -21,6 +21,7 @@ export class CoreLocationService extends ApiServerBaseService implements OnDestr
   }
   
   ServiceGetAllProvinces(model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -34,6 +35,7 @@ export class CoreLocationService extends ApiServerBaseService implements OnDestr
       );
   }
   ServiceGetAllCities(model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -47,6 +49,7 @@ export class CoreLocationService extends ApiServerBaseService implements OnDestr
       );
   }
   ServiceGetAllNeighbourhoods(model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http

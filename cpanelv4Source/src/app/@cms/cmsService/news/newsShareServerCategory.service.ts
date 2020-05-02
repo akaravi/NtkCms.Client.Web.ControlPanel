@@ -20,6 +20,7 @@ export class NewsShareServerCategoryService extends ApiServerBaseService impleme
     this.subManager.unsubscribe();
   }
   ServiceGetAllOtherSite(model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http

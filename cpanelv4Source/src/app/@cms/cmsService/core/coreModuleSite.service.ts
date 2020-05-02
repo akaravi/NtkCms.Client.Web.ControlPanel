@@ -47,6 +47,7 @@ export class CoreModuleSiteService extends ApiServerBaseService implements OnDes
       );
   }
   ServiceGetAllById(id: number,  model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http

@@ -21,6 +21,7 @@ export class NewsContentService extends ApiServerBaseService implements OnDestro
   }
  
   ServiceGetAllWithSimilarsId(Id: number ,model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http

@@ -19,6 +19,7 @@ export class CoreSiteUserService extends ApiServerBaseService
   }
 
   ServiceGetAllSiteUser(model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http

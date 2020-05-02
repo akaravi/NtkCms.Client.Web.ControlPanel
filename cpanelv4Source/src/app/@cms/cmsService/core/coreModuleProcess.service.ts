@@ -35,6 +35,7 @@ export class CoreModuleProcessService extends ApiServerBaseService implements On
       );
   }
   ServiceGetOneWithJsonFormatter( model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -50,6 +51,7 @@ export class CoreModuleProcessService extends ApiServerBaseService implements On
 
   
   ServiceGetAllWithJsonFormatter( model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http

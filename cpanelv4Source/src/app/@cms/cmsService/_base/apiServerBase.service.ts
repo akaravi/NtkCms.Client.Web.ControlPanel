@@ -102,6 +102,7 @@ export class ApiServerBaseService implements OnDestroy {
   }
 
   ServiceGetAll(model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -115,6 +116,7 @@ export class ApiServerBaseService implements OnDestroy {
       );
   }
   ServiceGetAllAvailable(model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -145,6 +147,7 @@ export class ApiServerBaseService implements OnDestroy {
       );
   }
   ServiceGetOne(model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -158,6 +161,7 @@ export class ApiServerBaseService implements OnDestroy {
       );
   }
   ServicePostCount(model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -171,6 +175,7 @@ export class ApiServerBaseService implements OnDestroy {
       );
   }
   ServiceExportFile(model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
@@ -249,6 +254,7 @@ export class ApiServerBaseService implements OnDestroy {
       );
   }
   ServiceDeleteFilterModel(model: FilterModel) {
+    if (model == null) model = new FilterModel();
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };
     return this.http
