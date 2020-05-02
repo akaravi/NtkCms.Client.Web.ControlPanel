@@ -6,7 +6,6 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { CoreAuthRoutes } from './auth.routing';
 import { ForgotPasswordComponent } from './forgotPassword/forgotPassword.component';
-import { AuthComponent } from './auth.component';
 
 
 @NgModule({
@@ -19,7 +18,6 @@ import { AuthComponent } from './auth.component';
     ],
     exports: [],
     declarations: [
-      AuthComponent,
       LoginComponent,
       RegisterComponent,
       ForgotPasswordComponent

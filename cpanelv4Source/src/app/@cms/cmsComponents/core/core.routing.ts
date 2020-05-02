@@ -1,7 +1,4 @@
 import { Routes, RouterModule } from '@angular/router';
-import { AuthComponent } from './auth/auth.component';
-import { CoreSiteComponent } from './site/coreSite.component';
-import { CoreSiteCategoryComponent } from './siteCategory/coreSiteCategory.component';
 import { NgModule } from '@angular/core';
 
 

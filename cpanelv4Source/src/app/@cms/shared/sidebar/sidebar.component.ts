@@ -1,13 +1,14 @@
 import { Component, OnInit, Input, ViewChild, OnDestroy, ElementRef, Renderer2, AfterViewInit } from "@angular/core";
 
-import { ThemplateROUTES } from './sidebar-routes.config';
-import { RouteInfo } from "./sidebar.metadata";
+import { CmsROUTES } from './sidebar-routes.config';
+import {  MenuInfo } from "./sidebar.metadata";
 import { Router, ActivatedRoute } from "@angular/router";
 import { TranslateService } from '@ngx-translate/core';
 import { customAnimations } from "../../../shared/animations/custom-animations";
 import { ConfigService } from '../../../shared/services/config.service';
 import { LayoutService } from '../../../shared/services/layout.service';
 import { Subscription } from 'rxjs';
+import { CoreCpMainMenuService } from 'app/@cms/cmsService/core/coreCpMainMenu.service';
 
 @Component({
   selector: "app-cms-sidebar",
@@ -17,7 +18,7 @@ import { Subscription } from 'rxjs';
 export class CmsSidebarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('toggleIcon', {static: false}) toggleIcon: ElementRef;
-  public menuItems: any[];
+  public menuItems: MenuInfo[];
   depth: number;
   activeTitle: string;
   activeTitles: string[] = [];
@@ -27,7 +28,7 @@ export class CmsSidebarComponent implements OnInit, AfterViewInit, OnDestroy {
   public config: any = {};
   layoutSub: Subscription;
 
-
+  modelDateMenu:any=[];
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
@@ -35,7 +36,8 @@ export class CmsSidebarComponent implements OnInit, AfterViewInit, OnDestroy {
     private route: ActivatedRoute,
     public translate: TranslateService,
     private configService: ConfigService,
-    private layoutService: LayoutService
+    private layoutService: LayoutService,
+    private coreCpMainMenuService: CoreCpMainMenuService
   ) {
     if (this.depth === undefined) {
       this.depth = 0;
@@ -43,39 +45,50 @@ export class CmsSidebarComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     this.layoutSub = layoutService.customizerChangeEmitted$.subscribe(
-      options => {
+      (options) => {
         if (options) {
           if (options.bgColor) {
-            if (options.bgColor === 'white') {
-              this.logoUrl = 'assets/img/logo-dark.png';
-            }
-            else {
-              this.logoUrl = 'assets/img/logo.png';
+            if (options.bgColor === "white") {
+              this.logoUrl = "assets/img/logo-dark.png";
+            } else {
+              this.logoUrl = "assets/img/logo.png";
             }
           }
 
           if (options.compactMenu === true) {
             this.expanded = false;
-            this.renderer.addClass(this.toggleIcon.nativeElement, 'ft-toggle-left');
-            this.renderer.removeClass(this.toggleIcon.nativeElement, 'ft-toggle-right');
+            this.renderer.addClass(
+              this.toggleIcon.nativeElement,
+              "ft-toggle-left"
+            );
+            this.renderer.removeClass(
+              this.toggleIcon.nativeElement,
+              "ft-toggle-right"
+            );
             this.nav_collapsed_open = true;
-          }
-          else if (options.compactMenu === false) {
+          } else if (options.compactMenu === false) {
             this.expanded = true;
-            this.renderer.removeClass(this.toggleIcon.nativeElement, 'ft-toggle-left');
-            this.renderer.addClass(this.toggleIcon.nativeElement, 'ft-toggle-right');
+            this.renderer.removeClass(
+              this.toggleIcon.nativeElement,
+              "ft-toggle-left"
+            );
+            this.renderer.addClass(
+              this.toggleIcon.nativeElement,
+              "ft-toggle-right"
+            );
             this.nav_collapsed_open = false;
           }
-
         }
-      });
-
+      }
+    );
   }
-
+ 
 
   ngOnInit() {
+    this.DataGetCpMenu();
+
     this.config = this.configService.templateConf;
-    this.menuItems = ThemplateROUTES;//karavi menu
+    this.menuItems = CmsROUTES;//karavi menu
 
 
 
@@ -87,6 +100,18 @@ export class CmsSidebarComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
 
+  }
+  DataGetCpMenu() {
+    this.coreCpMainMenuService.ServiceGetAllMenu({}).subscribe(
+      (next) => {
+        if(next.IsSuccess)
+        {
+          this.modelDateMenu=next.ListItems;
+          //this.menuItems=
+        }
+      },
+      (error) => {}
+    );
   }
 
   ngAfterViewInit() {

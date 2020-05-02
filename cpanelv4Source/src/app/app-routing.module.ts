@@ -1,18 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
-
-import { FullLayoutComponent } from './@theme/layouts/full/full-layout.component';
-import { ContentLayoutComponent } from './@theme/layouts/content/content-layout.component';
-
 import { Full_ROUTES } from './@theme/routes/full-layout.routes';
-import { CONTENT_ROUTES } from './@theme/routes/content-layout.routes';
-
-import { AuthGuard } from './@theme/shared/auth/auth-guard.service';
-import { CmsFullLayoutComponent } from './@cms/layouts/full/cmsFull-layout.component';
-import { CmsContentLayoutComponent } from './@cms/layouts/content/cmsContent-layout.component';
-import { ContentLayoutROUTES } from './@cms/routes/content-layout.routes';
 import { FullLayoutROUTES } from './@cms/routes/full-layout.routes';
-import { CmsAuthGuard } from './@cms/cmsService/core/auth.guard.service';
+import { CmsComponent } from './@cms/cms.component';
+import { ThemeComponent } from './@theme/theme.component';
 
 const appRoutes: Routes = [
   {
@@ -22,31 +13,19 @@ const appRoutes: Routes = [
   },
   {
     path: '',
-    component: CmsFullLayoutComponent,
-    data: { title: 'full Views' },
-    children: FullLayoutROUTES,
-    //canActivate: [CmsAuthGuard],
-  },
-  {
-    path: '',
-    component: CmsContentLayoutComponent,
-    data: { title: 'content Views' },
-    children: ContentLayoutROUTES,
-    //canActivate: [CmsAuthGuard],
+    component: CmsComponent,
+    data: { title: 'Cms' },
+    loadChildren: () => import('./@cms/cms.module').then(m => m.CmsModule)
+
+    //children: FullLayoutROUTES,
   },
   {
     path: 'theme',
-    component: FullLayoutComponent,
-    data: { title: 'full Views' },
-    children: Full_ROUTES,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'theme',
-    component: ContentLayoutComponent,
-    data: { title: 'content Views' },
-    children: CONTENT_ROUTES,
-    canActivate: [AuthGuard],
+    component: ThemeComponent,
+    data: { title: 'theme Views' },
+    loadChildren: () => import('./@theme/theme.module').then(m => m.ThemeModule)
+
+    //children: Full_ROUTES,
   },
   {
     path: '**',

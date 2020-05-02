@@ -7,7 +7,7 @@ import { catchError,map } from 'rxjs/operators';
 @Injectable({
   providedIn: "root",
 })
-export class CoreSiteUserService extends ApiServerBaseService
+export class CoreCpMainMenuService extends ApiServerBaseService
   implements OnDestroy {
   subManager = new Subscription();
   setModuleCotrolerUrl() {

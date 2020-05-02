@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 
-import { CoreSiteComponent } from './coreSite.component';
 import { CoreSiteRoutes } from './coreSite.routing';
 import { CoreSiteListComponent } from './list/coreSiteList.component';
 import { CoreSiteAddComponent } from './add/coreSiteAdd.component';
@@ -29,7 +28,6 @@ import { PersianDate } from 'app/@cms/cmsCommon/pipe/PersianDatePipe/persian-dat
     NgxDatatableModule
   ],
   declarations: [
-    CoreSiteComponent,
     CoreSiteListComponent,
     CoreSiteAddComponent,
     CoreSiteEditComponent,

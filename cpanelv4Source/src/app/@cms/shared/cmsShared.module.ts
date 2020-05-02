@@ -9,17 +9,18 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 //COMPONENTS
 import { CmsFooterComponent } from './footer/footer.component';
 import { CmsNavbarComponent } from './navbar/navbar.component';
-//import { CmsSidebarComponent } from './sidebar/sidebar.component';
+import { CmsSidebarComponent } from './sidebar/sidebar.component';
 import { CmsCustomizerComponent } from './customizer/customizer.component';
 import { CmsNotificationSidebarComponent } from './notification-sidebar/notification-sidebar.component';
 
+
 //DIRECTIVES
+import { SidebarDirective } from 'app/@cms/shared/directives/sidebar.directive';
+import { SidebarLinkDirective } from 'app/@cms/shared/directives/sidebarlink.directive';
+import { SidebarListDirective } from 'app/@cms/shared/directives/sidebarlist.directive';
+import { SidebarAnchorToggleDirective } from 'app/@cms/shared/directives/sidebaranchortoggle.directive';
+import { SidebarToggleDirective } from 'app/@cms/shared/directives/sidebartoggle.directive';
 //import { ToggleFullscreenDirective } from './directives/toggle-fullscreen.directive';
-//import { SidebarDirective } from './directives/sidebar.directive';
-//import { SidebarLinkDirective } from './directives/sidebarlink.directive';
-//import { SidebarListDirective } from './directives/sidebarlist.directive';
-//import { SidebarAnchorToggleDirective } from './directives/sidebaranchortoggle.directive';
-//import { SidebarToggleDirective } from './directives/sidebartoggle.directive';
 
 @NgModule({
     exports: [
@@ -28,11 +29,11 @@ import { CmsNotificationSidebarComponent } from './notification-sidebar/notifica
         TranslateModule,
         CmsFooterComponent,
         CmsNavbarComponent,
-        //CmsSidebarComponent,
+        CmsSidebarComponent,
         CmsCustomizerComponent,
         CmsNotificationSidebarComponent,
         //ToggleFullscreenDirective,
-        //SidebarDirective,
+        SidebarDirective,
 
     ],
     imports: [
@@ -45,15 +46,15 @@ import { CmsNotificationSidebarComponent } from './notification-sidebar/notifica
     declarations: [
         CmsFooterComponent,
         CmsNavbarComponent,
-        //CmsSidebarComponent,
+        CmsSidebarComponent,
         CmsCustomizerComponent,
         CmsNotificationSidebarComponent,
         //ToggleFullscreenDirective,
-        //SidebarDirective,
-        //SidebarLinkDirective,
-        //SidebarListDirective,
-        //SidebarAnchorToggleDirective,
-        //SidebarToggleDirective
+        SidebarDirective,
+        SidebarLinkDirective,
+        SidebarListDirective,
+        SidebarAnchorToggleDirective,
+        SidebarToggleDirective
     ]
 })
 export class CmsSharedModule { }

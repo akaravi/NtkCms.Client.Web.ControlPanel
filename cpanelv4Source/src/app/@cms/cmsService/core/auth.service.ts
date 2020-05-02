@@ -253,9 +253,9 @@ export class CmsAuthService implements OnDestroy {
     return isMatch;
   }
   getDashboardUrl(): string {
-    return '/cms/site/select';
+    return 'core/site/select';
   }
   getLoginUrl(): string {
-    return '/cms/auth/login';
+    return '/auth/login';
   }
 }
