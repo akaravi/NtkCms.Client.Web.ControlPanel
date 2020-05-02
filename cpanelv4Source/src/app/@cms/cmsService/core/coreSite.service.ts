@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { AuthRenewTokenModel } from 'app/@cms/cmsModels/core/authModel';
-import { map, catchError } from "rxjs/operators";
+import { map, catchError, retry } from "rxjs/operators";
 import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
 import { ApiServerBaseService } from '../_base/apiServerBase.service';
 import { FilterModel } from 'app/@cms/cmsModels/base/filterModel';
@@ -54,9 +54,11 @@ export class CoreSiteService extends ApiServerBaseService implements OnDestroy {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceGetAllChildWithAlias<TOut>(model: FilterModel) {
@@ -67,9 +69,11 @@ export class CoreSiteService extends ApiServerBaseService implements OnDestroy {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceSearchNew<TOut>(model: FilterModel) {
@@ -80,9 +84,11 @@ export class CoreSiteService extends ApiServerBaseService implements OnDestroy {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceSearch<TOut>(model: CoreSiteSearchModel) {
@@ -92,9 +98,11 @@ export class CoreSiteService extends ApiServerBaseService implements OnDestroy {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceDomain<TOut>() {
@@ -104,9 +112,11 @@ export class CoreSiteService extends ApiServerBaseService implements OnDestroy {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceDomains<TOut>(id: number) {

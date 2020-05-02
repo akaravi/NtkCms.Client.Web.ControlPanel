@@ -11,7 +11,7 @@ export class FilterModel {
   TotalRowData: number;
   SkipRowData: number = 0;
   CurrentPageNumber: number = 1;
-  RowPerPage: number = 30;
+  RowPerPage: number = 20;
   SortType: SortType = 1;
   SortColumn: string;
   ExportFile: ExportFileModel;

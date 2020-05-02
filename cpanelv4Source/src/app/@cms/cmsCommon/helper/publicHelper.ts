@@ -3,6 +3,7 @@ import { ErrorExcptionResultBase } from 'app/@cms/cmsModels/base/errorExcptionRe
 import { toArray } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { cmsUiConfig } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class PublicHelper {
         'لطفا مجددا وارد حساب کاربری خود شوید',
         'نیاز به ورود مجدد'
       );
-      this.router.navigate(['cms/auth/login']);
+      this.router.navigate([cmsUiConfig.Pathlogin]);
 
     }
     return token;
@@ -35,7 +36,7 @@ export class PublicHelper {
             'لطفا مجددا وارد حساب کاربری خود شوید',
             'نیاز به ورود مجدد'
           );
-          this.router.navigate(['cms/auth/login']);
+          this.router.navigate([cmsUiConfig.Pathlogin]);
           return;
         }
       }

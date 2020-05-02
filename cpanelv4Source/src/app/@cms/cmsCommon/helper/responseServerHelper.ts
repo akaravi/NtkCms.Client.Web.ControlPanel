@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ErrorExcptionResultBase } from 'app/@cms/cmsModels/base/errorExcptionResult';
 import { Router } from '@angular/router';
+import { cmsUiConfig } from 'environments/environment';
 
 
 
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
         return 'Error';
       }
       if(!model){
-      this.router.navigate(['cms/auth/login']);
+      this.router.navigate([cmsUiConfig.Pathlogin]);
       }
       if (model.errors) {
         let ret = '';

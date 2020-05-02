@@ -8,6 +8,7 @@ export const environment = {
   
 };
 export const cmsServerConfig = {
+  configApiRetry:1,
   configApiServerPath: 'https://apicms.ir/api/v1/',
   //configApiServerPath: 'http://localhost:2390/api/v1/',
   configMvcServerPath: 'https://oco.ir',
@@ -16,3 +17,10 @@ export const cmsServerConfig = {
   configRouteThumbnails: 'https://oco.ir/imageThumbnails/',
   configRouteUploadFileContent: 'https://apicms.ir/api/v1/FileContent/upload/',
 };
+export const cmsUiConfig = {
+  Pathlogin: '/auth/login',
+  PathRegistery: '/auth/registery',
+  Pathdashboard: '/dashboard/dashboard1',
+
+};
+

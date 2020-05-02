@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { map, catchError } from "rxjs/operators";
+import { map, catchError, retry } from "rxjs/operators";
 import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
 import { ApiServerBaseService } from '../_base/apiServerBase.service';
 import { FilterModel } from 'app/@cms/cmsModels/base/filterModel';
@@ -27,9 +27,11 @@ export class CoreModuleService extends ApiServerBaseService implements OnDestroy
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceConfig<TOut>(MoudleClassName:string) {
@@ -40,9 +42,11 @@ export class CoreModuleService extends ApiServerBaseService implements OnDestroy
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceGetOneWithModuleConfig<TOut>(model: FilterModel) {
@@ -53,9 +57,11 @@ export class CoreModuleService extends ApiServerBaseService implements OnDestroy
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceGetViewModelWithModuleConfig<TOut>(id:number) {
@@ -65,9 +71,11 @@ export class CoreModuleService extends ApiServerBaseService implements OnDestroy
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceGetAllModuleName<TOut>(model: FilterModel) {
@@ -78,9 +86,11 @@ export class CoreModuleService extends ApiServerBaseService implements OnDestroy
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceGetAllByCategorySiteId<TOut>(CategorySiteId: number ,model: FilterModel) {
@@ -91,9 +101,11 @@ export class CoreModuleService extends ApiServerBaseService implements OnDestroy
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
 

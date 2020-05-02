@@ -11,7 +11,7 @@ import { FilterModel } from "app/@cms/cmsModels/base/filterModel";
 import { PublicHelper } from "app/@cms/cmsCommon/helper/publicHelper";
 import { CmsAuthService } from "app/@cms/cmsService/core/auth.service";
 import { retry, catchError } from "rxjs/operators";
-import { cmsServerConfig } from "environments/environment";
+import { cmsServerConfig, cmsUiConfig } from "environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -19,7 +19,7 @@ import { cmsServerConfig } from "environments/environment";
 export class ApiServerBaseService implements OnDestroy {
   subManager = new Subscription();
   public baseUrl = cmsServerConfig.configApiServerPath;
-
+  public configApiRetry = cmsServerConfig.configApiRetry;
   constructor(
     public http: HttpClient,
     public alertService: ToastrService,
@@ -37,10 +37,10 @@ export class ApiServerBaseService implements OnDestroy {
   }
   getHeaders() {
     const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };  
+    const headers = { Authorization: token };
     return headers;
   }
- 
+
   errorExcptionResultCheck<TOut>(model: ErrorExcptionResult<TOut>) {
     if (model) {
       if (model.IsSuccess) {
@@ -62,53 +62,32 @@ export class ApiServerBaseService implements OnDestroy {
     } else {
       // server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      if (error.status == "401") {
+        this.router.navigate([cmsUiConfig.Pathlogin]);
+      }
     }
     window.alert(errorMessage);
     return throwError(errorMessage);
   }
 
   ServiceModelInfo<TOut>() {
- 
     return (
       this.http
         .get(this.baseUrl + this.getModuleCotrolerUrl() + "/ModelInfo", {
           headers: this.getHeaders(),
         })
-        // .pipe(
-        //   retry(1),
-        //   catchError(this.handleError)
-        // );
         .pipe(
+          retry(this.configApiRetry),
+          catchError(this.handleError),
           map((ret: ErrorExcptionResult<TOut>) => {
             return this.errorExcptionResultCheck<TOut>(ret);
-          }, catchError(this.handleError))
+          })
         )
     );
   }
   ServiceViewModel<TOut>() {
- 
-    return (
-      this.http
-        .get(this.baseUrl + this.getModuleCotrolerUrl() + "/GetViewModel", {
-          headers: this.getHeaders(),
-        })
-        // .pipe(
-        //   retry(1),
-        //   catchError(this.handleError)
-        // );
-        .pipe(
-          map((ret: ErrorExcptionResult<TOut>) => {
-            return this.errorExcptionResultCheck<TOut>(ret);
-          }, catchError(this.handleError))
-        )
-    );
-  }
-
-  ServiceGetAll<TOut>(model: FilterModel) {
-    if (model == null) model = new FilterModel();
- 
     return this.http
-      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/getAll", model, {
+      .get(this.baseUrl + this.getModuleCotrolerUrl() + "/GetViewModel", {
         headers: this.getHeaders(),
       })
       .pipe(
@@ -117,9 +96,25 @@ export class ApiServerBaseService implements OnDestroy {
         }, catchError(this.handleError))
       );
   }
+
+  ServiceGetAll<TOut>(model: FilterModel) {
+    if (model == null) model = new FilterModel();
+
+    return this.http
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/getAll", model, {
+        headers: this.getHeaders(),
+      })
+      .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
+        })
+      );
+  }
   ServiceGetAllAvailable<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
- 
+
     return this.http
       .post(
         this.baseUrl + this.getModuleCotrolerUrl() + "/GetAllAvailable",
@@ -129,125 +124,139 @@ export class ApiServerBaseService implements OnDestroy {
         }
       )
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceGetOneById<TOut>(id: any) {
- 
     return this.http
       .get(this.baseUrl + this.getModuleCotrolerUrl() + "/" + id, {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceGetOne<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
- 
+
     return this.http
       .post(this.baseUrl + this.getModuleCotrolerUrl() + "/GetOne", model, {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServicePostCount<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
- 
+
     return this.http
       .post(this.baseUrl + this.getModuleCotrolerUrl() + "/PostCount", model, {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceExportFile<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
- 
+
     return this.http
       .post(this.baseUrl + this.getModuleCotrolerUrl() + "/ExportFile", model, {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceAdd<TOut>(model: any) {
- 
     return this.http
-      .post(this.baseUrl + this.getModuleCotrolerUrl() + '/Add', model, {
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/Add", model, {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceAddBatch<TOut>(model: Array<any>) {
- 
     return this.http
       .post(this.baseUrl + this.getModuleCotrolerUrl() + "/AddBatch", model, {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceEdit<TOut>(model: any) {
- 
     return this.http
       .put(this.baseUrl + this.getModuleCotrolerUrl() + "/Edit", model, {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceEditBatch<TOut>(model: Array<any>) {
- 
     return this.http
       .put(this.baseUrl + this.getModuleCotrolerUrl() + "/Edit", model, {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceDelete<TOut>(model: any) {
- 
     return this.http
       .post(this.baseUrl + this.getModuleCotrolerUrl() + "/Delete", model, {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceDeleteFilterModel<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
- 
+
     return this.http
       .post(
         this.baseUrl + this.getModuleCotrolerUrl() + "/DeleteFilterModel",
@@ -257,37 +266,40 @@ export class ApiServerBaseService implements OnDestroy {
         }
       )
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceDeleteList<TOut>(model: Array<any>) {
- 
     return this.http
       .post(this.baseUrl + this.getModuleCotrolerUrl() + "/DeleteList", model, {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceDeleteId<TOut>(model: any) {
- 
     return this.http
       .post(this.baseUrl + this.getModuleCotrolerUrl() + "/DeleteId", model, {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceDeleteListId<TOut>(model: Array<any>) {
- 
     return this.http
       .post(
         this.baseUrl + this.getModuleCotrolerUrl() + "/DeleteListId",
@@ -297,9 +309,11 @@ export class ApiServerBaseService implements OnDestroy {
         }
       )
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
 }

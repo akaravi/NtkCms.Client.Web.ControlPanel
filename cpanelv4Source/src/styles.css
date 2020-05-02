@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 /*  RTL Styles */
+@import '~angular-tree-component/dist/angular-tree-component.css';
 
 div[dir="rtl"] .btn-group > .btn {
     border-radius: 0;

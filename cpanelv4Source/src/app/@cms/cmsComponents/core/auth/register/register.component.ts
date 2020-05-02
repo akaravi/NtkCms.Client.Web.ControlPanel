@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import * as fromStore from '../../../../cmsStore';
 import { ToastrService } from 'ngx-toastr';
 import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
+import { cmsUiConfig } from 'environments/environment';
 
 @Component({
     selector: 'app-cms-register-page',
@@ -19,6 +20,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   subManager = new Subscription();
   model: any = {};
   returnUrl: any = '';
+  _cmsUiConfig=cmsUiConfig;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -37,6 +39,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       }
       ngOnDestroy() {
         this.subManager.unsubscribe();
+        
       }
 
     //  On submit click, reset field value

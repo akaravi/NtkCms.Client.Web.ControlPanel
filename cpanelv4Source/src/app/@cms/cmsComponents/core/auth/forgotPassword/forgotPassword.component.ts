@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import * as fromStore from '../../../../cmsStore';
 import { ToastrService } from 'ngx-toastr';
 import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
+import { cmsUiConfig } from 'environments/environment';
 
 @Component({
   selector: 'app-cms-forgot-password',
@@ -18,6 +19,7 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy  {
   subManager = new Subscription();
   model: any = {};
   returnUrl: any = '';
+  _cmsUiConfig=cmsUiConfig;
   constructor(
     private router: Router,
     private route: ActivatedRoute,

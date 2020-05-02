@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CmsAuthService } from 'app/@cms/cmsService/core/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
+import { cmsUiConfig } from 'environments/environment';
 
 @Component({
   selector: "app-cms-navbar",
@@ -101,7 +102,7 @@ export class CmsNavbarComponent implements OnInit, AfterViewInit, OnDestroy {
         (next) => {
           if (next.IsSuccess) {
           
-            this.router.navigate(['/cms/auth/login']);
+            this.router.navigate([cmsUiConfig.Pathlogin]);
           }
         },
         (error) => {

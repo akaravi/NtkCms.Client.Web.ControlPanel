@@ -6,12 +6,14 @@ import { NewsContentEditComponent } from './edit/newsContentEdit.component';
 import { NewsContentListComponent } from './list/newsContentList.component';
 import { NewsContentSelectComponent } from './select/newsContentSelect.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { TreeModule } from 'angular-tree-component';
 
 @NgModule({
   imports: [
     CommonModule,
     NewsContentRoutes,
-    NgxDatatableModule
+    NgxDatatableModule,
+    TreeModule.forRoot(),
   ],
   declarations: [
     NewsContentAddComponent,

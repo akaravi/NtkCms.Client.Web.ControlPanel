@@ -1,43 +1,87 @@
-<!-- Filter Datatable Options Starts -->
-<section id="filter" class="mb-3">
+<section >
   <div class="row text-left">
-      <div class="col-12">
-          <div class="content-header">گزینه فیلتر</div>
-      </div>
+    <div class="col-sm-12">
+      <div class="content-header">اخبار</div>
+    </div>
   </div>
-  <div class="row">
-      <div *ngIf="dataModelConetnt?.IsSuccess" class="col-sm-12" >
-          <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder='ستون نام را فیلتر کنید' 
-          />
-          <ngx-datatable #tableCategory class='bootstrap' [columns]="columnsCategory" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-              [rowHeight]="'auto'" [limit]="10" [rows]='dataModelCategory.ListItems'
-              [treeFromRelation]="'Children'"
-              [treeToRelation]="'LinkParentId'"
-              [rows]="rows"
-              (treeAction)="onActionCategorySelect($event)"
-              >
-          </ngx-datatable>
-          <ngx-datatable #tableContent class='bootstrap' [columns]="columnsConetnt" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-              [rowHeight]="'auto'" [limit]="10" [rows]='dataModelConetnt.ListItems'>
-          </ngx-datatable>
-          <!-- <ngx-datatable
-          class="material"
-          [rows]="dataModelSite.ListItems"
-          [columns]="columns"
-          [columnMode]="ColumnMode.force"
-          [headerHeight]="50"
-          [summaryRow]="true"
-          [summaryHeight]="55"
-          [footerHeight]="50"
-          rowHeight="auto"
-          [externalPaging]="true"
-          [count]="page.totalElements"
-          [offset]="page.pageNumber"
-          [limit]="page.size"
-          (page)="setPage($event)"
-        >
-        </ngx-datatable> -->
+  <div class="row text-left" matchHeight ="card">
+    <!--Category-->
+    <div class="col-md-2 col-lg-2">
+      <div class="card">
+        <div class="card-header">
+          <h4 (click)='onActionCategorySelect()' class="card-title" >دسته بندی</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            
+            <tree-root [nodes]="dataModelCategory.ListItems" [options]="optionsModelTree"></tree-root>
+
+            <hr>
+            <p>filteModelCategory : {{filteModelCategory | json}}</p>
+          </div>
+        </div>
       </div>
+    </div>
+    <!--Category-->
+ <!--Content-->
+ <div class="col-md-10 col-lg-10">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">لیست اخبار</h4>
+      <hr >
+      <div >
+        
+        <a  *ngIf="dataModelConetnt?.resultAccess?.AccessAddRow" (click)="onActionbuttonNewEntity()" class="btn btn-raised mr-1 shadow-z-2 btn-info">جدید</a>
+        <a  *ngIf="dataModelConetnt?.resultAccess?.AccessEditRow && tableContentSelected?.length>0" (click)="onActionbuttonEditRow()" class="btn btn-raised mr-1 shadow-z-2 btn-warning">ویرایش</a>
+        <a  *ngIf="dataModelConetnt?.resultAccess?.AccessDeleteRow && tableContentSelected?.length>0" (click)="onActionbuttonDeleteRow()" class="btn btn-raised mr-1 shadow-z-2 btn-danger">حذف</a>
+    
+
+        <a  (click)="onActionbuttonStatus()" class="btn btn-raised mr-1 shadow-z-2 btn-secondary">آمار </a>
+        <a  (click)="onActionbuttonExport()" class="btn btn-raised mr-1 shadow-z-2 btn-primary">خروجی فایل</a>
+        <a  (click)="onActionbuttonReload()" class="btn btn-raised mr-1 shadow-z-2 btn-success">بررسی مجدد</a>
+        
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="card-body">
+    
+    <ngx-datatable
+    #tableContent
+        class="bootstrap"
+        [rows]="dataModelConetnt.ListItems"
+        [columns]="columnsConetnt"
+        [columnMode]="ColumnMode.force"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        rowHeight="auto"
+        [externalPaging]="true"
+        [count]="dataModelConetnt.TotalRowCount"
+        [offset]="dataModelConetnt.CurrentPageNumber-1"
+        [limit]="dataModelConetnt.RowPerPage"
+        [loadingIndicator]="tableContentloading"
+        [externalSorting]="true"
+        [sortType]="'single'"
+        [selected]="tableContentSelected"
+        [selectionType]="SelectionType.single"
+        (page)="onActionSetPage($event)"
+        (sort)="onActionSort($event)"
+        (select)="onActionSelect($event)"
+        
+
+      >
+
+      </ngx-datatable>
+     
+      
+ 
+
+
+        <hr>
+        <p>filteModelConetnt : {{filteModelConetnt | json}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Content-->
   </div>
 </section>
-<!-- Filter Datatable Options Ends -->

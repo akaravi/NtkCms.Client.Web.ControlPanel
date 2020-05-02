@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
-import { map, catchError } from "rxjs/operators";
+import { map, catchError, retry } from "rxjs/operators";
 import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
 import { ApiServerBaseService } from '../_base/apiServerBase.service';
 import { FilterModel } from 'app/@cms/cmsModels/base/filterModel';
@@ -28,9 +28,11 @@ export class CoreLocationService extends ApiServerBaseService implements OnDestr
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceGetAllCities<TOut>(model: FilterModel) {
@@ -41,9 +43,11 @@ export class CoreLocationService extends ApiServerBaseService implements OnDestr
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceGetAllNeighbourhoods<TOut>(model: FilterModel) {
@@ -54,9 +58,11 @@ export class CoreLocationService extends ApiServerBaseService implements OnDestr
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
 

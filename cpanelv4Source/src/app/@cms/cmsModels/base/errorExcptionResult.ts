@@ -1,4 +1,3 @@
-
 export class ErrorExcptionResultBase {
   Status: number;
   token: string;
@@ -12,5 +11,38 @@ export class ErrorExcptionResult<T> extends ErrorExcptionResultBase {
   CurrentPageNumber: number;
   TotalRowCount: number;
   RowPerPage: number;
-  resultAccess: any;
+  resultAccess: ResultAccessModel = new ResultAccessModel();
+}
+export class ResultAccessModel {
+  AccessDeleteRow = false;
+  AccessWatchRow = false;
+  AccessEditRow = false;
+  AccessAddRow = false;
+  AccessRowInPanelDemo = false;
+  AccessRowWatchInSharingCategory = false;
+  AccessWatchRowOtherSiteId = false;
+  AccessWatchRowOtherCreatedBy = false;
+  AccessEditRowOtherSiteId = false;
+  AccessEditRowOtherCreatedBy = false;
+  AccessDeleteRowOtherCreatedBy = false;
+
+  Fields: Array<string>;
+  AccessSearchField: Array<string>;
+  AccessWatchField: Array<string>;
+  AccessEditField: Array<string>;
+  AccessAddField: Array<string>;
+
+  FieldsInfo: Array<FieldInfoModel>;
+}
+export class FieldInfoModel {
+  FieldName: string;
+  FieldType: string;
+  FieldTypeClass: string;
+  FieldTitle: string;
+  FieldDescription: string;
+  FieldScriptDescription: string;
+  FieldDefaultValue: string;
+  FieldValue: string;
+  FieldTypeFullName: string;
+  fieldsInfo: Array<FieldInfoModel>;
 }

@@ -3,7 +3,7 @@ import { Subscription, Observable } from 'rxjs';
 import { ApiServerBaseService } from '../_base/apiServerBase.service';
 import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
 import { FilterModel } from 'app/@cms/cmsModels/base/filterModel';
-import { map, catchError } from "rxjs/operators";
+import { map, catchError, retry } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root',
@@ -27,9 +27,11 @@ export class CoreModuleSiteService extends ApiServerBaseService implements OnDes
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceEditConfigSite<TOut>(model: any) {
@@ -39,9 +41,11 @@ export class CoreModuleSiteService extends ApiServerBaseService implements OnDes
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceGetAllById<TOut>(id: number,  model: FilterModel) {
@@ -52,9 +56,11 @@ export class CoreModuleSiteService extends ApiServerBaseService implements OnDes
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   

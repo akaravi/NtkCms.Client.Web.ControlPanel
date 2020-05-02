@@ -19,6 +19,7 @@ import { cmsServerConfig } from "environments/environment";
 export class ApiServerConfigSiteBaseService implements OnDestroy {
   subManager = new Subscription();
   public baseUrl = cmsServerConfig.configApiServerPath;
+  public configApiRetry = cmsServerConfig.configApiRetry;
 
   constructor(
     public http: HttpClient,
@@ -67,22 +68,18 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
   }
 
   ServiceSiteDefault<TOut>() {
- 
-    return (
-      this.http
-        .get(this.baseUrl + this.getModuleCotrolerUrl() + "/SiteDefault", {
-          headers: this.getHeaders(),
-        })
-        // .pipe(
-        //   retry(1),
-        //   catchError(this.handleError)
-        // );
-        .pipe(
-          map((ret: ErrorExcptionResult<TOut>) => {
-            return this.errorExcptionResultCheck<TOut>(ret);
-          }, catchError(this.handleError))
-        )
+    return this.http
+    .get(this.baseUrl + this.getModuleCotrolerUrl()+ "/SiteDefault", {
+      headers: this.getHeaders(),
+    })
+    .pipe(
+      retry(this.configApiRetry),
+      catchError(this.handleError),
+      map((ret: ErrorExcptionResult<TOut>) => {
+        return this.errorExcptionResultCheck<TOut>(ret);
+      })
     );
+
   }
   ServiceSiteDefaultSave<TOut>(model: any) {
  
@@ -91,9 +88,11 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceSiteStorage<TOut>(id: number) {
@@ -103,9 +102,11 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceSiteStorageSave<TOut>(id: number, model: any) {
@@ -119,9 +120,11 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
         }
       )
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
 
@@ -132,9 +135,11 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceSiteSave<TOut>(id: number, model: any) {
@@ -144,9 +149,11 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceSiteAccess<TOut>(id: number) {
@@ -156,9 +163,11 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceSiteAccessSave<TOut>(id: number, model: any) {
@@ -172,9 +181,11 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
         }
       )
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceSiteAccessDefault<TOut>(id: number) {
@@ -187,9 +198,11 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
         }
       )
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceSiteAccessDefaultSave<TOut>(model: any) {
@@ -203,9 +216,11 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
         }
       )
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceAdminMain<TOut>() {
@@ -215,9 +230,11 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
   ServiceAdminMainSave<TOut>(model: any) {
@@ -227,9 +244,11 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
         headers: this.getHeaders(),
       })
       .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
         map((ret: ErrorExcptionResult<TOut>) => {
           return this.errorExcptionResultCheck<TOut>(ret);
-        }, catchError(this.handleError))
+        })
       );
   }
 }
