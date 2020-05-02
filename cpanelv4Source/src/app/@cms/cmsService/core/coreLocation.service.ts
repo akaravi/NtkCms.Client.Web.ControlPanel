@@ -11,7 +11,7 @@ import { FilterModel } from 'app/@cms/cmsModels/base/filterModel';
 export class CoreLocationService extends ApiServerBaseService implements OnDestroy {
   subManager = new Subscription();
 
-  setModuleCotrolerUrl()
+  getModuleCotrolerUrl()
   {
     return 'CoreLocation';
   }
@@ -20,45 +20,42 @@ export class CoreLocationService extends ApiServerBaseService implements OnDestr
     this.subManager.unsubscribe();
   }
   
-  ServiceGetAllProvinces(model: FilterModel) {
+  ServiceGetAllProvinces<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/GetAllProvinces", model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/GetAllProvinces", model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceGetAllCities(model: FilterModel) {
+  ServiceGetAllCities<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/GetAllCities", model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/GetAllCities", model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceGetAllNeighbourhoods(model: FilterModel) {
+  ServiceGetAllNeighbourhoods<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/GetAllNeighbourhoods", model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/GetAllNeighbourhoods", model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }

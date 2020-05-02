@@ -11,7 +11,7 @@ import { FilterModel } from 'app/@cms/cmsModels/base/filterModel';
 export class NewsShareServerCategoryService extends ApiServerBaseService implements OnDestroy {
   subManager = new Subscription();
 
-  setModuleCotrolerUrl()
+  getModuleCotrolerUrl()
   {
      return 'NewsShareServerCategory';
   }
@@ -19,17 +19,16 @@ export class NewsShareServerCategoryService extends ApiServerBaseService impleme
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }
-  ServiceGetAllOtherSite(model: FilterModel) {
+  ServiceGetAllOtherSite<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/GetAllOtherSite/", model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/GetAllOtherSite/", model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }

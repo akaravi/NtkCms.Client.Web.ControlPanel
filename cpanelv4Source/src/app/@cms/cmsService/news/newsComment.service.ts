@@ -8,7 +8,7 @@ import { ApiServerBaseService } from '../_base/apiServerBase.service';
 export class NewsCommentService extends ApiServerBaseService implements OnDestroy {
   subManager = new Subscription();
 
-  setModuleCotrolerUrl()
+  getModuleCotrolerUrl()
   {
      return 'NewsComment';
   }

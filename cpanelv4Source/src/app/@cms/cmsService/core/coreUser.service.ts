@@ -10,7 +10,7 @@ import { catchError,map } from 'rxjs/operators';
 export class CoreUserService extends ApiServerBaseService
   implements OnDestroy {
   subManager = new Subscription();
-  setModuleCotrolerUrl() {
+  getModuleCotrolerUrl() {
     return "CoreUser";
   }
 
@@ -18,17 +18,16 @@ export class CoreUserService extends ApiServerBaseService
     this.subManager.unsubscribe();
   }
 
-  ServiceGetGlobalToken(model: FilterModel) {
+  ServiceGetGlobalToken<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/GetGlobalToken", model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/GetGlobalToken", model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }

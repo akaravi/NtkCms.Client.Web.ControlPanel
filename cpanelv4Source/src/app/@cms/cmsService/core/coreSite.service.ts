@@ -13,7 +13,7 @@ import { CoreSiteSearchModel } from 'app/@cms/cmsModels/core/coreSiteModel';
 export class CoreSiteService extends ApiServerBaseService implements OnDestroy {
   subManager = new Subscription();
 
-  setModuleCotrolerUrl()
+  getModuleCotrolerUrl()
   {
      return 'CoreSite';
   }
@@ -26,104 +26,96 @@ export class CoreSiteService extends ApiServerBaseService implements OnDestroy {
     return this.cmsAuthService.RenewToken(model);
   }
 
-  ServiceWebScreenshot(model: any) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceWebScreenshot<TOut>(model: any) {
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/WebScreenshot/" ,model, { headers: headers })
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/WebScreenshot/" ,model, { headers: this.getHeaders() })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         },catchError(this.handleError))
       );
   }
-  ServiceAddFirstSite(model: any) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceAddFirstSite<TOut>(model: any) {
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/AddFirstSite/" ,model, { headers: headers })
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/AddFirstSite/" ,model, { headers: this.getHeaders() })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         },catchError(this.handleError))
       );
   }
-  ServiceGetAllWithAlias(model: FilterModel) {
+  ServiceGetAllWithAlias<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/GetAllWithAlias", model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/GetAllWithAlias", model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceGetAllChildWithAlias(model: FilterModel) {
+  ServiceGetAllChildWithAlias<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/GetAllChildWithAlias", model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/GetAllChildWithAlias", model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceSearchNew(model: FilterModel) {
+  ServiceSearchNew<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/SearchNew", model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/SearchNew", model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceSearch(model: CoreSiteSearchModel) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceSearch<TOut>(model: CoreSiteSearchModel) {
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/Search", model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/Search", model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceDomain() {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceDomain<TOut>() {
+ 
     return this.http
-      .get(this.baseUrl + this.setModuleCotrolerUrl() + "/Domain",  {
-        headers: headers,
+      .get(this.baseUrl + this.getModuleCotrolerUrl() + "/Domain",  {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceDomains(id: number) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceDomains<TOut>(id: number) {
+ 
     return this.http
-      .get(this.baseUrl + this.setModuleCotrolerUrl() + "/Domains/" + id, { headers: headers })
+      .get(this.baseUrl + this.getModuleCotrolerUrl() + "/Domains/" + id, { headers: this.getHeaders() })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         },catchError(this.handleError))
       );
   }

@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
 import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
 import { cmsServerConfig } from 'environments/environment';
+import { MenuPlaceType } from 'app/@cms/cmsModels/Enums/menuPlaceType.enum';
 
 @Injectable()
 export class CoreEnumService implements OnDestroy {
@@ -23,45 +24,45 @@ export class CoreEnumService implements OnDestroy {
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }
-  
-  ServiceEnumRecordStatus() {
+  getHeaders() {
     const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
-    return this.http.get(this.baseUrl + 'EnumRecordStatus', { headers: headers }).pipe(
-      map((ret: ErrorExcptionResult<any>) => {
+    const headers = { Authorization: token };  
+    return headers;
+  }
+  ServiceEnumRecordStatus<TOut>() {
+ 
+    return this.http.get(this.baseUrl + 'EnumRecordStatus', { headers: this.getHeaders() }).pipe(
+      map((ret: ErrorExcptionResult<TOut>) => {
         if (ret) {
           return ret;
         }
       })
     );
   }
-  ServiceEnumLocationType() {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
-    return this.http.get(this.baseUrl + 'EnumLocationType', { headers: headers }).pipe(
-      map((ret: ErrorExcptionResult<any>) => {
+  ServiceEnumLocationType<TOut>() {
+ 
+    return this.http.get(this.baseUrl + 'EnumLocationType', { headers: this.getHeaders() }).pipe(
+      map((ret: ErrorExcptionResult<TOut>) => {
         if (ret) {
           return ret;
         }
       })
     );
   }
-  ServiceEnumUserLanguage() {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
-    return this.http.get(this.baseUrl + 'EnumUserLanguage', { headers: headers }).pipe(
-      map((ret: ErrorExcptionResult<any>) => {
+  ServiceEnumUserLanguage<TOut>() {
+ 
+    return this.http.get(this.baseUrl + 'EnumUserLanguage', { headers: this.getHeaders() }).pipe(
+      map((ret: ErrorExcptionResult<TOut>) => {
         if (ret) {
           return ret;
         }
       })
     );
   }
-  ServiceEnumGender() {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
-    return this.http.get(this.baseUrl + 'EnumGender', { headers: headers }).pipe(
-      map((ret: ErrorExcptionResult<any>) => {
+  ServiceEnumGender<TOut>() {
+ 
+    return this.http.get(this.baseUrl + 'EnumGender', { headers: this.getHeaders() }).pipe(
+      map((ret: ErrorExcptionResult<TOut>) => {
         if (ret) {
           return ret;
         }
@@ -69,10 +70,9 @@ export class CoreEnumService implements OnDestroy {
     );
   }
   ServiceEnumMenuPlaceType() {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
-    return this.http.get(this.baseUrl + 'EnumMenuPlaceType', { headers: headers }).pipe(
-      map((ret: ErrorExcptionResult<any>) => {
+ 
+    return this.http.get(this.baseUrl + 'EnumMenuPlaceType', { headers: this.getHeaders() }).pipe(
+      map((ret: ErrorExcptionResult<MenuPlaceType>) => {
         if (ret) {
           return ret;
         }

@@ -1,34 +1,42 @@
-import { Component, OnInit, Input, ViewChild, OnDestroy, ElementRef, Renderer2, AfterViewInit } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  OnDestroy,
+  ElementRef,
+  Renderer2,
+  AfterViewInit,
+} from "@angular/core";
 
-import { CmsROUTES } from './sidebar-routes.config';
-import {  MenuInfo } from "./sidebar.metadata";
+import { CmsROUTES } from "./sidebar-routes.config";
+import { MenuInfo } from "./sidebar.metadata";
 import { Router, ActivatedRoute } from "@angular/router";
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService } from "@ngx-translate/core";
 import { customAnimations } from "../../../shared/animations/custom-animations";
-import { ConfigService } from '../../../shared/services/config.service';
-import { LayoutService } from '../../../shared/services/layout.service';
-import { Subscription } from 'rxjs';
-import { CoreCpMainMenuService } from 'app/@cms/cmsService/core/coreCpMainMenu.service';
+import { ConfigService } from "../../../shared/services/config.service";
+import { LayoutService } from "../../../shared/services/layout.service";
+import { Subscription } from "rxjs";
+import { CoreCpMainMenuService } from "app/@cms/cmsService/core/coreCpMainMenu.service";
+import { CoreCpMainMenuModel } from "app/@cms/cmsModels/core/CoreCpMainMenuModel";
 
 @Component({
   selector: "app-cms-sidebar",
   templateUrl: "./sidebar.component.html",
-  animations: customAnimations
+  animations: customAnimations,
 })
 export class CmsSidebarComponent implements OnInit, AfterViewInit, OnDestroy {
-
-  @ViewChild('toggleIcon', {static: false}) toggleIcon: ElementRef;
+  @ViewChild("toggleIcon", { static: false }) toggleIcon: ElementRef;
   public menuItems: MenuInfo[];
   depth: number;
   activeTitle: string;
   activeTitles: string[] = [];
   expanded: boolean;
   nav_collapsed_open = false;
-  logoUrl = 'assets/img/logo.png';
+  logoUrl = "assets/img/logo.png";
   public config: any = {};
   layoutSub: Subscription;
 
-  modelDateMenu:any=[];
   constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
@@ -82,58 +90,83 @@ export class CmsSidebarComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     );
   }
- 
 
   ngOnInit() {
     this.DataGetCpMenu();
 
     this.config = this.configService.templateConf;
-    this.menuItems = CmsROUTES;//karavi menu
+    //this.menuItems = CmsROUTES; //karavi menu
+    //console.log(this.menuItems);
 
-
-
-    if (this.config.layout.sidebar.backgroundColor === 'white') {
-      this.logoUrl = 'assets/img/logo-dark.png';
+    if (this.config.layout.sidebar.backgroundColor === "white") {
+      this.logoUrl = "assets/img/logo-dark.png";
+    } else {
+      this.logoUrl = "assets/img/logo.png";
     }
-    else {
-      this.logoUrl = 'assets/img/logo.png';
-    }
-
-
   }
   DataGetCpMenu() {
-    this.coreCpMainMenuService.ServiceGetAllMenu(null).subscribe(
-      (next) => {
-        if(next.IsSuccess)
-        {
-          this.modelDateMenu=next.ListItems;
-          //this.menuItems=
-        }
-      },
-      (error) => {}
-    );
+    this.coreCpMainMenuService
+      .ServiceGetAllMenu<CoreCpMainMenuModel>(null)
+      .subscribe(
+        (next) => {
+          if (next.IsSuccess) {
+            this.menuItems = this.menuConvertor(next.ListItems);
+          }
+        },
+        (error) => {}
+      );
   }
+  menuConvertor(model: CoreCpMainMenuModel[]) {
+    var retOut = new Array<MenuInfo>();
+    model.forEach((element) => {
+      var newRow: MenuInfo = {
+        path: element.AddressLink,
+        title: element.Title,
+        icon: element.Icon,
+        class: "",
+        badge: "",
+        badgeClass: "",
+        isExternalLink: false,
+        submenu: [],
+      };
+      if (newRow.icon == null) newRow.icon = "";
 
+      if (element.Children && element.Children.length > 0) {
+        newRow.class = "has-sub";
+        newRow.submenu = this.menuConvertor(element.Children);
+      }
+      retOut.push(newRow);
+    });
+    return retOut;
+  }
   ngAfterViewInit() {
-
     setTimeout(() => {
       if (this.config.layout.sidebar.collapsed != undefined) {
         if (this.config.layout.sidebar.collapsed === true) {
           this.expanded = false;
-          this.renderer.addClass(this.toggleIcon.nativeElement, 'ft-toggle-left');
-          this.renderer.removeClass(this.toggleIcon.nativeElement, 'ft-toggle-right');
+          this.renderer.addClass(
+            this.toggleIcon.nativeElement,
+            "ft-toggle-left"
+          );
+          this.renderer.removeClass(
+            this.toggleIcon.nativeElement,
+            "ft-toggle-right"
+          );
           this.nav_collapsed_open = true;
-        }
-        else if (this.config.layout.sidebar.collapsed === false) {
+        } else if (this.config.layout.sidebar.collapsed === false) {
           this.expanded = true;
-          this.renderer.removeClass(this.toggleIcon.nativeElement, 'ft-toggle-left');
-          this.renderer.addClass(this.toggleIcon.nativeElement, 'ft-toggle-right');
+          this.renderer.removeClass(
+            this.toggleIcon.nativeElement,
+            "ft-toggle-left"
+          );
+          this.renderer.addClass(
+            this.toggleIcon.nativeElement,
+            "ft-toggle-right"
+          );
           this.nav_collapsed_open = false;
         }
       }
     }, 0);
-
-
   }
 
   ngOnDestroy() {

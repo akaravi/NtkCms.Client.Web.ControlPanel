@@ -8,7 +8,7 @@ import { ApiServerConfigSiteBaseService } from '../_base/apiServerConfigSiteBase
 export class CoreConfigurationService extends ApiServerConfigSiteBaseService implements OnDestroy {
   subManager = new Subscription();
 
-  setModuleCotrolerUrl()
+  getModuleCotrolerUrl()
   {
      return 'CoreConfiguration';
   }

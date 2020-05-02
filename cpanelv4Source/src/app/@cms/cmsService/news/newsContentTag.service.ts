@@ -11,7 +11,7 @@ import { SearchTagModel } from 'app/@cms/cmsModels/base/searchModel';
 export class NewsContentTagService extends ApiServerBaseService implements OnDestroy {
   subManager = new Subscription();
 
-  setModuleCotrolerUrl()
+  getModuleCotrolerUrl()
   {
      return 'NewsContentTag';
   }
@@ -20,16 +20,15 @@ export class NewsContentTagService extends ApiServerBaseService implements OnDes
     this.subManager.unsubscribe();
   }
  
-  ServiceSearchTag(model: SearchTagModel) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceSearchTag<TOut>(model: SearchTagModel) {
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/SearchTag/", model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/SearchTag/", model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }

@@ -11,7 +11,7 @@ import { FilterModel } from 'app/@cms/cmsModels/base/filterModel';
 export class CoreModuleProcessService extends ApiServerBaseService implements OnDestroy {
   subManager = new Subscription();
 
-  setModuleCotrolerUrl()
+  getModuleCotrolerUrl()
   {
      return 'CoreModuleProcess';
   }
@@ -20,47 +20,44 @@ export class CoreModuleProcessService extends ApiServerBaseService implements On
     this.subManager.unsubscribe();
   }
  
-  ServiceAutoAdd() {
+  ServiceAutoAdd<TOut>() {
     
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/AutoAdd/", {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/AutoAdd/", {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceGetOneWithJsonFormatter( model: FilterModel) {
+  ServiceGetOneWithJsonFormatter<TOut>( model: FilterModel) {
     if (model == null) model = new FilterModel();
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/GetOneWithJsonFormatter/",model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/GetOneWithJsonFormatter/",model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
 
   
-  ServiceGetAllWithJsonFormatter( model: FilterModel) {
+  ServiceGetAllWithJsonFormatter<TOut>( model: FilterModel) {
     if (model == null) model = new FilterModel();
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/GetAllWithJsonFormatter/",model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/GetAllWithJsonFormatter/",model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }

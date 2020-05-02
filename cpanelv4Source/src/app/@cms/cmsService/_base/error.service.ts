@@ -19,31 +19,36 @@ constructor(   public http: HttpClient,
   public router: Router,
   public cmsAuthService: CmsAuthService,
   public publicHelper: PublicHelper) { }
-ServiceErrorApi(model: any) {
+
+  getHeaders() {
+    const token = this.publicHelper.CheckToken();
+    const headers = { Authorization: token };  
+    return headers;
+  }
+ServiceErrorApi<TOut>(model: any) {
   const token = this.publicHelper.CheckToken();
   const headers = { Authorization: token };
   return (
     this.http
       .post(this.baseUrl  + "/Add", {
-        headers: headers,
+        headers: this.getHeaders(),
       })
       // .pipe(
       //   retry(1),
       //   catchError(this.handleError)
       // );
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       )
   );
 }
-errorExcptionResultCheck(model: ErrorExcptionResult<any>) {
+errorExcptionResultCheck<TOut>(model: ErrorExcptionResult<TOut>) {
   if (model) {
     if (model.IsSuccess) {
       if (model.token && model.token !== "null") {
         localStorage.setItem("token", model.token);
-        localStorage.setItem("refreshToken", model.Item.refresh_token);
       }
     } else {
       this.alertService.error(model.ErrorMessage, "خطا در دریافت از سرور");

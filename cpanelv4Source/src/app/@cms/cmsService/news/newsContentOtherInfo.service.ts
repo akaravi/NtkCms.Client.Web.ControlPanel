@@ -8,7 +8,7 @@ import { ApiServerBaseService } from '../_base/apiServerBase.service';
 export class NewsContentOtherInfoService extends ApiServerBaseService implements OnDestroy {
   subManager = new Subscription();
 
-  setModuleCotrolerUrl()
+  getModuleCotrolerUrl()
   {
      return 'NewsContentOtherInfo';
   }

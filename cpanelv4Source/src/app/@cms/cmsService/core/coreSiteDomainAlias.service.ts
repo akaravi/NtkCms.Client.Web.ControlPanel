@@ -7,7 +7,7 @@ import { ApiServerBaseService } from "../_base/apiServerBase.service";
 export class CoreSiteDomainAliasService extends ApiServerBaseService
   implements OnDestroy {
   subManager = new Subscription();
-  setModuleCotrolerUrl() {
+  getModuleCotrolerUrl() {
     return "CoreSiteDomainAlias";
   }
 

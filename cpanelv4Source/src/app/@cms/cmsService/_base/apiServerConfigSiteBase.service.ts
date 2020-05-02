@@ -11,7 +11,7 @@ import { FilterModel } from "app/@cms/cmsModels/base/filterModel";
 import { PublicHelper } from "app/@cms/cmsCommon/helper/publicHelper";
 import { CmsAuthService } from "app/@cms/cmsService/core/auth.service";
 import { retry, catchError } from "rxjs/operators";
-import { cmsServerConfig } from 'environments/environment';
+import { cmsServerConfig } from "environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -32,16 +32,19 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
     this.subManager.unsubscribe();
   }
 
-  setModuleCotrolerUrl()
-  {
-  return "Empty";
+  getModuleCotrolerUrl() {
+    return "Empty";
   }
-  errorExcptionResultCheck(model: ErrorExcptionResult<any>) {
+  getHeaders() {
+    const token = this.publicHelper.CheckToken();
+    const headers = { Authorization: token };  
+    return headers;
+  }
+  errorExcptionResultCheck<TOut>(model: ErrorExcptionResult<TOut>) {
     if (model) {
       if (model.IsSuccess) {
         if (model.token && model.token !== "null") {
           localStorage.setItem("token", model.token);
-          localStorage.setItem("refreshToken", model.Item.refresh_token);
         }
       } else {
         this.alertService.error(model.ErrorMessage, "خطا در دریافت از سرور");
@@ -63,194 +66,169 @@ export class ApiServerConfigSiteBaseService implements OnDestroy {
     return throwError(errorMessage);
   }
 
-  ServiceSiteDefault() {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceSiteDefault<TOut>() {
+ 
     return (
       this.http
-        .get(this.baseUrl + this.setModuleCotrolerUrl() + "/SiteDefault", {
-          headers: headers,
+        .get(this.baseUrl + this.getModuleCotrolerUrl() + "/SiteDefault", {
+          headers: this.getHeaders(),
         })
         // .pipe(
         //   retry(1),
         //   catchError(this.handleError)
         // );
         .pipe(
-          map((ret: ErrorExcptionResult<any>) => {
-            return this.errorExcptionResultCheck(ret);
+          map((ret: ErrorExcptionResult<TOut>) => {
+            return this.errorExcptionResultCheck<TOut>(ret);
           }, catchError(this.handleError))
         )
     );
   }
-  ServiceSiteDefaultSave(
-    model: any,
-    
-  ) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceSiteDefaultSave<TOut>(model: any) {
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl(), model, { headers: headers })
+      .post(this.baseUrl + this.getModuleCotrolerUrl(), model, {
+        headers: this.getHeaders(),
+      })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceSiteStorage(
-    id: number,
-    
-  ) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceSiteStorage<TOut>(id: number) {
+ 
     return this.http
-      .get(this.baseUrl + this.setModuleCotrolerUrl() + "/SiteStorage/" + id, {
-        headers: headers,
+      .get(this.baseUrl + this.getModuleCotrolerUrl() + "/SiteStorage/" + id, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceSiteStorageSave(
-    id: number,
-    model: any,
-    
-  ) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceSiteStorageSave<TOut>(id: number, model: any) {
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/SiteStorage/" + id, model, {
-        headers: headers,
-      })
+      .post(
+        this.baseUrl + this.getModuleCotrolerUrl() + "/SiteStorage/" + id,
+        model,
+        {
+          headers: this.getHeaders(),
+        }
+      )
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
 
-  ServiceSite(id: number, ) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceSite<TOut>(id: number) {
+ 
     return this.http
-      .get(this.baseUrl + this.setModuleCotrolerUrl() + "/Site/" + id, {
-        headers: headers,
+      .get(this.baseUrl + this.getModuleCotrolerUrl() + "/Site/" + id, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceSiteSave(
-    id: number,
-    model: any,
-    
-  ) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceSiteSave<TOut>(id: number, model: any) {
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/Site/" + id, model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/Site/" + id, model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceSiteAccess(
-    id: number,
-    
-  ) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceSiteAccess<TOut>(id: number) {
+ 
     return this.http
-      .get(this.baseUrl + this.setModuleCotrolerUrl() + "/SiteAccess/" + id, {
-        headers: headers,
+      .get(this.baseUrl + this.getModuleCotrolerUrl() + "/SiteAccess/" + id, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceSiteAccessSave(
-    id: number,
-    model: any,
-    
-  ) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceSiteAccessSave<TOut>(id: number, model: any) {
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/SiteAccess/" + id, model, {
-        headers: headers,
-      })
+      .post(
+        this.baseUrl + this.getModuleCotrolerUrl() + "/SiteAccess/" + id,
+        model,
+        {
+          headers: this.getHeaders(),
+        }
+      )
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceSiteAccessDefault(
-    id: number,
-    
-  ) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceSiteAccessDefault<TOut>(id: number) {
+ 
     return this.http
-      .get(this.baseUrl + this.setModuleCotrolerUrl() + "/SiteAccessDefault/" + id, {
-        headers: headers,
-      })
+      .get(
+        this.baseUrl + this.getModuleCotrolerUrl() + "/SiteAccessDefault/" + id,
+        {
+          headers: this.getHeaders(),
+        }
+      )
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceSiteAccessDefaultSave(
-    model: any,
-    
-  ) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceSiteAccessDefaultSave<TOut>(model: any) {
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/SiteAccessDefault/", model, {
-        headers: headers,
-      })
+      .post(
+        this.baseUrl + this.getModuleCotrolerUrl() + "/SiteAccessDefault/",
+        model,
+        {
+          headers: this.getHeaders(),
+        }
+      )
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceAdminMain() {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceAdminMain<TOut>() {
+ 
     return this.http
-      .get(this.baseUrl + this.setModuleCotrolerUrl() + "/AdminMain/", {
-        headers: headers,
+      .get(this.baseUrl + this.getModuleCotrolerUrl() + "/AdminMain/", {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceAdminMainSave(
-    model: any,
-    
-  ) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceAdminMainSave<TOut>(model: any) {
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/AdminMain/", model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/AdminMain/", model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }

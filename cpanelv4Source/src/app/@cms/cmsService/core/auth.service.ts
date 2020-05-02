@@ -41,6 +41,11 @@ export class CmsAuthService implements OnDestroy {
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }
+  getHeaders() {
+    const token = this.publicHelper.CheckToken();
+    const headers = { Authorization: token };  
+    return headers;
+  }
   signupUser(model: any) {
     return this.http.post(this.baseUrl + 'signup', model).pipe(
       map((ret: ErrorExcptionResult<TokenInfoModel>) => {
@@ -79,9 +84,8 @@ export class CmsAuthService implements OnDestroy {
   }
 
   RenewToken(model: AuthRenewTokenModel) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
-    return this.http.post(this.baseUrl + 'renewToken', model, { headers: headers }).pipe(
+ 
+    return this.http.post(this.baseUrl + 'renewToken', model, { headers: this.getHeaders() }).pipe(
       map((ret: ErrorExcptionResult<TokenInfoModel>) => {
         if (ret) {
           if (ret.IsSuccess) {
@@ -135,11 +139,10 @@ export class CmsAuthService implements OnDestroy {
       })
     );
   }
-  logout(model : AuthUserSignOutModel=new AuthUserSignOutModel()) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
-    return this.http.post(this.baseUrl + 'signOut',model, { headers: headers }).pipe(
-      map((ret: ErrorExcptionResult<any>) => {
+  logout<TOut>(model : AuthUserSignOutModel=new AuthUserSignOutModel()) {
+ 
+    return this.http.post(this.baseUrl + 'signOut',model, { headers: this.getHeaders() }).pipe(
+      map((ret: ErrorExcptionResult<TOut>) => {
         if (ret) {
           this.token = null;
           localStorage.removeItem('token');
@@ -154,12 +157,11 @@ export class CmsAuthService implements OnDestroy {
     );
   }
 
-  existToken(model: FilterModel) {
+  existToken<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
-    return this.http.post(this.baseUrl + 'existToken',model, { headers: headers }).pipe(
-      map((ret: ErrorExcptionResult<any>) => {
+ 
+    return this.http.post(this.baseUrl + 'existToken',model, { headers: this.getHeaders() }).pipe(
+      map((ret: ErrorExcptionResult<TOut>) => {
         if (ret) {
         
         

@@ -23,7 +23,7 @@ export class CoreSiteAddComponent implements OnInit {
   filteModel = new FilterModel();
   dataModel: ErrorExcptionResult<any> = new ErrorExcptionResult<any>();
   dataModelLoad = false;
-  dataModelDomains = [{ Title: "", Domain: "" }];
+  dataModelDomains = [];
   dataModelModule: ErrorExcptionResult<any>;
   dataModelCategory: ErrorExcptionResult<any>;
 

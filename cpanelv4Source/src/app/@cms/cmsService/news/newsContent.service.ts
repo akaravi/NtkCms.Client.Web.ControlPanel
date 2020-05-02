@@ -11,7 +11,7 @@ import { catchError, map } from 'rxjs/operators';
 export class NewsContentService extends ApiServerBaseService implements OnDestroy {
   subManager = new Subscription();
 
-  setModuleCotrolerUrl()
+  getModuleCotrolerUrl()
   {
      return 'NewsContent';
   }
@@ -20,17 +20,16 @@ export class NewsContentService extends ApiServerBaseService implements OnDestro
     this.subManager.unsubscribe();
   }
  
-  ServiceGetAllWithSimilarsId(Id: number ,model: FilterModel) {
+  ServiceGetAllWithSimilarsId<TOut>(Id: number ,model: FilterModel) {
     if (model == null) model = new FilterModel();
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/GetAllWithSimilarsId/"+Id, model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/GetAllWithSimilarsId/"+Id, model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }

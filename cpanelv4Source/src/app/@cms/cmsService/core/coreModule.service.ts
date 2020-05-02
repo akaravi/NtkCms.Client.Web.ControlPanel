@@ -11,7 +11,7 @@ import { FilterModel } from 'app/@cms/cmsModels/base/filterModel';
 export class CoreModuleService extends ApiServerBaseService implements OnDestroy {
   subManager = new Subscription();
 
-  setModuleCotrolerUrl()
+  getModuleCotrolerUrl()
   {
     return 'CoreModule';
   }
@@ -19,86 +19,80 @@ export class CoreModuleService extends ApiServerBaseService implements OnDestroy
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }
-  ServiceAutoAdd() {
+  ServiceAutoAdd<TOut>() {
     
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/AutoAdd/", {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/AutoAdd/", {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceConfig(MoudleClassName:string) {
+  ServiceConfig<TOut>(MoudleClassName:string) {
     
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/Config/",MoudleClassName, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/Config/",MoudleClassName, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceGetOneWithModuleConfig(model: FilterModel) {
+  ServiceGetOneWithModuleConfig<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/GetOneWithModuleConfig/", model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/GetOneWithModuleConfig/", model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceGetViewModelWithModuleConfig(id:number) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceGetViewModelWithModuleConfig<TOut>(id:number) {
+ 
     return this.http
-      .get(this.baseUrl + this.setModuleCotrolerUrl() + "/GetViewModelWithModuleConfig/"+id, {
-        headers: headers,
+      .get(this.baseUrl + this.getModuleCotrolerUrl() + "/GetViewModelWithModuleConfig/"+id, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceGetAllModuleName(model: FilterModel) {
+  ServiceGetAllModuleName<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/GetAllModuleName/", model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/GetAllModuleName/", model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceGetAllByCategorySiteId(CategorySiteId: number ,model: FilterModel) {
+  ServiceGetAllByCategorySiteId<TOut>(CategorySiteId: number ,model: FilterModel) {
     if (model == null) model = new FilterModel();
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/GetAllByCategorySiteId/"+CategorySiteId, model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/GetAllByCategorySiteId/"+CategorySiteId, model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }

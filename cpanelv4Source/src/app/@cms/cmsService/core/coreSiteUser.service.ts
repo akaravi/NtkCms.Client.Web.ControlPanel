@@ -10,7 +10,7 @@ import { catchError,map } from 'rxjs/operators';
 export class CoreSiteUserService extends ApiServerBaseService
   implements OnDestroy {
   subManager = new Subscription();
-  setModuleCotrolerUrl() {
+  getModuleCotrolerUrl() {
     return "CoreSiteUser";
   }
 
@@ -18,30 +18,28 @@ export class CoreSiteUserService extends ApiServerBaseService
     this.subManager.unsubscribe();
   }
 
-  ServiceGetAllSiteUser(model: FilterModel) {
+  ServiceGetAllSiteUser<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/GetAllSiteUser", model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/GetAllSiteUser", model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceGetCurrentSiteUsers() {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceGetCurrentSiteUsers<TOut>() {
+ 
     return this.http
-      .get(this.baseUrl + this.setModuleCotrolerUrl() + "/GetCurrentSiteUsers",  {
-        headers: headers,
+      .get(this.baseUrl + this.getModuleCotrolerUrl() + "/GetCurrentSiteUsers",  {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }

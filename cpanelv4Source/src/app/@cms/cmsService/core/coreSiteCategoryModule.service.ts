@@ -8,7 +8,7 @@ import { ApiServerBaseService } from '../_base/apiServerBase.service';
 })
 export class CoreSiteCategoryModuleService extends ApiServerBaseService implements OnDestroy {
   subManager = new Subscription();
-  setModuleCotrolerUrl()
+  getModuleCotrolerUrl()
   {
    return 'CoreSiteCategoryCmsModule';
   }

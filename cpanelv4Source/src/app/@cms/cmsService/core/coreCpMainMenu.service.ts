@@ -10,7 +10,7 @@ import { catchError, map } from "rxjs/operators";
 export class CoreCpMainMenuService extends ApiServerBaseService
   implements OnDestroy {
   subManager = new Subscription();
-  setModuleCotrolerUrl() {
+  getModuleCotrolerUrl() {
     return "CoreCpMainMenu";
   }
 
@@ -18,30 +18,28 @@ export class CoreCpMainMenuService extends ApiServerBaseService
     this.subManager.unsubscribe();
   }
 
-  ServiceGetAllMenu(model: FilterModel) {
+  ServiceGetAllMenu<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/GetAllMenu", model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/GetAllMenu", model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceEditStep(model: any) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceEditStep<TOut>(model: any) {
+ 
     return this.http
-      .put(this.baseUrl + this.setModuleCotrolerUrl() + "/EditStep", model, {
-        headers: headers,
+      .put(this.baseUrl + this.getModuleCotrolerUrl() + "/EditStep", model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }

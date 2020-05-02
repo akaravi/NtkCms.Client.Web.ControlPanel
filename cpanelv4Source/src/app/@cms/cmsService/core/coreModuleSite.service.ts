@@ -11,7 +11,7 @@ import { map, catchError } from "rxjs/operators";
 export class CoreModuleSiteService extends ApiServerBaseService implements OnDestroy {
   subManager = new Subscription();
 
-  setModuleCotrolerUrl()
+  getModuleCotrolerUrl()
   {
      return 'CoreModuleSite';
   }
@@ -20,43 +20,40 @@ export class CoreModuleSiteService extends ApiServerBaseService implements OnDes
     this.subManager.unsubscribe();
   }
  
-  ServiceConfigSite(model: any) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceConfigSite<TOut>(model: any) {
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/ConfigSite", model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/ConfigSite", model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceEditConfigSite(model: any) {
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+  ServiceEditConfigSite<TOut>(model: any) {
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/EditConfigSite", model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/EditConfigSite", model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
-  ServiceGetAllById(id: number,  model: FilterModel) {
+  ServiceGetAllById<TOut>(id: number,  model: FilterModel) {
     if (model == null) model = new FilterModel();
-    const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };
+ 
     return this.http
-      .post(this.baseUrl + this.setModuleCotrolerUrl() + "/GetAll/"+id, model, {
-        headers: headers,
+      .post(this.baseUrl + this.getModuleCotrolerUrl() + "/GetAll/"+id, model, {
+        headers: this.getHeaders(),
       })
       .pipe(
-        map((ret: ErrorExcptionResult<any>) => {
-          return this.errorExcptionResultCheck(ret);
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         }, catchError(this.handleError))
       );
   }
