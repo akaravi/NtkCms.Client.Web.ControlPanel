@@ -29,7 +29,6 @@ import { CmsFullLayoutComponent } from './@cms/layouts/full/cmsFull-layout.compo
 import { CmsContentLayoutComponent } from './@cms/layouts/content/cmsContent-layout.component';
 import { CmsAuthService } from './@cms/cmsService/core/auth.service';
 import { CmsAuthGuard } from './@cms/cmsService/core/auth.guard.service';
-import { PublicHelper } from './@cms/cmsCommon/helper/publicHelper';
 import { CmsSharedModule } from './@cms/shared/cmsShared.module';
 import { ThemeSharedModule } from './@theme/shared/themeShared.module';
 

@@ -7,11 +7,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 //COMPONENTS
-//import { FooterComponent } from './footer/footer.component';
-//import { NavbarComponent } from './navbar/navbar.component';
-//import { SidebarComponent } from './sidebar/sidebar.component';
-//import { CustomizerComponent } from './customizer/customizer.component';
-//import { NotificationSidebarComponent } from './notification-sidebar/notification-sidebar.component';
+import { CmsFooterComponent } from './footer/footer.component';
+import { CmsNavbarComponent } from './navbar/navbar.component';
+//import { CmsSidebarComponent } from './sidebar/sidebar.component';
+import { CmsCustomizerComponent } from './customizer/customizer.component';
+import { CmsNotificationSidebarComponent } from './notification-sidebar/notification-sidebar.component';
 
 //DIRECTIVES
 //import { ToggleFullscreenDirective } from './directives/toggle-fullscreen.directive';
@@ -26,11 +26,11 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
         CommonModule,
         NgbModule,
         TranslateModule,
-        //FooterComponent,
-        //NavbarComponent,
-        //SidebarComponent,
-        //CustomizerComponent,
-        //NotificationSidebarComponent,
+        CmsFooterComponent,
+        CmsNavbarComponent,
+        //CmsSidebarComponent,
+        CmsCustomizerComponent,
+        CmsNotificationSidebarComponent,
         //ToggleFullscreenDirective,
         //SidebarDirective,
 
@@ -43,11 +43,11 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
         PerfectScrollbarModule
     ],
     declarations: [
-        //FooterComponent,
-        //NavbarComponent,
-        //SidebarComponent,
-        //CustomizerComponent,
-        //NotificationSidebarComponent,
+        CmsFooterComponent,
+        CmsNavbarComponent,
+        //CmsSidebarComponent,
+        CmsCustomizerComponent,
+        CmsNotificationSidebarComponent,
         //ToggleFullscreenDirective,
         //SidebarDirective,
         //SidebarLinkDirective,

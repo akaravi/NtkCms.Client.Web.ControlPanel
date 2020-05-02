@@ -6,7 +6,7 @@ import { Component, HostBinding } from '@angular/core';
     styleUrls: ['./footer.component.scss']
 })
 
-export class FooterComponent{
+export class CmsFooterComponent{
     //Variables
     currentDate : Date = new Date();
 }
