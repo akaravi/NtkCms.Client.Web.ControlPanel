@@ -159,7 +159,7 @@ export class ApiServerBaseService implements OnDestroy {
         })
       );
   }
-  ServicePostCount<TOut>(model: FilterModel) {
+  ServiceGetCount<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
 
     return this.http
@@ -254,25 +254,7 @@ export class ApiServerBaseService implements OnDestroy {
         })
       );
   }
-  ServiceDeleteFilterModel<TOut>(model: FilterModel) {
-    if (model == null) model = new FilterModel();
-
-    return this.http
-      .post(
-        this.baseUrl + this.getModuleCotrolerUrl() + "/DeleteFilterModel",
-        model,
-        {
-          headers: this.getHeaders(),
-        }
-      )
-      .pipe(
-        retry(this.configApiRetry),
-        catchError(this.handleError),
-        map((ret: ErrorExcptionResult<TOut>) => {
-          return this.errorExcptionResultCheck<TOut>(ret);
-        })
-      );
-  }
+  
   ServiceDeleteList<TOut>(model: Array<any>) {
     return this.http
       .post(this.baseUrl + this.getModuleCotrolerUrl() + "/DeleteList", model, {
