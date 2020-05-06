@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import * as fromStore from '../../../../cmsStore';
 import { ToastrService } from 'ngx-toastr';
 import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
+import { AuthUserSignInModel } from 'app/@cms/cmsModels/core/authModel';
 
 @Component({
   selector: 'app-cms-login',
@@ -16,7 +17,7 @@ import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
 export class LoginComponent implements OnInit, OnDestroy {
   @ViewChild('f', { static: false }) loginForm: NgForm;
   subManager = new Subscription();
-  model: any = {};
+  model: AuthUserSignInModel = new AuthUserSignInModel();
   returnUrl: any = '';
 
   constructor(
@@ -28,8 +29,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private publicHelper: PublicHelper
   ) {}
   ngOnInit() {
-    this.model.isremember = false;
-    this.model.username = 'amin@gmail.com';
+    this.model.IsRemember = false;
+    this.model.Email = 'amin@gmail.com';
     
     
     this.subManager.add(
@@ -45,7 +46,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   // On submit button click
   onSubmit() {
     this.subManager.add(
-      this.cmsAuthService.signinUser(this.model).subscribe(
+      this.cmsAuthService.ServiceSigninUser(this.model).subscribe(
         (next) => {
           if (next.IsSuccess) {
             this.store.dispatch(new fromStore.InitHub());

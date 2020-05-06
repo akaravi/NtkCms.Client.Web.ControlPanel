@@ -43,7 +43,7 @@ export class ForgotPasswordComponent implements OnInit, OnDestroy  {
   // On submit click, reset form fields
   onSubmit() {
     this.subManager.add(
-      this.authService.forgetPassword(this.model).subscribe(
+      this.authService.ServiceForgetPassword(this.model).subscribe(
         (next) => {
           if (next.IsSuccess) {
             this.store.dispatch(new fromStore.InitHub());

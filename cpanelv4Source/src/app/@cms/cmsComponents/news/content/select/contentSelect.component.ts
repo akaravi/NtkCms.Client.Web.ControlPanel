@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-newsContentSelect',
-  templateUrl: './newsContentSelect.component.html',
-  styleUrls: ['./newsContentSelect.component.scss']
+  selector: 'app-news-content-select',
+  templateUrl: './contentSelect.component.html',
+  styleUrls: ['./contentSelect.component.scss']
 })
 export class NewsContentSelectComponent implements OnInit {
 

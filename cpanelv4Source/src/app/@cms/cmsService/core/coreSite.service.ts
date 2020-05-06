@@ -23,7 +23,7 @@ export class CoreSiteService extends ApiServerBaseService implements OnDestroy {
   }
  
   ServiceSelectSite(model: AuthRenewTokenModel) {
-    return this.cmsAuthService.RenewToken(model);
+    return this.cmsAuthService.ServiceRenewToken(model);
   }
 
   ServiceWebScreenshot<TOut>(model: any) {

@@ -9,7 +9,7 @@ import { TokenInfoModel } from 'app/@cms/cmsModels/base/tokenInfoModel';
 import { Subscription } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
-import { AuthRenewTokenModel, AuthUserSignOutModel } from 'app/@cms/cmsModels/core/authModel';
+import { AuthRenewTokenModel, AuthUserSignOutModel, AuthUserSignInModel, AuthUserSignUpModel, AuthUserChangePasswordModel } from 'app/@cms/cmsModels/core/authModel';
 import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
 import { cmsServerConfig } from 'environments/environment';
 import { FilterModel } from 'app/@cms/cmsModels/base/filterModel';
@@ -46,7 +46,7 @@ export class CmsAuthService implements OnDestroy {
     const headers = { Authorization: token };  
     return headers;
   }
-  signupUser(model: any) {
+  ServiceSignupUser(model: AuthUserSignUpModel) {
     return this.http.post(this.baseUrl + 'signup', model).pipe(
       map((ret: ErrorExcptionResult<TokenInfoModel>) => {
         if (ret) {
@@ -61,7 +61,7 @@ export class CmsAuthService implements OnDestroy {
     );
   }
 
-  signinUser(model: any) {
+  ServiceSigninUser(model: AuthUserSignInModel) {
     return this.http.post(this.baseUrl + 'signin', model).pipe(
       map((ret: ErrorExcptionResult<TokenInfoModel>) => {
         if (ret) {
@@ -83,7 +83,7 @@ export class CmsAuthService implements OnDestroy {
     );
   }
 
-  RenewToken(model: AuthRenewTokenModel) {
+  ServiceRenewToken(model: AuthRenewTokenModel) {
  
     return this.http.post(this.baseUrl + 'renewToken', model, { headers: this.getHeaders() }).pipe(
       map((ret: ErrorExcptionResult<TokenInfoModel>) => {
@@ -105,7 +105,7 @@ export class CmsAuthService implements OnDestroy {
       })
     );
   }
-  changePassword(model: any) {
+  ServiceChangePassword(model: any) {
     return this.http.post(this.baseUrl + 'changePassword', model).pipe(
       map((ret: ErrorExcptionResult<TokenInfoModel>) => {
         if (ret) {
@@ -122,7 +122,7 @@ export class CmsAuthService implements OnDestroy {
       })
     );
   }
-  forgetPassword(model: any) {
+  ServiceForgetPassword(model: AuthUserChangePasswordModel) {
     return this.http.post(this.baseUrl + 'forgetPassword', model).pipe(
       map((ret: ErrorExcptionResult<TokenInfoModel>) => {
         if (ret) {
@@ -139,7 +139,7 @@ export class CmsAuthService implements OnDestroy {
       })
     );
   }
-  logout<TOut>(model : AuthUserSignOutModel=new AuthUserSignOutModel()) {
+  ServiceLogout<TOut>(model : AuthUserSignOutModel=new AuthUserSignOutModel()) {
  
     return this.http.post(this.baseUrl + 'signOut',model, { headers: this.getHeaders() }).pipe(
       map((ret: ErrorExcptionResult<TOut>) => {
@@ -157,7 +157,7 @@ export class CmsAuthService implements OnDestroy {
     );
   }
 
-  existToken<TOut>(model: FilterModel) {
+  ServiceExistToken<TOut>(model: FilterModel) {
     if (model == null) model = new FilterModel();
  
     return this.http.post(this.baseUrl + 'existToken',model, { headers: this.getHeaders() }).pipe(

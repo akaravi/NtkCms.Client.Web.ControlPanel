@@ -25,8 +25,8 @@ import { PersianCalendarService } from 'app/@cms/cmsCommon/pipe/PersianDatePipe/
 
 @Component({
   selector: "app-news-content-List",
-  templateUrl: "./newsContentList.component.html",
-  styleUrls: ["./newsContentList.component.scss"],
+  templateUrl: "./contentList.component.html",
+  styleUrls: ["./contentList.component.scss"],
 })
 export class NewsContentListComponent implements OnInit {
   filteModelConetnt = new FilterModel();
@@ -104,8 +104,8 @@ export class NewsContentListComponent implements OnInit {
   constructor(
     private alertService: ToastrService,
     private publicHelper: PublicHelper,
-    private newsContentService: NewsContentService,
-    private newsCategoryService: NewsCategoryService,
+    private contentService: NewsContentService,
+    private categoryService: NewsCategoryService,
   ) {}
   LocaleDate(model)
 {
@@ -120,7 +120,7 @@ export class NewsContentListComponent implements OnInit {
   DataGetAllConetnt() {
     this.tableContentSelected = [];
     this.tableContentloading = true;
-    this.newsContentService.ServiceGetAll(this.filteModelConetnt).subscribe(
+    this.contentService.ServiceGetAll(this.filteModelConetnt).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.dataModelConetnt = next;
@@ -137,7 +137,7 @@ export class NewsContentListComponent implements OnInit {
     );
   }
   DataGetAllCategory() {
-    this.newsCategoryService.ServiceGetAll(this.filteModelCategory).subscribe(
+    this.categoryService.ServiceGetAll(this.filteModelCategory).subscribe(
       (next) => {
         if (next.IsSuccess) {
           this.dataModelCategory = next;

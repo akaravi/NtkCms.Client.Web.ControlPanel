@@ -25,7 +25,7 @@
     login.verifyLogin = function () {
         login.loginRequest = true;
         login.loginBusyIndicator.isActive = true;
-        ajax.call(cmsServerConfig.configApiServerPath+"Auth/signIn", { 'username': login.usernameData, 'password': login.passwordData, 'lang': login.language }, "POST").success(function (response) {
+        ajax.call(cmsServerConfig.configApiServerPath+"Auth/signIn", { 'email': login.emailData, 'password': login.passwordData, 'lang': login.language }, "POST").success(function (response) {
             rashaErManage.checkAction(response);
             login.loginRequest = false;
             login.loginBusyIndicator.isActive = false;
@@ -39,7 +39,7 @@
         }).error(function (data, errCode, c, d) {
             login.loginRequest = false;
             login.loginBusyIndicator.isActive = false;
-            login.usernameData ="";
+            login.emailData ="";
             login.passwordData ="";
             //login.init();
             rashaErManage.checkAction(data, errCode);

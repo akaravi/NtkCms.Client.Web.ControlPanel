@@ -98,7 +98,7 @@ export class CmsNavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
   ActionLogOut(){
-      this.cmsAuthService.logout().subscribe(
+      this.cmsAuthService.ServiceLogout().subscribe(
         (next) => {
           if (next.IsSuccess) {
           

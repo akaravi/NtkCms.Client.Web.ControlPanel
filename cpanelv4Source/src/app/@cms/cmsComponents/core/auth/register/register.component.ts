@@ -8,6 +8,7 @@ import * as fromStore from '../../../../cmsStore';
 import { ToastrService } from 'ngx-toastr';
 import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
 import { cmsUiConfig } from 'environments/environment';
+import { AuthUserSignUpModel } from 'app/@cms/cmsModels/core/authModel';
 
 @Component({
     selector: 'app-cms-register-page',
@@ -18,7 +19,7 @@ import { cmsUiConfig } from 'environments/environment';
 export class RegisterComponent implements OnInit, OnDestroy {
     @ViewChild('f', {static: false}) registerForm: NgForm;
   subManager = new Subscription();
-  model: any = {};
+  model: AuthUserSignUpModel =new AuthUserSignUpModel();
   returnUrl: any = '';
   _cmsUiConfig=cmsUiConfig;
   constructor(
@@ -45,7 +46,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     //  On submit click, reset field value
     onSubmit() {
         this.subManager.add(
-          this.authService.signupUser(this.model).subscribe(
+          this.authService.ServiceSignupUser(this.model).subscribe(
             (next) => {
               if (next.IsSuccess) {
                 this.store.dispatch(new fromStore.InitHub());

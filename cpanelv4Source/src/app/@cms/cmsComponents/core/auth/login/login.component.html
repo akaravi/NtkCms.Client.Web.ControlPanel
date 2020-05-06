@@ -18,14 +18,14 @@
                   </p>
                   <form #loginForm="ngForm"  (ngSubmit)="onSubmit()" aria-labelledby="title">
 
-                    <input [(ngModel)]="model.username" type="text" class="form-control mb-3" placeholder="نام کاربری" name="username"
+                    <input [(ngModel)]="model.Email" type="text" class="form-control mb-3" placeholder="نام کاربری" name="emial"
                       />
-                    <input  [(ngModel)]="model.password" type="password" class="form-control mb-3" placeholder="رمز عبور" name="password"
+                    <input  [(ngModel)]="model.Password" type="password" class="form-control mb-3" placeholder="رمز عبور" name="password"
                       />
                     <div class="d-flex justify-content-between mt-2">
                       <div class="remember-me">
                         <div class="custom-control custom-checkbox custom-control-inline mb-3">
-                          <input type="checkbox" id="isremember" name="isremember" [(ngModel)]="model.isremember"
+                          <input type="checkbox" id="isremember" name="isremember" [(ngModel)]="model.IsRemember"
                             class="custom-control-input" />
                           <label class="custom-control-label" for="isremember">
                             مرا به خاطر بسپار

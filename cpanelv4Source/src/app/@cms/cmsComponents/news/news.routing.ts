@@ -8,11 +8,11 @@ const routes: Routes = [
     children: [
       {
         path: 'content',
-        loadChildren: () => import('../news/content/newsContent.module').then(m => m.NewsContentModule),
+        loadChildren: () => import('./content/content.module').then(m => m.NewsContentModule),
       },
       {
         path: 'category',
-        loadChildren: () => import('../news/category/newsCategory.module').then(m => m.NewsCategoryModule),
+        loadChildren: () => import('./category/category.module').then(m => m.NewsCategoryModule),
       },
     ]
   }
