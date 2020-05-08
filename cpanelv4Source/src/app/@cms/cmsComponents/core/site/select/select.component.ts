@@ -7,6 +7,7 @@ import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
 import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
 import { AuthRenewTokenModel } from 'app/@cms/cmsModels/core/authModel';
 import { Router } from '@angular/router';
+import { cmsUiConfig } from 'environments/environment';
 @Component({
   selector: 'app-cms-site-select',
   templateUrl: './select.component.html',
@@ -57,7 +58,7 @@ export class CoreSiteSelectComponent implements OnInit, OnDestroy {
       (next) => {
         if (next.IsSuccess) {
 
-          this.router.navigate(['/cms/dashboard/dashboard1']);
+          this.router.navigate([cmsUiConfig.Pathdashboard]);
         }
       },
       (error) => {

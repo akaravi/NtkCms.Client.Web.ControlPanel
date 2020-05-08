@@ -56,13 +56,17 @@ export class ApiServerBaseService implements OnDestroy {
   }
   handleError(error) {
     let errorMessage = "";
+    if(error.status==401){
+      this.router.navigate([cmsUiConfig.Pathlogin]);
+    }
+
     if (error.error instanceof ErrorEvent) {
       // client-side error
       errorMessage = `Error: ${error.error.message}`;
     } else {
       // server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-      if (error.status == "401") {
+      if (error.status == 401 ||error.status == "401") {
         this.router.navigate([cmsUiConfig.Pathlogin]);
       }
     }

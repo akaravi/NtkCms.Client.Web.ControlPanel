@@ -101,6 +101,9 @@ export class NewsContentListComponent implements OnInit {
     //scrollContainer: document.documentElement, // HTML
     rtl: true,
   };
+  optionsCategorySelect: any={
+    onActionSelect:(x) => this.onActionCategorySelect(x)
+  }
   constructor(
     private alertService: ToastrService,
     private publicHelper: PublicHelper,
