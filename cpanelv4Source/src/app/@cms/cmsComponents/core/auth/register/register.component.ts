@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import * as fromStore from '../../../../cmsStore';
 import { ToastrService } from 'ngx-toastr';
 import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
-import { cmsUiConfig } from 'environments/environment';
+import { environment } from 'environments/environment';
 import { AuthUserSignUpModel } from 'app/@cms/cmsModels/core/authModel';
 
 @Component({
@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   subManager = new Subscription();
   model: AuthUserSignUpModel =new AuthUserSignUpModel();
   returnUrl: any = '';
-  _cmsUiConfig=cmsUiConfig;
+  _cmsUiConfig=environment.cmsUiConfig;
   constructor(
     private router: Router,
     private route: ActivatedRoute,

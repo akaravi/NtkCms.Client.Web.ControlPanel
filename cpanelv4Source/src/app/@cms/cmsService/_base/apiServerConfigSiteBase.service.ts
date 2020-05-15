@@ -11,15 +11,15 @@ import { FilterModel } from "app/@cms/cmsModels/base/filterModel";
 import { PublicHelper } from "app/@cms/cmsCommon/helper/publicHelper";
 import { CmsAuthService } from "app/@cms/cmsService/core/auth.service";
 import { retry, catchError } from "rxjs/operators";
-import { cmsServerConfig } from "environments/environment";
+import { environment } from "environments/environment";
 
 @Injectable({
   providedIn: "root",
 })
 export class ApiServerConfigSiteBaseService implements OnDestroy {
   subManager = new Subscription();
-  public baseUrl = cmsServerConfig.configApiServerPath;
-  public configApiRetry = cmsServerConfig.configApiRetry;
+  public baseUrl = environment.cmsServerConfig.configApiServerPath;
+  public configApiRetry =environment. cmsServerConfig.configApiRetry;
 
   constructor(
     public http: HttpClient,

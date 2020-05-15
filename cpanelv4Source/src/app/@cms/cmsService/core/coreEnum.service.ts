@@ -5,13 +5,13 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
 import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
-import { cmsServerConfig } from 'environments/environment';
+import { environment } from 'environments/environment';
 import { MenuPlaceType } from 'app/@cms/cmsModels/Enums/menuPlaceType.enum';
 
 @Injectable()
 export class CoreEnumService implements OnDestroy {
   subManager = new Subscription();
-  baseUrl = cmsServerConfig.configApiServerPath + 'CoreEnum/';
+  baseUrl = environment.cmsServerConfig.configApiServerPath + 'CoreEnum/';
 
   constructor(
     private http: HttpClient,

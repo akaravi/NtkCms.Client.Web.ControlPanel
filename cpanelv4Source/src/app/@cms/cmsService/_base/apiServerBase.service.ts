@@ -11,15 +11,15 @@ import { FilterModel } from "app/@cms/cmsModels/base/filterModel";
 import { PublicHelper } from "app/@cms/cmsCommon/helper/publicHelper";
 import { CmsAuthService } from "app/@cms/cmsService/core/auth.service";
 import { retry, catchError } from "rxjs/operators";
-import { cmsServerConfig, cmsUiConfig } from "environments/environment";
+import { environment } from "environments/environment";
 
 @Injectable({
   providedIn: "root",
 })
 export class ApiServerBaseService implements OnDestroy {
   subManager = new Subscription();
-  public baseUrl = cmsServerConfig.configApiServerPath;
-  public configApiRetry = cmsServerConfig.configApiRetry;
+  public baseUrl =environment. cmsServerConfig.configApiServerPath;
+  public configApiRetry = environment.cmsServerConfig.configApiRetry;
   constructor(
     public http: HttpClient,
     public alertService: ToastrService,
@@ -57,7 +57,7 @@ export class ApiServerBaseService implements OnDestroy {
   handleError(error) {
     let errorMessage = "";
     if(error.status==401){
-      this.router.navigate([cmsUiConfig.Pathlogin]);
+      this.router.navigate([environment.cmsUiConfig.Pathlogin]);
     }
 
     if (error.error instanceof ErrorEvent) {
@@ -67,7 +67,7 @@ export class ApiServerBaseService implements OnDestroy {
       // server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
       if (error.status == 401 ||error.status == "401") {
-        this.router.navigate([cmsUiConfig.Pathlogin]);
+        this.router.navigate([environment.cmsUiConfig.Pathlogin]);
       }
     }
     window.alert(errorMessage);

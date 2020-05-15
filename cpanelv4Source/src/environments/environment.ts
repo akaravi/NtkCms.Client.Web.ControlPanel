@@ -4,23 +4,21 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+   cmsServerConfig : {
+    configApiRetry:1,
+    configApiServerPath: 'https://apicms.ir/api/v1/',
+    //configApiServerPath: 'http://localhost:2390/api/v1/',
+    configMvcServerPath: 'https://oco.ir',
+    configCpanelImages: '/cpanelv1/images/',
+    configPathFileByIdAndName: 'https://oco.ir/files/',
+    configRouteThumbnails: 'https://oco.ir/imageThumbnails/',
+    configRouteUploadFileContent: 'https://apicms.ir/api/v1/FileContent/upload/',
+  },
+   cmsUiConfig : {
+    Pathlogin: '/auth/login',
+    PathRegistery: '/auth/registery',
+    Pathdashboard: '/dashboard/dashboard1',
   
+  }
 };
-export const cmsServerConfig = {
-  configApiRetry:1,
-  configApiServerPath: 'https://apicms.ir/api/v1/',
-  //configApiServerPath: 'http://localhost:2390/api/v1/',
-  configMvcServerPath: 'https://oco.ir',
-  configCpanelImages: '/cpanelv1/images/',
-  configPathFileByIdAndName: 'https://oco.ir/files/',
-  configRouteThumbnails: 'https://oco.ir/imageThumbnails/',
-  configRouteUploadFileContent: 'https://apicms.ir/api/v1/FileContent/upload/',
-};
-export const cmsUiConfig = {
-  Pathlogin: '/auth/login',
-  PathRegistery: '/auth/registery',
-  Pathdashboard: '/dashboard/dashboard1',
-
-};
-

@@ -6,15 +6,15 @@ import { CmsAuthService } from "../core/auth.service";
 import { PublicHelper } from "app/@cms/cmsCommon/helper/publicHelper";
 import { ErrorExcptionResult } from "app/@cms/cmsModels/base/errorExcptionResult";
 import { catchError, map, retry } from "rxjs/operators";
-import { cmsServerConfig } from "environments/environment";
+import { environment } from "environments/environment";
 import { throwError } from "rxjs";
 
 @Injectable({
   providedIn: "root",
 })
 export class ErrorService {
-  public baseUrl = cmsServerConfig.configApiServerPath + "ErrorApi/";
-  public configApiRetry = cmsServerConfig.configApiRetry;
+  public baseUrl =environment. cmsServerConfig.configApiServerPath + "ErrorApi/";
+  public configApiRetry =environment. cmsServerConfig.configApiRetry;
 
   constructor(
     public http: HttpClient,

@@ -6,7 +6,6 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { CoreAuthRoutes } from './auth.routing';
 import { ForgotPasswordComponent } from './forgotPassword/forgotPassword.component';
-import { cmsUiConfig } from 'environments/environment';
 
 
 @NgModule({

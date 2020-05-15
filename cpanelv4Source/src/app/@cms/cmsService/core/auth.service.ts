@@ -11,7 +11,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
 import { AuthRenewTokenModel, AuthUserSignOutModel, AuthUserSignInModel, AuthUserSignUpModel, AuthUserChangePasswordModel } from 'app/@cms/cmsModels/core/authModel';
 import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
-import { cmsServerConfig } from 'environments/environment';
+import { environment } from 'environments/environment';
 import { FilterModel } from 'app/@cms/cmsModels/base/filterModel';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class CmsAuthService implements OnDestroy {
   subManager = new Subscription();
 
   token: string;
-  baseUrl = cmsServerConfig.configApiServerPath + 'auth/';
+  baseUrl = environment.cmsServerConfig.configApiServerPath + 'auth/';
   jwtHelper = new JwtHelperService();
   userRoles: string[] = [];
   userName = '';
