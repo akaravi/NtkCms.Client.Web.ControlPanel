@@ -8,6 +8,7 @@ import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult
 import { AuthRenewTokenModel } from 'app/@cms/cmsModels/core/authModel';
 import { Router } from '@angular/router';
 import { environment } from 'environments/environment';
+import { CoreCpMainMenuService } from 'app/@cms/cmsService/core/coreCpMainMenu.service';
 @Component({
   selector: 'app-cms-site-select',
   templateUrl: './select.component.html',
@@ -22,6 +23,7 @@ export class CoreSiteSelectComponent implements OnInit, OnDestroy {
     private alertService: ToastrService,
     private publicHelper: PublicHelper,
     private router: Router,
+    private coreCpMainMenuService:CoreCpMainMenuService
   ) {
 
 
@@ -59,6 +61,8 @@ export class CoreSiteSelectComponent implements OnInit, OnDestroy {
         if (next.IsSuccess) {
 
           this.router.navigate([environment.cmsUiConfig.Pathdashboard]);
+          this.coreCpMainMenuService.ServiceGetMenu(null);
+
         }
       },
       (error) => {

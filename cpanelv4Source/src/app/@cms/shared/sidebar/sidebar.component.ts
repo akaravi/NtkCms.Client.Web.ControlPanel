@@ -51,6 +51,9 @@ export class CmsSidebarComponent implements OnInit, AfterViewInit, OnDestroy {
       this.depth = 0;
       this.expanded = true;
     }
+    this.coreCpMainMenuService.coreCpMainMenuObs.subscribe((value) => {
+      this.menuItems = this.menuConvertor(value);
+    });
 
     this.layoutSub = layoutService.customizerChangeEmitted$.subscribe(
       (options) => {
@@ -104,17 +107,20 @@ export class CmsSidebarComponent implements OnInit, AfterViewInit, OnDestroy {
       this.logoUrl = "assets/img/logo.png";
     }
   }
+
   DataGetCpMenu() {
-    this.coreCpMainMenuService
-      .ServiceGetAllMenu<CoreCpMainMenuModel>(null)
-      .subscribe(
-        (next) => {
-          if (next.IsSuccess) {
-            this.menuItems = this.menuConvertor(next.ListItems);
-          }
-        },
-        (error) => {}
-      );
+    this.coreCpMainMenuService.ServiceGetMenu(null);
+    // this.coreCpMainMenuService
+    //   .ServiceGetAllMenu(null)
+    //   .subscribe(
+    //     (next) => {
+    //       if (next.IsSuccess) {
+    //         this.menuItems = this.menuConvertor(next.ListItems);
+    //       }
+    //     },
+    //     (error) => {}
+    //   );
+  
   }
   menuConvertor(model: CoreCpMainMenuModel[]) {
     var retOut = new Array<MenuInfo>();

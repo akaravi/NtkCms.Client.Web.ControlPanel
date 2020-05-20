@@ -1,7 +1,7 @@
 // import { Photo } from './photo';
 // import { BankCard } from './bankcard';
 
-export interface CoreUser {
+export class CoreUser {
      id: string;
      name: string;
      userName: string;

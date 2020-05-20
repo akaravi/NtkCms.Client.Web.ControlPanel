@@ -1,43 +1,49 @@
-import { Router } from '@angular/router';
-import { Injectable, OnDestroy } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { ToastrService } from 'ngx-toastr';
-import { Store } from '@ngrx/store';
-import * as fromStore from '../../cmsStore';
-import { TokenInfoModel } from 'app/@cms/cmsModels/base/tokenInfoModel';
-import { Subscription, BehaviorSubject } from 'rxjs';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
-import { AuthRenewTokenModel, AuthUserSignOutModel, AuthUserSignInModel, AuthUserSignUpModel, AuthUserChangePasswordModel } from 'app/@cms/cmsModels/core/authModel';
-import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
-import { environment } from 'environments/environment';
-import { FilterModel } from 'app/@cms/cmsModels/base/filterModel';
-import { CoreUser } from 'app/@cms/cmsModels/core/coreUser';
+import { Router } from "@angular/router";
+import { Injectable, OnDestroy } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { map } from "rxjs/operators";
+import { ToastrService } from "ngx-toastr";
+import { Store } from "@ngrx/store";
+import * as fromStore from "../../cmsStore";
+import { TokenInfoModel } from "app/@cms/cmsModels/base/tokenInfoModel";
+import { Subscription, BehaviorSubject } from "rxjs";
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { ErrorExcptionResult, ErrorExcptionResultBase } from "app/@cms/cmsModels/base/errorExcptionResult";
+import {
+  AuthRenewTokenModel,
+  AuthUserSignOutModel,
+  AuthUserSignInModel,
+  AuthUserSignUpModel,
+  AuthUserChangePasswordModel,
+} from "app/@cms/cmsModels/core/authModel";
+import { PublicHelper } from "app/@cms/cmsCommon/helper/publicHelper";
+import { environment } from "environments/environment";
+import { FilterModel } from "app/@cms/cmsModels/base/filterModel";
+import { CoreUser } from "app/@cms/cmsModels/core/coreUser";
 
 @Injectable()
 export class CmsAuthService implements OnDestroy {
- private _CorrectUser = new BehaviorSubject<CoreUser>(null);
-  CorrectUser=this._CorrectUser.asObservable();
- private _CorrectTokenInfo = new BehaviorSubject<TokenInfoModel>(null);
-  CorrectTokenInfo=this._CorrectTokenInfo.asObservable();
+  CorrectUser = new BehaviorSubject<CoreUser>(null);
+  CorrectUserObs = this.CorrectUser.asObservable();
+  CorrectTokenInfo = new BehaviorSubject<TokenInfoModel>(null);
+  CorrectTokenInfoObs = this.CorrectTokenInfo.asObservable();
 
   subManager = new Subscription();
 
   token: string;
-  baseUrl = environment.cmsServerConfig.configApiServerPath + 'auth/';
+  baseUrl = environment.cmsServerConfig.configApiServerPath + "auth/";
   jwtHelper = new JwtHelperService();
   userRoles: string[] = [];
-  userName = '';
+  userName = "";
 
   constructor(
     private http: HttpClient,
     private alertService: ToastrService,
     private router: Router,
     private store: Store<fromStore.State>,
-    private publicHelper: PublicHelper
+    private publicHelper: PublicHelper //private coreCpMainMenuService:CoreCpMainMenuService
   ) {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (this.loggedIn()) {
       const decode = this.jwtHelper.decodeToken(token);
       this.userRoles = decode.role as Array<string>;
@@ -47,27 +53,27 @@ export class CmsAuthService implements OnDestroy {
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }
-SetCorrectTokenInfo(model: TokenInfoModel)
-{
- this._CorrectTokenInfo.next(model)
-}
-SetCorrectUser(model: CoreUser)
-{
- this._CorrectUser.next(model)
-}
+  SetCorrectTokenInfo(model: TokenInfoModel) {
+    if(model==null) model=new TokenInfoModel();
+    this.CorrectTokenInfo.next(model);
+  }
+  SetCorrectUser(model: CoreUser) {
+    if(model==null) model=new CoreUser();
+    this.CorrectUser.next(model);
+  }
   getHeaders() {
     const token = this.publicHelper.CheckToken();
-    const headers = { Authorization: token };  
+    const headers = { Authorization: token };
     return headers;
   }
   ServiceSignupUser(model: AuthUserSignUpModel) {
-    return this.http.post(this.baseUrl + 'signup', model).pipe(
+    return this.http.post(this.baseUrl + "signup", model).pipe(
       map((ret: ErrorExcptionResult<TokenInfoModel>) => {
         if (ret) {
           if (ret.IsSuccess) {
-            this.alertService.success('با موفقیت ثبت نام شدید', 'موفق');
+            this.alertService.success("با موفقیت ثبت نام شدید", "موفق");
           } else {
-            this.alertService.error(ret.ErrorMessage, 'خطا در ثبت نام');
+            this.alertService.error(ret.ErrorMessage, "خطا در ثبت نام");
           }
           return ret;
         }
@@ -76,7 +82,7 @@ SetCorrectUser(model: CoreUser)
   }
 
   ServiceSigninUser(model: AuthUserSignInModel) {
-    return this.http.post(this.baseUrl + 'signin', model).pipe(
+    return this.http.post(this.baseUrl + "signin", model).pipe(
       map((ret: ErrorExcptionResult<TokenInfoModel>) => {
         if (ret) {
           if (ret.IsSuccess) {
@@ -84,12 +90,13 @@ SetCorrectUser(model: CoreUser)
             const decodedToken = this.jwtHelper.decodeToken(ret.token);
             this.store.dispatch(new fromStore.EditDecodedToken(decodedToken));
             this.userRoles = decodedToken.role as Array<string>;
-            this.alertService.success('با موفقیت وارد شدید', 'موفق');
+            this.alertService.success("با موفقیت وارد شدید", "موفق");
 
-            localStorage.setItem('token', ret.token);
-            localStorage.setItem('refreshToken', ret.Item.refresh_token);
+            this.SetCorrectTokenInfo(ret.Item);
+            localStorage.setItem("token", ret.token);
+            localStorage.setItem("refreshToken", ret.Item.refresh_token);
           } else {
-            this.alertService.error(ret.ErrorMessage, 'خطا در ورود');
+            this.alertService.error(ret.ErrorMessage, "خطا در ورود");
           }
           return ret;
         }
@@ -98,37 +105,39 @@ SetCorrectUser(model: CoreUser)
   }
 
   ServiceRenewToken(model: AuthRenewTokenModel) {
- 
-    return this.http.post(this.baseUrl + 'renewToken', model, { headers: this.getHeaders() }).pipe(
-      map((ret: ErrorExcptionResult<TokenInfoModel>) => {
-        if (ret) {
-          if (ret.IsSuccess) {
-            this.store.dispatch(new fromStore.EditLoggedUser(ret.Item));
-            const decodedToken = this.jwtHelper.decodeToken(ret.token);
-            this.store.dispatch(new fromStore.EditDecodedToken(decodedToken));
-            this.userRoles = decodedToken.role as Array<string>;
-            this.alertService.success('با موفقیت وارد شدید', 'موفق');
+    return this.http
+      .post(this.baseUrl + "renewToken", model, { headers: this.getHeaders() })
+      .pipe(
+        map((ret: ErrorExcptionResult<TokenInfoModel>) => {
+          if (ret) {
+            if (ret.IsSuccess) {
+              this.store.dispatch(new fromStore.EditLoggedUser(ret.Item));
+              const decodedToken = this.jwtHelper.decodeToken(ret.token);
+              this.store.dispatch(new fromStore.EditDecodedToken(decodedToken));
+              this.userRoles = decodedToken.role as Array<string>;
+              this.alertService.success("با موفقیت وارد شدید", "موفق");
 
-            localStorage.setItem('token', ret.token);
-            localStorage.setItem('refreshToken', ret.Item.refresh_token);
-          } else {
-            this.alertService.error(ret.ErrorMessage, 'خطا در ورود');
+              this.SetCorrectTokenInfo(ret.Item);
+              localStorage.setItem("token", ret.token);
+              localStorage.setItem("refreshToken", ret.Item.refresh_token);
+            } else {
+              this.alertService.error(ret.ErrorMessage, "خطا در ورود");
+            }
+            return ret;
           }
-          return ret;
-        }
-      })
-    );
+        })
+      );
   }
   ServiceChangePassword(model: any) {
-    return this.http.post(this.baseUrl + 'changePassword', model).pipe(
+    return this.http.post(this.baseUrl + "changePassword", model).pipe(
       map((ret: ErrorExcptionResult<TokenInfoModel>) => {
         if (ret) {
           if (ret.IsSuccess) {
-            this.alertService.success('تغییر پسورد با موفقیت انجام شد', 'موفق');
+            this.alertService.success("تغییر پسورد با موفقیت انجام شد", "موفق");
           } else {
             this.alertService.error(
               ret.ErrorMessage,
-              'خطا در تغییر  پسورد حساب کاربری'
+              "خطا در تغییر  پسورد حساب کاربری"
             );
           }
           return ret;
@@ -137,52 +146,54 @@ SetCorrectUser(model: CoreUser)
     );
   }
   ServiceForgetPassword(model: AuthUserChangePasswordModel) {
-    return this.http.post(this.baseUrl + 'forgetPassword', model).pipe(
+    return this.http.post(this.baseUrl + "forgetPassword", model).pipe(
       map((ret: ErrorExcptionResult<TokenInfoModel>) => {
         if (ret) {
           if (ret.IsSuccess) {
             this.alertService.success(
-              'دستور عمل بازیابی پسورد به آدرس ایمیل شما ارسال شد',
-              'موفق'
+              "دستور عمل بازیابی پسورد به آدرس ایمیل شما ارسال شد",
+              "موفق"
             );
           } else {
-            this.alertService.error(ret.ErrorMessage, 'خطا در بازیابی پسورد');
+            this.alertService.error(ret.ErrorMessage, "خطا در بازیابی پسورد");
           }
           return ret;
         }
       })
     );
   }
-  ServiceLogout<TOut>(model : AuthUserSignOutModel=new AuthUserSignOutModel()) {
- 
-    return this.http.post(this.baseUrl + 'signOut',model, { headers: this.getHeaders() }).pipe(
-      map((ret: ErrorExcptionResult<TOut>) => {
-        if (ret) {
-          this.token = null;
-          localStorage.removeItem('token');
-          localStorage.removeItem('refreshToken');
-          this.alertService.success(
-            'خروح شما با موفقیت انجام شد',
-            'موفق'
-          );
-          return ret;
-        }
-      })
-    );
+  ServiceLogout( model: AuthUserSignOutModel = new AuthUserSignOutModel()
+  ) {
+    return this.http
+      .post(this.baseUrl + "signOut", model, { headers: this.getHeaders() })
+      .pipe(
+        map((ret: ErrorExcptionResultBase) => {
+          if (ret) {
+            this.token = null;
+
+            this.SetCorrectTokenInfo(null);
+            localStorage.removeItem("token");
+            localStorage.removeItem("refreshToken");
+            this.alertService.success("خروح شما با موفقیت انجام شد", "موفق");
+
+            return ret;
+          }
+        })
+      );
   }
 
-  ServiceExistToken<TOut>(model: FilterModel) {
+  ServiceExistToken(model: FilterModel) {
     if (model == null) model = new FilterModel();
- 
-    return this.http.post(this.baseUrl + 'existToken',model, { headers: this.getHeaders() }).pipe(
-      map((ret: ErrorExcptionResult<TOut>) => {
-        if (ret) {
-        
-        
-          return ret;
-        }
-      })
-    );
+
+    return this.http
+      .post(this.baseUrl + "existToken", model, { headers: this.getHeaders() })
+      .pipe(
+        map((ret: ErrorExcptionResultBase) => {
+          if (ret) {
+            return ret;
+          }
+        })
+      );
   }
 
   getToken() {
@@ -196,11 +207,11 @@ SetCorrectUser(model: CoreUser)
       })
     );
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token == null || token == undefined) {
       return false;
     }
-    let parts = token.split('.');
+    let parts = token.split(".");
     if (parts.length !== 3) {
       return false;
     }
@@ -222,7 +233,7 @@ SetCorrectUser(model: CoreUser)
 
   isAuthenticated(): boolean {
     const token = this.publicHelper.CheckToken();
-    if (token && token !== 'null' && !this.jwtHelper.isTokenExpired(token)) {
+    if (token && token !== "null" && !this.jwtHelper.isTokenExpired(token)) {
       let user: TokenInfoModel;
       this.subManager.add(
         this.store.select(fromStore.getLoggedUserState).subscribe((data) => {
@@ -244,7 +255,7 @@ SetCorrectUser(model: CoreUser)
     }
   }
   isAdmin(): boolean {
-    if (this.roleMatch(['Admin'])) {
+    if (this.roleMatch(["Admin"])) {
       return true;
     }
     return false;
@@ -270,9 +281,9 @@ SetCorrectUser(model: CoreUser)
     return isMatch;
   }
   getDashboardUrl(): string {
-    return 'core/site/select';
+    return "core/site/select";
   }
   getLoginUrl(): string {
-    return '/auth/login';
+    return "/auth/login";
   }
 }
