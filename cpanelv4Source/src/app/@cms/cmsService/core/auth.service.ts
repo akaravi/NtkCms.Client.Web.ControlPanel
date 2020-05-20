@@ -6,16 +6,22 @@ import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
 import * as fromStore from '../../cmsStore';
 import { TokenInfoModel } from 'app/@cms/cmsModels/base/tokenInfoModel';
-import { Subscription } from 'rxjs';
+import { Subscription, BehaviorSubject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ErrorExcptionResult } from 'app/@cms/cmsModels/base/errorExcptionResult';
 import { AuthRenewTokenModel, AuthUserSignOutModel, AuthUserSignInModel, AuthUserSignUpModel, AuthUserChangePasswordModel } from 'app/@cms/cmsModels/core/authModel';
 import { PublicHelper } from 'app/@cms/cmsCommon/helper/publicHelper';
 import { environment } from 'environments/environment';
 import { FilterModel } from 'app/@cms/cmsModels/base/filterModel';
+import { CoreUser } from 'app/@cms/cmsModels/core/coreUser';
 
 @Injectable()
 export class CmsAuthService implements OnDestroy {
+ private _CorrectUser = new BehaviorSubject<CoreUser>(null);
+  CorrectUser=this._CorrectUser.asObservable();
+ private _CorrectTokenInfo = new BehaviorSubject<TokenInfoModel>(null);
+  CorrectTokenInfo=this._CorrectTokenInfo.asObservable();
+
   subManager = new Subscription();
 
   token: string;
@@ -41,6 +47,14 @@ export class CmsAuthService implements OnDestroy {
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }
+SetCorrectTokenInfo(model: TokenInfoModel)
+{
+ this._CorrectTokenInfo.next(model)
+}
+SetCorrectUser(model: CoreUser)
+{
+ this._CorrectUser.next(model)
+}
   getHeaders() {
     const token = this.publicHelper.CheckToken();
     const headers = { Authorization: token };  
