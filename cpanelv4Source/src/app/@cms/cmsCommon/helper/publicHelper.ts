@@ -4,12 +4,21 @@ import { toArray } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'environments/environment';
+import { CmsAuthService } from 'app/@cms/cmsService/core/auth.service';
+import { TokenInfoModel } from 'app/@cms/cmsModels/base/tokenInfoModel';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PublicHelper {
-  constructor(private router: Router, private alertService: ToastrService) {}
+  TokenInfo: TokenInfoModel;
+  constructor(private router: Router, private alertService: ToastrService,cmsAuthService: CmsAuthService) {
+    cmsAuthService.CorrectTokenInfoObs.subscribe((vlaue) => {
+      this.TokenInfo = vlaue;
+    });
+
+  }
+
   CheckToken() {
     const token = localStorage.getItem('token');
 
@@ -22,6 +31,19 @@ export class PublicHelper {
 
     }
     return token;
+  }
+  CheckTokenInfo() {
+    const token = localStorage.getItem('token');
+
+    if (!token || token === 'null') {
+      this.alertService.warning(
+        'لطفا مجددا وارد حساب کاربری خود شوید',
+        'نیاز به ورود مجدد'
+      );
+      this.router.navigate([environment.cmsUiConfig.Pathlogin]);
+
+    }
+    return this.TokenInfo;
   }
   CheckError(model: any) {
     if (!model) {

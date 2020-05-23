@@ -16,21 +16,19 @@ import {
   AuthUserSignUpModel,
   AuthUserChangePasswordModel,
 } from "app/@cms/cmsModels/core/authModel";
-import { PublicHelper } from "app/@cms/cmsCommon/helper/publicHelper";
 import { environment } from "environments/environment";
 import { FilterModel } from "app/@cms/cmsModels/base/filterModel";
 import { CoreUser } from "app/@cms/cmsModels/core/coreUser";
 
 @Injectable()
 export class CmsAuthService implements OnDestroy {
-  CorrectUser = new BehaviorSubject<CoreUser>(null);
-  CorrectUserObs = this.CorrectUser.asObservable();
+
   CorrectTokenInfo = new BehaviorSubject<TokenInfoModel>(null);
   CorrectTokenInfoObs = this.CorrectTokenInfo.asObservable();
 
   subManager = new Subscription();
 
-  token: string;
+  tokenString: string;
   baseUrl = environment.cmsServerConfig.configApiServerPath + "auth/";
   jwtHelper = new JwtHelperService();
   userRoles: string[] = [];
@@ -41,11 +39,10 @@ export class CmsAuthService implements OnDestroy {
     private alertService: ToastrService,
     private router: Router,
     private store: Store<fromStore.State>,
-    private publicHelper: PublicHelper //private coreCpMainMenuService:CoreCpMainMenuService
   ) {
-    const token = localStorage.getItem("token");
+    this.tokenString = localStorage.getItem("token");
     if (this.loggedIn()) {
-      const decode = this.jwtHelper.decodeToken(token);
+      const decode = this.jwtHelper.decodeToken(this.tokenString);
       this.userRoles = decode.role as Array<string>;
       this.userName = decode.unique_name;
     }
@@ -53,16 +50,26 @@ export class CmsAuthService implements OnDestroy {
   ngOnDestroy() {
     this.subManager.unsubscribe();
   }
+  CheckToken() {
+    const token = localStorage.getItem('token');
+
+    if (!token || token === 'null') {
+      this.alertService.warning(
+        'لطفا مجددا وارد حساب کاربری خود شوید',
+        'نیاز به ورود مجدد'
+      );
+      this.router.navigate([environment.cmsUiConfig.Pathlogin]);
+
+    }
+    return token;
+  }
   SetCorrectTokenInfo(model: TokenInfoModel) {
     if(model==null) model=new TokenInfoModel();
     this.CorrectTokenInfo.next(model);
   }
-  SetCorrectUser(model: CoreUser) {
-    if(model==null) model=new CoreUser();
-    this.CorrectUser.next(model);
-  }
+
   getHeaders() {
-    const token = this.publicHelper.CheckToken();
+    const token = this.CheckToken();
     const headers = { Authorization: token };
     return headers;
   }
@@ -169,7 +176,7 @@ export class CmsAuthService implements OnDestroy {
       .pipe(
         map((ret: ErrorExcptionResultBase) => {
           if (ret) {
-            this.token = null;
+            this.tokenString = null;
 
             this.SetCorrectTokenInfo(null);
             localStorage.removeItem("token");
@@ -197,7 +204,7 @@ export class CmsAuthService implements OnDestroy {
   }
 
   getToken() {
-    return this.token;
+    return this.tokenString;
   }
   loggedIn() {
     let user: TokenInfoModel;
@@ -232,7 +239,7 @@ export class CmsAuthService implements OnDestroy {
   }
 
   isAuthenticated(): boolean {
-    const token = this.publicHelper.CheckToken();
+    const token = this.CheckToken();
     if (token && token !== "null" && !this.jwtHelper.isTokenExpired(token)) {
       let user: TokenInfoModel;
       this.subManager.add(

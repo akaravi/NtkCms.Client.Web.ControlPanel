@@ -11,6 +11,10 @@ const routes: Routes = [
       //   loadChildren: () => import('../core/auth/auth.module').then(m => m.CoreAuthModule),
       // },
       {
+        path: 'user',
+        loadChildren: () => import('../core/user/coreUser.module').then(m => m.CoreUserModule),
+      },
+      {
         path: 'site',
         loadChildren: () => import('../core/site/coreSite.module').then(m => m.CoreSiteModule),
       },

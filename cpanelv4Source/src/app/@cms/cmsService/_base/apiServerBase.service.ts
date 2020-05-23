@@ -18,7 +18,7 @@ import { environment } from "environments/environment";
 })
 export class ApiServerBaseService implements OnDestroy {
   subManager = new Subscription();
-  public baseUrl =environment. cmsServerConfig.configApiServerPath;
+  public baseUrl = environment.cmsServerConfig.configApiServerPath;
   public configApiRetry = environment.cmsServerConfig.configApiRetry;
   constructor(
     public http: HttpClient,
@@ -55,39 +55,38 @@ export class ApiServerBaseService implements OnDestroy {
     return model;
   }
   handleError(error) {
-    let errorMessage = "";
-    if(error.status==401){
-      this.router.navigate([environment.cmsUiConfig.Pathlogin]);
-    }
-
-    if (error.error instanceof ErrorEvent) {
-      // client-side error
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      // server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-      if (error.status == 401 ||error.status == "401") {
+    if (!error) return;
+    let errorMessage = error.message;
+    if (error.status) {
+      if (error.status == 401) {
         this.router.navigate([environment.cmsUiConfig.Pathlogin]);
       }
+      // server-side error
+      errorMessage = `Cms Error Code: ${error.status}\nMessage: ${error.message}`;
+      if (error.status == 401 || error.status == "401") {
+        this.router.navigate([environment.cmsUiConfig.Pathlogin]);
+      }
+    } else if (error.error instanceof ErrorEvent) {
+      // client-side error
+      errorMessage = `Cms Error: ${error.error.message}`;
     }
+
     window.alert(errorMessage);
     return throwError(errorMessage);
   }
 
   ServiceModelInfo<TOut>() {
-    return (
-      this.http
-        .get(this.baseUrl + this.getModuleCotrolerUrl() + "/ModelInfo", {
-          headers: this.getHeaders(),
+    return this.http
+      .get(this.baseUrl + this.getModuleCotrolerUrl() + "/ModelInfo", {
+        headers: this.getHeaders(),
+      })
+      .pipe(
+        retry(this.configApiRetry),
+        catchError(this.handleError),
+        map((ret: ErrorExcptionResult<TOut>) => {
+          return this.errorExcptionResultCheck<TOut>(ret);
         })
-        .pipe(
-          retry(this.configApiRetry),
-          catchError(this.handleError),
-          map((ret: ErrorExcptionResult<TOut>) => {
-            return this.errorExcptionResultCheck<TOut>(ret);
-          })
-        )
-    );
+      );
   }
   ServiceViewModel<TOut>() {
     return this.http
@@ -258,7 +257,7 @@ export class ApiServerBaseService implements OnDestroy {
         })
       );
   }
-  
+
   ServiceDeleteList<TOut>(model: Array<any>) {
     return this.http
       .post(this.baseUrl + this.getModuleCotrolerUrl() + "/DeleteList", model, {
