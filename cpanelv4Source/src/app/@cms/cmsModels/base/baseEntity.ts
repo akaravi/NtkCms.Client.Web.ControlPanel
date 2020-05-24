@@ -1,6 +1,6 @@
 import { RecordStatus } from "../Enums/recordStatus.enum";
 
-export interface BaseEntity<TKey> {
+export class BaseEntity<TKey> {
   Id: TKey;
   CreatedDate: Date;
   CreatedBy: number;

@@ -4,7 +4,7 @@ import { ApiServerBaseService } from "../_base/apiServerBase.service";
 import { FilterModel } from "app/@cms/cmsModels/base/filterModel";
 import { ErrorExcptionResult } from "app/@cms/cmsModels/base/errorExcptionResult";
 import { catchError, map, retry } from "rxjs/operators";
-import { CoreCpMainMenuModel } from "app/@cms/cmsModels/core/CoreCpMainMenuModel";
+import { CoreCpMainMenuModel } from "app/@cms/cmsModels/core/coreCpMainMenuModel";
 @Injectable({
   providedIn: "root",
 })

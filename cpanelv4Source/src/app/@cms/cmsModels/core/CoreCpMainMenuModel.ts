@@ -1,7 +1,7 @@
 import { BaseEntity } from '../base/baseEntity';
 import { MenuPlaceType } from '../Enums/menuPlaceType.enum';
 
-export interface CoreCpMainMenuModel extends BaseEntity<number>{
+export class CoreCpMainMenuModel extends BaseEntity<number>{
     Title: string;
     TitleML: string;
     TitleResourceLanguage: string;

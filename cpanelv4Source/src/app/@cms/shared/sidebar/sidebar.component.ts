@@ -18,7 +18,7 @@ import { ConfigService } from "../../../shared/services/config.service";
 import { LayoutService } from "../../../shared/services/layout.service";
 import { Subscription } from "rxjs";
 import { CoreCpMainMenuService } from "app/@cms/cmsService/core/coreCpMainMenu.service";
-import { CoreCpMainMenuModel } from "app/@cms/cmsModels/core/CoreCpMainMenuModel";
+import { CoreCpMainMenuModel } from "app/@cms/cmsModels/core/coreCpMainMenuModel";
 
 @Component({
   selector: "app-cms-sidebar",

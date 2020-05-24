@@ -1,19 +1,24 @@
-// import { Photo } from './photo';
-// import { BankCard } from './bankcard';
+import { GenderType } from '../Enums/genderType.enum';
+import { BaseEntity } from '../base/baseEntity';
 
-export class CoreUser {
-     id: string;
-     name: string;
-     userName: string;
-     phoneNumber: string;
-     address: string;
-     gender: boolean;
-     age: number;
-     lastActive: Date;
-     city: string;
-     photoUrl: string;
-     provider: string;
-     isRegisterBefore?: boolean;
-     //photo?: Photo[];
-     //bankCard?: BankCard[];
+export class CoreUser extends  BaseEntity<number> {
+     Username: string;
+     ExpireDate: Date;
+     Email: string;
+     EmailConfirmed: boolean;
+     Mobile: string;
+     MobileConfirmed: boolean;
+     ExpireLockAccount: Date;
+     Name: string;
+     LastName: string;
+     BirthDay: Date;
+     Gender: GenderType;
+     FullName: string;
+     Address: string;
+     PostalCode: string;
+     LinkMainImageId: number;
+     Tell: string;
+     IsCompany: boolean;
+     LinkLocationId: number;
+     FirewallAllowIP: string;
 }

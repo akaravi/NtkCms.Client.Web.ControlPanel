@@ -9,7 +9,7 @@
                   <div class="col-5">
                       <div class="align-self-start halfway-fab pl-3 pt-2">
                           <div class="text-left">
-                              <h3 class="card-title white">رضا رضایی</h3>
+                              <h3 class="card-title white">{{CorrectUserInfo?.Name}}  {{CorrectUserInfo?.LastName}}</h3>
                           </div>
                       </div>
                   </div>
@@ -48,11 +48,9 @@
                           </ul>
                       </div>
                       <div class="col-lg-2 col-md-2 text-center">
-                          <span class="font-medium-2 text-uppercase">رضا رضایی</span>
+                          <span class="font-medium-2 text-uppercase">{{CorrectUserInfo?.Name}}  {{CorrectUserInfo?.LastName}}</span>
                           <p class="grey font-small-2">
-                            {{CorrectUserInfo?.userName}}  |
-                            {{CorrectUserInfo?.name}}  |
-                            {{CorrectUserInfo?.id}}  |  
+                            {{CorrectUserInfo?.FullName}}  
 
                           </p>
 
@@ -104,7 +102,7 @@
                               <ul class="no-list-style">
                                   <li class="mb-2">
                                       <span class="text-bold-500 primary"><a><i class="icon-present font-small-3"></i> تولد:</a></span>
-                                      <span class="d-block overflow-hidden">10 دی 1377</span>
+                                      <span class="d-block overflow-hidden"> {{CorrectUserInfo?.BirthDay}}  </span>
                                   </li>
                                   <li class="mb-2">
                                       <span class="text-bold-500 primary"><a><i class="ft-map-pin font-small-3"></i> محل تولد:</a></span>
@@ -120,11 +118,11 @@
                               <ul class="no-list-style">
                                   <li class="mb-2">
                                       <span class="text-bold-500 primary"><a><i class="ft-user font-small-3"></i> جنسیت:</a></span>
-                                      <span class="d-block overflow-hidden">مرد</span>
+                                      <span class="d-block overflow-hidden">{{CorrectUserInfo?.Gender}} </span>
                                   </li>
                                   <li class="mb-2">
                                       <span class="text-bold-500 primary"><a><i class="ft-mail font-small-3"></i> ایمیل:</a></span>
-                                      <a class="d-block overflow-hidden">jose@yourmail.com</a>
+                                      <a class="d-block overflow-hidden">{{CorrectUserInfo?.Email}} </a>
                                   </li>
                                   <li class="mb-2">
                                       <span class="text-bold-500 primary"><a><i class="ft-monitor font-small-3"></i> سایت:</a></span>
@@ -136,7 +134,7 @@
                               <ul class="no-list-style">
                                   <li class="mb-2">
                                       <span class="text-bold-500 primary"><a><i class="ft-smartphone font-small-3"></i> شماره تماس:</a></span>
-                                      <span class="d-block overflow-hidden">(012) 345 - 678 - 9910</span>
+                                      <span class="d-block overflow-hidden">{{CorrectUserInfo?.Mobile}} </span>
                                   </li>
                                   <li class="mb-2">
                                       <span class="text-bold-500 primary"><a><i class="ft-briefcase font-small-3"></i> شغل:</a></span>
@@ -144,7 +142,7 @@
                                   </li>
                                   <li class="mb-2">
                                       <span class="text-bold-500 primary"><a><i class="ft-book font-small-3"></i> عضویت:</a></span>
-                                      <span class="d-block overflow-hidden">1 اسفند 1390</span>
+                                      <span class="d-block overflow-hidden">{{CorrectUserInfo?.CreatedDate}} </span>
                                   </li>
                               </ul>
                           </div>
