@@ -50,7 +50,7 @@
                       <div class="col-lg-2 col-md-2 text-center">
                           <span class="font-medium-2 text-uppercase">{{CorrectUserInfo?.Name}}  {{CorrectUserInfo?.LastName}}</span>
                           <p class="grey font-small-2">
-                            {{CorrectUserInfo?.FullName}}  
+                         
 
                           </p>
 
@@ -732,10 +732,10 @@
               </div>
               <div class="card-content">
                   <div class="card-body">
-                    <form [formGroup]="CoreUserPasswordEditformGroup" (ngSubmit)="CoreUserPasswordEditSubmit()" >
+                    <form [formGroup]="CoreUserPasswordEditformGroup" (ngSubmit)="onSubmitCoreUserPasswordEdit()" >
                       <div class="row">
                         <input
-                        formConrolerName="OldPassword"
+                        formControlName="OldPassword"
                        
                           type="password"
                           class="form-control mb-3"
@@ -743,21 +743,21 @@
                         />
 
                         <input
-                        formConrolerName="NewPassword"
+                        formControlName="NewPassword"
                        
                           type="password"
                           class="form-control mb-3"
                           placeholder="رمز عبور جدید"
                         />
                         <input
-                        formConrolerName="NewPasswordConfirm"
+                        formControlName="NewPasswordConfirm"
                           type="password"
                           class="form-control mb-3"
                           placeholder="تکرار رمز عبور"
                         />
 
 <br>
-                        <button type="submit" class="btn btn-primary" >
+                        <button  [disabled]="!CoreUserPasswordEditformGroup.valid" type="submit" class="btn btn-primary" >
                             <a class="text-decoration-none text-white">
                               ثبت 
                             </a>

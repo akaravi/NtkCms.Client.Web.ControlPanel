@@ -35,7 +35,7 @@ export class CoreUserProfileComponent implements OnInit {
       PostalCode: new FormControl(),
       FirewallAllowIP: new FormControl(),
     });
-    
+
     this.CoreUserPasswordEditformGroup = new FormGroup(
       {
         OldPassword: new FormControl("", Validators.required),
@@ -44,7 +44,7 @@ export class CoreUserProfileComponent implements OnInit {
       },
       this.passwordMatchValidator
     );
-    
+
     this.coreUserService.CorrectUserObs.subscribe((vlaue) => {
       this.CorrectUserInfo = vlaue;
     });
@@ -69,22 +69,21 @@ export class CoreUserProfileComponent implements OnInit {
   showPage(page: string) {
     this.currentPage = page;
   }
-  CoreUserPasswordEditSubmit() {
+  onSubmitCoreUserPasswordEdit() {
     let model: AuthUserChangePasswordModel = new AuthUserChangePasswordModel();
-if(this.CoreUserPasswordEditformGroup.invalid)
-{
-
-  
-}
-    model.OldPassword = this.CoreUserPasswordEditformGroup.get("OldPassword").value;
-    model.NewPassword = this.CoreUserPasswordEditformGroup.get("NewPassword").value;
+    if (!this.CoreUserPasswordEditformGroup.valid) {
+      return;
+    }
+    model.OldPassword = this.CoreUserPasswordEditformGroup.get(
+      "OldPassword"
+    ).value;
+    model.NewPassword = this.CoreUserPasswordEditformGroup.get(
+      "NewPassword"
+    ).value;
     this.cmsAuthService.ServiceChangePassword(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
-          this.alertService.success(
-            "پسورد شما با موفقیت تغییر کرد",
-            "تغییر پسورد"
-          );
+        
         }
       },
       (error) => {

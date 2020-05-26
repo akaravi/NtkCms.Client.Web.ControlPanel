@@ -150,7 +150,7 @@ export class CmsAuthService implements OnDestroy {
       );
   }
   ServiceChangePassword(model: AuthUserChangePasswordModel) {
-    return this.http.post(this.baseUrl + "changePassword", model).pipe(
+    return this.http.post(this.baseUrl + "changePassword", model, { headers: this.getHeaders() }).pipe(
       map((ret: ErrorExcptionResult<TokenInfoModel>) => {
         if (ret) {
           if (ret.IsSuccess) {
