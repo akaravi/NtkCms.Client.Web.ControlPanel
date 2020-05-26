@@ -13,7 +13,7 @@ export class CoreUser extends  BaseEntity<number> {
      LastName: string;
      BirthDay: Date;
      Gender: GenderType;
-     FullName: string;
+     CompanyName: string;
      Address: string;
      PostalCode: string;
      LinkMainImageId: number;

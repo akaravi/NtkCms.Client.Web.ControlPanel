@@ -15,6 +15,7 @@ import {
   AuthUserSignInModel,
   AuthUserSignUpModel,
   AuthUserChangePasswordModel,
+  AuthUserForgetPasswordModel,
 } from "app/@cms/cmsModels/core/authModel";
 import { environment } from "environments/environment";
 import { FilterModel } from "app/@cms/cmsModels/base/filterModel";
@@ -67,6 +68,18 @@ export class CmsAuthService implements OnDestroy {
     if(model==null) model=new TokenInfoModel();
     this.CorrectTokenInfo.next(model);
   }
+  CorrectTokenInfoRenew() {
+    this.ServiceRenewToken(null).subscribe(
+      (next) => {
+        if (next.IsSuccess) {
+          this.SetCorrectTokenInfo(next.Item);
+        }
+      },
+      (error) => {
+
+      }
+    );
+  }
 
   getHeaders() {
     const token = this.CheckToken();
@@ -112,6 +125,7 @@ export class CmsAuthService implements OnDestroy {
   }
 
   ServiceRenewToken(model: AuthRenewTokenModel) {
+    if(model==null) model=new AuthRenewTokenModel();
     return this.http
       .post(this.baseUrl + "renewToken", model, { headers: this.getHeaders() })
       .pipe(
@@ -122,20 +136,20 @@ export class CmsAuthService implements OnDestroy {
               const decodedToken = this.jwtHelper.decodeToken(ret.token);
               this.store.dispatch(new fromStore.EditDecodedToken(decodedToken));
               this.userRoles = decodedToken.role as Array<string>;
-              this.alertService.success("با موفقیت وارد شدید", "موفق");
+              //this.alertService.success("با موفقیت وارد شدید", "موفق");
 
               this.SetCorrectTokenInfo(ret.Item);
               localStorage.setItem("token", ret.token);
               localStorage.setItem("refreshToken", ret.Item.refresh_token);
             } else {
-              this.alertService.error(ret.ErrorMessage, "خطا در ورود");
+              this.alertService.error(ret.ErrorMessage, "خطا در دریافت توکن");
             }
             return ret;
           }
         })
       );
   }
-  ServiceChangePassword(model: any) {
+  ServiceChangePassword(model: AuthUserChangePasswordModel) {
     return this.http.post(this.baseUrl + "changePassword", model).pipe(
       map((ret: ErrorExcptionResult<TokenInfoModel>) => {
         if (ret) {
@@ -152,7 +166,7 @@ export class CmsAuthService implements OnDestroy {
       })
     );
   }
-  ServiceForgetPassword(model: AuthUserChangePasswordModel) {
+  ServiceForgetPassword(model: AuthUserForgetPasswordModel) {
     return this.http.post(this.baseUrl + "forgetPassword", model).pipe(
       map((ret: ErrorExcptionResult<TokenInfoModel>) => {
         if (ret) {

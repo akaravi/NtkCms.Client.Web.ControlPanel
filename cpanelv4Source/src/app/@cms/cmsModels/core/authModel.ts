@@ -30,4 +30,8 @@ export class AuthUserChangePasswordModel {
   OldPassword:string;
   NewPassword:string;
 }
+export class AuthUserForgetPasswordModel
+{
+  email:string;
+}
 

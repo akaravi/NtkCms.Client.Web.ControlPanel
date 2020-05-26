@@ -17,6 +17,7 @@ export const environment = {
   },
    cmsUiConfig : {
     Pathlogin: '/auth/login',
+    Pathlogout: '/auth/logout',
     PathRegistery: '/auth/registery',
     Pathdashboard: '/dashboard/dashboard1',
   

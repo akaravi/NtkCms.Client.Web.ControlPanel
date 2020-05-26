@@ -59,8 +59,9 @@ export class ApiServerBaseService implements OnDestroy {
     let errorMessage = error.message;
     if (error.status) {
       if (error.status == 401) {
-        this.router.navigate([environment.cmsUiConfig.Pathlogin]);
-      }
+        window.location.href=environment.cmsUiConfig.Pathlogin;
+        //this.router.navigate([environment.cmsUiConfig.Pathlogin]);
+            }
       // server-side error
       errorMessage = `Cms Error Code: ${error.status}\nMessage: ${error.message}`;
       if (error.status == 401 || error.status == "401") {

@@ -65,6 +65,10 @@ export class CmsNavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.config = this.configService.templateConf;
+    if(this.TokenInfo==null || this.TokenInfo.UserId==null || this.TokenInfo.UserId==0 )
+    {
+      this.cmsAuthService.CorrectTokenInfoRenew();
+    }
   }
 
   ngAfterViewInit() {
