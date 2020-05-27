@@ -40,7 +40,7 @@ export class CoreUserService extends ApiServerBaseService implements OnDestroy {
       );
     
   }
-  ServiceGetGlobalToken<TOut>(model: FilterModel) {
+  ServiceGetGlobalToken(model: FilterModel) {
     if (model == null) model = new FilterModel();
 
     return this.http
@@ -54,8 +54,8 @@ export class CoreUserService extends ApiServerBaseService implements OnDestroy {
       .pipe(
         retry(this.configApiRetry),
         catchError(this.handleError),
-        map((ret: ErrorExcptionResult<TOut>) => {
-          return this.errorExcptionResultCheck<TOut>(ret);
+        map((ret: ErrorExcptionResult<CoreUser>) => {
+          return this.errorExcptionResultCheck<CoreUser>(ret);
         })
       );
   }

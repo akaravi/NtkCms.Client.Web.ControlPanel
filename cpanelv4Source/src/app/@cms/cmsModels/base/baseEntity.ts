@@ -7,4 +7,13 @@ export class BaseEntity<TKey> {
   UpdatedDate: Date;
   UpdatedBy: number;
   RecordStatus: RecordStatus;
+
+  //region AntiInjection
+  AntiInjectionGuid: string;
+  AntiInjectionDate: Date;
+  CreateAntiInjectionValue: Boolean;
+  AntiInjectionExpiredMinute: number;
+  AntiInjectionToken: string;
+  AntiInjectionExpireDate: Date;
+  //endregion AniInjection
 }
