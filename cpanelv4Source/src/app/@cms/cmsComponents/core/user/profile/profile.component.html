@@ -806,16 +806,16 @@
                     <div class="card-body">
                         <form [formGroup]="CoreUserPasswordEditformGroup" (ngSubmit)="onSubmitCoreUserPasswordEdit()">
                             <div class="row">
-                                <input formControlName="OldPassword" type="password" class="form-control mb-3"
+                                <input formControlName="OldPassword" type="password" [disabled]="onSubmitCoreUserPasswordEditRun" class="form-control mb-3"
                                     placeholder="رمز عبور" />
 
-                                <input formControlName="NewPassword" type="password" class="form-control mb-3"
+                                <input formControlName="NewPassword" type="password" [disabled]="onSubmitCoreUserPasswordEditRun" class="form-control mb-3"
                                     placeholder="رمز عبور جدید" />
-                                <input formControlName="NewPasswordConfirm" type="password" class="form-control mb-3"
+                                <input formControlName="NewPasswordConfirm" type="password" [disabled]=" onSubmitCoreUserPasswordEditRun" class="form-control mb-3"
                                     placeholder="تکرار رمز عبور" />
 
                                 <br>
-                                <button [disabled]="!CoreUserPasswordEditformGroup.valid" type="submit"
+                                <button [disabled]="!CoreUserPasswordEditformGroup.valid || onSubmitCoreUserPasswordEditRun" type="submit"
                                     class="btn btn-primary">
                                     <a class="text-decoration-none text-white">
                                         ثبت

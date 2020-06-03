@@ -136,8 +136,7 @@ export class CoreSiteAddComponent implements OnInit {
       this.subManager.add(
         this.coreSiteService.ServiceAddFirstSite(this.dataModel.Item).subscribe(
           (next) => {
-            if (next.IsSuccess) {
-            }
+            this.dateModleInput. onActionAddFirstSite(next) ;
           },
           (error) => {
             this.alertService.error(

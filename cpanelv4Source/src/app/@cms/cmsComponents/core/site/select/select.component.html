@@ -14,7 +14,7 @@
          برای خود وب سایت ایجاد کنید
 
         </p>
-        <app-cms-site-add [dateInput]="{AddFirstSite:true}"></app-cms-site-add>
+        <app-cms-site-add [dateInput]="{AddFirstSite:true,onActionAddFirstSite:onActionAddFirstSite}"></app-cms-site-add>
 
       </div>
       <div *ngIf="dataModel?.ListItems?.length > 0" >

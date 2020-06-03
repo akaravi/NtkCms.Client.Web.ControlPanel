@@ -19,6 +19,7 @@ export class CoreUserProfileComponent implements OnInit {
 
 
   CoreUserPasswordEditformGroup: FormGroup;
+  onSubmitCoreUserPasswordEditRun=false;
   //Variable Declaration
   currentPage: string = "About";
   constructor(
@@ -84,7 +85,7 @@ export class CoreUserProfileComponent implements OnInit {
     this.cmsAuthService.ServiceChangePassword(model).subscribe(
       (next) => {
         if (next.IsSuccess) {
-        
+        this.onSubmitCoreUserPasswordEditRun=true;
         }
       },
       (error) => {
