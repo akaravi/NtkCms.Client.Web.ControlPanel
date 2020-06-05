@@ -18,21 +18,14 @@ import {
 } from 'ngx-perfect-scrollbar';
 
 import { AppComponent } from './app.component';
-import { ContentLayoutComponent } from './@theme/layouts/content/content-layout.component';
-import { FullLayoutComponent } from './@theme/layouts/full/full-layout.component';
-
 import { DragulaService } from 'ng2-dragula';
 import { AuthService } from './@theme/shared/auth/auth.service';
-
 import { AuthGuard } from './@theme/shared/auth/auth-guard.service';
-import { CmsFullLayoutComponent } from './@cms/layouts/full/cmsFull-layout.component';
-import { CmsContentLayoutComponent } from './@cms/layouts/content/cmsContent-layout.component';
 import { CmsAuthService } from './@cms/cmsService/core/auth.service';
 import { CmsAuthGuard } from './@cms/cmsService/core/auth.guard.service';
-import { CmsSharedModule } from './@cms/shared/cmsShared.module';
-import { ThemeSharedModule } from './@theme/shared/themeShared.module';
 import { CmsComponent } from './@cms/cms.component';
 import { ThemeComponent } from './@theme/theme.component';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -48,18 +41,13 @@ export function createTranslateLoader(http: HttpClient) {
     AppComponent,
     CmsComponent,
     ThemeComponent,
-    //FullLayoutComponent,
-    //ContentLayoutComponent,
-    //CmsFullLayoutComponent,
-    //CmsContentLayoutComponent,
   ],
   imports: [
     BrowserAnimationsModule,
     StoreModule.forRoot({}),
     AppRoutingModule,
     SharedModule,
-    //CmsSharedModule,
-    //ThemeSharedModule,
+    
     HttpClientModule,
     ToastrModule.forRoot(),
     NgbModule.forRoot(),

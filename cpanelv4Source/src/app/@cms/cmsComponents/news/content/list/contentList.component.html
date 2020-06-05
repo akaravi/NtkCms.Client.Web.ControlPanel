@@ -21,9 +21,9 @@
             <p>
               <span *ngIf="optionsCategorySelectData"  >
                 <a (click)='onActionCategorySelect()'>همه</a> | 
-                <a [routerLink]="['/news/category/edit/?id='+optionsCategorySelectData.Id]">ویرایش</a> | 
+                <a [routerLink]="['/news/category/edit']" [queryParams]="{id:optionsCategorySelectData.Id}">ویرایش</a> | 
               </span>
-                <a [routerLink]="['/news/category/add/?id='+optionsCategorySelectData?.Id]">اضافه</a>
+                <a [routerLink]="['/news/category/add']" [queryParams]="{id:optionsCategorySelectData?.Id}">اضافه</a>
               
             </p>
           </div>
@@ -39,7 +39,7 @@
       <hr >
       <div >
         
-        <a  *ngIf="dataModelConetnt?.resultAccess?.AccessAddRow" (click)="onActionbuttonNewEntity()" class="btn btn-raised mr-1 shadow-z-2 btn-info">جدید</a>
+        <a  *ngIf="dataModelConetnt?.resultAccess?.AccessAddRow && optionsCategorySelectData" (click)="onActionbuttonNewRow()" class="btn btn-raised mr-1 shadow-z-2 btn-info">جدید</a>
         <a  *ngIf="dataModelConetnt?.resultAccess?.AccessEditRow && tableContentSelected?.length>0" (click)="onActionbuttonEditRow()" class="btn btn-raised mr-1 shadow-z-2 btn-warning">ویرایش</a>
         <a  *ngIf="dataModelConetnt?.resultAccess?.AccessDeleteRow && tableContentSelected?.length>0" (click)="onActionbuttonDeleteRow()" class="btn btn-raised mr-1 shadow-z-2 btn-danger">حذف</a>
     
@@ -49,7 +49,10 @@
         <a  (click)="onActionbuttonReload()" class="btn btn-raised mr-1 shadow-z-2 btn-success">بررسی مجدد</a>
         
       </div>
+      <hr>
+      <app-cms-search-content-list [options]="optionsSearch"></app-cms-search-content-list>
     </div>
+
     <div class="card-content">
       <div class="card-body">
         <p>filteModelConetnt : {{filteModelConetnt | json}}</p>

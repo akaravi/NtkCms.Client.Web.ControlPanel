@@ -21,7 +21,7 @@ import {
   ITreeOptions,
 } from "angular-tree-component";
 import { SortType } from "app/@cms/cmsModels/Enums/sortType.enum";
-import { PersianCalendarService } from 'app/@cms/cmsCommon/pipe/PersianDatePipe/persian-date.service';
+import { PersianCalendarService } from "app/@cms/cmsCommon/pipe/PersianDatePipe/persian-date.service";
 
 @Component({
   selector: "app-news-content-List",
@@ -36,7 +36,11 @@ export class NewsContentListComponent implements OnInit {
   // Table Column Titles
   ColumnMode = ColumnMode;
   SelectionType = SelectionType;
+  optionsSearch: any={
+    onSubmit: (model) => this.onSubmitOptionsSearch(model),
+    //AccessSearchField : Array<string>,
 
+  };
   tableContentloading = false;
   tableContentSelected: Array<any> = [];
   columnsConetnt: TableColumn[] = [
@@ -47,12 +51,12 @@ export class NewsContentListComponent implements OnInit {
     {
       prop: "CreatedDate",
       name: "ساخت",
-      pipe:{transform: this.LocaleDate}
+      pipe: { transform: this.LocaleDate },
     },
     {
       prop: "UpdatedDate",
       name: "ویرایش",
-      pipe:{transform: this.LocaleDate}
+      pipe: { transform: this.LocaleDate },
     },
     {
       prop: "Title",
@@ -101,22 +105,22 @@ export class NewsContentListComponent implements OnInit {
     //scrollContainer: document.documentElement, // HTML
     rtl: true,
   };
-  optionsCategorySelect: any={
-    onActionSelect:(x) => this.onActionCategorySelect(x)
-    
-  }
-  optionsCategorySelectData:any;
+  optionsCategorySelect: any = {
+    onActionSelect: (x) => this.onActionCategorySelect(x),
+  };
+  optionsCategorySelectData: any;
   constructor(
     private alertService: ToastrService,
     private publicHelper: PublicHelper,
     private contentService: NewsContentService,
-    private categoryService: NewsCategoryService,
-  ) {}
-  LocaleDate(model)
-{
-  const d = new Date(model);
-  return d.toLocaleDateString('fa-Ir');
-}
+    private categoryService: NewsCategoryService
+  ) {
+    
+  }
+  LocaleDate(model) {
+    const d = new Date(model);
+    return d.toLocaleDateString("fa-Ir");
+  }
   ngOnInit() {
     this.DataGetAllConetnt();
     this.DataGetAllCategory();
@@ -130,6 +134,7 @@ export class NewsContentListComponent implements OnInit {
         if (next.IsSuccess) {
           this.dataModelConetnt = next;
           this.tableContentloading = false;
+          this.optionsSearch.setResultAccess(next.resultAccess);
         }
       },
       (error) => {
@@ -158,9 +163,9 @@ export class NewsContentListComponent implements OnInit {
   }
   onActionCategorySelect(model: any) {
     this.filteModelConetnt = new FilterModel();
-    this.optionsCategorySelectData=null;
+    this.optionsCategorySelectData = null;
     if (model && model.data) {
-      this.optionsCategorySelectData=model.data;
+      this.optionsCategorySelectData = model.data;
 
       var aaa = {
         PropertyName: "LinkCategoryId",
@@ -192,7 +197,7 @@ export class NewsContentListComponent implements OnInit {
     console.log("onActionSelect Event", event);
     console.log("tableContentSelected Event", this.tableContentSelected);
   }
-  onActionbuttonNewEntity() {}
+  onActionbuttonNewRow() {}
   onActionbuttonEditRow() {}
   onActionbuttonDeleteRow() {}
   onActionbuttonStatus() {}
@@ -201,5 +206,8 @@ export class NewsContentListComponent implements OnInit {
   onActionbuttonReload() {
     this.DataGetAllConetnt();
     this.DataGetAllCategory();
+  }
+  onSubmitOptionsSearch(model: any) {
+    console.log(model);
   }
 }

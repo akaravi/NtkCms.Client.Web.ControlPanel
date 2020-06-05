@@ -8,11 +8,17 @@ import { ActivatedRoute, Params } from "@angular/router";
 })
 export class NewsCategoryAddComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute) {}
-  Id: number;
+  Id: any;
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.Id = +params["id"];
-      console.log(this.Id);
+    this.Id = Number.parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.activatedRoute
+    .queryParams
+    .subscribe(params => {
+      // Defaults to 0 if no query param provided.
+      this.Id = +params['id'] || 0;
     });
+
+    console.log(this.Id);
+
   }
 }
