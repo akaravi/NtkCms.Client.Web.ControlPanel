@@ -9,15 +9,23 @@
     <div class="col-md-2 col-lg-2">
       <div class="card">
         <div class="card-header">
-          <h4 (click)='onActionCategorySelect()' class="card-title" >دسته بندی</h4>
+          <h4 class="card-title" >
+            دسته بندی
+          
+          </h4>
         </div>
         <div class="card-content">
           <div class="card-body">
             <app-news-category-select [options]="optionsCategorySelect" ></app-news-category-select>
-            <!-- <tree-root [nodes]="dataModelCategory.ListItems" [options]="optionsModelTree"></tree-root> -->
-
             <hr>
-            <p></p>
+            <p>
+              <span *ngIf="optionsCategorySelectData"  >
+                <a (click)='onActionCategorySelect()'>همه</a> | 
+                <a [routerLink]="['/news/category/edit/?id='+optionsCategorySelectData.Id]">ویرایش</a> | 
+              </span>
+                <a [routerLink]="['/news/category/add/?id='+optionsCategorySelectData?.Id]">اضافه</a>
+              
+            </p>
           </div>
         </div>
       </div>
@@ -27,7 +35,7 @@
  <div class="col-md-10 col-lg-10">
   <div class="card">
     <div class="card-header">
-      <h4 class="card-title">لیست اخبار</h4>
+      <h4 class="card-title">لیست اخبار <span *ngIf="optionsCategorySelectData" >({{optionsCategorySelectData?.Title}})</span> </h4>
       <hr >
       <div >
         
@@ -44,7 +52,7 @@
     </div>
     <div class="card-content">
       <div class="card-body">
-    
+        <p>filteModelConetnt : {{filteModelConetnt | json}}</p>
     <ngx-datatable
     #tableContent
         class="bootstrap"
@@ -77,7 +85,7 @@
 
 
         <hr>
-        <p>filteModelConetnt : {{filteModelConetnt | json}}</p>
+
       </div>
     </div>
   </div>

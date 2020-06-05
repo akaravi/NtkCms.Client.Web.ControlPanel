@@ -11,6 +11,13 @@ const routes: Routes = [
     path: '',
     children: [
       {
+        path: '',
+        component: NewsCategoryListComponent,
+        data: {
+          title: 'login to Panle',
+        },
+      },
+      {
         path: 'list',
         component: NewsCategoryListComponent,
         data: {

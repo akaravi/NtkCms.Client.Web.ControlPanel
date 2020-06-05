@@ -103,7 +103,9 @@ export class NewsContentListComponent implements OnInit {
   };
   optionsCategorySelect: any={
     onActionSelect:(x) => this.onActionCategorySelect(x)
+    
   }
+  optionsCategorySelectData:any;
   constructor(
     private alertService: ToastrService,
     private publicHelper: PublicHelper,
@@ -156,7 +158,10 @@ export class NewsContentListComponent implements OnInit {
   }
   onActionCategorySelect(model: any) {
     this.filteModelConetnt = new FilterModel();
+    this.optionsCategorySelectData=null;
     if (model && model.data) {
+      this.optionsCategorySelectData=model.data;
+
       var aaa = {
         PropertyName: "LinkCategoryId",
         IntValue1: model.data.Id,

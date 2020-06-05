@@ -92,6 +92,7 @@ export class NewsCategorySelectComponent implements OnInit {
   onActionSelect(model: any) {
     if (this.dateModleInput && this.dateModleInput.onActionSelect) {
       this.dateModleInput.onActionSelect(model);
+      this.dateModleInput.Select=model;
     }
     // this.filteModelConetnt = new FilterModel();
     // if (model && model.data) {

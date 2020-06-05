@@ -110,23 +110,13 @@ export class CmsSidebarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   DataGetCpMenu() {
     this.coreCpMainMenuService.ServiceGetMenu(null);
-    // this.coreCpMainMenuService
-    //   .ServiceGetAllMenu(null)
-    //   .subscribe(
-    //     (next) => {
-    //       if (next.IsSuccess) {
-    //         this.menuItems = this.menuConvertor(next.ListItems);
-    //       }
-    //     },
-    //     (error) => {}
-    //   );
-  
+   
   }
   menuConvertor(model: CoreCpMainMenuModel[]) {
     var retOut = new Array<MenuInfo>();
     model.forEach((element) => {
       var newRow: MenuInfo = {
-        path: element.AddressLink,
+        path: "/"+element.RouteAddressLink,
         title: element.Title,
         icon: element.Icon,
         class: "",
