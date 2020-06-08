@@ -1,7 +1,7 @@
 import { Component, ViewChild, OnInit, OnDestroy, Input, Injectable } from '@angular/core';
 import { FilterDataModel } from "app/@cms/cmsModels/base/filterModel";
 import { ResultAccessModel } from "app/@cms/cmsModels/base/errorExcptionResult";
-import {QueryBuilderFieldMap, RuleSet} from 'ngx-query-builder';
+import { RuleSet, QueryBuilderFieldMap } from 'ngx-query-builder';
 
 @Component({
   selector: 'app-cms-search-content-list',
