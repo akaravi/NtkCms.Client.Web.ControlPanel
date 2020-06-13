@@ -18,6 +18,8 @@ export class FilterModel {
 }
 export class FilterDataModel {
   Filters: Array<FilterDataModel> = new Array<FilterDataModel>();
+  value:any;
+  value2:any;
   StringForceNullSearch: boolean;
   DecimalForceNullSearch: boolean;
   LatitudeLongitudeForceNullSearch: boolean;
