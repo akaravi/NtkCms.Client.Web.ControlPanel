@@ -166,7 +166,7 @@ export class CmsSearchContentListComponent implements OnInit {
     if (this.query.condition == "or") clauseType = ClauseType.Or;
 
     rules.forEach((column, index) => {
-      var ruleSet = column as RuleSet;
+      //var ruleSet = column as RuleSet;
       var rule = column as Rule;
       if (rule) {
         var searchType = this.getSearchType(rule.operator);
@@ -174,19 +174,18 @@ export class CmsSearchContentListComponent implements OnInit {
         {
           PropertyName: rule.field;
           value: rule.value;
-          Value2: rule.value;
           SearchType: searchType;
           ClauseType: clauseType;
         }
         Filters.push(Filter);
-      } else if (ruleSet) {
-        Filter = new FilterDataModel();
-        {
-          ClauseType: ruleSet.condition;
-          Filters: this.getRulesChild(ruleSet.rules as Array<Rule>);
-        }
-        Filters.push(Filter);
-      }
+      }// else if (ruleSet!=null) {
+        // Filter = new FilterDataModel();
+        // {
+        //   ClauseType: ruleSet.condition;
+        //   Filters: this.getRulesChild(ruleSet.rules as Array<Rule>);
+        // }
+        //Filters.push(Filter);
+      //}
     });
     return Filters;
   }

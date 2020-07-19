@@ -1,29 +1,29 @@
 @import '../../../../assets/sass/scss/gradient-variables';
 
-:host /deep/ .ct-grid{
+:host >>> .ct-grid{
     stroke-dasharray: 0px;
     stroke: rgba(0, 0, 0, 0.1);
 }
 
-:host /deep/ .ct-label{
+:host >>> .ct-label{
     font-size: 0.9rem;
 }
 
 // Line with Area Chart CSS Starts
 
-:host /deep/ .lineArea .ct-series-a .ct-area {
+:host >>> .lineArea .ct-series-a .ct-area {
     fill-opacity: 0.7;
     fill:url($dashboard1-gradient-path +  #gradient1) !important;
 }
 
-:host /deep/ .lineArea .ct-series-b .ct-area {
+:host >>> .lineArea .ct-series-b .ct-area {
     fill: url($dashboard1-gradient-path +  #gradient) !important;
     fill-opacity: 0.9;
 }
-:host /deep/ .lineArea .ct-line{
+:host >>> .lineArea .ct-line{
     stroke-width: 0px;
 }
-:host /deep/ .lineArea .ct-point {
+:host >>> .lineArea .ct-point {
     stroke-width: 0px;
 }
 
@@ -31,7 +31,7 @@
 
 // Stack Bar Chart CSS Starts
 
-:host /deep/ .Stackbarchart{
+:host >>> .Stackbarchart{
     .ct-series-a {
         .ct-bar{
             stroke: url($dashboard1-gradient-path +  #linear) !important
@@ -48,32 +48,32 @@
 
 // Line with Area Chart 2 CSS Starts
 
-:host /deep/ .lineArea2 .ct-series-a .ct-area {
+:host >>> .lineArea2 .ct-series-a .ct-area {
     fill: url($dashboard1-gradient-path +  #gradient2) !important;
 }
 
-:host /deep/ .lineArea2 .ct-series-b .ct-area {
+:host >>> .lineArea2 .ct-series-b .ct-area {
     fill: url($dashboard1-gradient-path +  #gradient3) !important;
 }
 
-:host /deep/ .lineArea2 .ct-point-circle {
+:host >>> .lineArea2 .ct-point-circle {
     stroke-width: 2px;
     fill: white;
 }
 
-:host /deep/ .lineArea2 .ct-series-b .ct-point-circle{
+:host >>> .lineArea2 .ct-series-b .ct-point-circle{
     stroke: #843cf7;
 }
 
-:host /deep/ .lineArea2 .ct-series-b .ct-line{
+:host >>> .lineArea2 .ct-series-b .ct-line{
     stroke: #A675F4;
 }
 
-:host /deep/ .lineArea2 .ct-series-a .ct-point-circle {
+:host >>> .lineArea2 .ct-series-a .ct-point-circle {
     stroke: #31afb2;
 }
 
-:host /deep/ .lineArea2 .ct-line {
+:host >>> .lineArea2 .ct-line {
     fill: none;
     stroke-width: 2px;
 }
@@ -82,26 +82,26 @@
 
 // Line Chart CSS Starts
 
-:host /deep/ .lineChart .ct-point-circle {
+:host >>> .lineChart .ct-point-circle {
     stroke-width: 2px;
     fill: white;
 }
 
-:host /deep/ .lineChart .ct-series-a .ct-point-circle {
+:host >>> .lineChart .ct-series-a .ct-point-circle {
     stroke: white;
 }
 
-:host /deep/ .lineChart .ct-line {
+:host >>> .lineChart .ct-line {
     fill: none;
     stroke: white;
     stroke-width: 1px;
 }
 
-:host /deep/ .lineChart .ct-label {
+:host >>> .lineChart .ct-label {
     color: #FFF;
 }
 
-:host /deep/ .lineChartShadow {
+:host >>> .lineChartShadow {
     -webkit-filter: drop-shadow( 0px 25px 8px rgba(0,0,0,0.3) );
             filter: drop-shadow( 0px 25px 8px rgba(0,0,0,0.3) ); /* Same syntax as box-shadow, except 
                                                        for the spread property */
@@ -110,25 +110,25 @@
 // Line Chart  CSS Ends
  
   // Donut Chart  CSS Ends
-  :host /deep/ .donut .ct-done .ct-slice-donut {
+  :host >>> .donut .ct-done .ct-slice-donut {
     stroke: #0CC27E;
     stroke-width: 24px !important;
   }
-  :host /deep/ .donut .ct-progress .ct-slice-donut {
+  :host >>> .donut .ct-progress .ct-slice-donut {
     stroke: #FFC107;
     stroke-width: 16px !important;
   }
-  :host /deep/ .donut .ct-outstanding .ct-slice-donut {
+  :host >>> .donut .ct-outstanding .ct-slice-donut {
     stroke: #7E57C2;
     stroke-width: 8px !important;
   }
   
-  :host /deep/ .donut .ct-started .ct-slice-donut {
+  :host >>> .donut .ct-started .ct-slice-donut {
     stroke: #2196F3;
     stroke-width: 32px !important;
   }
 
-  :host /deep/ .donut .ct-label {
+  :host >>> .donut .ct-label {
     text-anchor: middle;
     alignment-baseline: middle;
     font-size: 20px;
@@ -139,20 +139,20 @@
 
   // Bar Chart CSS Starts
 
-  :host /deep/ .BarChart .ct-series-a .ct-bar:nth-of-type(4n+1) {
+  :host >>> .BarChart .ct-series-a .ct-bar:nth-of-type(4n+1) {
     stroke: url($dashboard1-gradient-path +  #gradient7);
   }
-  :host /deep/ .BarChart .ct-series-a .ct-bar:nth-of-type(4n+2) {
+  :host >>> .BarChart .ct-series-a .ct-bar:nth-of-type(4n+2) {
     stroke: url($dashboard1-gradient-path +  #gradient5);
   }
-  :host /deep/ .BarChart .ct-series-a .ct-bar:nth-of-type(4n+3) {
+  :host >>> .BarChart .ct-series-a .ct-bar:nth-of-type(4n+3) {
     stroke: url($dashboard1-gradient-path +  #gradient6);
   }
-  :host /deep/ .BarChart .ct-series-a .ct-bar:nth-of-type(4n+4) {
+  :host >>> .BarChart .ct-series-a .ct-bar:nth-of-type(4n+4) {
     stroke: url($dashboard1-gradient-path +  #gradient4);
   }
 
-  :host /deep/ .BarChartShadow {
+  :host >>> .BarChartShadow {
     -webkit-filter: drop-shadow( 0px 20px 8px rgba(0,0,0,0.3) );
             filter: drop-shadow( 0px 20px 8px rgba(0,0,0,0.3) ); /* Same syntax as box-shadow, except 
                                                        for the spread property */
@@ -162,20 +162,20 @@
 
 // Widget line Chart CSS Starts
 
-:host /deep/ .WidgetlineChart .ct-point {
+:host >>> .WidgetlineChart .ct-point {
     stroke-width: 0px;
 }
-:host /deep/ .WidgetlineChart .ct-line{
+:host >>> .WidgetlineChart .ct-line{
     stroke: #fff;
 }
 
 
-:host /deep/ .WidgetlineChart .ct-grid {
+:host >>> .WidgetlineChart .ct-grid {
     stroke-dasharray: 0px;    
      stroke: rgba(255, 255, 255, 0.2);
 }
 
-:host /deep/ .WidgetlineChartshadow {
+:host >>> .WidgetlineChartshadow {
     -webkit-filter: drop-shadow( 0px 15px 5px rgba(0,0,0,0.8) );
             filter: drop-shadow( 0px 15px 5px rgba(0,0,0,0.8) ); /* Same syntax as box-shadow, except 
                                                        for the spread property */
