@@ -11,6 +11,7 @@ import { ResultAccessModel } from "app/@cms/cmsModels/base/errorExcptionResult";
 import { RuleSet, QueryBuilderFieldMap, Field, Rule } from "ngx-query-builder";
 import { ClauseType } from "app/@cms/cmsModels/Enums/clauseType.enum";
 
+
 @Component({
   selector: "app-cms-search-content-list",
   templateUrl: "./cmsSearchContentList.component.html",
@@ -138,23 +139,20 @@ export class CmsSearchContentListComponent implements OnInit {
       var rule = column as Rule;
       if (rule) {
         var searchType = this.getSearchType(rule.operator);
-        var Filter = new FilterDataModel();
-        {
-          PropertyName: rule.field;
-          value: rule.value;
-          Value2: rule.value;
-          SearchType: searchType;
-          ClauseType: clauseType;
-        }
-        this.Filters.push(Filter);
+        var Filter =new  FilterDataModel();
+        Filter.PropertyName= rule.field;
+        Filter.value= rule.value;
+        Filter.SearchType=searchType;
+        Filter.ClauseType= clauseType;
+        
+        this.Filters.push(Filter );
       } else if (ruleSet) {
         var clauseTypeP = ClauseType.And;
         if (ruleSet.condition == "or") clauseTypeP = ClauseType.Or;
-        var Filter = new FilterDataModel();
-        {
-          Filters: this.getRulesChild(ruleSet.rules as Array<Rule>);
-          ClauseType: clauseTypeP;
-        }
+        var Filter = new FilterDataModel()
+        Filter.Filters= this.getRulesChild(ruleSet.rules as Array<Rule>);
+        Filter.ClauseType= clauseTypeP;
+        
         this.Filters.push(Filter);
       }
     });
@@ -166,32 +164,24 @@ export class CmsSearchContentListComponent implements OnInit {
     if (this.query.condition == "or") clauseType = ClauseType.Or;
 
     rules.forEach((column, index) => {
-      //var ruleSet = column as RuleSet;
       var rule = column as Rule;
       if (rule) {
         var searchType = this.getSearchType(rule.operator);
-        Filter = new FilterDataModel();
-        {
-          PropertyName: rule.field;
-          value: rule.value;
-          SearchType: searchType;
-          ClauseType: clauseType;
-        }
+        Filter = new FilterDataModel()
+        Filter.PropertyName= rule.field;
+        Filter.value= rule.value;
+        Filter.SearchType=searchType;
+        Filter.ClauseType= clauseType;
+        
         Filters.push(Filter);
-      }// else if (ruleSet!=null) {
-        // Filter = new FilterDataModel();
-        // {
-        //   ClauseType: ruleSet.condition;
-        //   Filters: this.getRulesChild(ruleSet.rules as Array<Rule>);
-        // }
-        //Filters.push(Filter);
-      //}
+      }
     });
     return Filters;
   }
   onSubmit() {
-    this.model = { name: "ali" };
-    this.optionsData.onSubmit(this.model);
+    //this.model = { name: "ali" };
+    this.getRules();
+    this.optionsData.onSubmit(this.Filters);
   }
   onGetRules() {
     console.log(this.query);

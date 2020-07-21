@@ -127,6 +127,7 @@ export class NewsContentListComponent implements OnInit {
   }
 
   DataGetAllConetnt() {
+    
     this.tableContentSelected = [];
     this.tableContentloading = true;
     this.contentService.ServiceGetAll(this.filteModelConetnt).subscribe(
@@ -209,5 +210,8 @@ export class NewsContentListComponent implements OnInit {
   }
   onSubmitOptionsSearch(model: any) {
     console.log(model);
+    this.filteModelConetnt.Filters=  model;
+    this.DataGetAllConetnt();
+    //console.log(model);
   }
 }
