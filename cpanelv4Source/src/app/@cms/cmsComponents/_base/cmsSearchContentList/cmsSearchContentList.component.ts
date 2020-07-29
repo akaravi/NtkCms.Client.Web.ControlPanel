@@ -146,28 +146,7 @@ export class CmsSearchContentListComponent implements OnInit {
       }
     });
 
-    // this.query.rules.forEach((column, index) => {
-    //   var ruleSet = column as RuleSet;
-    //   var rule = column as Rule;
-    //   if (rule) {
-    //     var searchType = this.getSearchType(rule.operator);
-    //     var Filter = new FilterDataModel();
-    //     Filter.PropertyName = rule.field;
-    //     Filter.value = rule.value;
-    //     Filter.SearchType = searchType;
-    //     Filter.ClauseType = clauseType;
-
-    //     this.Filters.push(Filter);
-    //   } else if (ruleSet) {
-    //     var clauseTypeP = ClauseType.And;
-    //     if (ruleSet.condition == "or") clauseTypeP = ClauseType.Or;
-    //     var Filter = new FilterDataModel();
-    //     Filter.Filters = this.getRulesChild(ruleSet.rules as Array<Rule>);
-    //     Filter.ClauseType = clauseTypeP;
-
-    //     this.Filters.push(Filter);
-    //   }
-    //});
+    
   }
   getRulesChild(rule: Rule): FilterDataModel {
     var searchType = this.getSearchType(rule.operator);
@@ -202,27 +181,7 @@ export class CmsSearchContentListComponent implements OnInit {
     });
     return Filters;
   }
-  getRulesChild2(rules: Array<Rule>): Array<FilterDataModel> {
-    var Filters = new Array<FilterDataModel>();
-    var Filter = new FilterDataModel();
-    var clauseType: ClauseType = ClauseType.And;
-    if (this.query.condition == "or") clauseType = ClauseType.Or;
-
-    rules.forEach((column, index) => {
-      var rule = column as Rule;
-      if (rule) {
-        var searchType = this.getSearchType(rule.operator);
-        Filter = new FilterDataModel();
-        Filter.PropertyName = rule.field;
-        Filter.value = rule.value;
-        Filter.SearchType = searchType;
-        Filter.ClauseType = clauseType;
-
-        Filters.push(Filter);
-      }
-    });
-    return Filters;
-  }
+  
   onSubmit() {
     //this.model = { name: "ali" };
     this.getRules();
