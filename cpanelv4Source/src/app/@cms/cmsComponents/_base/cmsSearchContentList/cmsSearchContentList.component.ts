@@ -1,16 +1,8 @@
-import {
-  Component,
-  ViewChild,
-  OnInit,
-  OnDestroy,
-  Input,
-  Injectable,
-} from "@angular/core";
+import {  Component,  ViewChild,  OnInit,  OnDestroy,  Input,  Injectable,} from "@angular/core";
 import { FilterDataModel } from "app/@cms/cmsModels/base/filterModel";
 import { ResultAccessModel } from "app/@cms/cmsModels/base/errorExcptionResult";
 import { RuleSet, QueryBuilderFieldMap, Field, Rule } from "ngx-query-builder";
 import { ClauseType } from "app/@cms/cmsModels/Enums/clauseType.enum";
-
 
 @Component({
   selector: "app-cms-search-content-list",
@@ -137,27 +129,80 @@ export class CmsSearchContentListComponent implements OnInit {
     this.query.rules.forEach((column, index) => {
       var ruleSet = column as RuleSet;
       var rule = column as Rule;
-      if (rule) {
-        var searchType = this.getSearchType(rule.operator);
-        var Filter =new  FilterDataModel();
-        Filter.PropertyName= rule.field;
-        Filter.value= rule.value;
-        Filter.SearchType=searchType;
-        Filter.ClauseType= clauseType;
-        
-        this.Filters.push(Filter );
-      } else if (ruleSet) {
-        var clauseTypeP = ClauseType.And;
-        if (ruleSet.condition == "or") clauseTypeP = ClauseType.Or;
-        var Filter = new FilterDataModel()
-        Filter.Filters= this.getRulesChild(ruleSet.rules as Array<Rule>);
-        Filter.ClauseType= clauseTypeP;
-        
+      if (
+        ruleSet &&
+        ruleSet.condition &&
+        ruleSet.rules &&
+        ruleSet.rules.length > 0
+      ) {
+        var Filter=new FilterDataModel();
+        Filter.Filters =this.getRulesSetChild(ruleSet);
+        Filter.ClauseType = clauseType;
+        this.Filters.push(Filter);
+      } else if (rule) {
+        var Filter = this.getRulesChild(rule);
+        Filter.ClauseType = clauseType;
         this.Filters.push(Filter);
       }
     });
+
+    // this.query.rules.forEach((column, index) => {
+    //   var ruleSet = column as RuleSet;
+    //   var rule = column as Rule;
+    //   if (rule) {
+    //     var searchType = this.getSearchType(rule.operator);
+    //     var Filter = new FilterDataModel();
+    //     Filter.PropertyName = rule.field;
+    //     Filter.value = rule.value;
+    //     Filter.SearchType = searchType;
+    //     Filter.ClauseType = clauseType;
+
+    //     this.Filters.push(Filter);
+    //   } else if (ruleSet) {
+    //     var clauseTypeP = ClauseType.And;
+    //     if (ruleSet.condition == "or") clauseTypeP = ClauseType.Or;
+    //     var Filter = new FilterDataModel();
+    //     Filter.Filters = this.getRulesChild(ruleSet.rules as Array<Rule>);
+    //     Filter.ClauseType = clauseTypeP;
+
+    //     this.Filters.push(Filter);
+    //   }
+    //});
   }
-  getRulesChild(rules: Array<Rule>): Array<FilterDataModel> {
+  getRulesChild(rule: Rule): FilterDataModel {
+    var searchType = this.getSearchType(rule.operator);
+    var Filter = new FilterDataModel();
+    Filter.PropertyName = rule.field;
+    Filter.value = rule.value;
+    Filter.SearchType = searchType;
+    return Filter;
+  }
+  getRulesSetChild(ruleSetInput: RuleSet): Array<FilterDataModel> {
+    var Filters = new Array<FilterDataModel>();
+    var clauseType: ClauseType = ClauseType.And;
+    if (ruleSetInput.condition == "or") clauseType = ClauseType.Or;
+    ruleSetInput.rules.forEach((column, index) => {
+      var ruleSet = column as RuleSet;
+      var rule = column as Rule;
+      if (
+        ruleSet &&
+        ruleSet.condition &&
+        ruleSet.rules &&
+        ruleSet.rules.length > 0
+      ) {
+        var Filter=new FilterDataModel();
+        Filter.Filters =this.getRulesSetChild(ruleSet);
+        Filter.ClauseType = clauseType;
+        Filters.push(Filter);
+      } else if (rule) {
+        var Filter = this.getRulesChild(rule);
+        Filter.ClauseType = clauseType;
+        Filters.push(Filter);
+      }
+    });
+    return Filters;
+  }
+  getRulesChild2(rules: Array<Rule>): Array<FilterDataModel> {
     var Filters = new Array<FilterDataModel>();
     var Filter = new FilterDataModel();
     var clauseType: ClauseType = ClauseType.And;
@@ -167,12 +212,12 @@ export class CmsSearchContentListComponent implements OnInit {
       var rule = column as Rule;
       if (rule) {
         var searchType = this.getSearchType(rule.operator);
-        Filter = new FilterDataModel()
-        Filter.PropertyName= rule.field;
-        Filter.value= rule.value;
-        Filter.SearchType=searchType;
-        Filter.ClauseType= clauseType;
-        
+        Filter = new FilterDataModel();
+        Filter.PropertyName = rule.field;
+        Filter.value = rule.value;
+        Filter.SearchType = searchType;
+        Filter.ClauseType = clauseType;
+
         Filters.push(Filter);
       }
     });
