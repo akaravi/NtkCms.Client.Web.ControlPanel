@@ -125,6 +125,9 @@ export class CmsSearchContentListComponent implements OnInit {
     var result: any; // $(element).queryBuilder("getRules");
     this.Filters = new Array<FilterDataModel>();
     var clauseType: ClauseType = ClauseType.And;
+    if (!this.query || !this.query .condition)
+      return;
+      
     if (this.query.condition == "or") clauseType = ClauseType.Or;
     this.query.rules.forEach((column, index) => {
       var ruleSet = column as RuleSet;
