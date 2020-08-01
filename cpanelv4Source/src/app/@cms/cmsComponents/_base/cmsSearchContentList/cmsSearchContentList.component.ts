@@ -66,15 +66,10 @@ export class CmsSearchContentListComponent implements OnInit {
     if (
       this.optionsData &&
       this.optionsData.resultAccess &&
-      this.optionsData.resultAccess.FieldsInfo &&
-      this.optionsData.resultAccess.AccessSearchField
+      this.optionsData.resultAccess.FieldsInfo 
     ) {
       this.optionsData.resultAccess.FieldsInfo.forEach((column, index) => {
-        if (
-          this.optionsData.resultAccess.AccessSearchField.indexOf(
-            column.FieldName
-          ) < 0
-        )
+        if (!column.AccessSearchField)
           return;
         if (
           column.FieldType === "System.Int32" ||
@@ -122,7 +117,6 @@ export class CmsSearchContentListComponent implements OnInit {
     }
   }
   getRules() {
-    var result: any; // $(element).queryBuilder("getRules");
     this.Filters = new Array<FilterDataModel>();
     var clauseType: ClauseType = ClauseType.And;
     if (!this.query || !this.query .condition)

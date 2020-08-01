@@ -43,30 +43,31 @@ export class NewsContentListComponent implements OnInit {
   };
   tableContentloading = false;
   tableContentSelected: Array<any> = [];
-  columnsConetnt: TableColumn[] = [
-    {
-      prop: "Id",
-      name: "شناسه",
-    },
-    {
-      prop: "CreatedDate",
-      name: "ساخت",
-      pipe: { transform: this.LocaleDate },
-    },
-    {
-      prop: "UpdatedDate",
-      name: "ویرایش",
-      pipe: { transform: this.LocaleDate },
-    },
-    {
-      prop: "Title",
-      name: "عنوان",
-    },
-    {
-      prop: "Description",
-      name: "توضیحات",
-    },
-  ];
+  columnsConetnt: Array<TableColumn>=[] ;
+  //columnsConetnt: TableColumn[] = [
+  //   {
+  //     prop: "Id",
+  //     name: "شناسه",
+  //   },
+  //   {
+  //     prop: "CreatedDate",
+  //     name: "ساخت",
+  //     pipe: { transform: this.LocaleDate },
+  //   },
+  //   {
+  //     prop: "UpdatedDate",
+  //     name: "ویرایش",
+  //     pipe: { transform: this.LocaleDate },
+  //   },
+  //   {
+  //     prop: "Title",
+  //     name: "عنوان",
+  //   },
+  //   {
+  //     prop: "Description",
+  //     name: "توضیحات",
+  //   },
+  // ];
 
   optionsModelTree: ITreeOptions = {
     idField: "id",
@@ -136,6 +137,14 @@ export class NewsContentListComponent implements OnInit {
           this.dataModelConetnt = next;
           this.tableContentloading = false;
           this.optionsSearch.setResultAccess(next.resultAccess);
+          this.columnsConetnt =[]  ;
+          next.resultAccess.FieldsInfo.forEach(element => {
+            if(element.AccessGridViewField){
+              var addr=  {prop:element.FieldName,name:element.FieldTitle } ;              
+              this.columnsConetnt.push(addr);
+            }
+          });
+        
         }
       },
       (error) => {
@@ -209,9 +218,7 @@ export class NewsContentListComponent implements OnInit {
     this.DataGetAllCategory();
   }
   onSubmitOptionsSearch(model: any) {
-    console.log(model);
     this.filteModelConetnt.Filters=  model;
     this.DataGetAllConetnt();
-    //console.log(model);
   }
 }
