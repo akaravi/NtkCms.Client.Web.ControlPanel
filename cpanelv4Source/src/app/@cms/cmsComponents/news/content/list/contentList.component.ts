@@ -141,6 +141,7 @@ export class NewsContentListComponent implements OnInit {
           next.resultAccess.FieldsInfo.forEach(element => {
             if(element.AccessGridViewField){
               var addr=  {prop:element.FieldName,name:element.FieldTitle } ;              
+              if(element.FieldType=='System.DateTime') addr['pipe']= { transform: this.LocaleDate };
               this.columnsConetnt.push(addr);
             }
           });
